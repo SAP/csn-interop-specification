@@ -1,0 +1,75 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+title: "@EndUserText"
+x-extension:
+  targetDocument: "./spec/v1/CSN-Interop-Effective.schema.yaml"
+  targetLink: "../spec-v1/csn-interop-effective"
+
+definitions:
+  "@EndUserText.label":
+    type: string
+    description: |-
+      The property contains a human-readable text to be displayed on UIs (besides or instead of the technical name).
+
+      Corresponds to CAP CDS `@title` annotation.
+    examples:
+      - "Sales Order Header"
+      - "{i18n>AD01PROFNR@ENDUSERTEXT.LABEL}"
+    x-extension-targets:
+      - Entity
+      - Type
+      - Service
+      - Context
+
+  "@EndUserText.heading":
+    type: string
+    description: |-
+      Defines a human-readable text that is displayed as column headers.
+    x-extension-targets:
+      - Type
+
+  "@EndUserText.quickInfo":
+    type: string
+    description: |-
+      Defines a human-readable text that provides additional information compared to the label text.
+      The quickInfo is used for accessibility hints or the "Mouse over" function.
+
+      Corresponds to CAP CDS `@description` annotation.
+    examples:
+      - "Sales Order Header that contains data relevant for all items"
+    x-extension-targets:
+      - Entity
+      - Type
+      - Service
+      - Context
+
+examples:
+  - {
+      "csnInteropEffective": "1.0",
+      "$version": "2.0",
+      "definitions":
+        {
+          "SalesOrderHeader":
+            {
+              "kind": "type",
+              "type": "cds.String",
+              "@EndUserText.label": "Sales Order Header",
+              "@EndUserText.quickInfo": "Sales Order Header that contains data relevant for all items",
+            },
+        },
+    }
+  - {
+      "csnInteropEffective": "1.0",
+      "$version": "2.0",
+      "definitions":
+        {
+          "AD01PROFNR":
+            {
+              "kind": "type",
+              "type": "cds.String",
+              "length": 8,
+              "@EndUserText.heading": "{i18n>AD01PROFNR@ENDUSERTEXT.HEADING}",
+              "@EndUserText.label": "{i18n>AD01PROFNR@ENDUSERTEXT.LABEL}",
+              "@EndUserText.quickInfo": "{i18n>AD01PROFNR@ENDUSERTEXT.QUICKINFO}",
+            },
+        },
+    }

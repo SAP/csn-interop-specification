@@ -1,0 +1,451 @@
+{
+  "csnInteropEffective": "1.0",
+  "$version": "2.0",
+  "meta": {
+    "creator": "CDS Compiler v5.4.2"
+  },
+  "definitions": {
+    "SupplierService": {
+      "kind": "service",
+      "@ORD.Extensions.localId": "SupplierService",
+      "@ORD.Extensions.title": "Supplier",
+      "@ORD.Extensions.description": "The description of Supplier OData API",
+      "@ORD.Extensions.shortDescription": "The SupplierODataService",
+      "@ORD.Extensions.version": "1.2.15",
+      "@ORD.Extensions.lastUpdate": "2024-06-20T14:04:01+01:00",
+      "@ORD.Extensions.partOfPackage": "sap.sm:package:smAPIs:v1",
+      "@ORD.Extensions.partOfConsumptionBundles": [
+        {
+          "ordId": "sap.sm:consumptionBundle:noAuth:v1"
+        }
+      ],
+      "@ORD.Extensions.entityTypeMappings": [
+        {
+          "entityTypeTargets": [
+            {
+              "ordId": "sap.odm:entityType:BusinessPartner:v1"
+            }
+          ]
+        }
+      ]
+    },
+    "SupplierService.Supplier": {
+      "kind": "entity",
+      "@ODM.root": true,
+      "@ODM.entityName": "BusinessPartner",
+      "@ODM.oid": "oid",
+      "@EntityRelationship.entityType": "sap.sm:BusinessPartner",
+      "@EntityRelationship.entityIds": [
+        {
+          "name": "Semantic ID",
+          "propertyTypes": ["sap.sm:BusinessPartnerNumber", "sap.sm:BusinessPartnerType"]
+        },
+        {
+          "name": "UUID",
+          "propertyTypes": ["sap.sm:BusinessPartnerUUID"]
+        }
+      ],
+      "@ObjectModel.alternativeKey": [
+        {
+          "id": "BusinessPartnerUUID",
+          "element": ["BP_UUID"],
+          "uniqueness": {
+            "#": "UNIQUE"
+          }
+        }
+      ],
+      "@ObjectModel.representativeKey": "BP_NUMBER",
+      "elements": {
+        "BP_NUMBER": {
+          "@EntityRelationship.propertyType": "sap.sm:BusinessPartnerNumber",
+          "key": true,
+          "type": "cds.String"
+        },
+        "BP_TYPE": {
+          "@EntityRelationship.propertyType": "sap.sm:BusinessPartnerType",
+          "key": true,
+          "type": "cds.String"
+        },
+        "BP_UUID": {
+          "@EntityRelationship.propertyType": "sap.sm:BusinessPartnerUUID",
+          "type": "cds.UUID"
+        },
+        "oid": {
+          "type": "cds.String",
+          "length": 128
+        },
+        "name": {
+          "type": "cds.String"
+        },
+        "alternative": {
+          "@EntityRelationship.reference.referencedEntityType": "sap.sm:BusinessPartner",
+          "@EntityRelationship.reference.referencedPropertyType": "sap.sm:BusinessPartnerUUID",
+          "type": "cds.Association",
+          "cardinality": {
+            "max": 1
+          },
+          "target": "SupplierService.Supplier",
+          "on": [
+            {
+              "ref": ["alternative", "BP_NUMBER"]
+            },
+            "=",
+            {
+              "ref": ["alternative_BP_NUMBER"]
+            },
+            "and",
+            {
+              "ref": ["alternative", "BP_TYPE"]
+            },
+            "=",
+            {
+              "ref": ["alternative_BP_TYPE"]
+            }
+          ]
+        },
+        "alternative_BP_NUMBER": {
+          "type": "cds.String",
+          "@EntityRelationship.reference.referencedEntityType": "sap.sm:BusinessPartner",
+          "@EntityRelationship.reference.referencedPropertyType": "sap.sm:BusinessPartnerUUID"
+        },
+        "alternative_BP_TYPE": {
+          "type": "cds.String",
+          "@EntityRelationship.reference.referencedEntityType": "sap.sm:BusinessPartner",
+          "@EntityRelationship.reference.referencedPropertyType": "sap.sm:BusinessPartnerUUID"
+        }
+      },
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": ["ariba.BusinessPartner"]
+          },
+          "columns": [
+            {
+              "ref": ["BP_NUMBER"]
+            },
+            {
+              "ref": ["BP_TYPE"]
+            },
+            {
+              "ref": ["BP_UUID"]
+            },
+            {
+              "ref": ["oid"]
+            },
+            {
+              "ref": ["name"]
+            },
+            {
+              "ref": ["alternative"]
+            },
+            {
+              "ref": ["alternative_BP_NUMBER"]
+            },
+            {
+              "ref": ["alternative_BP_TYPE"]
+            }
+          ]
+        }
+      }
+    },
+    "ariba.BusinessPartner": {
+      "kind": "entity",
+      "@ODM.root": true,
+      "@ODM.entityName": "BusinessPartner",
+      "@ODM.oid": "oid",
+      "@EntityRelationship.entityType": "sap.sm:BusinessPartner",
+      "@EntityRelationship.entityIds": [
+        {
+          "name": "Semantic ID",
+          "propertyTypes": ["sap.sm:BusinessPartnerNumber", "sap.sm:BusinessPartnerType"]
+        },
+        {
+          "name": "UUID",
+          "propertyTypes": ["sap.sm:BusinessPartnerUUID"]
+        }
+      ],
+      "@ObjectModel.alternativeKey": [
+        {
+          "id": "BusinessPartnerUUID",
+          "element": ["BP_UUID"],
+          "uniqueness": {
+            "#": "UNIQUE"
+          }
+        }
+      ],
+      "@ObjectModel.representativeKey": "BP_NUMBER",
+      "elements": {
+        "BP_NUMBER": {
+          "@EntityRelationship.propertyType": "sap.sm:BusinessPartnerNumber",
+          "key": true,
+          "type": "cds.String"
+        },
+        "BP_TYPE": {
+          "@EntityRelationship.propertyType": "sap.sm:BusinessPartnerType",
+          "key": true,
+          "type": "cds.String"
+        },
+        "BP_UUID": {
+          "@EntityRelationship.propertyType": "sap.sm:BusinessPartnerUUID",
+          "type": "cds.UUID"
+        },
+        "oid": {
+          "type": "cds.String",
+          "length": 128
+        },
+        "name": {
+          "type": "cds.String"
+        },
+        "alternative": {
+          "@EntityRelationship.reference.referencedEntityType": "sap.sm:BusinessPartner",
+          "@EntityRelationship.reference.referencedPropertyType": "sap.sm:BusinessPartnerUUID",
+          "type": "cds.Association",
+          "cardinality": {
+            "max": 1
+          },
+          "target": "ariba.BusinessPartner",
+          "on": [
+            {
+              "ref": ["alternative", "BP_NUMBER"]
+            },
+            "=",
+            {
+              "ref": ["alternative_BP_NUMBER"]
+            },
+            "and",
+            {
+              "ref": ["alternative", "BP_TYPE"]
+            },
+            "=",
+            {
+              "ref": ["alternative_BP_TYPE"]
+            }
+          ]
+        },
+        "alternative_BP_NUMBER": {
+          "type": "cds.String",
+          "@EntityRelationship.reference.referencedEntityType": "sap.sm:BusinessPartner",
+          "@EntityRelationship.reference.referencedPropertyType": "sap.sm:BusinessPartnerUUID"
+        },
+        "alternative_BP_TYPE": {
+          "type": "cds.String",
+          "@EntityRelationship.reference.referencedEntityType": "sap.sm:BusinessPartner",
+          "@EntityRelationship.reference.referencedPropertyType": "sap.sm:BusinessPartnerUUID"
+        }
+      }
+    },
+    "ariba.Material": {
+      "kind": "entity",
+      "@EntityRelationship.entityType": "sap.sm:Material",
+      "@EntityRelationship.entityIds": [
+        {
+          "propertyTypes": ["sap.sm:MaterialId"]
+        }
+      ],
+      "@ODM.entityName": "Product",
+      "@ODM.oid": "oid",
+      "@ODM.root": true,
+      "elements": {
+        "ObjectID": {
+          "@EntityRelationship.propertyType": "sap.sm:MaterialId",
+          "key": true,
+          "type": "cds.String",
+          "length": 18
+        },
+        "manufacturer": {
+          "@EntityRelationship.reference.referencedEntityType": "sap.sm:BusinessPartner",
+          "@EntityRelationship.reference.referencedPropertyType": "sap.sm:BusinessPartnerUUID",
+          "@EntityRelationship.propertyType": "sap.sm:BusinessPartnerUUID",
+          "type": "cds.UUID"
+        },
+        "manufacturerPartNumber": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "PurchaseOrder": {
+          "@EntityRelationship.reference.referencedEntityType": "sap.sm:PurchaseOrder",
+          "@EntityRelationship.reference.referencedPropertyType": "sap.sm:PurchaseOrderUUID",
+          "type": "cds.String",
+          "length": 10
+        },
+        "isBatchManagementRequired": {
+          "type": "cds.Boolean"
+        },
+        "oid": {
+          "type": "cds.String",
+          "length": 128
+        },
+        "Description": {
+          "type": "cds.String",
+          "length": 5000
+        },
+        "brand": {
+          "type": "cds.String",
+          "length": 32
+        },
+        "UsageText": {
+          "type": "cds.String",
+          "length": 32
+        },
+        "ProductSkillID": {
+          "@EntityRelationship.reference.referencedEntityType": "sap.sm:ProductSkill",
+          "@EntityRelationship.reference.referencedPropertyType": "sap.sm:ProductSkillID",
+          "type": "cds.String",
+          "length": 20
+        }
+      }
+    },
+    "ariba.PurchaseOrder": {
+      "kind": "entity",
+      "@EntityRelationship.entityType": "sap.sm:PurchaseOrder",
+      "@EntityRelationship.entityIds": [
+        {
+          "propertyTypes": ["sap.sm:PurchaseOrderUUID"]
+        }
+      ],
+      "@EntityRelationship.compositeReferences": [
+        {
+          "name": "Main Supplier",
+          "referencedEntityType": "sap.sm:BusinessPartner",
+          "referencedPropertyTypes": [
+            {
+              "referencedPropertyType": "sap.sm:BusinessPartnerNumber",
+              "localPropertyName": "SupplierNumber"
+            },
+            {
+              "referencedPropertyType": "sap.sm:BusinessPartnerType",
+              "localPropertyName": "SupplierType"
+            }
+          ]
+        },
+        {
+          "name": "Alternative Supplier",
+          "referencedEntityType": "sap.sm:BusinessPartner",
+          "referencedPropertyTypes": [
+            {
+              "referencedPropertyType": "sap.sm:BusinessPartnerNumber",
+              "localPropertyName": "otherSupplierNumber"
+            },
+            {
+              "referencedPropertyType": "sap.sm:BusinessPartnerType",
+              "localPropertyName": "SupplierType"
+            }
+          ]
+        }
+      ],
+      "@ODM.entityName": "PurchaseOrder",
+      "@ODM.oid": "PurchaseOrder",
+      "@ODM.root": true,
+      "elements": {
+        "PurchaseOrder": {
+          "@EntityRelationship.propertyType": "sap.sm:PurchaseOrderUUID",
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "CreationDate": {
+          "type": "cds.Date"
+        },
+        "PaymentTerms": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "SupplierNumber": {
+          "@ObjectModel.foreignKey.association": "mainSupplier",
+          "type": "cds.String",
+          "length": 40
+        },
+        "SupplierType": {
+          "@EntityRelationship.reference": [
+            {
+              "referencedEntityType": "sap.sm:BusinessPartnerType",
+              "referencedPropertyType": "sap.sm:BusinessPartnerType"
+            }
+          ],
+          "type": "cds.String",
+          "length": 40
+        },
+        "otherSupplierNumber": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "Items": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "ariba.PurchaseOrderItem",
+          "on": [
+            {
+              "ref": ["Items", "PurchaseOrderItem"]
+            },
+            "=",
+            {
+              "ref": ["Items_PurchaseOrderItem"]
+            }
+          ]
+        },
+        "Items_PurchaseOrderItem": {
+          "type": "cds.UUID"
+        }
+      }
+    },
+    "ariba.PurchaseOrderItem": {
+      "kind": "entity",
+      "@EntityRelationship.entityType": "sap.sm:PurchaseOrderItem",
+      "@EntityRelationship.compositeReferences": [
+        {
+          "name": "Related BOM",
+          "referencedEntityType": "sap.vdm.sont:BillOfMaterialItem",
+          "referencedPropertyTypes": [
+            {
+              "referencedPropertyType": "sap.vdm.gfn:BillOfMaterialId",
+              "localPropertyName": "RelatedBOMId"
+            },
+            {
+              "referencedPropertyType": "sap.vdm.gfn:BillOfMaterialItemId",
+              "localPropertyName": "RelatedBOMItemId"
+            }
+          ]
+        }
+      ],
+      "elements": {
+        "PurchaseOrderItem": {
+          "@EntityRelationship.propertyType": "sap.sm:PurchaseOrderItemUUID",
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "PurgDocPriceDate": {
+          "type": "cds.Date"
+        },
+        "InventorySpecialStockType": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "OrderPriceUnitToOrderUnitNmrtr": {
+          "type": "cds.Integer"
+        },
+        "OrderQuantity": {
+          "type": "cds.Integer"
+        },
+        "PurchaseOrderQuantityUnit": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "Material": {
+          "@EntityRelationship.reference.referencedEntityType": "sap.sm:Material",
+          "@EntityRelationship.reference.referencedPropertyType": "sap.sm:MaterialId",
+          "type": "cds.String",
+          "length": 18
+        },
+        "RelatedBOMId": {
+          "type": "cds.String",
+          "length": 30
+        },
+        "RelatedBOMItemId": {
+          "type": "cds.String",
+          "length": 30
+        }
+      }
+    }
+  }
+}

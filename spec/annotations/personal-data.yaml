@@ -1,0 +1,96 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+title: "@PersonalData"
+x-extension:
+  targetDocument: "./spec/v1/CSN-Interop-Effective.schema.yaml"
+  targetLink: "../spec-v1/csn-interop-effective"
+
+definitions:
+  "@PersonalData.entitySemantics":
+    type: string
+    description: |-
+      Primary meaning of the entities in the annotated entity set. Entities annotated with @PersonalData.entitySemantics are synonymous to @PersonalData.isPotentiallyPersonal.
+    oneOf:
+      - const: "DataSubject"
+        description: |-
+          Describes a data subject, for example, a customer or vendor.
+      - const: "DataSubjectDetails"
+        description: |-
+          Describes entities that contain details for a data subject, for example an address.
+      - const: "Other"
+        description: |-
+          Entities that contain personal data or references to data subjects but do not represent data subjects or details itself. For example: customer quote, customer order, or purchase order.
+    x-extension-targets:
+      - Entity
+
+  "@PersonalData.dataSubjectRole":
+    type: string
+    description: |-
+      Role of the data subjects in this set (e.g. employee, customer). Values are application-specific.
+    x-extension-targets:
+      - Entity
+
+  "@PersonalData.dataSubjectRoleDescription":
+    type: string
+    description: |-
+      Language-dependent description of the role of the data subjects in this set (e.g. employee, customer). Values are application-specific.
+    x-extension-targets:
+      - Entity
+
+  "@PersonalData.fieldSemantics":
+    type: string
+    description: |-
+      Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+    oneOf:
+      - const: "DataSubjectID"
+        description: |-
+          Identifies the data subject unique key or references it.
+      - const: "DataSubjectIDType"
+        description: |-
+          The type describing the DataSubjectID identifying the data subject, e.g., an e-mail address, semantic of the ID or a customer.
+      - const: "ConsentID"
+        description: |-
+          The unique identifier for a consent. A consent is an action of data subjects confirming that the usage of their personal data shall be allowed for a given purpose. A consent functionality allows the storage of a consent record in relation to a specific purpose and shows if a data subject has granted, withdrawn, or denied consent.
+      - const: "PurposeID"
+        description: |-
+          The unique identifier for the purpose of processing of personal data. Any processing of personal data is based on specified, explicit, and legitimate purposes and not further processed in a manner that is incompatible with those purposes. The purpose is defined by the data controller or joint data controllers.
+      - const: "ContractRelatedID"
+        description: |-
+          The unique identifier for transactional data that is related to a contract that requires processing of personal data. For example, Sales Contract ID, Purchase Contract ID, or Service Contract ID.
+      - const: "DataControllerID"
+        description: |-
+          The unique identifier of a legal entity which alone or jointly with others determines the purposes and means of the processing of personal data. The Data Controller is fully responsible (and accountable) that data protection and privacy principles (such as purpose limitation or data minimization), defined in the European General Data Protection Regulation (GDPR) or any other data protection legislation, are adhered to when processing personal data. The DataControllerID succeeds the LegalEntityID.
+      - const: "UserID"
+        description: |-
+          The unique identifier of a user. A user is an individual who interacts with the services supplied by a system.
+      - const: "EndOfBusinessDate"
+        description: |-
+          Defines the end of active business and the start of residence time and retention period. End of business is the point in time when the processing of a set of personal data is no longer required for the active business, for example, when a contract is fulfilled. After it has been reached and a customer-defined residence period has passed, the data is blocked and can only be accessed by users with special authorizations (for example, tax auditors). All fields of type Edm.Date or Edm.DateTimeOffset on which the end of business determination depends should be annotated.
+      - const: "BlockingDate"
+        description: |-
+          Defines a date that marks when the provider of the data will block these. This is the point in time when the processing of a set of personal data is no longer required for the active business, for example, when a contract is fulfilled. After it has been reached, the data is blocked in the source and can only be displayed by users with special authorizations (for example, tax auditors); however, it is not allowed to create/change/copy/follow-up blocked data. Consumers of the data should consider if there is an additional purpose to process the data beyond the defined blocking date
+      - const: "EndOfRetentionDate"
+        description: |-
+          Defines a date that marks when the provider of the data can destroy these. Consumers of the data should consider if there is an additional purpose (or a legal hold) to process the data beyond the defined destruction date.
+    x-extension-targets:
+      - Type
+
+  "@PersonalData.isPotentiallyPersonal":
+    type: boolean
+    description: |-
+      Property contains potentially personal data. Properties annotated with `@PersonalData.fieldSemantics` need not be additionally annotated with this annotation. Personal data describes any information which is related to an identified or identifiable natural person (data subject). An identifiable person is one who can be identified, directly or indirectly, in particular by a reference to an identifier such as a name, an identification number, location data, an online identifier, or to one or more factors specific to the physical, physiological, genetic, mental, economic, cultural, or social identity of that natural person.
+    default: true
+    x-extension-targets:
+      - Type
+
+  "@PersonalData.isPotentiallySensitive":
+    type: boolean
+    description: |-
+      Property contains potentially sensitive personal data. Sensitive personal data is a category of personal data that needs special handling. The determination which personal data is sensitive may differ for different legal areas or industries.
+      Examples of sensitive personal data:
+      -	Special categories of personal data, such as data revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, trade union membership, genetic data, biometric data, data concerning health or sex life or sexual orientation.
+      -	Personal data subject to professional secrecy
+      -	Personal data relating to criminal or administrative offenses
+      -	Personal data concerning insurances and bank or credit card accounts
+    default: true
+    x-extension-targets:
+      - Type

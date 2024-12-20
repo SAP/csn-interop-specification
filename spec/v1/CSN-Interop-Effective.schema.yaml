@@ -1,0 +1,2116 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+$id: "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json"
+title: CSN Interop Effective
+description: |-
+  This is the interface description of CSN Interop Effective v1.
+  Its purpose is to be an aligned import / export format for CSN that works across tech-stacks in a wider SAP ecosystem.
+
+  For a more extensive documentation on CSN in general, consider the [CAP CSN](https://cap.cloud.sap/docs/cds/csn) documentation.
+
+x-custom-typescript-types:
+  - typeName: "PrivatePropertyKey"
+    typeValue: "`__${string}`"
+  - typeName: "AnnotationPropertyKey"
+    typeValue: "`@${string}`"
+  - typeName: "EntityKind"
+    typeValue: '"entity"'
+  - typeName: "ContextKind"
+    typeValue: '"context"'
+  - typeName: "ServiceKind"
+    typeValue: '"service"'
+  - typeName: "TypeKind"
+    typeValue: '"type"'
+  - typeName: "BooleanCdsType"
+    typeValue: '"cds.Boolean"'
+  - typeName: "StringCdsType"
+    typeValue: '"cds.String"'
+  - typeName: "LargeStringCdsType"
+    typeValue: '"cds.LargeString"'
+  - typeName: "IntegerCdsType"
+    typeValue: '"cds.Integer"'
+  - typeName: "Integer64CdsType"
+    typeValue: '"cds.Integer64"'
+  - typeName: "DecimalCdsType"
+    typeValue: '"cds.Decimal"'
+  - typeName: "DoubleCdsType"
+    typeValue: '"cds.Double"'
+  - typeName: "DateCdsType"
+    typeValue: '"cds.Date"'
+  - typeName: "TimeCdsType"
+    typeValue: '"cds.Time"'
+  - typeName: "DateTimeCdsType"
+    typeValue: '"cds.DateTime"'
+  - typeName: "TimestampCdsType"
+    typeValue: '"cds.Timestamp"'
+  - typeName: "UUIDCdsType"
+    typeValue: '"cds.UUID"'
+  - typeName: "AssociationCdsType"
+    typeValue: '"cds.Association"'
+  - typeName: "CompositionCdsType"
+    typeValue: '"cds.Composition"'
+  - typeName: "CustomTypeValue"
+    typeValue: "string // MUST not start with `cds.`"
+  - typeName: "CdsTypeValue"
+    typeValue: "BooleanCdsType | StringCdsType | LargeStringCdsType | IntegerCdsType | Integer64CdsType | DecimalCdsType | DoubleCdsType | DateCdsType | TimeCdsType | DateTimeCdsType | TimestampCdsType | UUIDCdsType | AssociationCdsType | CompositionCdsType"
+
+$ref: "#/definitions/CsnInteropEffectiveRoot"
+
+definitions:
+  CsnInteropEffectiveRoot:
+    title: "CSN Interop Root"
+    type: "object"
+    description: |-
+      Root of the CSN Interop Effective JSON document.
+
+      See [Primer: Root Level Structure](../primer.md#root-level-structure).
+    properties:
+      $schema:
+        type: string
+        format: uri-reference
+        description: |
+          Link to JSON Schema for this CSN Interop Effective document.
+          Adding this helps with automatic validation and code intelligence in some editors / IDEs.
+
+          See https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema
+
+        examples:
+          - https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json
+      $id:
+        type: string
+        format: uri-reference
+        description: |
+          Optional URI for this document, that can acts as an ID.
+
+          See https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema
+        examples:
+          - https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.ext.schema.json
+          - https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json
+      csnInteropEffective:
+        type: string
+        description: |-
+          Existence of this property indicated that the file is a CSN Interop Effective document.
+          The value states the specification version it has been created against.
+        enum:
+          - "1.0"
+      $version:
+        type: string
+        description: |-
+          The version of the CDS CSN. For this version of CSN Interop it is fixed to `2.0`.
+
+          This MUST be provided to ensure that CSN Interop is a valid subset of CDS CSN in general.
+        enum:
+          - "2.0"
+      meta:
+        type: object
+        description: |-
+          Meta information that apply to the CSN document as a whole.
+        $ref: "#/definitions/Meta"
+
+      definitions:
+        $ref: "#/definitions/Definitions"
+        description: |
+          Dictionary of CSN modeling artifacts.
+
+      i18n:
+        $ref: "#/definitions/i18n"
+        description: |
+          Dictionary of translated texts.
+
+    patternProperties: &patternPropertiesPrivateOnly
+      "^__.+$":
+        type: ["string", "number", "boolean", "array", "object"]
+        description: |
+          Private properties, starting with `__`.
+
+          MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
+        tsType: "unknown // replaceKeyType_{PrivatePropertyKey}"
+    required:
+      - "csnInteropEffective"
+      - "$version"
+      - "definitions"
+    additionalProperties: false
+
+  Meta:
+    title: "Meta"
+    type: object
+    description: |-
+      Meta information about the CSN document and its creator.
+    properties:
+      creator:
+        type: string
+        description: |-
+          Informal description of the creator of this CSN Document.
+        examples:
+          - CDS Compiler v4.5.0
+
+      flavor:
+        type: string
+        description: |-
+          Informal hint which CSN flavor is used. The values are currently NOT standardized.
+
+          A CSN flavor can be understood as an alias to particular [feature set](#) of CSN overall.
+          In CSN Interop we leave some features open and to be defined in the document itself, this is why we don't have a fixed flavor.
+        examples:
+          - "effective"
+          - "inferred"
+
+      document:
+        $ref: "#/definitions/MetaDocument"
+        description: |-
+          Meta information about the document content.
+
+      features:
+        $ref: "#/definitions/MetaFeatures"
+        description: |-
+          Feature dimensions that this CSN document fulfills.
+
+    patternProperties: *patternPropertiesPrivateOnly
+
+    examples:
+      - { "creator": "CDS Compiler v4.5.0", "flavor": "inferred", "document": { "version": "1.2.1" } }
+    additionalProperties: false
+
+  MetaDocument:
+    title: Document (Metadata)
+    type: object
+    description: |-
+      Metadata that describes the document (and what it represents) itself.
+    properties:
+      version:
+        type: string
+        description: |-
+          The version of the CSN document / the described model itself (not the specification).
+
+          We RECOMMEND to use the [SemVer](https://semver.org/) standard.
+        examples:
+          - "1.3.4"
+      doc:
+        type: string
+        description: |-
+          Human readable documentation that describes the overall CSN document.
+
+          SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+    additionalProperties: false
+
+  MetaFeatures:
+    title: Features (Metadata)
+    type: object
+    description: |-
+      CSN feature-dimensions this document fulfills.
+
+      It is RECOMMENDED to explicitly state all feature dimensions of the document.
+      Otherwise the consumer cannot rely on the information and may have to figure this out on his own.
+
+    # Most of the feature-dimensions and their values are already defined through the CSN Interop Effective spec itself.
+    # Here is a list of applicable feature-dimensions that are fixed by this spec:
+
+    # ```js
+    # {
+    #   "sections": ["definitions", "i18n"],
+    #   "typeSystem": "effective",
+    #   "dissolveStructuredDefinitions": "flatten",
+    #   "resolveIncludes": true,
+    #   "resolveExtensions": true,
+    #   "resolveAspects": true,
+    #   "resolveManagedAssociations": true,
+    #   "dissolveScalarTypes": "native", // TODO: Check this
+    #   "inheritAnnotations": true, // TODO: Check this
+    #   "inheritTypeAttributes": true, // TODO: Check this
+    #   "resolveLocalization": false, // TODO: Check this
+    #   "resolveDollarSelf": false, // TODO: Check this
+    #   "effectiveServiceExposure": "strict", // TODO: Check this
+    #   "moveCalculatedEntityElements": false, // TODO: Check this
+    # }
+    # ```
+    properties:
+      complete:
+        type: boolean
+        description: |-
+          Whether this document is complete and self-contained.
+
+          It is RECOMMENDED to have complete CSN documents and set this to `true`.
+
+          If true references to other CDS elements (e.g. `cds.Association`) MUST be resolvable within the same document.
+      # TODO: i18n references feature is not yet stable in overall CSN Spec. Add it once it is.
+      # i18nReferences:
+      #   type: string
+      #   description: |-
+      #     Whether this document uses [i18n](#i18n) references or not.
+      #   oneOf:
+      #     - const: "off"
+      #       description: |-
+      #         No internationalization is done and texts are written directly into annotation values in a specific language (see cross effects).
+      #     - const: "encoded"
+      #       description: |-
+      #         Text identifiers are use in annotation values with the format `{i18n>textId}` where textId is the unique text identifier. A corresponding text in at least one language MUST then be provided in the i18n section of the CSN document.
+    x-recommended:
+      - complete
+      # - i18nReferences
+    examples:
+      - complete: true
+        # i18nReferences: "off"
+    additionalProperties: false
+
+  Definitions:
+    title: "Definitions"
+    type: "object"
+    description: |-
+      Each entry in the definitions dictionary is a definition of a named modeling artefact.
+      The `name` is the absolute, fully qualified name of the definition, and the value is a record with the definition details.
+
+      Definition names MUST:
+      * Not be an empty string.
+      * Not start with `@`, `__`, `.`, `::`.
+      * Not end with `.` or `::`.
+      * Not contain the substring `..` or `:::`.
+      * Not contain the substring `::` more than once.
+
+      See [Primer: Definitions](../primer.md#definitions).
+
+    patternProperties:
+      '^(?![@]|__|\.|::).+$':
+        $ref: "#/definitions/DefinitionEntry"
+    minProperties: 1
+    additionalProperties: false
+    examples:
+      - "SomeEntity":
+          "kind": "entity"
+          "elements": { "SomeElement": { "@SomeProperty.upperCase": true, "type": "cds.String" } }
+
+  DefinitionEntry:
+    type: object
+    description: |-
+      Definition of a CDS modeling artifact, put into [Definitions](#definitions).
+    properties:
+      kind:
+        type: string
+        enum:
+          - "context"
+          - "entity"
+          - "service"
+          - "type"
+        description: |-
+          The modeling artefact kind.
+          It's value is been used as a _discriminator_ to distinguish the matching schema that should be further validated.
+    required:
+      - kind
+    allOf:
+      - if:
+          properties:
+            kind:
+              type: string
+              const: "context"
+          required:
+            - kind
+        then:
+          $ref: "#/definitions/ContextDefinition"
+      - if:
+          properties:
+            kind:
+              type: string
+              const: "entity"
+          required:
+            - kind
+        then:
+          $ref: "#/definitions/EntityDefinition"
+      - if:
+          properties:
+            kind:
+              type: string
+              const: "service"
+          required:
+            - kind
+        then:
+          $ref: "#/definitions/ServiceDefinition"
+      - if:
+          properties:
+            kind:
+              type: string
+              const: "type"
+          required:
+            - kind
+        then:
+          $ref: "#/definitions/TypeDefinition"
+    x-hide-properties: true
+
+  EntityDefinition:
+    title: Entity Definition
+    type: object
+    description: |-
+      Entity definition refers to the structured description of an object or concept.
+
+      If it is exposed through a [Service](#service-definition), it describes a data model.
+      To expose it through a Service, the service name MUST be prefixed to the Entity name, separated by a `.` (dot).
+      The actual data serialization format is defined by the Service protocol and chosen data format [mapping](../mappings).
+
+      If the entity is not exposed via a service, it only describes a conceptual domain object.
+    x-extension-points:
+      - Entity
+    properties:
+      kind:
+        type: string
+        const: "entity"
+        description: |-
+          The modeling artefact is an entity.
+        tsType: EntityKind
+
+      elements:
+        $ref: "#/definitions/ElementDefinitions"
+        description: |-
+          Dictionary of the elements of the entity.
+          The dictionary key is the element `name`, the value the element itself.
+
+          MUST have at least one element.
+
+      doc: &doc
+        type: string
+        description: |-
+          Human readable documentation.
+
+          SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+
+      #-------------------------------------------------------------
+      #--Hidden Properties (added to ignore them in the validation)
+      #-------------------------------------------------------------
+      abstract:
+        type: ["string", "number", "boolean", "array", "object"]
+        x-hide-property: true
+        description: |-
+          Proper syntax element in ABAP CDS producing Abstract CDS Entities
+      customEntity:
+        type: ["string", "number", "boolean", "array", "object"]
+        x-hide-property: true
+        description: |-
+          Proper syntax element in ABAP CDS producing Custom CDS Entities
+      tableFunction:
+        type: ["string", "number", "boolean", "array", "object"]
+        x-hide-property: true
+        description: |-
+          Proper syntax element in ABAP CDS producing CDS Table Functions.
+      externalEntity:
+        type: ["string", "number", "boolean", "array", "object"]
+        x-hide-property: true
+        description: |-
+          Proper syntax element in ABAP CDS producing CDS  External Entities
+      providerContract:
+        type: ["string", "number", "boolean", "array", "object"]
+        x-hide-property: true
+        description: |-
+          ABAP CDS Projection have the additional information of a provider contract
+      rootEntity:
+        type: ["string", "number", "boolean", "array", "object"]
+        x-hide-property: true
+        description: |-
+          ABAP CDS Root View Entities define a RAP Business Object.
+      transient:
+        type: ["string", "number", "boolean", "array", "object"]
+        x-hide-property: true
+        description: |-
+          Special kind of analytical ABAP CDS Projection view.
+      literal:
+        type: ["string", "number", "boolean", "array", "object"]
+        x-hide-property: true
+        description: |-
+          In the selection element list of a CDS view.
+      toCompositionChild:
+        type: ["string", "number", "boolean", "array", "object"]
+        x-hide-property: true
+        description: |-
+          When redirecting associations in ABAP CDS Projections with the additional keywords "to composition child", this indicates a Parent-Child-Composition an requires the redirection target to have a matching "to parent" association redefinition.
+      toParent:
+        type: ["string", "number", "boolean", "array", "object"]
+        x-hide-property: true
+        description: |-
+          When redirecting associations in ABAP CDS Projections with the additional keywords "to composition child", this indicates a Parent-Child-Composition an requires the redirection target to have a matching "to parent" association redefinition.
+      hana_on_asString:
+        type: ["string", "number", "boolean", "array", "object"]
+        x-hide-property: true
+        x-ignore-conventions: true
+        description: |-
+          Contains the SQL on condition as string
+      #-----------------------
+      #--Hidden Properties End
+      #-----------------------
+
+    patternProperties: &patternPropertiesAnnotationsAndPrivate
+      "^(@|__).+$":
+        type: ["string", "number", "boolean", "array", "object"]
+        description: |-
+          Annotations or private properties MAY be added.
+
+          **Annotations** MUST start with `@`.
+
+          In CSN Interop Effective the annotations MUST follow the "flattened" form:
+          Every record / object in an annotation will be flattened into a `.` (dot).
+          Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
+
+          Correct annotations examples:
+          * `"@Common.bar": "foo"`
+          * `"@Common.foo.bar": true`
+          * `"@Common.array": [{ "foo": true }]`
+
+          Or
+
+          **Private properties**, starting with `__`.
+          MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
+
+        tsType: "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
+    required:
+      - kind
+      - elements
+    additionalProperties: false
+
+  ElementDefinitions:
+    title: Element Definitions
+    type: "object"
+    description: |-
+      Dictionary of Element where the key is the name of the element and the value its definition.
+
+      The value can either be a standard [CDS Type](#cds-type) (`cds.*`) or a [Custom Type](#custom-type).
+
+      Element names MUST:
+      * Not be an empty string.
+      * Not start with `@`, `__`, `::`.
+      * Not end with `::`.
+      * Not contain the substring `.` or `:::`.
+      * Not contain the substring `::` more than once.
+    minProperties: 1
+    patternProperties:
+      '^(?![@]|__|\.|::).+$':
+        $ref: "#/definitions/ElementEntry"
+    additionalProperties: false
+
+  ElementEntry:
+    type: object
+    description: |-
+      Definition of an Element, as put into [Element Definitions](#element-definitions).
+
+      An element can be either of a standard [CDS Types](#cds-type) or a [Custom Type](#custom-type).
+    properties:
+      type:
+        type: string
+    allOf:
+      - if:
+          properties:
+            type:
+              type: string
+              pattern: '^(cds\.).*$'
+          required:
+            - type
+        then:
+          $ref: "#/definitions/CdsType"
+      - if:
+          properties:
+            type:
+              type: string
+              pattern: '^(?!cds\.).*$'
+          required:
+            - type
+        then:
+          $ref: "#/definitions/CustomType"
+    required:
+      - type
+    x-hide-properties: true
+
+  CdsType:
+    title: Cds Type
+    type: object
+    description: |-
+      The native CDS Type of an element, which will always start with `cds.`.
+    properties:
+      type:
+        type: string
+        description: |-
+          The CDS type (`cds.*`), as defined by the CSN specification.
+        enum:
+          # Primitive standard types
+          - "cds.Boolean"
+          - "cds.String"
+          - "cds.LargeString"
+          - "cds.Integer"
+          - "cds.Integer64"
+          - "cds.Decimal"
+          - "cds.Double"
+          - "cds.Date"
+          - "cds.Time"
+          - "cds.DateTime"
+          - "cds.Timestamp"
+          - "cds.UUID"
+
+          # Complex standard types
+          - "cds.Association"
+          - "cds.Composition"
+
+    allOf:
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.Boolean"
+          required:
+            - type
+        then:
+          $ref: "#/definitions/BooleanType"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.String"
+          required:
+            - type
+        then:
+          $ref: "#/definitions/StringType"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.LargeString"
+          required:
+            - type
+        then:
+          $ref: "#/definitions/LargeStringType"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.Integer"
+          required:
+            - type
+        then:
+          $ref: "#/definitions/IntegerType"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.Integer64"
+          required:
+            - type
+        then:
+          $ref: "#/definitions/Integer64Type"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.Decimal"
+          required:
+            - type
+        then:
+          $ref: "#/definitions/DecimalType"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.Double"
+          required:
+            - type
+        then:
+          $ref: "#/definitions/DoubleType"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.Date"
+          required:
+            - type
+        then:
+          $ref: "#/definitions/DateType"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.Time"
+          required:
+            - type
+        then:
+          $ref: "#/definitions/TimeType"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.DateTime"
+          required:
+            - type
+        then:
+          $ref: "#/definitions/DateTimeType"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.Timestamp"
+          required:
+            - type
+        then:
+          $ref: "#/definitions/TimestampType"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.UUID"
+          required:
+            - type
+        then:
+          $ref: "#/definitions/UUIDType"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.Association"
+          required:
+            - type
+        then:
+          $ref: "#/definitions/AssociationType"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.Composition"
+          required:
+            - type
+        then:
+          $ref: "#/definitions/CompositionType"
+    required:
+      - type
+    x-hide-properties: true
+
+  BooleanType:
+    title: Boolean Type
+    type: object
+    description: An element of type `cds.Boolean`.
+    properties: &BooleanTypeProperties
+      type:
+        type: string
+        const: cds.Boolean
+        description: The modeling artefact is a `cds.Boolean` type.
+        tsType: BooleanCdsType
+      key: &elementKey # Could be key in theory (ABAP)
+        type: boolean
+        description: |-
+          Indicates that this element is used as a primary key.
+          Multiple primary keys MAY be used in case of a composite ID.
+      notNull: &elementNotNull
+        type: boolean
+        description: |-
+          Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+      doc: *doc
+      default:
+        $ref: "#/definitions/DefaultValueBoolean"
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - BooleanType
+    x-header-level: 4
+    examples:
+      - { "type": "cds.Boolean", "default": { "val": true } }
+
+  StringType:
+    title: String Type
+    type: object
+    description: An element of type `cds.String`.
+    properties: &StringTypeProperties
+      type:
+        type: string
+        const: cds.String
+        description: The modeling artefact is a `cds.String` type.
+        tsType: StringCdsType
+      key: *elementKey
+      notNull: *elementNotNull
+      doc: *doc
+      default:
+        $ref: "#/definitions/DefaultValueString"
+      enum: &elementEnum
+        $ref: "#/definitions/EnumDictionary"
+      length: &length
+        type: number
+        minimum: 1
+        description: |-
+          Describes the maximum number of characters of the value.
+          If not provided, **unlimited** length is assumed.
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - StringType
+    x-header-level: 4
+    examples:
+      - { "type": "cds.String", "key": true, "length": 3, "default": { "val": "foo" } }
+
+  LargeStringType:
+    title: LargeString Type
+    type: object
+    description: An element of type `cds.LargeString`.
+    properties: &LargeStringTypeProperties
+      type:
+        type: string
+        const: cds.LargeString
+        description: The modeling artefact is a `cds.LargeString` type.
+        tsType: LargeStringCdsType
+      # key: *elementKey # Now allowed for large strings
+      notNull: *elementNotNull
+      doc: *doc
+      default:
+        $ref: "#/definitions/DefaultValueString"
+      enum: *elementEnum
+      length: *length
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - LargeStringType
+    x-header-level: 4
+    examples:
+      - { "type": "cds.LargeString", "length": 3, "default": { "val": "large foo" }, "notNull": true }
+
+  IntegerType:
+    title: Integer Type
+    type: object
+    description: An element of type `cds.Integer`.
+    properties: &IntegerTypeProperties
+      type:
+        type: string
+        const: cds.Integer
+        description: The modeling artefact is a `cds.Integer` type.
+        tsType: IntegerCdsType
+      key: *elementKey
+      notNull: *elementNotNull
+      doc: *doc
+      default:
+        $ref: "#/definitions/DefaultValueInteger"
+      enum: *elementEnum
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - IntegerType
+    x-header-level: 4
+    examples:
+      - { "type": "cds.Integer", "default": { "val": 123 } }
+
+  Integer64Type:
+    title: Integer64 Type
+    type: object
+    description: An element of type `cds.Integer64`.
+    properties: &Integer64TypeProperties
+      type:
+        type: string
+        const: cds.Integer64
+        description: The modeling artefact is a `cds.Integer64` type.
+        tsType: Integer64CdsType
+      key: *elementKey
+      notNull: *elementNotNull
+      doc: *doc
+      default:
+        $ref: "#/definitions/DefaultValueInteger"
+      enum: *elementEnum
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - Integer64Type
+    x-header-level: 4
+    examples:
+      - { "type": "cds.Integer64", "default": { "val": 123 } }
+
+  DecimalType:
+    title: Decimal Type
+    type: object
+    description: An element of type `cds.Decimal`.
+    properties: &DecimalTypeProperties
+      type:
+        type: string
+        const: cds.Decimal
+        description: The modeling artefact is a `cds.Decimal` type.
+        tsType: DecimalCdsType
+      # key: *elementKey
+      notNull: *elementNotNull
+      doc: *doc
+      default:
+        $ref: "#/definitions/DefaultValueNumber"
+      enum: *elementEnum
+      precision: &precision
+        type: number
+        minimum: 1
+        description: |-
+          Total number of digits in a number.
+          This includes both the digits before and after the decimal point.
+
+          The semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.
+        default: 34
+      scale: &scale
+        oneOf:
+          - $ref: "#/definitions/DecimalScaleNumber"
+          - $ref: "#/definitions/DecimalScaleType"
+        description: |-
+          Describes the number of digits to the right of the decimal point in a number.
+        default: "floating"
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - DecimalType
+    x-header-level: 4
+    examples:
+      - { "type": "cds.Decimal", "precision": 16, "scale": 3, "default": { "val": 12.3 } }
+
+  DoubleType:
+    title: Double Type
+    type: object
+    description: An element of type `cds.Double`.
+    properties: &DoubleTypeProperties
+      type:
+        type: string
+        const: cds.Double
+        description: The modeling artefact is a `cds.Double` type.
+        tsType: DoubleCdsType
+      # key: *elementKey
+      notNull: *elementNotNull
+      doc: *doc
+      default:
+        $ref: "#/definitions/DefaultValueNumber"
+      enum: *elementEnum
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - DoubleType
+    x-header-level: 4
+    examples:
+      - { "type": "cds.Double", "default": { "val": 123 } }
+
+  DateType:
+    title: Date Type
+    type: object
+    description: An element of type `cds.Date`.
+    properties: &DateTypeProperties
+      type:
+        type: string
+        const: cds.Date
+        description: The modeling artefact is a `cds.Date` type.
+        tsType: DateCdsType
+      key: *elementKey
+      notNull: *elementNotNull
+      doc: *doc
+      default:
+        $ref: "#/definitions/DefaultValueString"
+      enum: *elementEnum
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - DateType
+    x-header-level: 4
+    examples:
+      - { "type": "cds.Date", "key": true }
+
+  TimeType:
+    title: Time Type
+    type: object
+    description: An element of type `cds.Time`.
+    properties: &TimeTypeProperties
+      type:
+        type: string
+        const: cds.Time
+        description: The modeling artefact is a `cds.Time` type.
+        tsType: TimeCdsType
+      key: *elementKey
+      notNull: *elementNotNull
+      doc: *doc
+      default:
+        $ref: "#/definitions/DefaultValueString"
+      enum: *elementEnum
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - TimeType
+    x-header-level: 4
+    examples:
+      - { "type": "cds.Time", "key": true }
+
+  DateTimeType:
+    title: DateTime Type
+    type: object
+    description: An element of type `cds.DateTime`.
+    properties: &DateTimeTypeProperties
+      type:
+        type: string
+        const: cds.DateTime
+        description: The modeling artefact is a `cds.DateTime` type.
+        tsType: DateTimeCdsType
+      key: *elementKey
+      notNull: *elementNotNull
+      doc: *doc
+      default:
+        $ref: "#/definitions/DefaultValueString"
+      enum: *elementEnum
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - DateTimeType
+    x-header-level: 4
+    examples:
+      - { "type": "cds.DateTime", "key": true }
+
+  TimestampType:
+    title: Timestamp Type
+    type: object
+    description: An element of type `cds.Timestamp`.
+    properties: &TimestampTypeProperties
+      type:
+        type: string
+        const: cds.Timestamp
+        description: The modeling artefact is a `cds.Timestamp` type.
+        tsType: TimestampCdsType
+      key: *elementKey
+      notNull: *elementNotNull
+      doc: *doc
+      default:
+        $ref: "#/definitions/DefaultValueString"
+      enum: *elementEnum
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - TimestampType
+    x-header-level: 4
+    examples:
+      - { "type": "cds.Timestamp", "key": true }
+
+  UUIDType:
+    title: UUID Type
+    type: object
+    description: An element of type `cds.UUID`.
+    properties: &UUIDTypeProperties
+      type:
+        type: string
+        const: cds.UUID
+        description: The modeling artefact is a `cds.UUID` type.
+        tsType: UUIDCdsType
+      key: *elementKey
+      notNull: *elementNotNull
+      doc: *doc
+      default:
+        $ref: "#/definitions/DefaultValueString"
+      # enum: *elementEnum
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - UUIDType
+    x-header-level: 4
+    examples:
+      - { "type": "cds.UUID", "key": true }
+
+  AssociationType:
+    title: Association Type
+    type: object
+    description: |-
+      An element of type `cds.Association`, to express a "reference" relation across Entities.
+      It works the same way as a [`cds.Composition`](#composition-type), with the difference that the latter assumes a composite relationship.
+
+      See [Primer: Associations](../primer.md#associations).
+
+    properties: &AssociationTypeProperties
+      type:
+        type: string
+        const: cds.Association
+        description: The modeling artefact is a `cds.Association` type.
+        tsType: AssociationCdsType
+      # key: *elementKey # In un-managed associations cannot be a key
+      # notNull: *elementNotNull # Already covered by cardinality
+      # default:
+      #   $ref: "#/definitions/DefaultValueObject"
+      # enum: *elementEnum
+      doc: *doc
+      target:
+        type: string
+        description: |-
+          The (fully qualified) target entity name.
+        x-association-target:
+          - "#/definitions/EntityDefinition"
+
+      cardinality:
+        type: object
+        $ref: "#/definitions/CardinalityObject"
+
+      "on":
+        type: array
+        description: |-
+          The property `on` holds a sequence of operators and operands to describe the join condition.
+
+          One building block of the sequence consists of the following in the given order:
+          - Reference to a field of the association or composition target
+          - Equals Operator "="
+          - One of the following:
+            - Reference to a field of the source entity
+            - Constant Value
+          This building block states that the value of the first entry of the array using "ref" should equal the value of the third entry of the array.
+
+          In addition, several building blocks can be lined up using an "and" operator
+
+          More information can be found here:
+          * https://cap.cloud.sap/docs/cds/csn#assoc-on
+
+        items:
+          oneOf:
+            - $ref: "#/definitions/StructuredElementReference"
+            - $ref: "#/definitions/EqualsOperator"
+            - $ref: "#/definitions/AndOperator"
+            - $ref: "#/definitions/OnValue"
+        examples:
+          - [{ "ref": ["to_Connection", "AirlineID"] }, "=", { "ref": ["AirlineID"] }]
+          - [
+              { "ref": ["to_Connection", "AirlineID"] },
+              "=",
+              { "ref": ["AirlineID"] },
+              "and",
+              { "ref": ["to_Connection", "ConnectionID"] },
+              "=",
+              { "ref": ["ConnectionID"] },
+            ]
+          - [
+              { "ref": ["to_Connection", "AirlineID"] },
+              "=",
+              { "ref": ["AirlineID"] },
+              "and",
+              { "ref": ["to_Connection", "ConnectionID"] },
+              "=",
+              { "val": "1234567" },
+            ]
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+      - target
+      - cardinality
+      - on
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - AssociationType
+    x-header-level: 4
+    examples:
+      - {
+          "type": "cds.Association",
+          "target": "Airport",
+          "cardinality": { "max": "*" },
+          "on": [{ "ref": ["to_DepartureAirport", "AirportID"] }, "=", { "ref": ["DepartureAirport_AirportID"] }],
+        }
+
+  CompositionType:
+    title: Composition Type
+    type: object
+    description: |-
+      An element of type `cds.Composition`, to express a "contains" relation across Entities.
+      It works the same as a [`cds.Association`](#association-type).
+
+      See [Primer: Associations](../primer.md#associations).
+    properties: &CompositionTypeProperties
+      type:
+        type: string
+        const: cds.Composition
+        description: The modeling artefact is a `cds.Composition` type.
+        tsType: CompositionCdsType
+      doc: *doc
+      # key: *elementKey
+      # notNull: *elementNotNull
+      # default:
+      #   $ref: "#/definitions/DefaultValueObject"
+      # enum: *elementEnum
+      target:
+        type: string
+        description: |-
+          The (fully qualified) target entity name.
+        x-association-target:
+          - "#/definitions/EntityDefinition"
+
+      cardinality:
+        type: object
+        $ref: "#/definitions/CardinalityObject"
+
+      on:
+        type: array
+        description: |-
+          The property `on` holds a sequence of operators and operands to describe the join condition.
+
+          One building block of the sequence consists of the following in the given order:
+          - Reference to a field of the association or composition target
+          - Equals Operator "="
+          - One of the following:
+            - Reference to a field of the source entity
+            - Constant Value
+          This building block states that the value of the first entry of the array using "ref" should equal the value of the third entry of the array.
+
+          In addition, several building blocks can be lined up using an "and" operator
+
+          More information can be found here:
+          * https://cap.cloud.sap/docs/cds/csn#assoc-on
+
+        items:
+          oneOf:
+            - $ref: "#/definitions/StructuredElementReference"
+            - $ref: "#/definitions/EqualsOperator"
+            - $ref: "#/definitions/AndOperator"
+            - $ref: "#/definitions/OnValue"
+        examples:
+          - [{ "ref": ["to_Connection", "AirlineID"] }, "=", { "ref": ["AirlineID"] }]
+          - [
+              { "ref": ["to_Connection", "AirlineID"] },
+              "=",
+              { "ref": ["AirlineID"] },
+              "and",
+              { "ref": ["to_Connection", "ConnectionID"] },
+              "=",
+              { "ref": ["ConnectionID"] },
+            ]
+          - [
+              { "ref": ["to_Connection", "AirlineID"] },
+              "=",
+              { "ref": ["AirlineID"] },
+              "and",
+              { "ref": ["to_Connection", "ConnectionID"] },
+              "=",
+              { "val": "1234567" },
+            ]
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+      - target
+      - cardinality
+      - on
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - CompositionType
+    x-header-level: 4
+    examples:
+      - {
+          "type": "cds.Composition",
+          "target": "Airport",
+          "cardinality": { "max": "*" },
+          "on": [{ "ref": ["to_DepartureAirport", "AirportID"] }, "=", { "ref": ["DepartureAirport_AirportID"] }],
+        }
+
+  CustomType:
+    title: Custom Type
+    type: object
+    description: |
+      An Element can be of a Custom Type (aka Derived Type) instead of a standard [CDS type](#cds-type).
+      This allows several Elements to share / reuse the same Custom Type definition.
+      This MAY also imply shared semantics.
+
+      The Custom Type has a custom `type` value, which is the name of the [Type Definition](#type-definition) describing the shared type.
+      This `type` value MUST NOT start with `cds.`, to avoid conflicts with core CDS data types.
+
+      The Type Definition that the Custom Type points to MUST be described in the same CSN document in the [definitions](#definitions) section with `"kind": "type"`.
+      The [Element](#elemententry) MUST NOT add properties that are not supported by the Custom Types base CDS type.
+
+      CSN Interop Effective adds further constraints to make a simple type lookup possible:
+
+      * A Custom Type MUST NOT point to another Custom Type (no recursion).
+      * The properties and annotations of the Custom Type MUST be merged into the Element it is used, to fulfill the "effective" quality.
+
+      This will allow a consumer to do a simple dictionary lookup to find the [CDS Type](#cds-type) of a Custom Type.
+      All other properties describing the Custom Type can already be found at the Custom Type itself.
+
+      > 🚧 TODO: Clarify if Custom Type can also be `cds.Association` or `cds.Composition`.
+      > If yes, add `target`, `on` and `cardinality` here.
+    properties:
+      type:
+        type: string
+        pattern: '^(?!cds\.).*$'
+        description: Use of a custom type. MUST not start with `cds.`.
+        tsType: CustomTypeValue
+      key: *elementKey
+      notNull: *elementNotNull
+      doc: *doc
+      default:
+        $ref: "#/definitions/DefaultValueCustomDerived"
+      enum: *elementEnum
+      length: *length
+      scale: *scale
+      precision: *precision
+      # Add `target`, `on` and `cardinality` here, too?
+
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - CustomType
+    examples:
+      - { "type": "CONTROLLING_AREA", "key": true }
+
+  DefaultValueCustomDerived:
+    title: Default Value (Custom Type)
+    type: object
+    properties:
+      val:
+        type: ["string", "number", "boolean", "object", "null"]
+        description: |-
+          Default Value for a [Custom Type](#custom-type).
+
+          The chosen value type MUST match the [CDS Type](#cds-type) that the custom type chose.
+    required:
+      - val
+    additionalProperties: false
+
+  DefaultValueBoolean:
+    title: Default Value (Boolean)
+    type: object
+    properties:
+      val:
+        type: ["boolean", "null"]
+        description: |-
+          Default Value for Boolean Type.
+    required:
+      - val
+    additionalProperties: false
+
+  DefaultValueString:
+    title: Default Value (String)
+    type: object
+    properties:
+      val:
+        type: ["string", "null"]
+        description: |-
+          Default Value for String Types.
+    required:
+      - val
+    additionalProperties: false
+
+  DefaultValueInteger:
+    title: Default Value integer
+    type: object
+    properties:
+      val:
+        type: ["integer", "null"]
+        description: |-
+          Default Value for Integer Type.
+    required:
+      - val
+    additionalProperties: false
+
+  DefaultValueNumber:
+    title: Default Value number
+    type: object
+    properties:
+      val:
+        type: ["number", "null"]
+        description: |-
+          Default Value for DecimalScaleNumber: Type.
+    required:
+      - val
+    additionalProperties: false
+
+  DefaultValueObject:
+    title: Default Value object
+    type: object
+    description: |-
+      Indicates the default value.
+    properties:
+      val:
+        type: ["object", "null"]
+        description: |-
+          Default Value for (structured) Object Types.
+    required:
+      - val
+    additionalProperties: false
+
+  EnumValue:
+    title: Value Object
+    type: object
+    description: |-
+      Enum CQN literal value expression.
+
+      The literal expression optionally specifies a constant val as a literal plus optional annotations.
+    properties:
+      val:
+        type: ["string", "number", "boolean", "null"]
+        description: |-
+          Value of the enum.
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    additionalProperties: false
+
+  DecimalScaleNumber:
+    title: Decimal Scale (Number)
+    type: number
+    description: |-
+      Total number of digits that are present after the decimal point in a number.
+      The scale can hold from zero up to the total numeric precision
+    minimum: 0
+
+  DecimalScaleType:
+    title: Decimal Scale (Type)
+    type: string
+    description: |-
+      The `cds.Decimal` type can also set `scale` to a fixed type.
+
+      The semantics of the choices follows the [OData v4 Scale](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Scale) specification.
+    oneOf:
+      - const: "floating"
+        description: |-
+          The value floating means that the decimal property represents a decimal floating-point number whose number of significant digits is the value of the Precision
+
+          See https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Scale
+      # Decision: We don't support 'variable' yet, because support / shared understanding seem to be not given.
+      # - const: "variable"
+      #   description: |-
+      #     The value variable means that the number of digits to the right of the decimal point may vary from zero to the value of the Precision.
+    default: floating
+
+  CardinalityObject:
+    title: Cardinality Object
+    type: object
+    description: |-
+      The cardinality indicates the number of instances of one entity that can or must be associated with each instance of another entity.
+
+      SHOULD provide `min` and `max` values explicitly.
+    properties:
+      src:
+        type: number
+        description: |-
+          Describes if a source entity always exist. If `src` is not set then unknown is assumed.
+      min:
+        type: number
+        description: |-
+          Specifies the targets minimum cardinality.
+        default: 0
+      max:
+        description: |-
+          Specifies the targets maximum cardinality.
+
+          MUST be one of:
+          * positive Integer (1,2,...)
+          * `*` as String
+
+        type: ["number", "string"]
+        default: 1
+    x-recommended:
+      - min
+      - max
+    examples:
+      - { "max": "*" }
+      - { "min": 1, "max": "*" }
+    additionalProperties: false
+
+  StructuredElementReference:
+    title: Structured Element Reference
+    type: object
+    description: |-
+      Describes the target or source of the association.
+    properties:
+      ref:
+        type: array
+        description: |-
+          Description of the target with *association name* and *target element name* in target entity`
+          Description of the source *source element name*
+          MUST NOT:
+          * use $ as leading character of an element
+          * use session variables
+        items:
+          type: string
+          x-association-target: &associationTargetAllElements
+            - "#/definitions/CdsType"
+    required:
+      - ref
+    additionalProperties: false
+
+  EqualsOperator:
+    title: Equals Operator
+    type: string
+    description: |-
+      The operator "="
+    const: "="
+
+  AndOperator:
+    title: AND Operator
+    type: string
+    description: |-
+      The operator "and"
+    const: "and"
+
+  OnValue:
+    title: On Value
+    type: object
+    description: |-
+      Value for an on condition
+    properties:
+      val:
+        type: ["string", "number"]
+        description: |-
+          Value for the on condition.
+    required:
+      - val
+    additionalProperties: false
+
+  EnumDictionary:
+    title: Enum Dictionary
+    description: |-
+      Dictionary of enum member elements with the name being the enum symbol and the value being a CQN literal value expression.
+    type: object
+    patternProperties:
+      "^.+$":
+        $ref: "#/definitions/EnumValue"
+    examples:
+      - { "submitted": { val: 1 }, "fulfilled": { val: 2 } }
+      - { "male": {}, "female": {}, "non_binary": { val: "non-binary" } }
+
+  ElementReference:
+    title: Element Reference
+    description: |-
+      Element reference denotes a reference to an element.
+
+      It is RECOMMENDED to use the ElementReferenceObject notation.
+
+      See [Primer: Literals for Enum and ElementRef values](../primer.md#literals-for-enum-and-elementref-values).
+
+    oneOf:
+      - $ref: "#/definitions/ElementReferenceString"
+      - $ref: "#/definitions/ElementReferenceObject"
+
+  ElementReferenceString:
+    title: Element Reference String
+    type: string
+    description: |-
+      Element reference denotes a reference to an element, i.e. a member of the elements object of an entity in the following format:
+      ```js
+      "<definition name>": {
+        "<annotation key of type ElementReference>": "<element name>"
+      ```
+
+  ElementReferenceObject:
+    title: Element Reference Object
+    type: object
+    description: |-
+      Element reference denotes a reference to an element, i.e. a member fo the elements object of an entity in the following format:
+
+      ```js
+      "<definition name>": {
+        "<annotation key of type ElementReference>": {"=": "<element name>"}
+      ```
+    properties:
+      "=":
+        type: string
+        description: |-
+          This is the references elements name.
+        x-association-target: *associationTargetAllElements
+    required:
+      - "="
+    additionalProperties: false
+
+  EnumValueObject:
+    title: Enum Value Object
+    type: object
+    description: |-
+      Enum values are given in object format:
+
+      ```js
+      "<definition name>": {
+        "<annotation key of type Enum>": {"#": "<enum value>"}
+      ```
+    properties:
+      "#":
+        type: string
+        description: |-
+          The enum value as a string.
+    additionalProperties: false
+    required:
+      - "#"
+
+  TypeDefinition:
+    title: Type Definition
+    type: object
+    description: |-
+      In CSN it is possible to define [Custom Types](#custom-type).
+      They can be referred to in [Element](#elemententry) `type`, making them "reusable" / "shared" types.
+
+      In CSN Interop Effective, the "effective" quality brings additional requirements:
+
+      - The derived types MUST always have a `cds.*` type and MUST NOT point to other derived types.
+        This ensures that consumers do not have to support recursive type lookups.
+
+      - Attributes and annotations MUST be also copied and merged with those defined in the [element](#elemententry) using this derived type.
+        This ensures that consumers only have to lookup the CDS type and don't have to merge attributes and annotations.
+    x-extension-points:
+      - TypeDefinition
+      - Type
+    properties:
+      kind:
+        type: string
+        const: "type"
+        description: |-
+          The kind property is used when defining derived types.
+          In this case `Kind = "type"` MUST be provided.
+        tsType: TypeKind
+      type:
+        type: string
+        description: |-
+          The CDS data type of the derived type.
+
+          Custom types in CSN Interop Effective MUST always point to a `cds.*` type.
+        enum:
+          # Primitive standard types
+          - "cds.Boolean"
+          - "cds.String"
+          - "cds.LargeString"
+          - "cds.Integer"
+          - "cds.Integer64"
+          - "cds.Decimal"
+          - "cds.Double"
+          - "cds.Date"
+          - "cds.Time"
+          - "cds.DateTime"
+          - "cds.Timestamp"
+          - "cds.UUID"
+
+          # Complex standard types
+          - "cds.Association"
+          - "cds.Composition"
+
+    allOf:
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.Boolean"
+          required:
+            - type
+            - kind
+        then:
+          $ref: "#/definitions/BooleanTypeDefinition"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.String"
+          required:
+            - type
+            - kind
+        then:
+          $ref: "#/definitions/StringTypeDefinition"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.LargeString"
+          required:
+            - type
+            - kind
+        then:
+          $ref: "#/definitions/LargeStringTypeDefinition"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.Integer"
+          required:
+            - type
+            - kind
+        then:
+          $ref: "#/definitions/IntegerTypeDefinition"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.Integer64"
+          required:
+            - type
+            - kind
+        then:
+          $ref: "#/definitions/Integer64TypeDefinition"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.Decimal"
+          required:
+            - type
+            - kind
+        then:
+          $ref: "#/definitions/DecimalTypeDefinition"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.Double"
+          required:
+            - type
+            - kind
+        then:
+          $ref: "#/definitions/DoubleTypeDefinition"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.Date"
+          required:
+            - type
+            - kind
+        then:
+          $ref: "#/definitions/DateTypeDefinition"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.Time"
+          required:
+            - type
+            - kind
+        then:
+          $ref: "#/definitions/TimeTypeDefinition"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.DateTime"
+          required:
+            - type
+            - kind
+        then:
+          $ref: "#/definitions/DateTimeTypeDefinition"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.Timestamp"
+          required:
+            - type
+            - kind
+        then:
+          $ref: "#/definitions/TimestampTypeDefinition"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.UUID"
+          required:
+            - type
+            - kind
+        then:
+          $ref: "#/definitions/UUIDTypeDefinition"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.Association"
+          required:
+            - type
+            - kind
+        then:
+          $ref: "#/definitions/AssociationTypeDefinition"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.Composition"
+          required:
+            - type
+            - kind
+        then:
+          $ref: "#/definitions/CompositionTypeDefinition"
+    required:
+      - type
+      - kind
+    x-hide-properties: true
+
+  BooleanTypeDefinition:
+    title: Boolean Type Definition
+    type: object
+    description: A type definition of type `cds.Boolean`.
+    properties:
+      kind: &kindPropertyForTypeDefinition
+        type: string
+        const: type
+        description: The kind property is used when defining derived types. In this case Kind = "type".
+      <<: *BooleanTypeProperties
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+      - kind
+    additionalProperties: false
+    x-extension-points:
+      - TypeDefinition
+      - BooleanTypeDefinition
+    x-header-level: 4
+    examples:
+      - { "type": "cds.Boolean", "kind": "type", "default": { "val": true } }
+
+  StringTypeDefinition:
+    title: String Type Definition
+    type: object
+    description: A type definition of type `cds.String`.
+    properties:
+      kind: *kindPropertyForTypeDefinition
+      <<: *StringTypeProperties
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+      - kind
+    additionalProperties: false
+    x-extension-points:
+      - TypeDefinition
+      - StringTypeDefinition
+    x-header-level: 4
+    examples:
+      - { "type": "cds.String", "kind": "type", "key": true, "length": 3, "default": { "val": "foo" } }
+
+  LargeStringTypeDefinition:
+    title: LargeString Type Definition
+    type: object
+    description: A type definition of type `cds.LargeString`.
+    properties:
+      kind: *kindPropertyForTypeDefinition
+      <<: *LargeStringTypeProperties
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+      - kind
+    additionalProperties: false
+    x-extension-points:
+      - TypeDefinition
+      - LargeStringTypeDefinition
+    x-header-level: 4
+
+  IntegerTypeDefinition:
+    title: Integer Type Definition
+    type: object
+    description: A type definition of type `cds.Integer`.
+    properties:
+      kind: *kindPropertyForTypeDefinition
+      <<: *IntegerTypeProperties
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+      - kind
+    additionalProperties: false
+    x-extension-points:
+      - TypeDefinition
+      - IntegerTypeDefinition
+    x-header-level: 4
+    examples:
+      - { "type": "cds.Integer", "kind": "type", "default": { "val": 123 } }
+
+  Integer64TypeDefinition:
+    title: Integer64 Type Definition
+    type: object
+    description: A type definition of type `cds.Integer64`.
+    properties:
+      kind: *kindPropertyForTypeDefinition
+      <<: *Integer64TypeProperties
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+      - kind
+    additionalProperties: false
+    x-extension-points:
+      - TypeDefinition
+      - Integer64TypeDefinition
+    x-header-level: 4
+
+  DecimalTypeDefinition:
+    title: Decimal Type Definition
+    type: object
+    description: A type definition of type `cds.Decimal`.
+    properties:
+      kind: *kindPropertyForTypeDefinition
+      <<: *DecimalTypeProperties
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+      - kind
+    additionalProperties: false
+    x-extension-points:
+      - TypeDefinition
+      - DecimalTypeDefinition
+    x-header-level: 4
+    examples:
+      - { "type": "cds.Decimal", "kind": "type", "precision": 16, "scale": 3, "default": { "val": 12.3 } }
+
+  DoubleTypeDefinition:
+    title: Double Type Definition
+    type: object
+    description: A type definition of type `cds.Double`.
+    properties:
+      kind: *kindPropertyForTypeDefinition
+      <<: *DoubleTypeProperties
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+      - kind
+    additionalProperties: false
+    x-extension-points:
+      - TypeDefinition
+      - DoubleTypeDefinition
+    x-header-level: 4
+
+  DateTypeDefinition:
+    title: Date Type Definition
+    type: object
+    description: A type definition of type `cds.Date`.
+    properties:
+      kind: *kindPropertyForTypeDefinition
+      <<: *DateTypeProperties
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+      - kind
+    additionalProperties: false
+    x-extension-points:
+      - TypeDefinition
+      - DateTypeDefinition
+    x-header-level: 4
+    examples:
+      - { "type": "cds.Date", "kind": "type", "key": true }
+
+  TimeTypeDefinition:
+    title: Time Type Definition
+    type: object
+    description: A type definition of type `cds.Time`.
+    properties:
+      kind: *kindPropertyForTypeDefinition
+      <<: *TimeTypeProperties
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+      - kind
+    additionalProperties: false
+    x-extension-points:
+      - TypeDefinition
+      - TimeTypeDefinition
+    x-header-level: 4
+
+  DateTimeTypeDefinition:
+    title: DateTime Type Definition
+    type: object
+    description: A type definition of type `cds.DateTime`.
+    properties:
+      kind: *kindPropertyForTypeDefinition
+      <<: *DateTimeTypeProperties
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+      - kind
+    additionalProperties: false
+    x-extension-points:
+      - TypeDefinition
+      - DateTimeTypeDefinition
+    x-header-level: 4
+
+  TimestampTypeDefinition:
+    title: Timestamp Type Definition
+    type: object
+    description: A type definition of type `cds.Timestamp`.
+    properties:
+      kind: *kindPropertyForTypeDefinition
+      <<: *TimestampTypeProperties
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+      - kind
+    additionalProperties: false
+    x-extension-points:
+      - TypeDefinition
+      - TimestampTypeDefinition
+    x-header-level: 4
+
+  UUIDTypeDefinition:
+    title: UUID Type Definition
+    type: object
+    description: A type definition of type `cds.UUID`.
+    properties:
+      kind: *kindPropertyForTypeDefinition
+      <<: *UUIDTypeProperties
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+      - kind
+    additionalProperties: false
+    x-extension-points:
+      - TypeDefinition
+      - UUIDTypeDefinition
+    x-header-level: 4
+
+  AssociationTypeDefinition:
+    title: Association Type Definition
+    type: object
+    description: A type definition of type `cds.Association`.
+    properties:
+      kind: *kindPropertyForTypeDefinition
+      <<: *AssociationTypeProperties
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+      - kind
+      - target
+      - cardinality
+      - on
+    additionalProperties: false
+    x-extension-points:
+      - TypeDefinition
+      - AssociationTypeDefinition
+    x-header-level: 4
+    examples:
+      - {
+          "type": "cds.Association",
+          "kind": "type",
+          "target": "Airport",
+          "cardinality": { "max": "*" },
+          "on": [{ "ref": ["to_DepartureAirport", "AirportID"] }, "=", { "ref": ["DepartureAirport_AirportID"] }],
+        }
+
+  CompositionTypeDefinition:
+    title: Composition Type Definition
+    type: object
+    description: A type definition of type `cds.Composition`.
+    properties:
+      kind: *kindPropertyForTypeDefinition
+      <<: *CompositionTypeProperties
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+      - kind
+      - target
+      - cardinality
+      - on
+    additionalProperties: false
+    x-extension-points:
+      - TypeDefinition
+      - CompositionTypeDefinition
+    x-header-level: 4
+    examples:
+      - {
+          "type": "cds.Composition",
+          "kind": "type",
+          "target": "Airport",
+          "cardinality": { "max": "*" },
+          "on": [{ "ref": ["to_DepartureAirport", "AirportID"] }, "=", { "ref": ["DepartureAirport_AirportID"] }],
+        }
+
+  ServiceDefinition:
+    title: Service Definition
+    type: object
+    description: |-
+      A CDS Service indicates that [Entities](#entity-definition) are exposed to outside consumers via an API.
+
+      To assign Entities to a Service, the entity name MUST be prefixed with the service name, separated by a `.`.
+      Please be aware that this will also change the `target` values of `cds.Association` and `cds.Composition`.
+      For an example, see [airline-service.json](./examples/airline.md).
+
+      A consumer MAY decide to shorten the names by only considering the Entities assigned to a particular Service and then removing the Service prefixes again.
+
+      To indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](../annotations/objectmodel#objectmodelcompositionroot) annotation.
+
+      See [Primer: Service Definitions](../primer.md#service-definitions).
+    x-extension-points:
+      - Service
+    properties:
+      kind:
+        type: string
+        const: "service"
+        description: |-
+          The modeling artefact is a service.
+        tsType: ServiceKind
+      doc: *doc
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - kind
+    additionalProperties: false
+
+  ContextDefinition:
+    title: Context Definition
+    type: object
+    description: |-
+      A context corresponds to a CAP CSN Namespace. It is used to create a bounded context that bundles elements of different kinds together.
+      The context will become part of the entity / element name.
+
+      The context is also useful to avoid local or global name collisions.
+
+      See [Primer: Context](../primer.md#context-definitions).
+    x-extension-points:
+      - Context
+    properties:
+      kind:
+        type: string
+        const: "context"
+        description: |-
+          The modeling artefact is a context.
+        tsType: ContextKind
+      doc: *doc
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+
+    required:
+      - kind
+    additionalProperties: false
+
+  i18n:
+    title: i18n
+    type: object
+    description: |-
+      i18n contains translated texts for one or more languages.
+      They are usually used in annotations like [`@EnduserText`](../annotations/enduser-text).
+
+      Key is the language key, value is a dictionary of language text translations.
+
+      The language key MUST follow the standard of [RFC 1766](https://datatracker.ietf.org/doc/rfc1766/) (or IETF's [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)).
+
+      See [Primer: Language-dependent annotation values](../primer.md#language-dependent-annotation-values).
+
+    patternProperties:
+      "^[a-zA-Z]{2,8}(-[a-zA-Z0-9]{1,8}){0,2}$":
+        $ref: "#/definitions/LanguageText"
+    additionalProperties: false
+    examples:
+      - "de":
+          "I_COSTCENTER@ENDUSERTEXT.LABEL": "Kostenstelle"
+          "I_COSTCENTER.CONTROLLINGAREA@ENDUSERTEXT.LABEL": "Kostenrechnungskreis"
+
+  LanguageText:
+    title: Language texts
+    type: object
+    description: |-
+      Language Text contains translations for one specific languages.
+
+      Key is the i18n key, value is the translation of the term.
+
+      An i18n pointer is a string that starts with `{i18n>` and ends with `}`. In between is the key.
+
+      Example: To link to the i18n key `I_COSTCENTER@ENDUSERTEXT.LABEL`, the i18n pointer is `{i18n>I_COSTCENTER@ENDUSERTEXT.LABEL}`.
+
+      The i18n pointers within the document MUST be fully self contained:
+      - An i18n resolved pointer MUST be used (referred to) within this CSN document at least once.
+      - All i18n pointers in this CSN document MUST have a corresponding i18n dictionary entry.
+    patternProperties:
+      "^.+$":
+        type: string
+        description: |-
+          Translation of the term.
+    additionalProperties: false
+    examples:
+      - "I_COSTCENTER@ENDUSERTEXT.LABEL": "Kostenstelle"
+        "I_COSTCENTER.CONTROLLINGAREA@ENDUSERTEXT.LABEL": "Kostenrechnungskreis"

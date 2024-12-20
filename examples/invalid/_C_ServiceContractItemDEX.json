@@ -1,0 +1,2371 @@
+{
+  "csnInteropEffective": "1.0",
+  "$version": "2.0",
+  "meta": {
+    "creator": "ABAP CSN Object Model API v1.0.0-alpha",
+    "__modelProvider": "ABAP",
+    "__version": "2.0"
+  },
+  "definitions": {
+    "/SCMB/MDL_MATID": {
+      "@EndUserText.heading": "{i18n>/SCMB/MDL_MATID@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>/SCMB/MDL_MATID@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>/SCMB/MDL_MATID@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.Binary",
+      "length": 16
+    },
+    "BINRELID": {
+      "@EndUserText.heading": "{i18n>BINRELID@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>BINRELID@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>BINRELID@ENDUSERTEXT.QUICKINFO}",
+      "kind": "type",
+      "type": "cds.String",
+      "length": 22
+    },
+    "COMT_PRODUCT_BASE_UOM": {
+      "@EndUserText.heading": "{i18n>COMT_PRODUCT_BASE_UOM@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>COMT_PRODUCT_BASE_UOM@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>COMT_PRODUCT_BASE_UOM@ENDUSERTEXT.QUICKINFO}",
+      "kind": "type",
+      "type": "cds.String",
+      "length": 3
+    },
+    "CRMS4_CHANGED_AT": {
+      "@EndUserText.heading": "{i18n>CRMS4_CHANGED_AT@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_CHANGED_AT@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_CHANGED_AT@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.DateTime"
+    },
+    "CRMS4_CONT_END": {
+      "@EndUserText.heading": "{i18n>CRMS4_CONT_END@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_CONT_END@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_CONT_END@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.DateTime"
+    },
+    "CRMS4_CONT_START": {
+      "@EndUserText.heading": "{i18n>CRMS4_CONT_START@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_CONT_START@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_CONT_START@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.DateTime"
+    },
+    "CRMS4_CREATED_AT": {
+      "@EndUserText.heading": "{i18n>CRMS4_CREATED_AT@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_CREATED_AT@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_CREATED_AT@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.DateTime"
+    },
+    "CRMS4_DLV_QUANTITY": {
+      "@EndUserText.heading": "{i18n>CRMS4_DLV_QUANTITY@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_DLV_QUANTITY@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_DLV_QUANTITY@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.Decimal",
+      "precision": 15,
+      "scale": 3
+    },
+    "CRMS4_INV_QUANTITY": {
+      "@EndUserText.heading": "{i18n>CRMS4_INV_QUANTITY@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_INV_QUANTITY@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_INV_QUANTITY@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.Decimal",
+      "precision": 15,
+      "scale": 3
+    },
+    "CRMS4_INV_VALUE": {
+      "@EndUserText.heading": "{i18n>CRMS4_INV_VALUE@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_INV_VALUE@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_INV_VALUE@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.Decimal",
+      "precision": 34,
+      "scale": "floating"
+    },
+    "CRMS4_NUMBER_INT": {
+      "@EndUserText.heading": "{i18n>CRMS4_NUMBER_INT@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_NUMBER_INT@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_NUMBER_INT@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 6
+    },
+    "CRMS4_OBJECT_CHARGUID32": {
+      "@EndUserText.heading": "{i18n>CRMS4_OBJECT_CHARGUID32@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_OBJECT_CHARGUID32@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_OBJECT_CHARGUID32@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 32
+    },
+    "CRMS4_ORDER_DATE": {
+      "@EndUserText.heading": "{i18n>CRMS4_ORDER_DATE@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_ORDER_DATE@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_ORDER_DATE@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.DateTime"
+    },
+    "CRMS4_ORD_QUANTITY": {
+      "@EndUserText.heading": "{i18n>CRMS4_ORD_QUANTITY@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_ORD_QUANTITY@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_ORD_QUANTITY@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.Decimal",
+      "precision": 15,
+      "scale": 3
+    },
+    "CRMS4_REFOBJ_COUNTER": {
+      "@EndUserText.heading": "{i18n>CRMS4_REFOBJ_COUNTER@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_REFOBJ_COUNTER@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_REFOBJ_COUNTER@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 8
+    },
+    "CRMS4_REF_SOLO_NUMBER_INT": {
+      "@EndUserText.heading": "{i18n>CRMS4_REF_SOLO_NUMBER_INT@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_REF_SOLO_NUMBER_INT@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_REF_SOLO_NUMBER_INT@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 6
+    },
+    "CRMS4_REF_SOLO_OBJECT_ID": {
+      "@EndUserText.heading": "{i18n>CRMS4_REF_SOLO_OBJECT_ID@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_REF_SOLO_OBJECT_ID@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_REF_SOLO_OBJECT_ID@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 10
+    },
+    "CRMS4_RLSD_QUANTITY": {
+      "@EndUserText.heading": "{i18n>CRMS4_RLSD_QUANTITY@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_RLSD_QUANTITY@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_RLSD_QUANTITY@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.Decimal",
+      "precision": 15,
+      "scale": 3
+    },
+    "CRMS4_RLSD_VALUE": {
+      "@EndUserText.heading": "{i18n>CRMS4_RLSD_VALUE@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_RLSD_VALUE@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_RLSD_VALUE@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.Decimal",
+      "precision": 34,
+      "scale": "floating"
+    },
+    "CRMS4_STAT_BILLING": {
+      "@EndUserText.heading": "{i18n>CRMS4_STAT_BILLING@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_STAT_BILLING@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_STAT_BILLING@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 1,
+      "enum": {
+        " ": {
+          "val": ""
+        },
+        "A": {
+          "val": "A"
+        },
+        "B": {
+          "val": "B"
+        },
+        "C": {
+          "val": "C"
+        }
+      }
+    },
+    "CRMS4_STAT_CANCELLED": {
+      "@EndUserText.heading": "{i18n>CRMS4_STAT_CANCELLED@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_STAT_CANCELLED@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_STAT_CANCELLED@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 1,
+      "enum": {
+        " ": {
+          "val": ""
+        },
+        "X": {
+          "val": "X"
+        }
+      }
+    },
+    "CRMS4_STAT_DELIVERY": {
+      "@EndUserText.heading": "{i18n>CRMS4_STAT_DELIVERY@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_STAT_DELIVERY@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_STAT_DELIVERY@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 1,
+      "enum": {
+        " ": {
+          "val": ""
+        },
+        "A": {
+          "val": "A"
+        },
+        "B": {
+          "val": "B"
+        },
+        "C": {
+          "val": "C"
+        }
+      }
+    },
+    "CRMS4_STAT_ERROR": {
+      "@EndUserText.heading": "{i18n>CRMS4_STAT_ERROR@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_STAT_ERROR@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_STAT_ERROR@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 1,
+      "enum": {
+        " ": {
+          "val": ""
+        },
+        "X": {
+          "val": "X"
+        }
+      }
+    },
+    "CRMS4_STAT_FOR_BILLING": {
+      "@EndUserText.heading": "{i18n>CRMS4_STAT_FOR_BILLING@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_STAT_FOR_BILLING@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_STAT_FOR_BILLING@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 1,
+      "enum": {
+        " ": {
+          "val": ""
+        },
+        "X": {
+          "val": "X"
+        },
+        "E": {
+          "val": "E"
+        }
+      }
+    },
+    "CRMS4_STAT_FOR_BILLING_HEADER": {
+      "@EndUserText.heading": "{i18n>CRMS4_STAT_FOR_BILLING_HEADER@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_STAT_FOR_BILLING_HEADER@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_STAT_FOR_BILLING_HEADER@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 1,
+      "enum": {
+        " ": {
+          "val": ""
+        },
+        "A": {
+          "val": "A"
+        },
+        "B": {
+          "val": "B"
+        },
+        "C": {
+          "val": "C"
+        }
+      }
+    },
+    "CRMS4_STAT_GOODS_ISSUE": {
+      "@EndUserText.heading": "{i18n>CRMS4_STAT_GOODS_ISSUE@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_STAT_GOODS_ISSUE@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_STAT_GOODS_ISSUE@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 1,
+      "enum": {
+        " ": {
+          "val": ""
+        },
+        "A": {
+          "val": "A"
+        },
+        "B": {
+          "val": "B"
+        },
+        "C": {
+          "val": "C"
+        }
+      }
+    },
+    "CRMS4_STAT_LIFECYCLE": {
+      "@EndUserText.heading": "{i18n>CRMS4_STAT_LIFECYCLE@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_STAT_LIFECYCLE@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_STAT_LIFECYCLE@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 4,
+      "enum": {
+        "A": {
+          "val": "A"
+        },
+        "B": {
+          "val": "B"
+        },
+        "C": {
+          "val": "C"
+        },
+        "D": {
+          "val": "D"
+        }
+      }
+    },
+    "CRMS4_STAT_OPEN": {
+      "@EndUserText.heading": "{i18n>CRMS4_STAT_OPEN@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_STAT_OPEN@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_STAT_OPEN@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 1,
+      "enum": {
+        " ": {
+          "val": ""
+        },
+        "X": {
+          "val": "X"
+        }
+      }
+    },
+    "CRMS4_STAT_QUOTATION": {
+      "@EndUserText.heading": "{i18n>CRMS4_STAT_QUOTATION@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_STAT_QUOTATION@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_STAT_QUOTATION@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 1,
+      "enum": {
+        " ": {
+          "val": ""
+        },
+        "X": {
+          "val": "X"
+        }
+      }
+    },
+    "CRMS4_STAT_RELEASED": {
+      "@EndUserText.heading": "{i18n>CRMS4_STAT_RELEASED@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_STAT_RELEASED@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_STAT_RELEASED@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 1,
+      "enum": {
+        " ": {
+          "val": ""
+        },
+        "X": {
+          "val": "X"
+        }
+      }
+    },
+    "CRMS4_VALID_FROM": {
+      "@EndUserText.heading": "{i18n>CRMS4_VALID_FROM@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_VALID_FROM@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_VALID_FROM@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.DateTime"
+    },
+    "CRMS4_VALID_TO": {
+      "@EndUserText.heading": "{i18n>CRMS4_VALID_TO@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMS4_VALID_TO@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMS4_VALID_TO@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.DateTime"
+    },
+    "CRMT_ACTIVITY_CATEGORY": {
+      "@EndUserText.heading": "{i18n>CRMT_ACTIVITY_CATEGORY@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_ACTIVITY_CATEGORY@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_ACTIVITY_CATEGORY@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 3
+    },
+    "CRMT_AC_INDICATOR": {
+      "@EndUserText.heading": "{i18n>CRMT_AC_INDICATOR@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_AC_INDICATOR@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_AC_INDICATOR@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 2
+    },
+    "CRMT_BILL_TO_PART": {
+      "@EndUserText.heading": "{i18n>CRMT_BILL_TO_PART@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_BILL_TO_PART@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_BILL_TO_PART@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 10
+    },
+    "CRMT_BUS_BILL_BLOCK_REASON": {
+      "@EndUserText.heading": "{i18n>CRMT_BUS_BILL_BLOCK_REASON@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_BUS_BILL_BLOCK_REASON@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_BUS_BILL_BLOCK_REASON@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 2
+    },
+    "CRMT_CANC_PARTY": {
+      "@EndUserText.heading": "{i18n>CRMT_CANC_PARTY@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_CANC_PARTY@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_CANC_PARTY@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 4
+    },
+    "CRMT_CANC_PROCEDURE": {
+      "@EndUserText.heading": "{i18n>CRMT_CANC_PROCEDURE@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_CANC_PROCEDURE@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_CANC_PROCEDURE@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 4
+    },
+    "CRMT_CONTACT_PERSON": {
+      "@EndUserText.heading": "{i18n>CRMT_CONTACT_PERSON@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_CONTACT_PERSON@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_CONTACT_PERSON@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 10
+    },
+    "CRMT_COUNTRY": {
+      "@EndUserText.heading": "{i18n>CRMT_COUNTRY@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_COUNTRY@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_COUNTRY@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 3
+    },
+    "CRMT_CURRENCY": {
+      "@EndUserText.heading": "{i18n>CRMT_CURRENCY@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_CURRENCY@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_CURRENCY@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 5
+    },
+    "CRMT_CUST_GROUP": {
+      "@EndUserText.heading": "{i18n>CRMT_CUST_GROUP@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_CUST_GROUP@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_CUST_GROUP@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 2
+    },
+    "CRMT_CUST_GROUP1": {
+      "@EndUserText.heading": "{i18n>CRMT_CUST_GROUP1@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_CUST_GROUP1@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_CUST_GROUP1@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 3
+    },
+    "CRMT_CUST_GROUP2": {
+      "@EndUserText.heading": "{i18n>CRMT_CUST_GROUP2@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_CUST_GROUP2@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_CUST_GROUP2@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 3
+    },
+    "CRMT_CUST_GROUP3": {
+      "@EndUserText.heading": "{i18n>CRMT_CUST_GROUP3@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_CUST_GROUP3@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_CUST_GROUP3@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 3
+    },
+    "CRMT_CUST_GROUP4": {
+      "@EndUserText.heading": "{i18n>CRMT_CUST_GROUP4@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_CUST_GROUP4@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_CUST_GROUP4@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 3
+    },
+    "CRMT_CUST_GROUP5": {
+      "@EndUserText.heading": "{i18n>CRMT_CUST_GROUP5@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_CUST_GROUP5@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_CUST_GROUP5@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 3
+    },
+    "CRMT_DISTRIBUTION_CHANNEL": {
+      "@EndUserText.heading": "{i18n>CRMT_DISTRIBUTION_CHANNEL@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_DISTRIBUTION_CHANNEL@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_DISTRIBUTION_CHANNEL@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 2
+    },
+    "CRMT_DIVISION": {
+      "@EndUserText.heading": "{i18n>CRMT_DIVISION@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_DIVISION@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_DIVISION@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 2
+    },
+    "CRMT_EXCHG_DATE": {
+      "@EndUserText.heading": "{i18n>CRMT_EXCHG_DATE@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_EXCHG_DATE@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_EXCHG_DATE@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.Date"
+    },
+    "CRMT_EXCHG_RATE": {
+      "@EndUserText.heading": "{i18n>CRMT_EXCHG_RATE@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_EXCHG_RATE@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_EXCHG_RATE@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.Decimal",
+      "precision": 9,
+      "scale": 5
+    },
+    "CRMT_EXCHG_TYPE": {
+      "@EndUserText.heading": "{i18n>CRMT_EXCHG_TYPE@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_EXCHG_TYPE@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_EXCHG_TYPE@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 4
+    },
+    "CRMT_EXPONENT10": {
+      "@EndUserText.heading": "{i18n>CRMT_EXPONENT10@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_EXPONENT10@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_EXPONENT10@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.Int16"
+    },
+    "CRMT_GROSS_VALUE": {
+      "@EndUserText.heading": "{i18n>CRMT_GROSS_VALUE@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_GROSS_VALUE@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_GROSS_VALUE@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.Decimal",
+      "precision": 34,
+      "scale": "floating"
+    },
+    "CRMT_ITEM_TYPE_DB": {
+      "@EndUserText.heading": "{i18n>CRMT_ITEM_TYPE_DB@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_ITEM_TYPE_DB@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_ITEM_TYPE_DB@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 4
+    },
+    "CRMT_NET_VALUE": {
+      "@EndUserText.heading": "{i18n>CRMT_NET_VALUE@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_NET_VALUE@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_NET_VALUE@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.Decimal",
+      "precision": 34,
+      "scale": "floating"
+    },
+    "CRMT_NET_VALUE_CUM": {
+      "@EndUserText.heading": "{i18n>CRMT_NET_VALUE_CUM@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_NET_VALUE_CUM@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_NET_VALUE_CUM@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.Decimal",
+      "precision": 34,
+      "scale": "floating"
+    },
+    "CRMT_OBJECT_GUID": {
+      "@EndUserText.heading": "{i18n>CRMT_OBJECT_GUID@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_OBJECT_GUID@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_OBJECT_GUID@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.Binary",
+      "length": 16
+    },
+    "CRMT_OBJECT_GUID32": {
+      "@EndUserText.heading": "{i18n>CRMT_OBJECT_GUID32@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_OBJECT_GUID32@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_OBJECT_GUID32@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 32
+    },
+    "CRMT_OBJECT_ID_DB": {
+      "@EndUserText.heading": "{i18n>CRMT_OBJECT_ID_DB@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_OBJECT_ID_DB@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_OBJECT_ID_DB@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 10
+    },
+    "CRMT_ORDERED_PROD_DB": {
+      "@EndUserText.heading": "{i18n>CRMT_ORDERED_PROD_DB@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_ORDERED_PROD_DB@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_ORDERED_PROD_DB@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 54
+    },
+    "CRMT_PERSON_RESP": {
+      "@EndUserText.heading": "{i18n>CRMT_PERSON_RESP@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_PERSON_RESP@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_PERSON_RESP@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 10
+    },
+    "CRMT_PMNTTRMS": {
+      "@EndUserText.heading": "{i18n>CRMT_PMNTTRMS@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_PMNTTRMS@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_PMNTTRMS@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 4
+    },
+    "CRMT_POSTING_DATE": {
+      "@EndUserText.heading": "{i18n>CRMT_POSTING_DATE@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_POSTING_DATE@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_POSTING_DATE@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.Date"
+    },
+    "CRMT_PO_NUMBER_SOLD": {
+      "@EndUserText.heading": "{i18n>CRMT_PO_NUMBER_SOLD@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_PO_NUMBER_SOLD@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_PO_NUMBER_SOLD@ENDUSERTEXT.QUICKINFO}",
+      "kind": "type",
+      "type": "cds.String",
+      "length": 35
+    },
+    "CRMT_PRIORITY": {
+      "@EndUserText.heading": "{i18n>CRMT_PRIORITY@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_PRIORITY@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_PRIORITY@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 1
+    },
+    "CRMT_PROCESS_DESCRIPTION": {
+      "@EndUserText.heading": "{i18n>CRMT_PROCESS_DESCRIPTION@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_PROCESS_DESCRIPTION@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_PROCESS_DESCRIPTION@ENDUSERTEXT.QUICKINFO}",
+      "kind": "type",
+      "type": "cds.String",
+      "length": 40
+    },
+    "CRMT_PROCESS_QTY_DEN": {
+      "@EndUserText.heading": "{i18n>CRMT_PROCESS_QTY_DEN@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_PROCESS_QTY_DEN@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_PROCESS_QTY_DEN@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.Integer"
+    },
+    "CRMT_PROCESS_QTY_NUM": {
+      "@EndUserText.heading": "{i18n>CRMT_PROCESS_QTY_NUM@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_PROCESS_QTY_NUM@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_PROCESS_QTY_NUM@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.Integer"
+    },
+    "CRMT_PROCESS_QTY_UNIT": {
+      "@EndUserText.heading": "{i18n>CRMT_PROCESS_QTY_UNIT@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_PROCESS_QTY_UNIT@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_PROCESS_QTY_UNIT@ENDUSERTEXT.QUICKINFO}",
+      "kind": "type",
+      "type": "cds.String",
+      "length": 3
+    },
+    "CRMT_PROCESS_TYPE_DB": {
+      "@EndUserText.heading": "{i18n>CRMT_PROCESS_TYPE_DB@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_PROCESS_TYPE_DB@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_PROCESS_TYPE_DB@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 4
+    },
+    "CRMT_PROD_HIERARCHY": {
+      "@EndUserText.heading": "{i18n>CRMT_PROD_HIERARCHY@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_PROD_HIERARCHY@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_PROD_HIERARCHY@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 20
+    },
+    "CRMT_QTY_ORDER": {
+      "@EndUserText.heading": "{i18n>CRMT_QTY_ORDER@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_QTY_ORDER@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_QTY_ORDER@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.Decimal",
+      "precision": 13,
+      "scale": 3
+    },
+    "CRMT_REF_CURRENCY": {
+      "@EndUserText.heading": "{i18n>CRMT_REF_CURRENCY@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_REF_CURRENCY@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_REF_CURRENCY@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 5
+    },
+    "CRMT_REGION": {
+      "@EndUserText.heading": "{i18n>CRMT_REGION@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_REGION@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_REGION@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 3
+    },
+    "CRMT_REJECTION_CODE": {
+      "@EndUserText.heading": "{i18n>CRMT_REJECTION_CODE@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_REJECTION_CODE@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_REJECTION_CODE@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 2
+    },
+    "CRMT_RP_PAYER": {
+      "@EndUserText.heading": "{i18n>CRMT_RP_PAYER@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_RP_PAYER@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_RP_PAYER@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 10
+    },
+    "CRMT_SALES_GROUP": {
+      "@EndUserText.heading": "{i18n>CRMT_SALES_GROUP@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_SALES_GROUP@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_SALES_GROUP@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 14
+    },
+    "CRMT_SALES_OFFICE": {
+      "@EndUserText.heading": "{i18n>CRMT_SALES_OFFICE@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_SALES_OFFICE@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_SALES_OFFICE@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 14
+    },
+    "CRMT_SALES_ORG": {
+      "@EndUserText.heading": "{i18n>CRMT_SALES_ORG@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_SALES_ORG@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_SALES_ORG@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 14
+    },
+    "CRMT_SALES_ORG_RESP": {
+      "@EndUserText.heading": "{i18n>CRMT_SALES_ORG_RESP@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_SALES_ORG_RESP@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_SALES_ORG_RESP@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 14
+    },
+    "CRMT_SERVICE_EMPLOYEE": {
+      "@EndUserText.heading": "{i18n>CRMT_SERVICE_EMPLOYEE@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_SERVICE_EMPLOYEE@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_SERVICE_EMPLOYEE@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 10
+    },
+    "CRMT_SERVICE_ORG": {
+      "@EndUserText.heading": "{i18n>CRMT_SERVICE_ORG@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_SERVICE_ORG@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_SERVICE_ORG@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 14
+    },
+    "CRMT_SERVICE_ORG_RESP": {
+      "@EndUserText.heading": "{i18n>CRMT_SERVICE_ORG_RESP@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_SERVICE_ORG_RESP@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_SERVICE_ORG_RESP@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 14
+    },
+    "CRMT_SERVICE_TEAM": {
+      "@EndUserText.heading": "{i18n>CRMT_SERVICE_TEAM@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_SERVICE_TEAM@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_SERVICE_TEAM@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 10
+    },
+    "CRMT_SHIP_TO_PART": {
+      "@EndUserText.heading": "{i18n>CRMT_SHIP_TO_PART@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_SHIP_TO_PART@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_SHIP_TO_PART@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 10
+    },
+    "CRMT_SOLD_TO_PART": {
+      "@EndUserText.heading": "{i18n>CRMT_SOLD_TO_PART@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_SOLD_TO_PART@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_SOLD_TO_PART@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 10
+    },
+    "CRMT_SRQM_REC_PRIORITY": {
+      "@EndUserText.heading": "{i18n>CRMT_SRQM_REC_PRIORITY@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_SRQM_REC_PRIORITY@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_SRQM_REC_PRIORITY@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 1
+    },
+    "CRMT_SRV_CANCEL_REASON": {
+      "@EndUserText.heading": "{i18n>CRMT_SRV_CANCEL_REASON@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_SRV_CANCEL_REASON@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_SRV_CANCEL_REASON@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 4
+    },
+    "CRMT_SRV_DURATION": {
+      "@EndUserText.heading": "{i18n>CRMT_SRV_DURATION@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_SRV_DURATION@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_SRV_DURATION@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.Decimal",
+      "precision": 13,
+      "scale": 3
+    },
+    "CRMT_SRV_DURATION_UOM": {
+      "@EndUserText.heading": "{i18n>CRMT_SRV_DURATION_UOM@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_SRV_DURATION_UOM@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_SRV_DURATION_UOM@ENDUSERTEXT.QUICKINFO}",
+      "kind": "type",
+      "type": "cds.String",
+      "length": 3
+    },
+    "CRMT_SRV_MAIN_OBJECT": {
+      "@EndUserText.heading": "{i18n>CRMT_SRV_MAIN_OBJECT@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_SRV_MAIN_OBJECT@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_SRV_MAIN_OBJECT@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.Boolean"
+    },
+    "CRMT_SUBOBJECT_CATEGORY_DB": {
+      "@EndUserText.heading": "{i18n>CRMT_SUBOBJECT_CATEGORY_DB@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_SUBOBJECT_CATEGORY_DB@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_SUBOBJECT_CATEGORY_DB@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 10
+    },
+    "CRMT_SWO_OBJTYP_PROCESS_ITM_DB": {
+      "@EndUserText.heading": "{i18n>CRMT_SWO_OBJTYP_PROCESS_ITM_DB@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_SWO_OBJTYP_PROCESS_ITM_DB@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_SWO_OBJTYP_PROCESS_ITM_DB@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 10
+    },
+    "CRMT_TYPE_OBJECT": {
+      "@EndUserText.heading": "{i18n>CRMT_TYPE_OBJECT@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>CRMT_TYPE_OBJECT@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>CRMT_TYPE_OBJECT@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 1,
+      "enum": {
+        "A": {
+          "val": "A"
+        },
+        "B": {
+          "val": "B"
+        },
+        "C": {
+          "val": "C"
+        },
+        "E": {
+          "val": "E"
+        },
+        "F": {
+          "val": "F"
+        }
+      }
+    },
+    "DATUM": {
+      "@EndUserText.heading": "{i18n>DATUM@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>DATUM@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>DATUM@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.Date"
+    },
+    "EQUNR": {
+      "@EndUserText.heading": "{i18n>EQUNR@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>EQUNR@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>EQUNR@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 18
+    },
+    "GERNR": {
+      "@EndUserText.heading": "{i18n>GERNR@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>GERNR@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>GERNR@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 18
+    },
+    "KOKRS": {
+      "@EndUserText.heading": "{i18n>KOKRS@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>KOKRS@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>KOKRS@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 4
+    },
+    "KONDM": {
+      "@EndUserText.heading": "{i18n>KONDM@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>KONDM@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>KONDM@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 2
+    },
+    "MATNR": {
+      "@EndUserText.heading": "{i18n>MATNR@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>MATNR@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>MATNR@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 40
+    },
+    "MVGR1": {
+      "@EndUserText.heading": "{i18n>MVGR1@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>MVGR1@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>MVGR1@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 3
+    },
+    "MVGR2": {
+      "@EndUserText.heading": "{i18n>MVGR2@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>MVGR2@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>MVGR2@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 3
+    },
+    "MVGR3": {
+      "@EndUserText.heading": "{i18n>MVGR3@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>MVGR3@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>MVGR3@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 3
+    },
+    "MVGR4": {
+      "@EndUserText.heading": "{i18n>MVGR4@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>MVGR4@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>MVGR4@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 3
+    },
+    "MVGR5": {
+      "@EndUserText.heading": "{i18n>MVGR5@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>MVGR5@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>MVGR5@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 3
+    },
+    "POSNO": {
+      "@EndUserText.heading": "{i18n>POSNO@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>POSNO@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>POSNO@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 4
+    },
+    "PRCTR": {
+      "@EndUserText.heading": "{i18n>PRCTR@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>PRCTR@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>PRCTR@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 10
+    },
+    "PRODUCTNUMBER": {
+      "@EndUserText.heading": "{i18n>PRODUCTNUMBER@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>PRODUCTNUMBER@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>PRODUCTNUMBER@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 40
+    },
+    "SWO_OBJTYP": {
+      "@EndUserText.heading": "{i18n>SWO_OBJTYP@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>SWO_OBJTYP@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>SWO_OBJTYP@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 10
+    },
+    "ServiceContract": {
+      "@AccessControl.authorizationCheck": {
+        "#": "CHECK"
+      },
+      "@AccessControl.personalData.blocking": {
+        "=": "'TRANSACTIONAL_DATA'",
+        "type": "unchecked"
+      },
+      "@Analytics.dataCategory": {
+        "#": "FACT"
+      },
+      "@Analytics.dataExtraction.delta.changeDataCapture.mapping": [
+        {
+          "filter": [
+            {
+              "operator": {
+                "#": "EQ"
+              },
+              "tableElement": "objtype_h",
+              "value": "BUS2000112"
+            }
+          ],
+          "table": "crms4d_serv_i",
+          "role": {
+            "#": "MAIN"
+          },
+          "viewElement": ["ServiceObjectType", "ServiceDocument", "ServiceDocumentItem"],
+          "tableElement": ["objtype_h", "object_id", "number_int"]
+        },
+        {
+          "filter": [
+            {
+              "operator": {
+                "#": "EQ"
+              },
+              "tableElement": "objtype_h",
+              "value": "BUS2000112"
+            }
+          ],
+          "table": "crms4d_serv_h",
+          "role": {
+            "#": "LEFT_OUTER_TO_ONE_JOIN"
+          },
+          "viewElement": ["ServiceObjectType", "ServiceDocument"],
+          "tableElement": ["objtype_h", "object_id"]
+        },
+        {
+          "filter": [
+            {
+              "operator": {
+                "#": "EQ"
+              },
+              "tableElement": "objtype_h",
+              "value": "BUS2000112"
+            }
+          ],
+          "table": "crms4d_refobj",
+          "role": {
+            "#": "LEFT_OUTER_TO_ONE_JOIN"
+          },
+          "viewElement": [
+            "ServiceObjectType",
+            "ServiceDocument",
+            "ServiceDocumentItem",
+            "ServiceRefObjectSequenceNumber"
+          ],
+          "tableElement": ["objtype_h", "object_id", "number_int", "counter"]
+        },
+        {
+          "table": "crmd_brelvonai",
+          "role": {
+            "#": "LEFT_OUTER_TO_ONE_JOIN"
+          },
+          "viewElement": ["ServiceDocumentItmRelationUUID", "ServiceDocItmRltnSqncNumber"],
+          "tableElement": ["relationid", "posno"]
+        }
+      ],
+      "@Analytics.dataExtraction.enabled": true,
+      "@Analytics.technicalName": "CSRVCCONTRITMDEX",
+      "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX@ENDUSERTEXT.LABEL}",
+      "@ObjectModel.representativeKey": "ServiceDocumentItem",
+      "@ObjectModel.sapObjectNodeType.name": "ServiceContract",
+      "@ObjectModel.supportedCapabilities": [
+        {
+          "#": "EXTRACTION_DATA_SOURCE"
+        }
+      ],
+      "@ObjectModel.usageType.dataClass": {
+        "#": "TRANSACTIONAL"
+      },
+      "@ObjectModel.usageType.serviceQuality": {
+        "#": "D"
+      },
+      "@ObjectModel.usageType.sizeCategory": {
+        "#": "XL"
+      },
+      "@VDM.lifecycle.contract.type": {
+        "#": "PUBLIC_LOCAL_API"
+      },
+      "@VDM.viewType": {
+        "#": "CONSUMPTION"
+      },
+      "kind": "entity",
+      "elements": {
+        "ServiceObjectType": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEOBJECTTYPE@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEOBJECTTYPE@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEOBJECTTYPE@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.foreignKey.association": "_ServiceObjType",
+          "@ObjectModel.upperCase": true,
+          "key": true,
+          "type": "CRMT_SUBOBJECT_CATEGORY_DB"
+        },
+        "ServiceDocument": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENT@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENT@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENT@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.foreignKey.association": "_ServiceDocument",
+          "@ObjectModel.upperCase": true,
+          "key": true,
+          "type": "CRMT_OBJECT_ID_DB"
+        },
+        "ServiceDocumentItem": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEM@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEM@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEM@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "key": true,
+          "type": "CRMS4_NUMBER_INT"
+        },
+        "ServiceDocumentUUID": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTUUID@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTUUID@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTUUID@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_OBJECT_GUID"
+        },
+        "ServiceDocumentCharUUID": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTCHARUUID@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTCHARUUID@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTCHARUUID@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.uuid": true,
+          "type": "CRMT_OBJECT_GUID32"
+        },
+        "ServiceDocumentDescription": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTDESCRIPTION@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTDESCRIPTION@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTDESCRIPTION@ENDUSERTEXT.QUICKINFO}",
+          "type": "CRMT_PROCESS_DESCRIPTION"
+        },
+        "ServiceDocNetAmount": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCNETAMOUNT@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCNETAMOUNT@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCNETAMOUNT@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.amount.currencyCode": "TransactionCurrency",
+          "type": "CRMT_NET_VALUE_CUM"
+        },
+        "PurchaseOrderByCustomer": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.PURCHASEORDERBYCUSTOMER@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.PURCHASEORDERBYCUSTOMER@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.PURCHASEORDERBYCUSTOMER@ENDUSERTEXT.QUICKINFO}",
+          "type": "CRMT_PO_NUMBER_SOLD"
+        },
+        "ServiceDocumentStatus": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTSTATUS@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTSTATUS@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTSTATUS@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMS4_STAT_LIFECYCLE"
+        },
+        "ServiceDocumentIsReleased": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTISRELEASED@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTISRELEASED@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTISRELEASED@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.booleanIndicator": true,
+          "type": "CRMS4_STAT_RELEASED"
+        },
+        "ServiceDocumentIsQuotation": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTISQUOTATION@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTISQUOTATION@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTISQUOTATION@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.booleanIndicator": true,
+          "type": "CRMS4_STAT_QUOTATION"
+        },
+        "ServiceDocumentHasError": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTHASERROR@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTHASERROR@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTHASERROR@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.booleanIndicator": true,
+          "type": "CRMS4_STAT_ERROR"
+        },
+        "ServiceDocIsReleasedForBilling": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCISRELEASEDFORBILLING@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCISRELEASEDFORBILLING@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCISRELEASEDFORBILLING@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.booleanIndicator": true,
+          "type": "CRMS4_STAT_FOR_BILLING_HEADER"
+        },
+        "ServiceDocumentIsRejected": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTISREJECTED@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTISREJECTED@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTISREJECTED@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.booleanIndicator": true,
+          "type": "CRMS4_STAT_CANCELLED"
+        },
+        "ServiceDocBillingStatus": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCBILLINGSTATUS@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCBILLINGSTATUS@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCBILLINGSTATUS@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMS4_STAT_BILLING"
+        },
+        "ServiceDocumentIsOpen": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTISOPEN@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTISOPEN@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTISOPEN@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.booleanIndicator": true,
+          "type": "CRMS4_STAT_OPEN"
+        },
+        "BusinessActivityCategory": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.BUSINESSACTIVITYCATEGORY@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.BUSINESSACTIVITYCATEGORY@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.BUSINESSACTIVITYCATEGORY@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_ACTIVITY_CATEGORY"
+        },
+        "ServiceDocChangedDateTime": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCCHANGEDDATETIME@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCCHANGEDDATETIME@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCCHANGEDDATETIME@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMS4_CHANGED_AT"
+        },
+        "ServiceDocCreationDateTime": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCCREATIONDATETIME@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCCREATIONDATETIME@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCCREATIONDATETIME@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMS4_CREATED_AT"
+        },
+        "RecommendedServicePriority": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.RECOMMENDEDSERVICEPRIORITY@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.RECOMMENDEDSERVICEPRIORITY@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.RECOMMENDEDSERVICEPRIORITY@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_SRQM_REC_PRIORITY"
+        },
+        "ServiceDocumentItemPriority": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMPRIORITY@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMPRIORITY@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMPRIORITY@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_PRIORITY"
+        },
+        "ServiceDocumentType": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTTYPE@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTTYPE@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTTYPE@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_PROCESS_TYPE_DB"
+        },
+        "ServiceDocumentItemUUID": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMUUID@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMUUID@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMUUID@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_OBJECT_GUID"
+        },
+        "ServiceDocumentItemCharUUID": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMCHARUUID@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMCHARUUID@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMCHARUUID@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.uuid": true,
+          "type": "CRMT_OBJECT_GUID32"
+        },
+        "ServiceDocumentItemObjectType": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMOBJECTTYPE@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMOBJECTTYPE@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMOBJECTTYPE@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_SWO_OBJTYP_PROCESS_ITM_DB"
+        },
+        "ParentServiceDocumentItemUUID": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.PARENTSERVICEDOCUMENTITEMUUID@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.PARENTSERVICEDOCUMENTITEMUUID@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.PARENTSERVICEDOCUMENTITEMUUID@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_OBJECT_GUID"
+        },
+        "PostingDate": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.POSTINGDATE@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.POSTINGDATE@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.POSTINGDATE@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_POSTING_DATE"
+        },
+        "SrvcDocItmPostingDateTime": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMPOSTINGDATETIME@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMPOSTINGDATETIME@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMPOSTINGDATETIME@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.dateTime": true,
+          "type": "CRMS4_ORDER_DATE"
+        },
+        "SrvcDocItmValdtyStartDateTime": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMVALDTYSTARTDATETIME@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMVALDTYSTARTDATETIME@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMVALDTYSTARTDATETIME@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMS4_VALID_FROM"
+        },
+        "SrvcDocItmValdtyEndDateTime": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMVALDTYENDDATETIME@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMVALDTYENDDATETIME@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMVALDTYENDDATETIME@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMS4_VALID_TO"
+        },
+        "ProfitCenter": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.PROFITCENTER@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.PROFITCENTER@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.PROFITCENTER@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "PRCTR"
+        },
+        "ControllingArea": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.CONTROLLINGAREA@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.CONTROLLINGAREA@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.CONTROLLINGAREA@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "KOKRS"
+        },
+        "ProfitCenterDeterminationDate": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.PROFITCENTERDETERMINATIONDATE@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.PROFITCENTERDETERMINATIONDATE@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.PROFITCENTERDETERMINATIONDATE@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "DATUM"
+        },
+        "ServiceDocItemCategory": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCITEMCATEGORY@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCITEMCATEGORY@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCITEMCATEGORY@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_ITEM_TYPE_DB"
+        },
+        "OriginallyRequestedProduct": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.ORIGINALLYREQUESTEDPRODUCT@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.ORIGINALLYREQUESTEDPRODUCT@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.ORIGINALLYREQUESTEDPRODUCT@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_ORDERED_PROD_DB"
+        },
+        "Product": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@AbapCatalog.typeSpec.conversionExit": "MATN1",
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCT@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCT@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCT@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "PRODUCTNUMBER"
+        },
+        "InvoiceAmountInInvoiceDocCrcy": {
+          "@DefaultAggregation": {
+            "#": "SUM"
+          },
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.INVOICEAMOUNTININVOICEDOCCRCY@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.INVOICEAMOUNTININVOICEDOCCRCY@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.INVOICEAMOUNTININVOICEDOCCRCY@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.amount.currencyCode": "TransactionCurrency",
+          "type": "CRMS4_INV_VALUE"
+        },
+        "SrvcDocItmRequestedQuantity": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMREQUESTEDQUANTITY@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMREQUESTEDQUANTITY@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMREQUESTEDQUANTITY@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.quantity.unitOfMeasure": "ServiceDocItemQuantityUnit",
+          "type": "CRMS4_ORD_QUANTITY"
+        },
+        "InvoiceQuantity": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.INVOICEQUANTITY@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.INVOICEQUANTITY@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.INVOICEQUANTITY@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.quantity.unitOfMeasure": "ServiceDocItemQuantityUnit",
+          "type": "CRMS4_INV_QUANTITY"
+        },
+        "SrvcDocItmDeliveredQuantity": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMDELIVEREDQUANTITY@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMDELIVEREDQUANTITY@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMDELIVEREDQUANTITY@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.quantity.unitOfMeasure": "ServiceDocItemQuantityUnit",
+          "type": "CRMS4_DLV_QUANTITY"
+        },
+        "SrvcDocItmReleasedQuantity": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMRELEASEDQUANTITY@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMRELEASEDQUANTITY@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMRELEASEDQUANTITY@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.quantity.unitOfMeasure": "ServiceDocItemQuantityUnit",
+          "type": "CRMS4_RLSD_QUANTITY"
+        },
+        "SrvcDocItmReldAmtInTransCrcy": {
+          "@DefaultAggregation": {
+            "#": "SUM"
+          },
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMRELDAMTINTRANSCRCY@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMRELDAMTINTRANSCRCY@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMRELDAMTINTRANSCRCY@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.amount.currencyCode": "TransactionCurrency",
+          "type": "CRMS4_RLSD_VALUE"
+        },
+        "ServiceDocumentItemQuantity": {
+          "@DefaultAggregation": {
+            "#": "SUM"
+          },
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMQUANTITY@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMQUANTITY@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMQUANTITY@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.quantity.unitOfMeasure": "ServiceDocItemQuantityUnit",
+          "type": "CRMT_QTY_ORDER"
+        },
+        "SrvcDocItmOrdToBaseQtyNmrtr": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMORDTOBASEQTYNMRTR@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMORDTOBASEQTYNMRTR@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMORDTOBASEQTYNMRTR@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_PROCESS_QTY_NUM"
+        },
+        "SrvcDocItmOrdToBaseQtyDnmntr": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMORDTOBASEQTYDNMNTR@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMORDTOBASEQTYDNMNTR@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMORDTOBASEQTYDNMNTR@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_PROCESS_QTY_DEN"
+        },
+        "OrderToBaseQuantityExponent": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.ORDERTOBASEQUANTITYEXPONENT@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.ORDERTOBASEQUANTITYEXPONENT@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.ORDERTOBASEQUANTITYEXPONENT@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_EXPONENT10"
+        },
+        "ServiceDocItemQuantityUnit": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@AbapCatalog.typeSpec.conversionExit": "CUNIT",
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCITEMQUANTITYUNIT@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCITEMQUANTITYUNIT@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCITEMQUANTITYUNIT@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.foreignKey.association": "_SalesUnit",
+          "type": "CRMT_PROCESS_QTY_UNIT"
+        },
+        "SrvcDocItemBaseQuantityUnit": {
+          "@AbapCatalog.typeSpec.conversionExit": "CUNIT",
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITEMBASEQUANTITYUNIT@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITEMBASEQUANTITYUNIT@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITEMBASEQUANTITYUNIT@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.foreignKey.association": "_BaseUnit_2",
+          "type": "COMT_PRODUCT_BASE_UOM"
+        },
+        "ServiceTeam": {
+          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICETEAM@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICETEAM@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICETEAM@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_SERVICE_TEAM"
+        },
+        "SoldToParty": {
+          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SOLDTOPARTY@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SOLDTOPARTY@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SOLDTOPARTY@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_SOLD_TO_PART"
+        },
+        "SoldToPartyCountry": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SOLDTOPARTYCOUNTRY@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SOLDTOPARTYCOUNTRY@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SOLDTOPARTYCOUNTRY@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_COUNTRY"
+        },
+        "SoldToPartyRegion": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SOLDTOPARTYREGION@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SOLDTOPARTYREGION@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SOLDTOPARTYREGION@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_REGION"
+        },
+        "ResponsibleEmployee": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.RESPONSIBLEEMPLOYEE@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.RESPONSIBLEEMPLOYEE@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.RESPONSIBLEEMPLOYEE@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_PERSON_RESP"
+        },
+        "ContactPerson": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.CONTACTPERSON@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.CONTACTPERSON@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.CONTACTPERSON@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_CONTACT_PERSON"
+        },
+        "ServiceEmployee": {
+          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEEMPLOYEE@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEEMPLOYEE@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEEMPLOYEE@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_SERVICE_EMPLOYEE"
+        },
+        "ShipToParty": {
+          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SHIPTOPARTY@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SHIPTOPARTY@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SHIPTOPARTY@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_SHIP_TO_PART"
+        },
+        "BillToParty": {
+          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.BILLTOPARTY@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.BILLTOPARTY@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.BILLTOPARTY@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_BILL_TO_PART"
+        },
+        "PayerParty": {
+          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.PAYERPARTY@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.PAYERPARTY@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.PAYERPARTY@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_RP_PAYER"
+        },
+        "TransactionCurrency": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.TRANSACTIONCURRENCY@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.TRANSACTIONCURRENCY@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.TRANSACTIONCURRENCY@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.foreignKey.association": "_TransactionCurrency",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_CURRENCY"
+        },
+        "StatisticsCurrency": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.STATISTICSCURRENCY@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.STATISTICSCURRENCY@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.STATISTICSCURRENCY@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_REF_CURRENCY"
+        },
+        "ExchangeRateType": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.EXCHANGERATETYPE@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.EXCHANGERATETYPE@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.EXCHANGERATETYPE@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_EXCHG_TYPE"
+        },
+        "ExchangeRateDate": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.EXCHANGERATEDATE@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.EXCHANGERATEDATE@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.EXCHANGERATEDATE@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_EXCHG_DATE"
+        },
+        "AccountingExchangeRate": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@AbapCatalog.typeSpec.conversionExit": "EXCRT",
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.ACCOUNTINGEXCHANGERATE@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.ACCOUNTINGEXCHANGERATE@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.ACCOUNTINGEXCHANGERATE@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_EXCHG_RATE"
+        },
+        "CustomerGroup": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.CUSTOMERGROUP@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.CUSTOMERGROUP@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.CUSTOMERGROUP@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_CUST_GROUP"
+        },
+        "BillableControl": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.BILLABLECONTROL@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.BILLABLECONTROL@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.BILLABLECONTROL@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_AC_INDICATOR"
+        },
+        "PaymentTerms": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.PAYMENTTERMS@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.PAYMENTTERMS@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.PAYMENTTERMS@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_PMNTTRMS"
+        },
+        "BillingBlockReason": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.BILLINGBLOCKREASON@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.BILLINGBLOCKREASON@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.BILLINGBLOCKREASON@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_BUS_BILL_BLOCK_REASON"
+        },
+        "AdditionalCustomerGroup1": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.ADDITIONALCUSTOMERGROUP1@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.ADDITIONALCUSTOMERGROUP1@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.ADDITIONALCUSTOMERGROUP1@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_CUST_GROUP1"
+        },
+        "AdditionalCustomerGroup2": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.ADDITIONALCUSTOMERGROUP2@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.ADDITIONALCUSTOMERGROUP2@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.ADDITIONALCUSTOMERGROUP2@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_CUST_GROUP2"
+        },
+        "AdditionalCustomerGroup3": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.ADDITIONALCUSTOMERGROUP3@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.ADDITIONALCUSTOMERGROUP3@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.ADDITIONALCUSTOMERGROUP3@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_CUST_GROUP3"
+        },
+        "AdditionalCustomerGroup4": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.ADDITIONALCUSTOMERGROUP4@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.ADDITIONALCUSTOMERGROUP4@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.ADDITIONALCUSTOMERGROUP4@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_CUST_GROUP4"
+        },
+        "AdditionalCustomerGroup5": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.ADDITIONALCUSTOMERGROUP5@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.ADDITIONALCUSTOMERGROUP5@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.ADDITIONALCUSTOMERGROUP5@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_CUST_GROUP5"
+        },
+        "ServiceDocItemRejectionReason": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCITEMREJECTIONREASON@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCITEMREJECTIONREASON@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCITEMREJECTIONREASON@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_REJECTION_CODE"
+        },
+        "SalesOrganizationOrgUnitID": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SALESORGANIZATIONORGUNITID@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SALESORGANIZATIONORGUNITID@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SALESORGANIZATIONORGUNITID@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_SALES_ORG"
+        },
+        "SalesOfficeOrgUnitID": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SALESOFFICEORGUNITID@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SALESOFFICEORGUNITID@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SALESOFFICEORGUNITID@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_SALES_OFFICE"
+        },
+        "SalesGroupOrgUnitID": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SALESGROUPORGUNITID@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SALESGROUPORGUNITID@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SALESGROUPORGUNITID@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_SALES_GROUP"
+        },
+        "DistributionChannel": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.DISTRIBUTIONCHANNEL@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.DISTRIBUTIONCHANNEL@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.DISTRIBUTIONCHANNEL@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_DISTRIBUTION_CHANNEL"
+        },
+        "Division": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.DIVISION@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.DIVISION@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.DIVISION@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_DIVISION"
+        },
+        "ServiceOrganization": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEORGANIZATION@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEORGANIZATION@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEORGANIZATION@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_SERVICE_ORG"
+        },
+        "ResponsibleSalesOrganization": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.RESPONSIBLESALESORGANIZATION@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.RESPONSIBLESALESORGANIZATION@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.RESPONSIBLESALESORGANIZATION@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_SALES_ORG_RESP"
+        },
+        "ResponsibleServiceOrganization": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.RESPONSIBLESERVICEORGANIZATION@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.RESPONSIBLESERVICEORGANIZATION@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.RESPONSIBLESERVICEORGANIZATION@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_SERVICE_ORG_RESP"
+        },
+        "SalesOrganization": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SALESORGANIZATION@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SALESORGANIZATION@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SALESORGANIZATION@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "VKORG"
+        },
+        "SalesOffice": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SALESOFFICE@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SALESOFFICE@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SALESOFFICE@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "VKBUR"
+        },
+        "SalesGroup": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SALESGROUP@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SALESGROUP@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SALESGROUP@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "VKGRP"
+        },
+        "ServiceContrItemStartDateTime": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICECONTRITEMSTARTDATETIME@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICECONTRITEMSTARTDATETIME@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICECONTRITEMSTARTDATETIME@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.dateTime": true,
+          "type": "CRMS4_CONT_START"
+        },
+        "ServiceContrItemEndDateTime": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICECONTRITEMENDDATETIME@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICECONTRITEMENDDATETIME@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICECONTRITEMENDDATETIME@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.dateTime": true,
+          "type": "CRMS4_CONT_END"
+        },
+        "ServiceDurationUnit": {
+          "@AbapCatalog.typeSpec.conversionExit": "CUNIT",
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDURATIONUNIT@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDURATIONUNIT@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDURATIONUNIT@ENDUSERTEXT.QUICKINFO}",
+          "type": "CRMT_SRV_DURATION_UOM"
+        },
+        "ServiceDuration": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDURATION@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDURATION@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDURATION@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.quantity.unitOfMeasure": "SRVCDOCITEMBASEQUANTITYUNIT",
+          "type": "CRMT_SRV_DURATION"
+        },
+        "ServiceDocumentItemStatus": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMSTATUS@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMSTATUS@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMSTATUS@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMS4_STAT_LIFECYCLE"
+        },
+        "ServiceDocumentItemIsReleased": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMISRELEASED@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMISRELEASED@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMISRELEASED@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.booleanIndicator": true,
+          "type": "CRMS4_STAT_RELEASED"
+        },
+        "ServiceDocumentItemHasError": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMHASERROR@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMHASERROR@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMHASERROR@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.booleanIndicator": true,
+          "type": "CRMS4_STAT_ERROR"
+        },
+        "SrvcDocItmDeliveryStatus": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMDELIVERYSTATUS@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMDELIVERYSTATUS@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMDELIVERYSTATUS@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMS4_STAT_DELIVERY"
+        },
+        "SrvcDocItmGoodsIssueStatus": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMGOODSISSUESTATUS@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMGOODSISSUESTATUS@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMGOODSISSUESTATUS@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMS4_STAT_GOODS_ISSUE"
+        },
+        "ServiceDocItemBillingStatus": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCITEMBILLINGSTATUS@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCITEMBILLINGSTATUS@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCITEMBILLINGSTATUS@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMS4_STAT_BILLING"
+        },
+        "SrvcDocItmIsReleasedForBilling": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMISRELEASEDFORBILLING@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMISRELEASEDFORBILLING@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMISRELEASEDFORBILLING@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.booleanIndicator": true,
+          "type": "CRMS4_STAT_FOR_BILLING"
+        },
+        "ServiceDocumentItemIsRejected": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMISREJECTED@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMISREJECTED@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMISREJECTED@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.booleanIndicator": true,
+          "type": "CRMS4_STAT_CANCELLED"
+        },
+        "ServiceDocumentItemIsOpen": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMISOPEN@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMISOPEN@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMISOPEN@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.booleanIndicator": true,
+          "type": "CRMS4_STAT_OPEN"
+        },
+        "ServiceDocumentItemNetAmount": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@DefaultAggregation": {
+            "#": "SUM"
+          },
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMNETAMOUNT@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMNETAMOUNT@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMNETAMOUNT@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.amount.currencyCode": "TransactionCurrency",
+          "type": "CRMT_NET_VALUE"
+        },
+        "ServiceDocItemGrossAmount": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@DefaultAggregation": {
+            "#": "SUM"
+          },
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCITEMGROSSAMOUNT@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCITEMGROSSAMOUNT@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCITEMGROSSAMOUNT@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "@Semantics.amount.currencyCode": "TransactionCurrency",
+          "type": "CRMT_GROSS_VALUE"
+        },
+        "SrvcMaterialPricingGroup": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCMATERIALPRICINGGROUP@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCMATERIALPRICINGGROUP@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCMATERIALPRICINGGROUP@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "KONDM"
+        },
+        "ProductGroup1": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTGROUP1@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTGROUP1@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTGROUP1@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "MVGR1"
+        },
+        "ProductGroup2": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTGROUP2@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTGROUP2@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTGROUP2@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "MVGR2"
+        },
+        "ProductGroup3": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTGROUP3@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTGROUP3@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTGROUP3@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "MVGR3"
+        },
+        "ProductGroup4": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTGROUP4@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTGROUP4@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTGROUP4@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "MVGR4"
+        },
+        "ProductGroup5": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTGROUP5@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTGROUP5@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTGROUP5@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "MVGR5"
+        },
+        "ProductHierarchy": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTHIERARCHY@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTHIERARCHY@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTHIERARCHY@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_PROD_HIERARCHY"
+        },
+        "ServiceRefObjectSequenceNumber": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEREFOBJECTSEQUENCENUMBER@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEREFOBJECTSEQUENCENUMBER@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEREFOBJECTSEQUENCENUMBER@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMS4_REFOBJ_COUNTER"
+        },
+        "ServiceReferenceObjectType": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEREFERENCEOBJECTTYPE@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEREFERENCEOBJECTTYPE@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEREFERENCEOBJECTTYPE@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_TYPE_OBJECT"
+        },
+        "ServiceReferenceObjectUUID": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEREFERENCEOBJECTUUID@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEREFERENCEOBJECTUUID@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEREFERENCEOBJECTUUID@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_OBJECT_GUID"
+        },
+        "ProductID": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@AbapCatalog.typeSpec.conversionExit": "MATN1",
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTID@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTID@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTID@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "MATNR"
+        },
+        "SrvcRefObjIsMainObject": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCREFOBJISMAINOBJECT@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCREFOBJISMAINOBJECT@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCREFOBJISMAINOBJECT@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_SRV_MAIN_OBJECT"
+        },
+        "ProductUUID": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTUUID@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTUUID@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.PRODUCTUUID@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "/SCMB/MDL_MATID"
+        },
+        "SerialNumber": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@AbapCatalog.typeSpec.conversionExit": "GERNR",
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERIALNUMBER@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERIALNUMBER@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERIALNUMBER@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "GERNR"
+        },
+        "Equipment": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.EQUIPMENT@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.EQUIPMENT@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.EQUIPMENT@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "EQUNR"
+        },
+        "FunctionalLocation": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@AbapCatalog.typeSpec.conversionExit": "TPLNR",
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.FUNCTIONALLOCATION@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.FUNCTIONALLOCATION@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.FUNCTIONALLOCATION@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "TPLNR"
+        },
+        "SrvcQtanPredecessorUUID": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCQTANPREDECESSORUUID@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCQTANPREDECESSORUUID@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCQTANPREDECESSORUUID@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_OBJECT_GUID"
+        },
+        "SrvcQtanPrdcssrBusObjType": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCQTANPRDCSSRBUSOBJTYPE@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCQTANPRDCSSRBUSOBJTYPE@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCQTANPRDCSSRBUSOBJTYPE@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_SUBOBJECT_CATEGORY_DB"
+        },
+        "ServiceDocumentItmRelationUUID": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITMRELATIONUUID@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITMRELATIONUUID@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITMRELATIONUUID@ENDUSERTEXT.QUICKINFO}",
+          "type": "BINRELID"
+        },
+        "ServiceDocItmRltnSqncNumber": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCITMRLTNSQNCNUMBER@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCITMRLTNSQNCNUMBER@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCITMRLTNSQNCNUMBER@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "POSNO"
+        },
+        "SrvcQtanItmPrdcssrCharUUID": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCQTANITMPRDCSSRCHARUUID@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCQTANITMPRDCSSRCHARUUID@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCQTANITMPRDCSSRCHARUUID@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMS4_OBJECT_CHARGUID32"
+        },
+        "SrvcQtanItmPrdcssrBusObjType": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCQTANITMPRDCSSRBUSOBJTYPE@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCQTANITMPRDCSSRBUSOBJTYPE@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCQTANITMPRDCSSRBUSOBJTYPE@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "SWO_OBJTYP"
+        },
+        "ServiceDocumentItemCanclnParty": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMCANCLNPARTY@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMCANCLNPARTY@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITEMCANCLNPARTY@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_CANC_PARTY"
+        },
+        "ServiceDocumentItmCanclnReason": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITMCANCLNREASON@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITMCANCLNREASON@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SERVICEDOCUMENTITMCANCLNREASON@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_SRV_CANCEL_REASON"
+        },
+        "SrvcDocItmCanclnProcedure": {
+          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMCANCLNPROCEDURE@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMCANCLNPROCEDURE@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.SRVCDOCITMCANCLNPROCEDURE@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMT_CANC_PROCEDURE"
+        },
+        "RefBusinessSolutionOrder": {
+          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.REFBUSINESSSOLUTIONORDER@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.REFBUSINESSSOLUTIONORDER@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.REFBUSINESSSOLUTIONORDER@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMS4_REF_SOLO_OBJECT_ID"
+        },
+        "RefBusinessSolutionOrderItem": {
+          "@EndUserText.heading": "{i18n>C_SERVICECONTRACTITEMDEX.REFBUSINESSSOLUTIONORDERITEM@ENDUSERTEXT.HEADING}",
+          "@EndUserText.label": "{i18n>C_SERVICECONTRACTITEMDEX.REFBUSINESSSOLUTIONORDERITEM@ENDUSERTEXT.LABEL}",
+          "@EndUserText.quickInfo": "{i18n>C_SERVICECONTRACTITEMDEX.REFBUSINESSSOLUTIONORDERITEM@ENDUSERTEXT.QUICKINFO}",
+          "@ObjectModel.upperCase": true,
+          "type": "CRMS4_REF_SOLO_NUMBER_INT"
+        },
+        "_BaseUnit_2": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": 1
+          },
+          "target": "I_UnitOfMeasure",
+          "on": [
+            {
+              "ref": ["SrvcDocItemBaseQuantityUnit"]
+            },
+            "=",
+            {
+              "ref": ["_BaseUnit_2", "UnitOfMeasure"]
+            }
+          ]
+        },
+        "_SalesUnit": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": 1
+          },
+          "target": "I_UnitOfMeasure",
+          "on": [
+            {
+              "ref": ["ServiceDocItemQuantityUnit"]
+            },
+            "=",
+            {
+              "ref": ["_SalesUnit", "UnitOfMeasure"]
+            }
+          ]
+        },
+        "_ServiceDocument": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": 1
+          },
+          "target": "I_ServiceDocumentEnhcd",
+          "on": [
+            {
+              "ref": ["ServiceObjectType"]
+            },
+            "=",
+            {
+              "ref": ["_ServiceDocument", "ServiceObjectType"]
+            },
+            "and",
+            {
+              "ref": ["ServiceDocument"]
+            },
+            "=",
+            {
+              "ref": ["_ServiceDocument", "ServiceDocument"]
+            }
+          ]
+        },
+        "_ServiceObjType": {
+          "type": "cds.Association",
+          "cardinality": {
+            "min": 1,
+            "max": 1
+          },
+          "target": "I_CustMgmtBusObjType",
+          "on": [
+            {
+              "ref": ["ServiceObjectType"]
+            },
+            "=",
+            {
+              "ref": ["_ServiceObjType", "BusinessObjectType"]
+            }
+          ]
+        },
+        "_TransactionCurrency": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": 1
+          },
+          "target": "I_Currency",
+          "on": [
+            {
+              "ref": ["TransactionCurrency"]
+            },
+            "=",
+            {
+              "ref": ["_TransactionCurrency", "Currency"]
+            }
+          ]
+        }
+      }
+    },
+    "TPLNR": {
+      "@EndUserText.heading": "{i18n>TPLNR@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>TPLNR@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>TPLNR@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 30
+    },
+    "VKBUR": {
+      "@EndUserText.heading": "{i18n>VKBUR@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>VKBUR@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>VKBUR@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 4
+    },
+    "VKGRP": {
+      "@EndUserText.heading": "{i18n>VKGRP@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>VKGRP@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>VKGRP@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 3
+    },
+    "VKORG": {
+      "@EndUserText.heading": "{i18n>VKORG@ENDUSERTEXT.HEADING}",
+      "@EndUserText.label": "{i18n>VKORG@ENDUSERTEXT.LABEL}",
+      "@EndUserText.quickInfo": "{i18n>VKORG@ENDUSERTEXT.QUICKINFO}",
+      "@ObjectModel.upperCase": true,
+      "kind": "type",
+      "type": "cds.String",
+      "length": 4
+    }
+  }
+}

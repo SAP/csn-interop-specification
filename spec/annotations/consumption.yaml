@@ -1,0 +1,114 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+title: "Consumption"
+x-extension:
+  targetDocument: "./spec/v1/CSN-Interop-Effective.schema.yaml"
+  targetLink: "../spec-v1/csn-interop-effective"
+
+definitions:
+  "@Consumption.valueHelpDefinition":
+    type: array
+    description: |-
+      The property defines how value helps for this element shall be constructed.
+
+      It allows to associate a (set of) View/Entity that provides the "Value Help" for the annotated field or parameter.
+      This is achieved by either referencing the target view/entity of a modelled association or by directly establishing a relationship to view/entity that shall act as a value help provider.
+    items:
+      $ref: "#/definitions/@Consumption.ConsumptionValueHelpDefinition"
+    x-extension-targets:
+      - Entity
+      - Type
+
+  "@Consumption.ConsumptionValueHelpDefinition":
+    title: Consumption Value Help Definition
+    type: object
+    properties:
+      entity:
+        $ref: "#/definitions/@Consumption.ConsumptionValueHelpDefinition.Entity"
+      additionalBinding:
+        type: array
+        items:
+          $ref: "#/definitions/@Consumption.ConsumptionValueHelpDefinition.AdditionalBinding"
+        description: |-
+          Additional bindings for filtering the value help result list.
+      association:
+        x-ref-to-doc:
+          title: Element Reference
+          ref: "#/definitions/ElementReference"
+        description:
+          Reference to the modelled association (in local entity) for which the target view represents the value help providing view or entity for the annotated local field.
+          The on-condition of the association may only contain bindings of the source and target fields that use an equal operator.
+          All these bindings are automatically considered by the value help for both filter and result mappings.
+
+          Mutually exclusive to the usage of `valueHelpDefinition.entity`.
+      distinctValues:
+        type: boolean
+        description: |-
+          Specifies whether the value help result list shall only contain distinct values for the annotated field or parameter.
+          If set to true all mappings will be used for filtering, but only the value for the field/parameter which the value help was requested for will be returned by the value help.
+        default: true
+    additionalProperties: false
+    examples:
+      - { "entity": { "name": "I_ControllingAreaStdVH", "element": "ControllingArea" } }
+      - {
+          "entity": { "name": "I_CostCenterStdVH", "element": "CostCenter" },
+          "additionalBinding": [{ "localElement": "ControllingArea", "element": "ControllingArea" }],
+        }
+      - { "association": { "=": "to_Airline" } }
+
+  "@Consumption.ConsumptionValueHelpDefinition.Entity":
+    title: Consumption Value Help Definition
+    description: |-
+      Value help defining view or entity.
+    type: object
+    properties:
+      name:
+        type: string
+        description: |-
+          Name of the value help providing view or entity
+      element:
+        type: string
+        description: |-
+          Name of the field of the value help view or entity, which the annotated local field or parameter is bound to.
+
+          Mutually exclusive to the usage of `valueHelpDefinition.association`.
+    additionalProperties: false
+
+  "@Consumption.ConsumptionValueHelpDefinition.AdditionalBinding":
+    title: Additional Binding
+    description: |-
+      Allows to define additional bindings (besides the ones defined by `valueHelpDefinition.association` or `valueHelpDefinition.entity`) for filtering the value help result list and/or returning values from the selected value help record.
+    type: object
+    properties:
+      localElement:
+        type: string
+        description: |-
+          Field of the current view/entity; mutually exclusive to the usage of `localParameter`.
+      element:
+        type: string
+        description: |-
+          Name of the field of the value help view or entity, which the annotated local field or parameter is bound to.
+      usage:
+        $ref: "#/definitions/@Consumption.ConsumptionValueHelpDefinition.AdditionalBinding.Usage"
+    additionalProperties: false
+
+  "@Consumption.ConsumptionValueHelpDefinition.AdditionalBinding.Usage":
+    type: object
+    description: |-
+      The binding may either specify an additional filter-criterion on the value help list (`#FILTER`), or an additional result mapping for the selected value help record (`#RESULT`) or a combination thereof (`#FILTER_AND_RESULT`).
+      If not specified explicitly the usage is `#FILTER_AND_RESULT`.
+      If distinctValues is set to true, additional bindings must specify the usage as `#FILTER`.
+    properties:
+      "#":
+        type: string
+        description: |-
+          Provide the value in `{ "#": "<value>" }` enum notation.
+        enum:
+          - "FILTER"
+          - "RESULT"
+          - "FILTER_AND_RESULT"
+        default: "FILTER_AND_RESULT"
+    additionalProperties: false
+    required:
+      - "#"
+    examples:
+      - { "#": "FILTER_AND_RESULT" }
