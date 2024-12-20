@@ -1,0 +1,10 @@
+dist/
+build/
+.docusaurus/
+reports/
+node_modules/
+package-lock.json
+docs/spec-v1/
+docs/annotations/
+src/types/v1/CSN-Interop-Effective.ts
+src/spec-v1/

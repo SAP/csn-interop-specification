@@ -1,0 +1,225 @@
+{
+  "csnInteropEffective": "1.0",
+  "$version": "2.0",
+  "meta": {
+    "document": {
+      "version": "1.2.3"
+    },
+    "features": {
+      "complete": true
+    }
+  },
+  "definitions": {
+    "Airline": {
+      "kind": "entity",
+      "@EndUserText.label": "Airline",
+      "elements": {
+        "AirlineID": {
+          "@EndUserText.label": "Airline",
+          "@ObjectModel.text.element": ["Name"],
+          "key": true,
+          "type": "cds.String",
+          "length": 3
+        },
+        "Name": {
+          "@EndUserText.label": "Name",
+          "@Semantics.text": true,
+          "type": "cds.String",
+          "length": 40
+        },
+        "CurrencyCode_code": {
+          "@EndUserText.label": "Currency Code",
+          "@Semantics.currencyCode": true,
+          "type": "cds.String",
+          "length": 3
+        }
+      }
+    },
+    "Airport": {
+      "kind": "entity",
+      "@EndUserText.label": "Airport",
+      "elements": {
+        "AirportID": {
+          "@EndUserText.label": "Airport",
+          "@ObjectModel.text.element": ["Name"],
+          "key": true,
+          "type": "cds.String",
+          "length": 3
+        },
+        "Name": {
+          "@EndUserText.label": "Name",
+          "@Semantics.text": true,
+          "type": "cds.String",
+          "length": 40
+        },
+        "City": {
+          "@EndUserText.label": "City",
+          "type": "cds.String",
+          "length": 40
+        },
+        "CountryCode_code": {
+          "@EndUserText.label": "Country",
+          "type": "cds.String",
+          "length": 3
+        }
+      }
+    },
+    "Countries": {
+      "kind": "entity",
+      "@EndUserText.label": "Countries",
+      "elements": {
+        "code": {
+          "@EndUserText.label": "Country Code",
+          "key": true,
+          "type": "cds.String",
+          "length": 3
+        }
+      }
+    },
+    "Countries_texts": {
+      "kind": "entity",
+      "@EndUserText.label": "Countries Texts",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "elements": {
+        "code": {
+          "@EndUserText.label": "Country Code",
+          "key": true,
+          "type": "cds.String",
+          "length": 3
+        },
+        "locale": {
+          "@EndUserText.label": "Language Code",
+          "@Semantics.language": true,
+          "key": true,
+          "type": "cds.String",
+          "length": 14
+        },
+        "name": {
+          "@EndUserText.label": "Name",
+          "@Semantics.text": true,
+          "type": "cds.String",
+          "length": 255
+        },
+        "descr": {
+          "@EndUserText.label": "Description",
+          "@Semantics.text": true,
+          "type": "cds.String",
+          "length": 1000
+        }
+      }
+    },
+    "FlightConnection": {
+      "kind": "entity",
+      "@EndUserText.label": "Flight Connection",
+      "@ObjectModel.representativeKey": {
+        "=": "ConnectionID"
+      },
+      "elements": {
+        "AirlineID": {
+          "@EndUserText.label": "Airline",
+          "key": true,
+          "type": "cds.String",
+          "length": 3
+        },
+        "ConnectionID": {
+          "@EndUserText.label": "Flight Number",
+          "key": true,
+          "type": "cds.String",
+          "length": 4
+        },
+        "DepartureAirport_AirportID": {
+          "@EndUserText.label": "Departure Airport",
+          "type": "cds.String",
+          "length": 3
+        },
+        "DestinationAirport_AirportID": {
+          "@EndUserText.label": "Destination Airport",
+          "type": "cds.String",
+          "length": 3
+        },
+        "DepartureTime": {
+          "@EndUserText.label": "Departure Time",
+          "type": "cds.Time"
+        },
+        "ArrivalTime": {
+          "@EndUserText.label": "Arrival Time",
+          "type": "cds.Time"
+        },
+        "Distance": {
+          "@EndUserText.label": "Distance",
+          "@Semantics.quantity.unitOfMeasure": {
+            "=": "DistanceUnit"
+          },
+          "type": "cds.Integer"
+        },
+        "DistanceUnit": {
+          "@EndUserText.label": "Distance Unit",
+          "type": "cds.String",
+          "length": 3
+        }
+      }
+    },
+    "Flight": {
+      "kind": "entity",
+      "@EndUserText.label": "Flight",
+      "elements": {
+        "AirlineID": {
+          "@EndUserText.label": "Airline",
+          "key": true,
+          "type": "cds.String",
+          "length": 3
+        },
+        "FlightDate": {
+          "@EndUserText.label": "Flight Date}",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "ConnectionID": {
+          "@EndUserText.label": "Flight Number",
+          "key": true,
+          "type": "cds.String",
+          "length": 4
+        },
+        "Price": {
+          "@EndUserText.label": "Price",
+          "@Aggregation.default": {
+            "#": "MIN"
+          },
+          "@Semantics.amount.currencyCode": {
+            "=": "CurrencyCode_code"
+          },
+          "type": "cds.Decimal",
+          "precision": 16,
+          "scale": 3
+        },
+        "CurrencyCode_code": {
+          "@EndUserText.label": "Currency Code",
+          "@Semantics.currencyCode": true,
+          "type": "cds.String",
+          "length": 3
+        },
+        "PlaneType": {
+          "@EndUserText.label": "Plane Type",
+          "type": "cds.String",
+          "length": 10
+        },
+        "MaximumSeats": {
+          "@EndUserText.label": "Maximum Seats",
+          "@Aggregation.default": {
+            "#": "SUM"
+          },
+          "type": "cds.Integer"
+        },
+        "OccupiedSeats": {
+          "@EndUserText.label": "Occupied Seats",
+          "@Aggregation.default": {
+            "#": "SUM"
+          },
+          "type": "cds.Integer"
+        }
+      }
+    }
+  }
+}

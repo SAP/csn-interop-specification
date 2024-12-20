@@ -1,0 +1,305 @@
+{
+  "csnInteropEffective": "1.0",
+  "$version": "2.0",
+  "meta": {
+    "document": {
+      "version": "1.2.3"
+    },
+    "features": {
+      "complete": true
+    }
+  },
+  "definitions": {
+    "Airline": {
+      "kind": "entity",
+      "elements": {
+        "AirlineID": {
+          "key": true,
+          "type": "cds.String",
+          "length": 3
+        },
+        "Name": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "AirlinePicURL": {
+          "type": "cds.String",
+          "length": 1000
+        }
+      }
+    },
+    "Airport": {
+      "kind": "entity",
+      "elements": {
+        "AirportID": {
+          "key": true,
+          "type": "cds.String",
+          "length": 3
+        },
+        "Name": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "City": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "CountryCode_code": {
+          "type": "cds.String",
+          "length": 3,
+          "@ObjectModel.foreignKey.association": {
+            "=": "to_CountryCode"
+          }
+        },
+        "to_CountryCode": {
+          "type": "cds.Association",
+          "target": "Countries",
+          "cardinality": {
+            "max": 1
+          },
+          "on": [
+            {
+              "ref": ["to_CountryCode", "code"]
+            },
+            "=",
+            {
+              "ref": ["CountryCode_code"]
+            }
+          ]
+        }
+      }
+    },
+    "Countries": {
+      "kind": "entity",
+      "elements": {
+        "code": {
+          "@ObjectModel.text.association": {
+            "=": "texts"
+          },
+          "key": true,
+          "type": "cds.String",
+          "length": 3
+        },
+        "texts": {
+          "type": "cds.Composition",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "Countries_texts",
+          "on": [
+            {
+              "ref": ["texts", "code"]
+            },
+            "=",
+            {
+              "ref": ["code"]
+            }
+          ]
+        }
+      }
+    },
+    "Countries_texts": {
+      "kind": "entity",
+      "@ObjectModel.modelingPattern": {
+        "#": "LANGUAGE_DEPENDENT_TEXT"
+      },
+      "elements": {
+        "code": {
+          "key": true,
+          "type": "cds.String",
+          "length": 3
+        },
+        "locale": {
+          "key": true,
+          "type": "cds.String",
+          "length": 14
+        },
+        "name": {
+          "type": "cds.String",
+          "length": 255
+        },
+        "descr": {
+          "type": "cds.String",
+          "length": 1000
+        }
+      }
+    },
+    "FlightConnection": {
+      "kind": "entity",
+      "elements": {
+        "AirlineID": {
+          "key": true,
+          "type": "cds.String",
+          "length": 3,
+          "@ObjectModel.foreignKey.association": {
+            "=": "to_Airline"
+          }
+        },
+        "ConnectionID": {
+          "key": true,
+          "type": "cds.String",
+          "length": 4
+        },
+        "DepartureAirport_AirportID": {
+          "type": "cds.String",
+          "length": 3,
+          "@ObjectModel.foreignKey.association": {
+            "=": "to_DepartureAirport"
+          }
+        },
+        "DestinationAirport_AirportID": {
+          "type": "cds.String",
+          "length": 3,
+          "@ObjectModel.foreignKey.association": {
+            "=": "to_DestinationAirport"
+          }
+        },
+        "DepartureTime": {
+          "type": "cds.Time"
+        },
+        "ArrivalTime": {
+          "type": "cds.Time"
+        },
+        "Distance": {
+          "type": "cds.Integer"
+        },
+        "DistanceUnit": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "to_Airline": {
+          "type": "cds.Association",
+          "target": "Airline",
+          "cardinality": {
+            "max": 1
+          },
+          "on": [
+            {
+              "ref": ["to_Airline", "AirlineID"]
+            },
+            "=",
+            {
+              "ref": ["AirlineID"]
+            }
+          ]
+        },
+        "to_DepartureAirport": {
+          "type": "cds.Association",
+          "target": "Airport",
+          "cardinality": {
+            "max": 1
+          },
+          "on": [
+            {
+              "ref": ["to_DepartureAirport", "AirportID"]
+            },
+            "=",
+            {
+              "ref": ["DepartureAirport_AirportID"]
+            }
+          ]
+        },
+        "to_DestinationAirport": {
+          "type": "cds.Association",
+          "target": "Airport",
+          "cardinality": {
+            "max": 1
+          },
+          "on": [
+            {
+              "ref": ["to_DestinationAirport", "AirportID"]
+            },
+            "=",
+            {
+              "ref": ["DestinationAirport_AirportID"]
+            }
+          ]
+        }
+      }
+    },
+    "Flight": {
+      "kind": "entity",
+      "elements": {
+        "AirlineID": {
+          "key": true,
+          "type": "cds.String",
+          "length": 3,
+          "@ObjectModel.foreignKey.association": {
+            "=": "to_Airline"
+          }
+        },
+        "FlightDate": {
+          "key": true,
+          "type": "cds.Date"
+        },
+        "ConnectionID": {
+          "key": true,
+          "type": "cds.String",
+          "length": 4,
+          "@ObjectModel.foreignKey.association": {
+            "=": "to_Connection"
+          }
+        },
+        "Price": {
+          "type": "cds.Decimal",
+          "precision": 16,
+          "scale": 3
+        },
+        "CurrencyCode_code": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "PlaneType": {
+          "type": "cds.String",
+          "length": 10
+        },
+        "MaximumSeats": {
+          "type": "cds.Integer"
+        },
+        "OccupiedSeats": {
+          "type": "cds.Integer"
+        },
+        "to_Airline": {
+          "type": "cds.Association",
+          "target": "Airline",
+          "cardinality": {
+            "max": 1
+          },
+          "on": [
+            {
+              "ref": ["to_Airline", "AirlineID"]
+            },
+            "=",
+            {
+              "ref": ["AirlineID"]
+            }
+          ]
+        },
+        "to_Connection": {
+          "type": "cds.Association",
+          "target": "FlightConnection",
+          "cardinality": {
+            "max": 1
+          },
+          "on": [
+            {
+              "ref": ["to_Connection", "AirlineID"]
+            },
+            "=",
+            {
+              "ref": ["AirlineID"]
+            },
+            "and",
+            {
+              "ref": ["to_Connection", "ConnectionID"]
+            },
+            "=",
+            {
+              "ref": ["ConnectionID"]
+            }
+          ]
+        }
+      }
+    }
+  }
+}

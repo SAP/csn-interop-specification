@@ -1,0 +1,150 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+title: "@Semantics"
+x-extension:
+  targetDocument: "./spec/v1/CSN-Interop-Effective.schema.yaml"
+  targetLink: "../spec-v1/csn-interop-effective"
+
+definitions:
+  "@Semantics.currencyCode": &semanticsFieldBoolean
+    type: boolean
+    const: true
+    description: |-
+      The property contains a currency code.
+    x-extension-targets:
+      - Type
+
+  "@Semantics.amount.currencyCode": &semanticsFieldElementReference
+    description: |-
+      The element contains an amount. The annotation points to an element containing the currency code.
+    x-ref-to-doc:
+      title: Element Reference
+      ref: "#/definitions/ElementReference"
+    x-extension-targets:
+      - Type
+
+  "@Semantics.unitOfMeasure":
+    <<: *semanticsFieldBoolean
+    description: |-
+      The property contains a unit of measure.
+
+  "@Semantics.quantity.unitOfMeasure":
+    <<: *semanticsFieldElementReference
+    description: |-
+      The element contains a quantity.
+      The annotation points to an element containing the unit of measure.
+
+  "@Semantics.calendar.dayOfMonth":
+    <<: *semanticsFieldBoolean
+    description: |-
+
+  "@Semantics.calendar.dayOfYear":
+    <<: *semanticsFieldBoolean
+    description: |-
+
+  "@Semantics.calendar.week":
+    <<: *semanticsFieldBoolean
+    description: |-
+
+  "@Semantics.calendar.month":
+    <<: *semanticsFieldBoolean
+    description: |-
+
+  "@Semantics.calendar.quarter":
+    <<: *semanticsFieldBoolean
+    description: |-
+
+  "@Semantics.calendar.halfyear":
+    <<: *semanticsFieldBoolean
+    description: |-
+
+  "@Semantics.calendar.year":
+    <<: *semanticsFieldBoolean
+    description: |-
+
+  "@Semantics.calendar.yearWeek":
+    <<: *semanticsFieldBoolean
+    description: |-
+
+  "@Semantics.calendar.yearMonth":
+    <<: *semanticsFieldBoolean
+    description: |-
+
+  "@Semantics.calendar.yearQuarter":
+    <<: *semanticsFieldBoolean
+    description: |-
+
+  "@Semantics.calendar.yearHalfyear":
+    <<: *semanticsFieldBoolean
+    description: |-
+
+  "@Semantics.fiscal.yearVariant":
+    <<: *semanticsFieldBoolean
+    description: |-
+
+  "@Semantics.fiscal.period":
+    <<: *semanticsFieldBoolean
+    description: |-
+
+  "@Semantics.fiscal.year":
+    <<: *semanticsFieldBoolean
+    description: |-
+
+  "@Semantics.fiscal.yearPeriod":
+    <<: *semanticsFieldBoolean
+    description: |-
+
+  "@Semantics.fiscal.quarter":
+    <<: *semanticsFieldBoolean
+    description: |-
+
+  "@Semantics.fiscal.yearQuarter":
+    <<: *semanticsFieldBoolean
+    description: |-
+
+  "@Semantics.fiscal.week":
+    <<: *semanticsFieldBoolean
+    description: |-
+
+  "@Semantics.fiscal.yearWeek":
+    <<: *semanticsFieldBoolean
+    description: |-
+
+  "@Semantics.fiscal.dayOfYear":
+    <<: *semanticsFieldBoolean
+    description: |-
+
+  "@Semantics.language":
+    <<: *semanticsFieldBoolean
+    description: |-
+      The property contains a language code.
+
+  "@Semantics.time":
+    <<: *semanticsFieldBoolean
+    description: |-
+      This annotation is used to indicate a date semantic for the NVARCHAR-based ABAP type TIMS.
+
+  "@Semantics.text":
+    <<: *semanticsFieldBoolean
+    description: |-
+      The property contains a human-readable text.
+
+  "@Semantics.uuid":
+    <<: *semanticsFieldBoolean
+    description: |-
+      Tags a field containing a GUID in RAW16 or CHAR32 format.
+
+  "@Semantics.businessDate.from":
+    <<: *semanticsFieldBoolean
+    description: |-
+      The property contains a date which is the lower boundary of a (validity) interval (for time dependent master data).
+
+  "@Semantics.businessDate.to":
+    <<: *semanticsFieldBoolean
+    description: |-
+      The property contains a date which is the upper boundary of a (validity) interval (for time dependent master data).
+
+  # "@Semantics.FieldWithBoolean": # Maybe we can define a reuse type here?
+  #   type: boolean
+  #   const: true
+  #   x-extension-targets:
+  #     - Type

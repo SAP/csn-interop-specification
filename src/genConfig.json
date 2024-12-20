@@ -1,0 +1,102 @@
+{
+  "$comment": "Maybe this file can be replaced by putting the config into the spec YAML files directly as x- properties",
+  "generalConfig": {
+    "sortProperties": false
+  },
+  "docsConfig": [
+    {
+      "id": "CSN-Interop-Effective",
+      "sourceFile": "./spec/v1/CSN-Interop-Effective.schema.yaml",
+      "sourceFileIntroduction": "./spec/v1/CSN-Interop-Effective.schema.md",
+      "sideBarPosition": 1,
+      "tocMaxHeadingLevel": 4,
+      "sideBarDescription": "Describes the technical interface / schema for CSN Interop Effective.",
+      "title": "Interface Documentation",
+      "targetFile": "docs/spec-v1/csn-interop-effective.md",
+      "facts": []
+    },
+    {
+      "id": "@Aggregation",
+      "sourceFile": "./spec/annotations/aggregation.yaml",
+      "sourceFileIntroduction": "./spec/annotations/aggregation.md",
+      "sideBarPosition": 2,
+      "sideBarDescription": "@Aggregation annotations.",
+      "title": "@Aggregation",
+      "targetFile": "docs/annotations/aggregation.md"
+    },
+    {
+      "id": "@AnalyticsDetails",
+      "sourceFile": "./spec/annotations/analytics-details.yaml",
+      "sourceFileIntroduction": "./spec/annotations/analytics-details.md",
+      "sideBarPosition": 3,
+      "sideBarDescription": "@AnalyticsDetails for data analytics use cases.",
+      "title": "@AnalyticsDetails",
+      "targetFile": "docs/annotations/analytics-details.md"
+    },
+    {
+      "id": "@Consumption",
+      "sourceFile": "./spec/annotations/consumption.yaml",
+      "sourceFileIntroduction": "./spec/annotations/consumption.md",
+      "sideBarPosition": 4,
+      "sideBarDescription": "@Consumption annotations.",
+      "title": "@Consumption",
+      "targetFile": "docs/annotations/consumption.md"
+    },
+    {
+      "id": "@EndUserText",
+      "title": "@EndUserText",
+      "sourceFile": "./spec/annotations/enduser-text.yaml",
+      "sourceFileIntroduction": "./spec/annotations/enduser-text.md",
+      "targetFile": "docs/annotations/enduser-text.md",
+      "extensionTargetFile": "./spec/v1/CSN-Interop-Effective.schema.yaml",
+      "sideBarPosition": 5,
+      "sideBarDescription": "@EndUserText annotations for end user UIs."
+    },
+    {
+      "id": "@EntityRelationship",
+      "sourceFile": "./spec/annotations/entity-relationship.yaml",
+      "sourceFileIntroduction": "./spec/annotations/entity-relationship.md",
+      "sideBarPosition": 6,
+      "sideBarDescription": "@EntityRelationship annotations for cross boundary Entity-Relationship IDs and associations.",
+      "title": "@EntityRelationship",
+      "targetFile": "docs/annotations/entity-relationship.md"
+    },
+    {
+      "id": "@ObjectModel",
+      "sourceFile": "./spec/annotations/object-model.yaml",
+      "sourceFileIntroduction": "./spec/annotations/object-model.md",
+      "sideBarPosition": 7,
+      "sideBarDescription": "@ObjectModel annotations.",
+      "title": "@ObjectModel",
+      "targetFile": "docs/annotations/objectmodel.md"
+    },
+    {
+      "id": "@ODM",
+      "sourceFile": "./spec/annotations/odm.yaml",
+      "sourceFileIntroduction": "./spec/annotations/odm.md",
+      "sideBarPosition": 8,
+      "sideBarDescription": "@ODM for One Domain Model (ODM) related annotations.",
+      "title": "@ODM",
+      "targetFile": "docs/annotations/odm.md"
+    },
+    {
+      "id": "@PersonalData",
+      "sourceFile": "./spec/annotations/personal-data.yaml",
+      "sourceFileIntroduction": "./spec/annotations/personal-data.md",
+      "sideBarPosition": 9,
+      "sideBarDescription": "@PersonalData to annotate DPP relevant information.",
+      "title": "@PersonalData",
+      "targetFile": "docs/annotations/personal-data.md"
+    },
+
+    {
+      "id": "@Semantics",
+      "sourceFile": "./spec/annotations/semantics.yaml",
+      "sourceFileIntroduction": "./spec/annotations/semantics.md",
+      "sideBarPosition": 10,
+      "sideBarDescription": "@Semantics annotations.",
+      "title": "@Semantics",
+      "targetFile": "docs/annotations/semantics.md"
+    }
+  ]
+}
