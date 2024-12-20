@@ -1,6 +1,6 @@
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP/csn-interop-specification)](https://api.reuse.software/info/github.com/SAP/csn-interop-specification)
 
-# CSN Interop Specification
+# Core Schema Notation Interoperability Specification
 
 **Documentation Page**: https://sap.github.io/csn-interop-specification/
 
@@ -15,6 +15,8 @@ The documentation files can be found in the [./docs](./docs/) folder.
 On the GitHub page, every page includes an "Edit this page" link at the bottom, which will also take you to the correct file to create changes for.
 
 For more general requests (like missing content), please create a [GitHub Issue](https://github.com/SAP/csn-interop-specification/issues) in this repository.
+
+## Development Setup
 
 ```bash
 # Prerequisite: Node.js 18+ installed
