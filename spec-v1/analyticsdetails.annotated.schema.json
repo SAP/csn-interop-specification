@@ -1,0 +1,60 @@
+{
+  "description": "JSON Schema with custom (x-) annotations",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AnalyticsDetails",
+  "x-extension": {
+    "targetDocument": "./spec/v1/CSN-Interop-Effective.schema.yaml",
+    "targetLink": "../spec-v1/csn-interop-effective"
+  },
+  "definitions": {
+    "@AnalyticsDetails.measureType": {
+      "description": "Specifies in which way a measure should treated.",
+      "type": "object",
+      "properties": {
+        "#": {
+          "type": "string",
+          "description": "Provide the value in `{ \"#\": \"<value>\" }` enum notation.",
+          "oneOf": [
+            {
+              "const": "BASE",
+              "description": "Measure from the provider."
+            },
+            {
+              "const": "RESTRICTION",
+              "description": "Restricted measure."
+            },
+            {
+              "const": "CALCULATION",
+              "description": "Calculated measure (formula)."
+            }
+          ],
+          "x-context": [
+            "./spec/annotations/analytics-details.yaml",
+            "@AnalyticsDetails.measureType",
+            "#"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "#"
+      ],
+      "x-extension-targets": [
+        "Type"
+      ],
+      "examples": [
+        {
+          "#": "BASE"
+        }
+      ],
+      "title": "@AnalyticsDetails.measureType",
+      "x-context": [
+        "./spec/annotations/analytics-details.yaml",
+        "@AnalyticsDetails.measureType"
+      ]
+    }
+  },
+  "x-context": [
+    "./spec/annotations/analytics-details.yaml"
+  ]
+}
