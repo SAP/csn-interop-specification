@@ -2653,11 +2653,6 @@ export interface BooleanTypeDefinition {
    */
   type: BooleanCdsType;
   /**
-   * Indicates that this element is used as a primary key.
-   * Multiple primary keys MAY be used in case of a composite ID.
-   */
-  key?: boolean;
-  /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    */
   notNull?: boolean;
@@ -2701,11 +2696,6 @@ export interface StringTypeDefinition {
    * The modeling artefact is a `cds.String` type.
    */
   type: StringCdsType;
-  /**
-   * Indicates that this element is used as a primary key.
-   * Multiple primary keys MAY be used in case of a composite ID.
-   */
-  key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    */
@@ -2807,11 +2797,6 @@ export interface IntegerTypeDefinition {
    */
   type: IntegerCdsType;
   /**
-   * Indicates that this element is used as a primary key.
-   * Multiple primary keys MAY be used in case of a composite ID.
-   */
-  key?: boolean;
-  /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    */
   notNull?: boolean;
@@ -2856,11 +2841,6 @@ export interface Integer64TypeDefinition {
    * The modeling artefact is a `cds.Integer64` type.
    */
   type: Integer64CdsType;
-  /**
-   * Indicates that this element is used as a primary key.
-   * Multiple primary keys MAY be used in case of a composite ID.
-   */
-  key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    */
@@ -3008,11 +2988,6 @@ export interface DateTypeDefinition {
    */
   type: DateCdsType;
   /**
-   * Indicates that this element is used as a primary key.
-   * Multiple primary keys MAY be used in case of a composite ID.
-   */
-  key?: boolean;
-  /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    */
   notNull?: boolean;
@@ -3057,11 +3032,6 @@ export interface TimeTypeDefinition {
    * The modeling artefact is a `cds.Time` type.
    */
   type: TimeCdsType;
-  /**
-   * Indicates that this element is used as a primary key.
-   * Multiple primary keys MAY be used in case of a composite ID.
-   */
-  key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    */
@@ -3108,11 +3078,6 @@ export interface DateTimeTypeDefinition {
    */
   type: DateTimeCdsType;
   /**
-   * Indicates that this element is used as a primary key.
-   * Multiple primary keys MAY be used in case of a composite ID.
-   */
-  key?: boolean;
-  /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    */
   notNull?: boolean;
@@ -3158,11 +3123,6 @@ export interface TimestampTypeDefinition {
    */
   type: TimestampCdsType;
   /**
-   * Indicates that this element is used as a primary key.
-   * Multiple primary keys MAY be used in case of a composite ID.
-   */
-  key?: boolean;
-  /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    */
   notNull?: boolean;
@@ -3207,11 +3167,6 @@ export interface UUIDTypeDefinition {
    * The modeling artefact is a `cds.UUID` type.
    */
   type: UUIDCdsType;
-  /**
-   * Indicates that this element is used as a primary key.
-   * Multiple primary keys MAY be used in case of a composite ID.
-   */
-  key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    */

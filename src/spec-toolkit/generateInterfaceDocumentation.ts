@@ -30,7 +30,7 @@ import {
   validateSpecJsonSchema,
 } from "./util/validation";
 import {
-  enrichSpecJsonSchema,
+  preprocessSpecJsonSchema,
   ensureRootLevelSchema,
   removeDescriptionsFromRefPointers,
   removeExtensionAttributes,
@@ -96,9 +96,10 @@ function jsonSchemaToDocumentation(docConfig: DocsConfig, docsConfigs: DocsConfi
   // Read JSON File
   const jsonSchemaFile = fs.readFileSync(path.join(process.cwd(), docConfig.sourceFile)).toString();
   const outputFileName = getOutputFileName(docConfig.id.toLowerCase().replace("@", ""));
-  const jsonSchemaFileParsed = yaml.load(jsonSchemaFile) as SpecJsonSchemaRoot;
+  let jsonSchemaFileParsed = yaml.load(jsonSchemaFile) as SpecJsonSchemaRoot;
+
   /** The Spec JSON Schema based Specification */
-  let jsonSchemaRoot = enrichSpecJsonSchema(jsonSchemaFileParsed, docConfig.sourceFile);
+  let jsonSchemaRoot = preprocessSpecJsonSchema(jsonSchemaFileParsed, docConfig.sourceFile);
   log.info(`${getContextText(jsonSchemaRoot)} loaded and prepared.`);
 
   // Read extension target file if given

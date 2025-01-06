@@ -11,8 +11,11 @@ import { detectAnyOfEnum, detectOneOfEnum } from "../generateInterfaceDocumentat
  * * Adding `x-context` for easier debugging and further use
  * * Adding missing `title` properties
  */
-export function enrichSpecJsonSchema(jsonSchema: SpecJsonSchemaRoot, jsonSchemaFileName: string): SpecJsonSchemaRoot {
-  const result = _.cloneDeep(jsonSchema);
+export function preprocessSpecJsonSchema(jsonSchema: SpecJsonSchemaRoot, jsonSchemaFileName: string): SpecJsonSchemaRoot {
+  // Deep clone, just to avoid accidental mutations of input
+  let result = JSON.parse(JSON.stringify(jsonSchema))
+  
+  result = removeNullProperties(result);
 
   // Enrich x-context and titles
   result["x-context"] = [jsonSchemaFileName];
@@ -228,11 +231,23 @@ export function removeDescriptionsFromRefPointers(jsonSchema: SpecJsonSchemaRoot
  *
  * Done in a very generic manner
  */
-
 export function removeExtensionAttributes(jsonSchema: SpecJsonSchemaRoot): SpecJsonSchemaRoot {
   return JSON.parse(
     JSON.stringify(jsonSchema, (key, val) => {
       return key.startsWith("x-") ? undefined : val;
+    }),
+  );
+}
+
+/**
+ * Clean up x-attributes which should not appear in final schema
+ *
+ * Done in a very generic manner
+ */
+export function removeNullProperties(jsonSchema: SpecJsonSchemaRoot): SpecJsonSchemaRoot {
+  return JSON.parse(
+    JSON.stringify(jsonSchema, (_key, val) => {
+      return (val === null) ? undefined : val;
     }),
   );
 }

@@ -1102,10 +1102,10 @@ definitions:
             ]
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
-      - type
-      - target
-      - cardinality
-      - on
+      - "type"
+      - "target"
+      - "cardinality"
+      - "on"
     additionalProperties: false
     x-extension-points:
       - Type
@@ -1196,10 +1196,10 @@ definitions:
             ]
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
-      - type
-      - target
-      - cardinality
-      - on
+      - "type"
+      - "target"
+      - "cardinality"
+      - "on"
     additionalProperties: false
     x-extension-points:
       - Type
@@ -1598,8 +1598,8 @@ definitions:
               type: string
               const: "cds.Boolean"
           required:
-            - type
             - kind
+            - type
         then:
           $ref: "#/definitions/BooleanTypeDefinition"
       - if:
@@ -1608,8 +1608,8 @@ definitions:
               type: string
               const: "cds.String"
           required:
-            - type
             - kind
+            - type
         then:
           $ref: "#/definitions/StringTypeDefinition"
       - if:
@@ -1618,8 +1618,8 @@ definitions:
               type: string
               const: "cds.LargeString"
           required:
-            - type
             - kind
+            - type
         then:
           $ref: "#/definitions/LargeStringTypeDefinition"
       - if:
@@ -1628,8 +1628,8 @@ definitions:
               type: string
               const: "cds.Integer"
           required:
-            - type
             - kind
+            - type
         then:
           $ref: "#/definitions/IntegerTypeDefinition"
       - if:
@@ -1638,8 +1638,8 @@ definitions:
               type: string
               const: "cds.Integer64"
           required:
-            - type
             - kind
+            - type
         then:
           $ref: "#/definitions/Integer64TypeDefinition"
       - if:
@@ -1648,8 +1648,8 @@ definitions:
               type: string
               const: "cds.Decimal"
           required:
-            - type
             - kind
+            - type
         then:
           $ref: "#/definitions/DecimalTypeDefinition"
       - if:
@@ -1658,8 +1658,8 @@ definitions:
               type: string
               const: "cds.Double"
           required:
-            - type
             - kind
+            - type
         then:
           $ref: "#/definitions/DoubleTypeDefinition"
       - if:
@@ -1668,8 +1668,8 @@ definitions:
               type: string
               const: "cds.Date"
           required:
-            - type
             - kind
+            - type
         then:
           $ref: "#/definitions/DateTypeDefinition"
       - if:
@@ -1678,8 +1678,8 @@ definitions:
               type: string
               const: "cds.Time"
           required:
-            - type
             - kind
+            - type
         then:
           $ref: "#/definitions/TimeTypeDefinition"
       - if:
@@ -1688,8 +1688,8 @@ definitions:
               type: string
               const: "cds.DateTime"
           required:
-            - type
             - kind
+            - type
         then:
           $ref: "#/definitions/DateTimeTypeDefinition"
       - if:
@@ -1698,8 +1698,8 @@ definitions:
               type: string
               const: "cds.Timestamp"
           required:
-            - type
             - kind
+            - type
         then:
           $ref: "#/definitions/TimestampTypeDefinition"
       - if:
@@ -1708,8 +1708,8 @@ definitions:
               type: string
               const: "cds.UUID"
           required:
-            - type
             - kind
+            - type
         then:
           $ref: "#/definitions/UUIDTypeDefinition"
       - if:
@@ -1718,8 +1718,8 @@ definitions:
               type: string
               const: "cds.Association"
           required:
-            - type
             - kind
+            - type
         then:
           $ref: "#/definitions/AssociationTypeDefinition"
       - if:
@@ -1728,13 +1728,13 @@ definitions:
               type: string
               const: "cds.Composition"
           required:
-            - type
             - kind
+            - type
         then:
           $ref: "#/definitions/CompositionTypeDefinition"
     required:
-      - type
       - kind
+      - type
     x-hide-properties: true
 
   BooleanTypeDefinition:
@@ -1746,18 +1746,19 @@ definitions:
         type: string
         const: type
         description: The kind property is used when defining derived types. In this case Kind = "type".
+      key: null # null because "key" should only be defined on element level, not in a custom type
       <<: *BooleanTypeProperties
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
-      - type
       - kind
+      - type
     additionalProperties: false
     x-extension-points:
       - TypeDefinition
       - BooleanTypeDefinition
     x-header-level: 4
     examples:
-      - { "type": "cds.Boolean", "kind": "type", "default": { "val": true } }
+      - { "kind": "type", "type": "cds.Boolean", "default": { "val": true } }
 
   StringTypeDefinition:
     title: String Type Definition
@@ -1765,6 +1766,7 @@ definitions:
     description: A type definition of type `cds.String`.
     properties:
       kind: *kindPropertyForTypeDefinition
+      key: null # null because "key" should only be defined on element level, not in a custom type
       <<: *StringTypeProperties
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
@@ -1776,7 +1778,7 @@ definitions:
       - StringTypeDefinition
     x-header-level: 4
     examples:
-      - { "type": "cds.String", "kind": "type", "key": true, "length": 3, "default": { "val": "foo" } }
+      - { "kind": "type", "type": "cds.String", "length": 3, "default": { "val": "foo" } }
 
   LargeStringTypeDefinition:
     title: LargeString Type Definition
@@ -1784,6 +1786,7 @@ definitions:
     description: A type definition of type `cds.LargeString`.
     properties:
       kind: *kindPropertyForTypeDefinition
+      key: null # null because "key" should only be defined on element level, not in a custom type
       <<: *LargeStringTypeProperties
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
@@ -1801,6 +1804,7 @@ definitions:
     description: A type definition of type `cds.Integer`.
     properties:
       kind: *kindPropertyForTypeDefinition
+      key: null # null because "key" should only be defined on element level, not in a custom type
       <<: *IntegerTypeProperties
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
@@ -1812,7 +1816,7 @@ definitions:
       - IntegerTypeDefinition
     x-header-level: 4
     examples:
-      - { "type": "cds.Integer", "kind": "type", "default": { "val": 123 } }
+      - { "kind": "type", "type": "cds.Integer", "default": { "val": 123 } }
 
   Integer64TypeDefinition:
     title: Integer64 Type Definition
@@ -1820,6 +1824,7 @@ definitions:
     description: A type definition of type `cds.Integer64`.
     properties:
       kind: *kindPropertyForTypeDefinition
+      key: null # null because "key" should only be defined on element level, not in a custom type
       <<: *Integer64TypeProperties
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
@@ -1837,6 +1842,7 @@ definitions:
     description: A type definition of type `cds.Decimal`.
     properties:
       kind: *kindPropertyForTypeDefinition
+      key: null # null because "key" should only be defined on element level, not in a custom type
       <<: *DecimalTypeProperties
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
@@ -1848,7 +1854,7 @@ definitions:
       - DecimalTypeDefinition
     x-header-level: 4
     examples:
-      - { "type": "cds.Decimal", "kind": "type", "precision": 16, "scale": 3, "default": { "val": 12.3 } }
+      - { "kind": "type", "type": "cds.Decimal", "precision": 16, "scale": 3, "default": { "val": 12.3 } }
 
   DoubleTypeDefinition:
     title: Double Type Definition
@@ -1856,6 +1862,7 @@ definitions:
     description: A type definition of type `cds.Double`.
     properties:
       kind: *kindPropertyForTypeDefinition
+      key: null # null because "key" should only be defined on element level, not in a custom type
       <<: *DoubleTypeProperties
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
@@ -1873,18 +1880,19 @@ definitions:
     description: A type definition of type `cds.Date`.
     properties:
       kind: *kindPropertyForTypeDefinition
+      key: null # null because "key" should only be defined on element level, not in a custom type
       <<: *DateTypeProperties
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
-      - type
       - kind
+      - type
     additionalProperties: false
     x-extension-points:
       - TypeDefinition
       - DateTypeDefinition
     x-header-level: 4
     examples:
-      - { "type": "cds.Date", "kind": "type", "key": true }
+      - { "kind": "type", "type": "cds.Date" }
 
   TimeTypeDefinition:
     title: Time Type Definition
@@ -1892,11 +1900,12 @@ definitions:
     description: A type definition of type `cds.Time`.
     properties:
       kind: *kindPropertyForTypeDefinition
+      key: null # null because "key" should only be defined on element level, not in a custom type
       <<: *TimeTypeProperties
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
-      - type
       - kind
+      - type
     additionalProperties: false
     x-extension-points:
       - TypeDefinition
@@ -1909,11 +1918,12 @@ definitions:
     description: A type definition of type `cds.DateTime`.
     properties:
       kind: *kindPropertyForTypeDefinition
+      key: null # null because "key" should only be defined on element level, not in a custom type
       <<: *DateTimeTypeProperties
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
-      - type
       - kind
+      - type
     additionalProperties: false
     x-extension-points:
       - TypeDefinition
@@ -1926,11 +1936,12 @@ definitions:
     description: A type definition of type `cds.Timestamp`.
     properties:
       kind: *kindPropertyForTypeDefinition
+      key: null # null because "key" should only be defined on element level, not in a custom type
       <<: *TimestampTypeProperties
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
-      - type
       - kind
+      - type
     additionalProperties: false
     x-extension-points:
       - TypeDefinition
@@ -1943,11 +1954,12 @@ definitions:
     description: A type definition of type `cds.UUID`.
     properties:
       kind: *kindPropertyForTypeDefinition
+      key: null # null because "key" should only be defined on element level, not in a custom type
       <<: *UUIDTypeProperties
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
-      - type
       - kind
+      - type
     additionalProperties: false
     x-extension-points:
       - TypeDefinition
@@ -1960,14 +1972,15 @@ definitions:
     description: A type definition of type `cds.Association`.
     properties:
       kind: *kindPropertyForTypeDefinition
+      key: null # null because "key" should only be defined on element level, not in a custom type
       <<: *AssociationTypeProperties
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
-      - type
-      - kind
-      - target
-      - cardinality
-      - on
+      - "kind"
+      - "type"
+      - "target"
+      - "cardinality"
+      - "on"
     additionalProperties: false
     x-extension-points:
       - TypeDefinition
@@ -1975,8 +1988,8 @@ definitions:
     x-header-level: 4
     examples:
       - {
-          "type": "cds.Association",
           "kind": "type",
+          "type": "cds.Association",
           "target": "Airport",
           "cardinality": { "max": "*" },
           "on": [{ "ref": ["to_DepartureAirport", "AirportID"] }, "=", { "ref": ["DepartureAirport_AirportID"] }],
@@ -1988,14 +2001,15 @@ definitions:
     description: A type definition of type `cds.Composition`.
     properties:
       kind: *kindPropertyForTypeDefinition
+      key: null # null because "key" should only be defined on element level, not in a custom type
       <<: *CompositionTypeProperties
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
-      - type
-      - kind
-      - target
-      - cardinality
-      - on
+      - "kind"
+      - "type"
+      - "target"
+      - "cardinality"
+      - "on"
     additionalProperties: false
     x-extension-points:
       - TypeDefinition
@@ -2003,8 +2017,8 @@ definitions:
     x-header-level: 4
     examples:
       - {
-          "type": "cds.Composition",
           "kind": "type",
+          "type": "cds.Composition",
           "target": "Airport",
           "cardinality": { "max": "*" },
           "on": [{ "ref": ["to_DepartureAirport", "AirportID"] }, "=", { "ref": ["DepartureAirport_AirportID"] }],
