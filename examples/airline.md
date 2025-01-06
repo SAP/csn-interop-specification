@@ -3,7 +3,7 @@ title: Airline
 sidebar_position: 1
 ---
 
-## Airline
+## Description
 
 The airline example is our primary example file:
 

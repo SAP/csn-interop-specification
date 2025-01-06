@@ -51,7 +51,7 @@ function generateExampleDocumentationPage(filePaths: string[], documentType: str
     }
 
     log.info(`Found ${documentType} example file: ${filePath}`);
-    text += `### ${filePath}\n\n`;
+    text += `## Example File\n\n`;
     text += `> Source Code: [${filePath}](${filePath.replace(
       "./",
       "https://github.com/SAP/csn-interop-specification/blob/main/",
