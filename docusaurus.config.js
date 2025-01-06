@@ -90,7 +90,7 @@ const config = {
             to: "/primer",
           },
           {
-            label: "Interface Docs",
+            label: "Interface Documentation",
             to: "/spec-v1/csn-interop-effective",
           },
           {
