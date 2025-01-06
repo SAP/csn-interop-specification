@@ -8585,8 +8585,14 @@
       "type": "string",
       "format": "uri-reference",
       "description": "Link to JSON Schema for this CSN Interop Effective document.\nAdding this helps with automatic validation and code intelligence in some editors / IDEs.\n\nSee https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema\n",
-      "examples": [
-        "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json"
+      "anyOf": [
+        {
+          "const": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json"
+        },
+        {
+          "type": "string",
+          "format": "uri-reference"
+        }
       ],
       "x-context": [
         "./spec/v1/CSN-Interop-Effective.schema.yaml",
@@ -8597,11 +8603,7 @@
     "$id": {
       "type": "string",
       "format": "uri-reference",
-      "description": "Optional URI for this document, that can acts as an ID.\n\nSee https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema\n",
-      "examples": [
-        "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.ext.schema.json",
-        "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json"
-      ],
+      "description": "Optional URI for this document, that can acts as an ID or as location to retrieve the document.\n\nSee https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema\n",
       "x-context": [
         "./spec/v1/CSN-Interop-Effective.schema.yaml",
         "CsnInteropEffectiveRoot",
