@@ -23,7 +23,7 @@ jobs:
           cache: "npm"
 
       - name: npm install
-        run: npm install
+        run: npm ci
 
       - name: build
         run: npm run build
