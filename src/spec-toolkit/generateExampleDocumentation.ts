@@ -39,14 +39,16 @@ function generateExampleDocumentationPage(filePaths: string[], documentType: str
       // Ignore
     }
 
-    text += `---\n`;
-    text += `title: ${title}\n`;
-    // text += `sidebar_position: 2\n`;
-    text += `description: ${description}\n`;
-    text += `---\n\n`;
-    text += `# Example: ${title} \n\n`;
-
-    text += prefix;
+    if (prefix) {
+      text += prefix;
+    } else {
+      text += `---\n`;
+      text += `title: ${title}\n`;
+      // text += `sidebar_position: 2\n`;
+      text += `description: ${description}\n`;
+      text += `---\n\n`;
+      text += `# Example: ${title} \n\n`;
+    }
 
     log.info(`Found ${documentType} example file: ${filePath}`);
     text += `### ${filePath}\n\n`;

@@ -8,10 +8,44 @@ title: "Overview"
 
 ## Summary
 
-Core schema notation interoperability specification (short: CSN Interop) is a powerful and flexible format used to represent the structure and metadata of data and service models in the wider SAP and BTP ecosystem. CSN files are JSON-based and provide a comprehensive way to describe entities, relationships, and other aspects of the model.
+Core schema notation interoperability specification (short: CSN Interop) is a powerful and flexible format used to describe data and service models in the wider SAP and BTP ecosystem. CSN files are JSON-based and provide a comprehensive metadata about entities and their structure, relationships, and other aspects of the model.
+
+A CSN Interop file can look like this (extracted from [./examples/airline.json](./spec-v1/examples/airline.md)):
+
+```js
+{
+  "csnInteropEffective": "1.0",
+  "$version": "2.0",
+  "meta": {
+    "document": {
+      "version": "1.2.3",
+      "doc": "This is a minimal CSN example document."
+    }
+  },
+  "definitions": {
+    "AirlineService": {
+      "kind": "service",
+      "doc": "This is describing the service that exposes the CDS entities through an API."
+    },
+    "AirlineService.Airline": {
+      "kind": "entity",
+      "doc": "Human readable description of the entity, in **markdown**.",
+      "@EndUserText.label": "Airline",
+      "@ObjectModel.modelingPattern": {
+        "#": "ANALYTICAL_DIMENSION"
+      },
+      "elements": {
+        "AirlineID": {
+          "doc": "Human readable description of the element, in **markdown**.",
+          "key": true,
+          "type": "cds.UUID"
+} } } } }
+```
 
 To get a first overview, read the [informal Primer](./primer.md).
 The actual specification is described mostly in the [formal interface documentation](./spec-v1/csn-interop-effective.md), also described in [JSON Schema](/spec-v1/csn-interop-effective.schema.json).
+
+## What is CSN Interop Effective?
 
 For now, we describe the [CSN](#csn) [Interoperability](#interoperability) [Effective](#effective) exchange format.
 
@@ -53,17 +87,8 @@ Information reuse concepts like aspects have already been resolved, applied and 
 
 ## Status and Contributors
 
-**STATUS**: <span className="feature-status-beta">BETA</span>, stable release planned for 2025-01.
+**STATUS**: <span className="feature-status-beta">BETA</span>, stable release planned for 2025-02.
 
-**AUTHORS**: [Andreas Balzar](mailto:andreas.balzar@sap.com), Michael Belenki, Timo Bergmann, Daniel Buchmann, Timm Falter, Daniel Hutzel, Steffen Weinstock, [Simon Heimler](mailto:simon.heimler@sap.com), Sandra Bracholdt, Raluca Gruber, CPA APIs & Events, CPA Data Architecture
+**CONTACT**: Create a GitHub PR or [issue](https://github.com/SAP/csn-interop-specification/issues).
 
-Please be aware that this specification is still in active development:
-
-- The [Primer](primer.md) is already in a good state, but needs now to be de-duplicated with information that moved into the formal spec documentation.
-- The [formal interface documentation](./spec-v1/csn-interop-effective.md) is in beta state and can be used. Changes and additions are likely to happen.
-- The [annotations](./annotations/) are mostly draft state and the overall scope of interop annotations is yet to be determined.
-- The API Metadata Validator supports validation of CSN Interop Effective documents, which we plan to open-source in 2025 (only internally available for now).
-
-## Contact
-
-Create a GitHub PR or [issue](https://github.com/SAP/csn-interop-specification/issues) if you have questions or want to propose changes.
+**CONTRIBUTORS**: [Andreas Balzar](mailto:andreas.balzar@sap.com), Michael Belenki, Timo Bergmann, Daniel Buchmann, Timm Falter, Daniel Hutzel, Steffen Weinstock, [Simon Heimler](mailto:simon.heimler@sap.com), Sandra Bracholdt, Raluca Gruber, ...
