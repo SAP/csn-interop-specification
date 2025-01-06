@@ -4,7 +4,9 @@ sidebar_position: 0
 title: "Overview"
 ---
 
-# Core Schema Notation Interoperability Specification v1.0 Beta
+# Core Schema Notation Interoperability Specification
+
+**STATUS**: v1.0 <span className="feature-status-beta">BETA</span>, stable release planned for 2025-02.
 
 ## Summary
 
@@ -38,8 +40,7 @@ A CSN Interop file can look like this (extracted from [./examples/airline.json](
         "AirlineID": {
           "doc": "Human readable description of the element, in **markdown**.",
           "key": true,
-          "type": "cds.UUID"
-} } } } }
+          "type": "cds.UUID" } } } } }
 ```
 
 To get a first overview, read the [informal Primer](./primer.md).
@@ -78,16 +79,15 @@ This includes:
 Right now, this spec describes only the [effective](./spec-v1/csn-interop-effective) feature dimension.
 
 Effective means that the format is "[denormalized](https://en.wikipedia.org/wiki/Denormalization)", and optimized towards easy consumption by machines, with the tradeoff of more verbosity and duplicated information.
-Information reuse concepts like aspects have already been resolved, applied and cleaned up. What the consumer gets, is a document that does not require further post-processing / logic to be interpreted correctly.
+
+Information reuse concepts like aspects have already been resolved, applied and cleaned up. What the consumer gets, is a document that does not require further post-processing / logic to be interpreted correctly. This is a tradeoff, prioritizing easy consumption over convenient creation.
 
 ## Intended Audience
 
 - Developers and Architects that either need to export or import CSN across different technology stacks.
 - End consumers that need to understand CSN Interop as a metadata description format for resources they want to integrate with (e.g. APIs and Events).
 
-## Status and Contributors
-
-**STATUS**: <span className="feature-status-beta">BETA</span>, stable release planned for 2025-02.
+## Contact
 
 **CONTACT**: Create a GitHub PR or [issue](https://github.com/SAP/csn-interop-specification/issues).
 

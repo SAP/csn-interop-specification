@@ -315,9 +315,10 @@ export interface CSNInteropRoot {
    * See https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema
    *
    */
-  $schema?: string;
+  $schema?: ("https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json" | string) &
+    string;
   /**
-   * Optional URI for this document, that can acts as an ID.
+   * Optional URI for this document, that can acts as an ID or as location to retrieve the document.
    *
    * See https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema
    *

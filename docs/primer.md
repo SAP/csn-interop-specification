@@ -57,6 +57,22 @@ There are three mandatory root level properties that need to be added to get a m
 - `definitions` at least one element of a definition modelling artefact
 - See [Root Interface documentation](./spec-v1/csn-interop-effective#csn-interop-root) for a complete overview.
 
+Optionally, metadata about the document as a whole can be added in [meta](./spec-v1/csn-interop-effective.md#meta).
+It is also recommended to add `$schema` for JSON Schema based validation / code intelligence in IDEs and editors.
+
+```js
+{
+  "$schema": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "meta": {
+    "document": {
+      "version": "1.2.3",
+      "doc": "This CSN example document shows how the airline example is expressed with a CDS **Service** exposing the entities through an API."
+    }
+  },
+  // ...
+}
+```
+
 ## Definitions
 
 The model is described in the [Definitions](./spec-v1/csn-interop-effective#definitions) section.

@@ -1,4 +1,5 @@
 {
+  "$schema": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
   "csnInteropEffective": "1.0",
   "$version": "2.0",
   "meta": {
