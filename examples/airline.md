@@ -1,3 +1,8 @@
+---
+title: Airline
+sidebar_position: 1
+---
+
 ## Airline
 
 The airline example is our primary example file:
