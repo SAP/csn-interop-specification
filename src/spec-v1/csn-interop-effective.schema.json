@@ -4346,8 +4346,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -4363,8 +4363,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -4380,8 +4380,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -4397,8 +4397,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -4414,8 +4414,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -4431,8 +4431,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -4448,8 +4448,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -4465,8 +4465,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -4482,8 +4482,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -4499,8 +4499,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -4516,8 +4516,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -4533,8 +4533,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -4550,8 +4550,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -4567,8 +4567,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -4577,8 +4577,8 @@
         }
       ],
       "required": [
-        "type",
-        "kind"
+        "kind",
+        "type"
       ]
     },
     "BooleanTypeDefinition": {
@@ -4596,10 +4596,6 @@
           "const": "cds.Boolean",
           "description": "The modeling artefact is a `cds.Boolean` type.",
           "tsType": "BooleanCdsType"
-        },
-        "key": {
-          "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
         },
         "notNull": {
           "type": "boolean",
@@ -4627,14 +4623,14 @@
         }
       },
       "required": [
-        "type",
-        "kind"
+        "kind",
+        "type"
       ],
       "additionalProperties": false,
       "examples": [
         {
-          "type": "cds.Boolean",
           "kind": "type",
+          "type": "cds.Boolean",
           "default": {
             "val": true
           }
@@ -4656,10 +4652,6 @@
           "const": "cds.String",
           "description": "The modeling artefact is a `cds.String` type.",
           "tsType": "StringCdsType"
-        },
-        "key": {
-          "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
         },
         "notNull": {
           "type": "boolean",
@@ -4701,9 +4693,8 @@
       "additionalProperties": false,
       "examples": [
         {
-          "type": "cds.String",
           "kind": "type",
-          "key": true,
+          "type": "cds.String",
           "length": 3,
           "default": {
             "val": "foo"
@@ -4782,10 +4773,6 @@
           "description": "The modeling artefact is a `cds.Integer` type.",
           "tsType": "IntegerCdsType"
         },
-        "key": {
-          "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
-        },
         "notNull": {
           "type": "boolean",
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
@@ -4821,8 +4808,8 @@
       "additionalProperties": false,
       "examples": [
         {
-          "type": "cds.Integer",
           "kind": "type",
+          "type": "cds.Integer",
           "default": {
             "val": 123
           }
@@ -4844,10 +4831,6 @@
           "const": "cds.Integer64",
           "description": "The modeling artefact is a `cds.Integer64` type.",
           "tsType": "Integer64CdsType"
-        },
-        "key": {
-          "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
         },
         "notNull": {
           "type": "boolean",
@@ -4952,8 +4935,8 @@
       "additionalProperties": false,
       "examples": [
         {
-          "type": "cds.Decimal",
           "kind": "type",
+          "type": "cds.Decimal",
           "precision": 16,
           "scale": 3,
           "default": {
@@ -5028,10 +5011,6 @@
           "description": "The modeling artefact is a `cds.Date` type.",
           "tsType": "DateCdsType"
         },
-        "key": {
-          "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
-        },
         "notNull": {
           "type": "boolean",
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
@@ -5061,15 +5040,14 @@
         }
       },
       "required": [
-        "type",
-        "kind"
+        "kind",
+        "type"
       ],
       "additionalProperties": false,
       "examples": [
         {
-          "type": "cds.Date",
           "kind": "type",
-          "key": true
+          "type": "cds.Date"
         }
       ]
     },
@@ -5089,10 +5067,6 @@
           "description": "The modeling artefact is a `cds.Time` type.",
           "tsType": "TimeCdsType"
         },
-        "key": {
-          "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
-        },
         "notNull": {
           "type": "boolean",
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
@@ -5122,8 +5096,8 @@
         }
       },
       "required": [
-        "type",
-        "kind"
+        "kind",
+        "type"
       ],
       "additionalProperties": false
     },
@@ -5143,10 +5117,6 @@
           "description": "The modeling artefact is a `cds.DateTime` type.",
           "tsType": "DateTimeCdsType"
         },
-        "key": {
-          "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
-        },
         "notNull": {
           "type": "boolean",
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
@@ -5176,8 +5146,8 @@
         }
       },
       "required": [
-        "type",
-        "kind"
+        "kind",
+        "type"
       ],
       "additionalProperties": false
     },
@@ -5197,10 +5167,6 @@
           "description": "The modeling artefact is a `cds.Timestamp` type.",
           "tsType": "TimestampCdsType"
         },
-        "key": {
-          "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
-        },
         "notNull": {
           "type": "boolean",
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
@@ -5230,8 +5196,8 @@
         }
       },
       "required": [
-        "type",
-        "kind"
+        "kind",
+        "type"
       ],
       "additionalProperties": false
     },
@@ -5250,10 +5216,6 @@
           "const": "cds.UUID",
           "description": "The modeling artefact is a `cds.UUID` type.",
           "tsType": "UUIDCdsType"
-        },
-        "key": {
-          "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
         },
         "notNull": {
           "type": "boolean",
@@ -5281,8 +5243,8 @@
         }
       },
       "required": [
-        "type",
-        "kind"
+        "kind",
+        "type"
       ],
       "additionalProperties": false
     },
@@ -5417,8 +5379,8 @@
         }
       },
       "required": [
-        "type",
         "kind",
+        "type",
         "target",
         "cardinality",
         "on"
@@ -5426,8 +5388,8 @@
       "additionalProperties": false,
       "examples": [
         {
-          "type": "cds.Association",
           "kind": "type",
+          "type": "cds.Association",
           "target": "Airport",
           "cardinality": {
             "max": "*"
@@ -5580,8 +5542,8 @@
         }
       },
       "required": [
-        "type",
         "kind",
+        "type",
         "target",
         "cardinality",
         "on"
@@ -5589,8 +5551,8 @@
       "additionalProperties": false,
       "examples": [
         {
-          "type": "cds.Composition",
           "kind": "type",
+          "type": "cds.Composition",
           "target": "Airport",
           "cardinality": {
             "max": "*"

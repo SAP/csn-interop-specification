@@ -12,6 +12,7 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 - BREAKING: wrong @Semantics.amountCurrencyCode annotation, should be @Semantics.amount.currencyCode
 - BREAKING: wrong @Semantics.quantityUnitOfMeasure annotation, should be @Semantics.quantity.unitOfMeasure
+- BREAKING: For custom types, we should not set `key` property - as this is decided on entity element level.
 
 ## [0.3.0]
 
