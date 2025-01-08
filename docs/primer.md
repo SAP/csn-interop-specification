@@ -226,7 +226,7 @@ This is done by adding the member `key` with boolean value `true` to each elemen
 
 #### Optional Properties
 
-In addition an element has the optional properties `notNull_, and `default` (both with SQL semantics). This results in the pattern:
+In addition an element has the optional properties `notNull`, and `default` (both with SQL semantics). This results in the pattern:
 
 ```js
 { //..
@@ -341,14 +341,14 @@ An Association expresses a relation between two entities. An association is dire
 > Note:
 > Bidirectional relations can be defined via associations at both related entities. This is often not necessary, however, because the consumer can derive the inverse relation from a single association.
 
-Associations are element definitions with `type` being `cds.Association` or `cds.Composition` plus additional properties specifying the association `target_, the `cardinality`, and an `on` condition.
+Associations are element definitions with `type` being `cds.Association` or `cds.Composition` plus additional properties specifying the association `target`, the `cardinality`, and an `on` condition.
 
 Property `cardinality` is an object \{`src`?, `min`?, `max`\} with...
 
 - `src` set to 1 give a hint to database optimizers, that the relationship is "one to" instead of "many to" (default).
 - `min` specifying the target's minimum cardinality (0, 1, \*) – default: 0
 - `max` specifying the target's maximum cardinality (1, \*) – default: 1
-- In summary, the default cardinality is `\[0..1\]`, which means `to-one`. However, we recommend to always specify the cardinality, in order to avoid uncertainties on the consumer side.
+- In summary, the default cardinality is 0..1, which means "to-one". However, we recommend to always specify the cardinality, in order to avoid uncertainties on the consumer side.
 
 The semantics follows from the pattern \<src\>:[\<min\>..\<max\>]. Most typical are the following:
 
@@ -599,7 +599,7 @@ Further note that element names are not affected by context definitions, because
 
 Contexts can also be used to aggregate local data definitions into a single CSN document. E.g. assume that there are several original data models, each of which where local to a schema. And each of these data models is already described in terms of data definitions in CSN format.
 Now simply merging these data definitions into one is typically not possible because in the resulting CSN document the definition names must again be unique. But the data definitions can be rewritten by introducing higher-level contexts (e.g. one context per schema), and replacing all local names by their fully qualified equivalents.
-Note that it is not sufficient to replace the top-level data definition names, but that also the association targets and annotation values of type`EntityRef` have to be adapted.
+Note that it is not sufficient to replace the top-level data definition names, but that also the association targets and annotation values of type `EntityRef` have to be adapted.
 
 ## Custom Type Definitions
 
