@@ -1,5 +1,6 @@
 import fs from "fs-extra";
 import path from "path";
+import { log } from "../util/log";
 
 //////////////////////////////////////////
 // NEW CONFIG (TODO, WIP)               //
@@ -57,7 +58,8 @@ export interface DocsConfig {
   id: string;
   title: string;
   sourceFile: string;
-  sourceFileIntroduction: string;
+  sourceFileIntroduction?: string;
+  sourceFileOutro?: string;
   targetFile: string;
   targetFolder?: string;
   extensionTargetFile?: string;
@@ -86,17 +88,31 @@ export function getConfigForId(docsConfigs: DocsConfig[], id: string): DocsConfi
 
 //Retrieve Text from Introduction File
 export function getIntroductionText(docConfig: DocsConfig): string {
-  // Get the file path for markdown file
-  const mdFilePath = docConfig.sourceFileIntroduction;
-  const filePath = path.resolve(mdFilePath);
+  if (!docConfig.sourceFileIntroduction) {
+    return '';
+  }
+  
+  const mdFilePath =  path.resolve(docConfig.sourceFileIntroduction);
 
-  // If file is not existing than return empty string
-  if (!fs.existsSync(filePath)) {
-    return "";
+  if (!fs.existsSync(mdFilePath)) {
+    throw new Error('Could not read markdown file: ' + mdFilePath)
   }
 
-  // Return content of the file
-  return fs.readFileSync(filePath, "utf-8");
+  return fs.readFileSync(mdFilePath, "utf-8");
+}
+//Retrieve Text from Introduction File
+export function getOutroText(docConfig: DocsConfig): string {
+  if (!docConfig.sourceFileOutro) {
+    return '';
+  }
+  
+  const mdFilePath =  path.resolve(docConfig.sourceFileOutro);
+
+  if (!fs.existsSync(mdFilePath)) {
+    throw new Error('Could not read markdown file: ' + mdFilePath)
+  }
+
+  return fs.readFileSync(mdFilePath, "utf-8");
 }
 
 export function getTargetDocumentForDocumentId(documentID: string, docsConfigs: DocsConfig[]): string {
