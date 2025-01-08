@@ -9,7 +9,7 @@
  * * Share same code to generate descriptions for schemas inside AND outside of an object table
  */
 
-import { ConfigFile, DocsConfig, getIntroductionText, getTargetDocumentForDocumentId } from "./model/Config";
+import { ConfigFile, DocsConfig, getIntroductionText, getOutroText, getTargetDocumentForDocumentId } from "./model/Config";
 import { SpecJsonSchema, SpecJsonSchemaRoot } from "./model/SpecJsonSchema";
 import {
   addVerticalSeparator,
@@ -175,6 +175,8 @@ function jsonSchemaToDocumentation(docConfig: DocsConfig, docsConfigs: DocsConfi
     text += "\n## Complete Examples\n";
     text += getObjectExampleText(jsonSchemaRoot, jsonSchemaRoot, true);
   }
+
+  text += getOutroText(docConfig).trimEnd();
 
   // Write Markdown Documentation
   fs.outputFileSync(docConfig.targetFile, text);
