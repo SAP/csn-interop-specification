@@ -388,7 +388,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "EntityDefinition",
             "doc"
           ]
         },
@@ -998,7 +998,7 @@
           "tsType": "BooleanCdsType",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "BooleanTypeDefinition",
+            "BooleanType",
             "type"
           ]
         },
@@ -1007,7 +1007,7 @@
           "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "BooleanType",
             "key"
           ]
         },
@@ -1016,7 +1016,7 @@
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "BooleanType",
             "notNull"
           ]
         },
@@ -1025,7 +1025,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "BooleanType",
             "doc"
           ]
         },
@@ -1033,7 +1033,7 @@
           "$ref": "#/definitions/DefaultValueBoolean",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "BooleanTypeDefinition",
+            "BooleanType",
             "default"
           ]
         },
@@ -1223,7 +1223,7 @@
           "tsType": "StringCdsType",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "StringTypeDefinition",
+            "StringType",
             "type"
           ]
         },
@@ -1232,7 +1232,7 @@
           "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "StringType",
             "key"
           ]
         },
@@ -1241,7 +1241,7 @@
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "StringType",
             "notNull"
           ]
         },
@@ -1250,7 +1250,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "StringType",
             "doc"
           ]
         },
@@ -1258,7 +1258,7 @@
           "$ref": "#/definitions/DefaultValueString",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "StringTypeDefinition",
+            "StringType",
             "default"
           ]
         },
@@ -1266,7 +1266,7 @@
           "$ref": "#/definitions/EnumDictionary",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
+            "StringType",
             "enum"
           ]
         },
@@ -1276,7 +1276,7 @@
           "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "LargeStringTypeDefinition",
+            "StringType",
             "length"
           ]
         },
@@ -1468,7 +1468,7 @@
           "tsType": "LargeStringCdsType",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "LargeStringTypeDefinition",
+            "LargeStringType",
             "type"
           ]
         },
@@ -1477,7 +1477,7 @@
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "LargeStringType",
             "notNull"
           ]
         },
@@ -1486,7 +1486,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "LargeStringType",
             "doc"
           ]
         },
@@ -1494,7 +1494,7 @@
           "$ref": "#/definitions/DefaultValueString",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "LargeStringTypeDefinition",
+            "LargeStringType",
             "default"
           ]
         },
@@ -1502,7 +1502,7 @@
           "$ref": "#/definitions/EnumDictionary",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
+            "LargeStringType",
             "enum"
           ]
         },
@@ -1512,7 +1512,7 @@
           "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "LargeStringTypeDefinition",
+            "LargeStringType",
             "length"
           ]
         },
@@ -1704,7 +1704,7 @@
           "tsType": "IntegerCdsType",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "IntegerTypeDefinition",
+            "IntegerType",
             "type"
           ]
         },
@@ -1713,7 +1713,7 @@
           "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "IntegerType",
             "key"
           ]
         },
@@ -1722,7 +1722,7 @@
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "IntegerType",
             "notNull"
           ]
         },
@@ -1731,7 +1731,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "IntegerType",
             "doc"
           ]
         },
@@ -1739,7 +1739,7 @@
           "$ref": "#/definitions/DefaultValueInteger",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "IntegerTypeDefinition",
+            "IntegerType",
             "default"
           ]
         },
@@ -1747,7 +1747,7 @@
           "$ref": "#/definitions/EnumDictionary",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
+            "IntegerType",
             "enum"
           ]
         },
@@ -1937,7 +1937,7 @@
           "tsType": "Integer64CdsType",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "Integer64TypeDefinition",
+            "Integer64Type",
             "type"
           ]
         },
@@ -1946,7 +1946,7 @@
           "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "Integer64Type",
             "key"
           ]
         },
@@ -1955,7 +1955,7 @@
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "Integer64Type",
             "notNull"
           ]
         },
@@ -1964,7 +1964,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "Integer64Type",
             "doc"
           ]
         },
@@ -1972,7 +1972,7 @@
           "$ref": "#/definitions/DefaultValueInteger",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "Integer64TypeDefinition",
+            "Integer64Type",
             "default"
           ]
         },
@@ -1980,7 +1980,7 @@
           "$ref": "#/definitions/EnumDictionary",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
+            "Integer64Type",
             "enum"
           ]
         },
@@ -2170,7 +2170,7 @@
           "tsType": "DecimalCdsType",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DecimalTypeDefinition",
+            "DecimalType",
             "type"
           ]
         },
@@ -2179,7 +2179,7 @@
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "DecimalType",
             "notNull"
           ]
         },
@@ -2188,7 +2188,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "DecimalType",
             "doc"
           ]
         },
@@ -2196,7 +2196,7 @@
           "$ref": "#/definitions/DefaultValueNumber",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DecimalTypeDefinition",
+            "DecimalType",
             "default"
           ]
         },
@@ -2204,7 +2204,7 @@
           "$ref": "#/definitions/EnumDictionary",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
+            "DecimalType",
             "enum"
           ]
         },
@@ -2215,7 +2215,7 @@
           "default": 34,
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DecimalTypeDefinition",
+            "DecimalType",
             "precision"
           ]
         },
@@ -2232,7 +2232,7 @@
           "default": "floating",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DecimalTypeDefinition",
+            "DecimalType",
             "scale"
           ]
         },
@@ -2424,7 +2424,7 @@
           "tsType": "DoubleCdsType",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DoubleTypeDefinition",
+            "DoubleType",
             "type"
           ]
         },
@@ -2433,7 +2433,7 @@
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "DoubleType",
             "notNull"
           ]
         },
@@ -2442,7 +2442,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "DoubleType",
             "doc"
           ]
         },
@@ -2450,7 +2450,7 @@
           "$ref": "#/definitions/DefaultValueNumber",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DoubleTypeDefinition",
+            "DoubleType",
             "default"
           ]
         },
@@ -2458,7 +2458,7 @@
           "$ref": "#/definitions/EnumDictionary",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
+            "DoubleType",
             "enum"
           ]
         },
@@ -2648,7 +2648,7 @@
           "tsType": "DateCdsType",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateTypeDefinition",
+            "DateType",
             "type"
           ]
         },
@@ -2657,7 +2657,7 @@
           "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "DateType",
             "key"
           ]
         },
@@ -2666,7 +2666,7 @@
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "DateType",
             "notNull"
           ]
         },
@@ -2675,7 +2675,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "DateType",
             "doc"
           ]
         },
@@ -2683,7 +2683,7 @@
           "$ref": "#/definitions/DefaultValueString",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateTypeDefinition",
+            "DateType",
             "default"
           ]
         },
@@ -2691,7 +2691,7 @@
           "$ref": "#/definitions/EnumDictionary",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
+            "DateType",
             "enum"
           ]
         },
@@ -2879,7 +2879,7 @@
           "tsType": "TimeCdsType",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimeTypeDefinition",
+            "TimeType",
             "type"
           ]
         },
@@ -2888,7 +2888,7 @@
           "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "TimeType",
             "key"
           ]
         },
@@ -2897,7 +2897,7 @@
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "TimeType",
             "notNull"
           ]
         },
@@ -2906,7 +2906,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "TimeType",
             "doc"
           ]
         },
@@ -2914,7 +2914,7 @@
           "$ref": "#/definitions/DefaultValueString",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimeTypeDefinition",
+            "TimeType",
             "default"
           ]
         },
@@ -2922,7 +2922,7 @@
           "$ref": "#/definitions/EnumDictionary",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
+            "TimeType",
             "enum"
           ]
         },
@@ -3110,7 +3110,7 @@
           "tsType": "DateTimeCdsType",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateTimeTypeDefinition",
+            "DateTimeType",
             "type"
           ]
         },
@@ -3119,7 +3119,7 @@
           "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "DateTimeType",
             "key"
           ]
         },
@@ -3128,7 +3128,7 @@
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "DateTimeType",
             "notNull"
           ]
         },
@@ -3137,7 +3137,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "DateTimeType",
             "doc"
           ]
         },
@@ -3145,7 +3145,7 @@
           "$ref": "#/definitions/DefaultValueString",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateTimeTypeDefinition",
+            "DateTimeType",
             "default"
           ]
         },
@@ -3153,7 +3153,7 @@
           "$ref": "#/definitions/EnumDictionary",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
+            "DateTimeType",
             "enum"
           ]
         },
@@ -3341,7 +3341,7 @@
           "tsType": "TimestampCdsType",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
+            "TimestampType",
             "type"
           ]
         },
@@ -3350,7 +3350,7 @@
           "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "TimestampType",
             "key"
           ]
         },
@@ -3359,7 +3359,7 @@
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "TimestampType",
             "notNull"
           ]
         },
@@ -3368,7 +3368,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "TimestampType",
             "doc"
           ]
         },
@@ -3376,7 +3376,7 @@
           "$ref": "#/definitions/DefaultValueString",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
+            "TimestampType",
             "default"
           ]
         },
@@ -3384,7 +3384,7 @@
           "$ref": "#/definitions/EnumDictionary",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
+            "TimestampType",
             "enum"
           ]
         },
@@ -3572,7 +3572,7 @@
           "tsType": "UUIDCdsType",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "UUIDType",
             "type"
           ]
         },
@@ -3581,7 +3581,7 @@
           "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "UUIDType",
             "key"
           ]
         },
@@ -3590,7 +3590,7 @@
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "UUIDType",
             "notNull"
           ]
         },
@@ -3599,7 +3599,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "UUIDType",
             "doc"
           ]
         },
@@ -3607,7 +3607,7 @@
           "$ref": "#/definitions/DefaultValueString",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "UUIDType",
             "default"
           ]
         },
@@ -3795,7 +3795,7 @@
           "tsType": "AssociationCdsType",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "AssociationTypeDefinition",
+            "AssociationType",
             "type"
           ]
         },
@@ -3804,7 +3804,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "AssociationType",
             "doc"
           ]
         },
@@ -3816,7 +3816,7 @@
           ],
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "AssociationTypeDefinition",
+            "AssociationType",
             "target"
           ]
         },
@@ -3825,7 +3825,7 @@
           "$ref": "#/definitions/CardinalityObject",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "AssociationTypeDefinition",
+            "AssociationType",
             "cardinality"
           ]
         },
@@ -3918,7 +3918,7 @@
           ],
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "AssociationTypeDefinition",
+            "AssociationType",
             "on"
           ]
         },
@@ -4126,7 +4126,7 @@
           "tsType": "CompositionCdsType",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
+            "CompositionType",
             "type"
           ]
         },
@@ -4135,7 +4135,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "CompositionType",
             "doc"
           ]
         },
@@ -4147,7 +4147,7 @@
           ],
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
+            "CompositionType",
             "target"
           ]
         },
@@ -4156,7 +4156,7 @@
           "$ref": "#/definitions/CardinalityObject",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
+            "CompositionType",
             "cardinality"
           ]
         },
@@ -4249,7 +4249,7 @@
           ],
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
+            "CompositionType",
             "on"
           ]
         },
@@ -4466,7 +4466,7 @@
           "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "CustomType",
             "key"
           ]
         },
@@ -4475,7 +4475,7 @@
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "CustomType",
             "notNull"
           ]
         },
@@ -4484,7 +4484,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "CustomType",
             "doc"
           ]
         },
@@ -4500,7 +4500,7 @@
           "$ref": "#/definitions/EnumDictionary",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
+            "CustomType",
             "enum"
           ]
         },
@@ -4510,7 +4510,7 @@
           "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "LargeStringTypeDefinition",
+            "CustomType",
             "length"
           ]
         },
@@ -4527,7 +4527,7 @@
           "default": "floating",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DecimalTypeDefinition",
+            "CustomType",
             "scale"
           ]
         },
@@ -4538,7 +4538,7 @@
           "default": 34,
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DecimalTypeDefinition",
+            "CustomType",
             "precision"
           ]
         },
@@ -5373,8 +5373,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -5390,8 +5390,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -5407,8 +5407,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -5424,8 +5424,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -5441,8 +5441,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -5458,8 +5458,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -5475,8 +5475,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -5492,8 +5492,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -5509,8 +5509,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -5526,8 +5526,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -5543,8 +5543,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -5560,8 +5560,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -5577,8 +5577,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -5594,8 +5594,8 @@
               }
             },
             "required": [
-              "type",
-              "kind"
+              "kind",
+              "type"
             ]
           },
           "then": {
@@ -5604,8 +5604,8 @@
         }
       ],
       "required": [
-        "type",
-        "kind"
+        "kind",
+        "type"
       ],
       "x-hide-properties": true,
       "x-context": [
@@ -5624,7 +5624,7 @@
           "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
+            "BooleanTypeDefinition",
             "kind"
           ]
         },
@@ -5639,21 +5639,12 @@
             "type"
           ]
         },
-        "key": {
-          "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
-            "key"
-          ]
-        },
         "notNull": {
           "type": "boolean",
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "BooleanTypeDefinition",
             "notNull"
           ]
         },
@@ -5662,7 +5653,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "BooleanTypeDefinition",
             "doc"
           ]
         },
@@ -5689,8 +5680,8 @@
         }
       },
       "required": [
-        "type",
-        "kind"
+        "kind",
+        "type"
       ],
       "additionalProperties": false,
       "x-extension-points": [
@@ -5700,8 +5691,8 @@
       "x-header-level": 4,
       "examples": [
         {
-          "type": "cds.Boolean",
           "kind": "type",
+          "type": "cds.Boolean",
           "default": {
             "val": true
           }
@@ -5723,7 +5714,7 @@
           "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
+            "StringTypeDefinition",
             "kind"
           ]
         },
@@ -5738,21 +5729,12 @@
             "type"
           ]
         },
-        "key": {
-          "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
-            "key"
-          ]
-        },
         "notNull": {
           "type": "boolean",
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "StringTypeDefinition",
             "notNull"
           ]
         },
@@ -5761,7 +5743,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "StringTypeDefinition",
             "doc"
           ]
         },
@@ -5777,7 +5759,7 @@
           "$ref": "#/definitions/EnumDictionary",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
+            "StringTypeDefinition",
             "enum"
           ]
         },
@@ -5787,7 +5769,7 @@
           "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "LargeStringTypeDefinition",
+            "StringTypeDefinition",
             "length"
           ]
         }
@@ -5817,9 +5799,8 @@
       "x-header-level": 4,
       "examples": [
         {
-          "type": "cds.String",
           "kind": "type",
-          "key": true,
+          "type": "cds.String",
           "length": 3,
           "default": {
             "val": "foo"
@@ -5842,7 +5823,7 @@
           "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
+            "LargeStringTypeDefinition",
             "kind"
           ]
         },
@@ -5862,7 +5843,7 @@
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "LargeStringTypeDefinition",
             "notNull"
           ]
         },
@@ -5871,7 +5852,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "LargeStringTypeDefinition",
             "doc"
           ]
         },
@@ -5887,7 +5868,7 @@
           "$ref": "#/definitions/EnumDictionary",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
+            "LargeStringTypeDefinition",
             "enum"
           ]
         },
@@ -5941,7 +5922,7 @@
           "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
+            "IntegerTypeDefinition",
             "kind"
           ]
         },
@@ -5956,21 +5937,12 @@
             "type"
           ]
         },
-        "key": {
-          "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
-            "key"
-          ]
-        },
         "notNull": {
           "type": "boolean",
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "IntegerTypeDefinition",
             "notNull"
           ]
         },
@@ -5979,7 +5951,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "IntegerTypeDefinition",
             "doc"
           ]
         },
@@ -5995,7 +5967,7 @@
           "$ref": "#/definitions/EnumDictionary",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
+            "IntegerTypeDefinition",
             "enum"
           ]
         }
@@ -6025,8 +5997,8 @@
       "x-header-level": 4,
       "examples": [
         {
-          "type": "cds.Integer",
           "kind": "type",
+          "type": "cds.Integer",
           "default": {
             "val": 123
           }
@@ -6048,7 +6020,7 @@
           "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
+            "Integer64TypeDefinition",
             "kind"
           ]
         },
@@ -6063,21 +6035,12 @@
             "type"
           ]
         },
-        "key": {
-          "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
-            "key"
-          ]
-        },
         "notNull": {
           "type": "boolean",
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "Integer64TypeDefinition",
             "notNull"
           ]
         },
@@ -6086,7 +6049,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "Integer64TypeDefinition",
             "doc"
           ]
         },
@@ -6102,7 +6065,7 @@
           "$ref": "#/definitions/EnumDictionary",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
+            "Integer64TypeDefinition",
             "enum"
           ]
         }
@@ -6146,7 +6109,7 @@
           "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
+            "DecimalTypeDefinition",
             "kind"
           ]
         },
@@ -6166,7 +6129,7 @@
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "DecimalTypeDefinition",
             "notNull"
           ]
         },
@@ -6175,7 +6138,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "DecimalTypeDefinition",
             "doc"
           ]
         },
@@ -6191,7 +6154,7 @@
           "$ref": "#/definitions/EnumDictionary",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
+            "DecimalTypeDefinition",
             "enum"
           ]
         },
@@ -6249,8 +6212,8 @@
       "x-header-level": 4,
       "examples": [
         {
-          "type": "cds.Decimal",
           "kind": "type",
+          "type": "cds.Decimal",
           "precision": 16,
           "scale": 3,
           "default": {
@@ -6274,7 +6237,7 @@
           "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
+            "DoubleTypeDefinition",
             "kind"
           ]
         },
@@ -6294,7 +6257,7 @@
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "DoubleTypeDefinition",
             "notNull"
           ]
         },
@@ -6303,7 +6266,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "DoubleTypeDefinition",
             "doc"
           ]
         },
@@ -6319,7 +6282,7 @@
           "$ref": "#/definitions/EnumDictionary",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
+            "DoubleTypeDefinition",
             "enum"
           ]
         }
@@ -6363,7 +6326,7 @@
           "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
+            "DateTypeDefinition",
             "kind"
           ]
         },
@@ -6378,21 +6341,12 @@
             "type"
           ]
         },
-        "key": {
-          "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
-            "key"
-          ]
-        },
         "notNull": {
           "type": "boolean",
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "DateTypeDefinition",
             "notNull"
           ]
         },
@@ -6401,7 +6355,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "DateTypeDefinition",
             "doc"
           ]
         },
@@ -6417,7 +6371,7 @@
           "$ref": "#/definitions/EnumDictionary",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
+            "DateTypeDefinition",
             "enum"
           ]
         }
@@ -6436,8 +6390,8 @@
         }
       },
       "required": [
-        "type",
-        "kind"
+        "kind",
+        "type"
       ],
       "additionalProperties": false,
       "x-extension-points": [
@@ -6447,9 +6401,8 @@
       "x-header-level": 4,
       "examples": [
         {
-          "type": "cds.Date",
           "kind": "type",
-          "key": true
+          "type": "cds.Date"
         }
       ],
       "x-context": [
@@ -6468,7 +6421,7 @@
           "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
+            "TimeTypeDefinition",
             "kind"
           ]
         },
@@ -6483,21 +6436,12 @@
             "type"
           ]
         },
-        "key": {
-          "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
-            "key"
-          ]
-        },
         "notNull": {
           "type": "boolean",
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "TimeTypeDefinition",
             "notNull"
           ]
         },
@@ -6506,7 +6450,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "TimeTypeDefinition",
             "doc"
           ]
         },
@@ -6522,7 +6466,7 @@
           "$ref": "#/definitions/EnumDictionary",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
+            "TimeTypeDefinition",
             "enum"
           ]
         }
@@ -6541,8 +6485,8 @@
         }
       },
       "required": [
-        "type",
-        "kind"
+        "kind",
+        "type"
       ],
       "additionalProperties": false,
       "x-extension-points": [
@@ -6566,7 +6510,7 @@
           "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
+            "DateTimeTypeDefinition",
             "kind"
           ]
         },
@@ -6581,21 +6525,12 @@
             "type"
           ]
         },
-        "key": {
-          "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
-            "key"
-          ]
-        },
         "notNull": {
           "type": "boolean",
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "DateTimeTypeDefinition",
             "notNull"
           ]
         },
@@ -6604,7 +6539,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "DateTimeTypeDefinition",
             "doc"
           ]
         },
@@ -6620,7 +6555,7 @@
           "$ref": "#/definitions/EnumDictionary",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
+            "DateTimeTypeDefinition",
             "enum"
           ]
         }
@@ -6639,8 +6574,8 @@
         }
       },
       "required": [
-        "type",
-        "kind"
+        "kind",
+        "type"
       ],
       "additionalProperties": false,
       "x-extension-points": [
@@ -6664,7 +6599,7 @@
           "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
+            "TimestampTypeDefinition",
             "kind"
           ]
         },
@@ -6679,21 +6614,12 @@
             "type"
           ]
         },
-        "key": {
-          "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
-            "key"
-          ]
-        },
         "notNull": {
           "type": "boolean",
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
+            "TimestampTypeDefinition",
             "notNull"
           ]
         },
@@ -6702,7 +6628,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "TimestampTypeDefinition",
             "doc"
           ]
         },
@@ -6737,8 +6663,8 @@
         }
       },
       "required": [
-        "type",
-        "kind"
+        "kind",
+        "type"
       ],
       "additionalProperties": false,
       "x-extension-points": [
@@ -6762,7 +6688,7 @@
           "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
+            "UUIDTypeDefinition",
             "kind"
           ]
         },
@@ -6775,15 +6701,6 @@
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "UUIDTypeDefinition",
             "type"
-          ]
-        },
-        "key": {
-          "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
-            "key"
           ]
         },
         "notNull": {
@@ -6800,7 +6717,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "UUIDTypeDefinition",
             "doc"
           ]
         },
@@ -6827,8 +6744,8 @@
         }
       },
       "required": [
-        "type",
-        "kind"
+        "kind",
+        "type"
       ],
       "additionalProperties": false,
       "x-extension-points": [
@@ -6852,7 +6769,7 @@
           "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
+            "AssociationTypeDefinition",
             "kind"
           ]
         },
@@ -6872,7 +6789,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "AssociationTypeDefinition",
             "doc"
           ]
         },
@@ -7005,8 +6922,8 @@
         }
       },
       "required": [
-        "type",
         "kind",
+        "type",
         "target",
         "cardinality",
         "on"
@@ -7019,8 +6936,8 @@
       "x-header-level": 4,
       "examples": [
         {
-          "type": "cds.Association",
           "kind": "type",
+          "type": "cds.Association",
           "target": "Airport",
           "cardinality": {
             "max": "*"
@@ -7077,7 +6994,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "CompositionTypeDefinition",
             "doc"
           ]
         },
@@ -7210,8 +7127,8 @@
         }
       },
       "required": [
-        "type",
         "kind",
+        "type",
         "target",
         "cardinality",
         "on"
@@ -7224,8 +7141,8 @@
       "x-header-level": 4,
       "examples": [
         {
-          "type": "cds.Composition",
           "kind": "type",
+          "type": "cds.Composition",
           "target": "Airport",
           "cardinality": {
             "max": "*"
@@ -7275,7 +7192,7 @@
           "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
+            "ServiceDefinition",
             "doc"
           ]
         },
