@@ -382,6 +382,10 @@ export interface DocumentMetadata {
    */
   version?: string;
   /**
+   * Human readable title for the CSN document (plain-text).
+   */
+  title?: string;
+  /**
    * Human readable documentation that describes the overall CSN document.
    *
    * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).

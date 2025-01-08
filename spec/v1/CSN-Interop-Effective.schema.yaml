@@ -182,6 +182,11 @@ definitions:
           We RECOMMEND to use the [SemVer](https://semver.org/) standard.
         examples:
           - "1.3.4"
+      title:
+        type: string
+        maxLength: 255
+        description: |-
+          Human readable title for the CSN document (plain-text).
       doc:
         type: string
         description: |-

@@ -186,6 +186,16 @@
             "version"
           ]
         },
+        "title": {
+          "type": "string",
+          "maxLength": 255,
+          "description": "Human readable title for the CSN document (plain-text).",
+          "x-context": [
+            "./spec/v1/CSN-Interop-Effective.schema.yaml",
+            "MetaDocument",
+            "title"
+          ]
+        },
         "doc": {
           "type": "string",
           "description": "Human readable documentation that describes the overall CSN document.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
