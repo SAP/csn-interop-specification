@@ -1,6 +1,5 @@
 import fs from "fs-extra";
 import path from "path";
-import { log } from "../util/log";
 
 //////////////////////////////////////////
 // NEW CONFIG (TODO, WIP)               //
