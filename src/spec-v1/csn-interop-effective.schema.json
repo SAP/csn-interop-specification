@@ -4022,7 +4022,7 @@
       "properties": {
         "src": {
           "type": "number",
-          "description": "Describes if a source entity always exist. If `src` is not set then unknown is assumed."
+          "description": "Set to `1` to give a hint to database optimizers, that the relationship is \"one to\". \n\nIf `src` is not set then it is unknown and \"many to\" MAY be assumed."
         },
         "min": {
           "type": "number",
@@ -6322,7 +6322,7 @@
       }
     },
     "@ObjectModel.foreignKey.association": {
-      "description": "The element is of type cds.Association which points to the list of values. Use only for service internal associations. For cross service associations, use the [@EntityRelationship Vocabulary](./entity-relationship) instead.",
+      "description": "The element is of type `cds.Association` which points to the list of values. \n\nUse only for service internal associations. For cross service associations, use the [@EntityRelationship Vocabulary](./entity-relationship) instead.",
       "$ref": "#/definitions/ElementReference"
     },
     "@ObjectModel.text.element": {

@@ -80,7 +80,9 @@ export type EntityRelationship = ReferenceTarget[];
  */
 export type ObjectModel = unknown[];
 /**
- * The element is of type cds.Association which points to the list of values. Use only for service internal associations. For cross service associations, use the [@EntityRelationship Vocabulary](./entity-relationship) instead.
+ * The element is of type `cds.Association` which points to the list of values.
+ *
+ * Use only for service internal associations. For cross service associations, use the [@EntityRelationship Vocabulary](./entity-relationship) instead.
  */
 export type ElementReference = ElementReferenceString | ElementReferenceObject;
 /**
@@ -2089,7 +2091,9 @@ export interface AssociationType {
  */
 export interface CardinalityObject {
   /**
-   * Describes if a source entity always exist. If `src` is not set then unknown is assumed.
+   * Set to `1` to give a hint to database optimizers, that the relationship is "one to".
+   *
+   * If `src` is not set then it is unknown and "many to" MAY be assumed.
    */
   src?: number;
   /**
@@ -2243,7 +2247,9 @@ export interface CompositionType {
  */
 export interface CardinalityObject1 {
   /**
-   * Describes if a source entity always exist. If `src` is not set then unknown is assumed.
+   * Set to `1` to give a hint to database optimizers, that the relationship is "one to".
+   *
+   * If `src` is not set then it is unknown and "many to" MAY be assumed.
    */
   src?: number;
   /**
@@ -3271,7 +3277,9 @@ export interface AssociationTypeDefinition {
  */
 export interface CardinalityObject2 {
   /**
-   * Describes if a source entity always exist. If `src` is not set then unknown is assumed.
+   * Set to `1` to give a hint to database optimizers, that the relationship is "one to".
+   *
+   * If `src` is not set then it is unknown and "many to" MAY be assumed.
    */
   src?: number;
   /**
@@ -3355,7 +3363,9 @@ export interface CompositionTypeDefinition {
  */
 export interface CardinalityObject3 {
   /**
-   * Describes if a source entity always exist. If `src` is not set then unknown is assumed.
+   * Set to `1` to give a hint to database optimizers, that the relationship is "one to".
+   *
+   * If `src` is not set then it is unknown and "many to" MAY be assumed.
    */
   src?: number;
   /**

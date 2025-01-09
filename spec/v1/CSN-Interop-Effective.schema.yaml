@@ -1398,7 +1398,9 @@ definitions:
       src:
         type: number
         description: |-
-          Describes if a source entity always exist. If `src` is not set then unknown is assumed.
+          Set to `1` to give a hint to database optimizers, that the relationship is "one to". 
+
+          If `src` is not set then it is unknown and "many to" MAY be assumed.
       min:
         type: number
         description: |-
