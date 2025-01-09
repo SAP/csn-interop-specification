@@ -187,6 +187,8 @@ definitions:
         maxLength: 255
         description: |-
           Human readable title for the CSN document (plain-text).
+
+          MUST NOT contain linebreaks.
       doc:
         type: string
         description: |-

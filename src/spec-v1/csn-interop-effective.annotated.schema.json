@@ -189,7 +189,7 @@
         "title": {
           "type": "string",
           "maxLength": 255,
-          "description": "Human readable title for the CSN document (plain-text).",
+          "description": "Human readable title for the CSN document (plain-text).\n\nMUST NOT contain linebreaks.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "MetaDocument",

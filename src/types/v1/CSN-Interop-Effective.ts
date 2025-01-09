@@ -385,6 +385,8 @@ export interface DocumentMetadata {
   version?: string;
   /**
    * Human readable title for the CSN document (plain-text).
+   *
+   * MUST NOT contain linebreaks.
    */
   title?: string;
   /**
