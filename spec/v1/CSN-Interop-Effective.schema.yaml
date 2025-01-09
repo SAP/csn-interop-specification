@@ -1335,8 +1335,6 @@ definitions:
   DefaultValueObject:
     title: Default Value object
     type: object
-    description: |-
-      Indicates the default value.
     properties:
       val:
         type: ["object", "null"]
