@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.7.0">
 <title data-rh="true">@EntityRelationship | CSN Interop Specification</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://sap.github.io/csn-interop-specification/annotations/entity-relationship"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="@EntityRelationship | CSN Interop Specification"><meta data-rh="true" name="description" content="@EntityRelationship annotations for cross boundary Entity-Relationship IDs and associations."><meta data-rh="true" property="og:description" content="@EntityRelationship annotations for cross boundary Entity-Relationship IDs and associations."><link data-rh="true" rel="icon" href="/csn-interop-specification/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://sap.github.io/csn-interop-specification/annotations/entity-relationship"><link data-rh="true" rel="alternate" href="https://sap.github.io/csn-interop-specification/annotations/entity-relationship" hreflang="en"><link data-rh="true" rel="alternate" href="https://sap.github.io/csn-interop-specification/annotations/entity-relationship" hreflang="x-default"><script src="/csn-interop-specification/js/custom.js"></script><link rel="stylesheet" href="/csn-interop-specification/assets/css/styles.e2d8321a.css">
-<script src="/csn-interop-specification/assets/js/runtime~main.3a033cbb.js" defer="defer"></script>
+<script src="/csn-interop-specification/assets/js/runtime~main.11e1c191.js" defer="defer"></script>
 <script src="/csn-interop-specification/assets/js/main.530ce0c5.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -128,6 +128,7 @@ With the annotations its possible to describe &quot;dangling references&quot; an
 <li>References across different API versions and Protocols</li>
 <li>References across different tenants</li>
 <li>References across different types of applications / services</li>
+<li>&quot;Weak&quot; References, where the target may or may not yet be available for joining data</li>
 </ul>
 <p>As a consequence, the Entity Relationship annotation concept is built on the following design decisions:</p>
 <ul>
