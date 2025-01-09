@@ -390,7 +390,7 @@ export interface DocumentMetadata {
   /**
    * Human readable documentation that describes the overall CSN document.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    */
   doc?: string;
 }
@@ -431,9 +431,11 @@ export interface ContextDefinition {
    */
   kind: ContextKind;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -475,9 +477,11 @@ export interface EntityDefinition {
   kind: EntityKind;
   elements: ElementDefinitions;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -676,9 +680,11 @@ export interface BooleanType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueBoolean;
@@ -885,9 +891,11 @@ export interface StringType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1026,9 +1034,11 @@ export interface LargeStringType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1126,9 +1136,11 @@ export interface IntegerType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -1227,9 +1239,11 @@ export interface Integer64Type {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -1317,9 +1331,11 @@ export interface DecimalType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -1424,9 +1440,11 @@ export interface DoubleType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -1519,9 +1537,11 @@ export interface DateType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1614,9 +1634,11 @@ export interface TimeType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1709,9 +1731,11 @@ export interface DateTimeType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1804,9 +1828,11 @@ export interface TimestampType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1899,9 +1925,11 @@ export interface UUIDType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1987,9 +2015,11 @@ export interface AssociationType {
    */
   type: AssociationCdsType;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -2143,9 +2173,11 @@ export interface CompositionType {
    */
   type: CompositionCdsType;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -2303,9 +2335,11 @@ export interface CustomType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueCustomType;
@@ -2619,9 +2653,11 @@ export interface ServiceDefinition {
    */
   kind: ServiceKind;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2667,9 +2703,11 @@ export interface BooleanTypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueBoolean;
@@ -2711,9 +2749,11 @@ export interface StringTypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -2761,9 +2801,11 @@ export interface LargeStringTypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -2811,9 +2853,11 @@ export interface IntegerTypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -2856,9 +2900,11 @@ export interface Integer64TypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -2901,9 +2947,11 @@ export interface DecimalTypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -2957,9 +3005,11 @@ export interface DoubleTypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -3002,9 +3052,11 @@ export interface DateTypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3047,9 +3099,11 @@ export interface TimeTypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3092,9 +3146,11 @@ export interface DateTimeTypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3137,9 +3193,11 @@ export interface TimestampTypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3182,9 +3240,11 @@ export interface UUIDTypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3222,9 +3282,11 @@ export interface AssociationTypeDefinition {
    */
   type: AssociationCdsType;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -3308,9 +3370,11 @@ export interface CompositionTypeDefinition {
    */
   type: CompositionCdsType;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**

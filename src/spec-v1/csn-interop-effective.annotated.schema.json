@@ -198,7 +198,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation that describes the overall CSN document.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation that describes the overall CSN document.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "MetaDocument",
@@ -395,7 +395,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "EntityDefinition",
@@ -1032,7 +1032,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "BooleanType",
@@ -1257,7 +1257,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "StringType",
@@ -1493,7 +1493,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "LargeStringType",
@@ -1738,7 +1738,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "IntegerType",
@@ -1971,7 +1971,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "Integer64Type",
@@ -2195,7 +2195,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "DecimalType",
@@ -2449,7 +2449,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "DoubleType",
@@ -2682,7 +2682,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "DateType",
@@ -2913,7 +2913,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "TimeType",
@@ -3144,7 +3144,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "DateTimeType",
@@ -3375,7 +3375,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "TimestampType",
@@ -3606,7 +3606,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "UUIDType",
@@ -3811,7 +3811,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "AssociationType",
@@ -4142,7 +4142,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "CompositionType",
@@ -4491,7 +4491,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "CustomType",
@@ -5660,7 +5660,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "BooleanTypeDefinition",
@@ -5750,7 +5750,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "StringTypeDefinition",
@@ -5859,7 +5859,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "LargeStringTypeDefinition",
@@ -5958,7 +5958,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "IntegerTypeDefinition",
@@ -6056,7 +6056,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "Integer64TypeDefinition",
@@ -6145,7 +6145,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "DecimalTypeDefinition",
@@ -6273,7 +6273,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "DoubleTypeDefinition",
@@ -6362,7 +6362,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "DateTypeDefinition",
@@ -6457,7 +6457,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "TimeTypeDefinition",
@@ -6546,7 +6546,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "DateTimeTypeDefinition",
@@ -6635,7 +6635,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "TimestampTypeDefinition",
@@ -6724,7 +6724,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "UUIDTypeDefinition",
@@ -6796,7 +6796,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "AssociationTypeDefinition",
@@ -7001,7 +7001,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "CompositionTypeDefinition",
@@ -7199,7 +7199,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "ServiceDefinition",
@@ -7265,7 +7265,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "ContextDefinition",

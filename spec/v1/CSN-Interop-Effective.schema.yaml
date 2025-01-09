@@ -192,7 +192,7 @@ definitions:
         description: |-
           Human readable documentation that describes the overall CSN document.
 
-          SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+          SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
     additionalProperties: false
 
   MetaFeatures:
@@ -368,10 +368,11 @@ definitions:
       doc: &doc
         type: string
         description: |-
-          Human readable documentation.
+          Human readable documentation, usually for developer documentation.
 
-          SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+          SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
 
+          If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
       #-------------------------------------------------------------
       #--Hidden Properties (added to ignore them in the validation)
       #-------------------------------------------------------------
