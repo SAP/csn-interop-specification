@@ -186,9 +186,19 @@
             "version"
           ]
         },
+        "title": {
+          "type": "string",
+          "maxLength": 255,
+          "description": "Human readable title for the CSN document (plain-text).",
+          "x-context": [
+            "./spec/v1/CSN-Interop-Effective.schema.yaml",
+            "MetaDocument",
+            "title"
+          ]
+        },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation that describes the overall CSN document.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation that describes the overall CSN document.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "MetaDocument",
@@ -234,7 +244,7 @@
     "Definitions": {
       "title": "Definitions",
       "type": "object",
-      "description": "Each entry in the definitions dictionary is a definition of a named modeling artefact.\nThe `name` is the absolute, fully qualified name of the definition, and the value is a record with the definition details.\n\nDefinition names MUST:\n* Not be an empty string.\n* Not start with `@`, `__`, `.`, `::`.\n* Not end with `.` or `::`.\n* Not contain the substring `..` or `:::`.\n* Not contain the substring `::` more than once.\n\nSee [Primer: Definitions](../primer.md#definitions).",
+      "description": "Each entry in the definitions dictionary is a definition of a named modeling artefact.\nThe `name` is the absolute, fully qualified name of the definition, and the value is a record with the definition details.\n\nDefinition names MUST:\n- Not be an empty string.\n- Not start with `@`, `__`, `.`, `::`.\n- Not end with `.` or `::`.\n- Not contain the substring `..` or `:::`.\n- Not contain the substring `::` more than once.\n\nSee [Primer: Definitions](../primer.md#definitions).",
       "patternProperties": {
         "^(?![@]|__|\\.|::).+$": {
           "$ref": "#/definitions/DefinitionEntry"
@@ -385,7 +395,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "EntityDefinition",
@@ -633,7 +643,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -650,7 +660,7 @@
     "ElementDefinitions": {
       "title": "Element Definitions",
       "type": "object",
-      "description": "Dictionary of Element where the key is the name of the element and the value its definition.\n\nThe value can either be a standard [CDS Type](#cds-type) (`cds.*`) or a [Custom Type](#custom-type).\n\nElement names MUST:\n* Not be an empty string.\n* Not start with `@`, `__`, `::`.\n* Not end with `::`.\n* Not contain the substring `.` or `:::`.\n* Not contain the substring `::` more than once.",
+      "description": "Dictionary of Element where the key is the name of the element and the value its definition.\n\nThe value can either be a standard [CDS Type](#cds-type) (`cds.*`) or a [Custom Type](#custom-type).\n\nElement names MUST:\n- Not be an empty string.\n- Not start with `@`, `__`, `::`.\n- Not end with `::`.\n- Not contain the substring `.` or `:::`.\n- Not contain the substring `::` more than once.",
       "minProperties": 1,
       "patternProperties": {
         "^(?![@]|__|\\.|::).+$": {
@@ -1022,7 +1032,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "BooleanType",
@@ -1185,7 +1195,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -1247,7 +1257,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "StringType",
@@ -1428,7 +1438,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -1483,7 +1493,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "LargeStringType",
@@ -1664,7 +1674,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -1728,7 +1738,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "IntegerType",
@@ -1899,7 +1909,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -1961,7 +1971,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "Integer64Type",
@@ -2132,7 +2142,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -2185,7 +2195,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "DecimalType",
@@ -2384,7 +2394,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -2439,7 +2449,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "DoubleType",
@@ -2610,7 +2620,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -2672,7 +2682,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "DateType",
@@ -2843,7 +2853,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -2903,7 +2913,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "TimeType",
@@ -3074,7 +3084,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -3134,7 +3144,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "DateTimeType",
@@ -3305,7 +3315,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -3365,7 +3375,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "TimestampType",
@@ -3536,7 +3546,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -3596,7 +3606,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "UUIDType",
@@ -3759,7 +3769,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -3801,7 +3811,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "AssociationType",
@@ -3831,7 +3841,7 @@
         },
         "on": {
           "type": "array",
-          "description": "The property `on` holds a sequence of operators and operands to describe the join condition.\n\nOne building block of the sequence consists of the following in the given order:\n- Reference to a field of the association or composition target\n- Equals Operator \"=\"\n- One of the following:\n  - Reference to a field of the source entity\n  - Constant Value\nThis building block states that the value of the first entry of the array using \"ref\" should equal the value of the third entry of the array.\n\nIn addition, several building blocks can be lined up using an \"and\" operator\n\nMore information can be found here:\n* https://cap.cloud.sap/docs/cds/csn#assoc-on",
+          "description": "The property `on` holds a sequence of operators and operands to describe the join condition.\n\nOne building block of the sequence consists of the following in the given order:\n- Reference to a field of the association or composition target\n- Equals Operator \"=\"\n- One of the following:\n  - Reference to a field of the source entity\n  - Constant Value\n\nThis building block states that the value of the first entry of the array using \"ref\" should equal the value of the third entry of the array.\nIn addition, several building blocks can be lined up using an \"and\" operator.\n\nSee also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
           "items": {
             "oneOf": [
               {
@@ -4070,7 +4080,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -4132,7 +4142,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "CompositionType",
@@ -4162,7 +4172,7 @@
         },
         "on": {
           "type": "array",
-          "description": "The property `on` holds a sequence of operators and operands to describe the join condition.\n\nOne building block of the sequence consists of the following in the given order:\n- Reference to a field of the association or composition target\n- Equals Operator \"=\"\n- One of the following:\n  - Reference to a field of the source entity\n  - Constant Value\nThis building block states that the value of the first entry of the array using \"ref\" should equal the value of the third entry of the array.\n\nIn addition, several building blocks can be lined up using an \"and\" operator\n\nMore information can be found here:\n* https://cap.cloud.sap/docs/cds/csn#assoc-on",
+          "description": "The property `on` holds a sequence of operators and operands to describe the join condition.\n\nOne building block of the sequence consists of the following in the given order:\n- Reference to a field of the association or composition target\n- Equals Operator \"=\"\n- One of the following:\n  - Reference to a field of the source entity\n  - Constant Value\n\nThis building block states that the value of the first entry of the array using \"ref\" should equal the value of the third entry of the array.\nIn addition, several building blocks can be lined up using an \"and\" operator.\n\nSee also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
           "items": {
             "oneOf": [
               {
@@ -4401,7 +4411,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -4448,7 +4458,7 @@
     "CustomType": {
       "title": "Custom Type",
       "type": "object",
-      "description": "An Element can be of a Custom Type (aka Derived Type) instead of a standard [CDS type](#cds-type).\nThis allows several Elements to share / reuse the same Custom Type definition.\nThis MAY also imply shared semantics.\n\nThe Custom Type has a custom `type` value, which is the name of the [Type Definition](#type-definition) describing the shared type.\nThis `type` value MUST NOT start with `cds.`, to avoid conflicts with core CDS data types.\n\nThe Type Definition that the Custom Type points to MUST be described in the same CSN document in the [definitions](#definitions) section with `\"kind\": \"type\"`.\nThe [Element](#elemententry) MUST NOT add properties that are not supported by the Custom Types base CDS type.\n\nCSN Interop Effective adds further constraints to make a simple type lookup possible:\n\n* A Custom Type MUST NOT point to another Custom Type (no recursion).\n* The properties and annotations of the Custom Type MUST be merged into the Element it is used, to fulfill the \"effective\" quality.\n\nThis will allow a consumer to do a simple dictionary lookup to find the [CDS Type](#cds-type) of a Custom Type.\nAll other properties describing the Custom Type can already be found at the Custom Type itself.\n\n> 🚧 TODO: Clarify if Custom Type can also be `cds.Association` or `cds.Composition`.\n> If yes, add `target`, `on` and `cardinality` here.\n",
+      "description": "An Element can be of a Custom Type (aka Derived Type) instead of a standard [CDS type](#cds-type).\nThis allows several Elements to share / reuse the same Custom Type definition.\nThis MAY also imply shared semantics.\n\nThe Custom Type has a custom `type` value, which is the name of the [Type Definition](#type-definition) describing the shared type.\nThis `type` value MUST NOT start with `cds.`, to avoid conflicts with core CDS data types.\n\nThe Type Definition that the Custom Type points to MUST be described in the same CSN document in the [definitions](#definitions) section with `\"kind\": \"type\"`.\nThe [Element](#elemententry) MUST NOT add properties that are not supported by the Custom Types base CDS type.\n\nCSN Interop Effective adds further constraints to make a simple type lookup possible:\n\n- A Custom Type MUST NOT point to another Custom Type (no recursion).\n- The properties and annotations of the Custom Type MUST be merged into the Element it is used, to fulfill the \"effective\" quality.\n\nThis will allow a consumer to do a simple dictionary lookup to find the [CDS Type](#cds-type) of a Custom Type.\nAll other properties describing the Custom Type can already be found at the Custom Type itself.\n\n> 🚧 TODO: Clarify if Custom Type can also be `cds.Association` or `cds.Composition`.\n> If yes, add `target`, `on` and `cardinality` here.\n",
       "properties": {
         "type": {
           "type": "string",
@@ -4481,7 +4491,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "CustomType",
@@ -4690,7 +4700,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -4849,7 +4859,6 @@
     "DefaultValueObject": {
       "title": "Default Value object",
       "type": "object",
-      "description": "Indicates the default value.",
       "properties": {
         "val": {
           "type": [
@@ -4902,7 +4911,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -4929,7 +4938,7 @@
       "oneOf": [
         {
           "const": "floating",
-          "description": "The value floating means that the decimal property represents a decimal floating-point number whose number of significant digits is the value of the Precision\n\nSee https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Scale"
+          "description": "The value floating means that the decimal property represents a decimal floating-point number whose number of significant digits is the value of the `precision`.\n\nSee https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Scale"
         }
       ],
       "default": "floating",
@@ -4963,7 +4972,7 @@
           ]
         },
         "max": {
-          "description": "Specifies the targets maximum cardinality.\n\nMUST be one of:\n* positive Integer (1,2,...)\n* `*` as String",
+          "description": "Specifies the targets maximum cardinality.\n\nMUST be one of:\n- positive Integer (1,2,...)\n- `*` as String",
           "type": [
             "number",
             "string"
@@ -5002,7 +5011,7 @@
       "properties": {
         "ref": {
           "type": "array",
-          "description": "Description of the target with *association name* and *target element name* in target entity`\nDescription of the source *source element name*\nMUST NOT:\n* use $ as leading character of an element\n* use session variables",
+          "description": "Description of the target with *association name* and *target element name* in target entity`\nDescription of the source *source element name*\n\nMUST NOT:\n- use $ as leading character of an element\n- use session variables",
           "items": {
             "type": "string",
             "x-association-target": [
@@ -5650,7 +5659,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "BooleanTypeDefinition",
@@ -5675,7 +5684,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -5740,7 +5749,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "StringTypeDefinition",
@@ -5783,7 +5792,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -5849,7 +5858,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "LargeStringTypeDefinition",
@@ -5892,7 +5901,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -5948,7 +5957,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "IntegerTypeDefinition",
@@ -5981,7 +5990,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -6046,7 +6055,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "Integer64TypeDefinition",
@@ -6079,7 +6088,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -6135,7 +6144,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "DecimalTypeDefinition",
@@ -6196,7 +6205,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -6263,7 +6272,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "DoubleTypeDefinition",
@@ -6296,7 +6305,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -6352,7 +6361,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "DateTypeDefinition",
@@ -6385,7 +6394,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -6447,7 +6456,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "TimeTypeDefinition",
@@ -6480,7 +6489,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -6536,7 +6545,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "DateTimeTypeDefinition",
@@ -6569,7 +6578,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -6625,7 +6634,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "TimestampTypeDefinition",
@@ -6658,7 +6667,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -6714,7 +6723,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "UUIDTypeDefinition",
@@ -6739,7 +6748,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -6786,7 +6795,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "AssociationTypeDefinition",
@@ -6816,7 +6825,7 @@
         },
         "on": {
           "type": "array",
-          "description": "The property `on` holds a sequence of operators and operands to describe the join condition.\n\nOne building block of the sequence consists of the following in the given order:\n- Reference to a field of the association or composition target\n- Equals Operator \"=\"\n- One of the following:\n  - Reference to a field of the source entity\n  - Constant Value\nThis building block states that the value of the first entry of the array using \"ref\" should equal the value of the third entry of the array.\n\nIn addition, several building blocks can be lined up using an \"and\" operator\n\nMore information can be found here:\n* https://cap.cloud.sap/docs/cds/csn#assoc-on",
+          "description": "The property `on` holds a sequence of operators and operands to describe the join condition.\n\nOne building block of the sequence consists of the following in the given order:\n- Reference to a field of the association or composition target\n- Equals Operator \"=\"\n- One of the following:\n  - Reference to a field of the source entity\n  - Constant Value\n\nThis building block states that the value of the first entry of the array using \"ref\" should equal the value of the third entry of the array.\nIn addition, several building blocks can be lined up using an \"and\" operator.\n\nSee also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
           "items": {
             "oneOf": [
               {
@@ -6917,7 +6926,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -6991,7 +7000,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "CompositionTypeDefinition",
@@ -7021,7 +7030,7 @@
         },
         "on": {
           "type": "array",
-          "description": "The property `on` holds a sequence of operators and operands to describe the join condition.\n\nOne building block of the sequence consists of the following in the given order:\n- Reference to a field of the association or composition target\n- Equals Operator \"=\"\n- One of the following:\n  - Reference to a field of the source entity\n  - Constant Value\nThis building block states that the value of the first entry of the array using \"ref\" should equal the value of the third entry of the array.\n\nIn addition, several building blocks can be lined up using an \"and\" operator\n\nMore information can be found here:\n* https://cap.cloud.sap/docs/cds/csn#assoc-on",
+          "description": "The property `on` holds a sequence of operators and operands to describe the join condition.\n\nOne building block of the sequence consists of the following in the given order:\n- Reference to a field of the association or composition target\n- Equals Operator \"=\"\n- One of the following:\n  - Reference to a field of the source entity\n  - Constant Value\n\nThis building block states that the value of the first entry of the array using \"ref\" should equal the value of the third entry of the array.\nIn addition, several building blocks can be lined up using an \"and\" operator.\n\nSee also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
           "items": {
             "oneOf": [
               {
@@ -7122,7 +7131,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -7189,7 +7198,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "ServiceDefinition",
@@ -7221,7 +7230,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
@@ -7255,7 +7264,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation.\n\nSHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "ContextDefinition",
@@ -7278,7 +7287,7 @@
             "array",
             "object"
           ],
-          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n* `\"@Common.bar\": \"foo\"`\n* `\"@Common.foo.bar\": true`\n* `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
