@@ -384,9 +384,13 @@ export interface DocumentMetadata {
    */
   version?: string;
   /**
+   * Human readable title for the CSN document (plain-text).
+   */
+  title?: string;
+  /**
    * Human readable documentation that describes the overall CSN document.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    */
   doc?: string;
 }
@@ -427,9 +431,11 @@ export interface ContextDefinition {
    */
   kind: ContextKind;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -444,9 +450,9 @@ export interface ContextDefinition {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -471,9 +477,11 @@ export interface EntityDefinition {
   kind: EntityKind;
   elements: ElementDefinitions;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -628,9 +636,9 @@ export interface EntityDefinition {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -645,11 +653,11 @@ export interface EntityDefinition {
  * The value can either be a standard [CDS Type](#cds-type) (`cds.*`) or a [Custom Type](#custom-type).
  *
  * Element names MUST:
- * * Not be an empty string.
- * * Not start with `@`, `__`, `::`.
- * * Not end with `::`.
- * * Not contain the substring `.` or `:::`.
- * * Not contain the substring `::` more than once.
+ * - Not be an empty string.
+ * - Not start with `@`, `__`, `::`.
+ * - Not end with `::`.
+ * - Not contain the substring `.` or `:::`.
+ * - Not contain the substring `::` more than once.
  */
 export interface ElementDefinitions {
   [k: string]: ElementEntry;
@@ -672,9 +680,11 @@ export interface BooleanType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueBoolean;
@@ -737,9 +747,9 @@ export interface BooleanType {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -881,9 +891,11 @@ export interface StringType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -952,9 +964,9 @@ export interface StringType {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -998,9 +1010,9 @@ export interface ValueObject {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -1022,9 +1034,11 @@ export interface LargeStringType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1093,9 +1107,9 @@ export interface LargeStringType {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -1122,9 +1136,11 @@ export interface IntegerType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -1188,9 +1204,9 @@ export interface IntegerType {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -1223,9 +1239,11 @@ export interface Integer64Type {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -1289,9 +1307,9 @@ export interface Integer64Type {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -1313,9 +1331,11 @@ export interface DecimalType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -1390,9 +1410,9 @@ export interface DecimalType {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -1420,9 +1440,11 @@ export interface DoubleType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -1486,9 +1508,9 @@ export interface DoubleType {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -1515,9 +1537,11 @@ export interface DateType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1581,9 +1605,9 @@ export interface DateType {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -1610,9 +1634,11 @@ export interface TimeType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1676,9 +1702,9 @@ export interface TimeType {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -1705,9 +1731,11 @@ export interface DateTimeType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1771,9 +1799,9 @@ export interface DateTimeType {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -1800,9 +1828,11 @@ export interface TimestampType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1866,9 +1896,9 @@ export interface TimestampType {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -1895,9 +1925,11 @@ export interface UUIDType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1960,9 +1992,9 @@ export interface UUIDType {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -1983,9 +2015,11 @@ export interface AssociationType {
    */
   type: AssociationCdsType;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -2002,12 +2036,11 @@ export interface AssociationType {
    * - One of the following:
    *   - Reference to a field of the source entity
    *   - Constant Value
+   *
    * This building block states that the value of the first entry of the array using "ref" should equal the value of the third entry of the array.
+   * In addition, several building blocks can be lined up using an "and" operator.
    *
-   * In addition, several building blocks can be lined up using an "and" operator
-   *
-   * More information can be found here:
-   * * https://cap.cloud.sap/docs/cds/csn#assoc-on
+   * See also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
    */
   on: (StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[];
   "@Aggregation.default"?: Aggregation;
@@ -2069,9 +2102,9 @@ export interface AssociationType {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -2100,8 +2133,8 @@ export interface CardinalityObject {
    * Specifies the targets maximum cardinality.
    *
    * MUST be one of:
-   * * positive Integer (1,2,...)
-   * * `*` as String
+   * - positive Integer (1,2,...)
+   * - `*` as String
    */
   max?: number | string;
 }
@@ -2112,9 +2145,10 @@ export interface StructuredElementReference {
   /**
    * Description of the target with *association name* and *target element name* in target entity`
    * Description of the source *source element name*
+   *
    * MUST NOT:
-   * * use $ as leading character of an element
-   * * use session variables
+   * - use $ as leading character of an element
+   * - use session variables
    */
   ref: string[];
 }
@@ -2139,9 +2173,11 @@ export interface CompositionType {
    */
   type: CompositionCdsType;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -2158,12 +2194,11 @@ export interface CompositionType {
    * - One of the following:
    *   - Reference to a field of the source entity
    *   - Constant Value
+   *
    * This building block states that the value of the first entry of the array using "ref" should equal the value of the third entry of the array.
+   * In addition, several building blocks can be lined up using an "and" operator.
    *
-   * In addition, several building blocks can be lined up using an "and" operator
-   *
-   * More information can be found here:
-   * * https://cap.cloud.sap/docs/cds/csn#assoc-on
+   * See also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
    */
   on: (StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[];
   "@Aggregation.default"?: Aggregation;
@@ -2225,9 +2260,9 @@ export interface CompositionType {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -2256,8 +2291,8 @@ export interface CardinalityObject1 {
    * Specifies the targets maximum cardinality.
    *
    * MUST be one of:
-   * * positive Integer (1,2,...)
-   * * `*` as String
+   * - positive Integer (1,2,...)
+   * - `*` as String
    */
   max?: number | string;
 }
@@ -2274,8 +2309,8 @@ export interface CardinalityObject1 {
  *
  * CSN Interop Effective adds further constraints to make a simple type lookup possible:
  *
- * * A Custom Type MUST NOT point to another Custom Type (no recursion).
- * * The properties and annotations of the Custom Type MUST be merged into the Element it is used, to fulfill the "effective" quality.
+ * - A Custom Type MUST NOT point to another Custom Type (no recursion).
+ * - The properties and annotations of the Custom Type MUST be merged into the Element it is used, to fulfill the "effective" quality.
  *
  * This will allow a consumer to do a simple dictionary lookup to find the [CDS Type](#cds-type) of a Custom Type.
  * All other properties describing the Custom Type can already be found at the Custom Type itself.
@@ -2299,9 +2334,11 @@ export interface CustomType {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueCustomType;
@@ -2381,9 +2418,9 @@ export interface CustomType {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -2615,9 +2652,11 @@ export interface ServiceDefinition {
    */
   kind: ServiceKind;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2635,9 +2674,9 @@ export interface ServiceDefinition {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -2663,9 +2702,11 @@ export interface BooleanTypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueBoolean;
@@ -2679,9 +2720,9 @@ export interface BooleanTypeDefinition {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -2707,9 +2748,11 @@ export interface StringTypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -2729,9 +2772,9 @@ export interface StringTypeDefinition {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -2757,9 +2800,11 @@ export interface LargeStringTypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -2779,9 +2824,9 @@ export interface LargeStringTypeDefinition {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -2807,9 +2852,11 @@ export interface IntegerTypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -2824,9 +2871,9 @@ export interface IntegerTypeDefinition {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -2852,9 +2899,11 @@ export interface Integer64TypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -2869,9 +2918,9 @@ export interface Integer64TypeDefinition {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -2897,9 +2946,11 @@ export interface DecimalTypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -2925,9 +2976,9 @@ export interface DecimalTypeDefinition {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -2953,9 +3004,11 @@ export interface DoubleTypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -2970,9 +3023,9 @@ export interface DoubleTypeDefinition {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -2998,9 +3051,11 @@ export interface DateTypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3015,9 +3070,9 @@ export interface DateTypeDefinition {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -3043,9 +3098,11 @@ export interface TimeTypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3060,9 +3117,9 @@ export interface TimeTypeDefinition {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -3088,9 +3145,11 @@ export interface DateTimeTypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3105,9 +3164,9 @@ export interface DateTimeTypeDefinition {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -3133,9 +3192,11 @@ export interface TimestampTypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3150,9 +3211,9 @@ export interface TimestampTypeDefinition {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -3178,9 +3239,11 @@ export interface UUIDTypeDefinition {
    */
   notNull?: boolean;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3194,9 +3257,9 @@ export interface UUIDTypeDefinition {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -3218,9 +3281,11 @@ export interface AssociationTypeDefinition {
    */
   type: AssociationCdsType;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -3237,12 +3302,11 @@ export interface AssociationTypeDefinition {
    * - One of the following:
    *   - Reference to a field of the source entity
    *   - Constant Value
+   *
    * This building block states that the value of the first entry of the array using "ref" should equal the value of the third entry of the array.
+   * In addition, several building blocks can be lined up using an "and" operator.
    *
-   * In addition, several building blocks can be lined up using an "and" operator
-   *
-   * More information can be found here:
-   * * https://cap.cloud.sap/docs/cds/csn#assoc-on
+   * See also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
    */
   on: (StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[];
   /**
@@ -3255,9 +3319,9 @@ export interface AssociationTypeDefinition {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -3286,8 +3350,8 @@ export interface CardinalityObject2 {
    * Specifies the targets maximum cardinality.
    *
    * MUST be one of:
-   * * positive Integer (1,2,...)
-   * * `*` as String
+   * - positive Integer (1,2,...)
+   * - `*` as String
    */
   max?: number | string;
 }
@@ -3304,9 +3368,11 @@ export interface CompositionTypeDefinition {
    */
   type: CompositionCdsType;
   /**
-   * Human readable documentation.
+   * Human readable documentation, usually for developer documentation.
    *
-   * SHOULD be provided and rendered as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -3323,12 +3389,11 @@ export interface CompositionTypeDefinition {
    * - One of the following:
    *   - Reference to a field of the source entity
    *   - Constant Value
+   *
    * This building block states that the value of the first entry of the array using "ref" should equal the value of the third entry of the array.
+   * In addition, several building blocks can be lined up using an "and" operator.
    *
-   * In addition, several building blocks can be lined up using an "and" operator
-   *
-   * More information can be found here:
-   * * https://cap.cloud.sap/docs/cds/csn#assoc-on
+   * See also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
    */
   on: (StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[];
   /**
@@ -3341,9 +3406,9 @@ export interface CompositionTypeDefinition {
    * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
    *
    * Correct annotations examples:
-   * * `"@Common.bar": "foo"`
-   * * `"@Common.foo.bar": true`
-   * * `"@Common.array": [{ "foo": true }]`
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
    *
    * Or
    *
@@ -3372,8 +3437,8 @@ export interface CardinalityObject3 {
    * Specifies the targets maximum cardinality.
    *
    * MUST be one of:
-   * * positive Integer (1,2,...)
-   * * `*` as String
+   * - positive Integer (1,2,...)
+   * - `*` as String
    */
   max?: number | string;
 }

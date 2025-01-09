@@ -5,6 +5,7 @@
   "meta": {
     "document": {
       "version": "1.2.3",
+      "title": "Airline (Example)",
       "doc": "This CSN example document shows how the airline example is expressed with a CDS **Service** exposing the entities through an API."
     },
     "features": {
@@ -239,6 +240,7 @@
           "type": "cds.Association",
           "target": "AirlineService.Airline",
           "cardinality": {
+            "min": 0,
             "max": "*"
           },
           "on": [

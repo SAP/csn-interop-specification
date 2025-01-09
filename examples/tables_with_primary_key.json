@@ -4,7 +4,8 @@
   "$version": "2.0",
   "meta": {
     "document": {
-      "version": "1.2.3"
+      "version": "1.2.3",
+      "title": "Tables with Primary Keys (Example)"
     },
     "features": {
       "complete": true
