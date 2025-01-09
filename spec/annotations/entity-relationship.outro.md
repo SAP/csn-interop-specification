@@ -11,6 +11,7 @@ While CSN can express associations and references with the same CSN document, we
 - References across different API versions and Protocols
 - References across different tenants
 - References across different types of applications / services
+- "Weak" References, where the target may or may not yet be available for joining data
 
 As a consequence, the Entity Relationship annotation concept is built on the following design decisions:
 

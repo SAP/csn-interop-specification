@@ -23,13 +23,13 @@ The [Core Data Services Schema Notation](https://cap.cloud.sap/docs/cds/csn#core
 
 Depending on the intended usage we distinguish three CSN flavors:
 
-- _"Parsed"_ for the Modeling Perspective
-- _"Effective"_ for the data exchange perspective
-- _"Persistency"_ for the persistency flavor
+- **Parsed** for the Modeling Perspective
+- **Effective** for the data exchange perspective
+- **Persistency** for the persistency flavor
 
-The _"Parsed"_ flavor could e.g. represent a CAP CDS data model 1:1, the _"Persistency"_ flavor could e.g. express HANA SQL tables and views.
+The **Parsed** flavor could e.g. represent a CAP CDS data model 1:1, the **Persistency** flavor could e.g. express HANA SQL tables and views.
 
-This document describes the _"Effective"_ flavor, characterized as being optimized for data exchange purposes. All content that can be standardized (currency keys, language codes, country codes, …) must be presented in standardized form, hence original data definitions must be adapted accordingly if necessary. Technology-specific aspects of the data model shall be left out as far as possible.
+This document describes the **Effective** flavor, characterized as being optimized for data exchange purposes. All content that can be standardized (currency keys, language codes, country codes, …) must be presented in standardized form, hence original data definitions must be adapted accordingly if necessary. Technology-specific aspects of the data model shall be left out as far as possible.
 This standardization includes the basic data types, and annotation (e.g. labels, …).
 
 The document is structured in a way that it starts from an empty JSON document and introduces concepts and their corresponding syntax patterns with development guidance one by one.
@@ -99,12 +99,12 @@ Each top-level definitions entry has a property **kind** – one of `entity`, `t
 }
 ```
 
-We will now describe the detail patterns per _kind_. The by far most important _kind_ is _entity_. But before we proceed we need to introduce Literals and Built-in Types.
+We will now describe the detail patterns per `kind`. The by far most important `kind` is `entity`. But before we proceed we need to introduce Literals and Built-in Types.
 
 ## Literals
 
 There are several places where [literals](https://cap.cloud.sap/docs/cds/csn#literals) can show up in models, such as in SQL expressions, calculated fields, or annotations.
-Standard literals are represented as in JSON. In addition, CSN specifies special forms for _references_, _expressions_, and _enum_ symbols:
+Standard literals are represented as in JSON. In addition, CSN specifies special forms for `references`, `expressions` and `enum` symbols:
 
 | Kind                 | Example                  |
 | -------------------- | ------------------------ |
@@ -133,7 +133,7 @@ The CDS [built-in types](https://cap.cloud.sap/docs/cds/types#core-built-in-type
 ## Entity Definitions
 
 In this section we introduce [entity definitions](./spec-v1/csn-interop-effective#entity-definition) which would result in a data persistence at deployment, i.e. a table in a SQL database.
-Entity definitions always have kind _entity_, and a property _elements_.
+Entity definitions always have kind `entity`, and a property `elements`.
 
 The fully qualified name of the entity is defined as the key in the definition JSON object (`<entity name>`).
 
@@ -151,7 +151,7 @@ The fully qualified name of the entity is defined as the key in the definition J
 
 ### Elements
 
-Each entry in the [elements object](./spec-v1/csn-interop-effective#elemententry) must have an entity-locally unique name, and a member _type_ referring to a built-in type, or a type definition, via its fully qualified name (`<element name>`).
+Each entry in the [elements object](./spec-v1/csn-interop-effective#elemententry) must have an entity-locally unique name, and a member `type` referring to a built-in type, or a type definition, via its fully qualified name (`<element name>`).
 
 ```js
 { //..
@@ -170,7 +170,7 @@ Each entry in the [elements object](./spec-v1/csn-interop-effective#elemententry
 
 #### Type-specific Properties
 
-If the built-in [CDS Types](./spec-v1/csn-interop-effective#cds-type) have arguments of type integer (_length_, _precision_, _scale_). These arguments are expressed via additional properties with the (fix) name of the argument. Especially a String has a length, and a Decimal has a precision and a scale. This yields the following specialized patterns:
+If the built-in [CDS Types](./spec-v1/csn-interop-effective#cds-type) have arguments of type integer (`length`, `precision`, `scale`). These arguments are expressed via additional properties with the (fix) name of the argument. Especially a String has a length, and a Decimal has a precision and a scale. This yields the following specialized patterns:
 
 ```js
 { //..
@@ -203,7 +203,7 @@ Note that it's also possible to create shared, reusable types with [Custom Types
 #### Primary Key
 
 In case the entity has a primary key, it is mandatory to specify it. (It is especially required for data integration with Datasphere.)
-This is done by adding the member _key_ with boolean value _true_ to each element of the primary key:
+This is done by adding the member `key` with boolean value `true` to each element of the primary key:
 
 ```js
 { //..
@@ -226,7 +226,7 @@ This is done by adding the member _key_ with boolean value _true_ to each elemen
 
 #### Optional Properties
 
-In addition an element has the optional properties _notNull_, and _default_ (both with SQL semantics). This results in the pattern:
+In addition an element has the optional properties `notNull`, and `default` (both with SQL semantics). This results in the pattern:
 
 ```js
 { //..
@@ -246,7 +246,7 @@ In addition an element has the optional properties _notNull_, and _default_ (bot
 }
 ```
 
-Note: As a general convention we recommend to omit optional boolean properties, if the value is _false_.
+Note: As a general convention we recommend to omit optional boolean properties, if the value is `false`.
 
 ## Annotations
 
@@ -341,14 +341,14 @@ An Association expresses a relation between two entities. An association is dire
 > Note:
 > Bidirectional relations can be defined via associations at both related entities. This is often not necessary, however, because the consumer can derive the inverse relation from a single association.
 
-Associations are element definitions with _type_ being _cds.Association_ or _cds.Composition_ plus additional properties specifying the association _target_, the _cardinality_, and an _on_ condition.
+Associations are element definitions with `type` being `cds.Association` or `cds.Composition` plus additional properties specifying the association `target`, the `cardinality`, and an `on` condition.
 
-Property _cardinality_ is an object \{_src?_,_min?_,_max_\} with...
+Property `cardinality` is an object \{`src`?, `min`?, `max`\} with...
 
-- _src_ set to 1 give a hint to database optimizers, that a source entity always exists
-- _min_ specifying the target's minimum cardinality (0, 1, \*) – default: 0
-- _max_ specifying the target's maximum cardinality (1, \*) – default: 1
-- In summary, the default cardinality is _\[0..1\]_, which means _to-one_. However, we recommend to always specify the cardinality, in order to avoid uncertainties on the consumer side.
+- `src` set to 1 give a hint to database optimizers, that the relationship is "one to" instead of "many to" (default).
+- `min` specifying the target's minimum cardinality (0, 1, \*) – default: 0
+- `max` specifying the target's maximum cardinality (1, \*) – default: 1
+- In summary, the default cardinality is 0..1, which means "to-one". However, we recommend to always specify the cardinality, in order to avoid uncertainties on the consumer side.
 
 The semantics follows from the pattern \<src\>:[\<min\>..\<max\>]. Most typical are the following:
 
@@ -357,7 +357,7 @@ The semantics follows from the pattern \<src\>:[\<min\>..\<max\>]. Most typical 
 | To-one      | [0..1], short: [1] | \{ "min": 0, "max": 1 \}, short: \{ "max": 1 \}     |
 | To-many     | [0.._], short: [_] | \{ "min": 0, "max": "_" \}, short: \{ "max": "_" \} |
 
-The (mandatory) _on_ property maps elements of the local entity to elements of the target entity. Its syntax and grammar follows the Core Query Notation (CQN), which at its core is a JSON representation for SQL queries. The subset of CQN required to construct on-conditions of associations is explained in the next sub section. So far we have:
+The (mandatory) `on` property maps elements of the local entity to elements of the target entity. Its syntax and grammar follows the Core Query Notation (CQN), which at its core is a JSON representation for SQL queries. The subset of CQN required to construct on-conditions of associations is explained in the next sub section. So far we have:
 
 ```js
 {
@@ -385,14 +385,14 @@ The (mandatory) _on_ property maps elements of the local entity to elements of t
 
 ### On Condition
 
-The _on_ condition is a predicate expression in [CXN](https://cap.cloud.sap/docs/cds/cxn#expressions) format, which binds elements of the target entity.
+The `on` condition is a predicate expression in [CXN](https://cap.cloud.sap/docs/cds/cxn#expressions) format, which binds elements of the target entity.
 In this version of the spec we limit the scope to bindings via the "=" operator, and logical operators between single target element bindings to "and".
-An operand can either refer to an element, or can be given as a fix value (a literal). Fix values are notated as a property _val_ containing a literal. Element references are notated as a property _ref_ containing a path to the element in question, given as an array of element names. The last entry in the array is the unqualified element name.
+An operand can either refer to an element, or can be given as a fix value (a literal). Fix values are notated as a property `val` containing a literal. Element references are notated as a property `ref` containing a path to the element in question, given as an array of element names. The last entry in the array is the unqualified element name.
 Thus an element in an association target is uniquely referred to by a an array with two entries: The association name, and the name of the element in the target entity (short: target element). An element in the source/local entity does not need further qualification and shall be given by a single entry with the name of the source element.
 So within this scope of expressiveness the pattern of an association’s on condition looks like this:
 
 ```js
-…
+//...
         "on": [
           {
             "ref": [
@@ -597,9 +597,9 @@ Further note that element names are not affected by context definitions, because
 
 ### Aggregation of Data Definitions
 
-_Contexts_ can also be used to aggregate local data definitions into a single CSN document. E.g. assume that there are several original data models, each of which where local to a schema. And each of these data models is already described in terms of data definitions in CSN format.
+Contexts can also be used to aggregate local data definitions into a single CSN document. E.g. assume that there are several original data models, each of which where local to a schema. And each of these data models is already described in terms of data definitions in CSN format.
 Now simply merging these data definitions into one is typically not possible because in the resulting CSN document the definition names must again be unique. But the data definitions can be rewritten by introducing higher-level contexts (e.g. one context per schema), and replacing all local names by their fully qualified equivalents.
-Note that it is not sufficient to replace the top-level data definition names, but that also the association targets and annotation values of type _EntityRef_ have to be adapted.
+Note that it is not sufficient to replace the top-level data definition names, but that also the association targets and annotation values of type `EntityRef` have to be adapted.
 
 ## Custom Type Definitions
 
@@ -691,19 +691,19 @@ Note: This version of the doc does not provide a reference for inline structured
 
 #### Flattening
 
-If the structured type does not serve any particular purpose at deployment or for consumers, structured types can also be flattened in a way that the nested elements section after inlining are replaced by concatenated element names (e.g. separated by "\_"; example: "Price_Currency", "Price_Amount").
+If the structured type does not serve any particular purpose at deployment or for consumers, structured types can also be flattened in a way that the nested elements section after inlining are replaced by concatenated element names (e.g. separated by `_`; example: "Price_Currency", "Price_Amount").
 
 <!--
 ## View Definitions
 
 Note: This version of the doc does not provide a reference for view definitions. This section shall only provide an outlook on how views can be defined enhancing the entity definitions for tables.
 From a CDS perspective both tables and views are entities. Only that views have no data persistence, but a definition of how to select the data from other entities (tables or views).
-In CSN this is reflected in the way that views have a mandatory property _query_.
+In CSN this is reflected in the way that views have a mandatory property `query`.
 
 ### Declared Signature
 
-In Effective CSN views shall have a declared signature, i.e. a definition of the result structure. This declaration is done via an _elements_ property, exactly like for table definitions.
-So a view definition in Effective CSN is a table definition plus a _query_ property describing how the source data is mapped to the signature.
+In Effective CSN views shall have a declared signature, i.e. a definition of the result structure. This declaration is done via an `elements` property, exactly like for table definitions.
+So a view definition in Effective CSN is a table definition plus a `query` property describing how the source data is mapped to the signature.
 
 ```js
 {
@@ -719,7 +719,7 @@ So a view definition in Effective CSN is a table definition plus a _query_ prope
 }
 ```
 
-For data exchange and deployment this means that a view definition in CSN can be directly used as a table definition on the consumer side, by simply ignoring the _query_ property.
+For data exchange and deployment this means that a view definition in CSN can be directly used as a table definition on the consumer side, by simply ignoring the `query` property.
 
 ### Query
 
@@ -728,7 +728,7 @@ Property query defines how signature is bound to underlying entities / i.o.w. ho
 
 ## Service Definitions
 
-CDS allows to define service interfaces as collections of exposed entities enclosed in a _service_ section, which is essentially a _context_.(Especially the service acts as a name prefix for the exposed entities.)
+CDS allows to define service interfaces as collections of exposed entities enclosed in a `service` section, which is essentially a `context`.(Especially the service acts as a name prefix for the exposed entities.)
 The exposed entities are typically projections on entities from underlying data models, defined via standard view definitions.
 
 ```js

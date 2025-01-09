@@ -131,7 +131,7 @@
       ]
     },
     "@ObjectModel.foreignKey.association": {
-      "description": "The element is of type cds.Association which points to the list of values. Use only for service internal associations. For cross service associations, use the [@EntityRelationship Vocabulary](./entity-relationship) instead.",
+      "description": "The element is of type `cds.Association` which points to the list of values. \n\nUse only for service internal associations. For cross service associations, use the [@EntityRelationship Vocabulary](./entity-relationship) instead.",
       "x-extension-targets": [
         "Type"
       ],
