@@ -262,11 +262,11 @@ definitions:
       The `name` is the absolute, fully qualified name of the definition, and the value is a record with the definition details.
 
       Definition names MUST:
-      * Not be an empty string.
-      * Not start with `@`, `__`, `.`, `::`.
-      * Not end with `.` or `::`.
-      * Not contain the substring `..` or `:::`.
-      * Not contain the substring `::` more than once.
+      - Not be an empty string.
+      - Not start with `@`, `__`, `.`, `::`.
+      - Not end with `.` or `::`.
+      - Not contain the substring `..` or `:::`.
+      - Not contain the substring `::` more than once.
 
       See [Primer: Definitions](../primer.md#definitions).
 
@@ -449,9 +449,9 @@ definitions:
           Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
 
           Correct annotations examples:
-          * `"@Common.bar": "foo"`
-          * `"@Common.foo.bar": true`
-          * `"@Common.array": [{ "foo": true }]`
+          - `"@Common.bar": "foo"`
+          - `"@Common.foo.bar": true`
+          - `"@Common.array": [{ "foo": true }]`
 
           Or
 
@@ -473,11 +473,11 @@ definitions:
       The value can either be a standard [CDS Type](#cds-type) (`cds.*`) or a [Custom Type](#custom-type).
 
       Element names MUST:
-      * Not be an empty string.
-      * Not start with `@`, `__`, `::`.
-      * Not end with `::`.
-      * Not contain the substring `.` or `:::`.
-      * Not contain the substring `::` more than once.
+      - Not be an empty string.
+      - Not start with `@`, `__`, `::`.
+      - Not end with `::`.
+      - Not contain the substring `.` or `:::`.
+      - Not contain the substring `::` more than once.
     minProperties: 1
     patternProperties:
       '^(?![@]|__|\.|::).+$':
@@ -1062,7 +1062,7 @@ definitions:
         type: object
         $ref: "#/definitions/CardinalityObject"
 
-      "on":
+      "on": &on
         type: array
         description: |-
           The property `on` holds a sequence of operators and operands to describe the join condition.
@@ -1073,12 +1073,11 @@ definitions:
           - One of the following:
             - Reference to a field of the source entity
             - Constant Value
+
           This building block states that the value of the first entry of the array using "ref" should equal the value of the third entry of the array.
+          In addition, several building blocks can be lined up using an "and" operator.
 
-          In addition, several building blocks can be lined up using an "and" operator
-
-          More information can be found here:
-          * https://cap.cloud.sap/docs/cds/csn#assoc-on
+          See also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
 
         items:
           oneOf:
@@ -1156,50 +1155,8 @@ definitions:
         type: object
         $ref: "#/definitions/CardinalityObject"
 
-      on:
-        type: array
-        description: |-
-          The property `on` holds a sequence of operators and operands to describe the join condition.
+      on: *on
 
-          One building block of the sequence consists of the following in the given order:
-          - Reference to a field of the association or composition target
-          - Equals Operator "="
-          - One of the following:
-            - Reference to a field of the source entity
-            - Constant Value
-          This building block states that the value of the first entry of the array using "ref" should equal the value of the third entry of the array.
-
-          In addition, several building blocks can be lined up using an "and" operator
-
-          More information can be found here:
-          * https://cap.cloud.sap/docs/cds/csn#assoc-on
-
-        items:
-          oneOf:
-            - $ref: "#/definitions/StructuredElementReference"
-            - $ref: "#/definitions/EqualsOperator"
-            - $ref: "#/definitions/AndOperator"
-            - $ref: "#/definitions/OnValue"
-        examples:
-          - [{ "ref": ["to_Connection", "AirlineID"] }, "=", { "ref": ["AirlineID"] }]
-          - [
-              { "ref": ["to_Connection", "AirlineID"] },
-              "=",
-              { "ref": ["AirlineID"] },
-              "and",
-              { "ref": ["to_Connection", "ConnectionID"] },
-              "=",
-              { "ref": ["ConnectionID"] },
-            ]
-          - [
-              { "ref": ["to_Connection", "AirlineID"] },
-              "=",
-              { "ref": ["AirlineID"] },
-              "and",
-              { "ref": ["to_Connection", "ConnectionID"] },
-              "=",
-              { "val": "1234567" },
-            ]
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
       - "type"
@@ -1235,8 +1192,8 @@ definitions:
 
       CSN Interop Effective adds further constraints to make a simple type lookup possible:
 
-      * A Custom Type MUST NOT point to another Custom Type (no recursion).
-      * The properties and annotations of the Custom Type MUST be merged into the Element it is used, to fulfill the "effective" quality.
+      - A Custom Type MUST NOT point to another Custom Type (no recursion).
+      - The properties and annotations of the Custom Type MUST be merged into the Element it is used, to fulfill the "effective" quality.
 
       This will allow a consumer to do a simple dictionary lookup to find the [CDS Type](#cds-type) of a Custom Type.
       All other properties describing the Custom Type can already be found at the Custom Type itself.
@@ -1377,7 +1334,7 @@ definitions:
     oneOf:
       - const: "floating"
         description: |-
-          The value floating means that the decimal property represents a decimal floating-point number whose number of significant digits is the value of the Precision
+          The value floating means that the decimal property represents a decimal floating-point number whose number of significant digits is the value of the `precision`.
 
           See https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Scale
       # Decision: We don't support 'variable' yet, because support / shared understanding seem to be not given.
@@ -1410,8 +1367,8 @@ definitions:
           Specifies the targets maximum cardinality.
 
           MUST be one of:
-          * positive Integer (1,2,...)
-          * `*` as String
+          - positive Integer (1,2,...)
+          - `*` as String
 
         type: ["number", "string"]
         default: 1
@@ -1434,9 +1391,10 @@ definitions:
         description: |-
           Description of the target with *association name* and *target element name* in target entity`
           Description of the source *source element name*
+
           MUST NOT:
-          * use $ as leading character of an element
-          * use session variables
+          - use $ as leading character of an element
+          - use session variables
         items:
           type: string
           x-association-target: &associationTargetAllElements
