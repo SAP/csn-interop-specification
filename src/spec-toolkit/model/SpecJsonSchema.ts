@@ -70,6 +70,8 @@ export type ExtensionPoint =
   | "AssociationTypeDefinition"
   | "CompositionTypeDefinition";
 
+export type VersionImpact = "none" | "patch" | "minor" | "major";
+
 /**
  * Root interface of Spec JSON Schema
  */
@@ -224,7 +226,14 @@ export interface SpecJsonSchema {
     title: string;
     ref: string;
   };
-
+  /**
+   * A way to define the version impact a change to a JSON Property or Annotation has to the version of the file
+   */
+  "x-stability"?: {
+    add: VersionImpact;    // add a property or annotation
+    remove: VersionImpact; // remove a property or annotation
+    change: VersionImpact; // change the value of a property or of an annotation   
+  };
   /**
    * Overwrite TypeScript Type
    * Used and defined by https://www.npmjs.com/package/json-schema-to-typescript
