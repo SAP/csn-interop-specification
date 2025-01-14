@@ -213,9 +213,10 @@ export type EqualsOperator = "=";
  */
 export type ANDOperator = "and";
 /**
- * Defines which [Entity Type](#entity-type) the current JSON Schema object represents.
- * There could be several JSON Schema objects that are assigned to the same Entity Type.
- * One JSON Schema object can only have one Entity Type assigned, which corresponds to the applications own Entity Type definition.
+ * Defines which [Entity Type](#entity-type) the current data object represents.
+ *
+ * There could be several data objects that are assigned to the same Entity Type.
+ * One data object can only have one Entity Type assigned, which corresponds to the applications own Entity Type definition.
  */
 export type EntityRelationshipEntityType = string;
 /**
