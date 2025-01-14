@@ -7598,7 +7598,7 @@
     },
     "@EntityRelationship.entityType": {
       "type": "string",
-      "description": "Defines which [Entity Type](#entity-type) the current JSON Schema object represents.\nThere could be several JSON Schema objects that are assigned to the same Entity Type.\nOne JSON Schema object can only have one Entity Type assigned, which corresponds to the applications own Entity Type definition.",
+      "description": "Defines which [Entity Type](#entity-type) the current data object represents.\n\nThere could be several data objects that are assigned to the same Entity Type.\nOne data object can only have one Entity Type assigned, which corresponds to the applications own Entity Type definition.",
       "examples": [
         "sap.vdm.sont:BillOfMaterial"
       ],
