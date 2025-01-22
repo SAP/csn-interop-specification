@@ -3,8 +3,10 @@ import { log } from "./log";
 import GfmEscape from "gfm-escape";
 const escaper = new GfmEscape({ table: true });
 
-export function escapeMdInTable(text: string = ""): string {
-  return text.split("\n").join("<br/>");
+export function escapeMdInTable(md: string = ""): string {
+  // TODO: Improve this by not making every linebreak a <br>, just two line-breaks should become a paragraph
+  // This will be easier once we convert the markdown table to an HTML table
+  return md.split("\n").join("<br/>");
 }
 
 /**

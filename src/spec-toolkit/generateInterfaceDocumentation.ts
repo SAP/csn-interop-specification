@@ -230,7 +230,7 @@ function jsonSchemaToMd(
     text += `<span className="feature-status-${status}" title="This feature is ${status.toUpperCase()} status and subject to potential changes.">${status.toUpperCase()}</span> \n\n`;
   }
 
-  //add introduction text of the object
+  // add introduction text of the object
   if (jsonSchemaObject.description) {
     text += `${jsonSchemaObject.description.trim()}\n\n`;
   }
@@ -567,7 +567,7 @@ function getObjectExampleText(
 
   if (jsonSchemaObject.examples) {
     if (!skipHeader) {
-      text += `\n###### Example Values\n`;
+      text += `\n###### Example Values:\n`;
     }
 
     try {
@@ -847,7 +847,7 @@ function getDescriptionWithinTable(jsonSchemaObject: SpecJsonSchema, jsonSchemaR
   }
 
   if (jsonSchemaObject.description) {
-    result += `${escapeMdInTable(jsonSchemaObject.description)}<br/>`;
+    result += `${escapeMdInTable(jsonSchemaObject.description)}`;
   }
 
   if (jsonSchemaObject.format) {
