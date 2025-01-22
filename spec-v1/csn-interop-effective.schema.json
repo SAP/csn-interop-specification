@@ -1316,7 +1316,7 @@
     "IntegerType": {
       "title": "Integer Type",
       "type": "object",
-      "description": "An element of type `cds.Integer`.",
+      "description": "Signed integer with 32 bit.",
       "properties": {
         "type": {
           "type": "string",
@@ -1510,7 +1510,7 @@
     "Integer64Type": {
       "title": "Integer64 Type",
       "type": "object",
-      "description": "An element of type `cds.Integer64`.",
+      "description": "Signed integer with 64 bit.",
       "properties": {
         "type": {
           "type": "string",
