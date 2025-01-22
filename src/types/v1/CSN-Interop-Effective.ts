@@ -1122,7 +1122,7 @@ export interface LargeStringType {
   [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
- * An element of type `cds.Integer`.
+ * Signed integer with 32 bit.
  */
 export interface IntegerType {
   /**
@@ -1225,7 +1225,7 @@ export interface DefaultValueInteger {
   val: number | null;
 }
 /**
- * An element of type `cds.Integer64`.
+ * Signed integer with 64 bit.
  */
 export interface Integer64Type {
   /**
