@@ -776,7 +776,8 @@ definitions:
   IntegerType:
     title: Integer Type
     type: object
-    description: An element of type `cds.Integer`.
+    description: |-
+      Signed integer with 32 bit.
     properties: &IntegerTypeProperties
       type:
         type: string
@@ -803,7 +804,8 @@ definitions:
   Integer64Type:
     title: Integer64 Type
     type: object
-    description: An element of type `cds.Integer64`.
+    description: |-
+      Signed integer with 64 bit.
     properties: &Integer64TypeProperties
       type:
         type: string
