@@ -7,6 +7,7 @@
  * Refactoring Ideas / TODOs:
  * * Use new `x-context` attribute to do better and consistent error / warning / info logging
  * * Share same code to generate descriptions for schemas inside AND outside of an object table
+ * * Add **Type**: consistently for non-object Definition entries
  */
 
 import { ConfigFile, DocsConfig, getIntroductionText, getOutroText, getTargetDocumentForDocumentId } from "./model/Config";
@@ -626,13 +627,33 @@ function getObjectDescriptionTable(
   if (jsonSchemaObject.allOf) {
     // we write "One of the following" in the generated UI because we use allOf with discriminator "kind"
     // and don't want to confuse the end users with terms like "All of the following"
-    text += "**One of the following**: \n";
+    // text += "**One of the following**: \n";
+    text += "**Type**: \n";
     text += allOfReferenceHandling(jsonSchemaObject, jsonSchemaRoot);
     text += "<br/>\n";
   }
 
   if (!jsonSchemaObject["x-hide-properties"]) {
+
     if (jsonSchemaObject.properties || jsonSchemaObject.patternProperties) {
+
+      // Add overview type 
+      // TODO: Consider making this an option. Maybe dependent on how many properties there are?
+      if (jsonSchemaObject.properties) {
+        // Filter our hidden properties
+        const objectProperties = []
+        for (const propertyName in jsonSchemaObject.properties) {
+          if (!jsonSchemaObject.properties[propertyName]["x-hide-property"]) {
+            objectProperties.push(propertyName)
+          }
+        }
+        const propertiesList = objectProperties.map((propertyName) => {
+          const propertyId = `${schemaObjectId}_${propertyName}`.toLowerCase().replace("#", "");
+          return `[${propertyName}](#${propertyId})`
+        })
+        text += `**Type**: Object(${propertiesList.join(', ')})\n\n`
+      }
+
       //create object table header
       text += "| Property | Type | Description |\n";
       text += "| -------- | ---- | ----------- |\n";
