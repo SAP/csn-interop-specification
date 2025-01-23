@@ -10,6 +10,8 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+## [0.4.0]
+
 - ADDED: `meta.document.title` to give the overall document a human-readable title
 - BREAKING: wrong @Semantics.amountCurrencyCode annotation, should be @Semantics.amount.currencyCode
 - BREAKING: wrong @Semantics.quantityUnitOfMeasure annotation, should be @Semantics.quantity.unitOfMeasure
