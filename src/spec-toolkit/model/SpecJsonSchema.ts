@@ -295,11 +295,13 @@ export interface ConditionalDeclarative {
 }
 
 export interface ConditionalValue {
+  /** Value MUST equal a single value or one of the values of the array */
   equals?: JsonType | JsonType[];
+  /** Value MUST NOT equal a single value or one of the values of the array */
   equalsNot?: JsonType | JsonType[];
-  /** Regexp */
+  /** Regexp that the value MUST match. Value is always converted to string for matching */
   matches?: string; 
-  /** Regexp */
+  /** Regexp that the value MUST NOT match. Value is always converted to string for matching */
   matchesNot?: string; 
 }
 
@@ -312,10 +314,9 @@ export interface ConditionalComparison {
   operator: "<" | "<=" | "=" | "!=" | ">" | ">=" | "includes"
 }
 
-
 /**
  * JSON Value. 
  * 
- * Null has special semantics: value is removed or property holding it is removed
+ * Null has special semantics: value is removed,  property holding it is removed or array entry is removed
  */
 export type JsonType = string | number | boolean | null | object;
