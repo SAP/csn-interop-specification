@@ -42,7 +42,7 @@ import fs from "fs-extra";
 import { log } from "./util/log";
 import path from "path";
 import yaml from "js-yaml";
-import { getIdForSchema as getSchemaObjectId, getTitleFromSchemaObject } from "./util/specJsonSchemaHelper";
+import { getHashIdForProperty, getIdForSchema as getSchemaObjectId, getTitleFromSchemaObject } from "./util/specJsonSchemaHelper";
 
 /**
  * Generate Interface for all Files in the configured in the config file
@@ -465,7 +465,7 @@ function getPropertiesTableEntryText(
       }
 
       // TODO: Properly handle propertyId, without getting an anchor tag first and then removing it again.
-      const propertyId = `${schemaObjectId}_${propertyName}`.toLowerCase().replace("#", "");
+      const propertyId = getHashIdForProperty(schemaObjectId, propertyName);
 
       //Get the text of the property
       const propertyText = getObjectPropertyEntryText(jsonSchemaObject, property, propertyName, propertyId, anchorName);
@@ -648,7 +648,7 @@ function getObjectDescriptionTable(
           }
         }
         const propertiesList = objectProperties.map((propertyName) => {
-          const propertyId = `${schemaObjectId}_${propertyName}`.toLowerCase().replace("#", "");
+          const propertyId = getHashIdForProperty(schemaObjectId, propertyName)
           return `[${propertyName}](#${propertyId})`
         })
         text += `**Type**: Object(${propertiesList.join(', ')})\n\n`
