@@ -7,6 +7,7 @@
  * Refactoring Ideas / TODOs:
  * * Use new `x-context` attribute to do better and consistent error / warning / info logging
  * * Share same code to generate descriptions for schemas inside AND outside of an object table
+ * * Add **Type**: consistently for non-object Definition entries
  */
 
 import { ConfigFile, DocsConfig, getIntroductionText, getOutroText, getTargetDocumentForDocumentId } from "./model/Config";
@@ -41,7 +42,7 @@ import fs from "fs-extra";
 import { log } from "./util/log";
 import path from "path";
 import yaml from "js-yaml";
-import { getIdForSchema as getSchemaObjectId, getTitleFromSchemaObject } from "./util/specJsonSchemaHelper";
+import { getHashIdForProperty, getIdForSchema as getSchemaObjectId, getTitleFromSchemaObject } from "./util/specJsonSchemaHelper";
 
 /**
  * Generate Interface for all Files in the configured in the config file
@@ -230,7 +231,7 @@ function jsonSchemaToMd(
     text += `<span className="feature-status-${status}" title="This feature is ${status.toUpperCase()} status and subject to potential changes.">${status.toUpperCase()}</span> \n\n`;
   }
 
-  //add introduction text of the object
+  // add introduction text of the object
   if (jsonSchemaObject.description) {
     text += `${jsonSchemaObject.description.trim()}\n\n`;
   }
@@ -464,7 +465,7 @@ function getPropertiesTableEntryText(
       }
 
       // TODO: Properly handle propertyId, without getting an anchor tag first and then removing it again.
-      const propertyId = `${schemaObjectId}_${propertyName}`.toLowerCase().replace("#", "");
+      const propertyId = getHashIdForProperty(schemaObjectId, propertyName);
 
       //Get the text of the property
       const propertyText = getObjectPropertyEntryText(jsonSchemaObject, property, propertyName, propertyId, anchorName);
@@ -567,7 +568,7 @@ function getObjectExampleText(
 
   if (jsonSchemaObject.examples) {
     if (!skipHeader) {
-      text += `\n###### Example Values\n`;
+      text += `\n###### Example Values:\n`;
     }
 
     try {
@@ -626,13 +627,33 @@ function getObjectDescriptionTable(
   if (jsonSchemaObject.allOf) {
     // we write "One of the following" in the generated UI because we use allOf with discriminator "kind"
     // and don't want to confuse the end users with terms like "All of the following"
-    text += "**One of the following**: \n";
+    // text += "**One of the following**: \n";
+    text += "**Type**: \n";
     text += allOfReferenceHandling(jsonSchemaObject, jsonSchemaRoot);
     text += "<br/>\n";
   }
 
   if (!jsonSchemaObject["x-hide-properties"]) {
+
     if (jsonSchemaObject.properties || jsonSchemaObject.patternProperties) {
+
+      // Add overview type 
+      // TODO: Consider making this an option. Maybe dependent on how many properties there are?
+      if (jsonSchemaObject.properties) {
+        // Filter our hidden properties
+        const objectProperties = []
+        for (const propertyName in jsonSchemaObject.properties) {
+          if (!jsonSchemaObject.properties[propertyName]["x-hide-property"]) {
+            objectProperties.push(propertyName)
+          }
+        }
+        const propertiesList = objectProperties.map((propertyName) => {
+          const propertyId = getHashIdForProperty(schemaObjectId, propertyName)
+          return `<a href="#${propertyId}">${propertyName}</a>`
+        })
+        text += `**Type**: Object(${propertiesList.join(', ')})\n\n`
+      }
+
       //create object table header
       text += "| Property | Type | Description |\n";
       text += "| -------- | ---- | ----------- |\n";
@@ -847,7 +868,7 @@ function getDescriptionWithinTable(jsonSchemaObject: SpecJsonSchema, jsonSchemaR
   }
 
   if (jsonSchemaObject.description) {
-    result += `${escapeMdInTable(jsonSchemaObject.description)}<br/>`;
+    result += `${escapeMdInTable(jsonSchemaObject.description)}`;
   }
 
   if (jsonSchemaObject.format) {
