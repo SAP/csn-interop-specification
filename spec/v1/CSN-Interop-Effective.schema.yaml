@@ -239,13 +239,13 @@ definitions:
         x-stability:
           # This calculation is only run, if newValue != oldValue
 
-          # Option 1: Use custom function to calculate result
+          # Option 1 (fallback): Use custom function to calculate result
           # Function name given, parameters will be (newValue, oldValue, context(JSON path, JSON Schema path, entire document))
           function:
             name: "changeMetaFeatureComplete"
             description: "Description of rule / guidance (for documentation)"
 
-          # Option 2: Declarative conditionals
+          # Option 2 (preferred): Declarative conditionals
           # will be run for changed, added or removed
           # in latter two cases, new value or old value could be `null` if not existing
           conditional:
@@ -802,7 +802,8 @@ definitions:
   IntegerType:
     title: Integer Type
     type: object
-    description: An element of type `cds.Integer`.
+    description: |-
+      Signed integer with 32 bit.
     properties: &IntegerTypeProperties
       type:
         type: string
@@ -829,7 +830,8 @@ definitions:
   Integer64Type:
     title: Integer64 Type
     type: object
-    description: An element of type `cds.Integer64`.
+    description: |-
+      Signed integer with 64 bit.
     properties: &Integer64TypeProperties
       type:
         type: string

@@ -1731,7 +1731,7 @@
     "IntegerType": {
       "title": "Integer Type",
       "type": "object",
-      "description": "An element of type `cds.Integer`.",
+      "description": "Signed integer with 32 bit.",
       "properties": {
         "type": {
           "type": "string",
@@ -1964,7 +1964,7 @@
     "Integer64Type": {
       "title": "Integer64 Type",
       "type": "object",
-      "description": "An element of type `cds.Integer64`.",
+      "description": "Signed integer with 64 bit.",
       "properties": {
         "type": {
           "type": "string",
@@ -7624,7 +7624,7 @@
     },
     "@EntityRelationship.entityType": {
       "type": "string",
-      "description": "Defines which [Entity Type](#entity-type) the current JSON Schema object represents.\nThere could be several JSON Schema objects that are assigned to the same Entity Type.\nOne JSON Schema object can only have one Entity Type assigned, which corresponds to the applications own Entity Type definition.",
+      "description": "Defines which [Entity Type](#entity-type) the current data object represents.\n\nThere could be several data objects that are assigned to the same Entity Type.\nOne data object can only have one Entity Type assigned, which corresponds to the applications own Entity Type definition.",
       "examples": [
         "sap.vdm.sont:BillOfMaterial"
       ],
