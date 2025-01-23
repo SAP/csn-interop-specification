@@ -649,7 +649,7 @@ function getObjectDescriptionTable(
         }
         const propertiesList = objectProperties.map((propertyName) => {
           const propertyId = getHashIdForProperty(schemaObjectId, propertyName)
-          return `[${propertyName}](#${propertyId})`
+          return `<a href="#${propertyId}">${propertyName}</a>`
         })
         text += `**Type**: Object(${propertiesList.join(', ')})\n\n`
       }
