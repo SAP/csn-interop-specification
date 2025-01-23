@@ -16,3 +16,7 @@ export function getIdForSchema(jsonSchemaObject: SpecJsonSchema): string {
   // TODO: Fix this. The title shouldn't have the anchor tag hashtag link
   return getAnchorLinkFromTitle(jsonSchemaObject.title.replace("#", ""));
 }
+
+export function getHashIdForProperty(schemaObjectId: string, propertyName: string) {
+  return `${schemaObjectId}_${propertyName}`.toLowerCase().replace("#", "");
+}
