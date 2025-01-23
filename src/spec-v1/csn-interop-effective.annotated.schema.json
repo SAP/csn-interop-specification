@@ -220,6 +220,32 @@
         "complete": {
           "type": "boolean",
           "description": "Whether this document is complete and self-contained.\n\nIt is RECOMMENDED to have complete CSN documents and set this to `true`.\n\nIf true references to other CDS elements (e.g. `cds.Association`) MUST be resolvable within the same document.",
+          "x-stability": {
+            "function": {
+              "name": "changeMetaFeatureComplete",
+              "description": "Description of rule / guidance (for documentation)"
+            },
+            "conditional": [
+              {
+                "impact": "major",
+                "newValue": {
+                  "equals": false
+                },
+                "oldValue": {
+                  "equals": [
+                    true,
+                    null
+                  ]
+                }
+              },
+              {
+                "severity": "major",
+                "comparison": {
+                  "operator": "<"
+                }
+              }
+            ]
+          },
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "MetaFeatures",

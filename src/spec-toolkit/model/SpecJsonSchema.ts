@@ -227,13 +227,30 @@ export interface SpecJsonSchema {
     ref: string;
   };
   /**
-   * A way to define the version impact a change to a JSON Property or Annotation has to the version of the file
+   * A way to define the version impact a change to a JSON Property or Annotation has to the version of the file.
+   * 
+   * This serves two purposes: Document what changes have a compatibility impact and to help calculate them programmatically.
+   * If not provided, no impact is assumed as it cannot be calculated.
+   * 
+   * Calculation of stability is only done if newValue != oldValue
    */
   "x-stability"?: {
-    add: VersionImpact;    // add a property or annotation
-    remove: VersionImpact; // remove a property or annotation
-    change: VersionImpact; // change the value of a property or of an annotation   
-  };
+    /** Property or array entry has been added */
+    add: VersionImpact;
+    /** Property or array entry has been removed */
+    remove: VersionImpact;
+    /** Property or array entry has been changed (in any way) */
+    change: VersionImpact; 
+    /** Custom function to calculate the impact */
+    function: ConditionalFunction
+
+    /**
+     * List of conditions to check
+     * All of the conditions will be evaluated and the highest impact will "win".
+     */
+    conditional: ConditionalDeclarative[]
+  }
+
   /**
    * Overwrite TypeScript Type
    * Used and defined by https://www.npmjs.com/package/json-schema-to-typescript
@@ -245,3 +262,60 @@ export interface SpecJsonSchema {
    */
   "tsType"?: string;
 }
+
+/**
+ * Impact needs to be calculated with a custom function
+ * This is the fallback if the calculation cannot be stated in a declarative way with `conditional`
+ * 
+ * The function will then be called with fn(newValue, oldValue, context)
+ * The context could be (document, jsonPath, jsonSchemaPath)
+ * The function will return the calculated severity
+ */
+export interface ConditionalFunction {
+  /** Function / method name for validation function */
+  name: string;
+  /** Human readable description of the condition */
+  description: string;
+}
+
+/**
+ * Conditions to evaluate on the new and old values 
+ * 
+ * All of the conditions need to be met (AND), then the stated `impact` will be returned
+ * E.g. newValue equals true AND oldValue equals [false, null]
+ */
+export interface ConditionalDeclarative {
+  impact: VersionImpact;
+  /** Conditions to evaluate on the new value or values (array) */
+  newValue?: ConditionalValue;
+  /** Conditions to evaluate on the old value or values (array) */
+  oldValue?: ConditionalValue;
+  /** For numeric and string values, we can compare new value (left) with old value (right) */
+  comparison?: ConditionalComparison
+}
+
+export interface ConditionalValue {
+  equals?: JsonType | JsonType[];
+  equalsNot?: JsonType | JsonType[];
+  /** Regexp */
+  matches?: string; 
+  /** Regexp */
+  matchesNot?: string; 
+}
+
+/**
+ * Comparison operators, mostly for numeric values, but also string comparisons could be useful.
+ * 
+ * New value is left of the operator, old value right.
+ */
+export interface ConditionalComparison {
+  operator: "<" | "<=" | "=" | "!=" | ">" | ">=" | "includes"
+}
+
+
+/**
+ * JSON Value. 
+ * 
+ * Null has special semantics: value is removed or property holding it is removed
+ */
+export type JsonType = string | number | boolean | null | object;

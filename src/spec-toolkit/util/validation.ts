@@ -25,6 +25,7 @@ preparedAjv.addKeyword("x-extension-points");
 preparedAjv.addKeyword("x-header-level");
 preparedAjv.addKeyword("x-ref-to-doc");
 preparedAjv.addKeyword("x-context");
+preparedAjv.addKeyword("x-stability");
 
 // JSON Schema -> TypeScript conversion
 preparedAjv.addKeyword("tsType");
