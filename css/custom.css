@@ -5,11 +5,14 @@
   --ifm-navbar-padding-vertical: 0;
   --ifm-navbar-height: 3rem;
   --ifm-blockquote-border-left-width: 6px;
-  --doc-sidebar-width: 270px !important;
+  --doc-sidebar-width: 265px !important;
   --ifm-spacing-horizontal: 8px;
   --ifm-list-left-padding: 1.5rem;
   --prism-background-color: #222222;
+  --ifm-h1-font-size: 2.5rem;
+  --ifm-h2-font-size: 1.8rem;
   --ifm-h4-font-size: 1.2rem;
+  --ifm-h6-font-size: 1rem;
 }
 
 @media (min-width: 997px) {
@@ -42,17 +45,28 @@ article .card {
 .margin-bottom--lg {
   margin-bottom: 1.5rem !important;
 }
-
+.markdown h1 {
+  font-size: 2.5rem;
+  margin: 0 0 8px 0 !important;
+}
 .markdown h2 {
-  margin: 20px 0 8px 0;
+  font-size: 1.8rem;
+  margin: 20px 0 6px 0;
 }
 .markdown h3 {
-  margin: 16px 0 8px 0;
+  margin: 16px 0 4px 0;
 }
 .markdown h4 {
   margin-bottom: 6px;
 }
-
+.markdown h6 {
+  margin: 6px 0 6px 0;
+}
+.markdown hr {
+  border: 0.5px solid #cecece;
+  height: 0 !important;
+  margin: 6px 0 4px 0;
+}
 .markdown blockquote {
   margin: 16px 0;
   padding: 4px 8px;
@@ -64,6 +78,10 @@ article .card {
 }
 .markdown table td {
   vertical-align: top;
+}
+.markdown table th,
+.markdown table td {
+  padding: 0.2rem 0.6rem;
 }
 
 .markdown code {
