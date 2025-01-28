@@ -26,13 +26,13 @@ Two things are usually helpful for adopters:
 [JSON Schema](https://json-schema.org/) is widely known and established, so a comparison can help to understand the positioning of CSN Interop better:
 
 <!-- prettier-ignore-start -->
-|                    | CSN Interop                                                               | JSON Schema                                                                                    |
-| ------------------ | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| **Serialization**: | JSON                                                                      | JSON                                                                                           |
-| **Design Goal**:   | Describe models with semantics                                            | Describe data interfaces with their validation constraints                                     |
-| **Layer**:         | "Conceptual" models, with optional mapping to physical API / data models  | "Physical" data model only                                                                     |
-| **Extensibility**: | Annotations (`@`) and private properties (`_`)                            | Extension properties (usually `x-`)                                                            |
-| **Strengths**:     | Describing models with rich entity-relationship and semantic metadata     | Describing actual data interfaces and validation. Can describe very complex JSON structures.   |
+|                    | CSN Interop | JSON Schema |
+| ------------------ | ----------- | ----------- |
+| **Serialization**: | JSON | JSON |
+| **Design Goal**:   | Describe models with semantics | Describe data interfaces with their validation |
+| **Layer**:         | "Conceptual" models, with optional mapping to physical API / data models | "Physical" data model only |
+| **Extensibility**: | Annotations (`@`) and private properties (`_`) | Extension properties (usually x-`) |
+| **Strengths**:     | Describing models with rich entity-relationship and semantic metadata | Describing actual data interfaces and validation. Can describe very complex JSON structures. |
 | **Weaknesses**:    | Only limited validation constraints, physical model not directly defined. | No entity-relationship information (e.g. no concept for associations and IDs), no inheritance. |
 <!-- prettier-ignore-end -->
 
