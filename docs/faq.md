@@ -26,18 +26,22 @@ Two things are usually helpful for adopters:
 [JSON Schema](https://json-schema.org/) is widely known and established, so a comparison can help to understand the positioning of CSN Interop better:
 
 <!-- prettier-ignore-start -->
-|               | CSN Interop | JSON Schema |
-| ------------- | ----------- | ----------- |
+|                    | CSN Interop | JSON Schema |
+| ------------------ | ----------- | ----------- |
 | **Serialization**: | JSON        | JSON        |
-| **Design Goal**: | Describe models with semantics | Describe data interfaces with their validation constraints |
-| **Layer**: | "Conceptual" models, with optional mapping to physical API / data models | "Physical" data model only |
-| **Extensibility**: | Annotations (`@`) and private properties (`_`) | Extension properties (usually `x-`) |
-| **Strengths**: | Describing models with rich entity-relationship and semantic metadata | Describing actual data interfaces and validation. Can describe very complex JSON structures. |
-| **Weaknesses**: | Only limited validation constraints, physical model not directly defined. | No entity-relationship information (e.g. no concept for associations and IDs), no inheritance. |
+| **Design Goal**:   | Describe models with semantics | Describe data interfaces incl. validation constraints |
+| **Layer**:         | "Conceptual" models, with optional mapping to physical API / data interface | "Physical" data interface only |
+| **Extensibility**: | Annotations (`@`) and private properties (`_`) | Extension properties (usually x-`) |
+| **Strengths**:     | Describing models with rich entity-relationship and semantic metadata. Works well with relational models. | Describing actual data interfaces and validation. Works well with document structure / complex JSON structures. |
+| **Weaknesses**:    | Only limited validation constraints, physical model not directly defined. | No entity-relationship information (e.g. no concept for associations and IDs), no inheritance. |
 <!-- prettier-ignore-end -->
 
-In general, it could be stated that JSON Schema is not designed for describing models, although it's often used for that purpose. This leads to problems with more complex models, e.g. when `$ref` is used together with constructs like `oneOf`, `anyOf`, `allOf` etc. to describe inheritance or polymorphism although their purpose is only to list, combine and reuse data shape constraints.
+In general, it could be stated that JSON Schema is not designed for describing models, although it's often used for that purpose.
+This leads to problems with more complex models, e.g. when `$ref` is used together with constructs like `oneOf`, `anyOf`, `allOf` etc. to describe inheritance or polymorphism although their purpose is only to list, combine and reuse data shape constraints.
 
-CSN Interop is designed to describe models first and not so much their physical data models and constraints. In CSN, it's possible to expose the same model via different API Protocols or derive persistence models for different databases. Depending on those choices, the [mapping](./mappings/) to an actual data model can look different. This is not directly expressed in CSN, so either the mapping needs to be understood or the resulting data model is additionally described with a format fit for that purpose, like JSON Schema.
+CSN Interop is designed to describe (conceptual) models first and not so much their physical data models and constraints.
+Because the models in CSN are more abstract, it's possible to expose the same model via different API Protocols or derive persistence models for different databases. Depending on those choices, the [mapping](./mappings/) to an actual data model can be different.
+The resulting data structure / API interface is not directly expressed in CSN, so either the mapping to it needs to be clearly specified or the resulting interface needs to be additionally described with a format fit for that purpose, like JSON Schema.
 
-To sum it up, CSN Interop and JSON Schema serve different purposes and mostly complement each other. If you start with a model first, we recommend to start with CSN and then derive JSON Schema (or other formats) based on the mapping.
+To sum it up, CSN Interop and JSON Schema serve different purposes and mostly complement each other.
+If you start with a model first, we recommend to start with CSN and then derive JSON Schema (or other formats) based on the mapping.
