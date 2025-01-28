@@ -28,11 +28,11 @@ Two things are usually helpful for adopters:
 <!-- prettier-ignore-start -->
 |                    | CSN Interop | JSON Schema |
 | ------------------ | ----------- | ----------- |
-| **Serialization**: | JSON | JSON |
-| **Design Goal**:   | Describe models with semantics | Describe data interfaces with their validation |
-| **Layer**:         | "Conceptual" models, with optional mapping to physical API / data models | "Physical" data model only |
+| **Serialization**: | JSON        | JSON        |
+| **Design Goal**:   | Describe models with semantics | Describe data interfaces incl. validation constraints |
+| **Layer**:         | "Conceptual" models, with optional mapping to physical API / data interface | "Physical" data interface only |
 | **Extensibility**: | Annotations (`@`) and private properties (`_`) | Extension properties (usually x-`) |
-| **Strengths**:     | Describing models with rich entity-relationship and semantic metadata | Describing actual data interfaces and validation. Can describe very complex JSON structures. |
+| **Strengths**:     | Describing models with rich entity-relationship and semantic metadata. Works well with relational models. | Describing actual data interfaces and validation. Works well with document structure / complex JSON structures. |
 | **Weaknesses**:    | Only limited validation constraints, physical model not directly defined. | No entity-relationship information (e.g. no concept for associations and IDs), no inheritance. |
 <!-- prettier-ignore-end -->
 
