@@ -88,6 +88,8 @@ export type ElementReference = ElementReferenceString | ElementReferenceObject;
 /**
  * Element reference denotes a reference to an element, i.e. a member of the elements object of an entity in the following format:
  *
+ * The referenced element MUST exist locally in the same entity.
+ *
  * ```js
  * "<definition name>": {
  *   "<annotation key of type ElementReference>": "<element name>"
@@ -865,6 +867,8 @@ export interface ReferenceTarget {
 }
 /**
  * Element reference denotes a reference to an element, i.e. a member fo the elements object of an entity in the following format:
+ *
+ * The referenced element MUST exist locally in the same entity.
  *
  * ```js
  * "<definition name>": {

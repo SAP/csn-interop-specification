@@ -1452,8 +1452,6 @@ definitions:
     description: |-
       Element reference denotes a reference to a local element.
 
-      The referenced element MUST exist locally in the same entity.
-
       It is RECOMMENDED to use the ElementReferenceObject notation.
 
       See [Primer: Literals for Enum and ElementRef values](../primer.md#literals-for-enum-and-elementref-values).
@@ -1468,6 +1466,8 @@ definitions:
     description: |-
       Element reference denotes a reference to an element, i.e. a member of the elements object of an entity in the following format:
 
+      The referenced element MUST exist locally in the same entity.
+
       ```js
       "<definition name>": {
         "<annotation key of type ElementReference>": "<element name>"
@@ -1478,6 +1478,8 @@ definitions:
     type: object
     description: |-
       Element reference denotes a reference to an element, i.e. a member fo the elements object of an entity in the following format:
+
+      The referenced element MUST exist locally in the same entity.
 
       ```js
       "<definition name>": {
