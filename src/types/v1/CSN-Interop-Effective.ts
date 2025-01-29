@@ -87,6 +87,7 @@ export type ObjectModel = unknown[];
 export type ElementReference = ElementReferenceString | ElementReferenceObject;
 /**
  * Element reference denotes a reference to an element, i.e. a member of the elements object of an entity in the following format:
+ *
  * ```js
  * "<definition name>": {
  *   "<annotation key of type ElementReference>": "<element name>"

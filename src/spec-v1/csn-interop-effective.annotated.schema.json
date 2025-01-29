@@ -5114,7 +5114,7 @@
     },
     "ElementReference": {
       "title": "Element Reference",
-      "description": "Element reference denotes a reference to an element.\n\nIt is RECOMMENDED to use the ElementReferenceObject notation.\n\nSee [Primer: Literals for Enum and ElementRef values](../primer.md#literals-for-enum-and-elementref-values).",
+      "description": "Element reference denotes a reference to a local element.\n\nThe referenced element MUST exist locally in the same entity.\n\nIt is RECOMMENDED to use the ElementReferenceObject notation.\n\nSee [Primer: Literals for Enum and ElementRef values](../primer.md#literals-for-enum-and-elementref-values).",
       "oneOf": [
         {
           "$ref": "#/definitions/ElementReferenceString"
@@ -5131,7 +5131,7 @@
     "ElementReferenceString": {
       "title": "Element Reference String",
       "type": "string",
-      "description": "Element reference denotes a reference to an element, i.e. a member of the elements object of an entity in the following format:\n```js\n\"<definition name>\": {\n  \"<annotation key of type ElementReference>\": \"<element name>\"\n```",
+      "description": "Element reference denotes a reference to an element, i.e. a member of the elements object of an entity in the following format:\n\n```js\n\"<definition name>\": {\n  \"<annotation key of type ElementReference>\": \"<element name>\"\n```",
       "x-context": [
         "./spec/v1/CSN-Interop-Effective.schema.yaml",
         "ElementReferenceString"
