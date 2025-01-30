@@ -86,7 +86,7 @@ export type ObjectModel = unknown[];
  */
 export type ElementReference = ElementReferenceString | ElementReferenceObject;
 /**
- * Element reference denotes a reference to an element, i.e. a member of the elements object of an entity in the following format:
+ * Element reference to an element within the current entity, using string notation.
  *
  * The referenced element MUST exist locally in the same entity.
  *
@@ -866,7 +866,7 @@ export interface ReferenceTarget {
   [k: string]: unknown | undefined;
 }
 /**
- * Element reference denotes a reference to an element, i.e. a member fo the elements object of an entity in the following format:
+ * Element reference to an element within the current entity, using RECOMMENDED object notation.
  *
  * The referenced element MUST exist locally in the same entity.
  *
