@@ -1450,9 +1450,9 @@ definitions:
   ElementReference:
     title: Element Reference
     description: |-
-      Element reference denotes a reference to an element.
+      Element reference to an element within the current entity.
 
-      It is RECOMMENDED to use the ElementReferenceObject notation.
+      It is RECOMMENDED to use the [ElementReferenceObject](#element-reference-object) notation.
 
       See [Primer: Literals for Enum and ElementRef values](../primer.md#literals-for-enum-and-elementref-values).
 
@@ -1464,7 +1464,10 @@ definitions:
     title: Element Reference String
     type: string
     description: |-
-      Element reference denotes a reference to an element, i.e. a member of the elements object of an entity in the following format:
+      Element reference to an element within the current entity, using string notation.
+
+      The referenced element MUST exist locally in the same entity.
+
       ```js
       "<definition name>": {
         "<annotation key of type ElementReference>": "<element name>"
@@ -1474,7 +1477,9 @@ definitions:
     title: Element Reference Object
     type: object
     description: |-
-      Element reference denotes a reference to an element, i.e. a member fo the elements object of an entity in the following format:
+      Element reference to an element within the current entity, using RECOMMENDED object notation.
+
+      The referenced element MUST exist locally in the same entity.
 
       ```js
       "<definition name>": {
