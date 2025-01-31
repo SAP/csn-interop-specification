@@ -99,19 +99,9 @@ export type EntityRelationship = ReferenceTarget[];
  */
 export type ObjectModel = unknown[];
 /**
- * The element is of type `cds.Association` which points to the list of values.
- *
- * Use only for service internal associations. For cross service associations, use the [@EntityRelationship Vocabulary](./entity-relationship) instead.
- */
-export type ElementReference1 = ElementReferenceString | ElementReferenceObject;
-/**
  * The property contains element(s) containing a text for the annotated (id)element
  */
 export type ObjectModelText = unknown[];
-/**
- * The element is of type cds.association, which points to an entity containing (language-dependent) texts for the annotated (id) element
- */
-export type ElementReference2 = ElementReferenceString | ElementReferenceObject;
 /**
  * The property contains an OID for the ODM Entity with this official name
  */
@@ -146,18 +136,9 @@ export type PersonalDataIsPotentiallySensitive = boolean;
  */
 export type SemanticsCurrencyCode = true;
 /**
- * The element contains an amount. The annotation points to an element containing the currency code.
- */
-export type ElementReference3 = ElementReferenceString | ElementReferenceObject;
-/**
  * The property contains a unit of measure.
  */
 export type SemanticsUnitOfMeasure = true;
-/**
- * The element contains a quantity.
- * The annotation points to an element containing the unit of measure.
- */
-export type ElementReference4 = ElementReferenceString | ElementReferenceObject;
 export type SemanticsCalendarDayOfMonth = true;
 export type SemanticsCalendarDayOfYear = true;
 export type SemanticsCalendarWeek = true;
@@ -263,10 +244,6 @@ export type EntityRelationship5 = ReferenceWithConstantID[];
  */
 export type ObjectModelCompositionRoot = boolean;
 /**
- * In case of multiple key elements: key element which represents the entity (in the sense that the entity itself is the list of values for this key element)
- */
-export type ElementReference5 = ElementReferenceString | ElementReferenceObject;
-/**
  * The property declares the supported usage type for this entity in the context of consuming data models.
  */
 export type ObjectModel2 = SupportedCapabilitiesEnumValue[];
@@ -274,10 +251,6 @@ export type ObjectModel2 = SupportedCapabilitiesEnumValue[];
  * The entity represents an ODM Entity with this official name.
  */
 export type ODMEntityName = string;
-/**
- * The annotation references the element which contains the oid.
- */
-export type ElementReference6 = ElementReferenceString | ElementReferenceObject;
 export type PersonalDataEntitySemantics = "DataSubject" | "DataSubjectDetails" | "Other";
 export type PersonalDataEntitySemantics1 = string;
 /**
@@ -629,11 +602,11 @@ export interface EntityDefinition {
   "@EntityRelationship.temporalReferences"?: EntityRelationship4;
   "@EntityRelationship.referencesWithConstantIds"?: EntityRelationship5;
   "@ObjectModel.compositionRoot"?: ObjectModelCompositionRoot;
-  "@ObjectModel.representativeKey"?: ElementReference5;
+  "@ObjectModel.representativeKey"?: ElementReference;
   "@ObjectModel.modelingPattern"?: ObjectModel1;
   "@ObjectModel.supportedCapabilities"?: ObjectModel2;
   "@ODM.entityName"?: ODMEntityName;
-  "@ODM.oid"?: ElementReference6;
+  "@ODM.oid"?: ElementReference;
   /**
    * Primary meaning of the entities in the annotated entity set. Entities annotated with @PersonalData.entitySemantics are synonymous to @PersonalData.isPotentiallyPersonal.
    */
@@ -711,9 +684,9 @@ export interface BooleanType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
-  "@ObjectModel.foreignKey.association"?: ElementReference1;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
-  "@ObjectModel.text.association"?: ElementReference2;
+  "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -722,9 +695,9 @@ export interface BooleanType {
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
-  "@Semantics.amount.currencyCode"?: ElementReference3;
+  "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
-  "@Semantics.quantity.unitOfMeasure"?: ElementReference4;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
   "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
   "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
   "@Semantics.calendar.week"?: SemanticsCalendarWeek;
@@ -924,9 +897,9 @@ export interface StringType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
-  "@ObjectModel.foreignKey.association"?: ElementReference1;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
-  "@ObjectModel.text.association"?: ElementReference2;
+  "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -935,9 +908,9 @@ export interface StringType {
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
-  "@Semantics.amount.currencyCode"?: ElementReference3;
+  "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
-  "@Semantics.quantity.unitOfMeasure"?: ElementReference4;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
   "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
   "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
   "@Semantics.calendar.week"?: SemanticsCalendarWeek;
@@ -1067,9 +1040,9 @@ export interface LargeStringType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
-  "@ObjectModel.foreignKey.association"?: ElementReference1;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
-  "@ObjectModel.text.association"?: ElementReference2;
+  "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -1078,9 +1051,9 @@ export interface LargeStringType {
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
-  "@Semantics.amount.currencyCode"?: ElementReference3;
+  "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
-  "@Semantics.quantity.unitOfMeasure"?: ElementReference4;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
   "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
   "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
   "@Semantics.calendar.week"?: SemanticsCalendarWeek;
@@ -1164,9 +1137,9 @@ export interface IntegerType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
-  "@ObjectModel.foreignKey.association"?: ElementReference1;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
-  "@ObjectModel.text.association"?: ElementReference2;
+  "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -1175,9 +1148,9 @@ export interface IntegerType {
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
-  "@Semantics.amount.currencyCode"?: ElementReference3;
+  "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
-  "@Semantics.quantity.unitOfMeasure"?: ElementReference4;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
   "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
   "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
   "@Semantics.calendar.week"?: SemanticsCalendarWeek;
@@ -1267,9 +1240,9 @@ export interface Integer64Type {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
-  "@ObjectModel.foreignKey.association"?: ElementReference1;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
-  "@ObjectModel.text.association"?: ElementReference2;
+  "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -1278,9 +1251,9 @@ export interface Integer64Type {
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
-  "@Semantics.amount.currencyCode"?: ElementReference3;
+  "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
-  "@Semantics.quantity.unitOfMeasure"?: ElementReference4;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
   "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
   "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
   "@Semantics.calendar.week"?: SemanticsCalendarWeek;
@@ -1370,9 +1343,9 @@ export interface DecimalType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
-  "@ObjectModel.foreignKey.association"?: ElementReference1;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
-  "@ObjectModel.text.association"?: ElementReference2;
+  "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -1381,9 +1354,9 @@ export interface DecimalType {
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
-  "@Semantics.amount.currencyCode"?: ElementReference3;
+  "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
-  "@Semantics.quantity.unitOfMeasure"?: ElementReference4;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
   "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
   "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
   "@Semantics.calendar.week"?: SemanticsCalendarWeek;
@@ -1468,9 +1441,9 @@ export interface DoubleType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
-  "@ObjectModel.foreignKey.association"?: ElementReference1;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
-  "@ObjectModel.text.association"?: ElementReference2;
+  "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -1479,9 +1452,9 @@ export interface DoubleType {
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
-  "@Semantics.amount.currencyCode"?: ElementReference3;
+  "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
-  "@Semantics.quantity.unitOfMeasure"?: ElementReference4;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
   "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
   "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
   "@Semantics.calendar.week"?: SemanticsCalendarWeek;
@@ -1565,9 +1538,9 @@ export interface DateType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
-  "@ObjectModel.foreignKey.association"?: ElementReference1;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
-  "@ObjectModel.text.association"?: ElementReference2;
+  "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -1576,9 +1549,9 @@ export interface DateType {
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
-  "@Semantics.amount.currencyCode"?: ElementReference3;
+  "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
-  "@Semantics.quantity.unitOfMeasure"?: ElementReference4;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
   "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
   "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
   "@Semantics.calendar.week"?: SemanticsCalendarWeek;
@@ -1662,9 +1635,9 @@ export interface TimeType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
-  "@ObjectModel.foreignKey.association"?: ElementReference1;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
-  "@ObjectModel.text.association"?: ElementReference2;
+  "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -1673,9 +1646,9 @@ export interface TimeType {
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
-  "@Semantics.amount.currencyCode"?: ElementReference3;
+  "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
-  "@Semantics.quantity.unitOfMeasure"?: ElementReference4;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
   "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
   "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
   "@Semantics.calendar.week"?: SemanticsCalendarWeek;
@@ -1759,9 +1732,9 @@ export interface DateTimeType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
-  "@ObjectModel.foreignKey.association"?: ElementReference1;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
-  "@ObjectModel.text.association"?: ElementReference2;
+  "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -1770,9 +1743,9 @@ export interface DateTimeType {
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
-  "@Semantics.amount.currencyCode"?: ElementReference3;
+  "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
-  "@Semantics.quantity.unitOfMeasure"?: ElementReference4;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
   "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
   "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
   "@Semantics.calendar.week"?: SemanticsCalendarWeek;
@@ -1856,9 +1829,9 @@ export interface TimestampType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
-  "@ObjectModel.foreignKey.association"?: ElementReference1;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
-  "@ObjectModel.text.association"?: ElementReference2;
+  "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -1867,9 +1840,9 @@ export interface TimestampType {
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
-  "@Semantics.amount.currencyCode"?: ElementReference3;
+  "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
-  "@Semantics.quantity.unitOfMeasure"?: ElementReference4;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
   "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
   "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
   "@Semantics.calendar.week"?: SemanticsCalendarWeek;
@@ -1952,9 +1925,9 @@ export interface UUIDType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
-  "@ObjectModel.foreignKey.association"?: ElementReference1;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
-  "@ObjectModel.text.association"?: ElementReference2;
+  "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -1963,9 +1936,9 @@ export interface UUIDType {
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
-  "@Semantics.amount.currencyCode"?: ElementReference3;
+  "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
-  "@Semantics.quantity.unitOfMeasure"?: ElementReference4;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
   "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
   "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
   "@Semantics.calendar.week"?: SemanticsCalendarWeek;
@@ -2062,9 +2035,9 @@ export interface AssociationType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
-  "@ObjectModel.foreignKey.association"?: ElementReference1;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
-  "@ObjectModel.text.association"?: ElementReference2;
+  "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -2073,9 +2046,9 @@ export interface AssociationType {
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
-  "@Semantics.amount.currencyCode"?: ElementReference3;
+  "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
-  "@Semantics.quantity.unitOfMeasure"?: ElementReference4;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
   "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
   "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
   "@Semantics.calendar.week"?: SemanticsCalendarWeek;
@@ -2220,9 +2193,9 @@ export interface CompositionType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
-  "@ObjectModel.foreignKey.association"?: ElementReference1;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
-  "@ObjectModel.text.association"?: ElementReference2;
+  "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -2231,9 +2204,9 @@ export interface CompositionType {
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
-  "@Semantics.amount.currencyCode"?: ElementReference3;
+  "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
-  "@Semantics.quantity.unitOfMeasure"?: ElementReference4;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
   "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
   "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
   "@Semantics.calendar.week"?: SemanticsCalendarWeek;
@@ -2378,9 +2351,9 @@ export interface CustomType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
-  "@ObjectModel.foreignKey.association"?: ElementReference1;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
-  "@ObjectModel.text.association"?: ElementReference2;
+  "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -2389,9 +2362,9 @@ export interface CustomType {
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
-  "@Semantics.amount.currencyCode"?: ElementReference3;
+  "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
-  "@Semantics.quantity.unitOfMeasure"?: ElementReference4;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
   "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
   "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
   "@Semantics.calendar.week"?: SemanticsCalendarWeek;
@@ -2671,7 +2644,7 @@ export interface ServiceDefinition {
   doc?: string;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
-  "@ObjectModel.representativeKey"?: ElementReference5;
+  "@ObjectModel.representativeKey"?: ElementReference;
   "@ObjectModel.modelingPattern"?: ObjectModel1;
   "@ObjectModel.supportedCapabilities"?: ObjectModel2;
   /**

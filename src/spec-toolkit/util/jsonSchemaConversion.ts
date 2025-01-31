@@ -49,7 +49,8 @@ export function preprocessSpecJsonSchema(jsonSchema: SpecJsonSchemaRoot, jsonSch
 }
 
 /**
- * Postprocess a Spec JSON Schema file, for final export
+ * Convert x-ref-to-doc- to proper $ref
+ * Also removes `description` on same level, as a $ref should be the only property of the object
  */
 export function convertRefToDocToStandardRef(jsonSchema: SpecJsonSchemaRoot): SpecJsonSchemaRoot {
   // Deep clone, just to avoid accidental mutations of input
@@ -57,12 +58,17 @@ export function convertRefToDocToStandardRef(jsonSchema: SpecJsonSchemaRoot): Sp
   result.definitions = result.definitions || {};
   for (const definitionName in result.definitions) {
     const definition = result.definitions[definitionName];
+    if (definition["x-ref-to-doc"]) {
+      definition.$ref = definition["x-ref-to-doc"].ref;
+      delete definition.description;
+    }
+
     if (definition.properties) {
       for (const propertyName in definition.properties) {
         const property = definition.properties[propertyName] as SpecJsonSchemaRoot;
-        // Convert x-ref-to-doc- to proper $ref
         if (property["x-ref-to-doc"]) {
           property.$ref = property["x-ref-to-doc"].ref;
+          delete property.description;
         }
       }
     }

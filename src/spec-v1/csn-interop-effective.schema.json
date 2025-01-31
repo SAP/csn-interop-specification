@@ -6259,7 +6259,6 @@
       "description": "Entity is the root of a compositional hierarchy."
     },
     "@ObjectModel.representativeKey": {
-      "description": "In case of multiple key elements: key element which represents the entity (in the sense that the entity itself is the list of values for this key element)",
       "$ref": "#/definitions/ElementReference"
     },
     "@ObjectModel.semanticKey": {
@@ -6321,7 +6320,6 @@
       }
     },
     "@ObjectModel.foreignKey.association": {
-      "description": "The element is of type `cds.Association` which points to the list of values. \n\nUse only for service internal associations. For cross service associations, use the [@EntityRelationship Vocabulary](./entity-relationship) instead.",
       "$ref": "#/definitions/ElementReference"
     },
     "@ObjectModel.text.element": {
@@ -6335,7 +6333,6 @@
       ]
     },
     "@ObjectModel.text.association": {
-      "description": "The element is of type cds.association, which points to an entity containing (language-dependent) texts for the annotated (id) element",
       "$ref": "#/definitions/ElementReference"
     },
     "@ObjectModel.SupportedCapabilities_EnumValue": {
@@ -6388,7 +6385,6 @@
       "description": "The entity represents an ODM Entity with this official name."
     },
     "@ODM.oid": {
-      "description": "The annotation references the element which contains the oid.",
       "$ref": "#/definitions/ElementReference"
     },
     "@ODM.oidReference.entityName": {
@@ -6483,7 +6479,6 @@
       "description": "The property contains a currency code."
     },
     "@Semantics.amount.currencyCode": {
-      "description": "The element contains an amount. The annotation points to an element containing the currency code.",
       "$ref": "#/definitions/ElementReference"
     },
     "@Semantics.unitOfMeasure": {
@@ -6492,7 +6487,6 @@
       "description": "The property contains a unit of measure."
     },
     "@Semantics.quantity.unitOfMeasure": {
-      "description": "The element contains a quantity.\nThe annotation points to an element containing the unit of measure.",
       "$ref": "#/definitions/ElementReference"
     },
     "@Semantics.calendar.dayOfMonth": {

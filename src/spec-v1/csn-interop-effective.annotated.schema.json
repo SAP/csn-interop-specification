@@ -7470,7 +7470,6 @@
             "title": "Element Reference",
             "ref": "#/definitions/ElementReference"
           },
-          "description": "Reference to the modelled association (in local entity) for which the target view represents the value help providing view or entity for the annotated local field. The on-condition of the association may only contain bindings of the source and target fields that use an equal operator. All these bindings are automatically considered by the value help for both filter and result mappings.\nMutually exclusive to the usage of `valueHelpDefinition.entity`.",
           "$ref": "#/definitions/ElementReference"
         },
         "distinctValues": {
@@ -7963,7 +7962,6 @@
       ]
     },
     "@ObjectModel.representativeKey": {
-      "description": "In case of multiple key elements: key element which represents the entity (in the sense that the entity itself is the list of values for this key element)",
       "x-extension-targets": [
         "Entity",
         "Service"
@@ -8049,7 +8047,6 @@
       }
     },
     "@ObjectModel.foreignKey.association": {
-      "description": "The element is of type `cds.Association` which points to the list of values. \n\nUse only for service internal associations. For cross service associations, use the [@EntityRelationship Vocabulary](./entity-relationship) instead.",
       "x-extension-targets": [
         "Type"
       ],
@@ -8078,7 +8075,6 @@
       ]
     },
     "@ObjectModel.text.association": {
-      "description": "The element is of type cds.association, which points to an entity containing (language-dependent) texts for the annotated (id) element",
       "x-extension-targets": [
         "Type"
       ],
@@ -8141,7 +8137,6 @@
       ]
     },
     "@ODM.oid": {
-      "description": "The annotation references the element which contains the oid.",
       "x-ref-to-doc": {
         "title": "Element Reference",
         "ref": "#/definitions/ElementReference"
@@ -8267,7 +8262,6 @@
       ]
     },
     "@Semantics.amount.currencyCode": {
-      "description": "The element contains an amount. The annotation points to an element containing the currency code.",
       "x-ref-to-doc": {
         "title": "Element Reference",
         "ref": "#/definitions/ElementReference"
@@ -8286,7 +8280,6 @@
       ]
     },
     "@Semantics.quantity.unitOfMeasure": {
-      "description": "The element contains a quantity.\nThe annotation points to an element containing the unit of measure.",
       "x-ref-to-doc": {
         "title": "Element Reference",
         "ref": "#/definitions/ElementReference"
