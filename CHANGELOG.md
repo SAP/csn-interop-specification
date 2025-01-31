@@ -10,6 +10,8 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+- ADDED: `@ObjectModel.tenantWideUniqueName` annotation
+
 ## [0.4.0]
 
 - ADDED: Clear statement that `ElementRef` referenced element MUST exist locally in the same entity.
