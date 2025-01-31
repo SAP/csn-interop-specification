@@ -374,6 +374,9 @@
         "@ObjectModel.supportedCapabilities": {
           "$ref": "#/definitions/@ObjectModel.supportedCapabilities"
         },
+        "@ObjectModel.tenantWideUniqueName": {
+          "$ref": "#/definitions/@ObjectModel.tenantWideUniqueName"
+        },
         "@ODM.entityName": {
           "$ref": "#/definitions/@ODM.entityName"
         },
@@ -6337,6 +6340,11 @@
     "@ObjectModel.text.association": {
       "description": "The element is of type cds.association, which points to an entity containing (language-dependent) texts for the annotated (id) element",
       "$ref": "#/definitions/ElementReference"
+    },
+    "@ObjectModel.tenantWideUniqueName": {
+      "type": "string",
+      "description": "Unique name of the entity within the tenant / isolation context it is deployed to. \nThis may be used as a hint for database table names and help to keep them short enough.",
+      "maxLength": 120
     },
     "@ObjectModel.SupportedCapabilities_EnumValue": {
       "title": "Supported Capabilities Enum Value",

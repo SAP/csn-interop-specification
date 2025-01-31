@@ -618,6 +618,9 @@
         "@ObjectModel.supportedCapabilities": {
           "$ref": "#/definitions/@ObjectModel.supportedCapabilities"
         },
+        "@ObjectModel.tenantWideUniqueName": {
+          "$ref": "#/definitions/@ObjectModel.tenantWideUniqueName"
+        },
         "@ODM.entityName": {
           "$ref": "#/definitions/@ODM.entityName"
         },
@@ -8083,6 +8086,14 @@
         "ref": "#/definitions/ElementReference"
       },
       "$ref": "#/definitions/ElementReference"
+    },
+    "@ObjectModel.tenantWideUniqueName": {
+      "type": "string",
+      "description": "Unique name of the entity within the tenant / isolation context it is deployed to. \nThis may be used as a hint for database table names and help to keep them short enough.",
+      "maxLength": 120,
+      "x-extension-targets": [
+        "Entity"
+      ]
     },
     "@ObjectModel.SupportedCapabilities_EnumValue": {
       "title": "Supported Capabilities Enum Value",
