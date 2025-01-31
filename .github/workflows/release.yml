@@ -13,12 +13,12 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "22"
+          node-version: "20"
           # registry-url is required for releasing packages
           registry-url: "https://registry.npmjs.org"
 
-    # Skipping install since all assets are pre-built already
-    #   - run: npm ci
+      # Skipping install since all assets are pre-built already
+      #   - run: npm ci
 
       - name: Publish package
         # --provenance enables the automatic generation of provenance statements
