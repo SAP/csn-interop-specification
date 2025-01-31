@@ -51,7 +51,7 @@ export function preprocessSpecJsonSchema(jsonSchema: SpecJsonSchemaRoot, jsonSch
 /**
  * Postprocess a Spec JSON Schema file, for final export
  */
-export function postprocessSpecJsonSchema(jsonSchema: SpecJsonSchemaRoot): SpecJsonSchemaRoot {
+export function convertRefToDocToStandardRef(jsonSchema: SpecJsonSchemaRoot): SpecJsonSchemaRoot {
   // Deep clone, just to avoid accidental mutations of input
   let result = JSON.parse(JSON.stringify(jsonSchema))
   result.definitions = result.definitions || {};

@@ -35,7 +35,7 @@ import {
   ensureRootLevelSchema,
   removeDescriptionsFromRefPointers,
   removeExtensionAttributes,
-  postprocessSpecJsonSchema,
+  convertRefToDocToStandardRef,
 } from "./util/jsonSchemaConversion";
 
 import _ from "lodash";
@@ -188,8 +188,6 @@ function jsonSchemaToDocumentation(docConfig: DocsConfig, docsConfigs: DocsConfi
     jsonSchemaRoot = ensureRootLevelSchema(jsonSchemaRoot);
   }
 
-  jsonSchemaRoot = postprocessSpecJsonSchema(jsonSchemaRoot)
-
   writeSpecJsonSchemaFiles(docConfig.targetFolder || "src/spec-v1", outputFileName, jsonSchemaRoot);
 
   log.info("--------------------------------------------------------------------------");
@@ -270,7 +268,6 @@ function handleRefToCore(jsonSchemaObject: SpecJsonSchema, docsConfigs: DocsConf
   const refToDoc =
     typeof jsonSchemaObject === "object" && "x-ref-to-doc" in jsonSchemaObject ? jsonSchemaObject["x-ref-to-doc"] : "";
   if (refToDoc) {
-    jsonSchemaObject.$ref = jsonSchemaObject["x-ref-to-doc"]?.ref
     let refToDocTitle = "";
     let refToDocDocId = "";
     let refToDocDoc = "";
@@ -1293,6 +1290,9 @@ export function getAnyOfDescription(jsonSchemaObject: SpecJsonSchema, title = "R
 ////////////////////////////////////////////////////////////
 
 export function writeSpecJsonSchemaFiles(path: string, outputFileName: string, jsonSchema: SpecJsonSchemaRoot): void {
+
+  jsonSchema = convertRefToDocToStandardRef(jsonSchema);
+
   // TODO: Refactor making the outputFileName fully configurable, also whether to to generate "annotated" or not.
   const jsonSchemaPublishedPath = `${path}/${outputFileName}.schema.json`;
   // First write it as .annotated.schema file that includes all the x- extensions

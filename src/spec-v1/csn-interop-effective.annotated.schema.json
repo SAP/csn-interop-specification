@@ -126,6 +126,7 @@
         },
         "document": {
           "$ref": "#/definitions/MetaDocument",
+          "description": "Meta information about the document content.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "Meta",
@@ -134,6 +135,7 @@
         },
         "features": {
           "$ref": "#/definitions/MetaFeatures",
+          "description": "Feature dimensions that this CSN document fulfills.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "Meta",
@@ -387,6 +389,7 @@
         },
         "elements": {
           "$ref": "#/definitions/ElementDefinitions",
+          "description": "Dictionary of the elements of the entity.\nThe dictionary key is the element `name`, the value the element itself.\n\nMUST have at least one element.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "EntityDefinition",
@@ -7467,7 +7470,8 @@
             "title": "Element Reference",
             "ref": "#/definitions/ElementReference"
           },
-          "description": "Reference to the modelled association (in local entity) for which the target view represents the value help providing view or entity for the annotated local field. The on-condition of the association may only contain bindings of the source and target fields that use an equal operator. All these bindings are automatically considered by the value help for both filter and result mappings.\nMutually exclusive to the usage of `valueHelpDefinition.entity`."
+          "description": "Reference to the modelled association (in local entity) for which the target view represents the value help providing view or entity for the annotated local field. The on-condition of the association may only contain bindings of the source and target fields that use an equal operator. All these bindings are automatically considered by the value help for both filter and result mappings.\nMutually exclusive to the usage of `valueHelpDefinition.entity`.",
+          "$ref": "#/definitions/ElementReference"
         },
         "distinctValues": {
           "type": "boolean",
