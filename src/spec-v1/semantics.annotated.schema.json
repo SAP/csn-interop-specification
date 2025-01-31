@@ -21,6 +21,7 @@
       ]
     },
     "@Semantics.amount.currencyCode": {
+      "description": "The element contains an amount. The annotation points to an element containing the currency code.",
       "x-ref-to-doc": {
         "title": "Element Reference",
         "ref": "#/definitions/ElementReference"
@@ -49,6 +50,7 @@
       ]
     },
     "@Semantics.quantity.unitOfMeasure": {
+      "description": "The element contains a quantity.\nThe annotation points to an element containing the unit of measure.",
       "x-ref-to-doc": {
         "title": "Element Reference",
         "ref": "#/definitions/ElementReference"

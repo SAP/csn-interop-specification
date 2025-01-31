@@ -50,7 +50,9 @@ export function preprocessSpecJsonSchema(jsonSchema: SpecJsonSchemaRoot, jsonSch
 
 /**
  * Convert x-ref-to-doc- to proper $ref
- * Also removes `description` on same level, as a $ref should be the only property of the object
+ * 
+ * So far we use x-ref-to-doc to create a link from a spec extension back to the core spec
+ * After we merge the extensions and the core spec into one JSON Schema file, we can use a standard (local) $ref pointer 
  */
 export function convertRefToDocToStandardRef(jsonSchema: SpecJsonSchemaRoot): SpecJsonSchemaRoot {
   // Deep clone, just to avoid accidental mutations of input
@@ -60,7 +62,6 @@ export function convertRefToDocToStandardRef(jsonSchema: SpecJsonSchemaRoot): Sp
     const definition = result.definitions[definitionName];
     if (definition["x-ref-to-doc"]) {
       definition.$ref = definition["x-ref-to-doc"].ref;
-      delete definition.description;
     }
 
     if (definition.properties) {
@@ -68,7 +69,6 @@ export function convertRefToDocToStandardRef(jsonSchema: SpecJsonSchemaRoot): Sp
         const property = definition.properties[propertyName] as SpecJsonSchemaRoot;
         if (property["x-ref-to-doc"]) {
           property.$ref = property["x-ref-to-doc"].ref;
-          delete property.description;
         }
       }
     }
@@ -238,6 +238,9 @@ export function removeDescriptionsFromRefPointers(jsonSchema: SpecJsonSchemaRoot
   if (jsonSchema.definitions) {
     for (const definitionName in jsonSchema.definitions) {
       const definition = jsonSchema.definitions[definitionName];
+      if (definition.$ref && definition.description) {
+        delete definition.description;
+      }
       if (definition.properties) {
         for (const propertyName in definition.properties) {
           const property = definition.properties[propertyName];

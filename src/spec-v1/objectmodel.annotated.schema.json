@@ -21,6 +21,7 @@
       ]
     },
     "@ObjectModel.representativeKey": {
+      "description": "In case of multiple key elements: key element which represents the entity (in the sense that the entity itself is the list of values for this key element)",
       "x-extension-targets": [
         "Entity",
         "Service"
@@ -131,6 +132,7 @@
       ]
     },
     "@ObjectModel.foreignKey.association": {
+      "description": "The element is of type `cds.Association` which points to the list of values. \n\nUse only for service internal associations. For cross service associations, use the [@EntityRelationship Vocabulary](./entity-relationship) instead.",
       "x-extension-targets": [
         "Type"
       ],
@@ -169,6 +171,7 @@
       ]
     },
     "@ObjectModel.text.association": {
+      "description": "The element is of type cds.association, which points to an entity containing (language-dependent) texts for the annotated (id) element",
       "x-extension-targets": [
         "Type"
       ],

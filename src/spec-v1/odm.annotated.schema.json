@@ -20,6 +20,7 @@
       ]
     },
     "@ODM.oid": {
+      "description": "The annotation references the element which contains the oid.",
       "x-ref-to-doc": {
         "title": "Element Reference",
         "ref": "#/definitions/ElementReference"
