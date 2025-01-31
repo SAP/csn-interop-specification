@@ -49,6 +49,29 @@ export function preprocessSpecJsonSchema(jsonSchema: SpecJsonSchemaRoot, jsonSch
 }
 
 /**
+ * Postprocess a Spec JSON Schema file, for final export
+ */
+export function postprocessSpecJsonSchema(jsonSchema: SpecJsonSchemaRoot): SpecJsonSchemaRoot {
+  // Deep clone, just to avoid accidental mutations of input
+  let result = JSON.parse(JSON.stringify(jsonSchema))
+  result.definitions = result.definitions || {};
+  for (const definitionName in result.definitions) {
+    const definition = result.definitions[definitionName];
+    if (definition.properties) {
+      for (const propertyName in definition.properties) {
+        const property = definition.properties[propertyName] as SpecJsonSchemaRoot;
+        // Convert x-ref-to-doc- to proper $ref
+        if (property["x-ref-to-doc"]) {
+          property.$ref = property["x-ref-to-doc"].ref;
+        }
+      }
+    }
+  }
+
+  return result;
+}
+
+/**
  * Workaround for enums expressed as oneOf const
  * -> oneOf is not well presented in SwaggerUI
  * -> oneOf is not supported by the JSON Schema to TS library

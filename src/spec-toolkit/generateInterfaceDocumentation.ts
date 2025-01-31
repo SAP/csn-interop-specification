@@ -35,6 +35,7 @@ import {
   ensureRootLevelSchema,
   removeDescriptionsFromRefPointers,
   removeExtensionAttributes,
+  postprocessSpecJsonSchema,
 } from "./util/jsonSchemaConversion";
 
 import _ from "lodash";
@@ -187,6 +188,8 @@ function jsonSchemaToDocumentation(docConfig: DocsConfig, docsConfigs: DocsConfi
     jsonSchemaRoot = ensureRootLevelSchema(jsonSchemaRoot);
   }
 
+  jsonSchemaRoot = postprocessSpecJsonSchema(jsonSchemaRoot)
+
   writeSpecJsonSchemaFiles(docConfig.targetFolder || "src/spec-v1", outputFileName, jsonSchemaRoot);
 
   log.info("--------------------------------------------------------------------------");
@@ -267,6 +270,7 @@ function handleRefToCore(jsonSchemaObject: SpecJsonSchema, docsConfigs: DocsConf
   const refToDoc =
     typeof jsonSchemaObject === "object" && "x-ref-to-doc" in jsonSchemaObject ? jsonSchemaObject["x-ref-to-doc"] : "";
   if (refToDoc) {
+    jsonSchemaObject.$ref = jsonSchemaObject["x-ref-to-doc"]?.ref
     let refToDocTitle = "";
     let refToDocDocId = "";
     let refToDocDoc = "";
