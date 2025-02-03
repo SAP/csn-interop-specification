@@ -49,6 +49,35 @@ export function preprocessSpecJsonSchema(jsonSchema: SpecJsonSchemaRoot, jsonSch
 }
 
 /**
+ * Convert x-ref-to-doc- to proper $ref
+ * 
+ * So far we use x-ref-to-doc to create a link from a spec extension back to the core spec
+ * After we merge the extensions and the core spec into one JSON Schema file, we can use a standard (local) $ref pointer 
+ */
+export function convertRefToDocToStandardRef(jsonSchema: SpecJsonSchemaRoot): SpecJsonSchemaRoot {
+  // Deep clone, just to avoid accidental mutations of input
+  let result = JSON.parse(JSON.stringify(jsonSchema))
+  result.definitions = result.definitions || {};
+  for (const definitionName in result.definitions) {
+    const definition = result.definitions[definitionName];
+    if (definition["x-ref-to-doc"]) {
+      definition.$ref = definition["x-ref-to-doc"].ref;
+    }
+
+    if (definition.properties) {
+      for (const propertyName in definition.properties) {
+        const property = definition.properties[propertyName] as SpecJsonSchemaRoot;
+        if (property["x-ref-to-doc"]) {
+          property.$ref = property["x-ref-to-doc"].ref;
+        }
+      }
+    }
+  }
+
+  return result;
+}
+
+/**
  * Workaround for enums expressed as oneOf const
  * -> oneOf is not well presented in SwaggerUI
  * -> oneOf is not supported by the JSON Schema to TS library
@@ -209,6 +238,9 @@ export function removeDescriptionsFromRefPointers(jsonSchema: SpecJsonSchemaRoot
   if (jsonSchema.definitions) {
     for (const definitionName in jsonSchema.definitions) {
       const definition = jsonSchema.definitions[definitionName];
+      if (definition.$ref && definition.description) {
+        delete definition.description;
+      }
       if (definition.properties) {
         for (const propertyName in definition.properties) {
           const property = definition.properties[propertyName];

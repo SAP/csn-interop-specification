@@ -3,6 +3,7 @@ import {
   convertAnyOfEnum,
   convertOneOfEnum,
   ensureRootLevelSchema,
+  convertRefToDocToStandardRef,
   removeDescriptionsFromRefPointers,
   removeExtensionAttributes,
 } from "./util/jsonSchemaConversion";
@@ -19,6 +20,7 @@ export async function generateTypeScriptDefinitions(schemaName: string, schema?:
     schema = yaml.load(fs.readFileSync(`./spec/v1/${schemaName}.schema.yaml`).toString()) as SpecJsonSchemaRoot;
   }
 
+  schema = convertRefToDocToStandardRef(schema);
   schema = convertOneOfEnum(schema);
   schema = convertAnyOfEnum(schema);
   schema = convertAllOfWithIfThenDiscriminatorToOneOf(schema);

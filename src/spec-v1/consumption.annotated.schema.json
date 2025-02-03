@@ -57,7 +57,8 @@
             "./spec/annotations/consumption.yaml",
             "@Consumption.ConsumptionValueHelpDefinition",
             "association"
-          ]
+          ],
+          "$ref": "#/definitions/ElementReference"
         },
         "distinctValues": {
           "type": "boolean",
