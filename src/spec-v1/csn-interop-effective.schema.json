@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#",
   "title": "CSN Interop Root",
   "description": "Root of the CSN Interop Effective JSON document.\n\nSee [Primer: Root Level Structure](../primer.md#root-level-structure).",
   "definitions": {
@@ -3078,7 +3078,6 @@
           "description": "The (fully qualified) target entity name."
         },
         "cardinality": {
-          "type": "object",
           "$ref": "#/definitions/CardinalityObject"
         },
         "on": {
@@ -3372,7 +3371,6 @@
           "description": "The (fully qualified) target entity name."
         },
         "cardinality": {
-          "type": "object",
           "$ref": "#/definitions/CardinalityObject"
         },
         "on": {
@@ -5277,7 +5275,6 @@
           "description": "The (fully qualified) target entity name."
         },
         "cardinality": {
-          "type": "object",
           "$ref": "#/definitions/CardinalityObject"
         },
         "on": {
@@ -5440,7 +5437,6 @@
           "description": "The (fully qualified) target entity name."
         },
         "cardinality": {
-          "type": "object",
           "$ref": "#/definitions/CardinalityObject"
         },
         "on": {
@@ -6662,6 +6658,7 @@
     },
     "definitions": {
       "$ref": "#/definitions/Definitions",
+      "$ref-type": "composition",
       "description": "Dictionary of CSN modeling artifacts.\n"
     },
     "i18n": {

@@ -2167,7 +2167,7 @@ export interface CompositionType {
    * The (fully qualified) target entity name.
    */
   target: string;
-  cardinality: CardinalityObject1;
+  cardinality: CardinalityObject;
   /**
    * The property `on` holds a sequence of operators and operands to describe the join condition.
    *
@@ -2253,31 +2253,6 @@ export interface CompositionType {
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
   [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
-}
-/**
- * The cardinality indicates the number of instances of one entity that can or must be associated with each instance of another entity.
- *
- * SHOULD provide `min` and `max` values explicitly.
- */
-export interface CardinalityObject1 {
-  /**
-   * Set to `1` to give a hint to database optimizers, that the relationship is "one to".
-   *
-   * If `src` is not set then it is unknown and "many to" MAY be assumed.
-   */
-  src?: number;
-  /**
-   * Specifies the targets minimum cardinality.
-   */
-  min?: number;
-  /**
-   * Specifies the targets maximum cardinality.
-   *
-   * MUST be one of:
-   * - positive Integer (1,2,...)
-   * - `*` as String
-   */
-  max?: number | string;
 }
 /**
  * An Element can be of a Custom Type (aka Derived Type) instead of a standard [CDS type](#cds-type).
@@ -3275,7 +3250,7 @@ export interface AssociationTypeDefinition {
    * The (fully qualified) target entity name.
    */
   target: string;
-  cardinality: CardinalityObject2;
+  cardinality: CardinalityObject;
   /**
    * The property `on` holds a sequence of operators and operands to describe the join condition.
    *
@@ -3312,31 +3287,6 @@ export interface AssociationTypeDefinition {
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
   [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
-}
-/**
- * The cardinality indicates the number of instances of one entity that can or must be associated with each instance of another entity.
- *
- * SHOULD provide `min` and `max` values explicitly.
- */
-export interface CardinalityObject2 {
-  /**
-   * Set to `1` to give a hint to database optimizers, that the relationship is "one to".
-   *
-   * If `src` is not set then it is unknown and "many to" MAY be assumed.
-   */
-  src?: number;
-  /**
-   * Specifies the targets minimum cardinality.
-   */
-  min?: number;
-  /**
-   * Specifies the targets maximum cardinality.
-   *
-   * MUST be one of:
-   * - positive Integer (1,2,...)
-   * - `*` as String
-   */
-  max?: number | string;
 }
 /**
  * A type definition of type `cds.Composition`.
@@ -3362,7 +3312,7 @@ export interface CompositionTypeDefinition {
    * The (fully qualified) target entity name.
    */
   target: string;
-  cardinality: CardinalityObject3;
+  cardinality: CardinalityObject;
   /**
    * The property `on` holds a sequence of operators and operands to describe the join condition.
    *
@@ -3399,31 +3349,6 @@ export interface CompositionTypeDefinition {
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
   [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
-}
-/**
- * The cardinality indicates the number of instances of one entity that can or must be associated with each instance of another entity.
- *
- * SHOULD provide `min` and `max` values explicitly.
- */
-export interface CardinalityObject3 {
-  /**
-   * Set to `1` to give a hint to database optimizers, that the relationship is "one to".
-   *
-   * If `src` is not set then it is unknown and "many to" MAY be assumed.
-   */
-  src?: number;
-  /**
-   * Specifies the targets minimum cardinality.
-   */
-  min?: number;
-  /**
-   * Specifies the targets maximum cardinality.
-   *
-   * MUST be one of:
-   * - positive Integer (1,2,...)
-   * - `*` as String
-   */
-  max?: number | string;
 }
 /**
  * Dictionary of translated texts.

@@ -1,6 +1,7 @@
 {
   "description": "JSON Schema with custom (x-) annotations",
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://sap.github.io/csn-interop-specification/spec-v1/consumption.schema.json#",
   "title": "Consumption",
   "x-extension": {
     "targetDocument": "./spec/v1/CSN-Interop-Effective.schema.yaml",

@@ -1,7 +1,7 @@
 {
   "description": "Root of the CSN Interop Effective JSON document.\n\nSee [Primer: Root Level Structure](../primer.md#root-level-structure).",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#",
   "title": "CSN Interop Root",
   "x-custom-typescript-types": [
     {
@@ -3834,7 +3834,6 @@
           ]
         },
         "cardinality": {
-          "type": "object",
           "$ref": "#/definitions/CardinalityObject",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
@@ -4165,7 +4164,6 @@
           ]
         },
         "cardinality": {
-          "type": "object",
           "$ref": "#/definitions/CardinalityObject",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
@@ -6818,7 +6816,6 @@
           ]
         },
         "cardinality": {
-          "type": "object",
           "$ref": "#/definitions/CardinalityObject",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
@@ -7023,7 +7020,6 @@
           ]
         },
         "cardinality": {
-          "type": "object",
           "$ref": "#/definitions/CardinalityObject",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
@@ -8576,6 +8572,7 @@
     },
     "definitions": {
       "$ref": "#/definitions/Definitions",
+      "$ref-type": "composition",
       "description": "Dictionary of CSN modeling artifacts.\n",
       "x-context": [
         "./spec/v1/CSN-Interop-Effective.schema.yaml",
