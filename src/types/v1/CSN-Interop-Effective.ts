@@ -248,6 +248,11 @@ export type ObjectModelCompositionRoot = boolean;
  */
 export type ObjectModel2 = SupportedCapabilitiesEnumValue[];
 /**
+ * Unique name of the entity within the tenant / isolation context it is deployed to.
+ * This may be used as a hint for database table names and help to keep them short enough.
+ */
+export type ObjectModelTenantWideUniqueName = string;
+/**
  * The entity represents an ODM Entity with this official name.
  */
 export type ODMEntityName = string;
@@ -605,6 +610,7 @@ export interface EntityDefinition {
   "@ObjectModel.representativeKey"?: ElementReference;
   "@ObjectModel.modelingPattern"?: ObjectModel1;
   "@ObjectModel.supportedCapabilities"?: ObjectModel2;
+  "@ObjectModel.tenantWideUniqueName"?: ObjectModelTenantWideUniqueName;
   "@ODM.entityName"?: ODMEntityName;
   "@ODM.oid"?: ElementReference;
   /**

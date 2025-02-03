@@ -10,6 +10,8 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+- ADDED: `@ObjectModel.tenantWideUniqueName` annotation
+
 ## [0.4.0]
 
 ### Added
