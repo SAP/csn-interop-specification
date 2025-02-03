@@ -8513,7 +8513,7 @@
       "description": "Link to JSON Schema for this CSN Interop Effective document.\nAdding this helps with automatic validation and code intelligence in some editors / IDEs.\n\nSee https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema\n",
       "anyOf": [
         {
-          "const": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json"
+          "const": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#"
         },
         {
           "type": "string",
@@ -8572,7 +8572,6 @@
     },
     "definitions": {
       "$ref": "#/definitions/Definitions",
-      "$ref-type": "composition",
       "description": "Dictionary of CSN modeling artifacts.\n",
       "x-context": [
         "./spec/v1/CSN-Interop-Effective.schema.yaml",

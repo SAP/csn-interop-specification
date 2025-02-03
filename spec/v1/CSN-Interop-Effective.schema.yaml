@@ -73,7 +73,7 @@ definitions:
 
           See https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema
         anyOf:
-          - const: https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json
+          - const: https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#
           - type: string
             format: uri-reference
       $id:
@@ -106,7 +106,6 @@ definitions:
 
       definitions:
         $ref: "#/definitions/Definitions"
-        $ref-type: "composition"
         description: |
           Dictionary of CSN modeling artifacts.
 
