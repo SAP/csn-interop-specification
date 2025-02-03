@@ -34,7 +34,8 @@
       "x-context": [
         "./spec/annotations/object-model.yaml",
         "@ObjectModel.representativeKey"
-      ]
+      ],
+      "$ref": "#/definitions/ElementReference"
     },
     "@ObjectModel.semanticKey": {
       "type": "array",
@@ -143,7 +144,8 @@
       "x-context": [
         "./spec/annotations/object-model.yaml",
         "@ObjectModel.foreignKey.association"
-      ]
+      ],
+      "$ref": "#/definitions/ElementReference"
     },
     "@ObjectModel.text.element": {
       "type": "array",
@@ -181,7 +183,8 @@
       "x-context": [
         "./spec/annotations/object-model.yaml",
         "@ObjectModel.text.association"
-      ]
+      ],
+      "$ref": "#/definitions/ElementReference"
     },
     "@ObjectModel.SupportedCapabilities_EnumValue": {
       "title": "Supported Capabilities Enum Value",

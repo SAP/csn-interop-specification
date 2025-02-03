@@ -32,7 +32,8 @@
       "x-context": [
         "./spec/annotations/odm.yaml",
         "@ODM.oid"
-      ]
+      ],
+      "$ref": "#/definitions/ElementReference"
     },
     "@ODM.oidReference.entityName": {
       "type": "string",

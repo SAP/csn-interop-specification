@@ -1,7 +1,7 @@
 {
   "description": "Root of the CSN Interop Effective JSON document.\n\nSee [Primer: Root Level Structure](../primer.md#root-level-structure).",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
+  "$id": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#",
   "title": "CSN Interop Root",
   "x-custom-typescript-types": [
     {
@@ -126,6 +126,7 @@
         },
         "document": {
           "$ref": "#/definitions/MetaDocument",
+          "description": "Meta information about the document content.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "Meta",
@@ -134,6 +135,7 @@
         },
         "features": {
           "$ref": "#/definitions/MetaFeatures",
+          "description": "Feature dimensions that this CSN document fulfills.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "Meta",
@@ -387,6 +389,7 @@
         },
         "elements": {
           "$ref": "#/definitions/ElementDefinitions",
+          "description": "Dictionary of the elements of the entity.\nThe dictionary key is the element `name`, the value the element itself.\n\nMUST have at least one element.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "EntityDefinition",
@@ -3831,7 +3834,6 @@
           ]
         },
         "cardinality": {
-          "type": "object",
           "$ref": "#/definitions/CardinalityObject",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
@@ -4162,7 +4164,6 @@
           ]
         },
         "cardinality": {
-          "type": "object",
           "$ref": "#/definitions/CardinalityObject",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
@@ -6815,7 +6816,6 @@
           ]
         },
         "cardinality": {
-          "type": "object",
           "$ref": "#/definitions/CardinalityObject",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
@@ -7020,7 +7020,6 @@
           ]
         },
         "cardinality": {
-          "type": "object",
           "$ref": "#/definitions/CardinalityObject",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
@@ -7467,7 +7466,8 @@
             "title": "Element Reference",
             "ref": "#/definitions/ElementReference"
           },
-          "description": "Reference to the modelled association (in local entity) for which the target view represents the value help providing view or entity for the annotated local field. The on-condition of the association may only contain bindings of the source and target fields that use an equal operator. All these bindings are automatically considered by the value help for both filter and result mappings.\nMutually exclusive to the usage of `valueHelpDefinition.entity`."
+          "description": "Reference to the modelled association (in local entity) for which the target view represents the value help providing view or entity for the annotated local field. The on-condition of the association may only contain bindings of the source and target fields that use an equal operator. All these bindings are automatically considered by the value help for both filter and result mappings.\nMutually exclusive to the usage of `valueHelpDefinition.entity`.",
+          "$ref": "#/definitions/ElementReference"
         },
         "distinctValues": {
           "type": "boolean",
@@ -8513,7 +8513,7 @@
       "description": "Link to JSON Schema for this CSN Interop Effective document.\nAdding this helps with automatic validation and code intelligence in some editors / IDEs.\n\nSee https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema\n",
       "anyOf": [
         {
-          "const": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json"
+          "const": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#"
         },
         {
           "type": "string",
