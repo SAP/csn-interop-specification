@@ -1,5 +1,6 @@
 // Compile this to CDS:
 // cds c -f inferred .\examples\TestEntity.cds -o tmp/test.cds.json
+// cdsc forEffective --beta effectiveCsn
 
 namespace foo.bar;
 
