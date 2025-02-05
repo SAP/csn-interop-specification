@@ -36,6 +36,7 @@
     "type": "git",
     "url": "git+https://github.com/SAP/csn-interop-specification.git"
   },
+  "homepage": "https://sap.github.io/csn-interop-specification/",
   "files": [
     "README.md",
     "dist/index.js",
