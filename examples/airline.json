@@ -52,7 +52,6 @@
       "doc": "Description of the reuse type",
       "@EndUserText.label": "Airline",
       "@ObjectModel.text.element": ["Name"],
-      "key": true,
       "type": "cds.String",
       "length": 3
     },
