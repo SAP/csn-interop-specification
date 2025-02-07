@@ -1,6 +1,5 @@
 import * as fs from "fs-extra";
 import * as fg from "fast-glob";
-import { log } from "./spec-toolkit/util/log";
 
 // Only execute this when called via CLI
 if (require.main === module) {
@@ -8,30 +7,30 @@ if (require.main === module) {
 }
 
 function execCli(): void {
-  log.info(" ");
-  log.info("==========================================================================");
-  log.info("CLEANUP PROJECT");
-  log.info("==========================================================================");
+  console.info(" ");
+  console.info("==========================================================================");
+  console.info("CLEANUP PROJECT");
+  console.info("==========================================================================");
 
   clean();
 
-  log.info("--------------------------------------------------------------------------");
-  log.info("SUCCESS: Cleanup done.");
-  log.info("--------------------------------------------------------------------------");
-  log.info(" ");
+  console.info("--------------------------------------------------------------------------");
+  console.info("SUCCESS: Cleanup done.");
+  console.info("--------------------------------------------------------------------------");
+  console.info(" ");
 }
 
 function clean(): void {
   const folders = ["./build", "./dist", "./docs/annotations", "./docs/spec-v1/", "./static/spec-v1"];
   for (const folder of folders) {
-    log.info("Cleaning up: " + folder);
+    console.info("Cleaning up: " + folder);
     const files = fg.sync("**/*", {
       cwd: folder,
       absolute: true,
       ignore: ["**/index.md", "**/index.mdx", "**/_category_.json"],
     });
     for (const file of files) {
-      log.debug("Deleting: " + file);
+      console.debug("Deleting: " + file);
       fs.removeSync(file);
     }
   }

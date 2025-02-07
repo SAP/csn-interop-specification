@@ -1,8 +1,8 @@
 import _ from "lodash";
-import { log } from "../util/log";
+import { log } from "./log.js";
 
-import { SpecJsonSchema, SpecJsonSchemaRoot } from "../model/SpecJsonSchema";
-import { detectAnyOfEnum, detectOneOfEnum } from "../generateInterfaceDocumentation";
+import { SpecJsonSchema, SpecJsonSchemaRoot } from "../model/SpecJsonSchema.js";
+import { detectAnyOfEnum, detectOneOfEnum } from "../generateInterfaceDocumentation.js";
 
 /**
  * Prepare a Spec JSON Schema file, so it is easier to work with.
@@ -14,7 +14,7 @@ import { detectAnyOfEnum, detectOneOfEnum } from "../generateInterfaceDocumentat
 export function preprocessSpecJsonSchema(jsonSchema: SpecJsonSchemaRoot, jsonSchemaFileName: string): SpecJsonSchemaRoot {
   // Deep clone, just to avoid accidental mutations of input
   let result = JSON.parse(JSON.stringify(jsonSchema))
-  
+
   result = removeNullProperties(result);
 
   // Enrich x-context and titles
@@ -50,9 +50,9 @@ export function preprocessSpecJsonSchema(jsonSchema: SpecJsonSchemaRoot, jsonSch
 
 /**
  * Convert x-ref-to-doc- to proper $ref
- * 
+ *
  * So far we use x-ref-to-doc to create a link from a spec extension back to the core spec
- * After we merge the extensions and the core spec into one JSON Schema file, we can use a standard (local) $ref pointer 
+ * After we merge the extensions and the core spec into one JSON Schema file, we can use a standard (local) $ref pointer
  */
 export function convertRefToDocToStandardRef(jsonSchema: SpecJsonSchemaRoot): SpecJsonSchemaRoot {
   // Deep clone, just to avoid accidental mutations of input

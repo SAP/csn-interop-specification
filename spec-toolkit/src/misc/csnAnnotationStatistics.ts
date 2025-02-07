@@ -1,8 +1,7 @@
-/* eslint-disable no-console */
-import { log } from "../spec-toolkit/util/log";
-import * as fg from "fast-glob";
-import * as fs from "fs-extra";
-import * as path from "path";
+import {log} from "../util/log.js";
+import fg from "fast-glob";
+import fs from "fs-extra";
+import path from "path";
 import * as _ from "lodash";
 
 // Use like: tsx .\src\misc\csnAnnotationStatistics.ts .\tmp\s4-csn\

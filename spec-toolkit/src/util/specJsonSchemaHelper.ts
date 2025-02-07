@@ -1,5 +1,5 @@
-import { SpecJsonSchema } from "../model/SpecJsonSchema";
-import { getAnchorLinkFromTitle } from "./markdownTextHelper";
+import { SpecJsonSchema } from "../model/SpecJsonSchema.js";
+import { getAnchorLinkFromTitle } from "./markdownTextHelper.js";
 
 export function getTitleFromSchemaObject(jsonSchemaObject: SpecJsonSchema): string {
   if (!jsonSchemaObject.title) {

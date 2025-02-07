@@ -10,8 +10,8 @@
  * * Add **Type**: consistently for non-object Definition entries
  */
 
-import { ConfigFile, DocsConfig, getIntroductionText, getOutroText, getTargetDocumentForDocumentId } from "./model/Config";
-import { SpecJsonSchema, SpecJsonSchemaRoot } from "./model/SpecJsonSchema";
+import { ConfigFile, DocsConfig, getIntroductionText, getOutroText, getTargetDocumentForDocumentId } from "./model/Config.js";
+import { SpecJsonSchema, SpecJsonSchemaRoot } from "./model/SpecJsonSchema.js";
 import {
   addVerticalSeparator,
   escapeHtmlChars,
@@ -22,42 +22,39 @@ import {
   getMarkdownFrontMatter,
   getMdLinkFromRef,
   getOutputFileName,
-} from "./util/markdownTextHelper";
+} from "./util/markdownTextHelper.js";
 import {
   checkRequiredPropertiesExist,
   getContextText,
   getJsonSchemaValidator,
   validatePropertyName,
   validateSpecJsonSchema,
-} from "./util/validation";
+} from "./util/validation.js";
 import {
   preprocessSpecJsonSchema,
   ensureRootLevelSchema,
   removeDescriptionsFromRefPointers,
   removeExtensionAttributes,
   convertRefToDocToStandardRef,
-} from "./util/jsonSchemaConversion";
+} from "./util/jsonSchemaConversion.js";
 
 import _ from "lodash";
 import fs from "fs-extra";
-import { log } from "./util/log";
+import { log } from "./util/log.js";
 import path from "path";
 import yaml from "js-yaml";
-import { getHashIdForProperty, getIdForSchema as getSchemaObjectId, getTitleFromSchemaObject } from "./util/specJsonSchemaHelper";
+import { getHashIdForProperty, getIdForSchema as getSchemaObjectId, getTitleFromSchemaObject } from "./util/specJsonSchemaHelper.js";
 
 /**
  * Generate Interface for all Files in the configured in the config file
  */
-export function generateInterfaceDocumentationFromConfig(config?: ConfigFile): DocumentationResult[] {
+export function generateInterfaceDocumentationFromConfig(configData: ConfigFile): DocumentationResult[] {
   const result: DocumentationResult[] = [];
-  if (!config) {
-    // TODO: Make this configurable, maybe have it as a `.` file in root or linked in package.json
-    config = fs.readJSONSync("./src/genConfig.json") as ConfigFile;
-  }
+
   //Iterate the files and generate the documentation
   //Remark: Both docConfig as well as docsConfigs are handed over due to handle cross links
-  for (const docConfig of config.docsConfig) {
-    result.push(jsonSchemaToDocumentation(docConfig, config.docsConfig));
+  for (const docConfig of configData.docsConfig) {
+    result.push(jsonSchemaToDocumentation(docConfig, configData.docsConfig));
   }
   return result;
 }
@@ -638,7 +635,7 @@ function getObjectDescriptionTable(
 
     if (jsonSchemaObject.properties || jsonSchemaObject.patternProperties) {
 
-      // Add overview type 
+      // Add overview type
       // TODO: Consider making this an option. Maybe dependent on how many properties there are?
       if (jsonSchemaObject.properties) {
         // Filter our hidden properties

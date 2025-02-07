@@ -1,8 +1,7 @@
-import * as fg from "fast-glob";
-import * as fs from "fs-extra";
+import fg from "fast-glob";
+import fs from "fs-extra";
 import * as path from "path";
-import { log } from "./util/log";
-import { CSNInteropRoot } from "../types";
+import { log } from "./util/log.js";
 
 interface ExampleDocumentsDict {
   [fileName: string]: string;
@@ -25,7 +24,7 @@ function generateExampleDocumentationPage(filePaths: string[], documentType: str
   for (const filePath of filePaths) {
     let text = "";
     const exampleFileContent = fs.readFileSync(filePath).toString();
-    const exampleParsed = JSON.parse(exampleFileContent) as CSNInteropRoot;
+    const exampleParsed = JSON.parse(exampleFileContent);
     const fileName = path.parse(filePath).name + ".md";
 
     // const title = exampleParsed.meta?.document?.title || path;
