@@ -28,7 +28,7 @@ export async function generateTypeScriptDefinitions(schemaName: string, schema?:
   // Schema cleaned up
   schema = removeDescriptionsFromRefPointers(schema);
   const allCustomPropertiesTypescriptTypes = schema["x-custom-typescript-types"];
-  schema = await removeExtensionAttributes(schema);
+  schema = removeExtensionAttributes(schema);
   schema = ensureRootLevelSchema(schema);
   const convertedDocumentSchema = schema as JSONSchema4;
 

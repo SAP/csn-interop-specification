@@ -11,9 +11,12 @@ import { detectAnyOfEnum, detectOneOfEnum } from "../generateInterfaceDocumentat
  * * Adding `x-context` for easier debugging and further use
  * * Adding missing `title` properties
  */
-export function preprocessSpecJsonSchema(jsonSchema: SpecJsonSchemaRoot, jsonSchemaFileName: string): SpecJsonSchemaRoot {
+export function preprocessSpecJsonSchema(
+  jsonSchema: SpecJsonSchemaRoot,
+  jsonSchemaFileName: string,
+): SpecJsonSchemaRoot {
   // Deep clone, just to avoid accidental mutations of input
-  let result = JSON.parse(JSON.stringify(jsonSchema))
+  let result = JSON.parse(JSON.stringify(jsonSchema));
 
   result = removeNullProperties(result);
 
@@ -56,7 +59,7 @@ export function preprocessSpecJsonSchema(jsonSchema: SpecJsonSchemaRoot, jsonSch
  */
 export function convertRefToDocToStandardRef(jsonSchema: SpecJsonSchemaRoot): SpecJsonSchemaRoot {
   // Deep clone, just to avoid accidental mutations of input
-  let result = JSON.parse(JSON.stringify(jsonSchema))
+  const result = JSON.parse(JSON.stringify(jsonSchema));
   result.definitions = result.definitions || {};
   for (const definitionName in result.definitions) {
     const definition = result.definitions[definitionName];
@@ -279,7 +282,7 @@ export function removeExtensionAttributes(jsonSchema: SpecJsonSchemaRoot): SpecJ
 export function removeNullProperties(jsonSchema: SpecJsonSchemaRoot): SpecJsonSchemaRoot {
   return JSON.parse(
     JSON.stringify(jsonSchema, (_key, val) => {
-      return (val === null) ? undefined : val;
+      return val === null ? undefined : val;
     }),
   );
 }

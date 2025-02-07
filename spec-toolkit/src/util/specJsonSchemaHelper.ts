@@ -17,6 +17,6 @@ export function getIdForSchema(jsonSchemaObject: SpecJsonSchema): string {
   return getAnchorLinkFromTitle(jsonSchemaObject.title.replace("#", ""));
 }
 
-export function getHashIdForProperty(schemaObjectId: string, propertyName: string) {
+export function getHashIdForProperty(schemaObjectId: string, propertyName: string): string {
   return `${schemaObjectId}_${propertyName}`.toLowerCase().replace("#", "");
 }

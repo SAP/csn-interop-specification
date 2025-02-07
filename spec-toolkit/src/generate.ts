@@ -1,8 +1,8 @@
 /*
-**
-** This is a wrapper that executes all the generators in one go.
-**
-* */
+ **
+ ** This is a wrapper that executes all the generators in one go.
+ **
+ * */
 import { generateExampleDocumentation } from "./generateExampleDocumentation.js";
 import { generateInterfaceDocumentationFromConfig } from "./generateInterfaceDocumentation.js";
 import { generateTypeScriptDefinitions } from "./generateTypeScriptDefinitions.js";
@@ -29,8 +29,8 @@ export async function generate(configData: ConfigFile): Promise<void> {
   log.info("--------------------------------------------------------------------------");
   log.info("GENERATE AND MERGE SPEC EXTENSIONS");
   log.info("--------------------------------------------------------------------------");
-    // TODO: Load this list from config file (genConfig.json)
-  const mergedSpecSchema = await mergeSpecExtensions({
+  // TODO: Load this list from config file (genConfig.json)
+  const mergedSpecSchema = mergeSpecExtensions({
     specExtensions: [
       "./spec/annotations/aggregation.yaml",
       "./spec/annotations/analytics-details.yaml",
@@ -43,9 +43,9 @@ export async function generate(configData: ConfigFile): Promise<void> {
       "./spec/annotations/semantics.yaml",
     ],
     targetDocument: csnInteropEffectiveSchema,
-    targetDocumentFileName:  "csn-interop-effective",
+    targetDocumentFileName: "csn-interop-effective",
     targetDocumentFolder: "src/spec-v1",
-  })
+  });
 
   log.info(" ");
   log.info("--------------------------------------------------------------------------");

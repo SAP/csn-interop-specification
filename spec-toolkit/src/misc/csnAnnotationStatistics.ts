@@ -1,4 +1,4 @@
-import {log} from "../util/log.js";
+import { log } from "../util/log.js";
 import fg from "fast-glob";
 import fs from "fs-extra";
 import path from "path";
@@ -39,9 +39,9 @@ const annotationArray = Object.entries(annotationMap)
     return b.count - a.count;
   });
 
-console.log("--------------------------------------------------------------------------");
-console.log(annotationArray);
-console.log("--------------------------------------------------------------------------");
+log.info("--------------------------------------------------------------------------");
+log.info(annotationArray);
+log.info("--------------------------------------------------------------------------");
 
 fs.outputFileSync("./tmp/annotationStatistics.json", JSON.stringify(annotationArray, null, 2));
 log.info("Written: ./tmp/annotationStatistics.json");
