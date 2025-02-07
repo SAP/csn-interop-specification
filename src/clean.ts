@@ -1,3 +1,5 @@
+// TODO: review file necessity, probably it can be deleted
+/* eslint-disable no-console */
 import * as fs from "fs-extra";
 import * as fg from "fast-glob";
 

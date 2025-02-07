@@ -3,13 +3,11 @@ import * as fs from "fs-extra";
 import * as yaml from "js-yaml";
 import { Draft07, JsonError, JsonSchema } from "json-schema-library";
 
-let effectiveCsnSchema = yaml.load(
+const effectiveCsnSchema = yaml.load(
   fs.readFileSync(`./spec/v1/CSN-Interop-Effective.schema.yaml`).toString(),
 ) as JsonSchema;
 
-const effectiveCsnSchemaExtended = fs.readJSONSync(
-  "./src/spec-v1/csn-interop-effective.schema.json",
-) as JsonSchema;
+const effectiveCsnSchemaExtended = fs.readJSONSync("./src/spec-v1/csn-interop-effective.schema.json") as JsonSchema;
 
 const effectiveCsnSchemaValidator = new Draft07(effectiveCsnSchema);
 const effectiveCsnSchemaExtendedValidator = new Draft07(effectiveCsnSchemaExtended);

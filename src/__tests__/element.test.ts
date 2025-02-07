@@ -4,7 +4,7 @@ import { Draft07, JsonSchema } from "json-schema-library";
 import { getCsnDocumentTestData, getElementTestDataByElementType } from "./testUtils";
 
 describe("Tests for all elements", (): void => {
-  let effectiveCsnSchema = yaml.load(
+  const effectiveCsnSchema = yaml.load(
     fs.readFileSync(`./spec/v1/CSN-Interop-Effective.schema.yaml`).toString(),
   ) as JsonSchema;
 

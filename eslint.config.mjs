@@ -5,6 +5,7 @@ export default withCustomConfig([
     ignores: [
       "dist",
       "build",
+      "spec-toolkit",
       ".docusaurus",
       "tmp",
       "src/types/",

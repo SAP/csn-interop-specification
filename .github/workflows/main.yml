@@ -22,8 +22,14 @@ jobs:
           node-version: "20"
           cache: "npm"
 
-      - name: npm install
+      - name: install dependencies
         run: npm ci
+
+      - name: run prettier
+        run: npm run prettier:ci
+
+      - name: run linter
+        run: npm run eslint:ci
 
       - name: build and test
         run: npm run test
