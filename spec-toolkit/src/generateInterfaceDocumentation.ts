@@ -55,20 +55,6 @@ import {
   getTitleFromSchemaObject,
 } from "./util/specJsonSchemaHelper.js";
 
-/**
- * Generate Interface for all Files in the configured in the config file
- */
-export function generateInterfaceDocumentationFromConfig(configData: ConfigFile): DocumentationResult[] {
-  const result: DocumentationResult[] = [];
-
-  //Iterate the files and generate the documentation
-  //Remark: Both docConfig as well as docsConfigs are handed over due to handle cross links
-  for (const docConfig of configData.docsConfig) {
-    result.push(jsonSchemaToDocumentation(docConfig, configData.docsConfig));
-  }
-  return result;
-}
-
 ////////////////////////////////////////////////////////////
 // JSON SCHEMA TO MARKDOWN                                //
 ////////////////////////////////////////////////////////////
@@ -101,110 +87,116 @@ export interface DocumentationResult {
  *
  * @returns generated text
  */
-function jsonSchemaToDocumentation(docConfig: DocsConfig, docsConfigs: DocsConfig[]): DocumentationResult {
-  // Read JSON File
-  const jsonSchemaFile = fs.readFileSync(path.join(process.cwd(), docConfig.sourceFile)).toString();
-  const outputFileName = getOutputFileName(docConfig.id.toLowerCase().replace("@", ""));
-  const jsonSchemaFileParsed = yaml.load(jsonSchemaFile) as SpecJsonSchemaRoot;
+export function jsonSchemaToDocumentation(configData: ConfigFile): DocumentationResult[] {
+  const result: DocumentationResult[] = [];
 
-  /** The Spec JSON Schema based Specification */
-  let jsonSchemaRoot = preprocessSpecJsonSchema(jsonSchemaFileParsed, docConfig.sourceFile);
-  log.info(`${getContextText(jsonSchemaRoot)} loaded and prepared.`);
+  // Iterate the files and generate the documentation
+  for (const docConfig of configData.docsConfig) {
+    // Read JSON File
+    const jsonSchemaFile = fs.readFileSync(path.join(process.cwd(), docConfig.sourceFile)).toString();
+    const outputFileName = getOutputFileName(docConfig.id.toLowerCase().replace("@", ""));
+    const jsonSchemaFileParsed = yaml.load(jsonSchemaFile) as SpecJsonSchemaRoot;
 
-  // Read extension target file if given
-  let extensionTarget: SpecJsonSchemaRoot | undefined;
-  if (jsonSchemaRoot["x-extension"]) {
-    const file = fs.readFileSync(jsonSchemaRoot["x-extension"].targetDocument).toString();
-    extensionTarget = yaml.load(file) as SpecJsonSchemaRoot;
-  }
+    /** The Spec JSON Schema based Specification */
+    let jsonSchemaRoot = preprocessSpecJsonSchema(jsonSchemaFileParsed, docConfig.sourceFile);
+    log.info(`${getContextText(jsonSchemaRoot)} loaded and prepared.`);
 
-  // Validate JSON Schema to be a valid JSON Schema document
-  validateSpecJsonSchema(jsonSchemaRoot, true);
-
-  //Write Header Information and Introduction Text
-  let text = getMarkdownFrontMatter(
-    docConfig.title,
-    docConfig.sideBarPosition,
-    docConfig.sideBarDescription,
-    docConfig.tocMaxHeadingLevel,
-  );
-  text += getIntroductionText(docConfig).trimEnd();
-
-  text += "\n\n## Schema Definitions\n\n";
-
-  if (jsonSchemaRoot["x-extension"]) {
-    text += `* This is an extension vocabulary for [${extensionTarget?.title}](${jsonSchemaRoot["x-extension"].targetLink}).\n`;
-  } else if (jsonSchemaRoot.$ref) {
-    const referencedSchema = getReferencedSchema(jsonSchemaRoot.$ref, jsonSchemaRoot, docConfig.title);
-    if (referencedSchema.title) {
-      const link = getAnchorLinkFromTitle(referencedSchema.title);
-      text += `* The root schema of the document is [${referencedSchema.title}](${link})\n`;
-    } else {
-      throw new Error(
-        `Every JSON Schema object need to have a title. Problem: ${JSON.stringify(referencedSchema, null, 2)}`,
-      );
+    // Read extension target file if given
+    let extensionTarget: SpecJsonSchemaRoot | undefined;
+    if (jsonSchemaRoot["x-extension"]) {
+      const file = fs.readFileSync(jsonSchemaRoot["x-extension"].targetDocument).toString();
+      extensionTarget = yaml.load(file) as SpecJsonSchemaRoot;
     }
-  }
 
-  if (jsonSchemaRoot.$id) {
-    // TODO: Add those links depending on config
-    // text += `* Example files can be found [here](/spec-v1/examples/${title.toLocaleLowerCase()}).\n`
-    // text += `* Visual diagrams can be found here: [ORD ${title} Class Diagram](/spec-v1/diagrams/${title}.md).\n`
-    text += `* The interface is available as JSON Schema: [/spec-v1/${outputFileName}.schema.json](${jsonSchemaRoot.$id}).\n`;
-    // text += `* A high-level overview can also be exported as [Excel](/spec-v1/interfaces/${docConfig.title}.xlsx) and [CSV](/spec-v1/interfaces/${docConfig.title}.csv) file.\n`
-  }
+    // Validate JSON Schema to be a valid JSON Schema document
+    validateSpecJsonSchema(jsonSchemaRoot, true);
 
-  // Add custom facts / bullet points
-  if (docConfig.facts) {
-    for (const fact of docConfig.facts) {
-      text += `* ${fact}\n`;
+    //Write Header Information and Introduction Text
+    let text = getMarkdownFrontMatter(
+      docConfig.title,
+      docConfig.sideBarPosition,
+      docConfig.sideBarDescription,
+      docConfig.tocMaxHeadingLevel,
+    );
+    text += getIntroductionText(docConfig).trimEnd();
+
+    text += "\n\n## Schema Definitions\n\n";
+
+    if (jsonSchemaRoot["x-extension"]) {
+      text += `* This is an extension vocabulary for [${extensionTarget?.title}](${jsonSchemaRoot["x-extension"].targetLink}).\n`;
+    } else if (jsonSchemaRoot.$ref) {
+      const referencedSchema = getReferencedSchema(jsonSchemaRoot.$ref, jsonSchemaRoot, docConfig.title);
+      if (referencedSchema.title) {
+        const link = getAnchorLinkFromTitle(referencedSchema.title);
+        text += `* The root schema of the document is [${referencedSchema.title}](${link})\n`;
+      } else {
+        throw new Error(
+          `Every JSON Schema object need to have a title. Problem: ${JSON.stringify(referencedSchema, null, 2)}`,
+        );
+      }
     }
-  }
 
-  // If extension: Create extension property overview table
-  if (jsonSchemaRoot["x-extension"]) {
-    text += getExtensionOverviewTable(jsonSchemaRoot);
-  }
-
-  // Document definitions block
-  if (jsonSchemaRoot.definitions) {
-    const definitionEntries = Object.keys(jsonSchemaRoot.definitions);
-    const propertyOrder = jsonSchemaRoot["x-property-order"] || [];
-
-    const finalPropertyOrder = _.union(propertyOrder, definitionEntries);
-
-    // Refactor: Loop within jsonSchemaToMd, then we don't have to pass definition name
-    for (const definitionName of finalPropertyOrder) {
-      const definition = jsonSchemaRoot.definitions[definitionName];
-      text += jsonSchemaToMd(definition, jsonSchemaRoot, docsConfigs, definitionName, extensionTarget);
+    if (jsonSchemaRoot.$id) {
+      // TODO: Add those links depending on config
+      // text += `* Example files can be found [here](/spec-v1/examples/${title.toLocaleLowerCase()}).\n`
+      // text += `* Visual diagrams can be found here: [ORD ${title} Class Diagram](/spec-v1/diagrams/${title}.md).\n`
+      text += `* The interface is available as JSON Schema: [/spec-v1/${outputFileName}.schema.json](${jsonSchemaRoot.$id}).\n`;
+      // text += `* A high-level overview can also be exported as [Excel](/spec-v1/interfaces/${docConfig.title}.xlsx) and [CSV](/spec-v1/interfaces/${docConfig.title}.csv) file.\n`
     }
+
+    // Add custom facts / bullet points
+    if (docConfig.facts) {
+      for (const fact of docConfig.facts) {
+        text += `* ${fact}\n`;
+      }
+    }
+
+    // If extension: Create extension property overview table
+    if (jsonSchemaRoot["x-extension"]) {
+      text += getExtensionOverviewTable(jsonSchemaRoot);
+    }
+
+    // Document definitions block
+    if (jsonSchemaRoot.definitions) {
+      const definitionEntries = Object.keys(jsonSchemaRoot.definitions);
+      const propertyOrder = jsonSchemaRoot["x-property-order"] || [];
+
+      const finalPropertyOrder = _.union(propertyOrder, definitionEntries);
+
+      // Refactor: Loop within jsonSchemaToMd, then we don't have to pass definition name
+      for (const definitionName of finalPropertyOrder) {
+        const definition = jsonSchemaRoot.definitions[definitionName];
+        text += jsonSchemaToMd(definition, jsonSchemaRoot, configData.docsConfig, definitionName, extensionTarget);
+      }
+    }
+
+    if (jsonSchemaRoot.examples) {
+      text += "\n## Complete Examples\n";
+      text += getObjectExampleText(jsonSchemaRoot, jsonSchemaRoot, true);
+    }
+
+    text += getOutroText(docConfig).trimEnd();
+
+    // Write Markdown Documentation
+    fs.outputFileSync(docConfig.targetFile, text);
+    log.info(`Written: ${docConfig.targetFile}`);
+
+    if (!jsonSchemaRoot.type && !jsonSchemaRoot["x-extension"]) {
+      jsonSchemaRoot = ensureRootLevelSchema(jsonSchemaRoot);
+    }
+
+    writeSpecJsonSchemaFiles(docConfig.targetFolder || "src/spec-v1", outputFileName, jsonSchemaRoot);
+
+    log.info("--------------------------------------------------------------------------");
+
+    result.push({
+      markdown: text,
+      jsonSchema: jsonSchemaRoot,
+    });
   }
 
-  if (jsonSchemaRoot.examples) {
-    text += "\n## Complete Examples\n";
-    text += getObjectExampleText(jsonSchemaRoot, jsonSchemaRoot, true);
-  }
-
-  text += getOutroText(docConfig).trimEnd();
-
-  // Write Markdown Documentation
-  fs.outputFileSync(docConfig.targetFile, text);
-  log.info(`Written: ${docConfig.targetFile}`);
-
-  if (!jsonSchemaRoot.type && !jsonSchemaRoot["x-extension"]) {
-    jsonSchemaRoot = ensureRootLevelSchema(jsonSchemaRoot);
-  }
-
-  writeSpecJsonSchemaFiles(docConfig.targetFolder || "src/spec-v1", outputFileName, jsonSchemaRoot);
-
-  log.info("--------------------------------------------------------------------------");
-
-  return {
-    markdown: text,
-    jsonSchema: jsonSchemaRoot,
-  };
+  return result;
 }
-
 /**
  * Converts a Spec JSON Schema to markdown documentation
  *

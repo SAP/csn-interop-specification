@@ -4,7 +4,7 @@
  **
  * */
 import { generateExampleDocumentation } from "./generateExampleDocumentation.js";
-import { generateInterfaceDocumentationFromConfig } from "./generateInterfaceDocumentation.js";
+import { jsonSchemaToDocumentation } from "./generateInterfaceDocumentation.js";
 import { generateTypeScriptDefinitions } from "./generateTypeScriptDefinitions.js";
 import { log } from "./util/log.js";
 import { mergeSpecExtensions } from "./mergeSpecExtensions.js";
@@ -22,7 +22,7 @@ export async function generate(configData: ConfigFile): Promise<void> {
   log.info("--------------------------------------------------------------------------");
   log.info("GENERATE INTERFACE DOCUMENTATION (JSON-SCHEMA -> MD)");
   log.info("--------------------------------------------------------------------------");
-  const result = generateInterfaceDocumentationFromConfig(configData);
+  const result = jsonSchemaToDocumentation(configData);
   const csnInteropEffectiveSchema = result[0].jsonSchema;
 
   log.info(" ");
