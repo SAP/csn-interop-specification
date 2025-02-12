@@ -10,6 +10,14 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+### Added
+
+- Added `@Semantics.valueRange` annotation
+
+### Changed
+
+- Added descriptions and explicit scope constraints to `@Semantics` annotations (previously not always defined).
+
 ## [0.4.0]
 
 ### Added
