@@ -88,13 +88,13 @@ export function getConfigForId(docsConfigs: DocsConfig[], id: string): DocsConfi
 //Retrieve Text from Introduction File
 export function getIntroductionText(docConfig: DocsConfig): string {
   if (!docConfig.sourceFileIntroduction) {
-    return '';
+    return "";
   }
-  
-  const mdFilePath =  path.resolve(docConfig.sourceFileIntroduction);
+
+  const mdFilePath = path.resolve(docConfig.sourceFileIntroduction);
 
   if (!fs.existsSync(mdFilePath)) {
-    throw new Error('Could not read markdown file: ' + mdFilePath)
+    throw new Error("Could not read markdown file: " + mdFilePath);
   }
 
   return fs.readFileSync(mdFilePath, "utf-8");
@@ -102,13 +102,13 @@ export function getIntroductionText(docConfig: DocsConfig): string {
 //Retrieve Text from Introduction File
 export function getOutroText(docConfig: DocsConfig): string {
   if (!docConfig.sourceFileOutro) {
-    return '';
+    return "";
   }
-  
-  const mdFilePath =  path.resolve(docConfig.sourceFileOutro);
+
+  const mdFilePath = path.resolve(docConfig.sourceFileOutro);
 
   if (!fs.existsSync(mdFilePath)) {
-    throw new Error('Could not read markdown file: ' + mdFilePath)
+    throw new Error("Could not read markdown file: " + mdFilePath);
   }
 
   return fs.readFileSync(mdFilePath, "utf-8");
