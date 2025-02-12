@@ -1,8 +1,5 @@
 $schema: "http://json-schema.org/draft-07/schema#"
 title: "ObjectModel"
-x-extension:
-  targetDocument: "./spec/v1/CSN-Interop-Effective.schema.yaml"
-  targetLink: "../spec-v1/csn-interop-effective"
 
 definitions:
   "@ObjectModel.compositionRoot":
@@ -90,7 +87,7 @@ definitions:
 
   "@ObjectModel.foreignKey.association":
     description: |-
-      The element is of type `cds.Association` which points to the list of values. 
+      The element is of type `cds.Association` which points to the list of values.
 
       Use only for service internal associations. For cross service associations, use the [@EntityRelationship Vocabulary](./entity-relationship) instead.
     x-extension-targets:

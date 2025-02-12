@@ -49,15 +49,15 @@
     "@docusaurus/module-type-aliases": "3.7.0",
     "@docusaurus/preset-classic": "3.7.0",
     "@docusaurus/theme-mermaid": "3.7.0",
-    "@easyops-cn/docusaurus-search-local": "0.48.4",
+    "@easyops-cn/docusaurus-search-local": "0.48.5",
     "@sap/eslint-config": "0.4.0",
     "@tsconfig/node20": "20.1.4",
     "@types/fs-extra": "11.0.4",
     "@types/jest": "29.5.14",
     "@types/js-yaml": "4.0.9",
-    "@types/lodash": "4.17.14",
+    "@types/lodash": "4.17.15",
     "@types/minimist": "1.2.5",
-    "@types/node": "22.10.7",
+    "@types/node": "22.13.1",
     "fast-glob": "3.3.3",
     "fs-extra": "11.3.0",
     "gfm-escape": "0.2.0",
@@ -67,9 +67,9 @@
     "jest-watch-typeahead": "2.2.2",
     "js-yaml": "4.1.0",
     "json-schema": "0.4.0",
-    "json-schema-library": "9.2.1",
-    "lint-staged": "15.4.1",
-    "prettier": "3.4.2",
+    "json-schema-library": "9.3.5",
+    "lint-staged": "15.4.3",
+    "prettier": "3.5.0",
     "prism-react-renderer": "2.4.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
@@ -78,11 +78,6 @@
     "typescript": "5.7.3"
   },
   "lint-staged": {
-    "./spec/*/*.yaml": [
-      "npm run generate",
-      "git add ./src/types/v1/CSN-Interop-Effective.ts",
-      "git add ./src/spec-v1/*"
-    ],
     "**/*.{md,json,yaml}": [
       "npm run prettier"
     ]
