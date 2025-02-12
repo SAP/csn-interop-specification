@@ -1,15 +1,12 @@
 import * as fs from "fs-extra";
 import * as yaml from "js-yaml";
-import { ensureRootLevelSchema } from "../spec-toolkit/util/jsonSchemaConversion";
-import { Draft07 } from "json-schema-library";
-import { SpecJsonSchemaRoot } from "../spec-toolkit/model/SpecJsonSchema";
+import { Draft07, JsonSchema } from "json-schema-library";
 import { getCsnDocumentTestData } from "./testUtils";
 
 describe("Tests for all type definitions", (): void => {
-  let effectiveCsnSchema = yaml.load(
+  const effectiveCsnSchema = yaml.load(
     fs.readFileSync(`./spec/v1/CSN-Interop-Effective.schema.yaml`).toString(),
-  ) as SpecJsonSchemaRoot;
-  effectiveCsnSchema = ensureRootLevelSchema(effectiveCsnSchema);
+  ) as JsonSchema;
 
   const effectiveCsnSchemaValidator = new Draft07(effectiveCsnSchema);
 

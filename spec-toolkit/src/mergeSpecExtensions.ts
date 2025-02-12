@@ -1,9 +1,9 @@
-import * as fs from "fs-extra";
+import fs from "fs-extra";
 import * as yaml from "js-yaml";
-import { log } from "./util/log";
-import { SpecJsonSchemaRoot } from "./model/SpecJsonSchema";
-import { validateSpecJsonSchema } from "./util/validation";
-import { writeSpecJsonSchemaFiles } from "./generateInterfaceDocumentation";
+import { log } from "./util/log.js";
+import { SpecJsonSchemaRoot } from "./model/SpecJsonSchema.js";
+import { validateSpecJsonSchema } from "./util/validation.js";
+import { writeSpecJsonSchemaFiles } from "./generateInterfaceDocumentation.js";
 
 export interface MergeSpecExtensionsConfig {
   targetDocument: SpecJsonSchemaRoot;

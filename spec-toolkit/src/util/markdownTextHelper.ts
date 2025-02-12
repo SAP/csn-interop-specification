@@ -1,5 +1,5 @@
-import { SpecJsonSchema, SpecJsonSchemaRoot } from "../model/SpecJsonSchema";
-import { log } from "./log";
+import { SpecJsonSchema, SpecJsonSchemaRoot } from "../model/SpecJsonSchema.js";
+import { log } from "./log.js";
 import GfmEscape from "gfm-escape";
 const escaper = new GfmEscape({ table: true });
 

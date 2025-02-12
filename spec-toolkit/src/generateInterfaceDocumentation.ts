@@ -10,8 +10,14 @@
  * * Add **Type**: consistently for non-object Definition entries
  */
 
-import { ConfigFile, DocsConfig, getIntroductionText, getOutroText, getTargetDocumentForDocumentId } from "./model/Config";
-import { SpecJsonSchema, SpecJsonSchemaRoot } from "./model/SpecJsonSchema";
+import {
+  ConfigFile,
+  DocsConfig,
+  getIntroductionText,
+  getOutroText,
+  getTargetDocumentForDocumentId,
+} from "./model/Config.js";
+import { SpecJsonSchema, SpecJsonSchemaRoot } from "./model/SpecJsonSchema.js";
 import {
   addVerticalSeparator,
   escapeHtmlChars,
@@ -22,42 +28,43 @@ import {
   getMarkdownFrontMatter,
   getMdLinkFromRef,
   getOutputFileName,
-} from "./util/markdownTextHelper";
+} from "./util/markdownTextHelper.js";
 import {
   checkRequiredPropertiesExist,
   getContextText,
   getJsonSchemaValidator,
   validatePropertyName,
   validateSpecJsonSchema,
-} from "./util/validation";
+} from "./util/validation.js";
 import {
   preprocessSpecJsonSchema,
   ensureRootLevelSchema,
   removeDescriptionsFromRefPointers,
   removeExtensionAttributes,
   convertRefToDocToStandardRef,
-} from "./util/jsonSchemaConversion";
+} from "./util/jsonSchemaConversion.js";
 
 import _ from "lodash";
 import fs from "fs-extra";
-import { log } from "./util/log";
+import { log } from "./util/log.js";
 import path from "path";
 import yaml from "js-yaml";
-import { getHashIdForProperty, getIdForSchema as getSchemaObjectId, getTitleFromSchemaObject } from "./util/specJsonSchemaHelper";
+import {
+  getHashIdForProperty,
+  getIdForSchema as getSchemaObjectId,
+  getTitleFromSchemaObject,
+} from "./util/specJsonSchemaHelper.js";
 
 /**
  * Generate Interface for all Files in the configured in the config file
  */
-export function generateInterfaceDocumentationFromConfig(config?: ConfigFile): DocumentationResult[] {
+export function generateInterfaceDocumentationFromConfig(configData: ConfigFile): DocumentationResult[] {
   const result: DocumentationResult[] = [];
-  if (!config) {
-    // TODO: Make this configurable, maybe have it as a `.` file in root or linked in package.json
-    config = fs.readJSONSync("./src/genConfig.json") as ConfigFile;
-  }
+
   //Iterate the files and generate the documentation
   //Remark: Both docConfig as well as docsConfigs are handed over due to handle cross links
-  for (const docConfig of config.docsConfig) {
-    result.push(jsonSchemaToDocumentation(docConfig, config.docsConfig));
+  for (const docConfig of configData.docsConfig) {
+    result.push(jsonSchemaToDocumentation(docConfig, configData.docsConfig));
   }
   return result;
 }
@@ -98,7 +105,7 @@ function jsonSchemaToDocumentation(docConfig: DocsConfig, docsConfigs: DocsConfi
   // Read JSON File
   const jsonSchemaFile = fs.readFileSync(path.join(process.cwd(), docConfig.sourceFile)).toString();
   const outputFileName = getOutputFileName(docConfig.id.toLowerCase().replace("@", ""));
-  let jsonSchemaFileParsed = yaml.load(jsonSchemaFile) as SpecJsonSchemaRoot;
+  const jsonSchemaFileParsed = yaml.load(jsonSchemaFile) as SpecJsonSchemaRoot;
 
   /** The Spec JSON Schema based Specification */
   let jsonSchemaRoot = preprocessSpecJsonSchema(jsonSchemaFileParsed, docConfig.sourceFile);
@@ -635,24 +642,22 @@ function getObjectDescriptionTable(
   }
 
   if (!jsonSchemaObject["x-hide-properties"]) {
-
     if (jsonSchemaObject.properties || jsonSchemaObject.patternProperties) {
-
-      // Add overview type 
+      // Add overview type
       // TODO: Consider making this an option. Maybe dependent on how many properties there are?
       if (jsonSchemaObject.properties) {
         // Filter our hidden properties
-        const objectProperties = []
+        const objectProperties = [];
         for (const propertyName in jsonSchemaObject.properties) {
           if (!jsonSchemaObject.properties[propertyName]["x-hide-property"]) {
-            objectProperties.push(propertyName)
+            objectProperties.push(propertyName);
           }
         }
         const propertiesList = objectProperties.map((propertyName) => {
-          const propertyId = getHashIdForProperty(schemaObjectId, propertyName)
-          return `<a href="#${propertyId}">${propertyName}</a>`
-        })
-        text += `**Type**: Object(${propertiesList.join(', ')})\n\n`
+          const propertyId = getHashIdForProperty(schemaObjectId, propertyName);
+          return `<a href="#${propertyId}">${propertyName}</a>`;
+        });
+        text += `**Type**: Object(${propertiesList.join(", ")})\n\n`;
       }
 
       //create object table header
@@ -1290,7 +1295,6 @@ export function getAnyOfDescription(jsonSchemaObject: SpecJsonSchema, title = "R
 ////////////////////////////////////////////////////////////
 
 export function writeSpecJsonSchemaFiles(path: string, outputFileName: string, jsonSchema: SpecJsonSchemaRoot): void {
-
   jsonSchema = convertRefToDocToStandardRef(jsonSchema);
 
   // TODO: Refactor making the outputFileName fully configurable, also whether to to generate "annotated" or not.
