@@ -5,10 +5,10 @@ export default withCustomConfig([
     ignores: [
       "dist",
       "build",
+      "spec-toolkit",
       ".docusaurus",
       "tmp",
       "src/types/",
-      "src/spec-toolkit/types/",
       "src/types/v1/CSN-Interop-Effective.ts",
     ],
   },

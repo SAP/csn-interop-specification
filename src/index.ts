@@ -1,11 +1,9 @@
 import * as staticCsnInteropEffectiveSchema from "./spec-v1/csn-interop-effective.schema.json";
 import * as staticCsnInteropEffectiveSchemaWithAnnotations from "./spec-v1/csn-interop-effective.annotated.schema.json";
-
 import { JSONSchema7 } from "json-schema";
-import { SpecJsonSchemaRoot } from "./spec-toolkit/model/SpecJsonSchema";
+import { SpecJsonSchemaRoot } from "../spec-toolkit/src/index";
 
 export * from "./types";
-export * from "./spec-toolkit";
 
 export const schemas = {
   /**
@@ -13,7 +11,6 @@ export const schemas = {
    *
    * This schema also includes the standardized annotations.
    */
-
   csnInteropEffectiveSchema: staticCsnInteropEffectiveSchema as unknown as JSONSchema7,
 
   /**
@@ -21,7 +18,6 @@ export const schemas = {
    *
    * This schema also includes the standardized annotations and custom "x-..." properties.
    */
-
   csnInteropEffectiveSchemaWithAnnotations:
     staticCsnInteropEffectiveSchemaWithAnnotations as unknown as SpecJsonSchemaRoot,
 };

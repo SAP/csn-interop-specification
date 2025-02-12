@@ -6,13 +6,13 @@ import {
   convertRefToDocToStandardRef,
   removeDescriptionsFromRefPointers,
   removeExtensionAttributes,
-} from "./util/jsonSchemaConversion";
+} from "./util/jsonSchemaConversion.js";
 
 import { JSONSchema4 } from "json-schema";
-import { SpecJsonSchemaRoot } from "./model/SpecJsonSchema";
+import { SpecJsonSchemaRoot } from "./model/SpecJsonSchema.js";
 import fs from "fs-extra";
 import { compile as jsonSchemaToTypeScript } from "json-schema-to-typescript";
-import { log } from "./util/log";
+import { log } from "./util/log.js";
 import yaml from "js-yaml";
 
 export async function generateTypeScriptDefinitions(schemaName: string, schema?: SpecJsonSchemaRoot): Promise<string> {
@@ -28,7 +28,7 @@ export async function generateTypeScriptDefinitions(schemaName: string, schema?:
   // Schema cleaned up
   schema = removeDescriptionsFromRefPointers(schema);
   const allCustomPropertiesTypescriptTypes = schema["x-custom-typescript-types"];
-  schema = await removeExtensionAttributes(schema);
+  schema = removeExtensionAttributes(schema);
   schema = ensureRootLevelSchema(schema);
   const convertedDocumentSchema = schema as JSONSchema4;
 

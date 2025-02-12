@@ -1,15 +1,15 @@
-import * as fs from "fs-extra";
+import fs from "fs-extra";
 
 import Ajv, { ValidateFunction } from "ajv";
-import { SpecJsonSchema, SpecJsonSchemaRoot } from "../model/SpecJsonSchema";
+import { SpecJsonSchema, SpecJsonSchemaRoot } from "../model/SpecJsonSchema.js";
 
 import _ from "lodash";
 import addFormats from "ajv-formats";
-import { log } from "./log";
+import { log } from "./log.js";
 
 // Prepare JSON Schema validator
-export const preparedAjv = new Ajv({ allErrors: true, allowUnionTypes: true, allowMatchingProperties: true });
-addFormats(preparedAjv);
+export const preparedAjv = new Ajv.default({ allErrors: true, allowUnionTypes: true, allowMatchingProperties: true });
+addFormats.default(preparedAjv);
 preparedAjv.addKeyword("x-recommended");
 preparedAjv.addKeyword("x-introduced-in-version");
 preparedAjv.addKeyword("x-feature-status");
