@@ -71,181 +71,161 @@ definitions:
     description: |-
       The element states the day of month.
     x-extension-targets:
-      - IntegerType
-      - StringType
+      - Type
 
   "@Semantics.calendar.dayOfYear":
     <<: *semanticsFieldBoolean
     description: |-
       The element states the day of year.
     x-extension-targets:
-      - IntegerType
-      - StringType
+      - Type
 
   "@Semantics.calendar.week":
     <<: *semanticsFieldBoolean
     description: |-
       The element states the calendar week.
     x-extension-targets:
-      - IntegerType
-      - StringType
+      - Type
 
   "@Semantics.calendar.month":
     <<: *semanticsFieldBoolean
     description: |-
       The element states the calendar month.
     x-extension-targets:
-      - IntegerType
-      - StringType
+      - Type
 
   "@Semantics.calendar.quarter":
     <<: *semanticsFieldBoolean
     description: |-
       The element states the calendar quarter.
     x-extension-targets:
-      - IntegerType
-      - StringType
+      - Type
 
   "@Semantics.calendar.halfyear":
     <<: *semanticsFieldBoolean
     description: |-
       The element states the calendar halfyear.
     x-extension-targets:
-      - IntegerType
-      - StringType
+      - Type
 
   "@Semantics.calendar.year":
     <<: *semanticsFieldBoolean
     description: |-
       The element states the calendar year.
     x-extension-targets:
-      - IntegerType
-      - StringType
+      - Type
 
   "@Semantics.calendar.yearWeek":
     <<: *semanticsFieldBoolean
     description: |-
       The element states the calendar year week.
     x-extension-targets:
-      - IntegerType
-      - StringType
+      - Type
 
   "@Semantics.calendar.yearMonth":
     <<: *semanticsFieldBoolean
     description: |-
       The element states the calendar year month.
     x-extension-targets:
-      - IntegerType
-      - StringType
+      - Type
 
   "@Semantics.calendar.yearQuarter":
     <<: *semanticsFieldBoolean
     description: |-
       The element states the calendar year quarter.
     x-extension-targets:
-      - IntegerType
-      - StringType
+      - Type
 
   "@Semantics.calendar.yearHalfyear":
     <<: *semanticsFieldBoolean
     description: |-
       The element states the calendar year halfyear.
     x-extension-targets:
-      - IntegerType
-      - StringType
+      - Type
 
   "@Semantics.fiscal.yearVariant":
     <<: *semanticsFieldBoolean
     description: |-
       The element states the calendar year variant.
     x-extension-targets:
-      - IntegerType
-      - StringType
+      - Type
 
   "@Semantics.fiscal.period":
     <<: *semanticsFieldBoolean
     description: |-
       The element states the fiscal period.
     x-extension-targets:
-      - IntegerType
-      - StringType
+      - Type
 
   "@Semantics.fiscal.year":
     <<: *semanticsFieldBoolean
     description: |-
       The element states the fiscal year.
     x-extension-targets:
-      - IntegerType
-      - StringType
+      - Type
 
   "@Semantics.fiscal.yearPeriod":
     <<: *semanticsFieldBoolean
     description: |-
       The element states the fiscal year period.
     x-extension-targets:
-      - IntegerType
-      - StringType
+      - Type
 
   "@Semantics.fiscal.quarter":
     <<: *semanticsFieldBoolean
     description: |-
       The element states the fiscal quarter.
     x-extension-targets:
-      - IntegerType
-      - StringType
+      - Type
 
   "@Semantics.fiscal.yearQuarter":
     <<: *semanticsFieldBoolean
     description: |-
       The element states the fiscal year quarter.
     x-extension-targets:
-      - IntegerType
-      - StringType
+      - Type
 
   "@Semantics.fiscal.week":
     <<: *semanticsFieldBoolean
     description: |-
       The element states the fiscal week.
     x-extension-targets:
-      - IntegerType
-      - StringType
+      - Type
 
   "@Semantics.fiscal.yearWeek":
     <<: *semanticsFieldBoolean
     description: |-
       The element states the fiscal year week.
     x-extension-targets:
-      - IntegerType
-      - StringType
+      - Type
 
   "@Semantics.fiscal.dayOfYear":
     <<: *semanticsFieldBoolean
     description: |-
       The element states the fiscal day of year.
     x-extension-targets:
-      - IntegerType
-      - StringType
+      - Type
 
   "@Semantics.language":
     <<: *semanticsFieldBoolean
     description: |-
       The property contains a language code.
     x-extension-targets:
-      - StringType
+      - Type
 
   "@Semantics.time":
     <<: *semanticsFieldBoolean
     description: |-
       This annotation is used to indicate a date semantic for the NVARCHAR-based ABAP type TIMS.
     x-extension-targets:
-      - StringType
+      - Type
 
   "@Semantics.text":
     <<: *semanticsFieldBoolean
     description: |-
       The property contains a human-readable text.
     x-extension-targets:
-      - StringType
+      - Type
 
   "@Semantics.uuid":
     <<: *semanticsFieldBoolean
@@ -254,7 +234,8 @@ definitions:
 
       It is RECOMMENDED to explicitly use the `csd.UUID` type.
     x-extension-targets:
-      - StringType
+      - Type
+      # - StringType
       # - BinaryType # TODO: Currently we dont have cds.Binary yet, but once we do we also apply it here
 
   "@Semantics.businessDate.from":
@@ -262,14 +243,16 @@ definitions:
     description: |-
       The property contains a date which is the lower boundary of a (validity) interval (for time dependent master data).
     x-extension-targets:
-      - DateType
+      - Type
+      # - DateType
 
   "@Semantics.businessDate.to":
     <<: *semanticsFieldBoolean
     description: |-
       The property contains a date which is the upper boundary of a (validity) interval (for time dependent master data).
     x-extension-targets:
-      - DateType
+      - Type
+      # - DateType
 
   # "@Semantics.FieldWithBoolean": # Maybe we can define a reuse type here?
   #   type: boolean
