@@ -6,9 +6,6 @@ try {
   const semver = currentNodeVersion.split(".");
   const major = parseInt(semver[0]);
 
-  // eslint-disable-next-line no-console
-  console.log(process.argv);
-
   if (major < 20) {
     process.stdout.write(
       "You are running Node " +
