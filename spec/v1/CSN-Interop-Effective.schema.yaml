@@ -1,5 +1,5 @@
 $schema: "http://json-schema.org/draft-07/schema#"
-$id: "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json"
+$id: "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#"
 title: CSN Interop Effective
 description: |-
   This is the interface description of CSN Interop Effective v1.
@@ -73,7 +73,7 @@ definitions:
 
           See https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema
         anyOf:
-          - const: https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json
+          - const: https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#
           - type: string
             format: uri-reference
       $id:
@@ -1063,7 +1063,6 @@ definitions:
           - "#/definitions/EntityDefinition"
 
       cardinality:
-        type: object
         $ref: "#/definitions/CardinalityObject"
 
       "on": &on
@@ -1156,7 +1155,6 @@ definitions:
           - "#/definitions/EntityDefinition"
 
       cardinality:
-        type: object
         $ref: "#/definitions/CardinalityObject"
 
       on: *on

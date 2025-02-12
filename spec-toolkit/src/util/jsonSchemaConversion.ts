@@ -1,8 +1,8 @@
 import _ from "lodash";
-import { log } from "../util/log";
+import { log } from "./log.js";
 
-import { SpecJsonSchema, SpecJsonSchemaRoot } from "../model/SpecJsonSchema";
-import { detectAnyOfEnum, detectOneOfEnum } from "../generateInterfaceDocumentation";
+import { SpecJsonSchema, SpecJsonSchemaRoot } from "../model/SpecJsonSchema.js";
+import { detectAnyOfEnum, detectOneOfEnum } from "../generateInterfaceDocumentation.js";
 
 /**
  * Prepare a Spec JSON Schema file, so it is easier to work with.
@@ -11,10 +11,13 @@ import { detectAnyOfEnum, detectOneOfEnum } from "../generateInterfaceDocumentat
  * * Adding `x-context` for easier debugging and further use
  * * Adding missing `title` properties
  */
-export function preprocessSpecJsonSchema(jsonSchema: SpecJsonSchemaRoot, jsonSchemaFileName: string): SpecJsonSchemaRoot {
+export function preprocessSpecJsonSchema(
+  jsonSchema: SpecJsonSchemaRoot,
+  jsonSchemaFileName: string,
+): SpecJsonSchemaRoot {
   // Deep clone, just to avoid accidental mutations of input
-  let result = JSON.parse(JSON.stringify(jsonSchema))
-  
+  let result = JSON.parse(JSON.stringify(jsonSchema));
+
   result = removeNullProperties(result);
 
   // Enrich x-context and titles
@@ -40,6 +43,35 @@ export function preprocessSpecJsonSchema(jsonSchema: SpecJsonSchemaRoot, jsonSch
         } catch (err) {
           log.error(`Could not add x-context to ${[jsonSchemaFileName, definitionName, propertyName]}`);
           log.error(err);
+        }
+      }
+    }
+  }
+
+  return result;
+}
+
+/**
+ * Convert x-ref-to-doc- to proper $ref
+ *
+ * So far we use x-ref-to-doc to create a link from a spec extension back to the core spec
+ * After we merge the extensions and the core spec into one JSON Schema file, we can use a standard (local) $ref pointer
+ */
+export function convertRefToDocToStandardRef(jsonSchema: SpecJsonSchemaRoot): SpecJsonSchemaRoot {
+  // Deep clone, just to avoid accidental mutations of input
+  const result = JSON.parse(JSON.stringify(jsonSchema));
+  result.definitions = result.definitions || {};
+  for (const definitionName in result.definitions) {
+    const definition = result.definitions[definitionName];
+    if (definition["x-ref-to-doc"]) {
+      definition.$ref = definition["x-ref-to-doc"].ref;
+    }
+
+    if (definition.properties) {
+      for (const propertyName in definition.properties) {
+        const property = definition.properties[propertyName] as SpecJsonSchemaRoot;
+        if (property["x-ref-to-doc"]) {
+          property.$ref = property["x-ref-to-doc"].ref;
         }
       }
     }
@@ -209,6 +241,9 @@ export function removeDescriptionsFromRefPointers(jsonSchema: SpecJsonSchemaRoot
   if (jsonSchema.definitions) {
     for (const definitionName in jsonSchema.definitions) {
       const definition = jsonSchema.definitions[definitionName];
+      if (definition.$ref && definition.description) {
+        delete definition.description;
+      }
       if (definition.properties) {
         for (const propertyName in definition.properties) {
           const property = definition.properties[propertyName];
@@ -247,7 +282,7 @@ export function removeExtensionAttributes(jsonSchema: SpecJsonSchemaRoot): SpecJ
 export function removeNullProperties(jsonSchema: SpecJsonSchemaRoot): SpecJsonSchemaRoot {
   return JSON.parse(
     JSON.stringify(jsonSchema, (_key, val) => {
-      return (val === null) ? undefined : val;
+      return val === null ? undefined : val;
     }),
   );
 }

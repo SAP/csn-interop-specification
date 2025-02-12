@@ -1,0 +1,31 @@
+name: Publish Package to NPMJS.org
+on:
+  workflow_dispatch:
+jobs:
+  publish-to-npmjs:
+    permissions:
+      contents: read
+      id-token: write
+    runs-on: ubuntu-latest
+    environment: npmjs:@sap/csn-interop-specification
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          # registry-url is required for releasing packages
+          registry-url: "https://registry.npmjs.org"
+
+      - name: npm install
+        run: npm ci
+
+      - name: build
+        run: npm run build
+
+      - name: Publish package
+        # --provenance enables the automatic generation of provenance statements
+        # --access public is only hard required for the initial release, but it doesn't hurt having it setup
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

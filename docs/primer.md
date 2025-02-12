@@ -40,6 +40,16 @@ In order to create a valid Effective CSN document it is only necessary to apply 
 
 > **Note**: The document quotes frequently from the [CAP CSN documentation](https://cap.cloud.sap/docs/cds/csn) w/o explicit citations. This is done intentionally to increase the consistency between these two sources of information. In case of differences consider that the purpose of this document is not to explain how CSN is derived from CDL, but how Effective CSN is constructed from scratch.
 
+## Structure
+
+A CSN document starts with the [root-level structure](#root-level-structure) of some header properties (describing which version of CSN Interop is used) and the meta section for metadata that applies to the document as a whole.
+
+The actual model content lives in the [definitions section](#definitions), where entities, (custom) types, services and contexts can be added. [Entities](#entity-definitions) are the most complex concept, as it contains [elements](#elements) that may or may not use [custom types](#custom-type-definitions).
+
+The entities can be assigned to a [service](#service-definitions) to indicate that the entity is exposed as an API (or events). [Contexts](#context-definitions) may optionally be used to assign other concepts to a "namespace", ensuring unique names.
+
+![High-level CSN structure overview](/img/high-level-model.drawio.svg "High-level CSN structure overview")
+
 ## Root Level Structure
 
 There are three mandatory root level properties that need to be added to get a minimal valid CSN Interop document:
