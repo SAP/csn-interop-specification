@@ -4031,7 +4031,7 @@
       "properties": {
         "src": {
           "type": "number",
-          "description": "Set to `1` to give a hint to database optimizers, that the relationship is \"one to\". \n\nIf `src` is not set then it is unknown and \"many to\" MAY be assumed."
+          "description": "Set to `1` to give a hint to database optimizers, that the relationship is \"one to\".\n\nIf `src` is not set then it is unknown and \"many to\" MAY be assumed."
         },
         "min": {
           "type": "number",
@@ -5638,7 +5638,7 @@
     "ContextDefinition": {
       "title": "Context Definition",
       "type": "object",
-      "description": "A context corresponds to a CAP CSN Namespace. \nIt is used to create a bounded context that bundles elements of different kinds together.\n\nTo assign Services, Entities or Custom Types to a context, their name MUST be prefixed with the context name, separated by a `.`.\n\nThe context can also be useful to avoid local or global name collisions.\n\nSee [Primer: Context](../primer.md#context-definitions).",
+      "description": "A context corresponds to a CAP CSN Namespace.\nIt is used to create a bounded context that bundles elements of different kinds together.\n\nTo assign Services, Entities or Custom Types to a context, their name MUST be prefixed with the context name, separated by a `.`.\n\nThe context can also be useful to avoid local or global name collisions.\n\nSee [Primer: Context](../primer.md#context-definitions).",
       "properties": {
         "kind": {
           "type": "string",

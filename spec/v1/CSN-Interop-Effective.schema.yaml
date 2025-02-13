@@ -1356,7 +1356,7 @@ definitions:
       src:
         type: number
         description: |-
-          Set to `1` to give a hint to database optimizers, that the relationship is "one to". 
+          Set to `1` to give a hint to database optimizers, that the relationship is "one to".
 
           If `src` is not set then it is unknown and "many to" MAY be assumed.
       min:
@@ -2029,7 +2029,7 @@ definitions:
     title: Context Definition
     type: object
     description: |-
-      A context corresponds to a CAP CSN Namespace. 
+      A context corresponds to a CAP CSN Namespace.
       It is used to create a bounded context that bundles elements of different kinds together.
 
       To assign Services, Entities or Custom Types to a context, their name MUST be prefixed with the context name, separated by a `.`.
