@@ -1065,9 +1065,7 @@ definitions:
       cardinality:
         $ref: "#/definitions/CardinalityObject"
         description: |-
-          Cardinality of association.
-
-          If omitted, `{ "min": 0, "max": 1}` is assumed.
+          Cardinality of the association. If omitted, `{ "min": 0, "max": 1}` is assumed.
       "on": &on
         type: array
         description: |-
@@ -1161,9 +1159,7 @@ definitions:
       cardinality:
         $ref: "#/definitions/CardinalityObject"
         description: |-
-          Cardinality of association.
-
-          If omitted, `{ "min": 0, "max": 1}` is assumed.
+          Cardinality of the composition. If omitted, `{ "min": 0, "max": 1}` is assumed.
 
       on: *on
 
