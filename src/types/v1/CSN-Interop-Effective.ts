@@ -238,6 +238,14 @@ export type SemanticsText = true;
  */
 export type SemanticsUuid = true;
 /**
+ * The property contains a date which is the lower boundary of a (validity) interval (for time dependent master data).
+ */
+export type SemanticsBusinessDateFrom = true;
+/**
+ * The property contains a date which is the upper boundary of a (validity) interval (for time dependent master data).
+ */
+export type SemanticsBusinessDateTo = true;
+/**
  * Total number of digits that are present after the decimal point in a number.
  * The scale can hold from zero up to the total numeric precision
  */
@@ -250,14 +258,6 @@ export type DecimalScaleNumber = number;
 export type DecimalScaleType = DecimalScaleType1 & DecimalScaleType2;
 export type DecimalScaleType1 = "floating";
 export type DecimalScaleType2 = string;
-/**
- * The property contains a date which is the lower boundary of a (validity) interval (for time dependent master data).
- */
-export type SemanticsBusinessDateFrom = true;
-/**
- * The property contains a date which is the upper boundary of a (validity) interval (for time dependent master data).
- */
-export type SemanticsBusinessDateTo = true;
 /**
  * The operator "="
  */
@@ -762,6 +762,32 @@ export interface BooleanType {
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
   "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -973,6 +999,8 @@ export interface StringType {
   "@Semantics.time"?: SemanticsTime;
   "@Semantics.text"?: SemanticsText;
   "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -1090,6 +1118,32 @@ export interface LargeStringType {
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
   "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -1182,6 +1236,12 @@ export interface IntegerType {
   "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
   "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
   "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -1285,6 +1345,32 @@ export interface Integer64Type {
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
   "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -1363,6 +1449,32 @@ export interface DecimalType {
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
   "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -1436,6 +1548,32 @@ export interface DoubleType {
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
   "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -1507,6 +1645,30 @@ export interface DateType {
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
   "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
@@ -1580,6 +1742,32 @@ export interface TimeType {
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
   "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -1651,6 +1839,32 @@ export interface DateTimeType {
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
   "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -1722,6 +1936,32 @@ export interface TimestampType {
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
   "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -1792,6 +2032,32 @@ export interface UUIDType {
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
   "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -1836,7 +2102,7 @@ export interface AssociationType {
    * The (fully qualified) target entity name.
    */
   target: string;
-  cardinality: CardinalityObject;
+  cardinality?: CardinalityObject;
   /**
    * The property `on` holds a sequence of operators and operands to describe the join condition.
    *
@@ -1876,6 +2142,32 @@ export interface AssociationType {
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
   "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -1968,7 +2260,7 @@ export interface CompositionType {
    * The (fully qualified) target entity name.
    */
   target: string;
-  cardinality: CardinalityObject;
+  cardinality?: CardinalityObject;
   /**
    * The property `on` holds a sequence of operators and operands to describe the join condition.
    *
@@ -2008,6 +2300,32 @@ export interface CompositionType {
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
   "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -2115,6 +2433,32 @@ export interface CustomType {
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
   "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
