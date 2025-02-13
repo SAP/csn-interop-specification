@@ -136,28 +136,88 @@ export type PersonalDataIsPotentiallySensitive = boolean;
  */
 export type SemanticsCurrencyCode = true;
 /**
- * The property contains a unit of measure.
+ * The element contains a unit of measure.
  */
 export type SemanticsUnitOfMeasure = true;
+/**
+ * The element states the day of month.
+ */
 export type SemanticsCalendarDayOfMonth = true;
+/**
+ * The element states the day of year.
+ */
 export type SemanticsCalendarDayOfYear = true;
+/**
+ * The element states the calendar week.
+ */
 export type SemanticsCalendarWeek = true;
+/**
+ * The element states the calendar month.
+ */
 export type SemanticsCalendarMonth = true;
+/**
+ * The element states the calendar quarter.
+ */
 export type SemanticsCalendarQuarter = true;
+/**
+ * The element states the calendar halfyear.
+ */
 export type SemanticsCalendarHalfyear = true;
+/**
+ * The element states the calendar year.
+ */
 export type SemanticsCalendarYear = true;
+/**
+ * The element states the calendar year week.
+ */
 export type SemanticsCalendarYearWeek = true;
+/**
+ * The element states the calendar year month.
+ */
 export type SemanticsCalendarYearMonth = true;
+/**
+ * The element states the calendar year quarter.
+ */
 export type SemanticsCalendarYearQuarter = true;
+/**
+ * The element states the calendar year halfyear.
+ */
 export type SemanticsCalendarYearHalfyear = true;
+/**
+ * The element states the calendar year variant.
+ */
 export type SemanticsFiscalYearVariant = true;
+/**
+ * The element states the fiscal period.
+ */
 export type SemanticsFiscalPeriod = true;
+/**
+ * The element states the fiscal year.
+ */
 export type SemanticsFiscalYear = true;
+/**
+ * The element states the fiscal year period.
+ */
 export type SemanticsFiscalYearPeriod = true;
+/**
+ * The element states the fiscal quarter.
+ */
 export type SemanticsFiscalQuarter = true;
+/**
+ * The element states the fiscal year quarter.
+ */
 export type SemanticsFiscalYearQuarter = true;
+/**
+ * The element states the fiscal week.
+ */
 export type SemanticsFiscalWeek = true;
+/**
+ * The element states the fiscal year week.
+ */
 export type SemanticsFiscalYearWeek = true;
+/**
+ * The element states the fiscal day of year.
+ */
 export type SemanticsFiscalDayOfYear = true;
 /**
  * The property contains a language code.
@@ -173,6 +233,8 @@ export type SemanticsTime = true;
 export type SemanticsText = true;
 /**
  * Tags a field containing a GUID in RAW16 or CHAR32 format.
+ *
+ * It is RECOMMENDED to explicitly use the `csd.UUID` type.
  */
 export type SemanticsUuid = true;
 /**
@@ -405,10 +467,12 @@ export interface Definitions {
   [k: string]: DefinitionEntry;
 }
 /**
- * A context corresponds to a CAP CSN Namespace. It is used to create a bounded context that bundles elements of different kinds together.
- * The context will become part of the entity / element name.
+ * A context corresponds to a CAP CSN Namespace.
+ * It is used to create a bounded context that bundles elements of different kinds together.
  *
- * The context is also useful to avoid local or global name collisions.
+ * To assign Services, Entities or Custom Types to a context, their name MUST be prefixed with the context name, separated by a `.`.
+ *
+ * The context can also be useful to avoid local or global name collisions.
  *
  * See [Primer: Context](../primer.md#context-definitions).
  */
@@ -1147,6 +1211,7 @@ export interface IntegerType {
   "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -1205,6 +1270,31 @@ export interface DefaultValueInteger {
   val: number | null;
 }
 /**
+ * Informs consumers about the value range of a CDS element, allowing to specify minimal and/or maximal values, and indicate whether these are exclusive or inclusive.
+ * This value range can be used for client-side validation of user input.
+ */
+export interface Semantics {
+  /**
+   * Specifies the minimum value.
+   */
+  minimum?: string;
+  /**
+   * Specifies if the lower boundary should be excluded.
+   * Not specifying this annotation means that the lower boundary is included.
+   */
+  exclusiveMinimum?: boolean;
+  /**
+   * Specifies the maximum value.
+   */
+  maximum?: string;
+  /**
+   * Specifies if the upper boundary should be excluded.
+   * Not specifying this annotation means that the upper boundary is included.
+   */
+  exclusiveMaximum?: boolean;
+  [k: string]: unknown | undefined;
+}
+/**
  * Signed integer with 64 bit.
  */
 export interface Integer64Type {
@@ -1250,6 +1340,7 @@ export interface Integer64Type {
   "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -1353,6 +1444,7 @@ export interface DecimalType {
   "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -1451,6 +1543,7 @@ export interface DoubleType {
   "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2594,7 +2687,7 @@ export interface SupportedCapabilitiesEnumValue {
 /**
  * A CDS Service indicates that [Entities](#entity-definition) are exposed to outside consumers via an API.
  *
- * To assign Entities to a Service, the entity name MUST be prefixed with the service name, separated by a `.`.
+ * To assign Entities or Custom Types to a Service, their name MUST be prefixed with the service name, separated by a `.`.
  * Please be aware that this will also change the `target` values of `cds.Association` and `cds.Composition`.
  * For an example, see [airline-service.json](./examples/airline.md).
  *

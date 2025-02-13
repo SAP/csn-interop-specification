@@ -3,6 +3,61 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "@Semantics",
   "definitions": {
+    "@Semantics.valueRange": {
+      "type": "object",
+      "description": "Informs consumers about the value range of a CDS element, allowing to specify minimal and/or maximal values, and indicate whether these are exclusive or inclusive.\nThis value range can be used for client-side validation of user input.",
+      "properties": {
+        "minimum": {
+          "type": "string",
+          "description": "Specifies the minimum value.",
+          "x-context": [
+            "./spec/annotations/semantics.yaml",
+            "@Semantics.valueRange",
+            "minimum"
+          ]
+        },
+        "exclusiveMinimum": {
+          "type": "boolean",
+          "description": "Specifies if the lower boundary should be excluded.\nNot specifying this annotation means that the lower boundary is included.",
+          "default": false,
+          "x-context": [
+            "./spec/annotations/semantics.yaml",
+            "@Semantics.valueRange",
+            "exclusiveMinimum"
+          ]
+        },
+        "maximum": {
+          "type": "string",
+          "description": "Specifies the maximum value.",
+          "x-context": [
+            "./spec/annotations/semantics.yaml",
+            "@Semantics.valueRange",
+            "maximum"
+          ]
+        },
+        "exclusiveMaximum": {
+          "type": "boolean",
+          "description": "Specifies if the upper boundary should be excluded.\nNot specifying this annotation means that the upper boundary is included.",
+          "default": false,
+          "x-context": [
+            "./spec/annotations/semantics.yaml",
+            "@Semantics.valueRange",
+            "exclusiveMaximum"
+          ]
+        }
+      },
+      "x-extension-targets": [
+        "IntegerType",
+        "Integer64Type",
+        "DecimalType",
+        "DoubleType"
+      ],
+      "title": "@Semantics.valueRange",
+      "x-context": [
+        "./spec/annotations/semantics.yaml",
+        "@Semantics.valueRange"
+      ]
+    },
     "@Semantics.currencyCode": {
       "type": "boolean",
       "const": true,
@@ -17,7 +72,7 @@
       ]
     },
     "@Semantics.amount.currencyCode": {
-      "description": "The element contains an amount. The annotation points to an element containing the currency code.",
+      "description": "The element contains an amount.\nThe annotation points to an element containing the currency code.",
       "x-ref-to-doc": {
         "title": "Element Reference",
         "ref": "#/definitions/ElementReference"
@@ -35,7 +90,7 @@
     "@Semantics.unitOfMeasure": {
       "type": "boolean",
       "const": true,
-      "description": "The property contains a unit of measure.",
+      "description": "The element contains a unit of measure.",
       "x-extension-targets": [
         "Type"
       ],
@@ -64,7 +119,7 @@
     "@Semantics.calendar.dayOfMonth": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the day of month.",
       "x-extension-targets": [
         "Type"
       ],
@@ -77,7 +132,7 @@
     "@Semantics.calendar.dayOfYear": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the day of year.",
       "x-extension-targets": [
         "Type"
       ],
@@ -90,7 +145,7 @@
     "@Semantics.calendar.week": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar week.",
       "x-extension-targets": [
         "Type"
       ],
@@ -103,7 +158,7 @@
     "@Semantics.calendar.month": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar month.",
       "x-extension-targets": [
         "Type"
       ],
@@ -116,7 +171,7 @@
     "@Semantics.calendar.quarter": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar quarter.",
       "x-extension-targets": [
         "Type"
       ],
@@ -129,7 +184,7 @@
     "@Semantics.calendar.halfyear": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar halfyear.",
       "x-extension-targets": [
         "Type"
       ],
@@ -142,7 +197,7 @@
     "@Semantics.calendar.year": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar year.",
       "x-extension-targets": [
         "Type"
       ],
@@ -155,7 +210,7 @@
     "@Semantics.calendar.yearWeek": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar year week.",
       "x-extension-targets": [
         "Type"
       ],
@@ -168,7 +223,7 @@
     "@Semantics.calendar.yearMonth": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar year month.",
       "x-extension-targets": [
         "Type"
       ],
@@ -181,7 +236,7 @@
     "@Semantics.calendar.yearQuarter": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar year quarter.",
       "x-extension-targets": [
         "Type"
       ],
@@ -194,7 +249,7 @@
     "@Semantics.calendar.yearHalfyear": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar year halfyear.",
       "x-extension-targets": [
         "Type"
       ],
@@ -207,7 +262,7 @@
     "@Semantics.fiscal.yearVariant": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar year variant.",
       "x-extension-targets": [
         "Type"
       ],
@@ -220,7 +275,7 @@
     "@Semantics.fiscal.period": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal period.",
       "x-extension-targets": [
         "Type"
       ],
@@ -233,7 +288,7 @@
     "@Semantics.fiscal.year": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal year.",
       "x-extension-targets": [
         "Type"
       ],
@@ -246,7 +301,7 @@
     "@Semantics.fiscal.yearPeriod": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal year period.",
       "x-extension-targets": [
         "Type"
       ],
@@ -259,7 +314,7 @@
     "@Semantics.fiscal.quarter": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal quarter.",
       "x-extension-targets": [
         "Type"
       ],
@@ -272,7 +327,7 @@
     "@Semantics.fiscal.yearQuarter": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal year quarter.",
       "x-extension-targets": [
         "Type"
       ],
@@ -285,7 +340,7 @@
     "@Semantics.fiscal.week": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal week.",
       "x-extension-targets": [
         "Type"
       ],
@@ -298,7 +353,7 @@
     "@Semantics.fiscal.yearWeek": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal year week.",
       "x-extension-targets": [
         "Type"
       ],
@@ -311,7 +366,7 @@
     "@Semantics.fiscal.dayOfYear": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal day of year.",
       "x-extension-targets": [
         "Type"
       ],
@@ -363,7 +418,7 @@
     "@Semantics.uuid": {
       "type": "boolean",
       "const": true,
-      "description": "Tags a field containing a GUID in RAW16 or CHAR32 format.",
+      "description": "Tags a field containing a GUID in RAW16 or CHAR32 format.\n\nIt is RECOMMENDED to explicitly use the `csd.UUID` type.",
       "x-extension-targets": [
         "Type"
       ],

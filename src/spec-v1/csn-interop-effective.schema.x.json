@@ -1809,6 +1809,9 @@
         "@PersonalData.isPotentiallySensitive": {
           "$ref": "#/definitions/@PersonalData.isPotentiallySensitive"
         },
+        "@Semantics.valueRange": {
+          "$ref": "#/definitions/@Semantics.valueRange"
+        },
         "@Semantics.currencyCode": {
           "$ref": "#/definitions/@Semantics.currencyCode"
         },
@@ -2041,6 +2044,9 @@
         },
         "@PersonalData.isPotentiallySensitive": {
           "$ref": "#/definitions/@PersonalData.isPotentiallySensitive"
+        },
+        "@Semantics.valueRange": {
+          "$ref": "#/definitions/@Semantics.valueRange"
         },
         "@Semantics.currencyCode": {
           "$ref": "#/definitions/@Semantics.currencyCode"
@@ -2294,6 +2300,9 @@
         "@PersonalData.isPotentiallySensitive": {
           "$ref": "#/definitions/@PersonalData.isPotentiallySensitive"
         },
+        "@Semantics.valueRange": {
+          "$ref": "#/definitions/@Semantics.valueRange"
+        },
         "@Semantics.currencyCode": {
           "$ref": "#/definitions/@Semantics.currencyCode"
         },
@@ -2519,6 +2528,9 @@
         },
         "@PersonalData.isPotentiallySensitive": {
           "$ref": "#/definitions/@PersonalData.isPotentiallySensitive"
+        },
+        "@Semantics.valueRange": {
+          "$ref": "#/definitions/@Semantics.valueRange"
         },
         "@Semantics.currencyCode": {
           "$ref": "#/definitions/@Semantics.currencyCode"
@@ -7176,7 +7188,7 @@
     "ServiceDefinition": {
       "title": "Service Definition",
       "type": "object",
-      "description": "A CDS Service indicates that [Entities](#entity-definition) are exposed to outside consumers via an API.\n\nTo assign Entities to a Service, the entity name MUST be prefixed with the service name, separated by a `.`.\nPlease be aware that this will also change the `target` values of `cds.Association` and `cds.Composition`.\nFor an example, see [airline-service.json](./examples/airline.md).\n\nA consumer MAY decide to shorten the names by only considering the Entities assigned to a particular Service and then removing the Service prefixes again.\n\nTo indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](../annotations/objectmodel#objectmodelcompositionroot) annotation.\n\nSee [Primer: Service Definitions](../primer.md#service-definitions).",
+      "description": "A CDS Service indicates that [Entities](#entity-definition) are exposed to outside consumers via an API.\n\nTo assign Entities or Custom Types to a Service, their name MUST be prefixed with the service name, separated by a `.`.\nPlease be aware that this will also change the `target` values of `cds.Association` and `cds.Composition`.\nFor an example, see [airline-service.json](./examples/airline.md).\n\nA consumer MAY decide to shorten the names by only considering the Entities assigned to a particular Service and then removing the Service prefixes again.\n\nTo indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](../annotations/objectmodel#objectmodelcompositionroot) annotation.\n\nSee [Primer: Service Definitions](../primer.md#service-definitions).",
       "x-extension-points": [
         "Service"
       ],
@@ -7242,7 +7254,7 @@
     "ContextDefinition": {
       "title": "Context Definition",
       "type": "object",
-      "description": "A context corresponds to a CAP CSN Namespace. It is used to create a bounded context that bundles elements of different kinds together.\nThe context will become part of the entity / element name.\n\nThe context is also useful to avoid local or global name collisions.\n\nSee [Primer: Context](../primer.md#context-definitions).",
+      "description": "A context corresponds to a CAP CSN Namespace. \nIt is used to create a bounded context that bundles elements of different kinds together.\n\nTo assign Services, Entities or Custom Types to a context, their name MUST be prefixed with the context name, separated by a `.`.\n\nThe context can also be useful to avoid local or global name collisions.\n\nSee [Primer: Context](../primer.md#context-definitions).",
       "x-extension-points": [
         "Context"
       ],
@@ -8243,6 +8255,36 @@
         "Type"
       ]
     },
+    "@Semantics.valueRange": {
+      "type": "object",
+      "description": "Informs consumers about the value range of a CDS element, allowing to specify minimal and/or maximal values, and indicate whether these are exclusive or inclusive.\nThis value range can be used for client-side validation of user input.",
+      "properties": {
+        "minimum": {
+          "type": "string",
+          "description": "Specifies the minimum value."
+        },
+        "exclusiveMinimum": {
+          "type": "boolean",
+          "description": "Specifies if the lower boundary should be excluded.\nNot specifying this annotation means that the lower boundary is included.",
+          "default": false
+        },
+        "maximum": {
+          "type": "string",
+          "description": "Specifies the maximum value."
+        },
+        "exclusiveMaximum": {
+          "type": "boolean",
+          "description": "Specifies if the upper boundary should be excluded.\nNot specifying this annotation means that the upper boundary is included.",
+          "default": false
+        }
+      },
+      "x-extension-targets": [
+        "IntegerType",
+        "Integer64Type",
+        "DecimalType",
+        "DoubleType"
+      ]
+    },
     "@Semantics.currencyCode": {
       "type": "boolean",
       "const": true,
@@ -8264,7 +8306,7 @@
     "@Semantics.unitOfMeasure": {
       "type": "boolean",
       "const": true,
-      "description": "The property contains a unit of measure.",
+      "description": "The element contains a unit of measure.",
       "x-extension-targets": [
         "Type"
       ]
@@ -8282,7 +8324,7 @@
     "@Semantics.calendar.dayOfMonth": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the day of month.",
       "x-extension-targets": [
         "Type"
       ]
@@ -8290,7 +8332,7 @@
     "@Semantics.calendar.dayOfYear": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the day of year.",
       "x-extension-targets": [
         "Type"
       ]
@@ -8298,7 +8340,7 @@
     "@Semantics.calendar.week": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar week.",
       "x-extension-targets": [
         "Type"
       ]
@@ -8306,7 +8348,7 @@
     "@Semantics.calendar.month": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar month.",
       "x-extension-targets": [
         "Type"
       ]
@@ -8314,7 +8356,7 @@
     "@Semantics.calendar.quarter": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar quarter.",
       "x-extension-targets": [
         "Type"
       ]
@@ -8322,7 +8364,7 @@
     "@Semantics.calendar.halfyear": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar halfyear.",
       "x-extension-targets": [
         "Type"
       ]
@@ -8330,7 +8372,7 @@
     "@Semantics.calendar.year": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar year.",
       "x-extension-targets": [
         "Type"
       ]
@@ -8338,7 +8380,7 @@
     "@Semantics.calendar.yearWeek": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar year week.",
       "x-extension-targets": [
         "Type"
       ]
@@ -8346,7 +8388,7 @@
     "@Semantics.calendar.yearMonth": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar year month.",
       "x-extension-targets": [
         "Type"
       ]
@@ -8354,7 +8396,7 @@
     "@Semantics.calendar.yearQuarter": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar year quarter.",
       "x-extension-targets": [
         "Type"
       ]
@@ -8362,7 +8404,7 @@
     "@Semantics.calendar.yearHalfyear": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar year halfyear.",
       "x-extension-targets": [
         "Type"
       ]
@@ -8370,7 +8412,7 @@
     "@Semantics.fiscal.yearVariant": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar year variant.",
       "x-extension-targets": [
         "Type"
       ]
@@ -8378,7 +8420,7 @@
     "@Semantics.fiscal.period": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal period.",
       "x-extension-targets": [
         "Type"
       ]
@@ -8386,7 +8428,7 @@
     "@Semantics.fiscal.year": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal year.",
       "x-extension-targets": [
         "Type"
       ]
@@ -8394,7 +8436,7 @@
     "@Semantics.fiscal.yearPeriod": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal year period.",
       "x-extension-targets": [
         "Type"
       ]
@@ -8402,7 +8444,7 @@
     "@Semantics.fiscal.quarter": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal quarter.",
       "x-extension-targets": [
         "Type"
       ]
@@ -8410,7 +8452,7 @@
     "@Semantics.fiscal.yearQuarter": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal year quarter.",
       "x-extension-targets": [
         "Type"
       ]
@@ -8418,7 +8460,7 @@
     "@Semantics.fiscal.week": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal week.",
       "x-extension-targets": [
         "Type"
       ]
@@ -8426,7 +8468,7 @@
     "@Semantics.fiscal.yearWeek": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal year week.",
       "x-extension-targets": [
         "Type"
       ]
@@ -8434,7 +8476,7 @@
     "@Semantics.fiscal.dayOfYear": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal day of year.",
       "x-extension-targets": [
         "Type"
       ]
@@ -8466,7 +8508,7 @@
     "@Semantics.uuid": {
       "type": "boolean",
       "const": true,
-      "description": "Tags a field containing a GUID in RAW16 or CHAR32 format.",
+      "description": "Tags a field containing a GUID in RAW16 or CHAR32 format.\n\nIt is RECOMMENDED to explicitly use the `csd.UUID` type.",
       "x-extension-targets": [
         "Type"
       ]
