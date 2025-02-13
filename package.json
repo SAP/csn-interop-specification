@@ -78,6 +78,10 @@
     "typescript": "5.7.3"
   },
   "lint-staged": {
+    "./spec/*/*.yaml": [
+      "npm run generate",
+      "git add ./src/types/v1/CSN-Interop-Effective.ts"
+    ],
     "**/*.{md,json,yaml}": [
       "npm run prettier"
     ]
