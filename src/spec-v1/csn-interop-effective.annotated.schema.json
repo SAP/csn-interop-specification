@@ -3847,6 +3847,7 @@
         },
         "cardinality": {
           "$ref": "#/definitions/CardinalityObject",
+          "description": "Cardinality of the association. If omitted, `{ \"min\": 0, \"max\": 1}` is assumed.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "AssociationType",
@@ -4101,8 +4102,10 @@
       "required": [
         "type",
         "target",
-        "cardinality",
         "on"
+      ],
+      "x-recommended": [
+        "cardinality"
       ],
       "additionalProperties": false,
       "x-extension-points": [
@@ -4177,6 +4180,7 @@
         },
         "cardinality": {
           "$ref": "#/definitions/CardinalityObject",
+          "description": "Cardinality of the composition. If omitted, `{ \"min\": 0, \"max\": 1}` is assumed.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "CompositionType",
@@ -4431,8 +4435,10 @@
       "required": [
         "type",
         "target",
-        "cardinality",
         "on"
+      ],
+      "x-recommended": [
+        "cardinality"
       ],
       "additionalProperties": false,
       "x-extension-points": [
@@ -6829,6 +6835,7 @@
         },
         "cardinality": {
           "$ref": "#/definitions/CardinalityObject",
+          "description": "Cardinality of the association. If omitted, `{ \"min\": 0, \"max\": 1}` is assumed.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "AssociationTypeDefinition",
@@ -7033,6 +7040,7 @@
         },
         "cardinality": {
           "$ref": "#/definitions/CardinalityObject",
+          "description": "Cardinality of the composition. If omitted, `{ \"min\": 0, \"max\": 1}` is assumed.",
           "x-context": [
             "./spec/v1/CSN-Interop-Effective.schema.yaml",
             "CompositionTypeDefinition",

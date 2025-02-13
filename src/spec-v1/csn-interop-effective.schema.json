@@ -3335,7 +3335,6 @@
       "required": [
         "type",
         "target",
-        "cardinality",
         "on"
       ],
       "additionalProperties": false,
@@ -3628,7 +3627,6 @@
       "required": [
         "type",
         "target",
-        "cardinality",
         "on"
       ],
       "additionalProperties": false,
