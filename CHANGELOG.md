@@ -10,8 +10,10 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
-- ADDED: `@ObjectModel.tenantWideUniqueName` annotation
-- BREAKING: spec-toolkit no longer part of the csn-interop-specification package exports
+### Added
+
+- Added `@Semantics.valueRange` annotation
+- Added `@ObjectModel.tenantWideUniqueName` annotation
 
 ## [0.4.0]
 

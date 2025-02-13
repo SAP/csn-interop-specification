@@ -7,6 +7,61 @@
     "targetLink": "../spec-v1/csn-interop-effective"
   },
   "definitions": {
+    "@Semantics.valueRange": {
+      "type": "object",
+      "description": "Informs consumers about the value range of a CDS element, allowing to specify minimal and/or maximal values, and indicate whether these are exclusive or inclusive. \nThis value range can be used for client-side validation of user input.",
+      "properties": {
+        "minimum": {
+          "type": "string",
+          "description": "Specifies the minimum value.",
+          "x-context": [
+            "./spec/annotations/semantics.yaml",
+            "@Semantics.valueRange",
+            "minimum"
+          ]
+        },
+        "exclusiveMinimum": {
+          "type": "boolean",
+          "description": "Specifies if the lower boundary should be excluded. \nNot specifying this annotation means that the lower boundary is included.",
+          "default": false,
+          "x-context": [
+            "./spec/annotations/semantics.yaml",
+            "@Semantics.valueRange",
+            "exclusiveMinimum"
+          ]
+        },
+        "maximum": {
+          "type": "string",
+          "description": "Specifies the maximum value.",
+          "x-context": [
+            "./spec/annotations/semantics.yaml",
+            "@Semantics.valueRange",
+            "maximum"
+          ]
+        },
+        "exclusiveMaximum": {
+          "type": "boolean",
+          "description": "Specifies if the upper boundary should be excluded. \nNot specifying this annotation means that the upper boundary is included.",
+          "default": false,
+          "x-context": [
+            "./spec/annotations/semantics.yaml",
+            "@Semantics.valueRange",
+            "exclusiveMaximum"
+          ]
+        }
+      },
+      "x-extension-targets": [
+        "IntegerType",
+        "Integer64Type",
+        "DecimalType",
+        "DoubleType"
+      ],
+      "title": "@Semantics.valueRange",
+      "x-context": [
+        "./spec/annotations/semantics.yaml",
+        "@Semantics.valueRange"
+      ]
+    },
     "@Semantics.currencyCode": {
       "type": "boolean",
       "const": true,
@@ -21,7 +76,7 @@
       ]
     },
     "@Semantics.amount.currencyCode": {
-      "description": "The element contains an amount. The annotation points to an element containing the currency code.",
+      "description": "The element contains an amount. \nThe annotation points to an element containing the currency code.",
       "x-ref-to-doc": {
         "title": "Element Reference",
         "ref": "#/definitions/ElementReference"
@@ -39,7 +94,7 @@
     "@Semantics.unitOfMeasure": {
       "type": "boolean",
       "const": true,
-      "description": "The property contains a unit of measure.",
+      "description": "The element contains a unit of measure.",
       "x-extension-targets": [
         "Type"
       ],
@@ -68,9 +123,10 @@
     "@Semantics.calendar.dayOfMonth": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the day of month.",
       "x-extension-targets": [
-        "Type"
+        "IntegerType",
+        "StringType"
       ],
       "title": "@Semantics.calendar.dayOfMonth",
       "x-context": [
@@ -81,9 +137,10 @@
     "@Semantics.calendar.dayOfYear": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the day of year.",
       "x-extension-targets": [
-        "Type"
+        "IntegerType",
+        "StringType"
       ],
       "title": "@Semantics.calendar.dayOfYear",
       "x-context": [
@@ -94,9 +151,10 @@
     "@Semantics.calendar.week": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar week.",
       "x-extension-targets": [
-        "Type"
+        "IntegerType",
+        "StringType"
       ],
       "title": "@Semantics.calendar.week",
       "x-context": [
@@ -107,9 +165,10 @@
     "@Semantics.calendar.month": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar month.",
       "x-extension-targets": [
-        "Type"
+        "IntegerType",
+        "StringType"
       ],
       "title": "@Semantics.calendar.month",
       "x-context": [
@@ -120,9 +179,10 @@
     "@Semantics.calendar.quarter": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar quarter.",
       "x-extension-targets": [
-        "Type"
+        "IntegerType",
+        "StringType"
       ],
       "title": "@Semantics.calendar.quarter",
       "x-context": [
@@ -133,9 +193,10 @@
     "@Semantics.calendar.halfyear": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar halfyear.",
       "x-extension-targets": [
-        "Type"
+        "IntegerType",
+        "StringType"
       ],
       "title": "@Semantics.calendar.halfyear",
       "x-context": [
@@ -146,9 +207,10 @@
     "@Semantics.calendar.year": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar year.",
       "x-extension-targets": [
-        "Type"
+        "IntegerType",
+        "StringType"
       ],
       "title": "@Semantics.calendar.year",
       "x-context": [
@@ -159,9 +221,10 @@
     "@Semantics.calendar.yearWeek": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar year week.",
       "x-extension-targets": [
-        "Type"
+        "IntegerType",
+        "StringType"
       ],
       "title": "@Semantics.calendar.yearWeek",
       "x-context": [
@@ -172,9 +235,10 @@
     "@Semantics.calendar.yearMonth": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar year month.",
       "x-extension-targets": [
-        "Type"
+        "IntegerType",
+        "StringType"
       ],
       "title": "@Semantics.calendar.yearMonth",
       "x-context": [
@@ -185,9 +249,10 @@
     "@Semantics.calendar.yearQuarter": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar year quarter.",
       "x-extension-targets": [
-        "Type"
+        "IntegerType",
+        "StringType"
       ],
       "title": "@Semantics.calendar.yearQuarter",
       "x-context": [
@@ -198,9 +263,10 @@
     "@Semantics.calendar.yearHalfyear": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar year halfyear.",
       "x-extension-targets": [
-        "Type"
+        "IntegerType",
+        "StringType"
       ],
       "title": "@Semantics.calendar.yearHalfyear",
       "x-context": [
@@ -211,9 +277,10 @@
     "@Semantics.fiscal.yearVariant": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the calendar year variant.",
       "x-extension-targets": [
-        "Type"
+        "IntegerType",
+        "StringType"
       ],
       "title": "@Semantics.fiscal.yearVariant",
       "x-context": [
@@ -224,9 +291,10 @@
     "@Semantics.fiscal.period": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal period.",
       "x-extension-targets": [
-        "Type"
+        "IntegerType",
+        "StringType"
       ],
       "title": "@Semantics.fiscal.period",
       "x-context": [
@@ -237,9 +305,10 @@
     "@Semantics.fiscal.year": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal year.",
       "x-extension-targets": [
-        "Type"
+        "IntegerType",
+        "StringType"
       ],
       "title": "@Semantics.fiscal.year",
       "x-context": [
@@ -250,9 +319,10 @@
     "@Semantics.fiscal.yearPeriod": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal year period.",
       "x-extension-targets": [
-        "Type"
+        "IntegerType",
+        "StringType"
       ],
       "title": "@Semantics.fiscal.yearPeriod",
       "x-context": [
@@ -263,9 +333,10 @@
     "@Semantics.fiscal.quarter": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal quarter.",
       "x-extension-targets": [
-        "Type"
+        "IntegerType",
+        "StringType"
       ],
       "title": "@Semantics.fiscal.quarter",
       "x-context": [
@@ -276,9 +347,10 @@
     "@Semantics.fiscal.yearQuarter": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal year quarter.",
       "x-extension-targets": [
-        "Type"
+        "IntegerType",
+        "StringType"
       ],
       "title": "@Semantics.fiscal.yearQuarter",
       "x-context": [
@@ -289,9 +361,10 @@
     "@Semantics.fiscal.week": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal week.",
       "x-extension-targets": [
-        "Type"
+        "IntegerType",
+        "StringType"
       ],
       "title": "@Semantics.fiscal.week",
       "x-context": [
@@ -302,9 +375,10 @@
     "@Semantics.fiscal.yearWeek": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal year week.",
       "x-extension-targets": [
-        "Type"
+        "IntegerType",
+        "StringType"
       ],
       "title": "@Semantics.fiscal.yearWeek",
       "x-context": [
@@ -315,9 +389,10 @@
     "@Semantics.fiscal.dayOfYear": {
       "type": "boolean",
       "const": true,
-      "description": "",
+      "description": "The element states the fiscal day of year.",
       "x-extension-targets": [
-        "Type"
+        "IntegerType",
+        "StringType"
       ],
       "title": "@Semantics.fiscal.dayOfYear",
       "x-context": [
@@ -330,7 +405,7 @@
       "const": true,
       "description": "The property contains a language code.",
       "x-extension-targets": [
-        "Type"
+        "StringType"
       ],
       "title": "@Semantics.language",
       "x-context": [
@@ -343,7 +418,7 @@
       "const": true,
       "description": "This annotation is used to indicate a date semantic for the NVARCHAR-based ABAP type TIMS.",
       "x-extension-targets": [
-        "Type"
+        "StringType"
       ],
       "title": "@Semantics.time",
       "x-context": [
@@ -356,7 +431,7 @@
       "const": true,
       "description": "The property contains a human-readable text.",
       "x-extension-targets": [
-        "Type"
+        "StringType"
       ],
       "title": "@Semantics.text",
       "x-context": [
@@ -367,9 +442,9 @@
     "@Semantics.uuid": {
       "type": "boolean",
       "const": true,
-      "description": "Tags a field containing a GUID in RAW16 or CHAR32 format.",
+      "description": "Tags a field containing a GUID in RAW16 or CHAR32 format.\n\nIt is RECOMMENDED to explicitly use the `csd.UUID` type.",
       "x-extension-targets": [
-        "Type"
+        "StringType"
       ],
       "title": "@Semantics.uuid",
       "x-context": [
@@ -382,7 +457,7 @@
       "const": true,
       "description": "The property contains a date which is the lower boundary of a (validity) interval (for time dependent master data).",
       "x-extension-targets": [
-        "Type"
+        "DateType"
       ],
       "title": "@Semantics.businessDate.from",
       "x-context": [
@@ -395,7 +470,7 @@
       "const": true,
       "description": "The property contains a date which is the upper boundary of a (validity) interval (for time dependent master data).",
       "x-extension-targets": [
-        "Type"
+        "DateType"
       ],
       "title": "@Semantics.businessDate.to",
       "x-context": [
