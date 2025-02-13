@@ -1064,7 +1064,10 @@ definitions:
 
       cardinality:
         $ref: "#/definitions/CardinalityObject"
+        description: |-
+          Cardinality of association.
 
+          If omitted, `{ "min": 0, "max": 1}` is assumed.
       "on": &on
         type: array
         description: |-
@@ -1112,8 +1115,9 @@ definitions:
     required:
       - "type"
       - "target"
-      - "cardinality"
       - "on"
+    x-recommended:
+      - "cardinality"
     additionalProperties: false
     x-extension-points:
       - Type
@@ -1156,6 +1160,10 @@ definitions:
 
       cardinality:
         $ref: "#/definitions/CardinalityObject"
+        description: |-
+          Cardinality of association.
+
+          If omitted, `{ "min": 0, "max": 1}` is assumed.
 
       on: *on
 
@@ -1163,8 +1171,9 @@ definitions:
     required:
       - "type"
       - "target"
-      - "cardinality"
       - "on"
+    x-recommended:
+      - "cardinality"
     additionalProperties: false
     x-extension-points:
       - Type
