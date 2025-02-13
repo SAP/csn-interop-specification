@@ -25,4 +25,4 @@ docs/spec-v1/*.md
 docs/spec-v1/examples/*.md
 docs/annotations/*.md
 static/spec-v1/*
-.src/spec-v1/*.json
+src/spec-v1/*.json
