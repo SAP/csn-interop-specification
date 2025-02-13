@@ -809,6 +809,84 @@
         },
         "@Semantics.quantity.unitOfMeasure": {
           "$ref": "#/definitions/@Semantics.quantity.unitOfMeasure"
+        },
+        "@Semantics.calendar.dayOfMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfMonth"
+        },
+        "@Semantics.calendar.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfYear"
+        },
+        "@Semantics.calendar.week": {
+          "$ref": "#/definitions/@Semantics.calendar.week"
+        },
+        "@Semantics.calendar.month": {
+          "$ref": "#/definitions/@Semantics.calendar.month"
+        },
+        "@Semantics.calendar.quarter": {
+          "$ref": "#/definitions/@Semantics.calendar.quarter"
+        },
+        "@Semantics.calendar.halfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.halfyear"
+        },
+        "@Semantics.calendar.year": {
+          "$ref": "#/definitions/@Semantics.calendar.year"
+        },
+        "@Semantics.calendar.yearWeek": {
+          "$ref": "#/definitions/@Semantics.calendar.yearWeek"
+        },
+        "@Semantics.calendar.yearMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.yearMonth"
+        },
+        "@Semantics.calendar.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.calendar.yearQuarter"
+        },
+        "@Semantics.calendar.yearHalfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.yearHalfyear"
+        },
+        "@Semantics.fiscal.yearVariant": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearVariant"
+        },
+        "@Semantics.fiscal.period": {
+          "$ref": "#/definitions/@Semantics.fiscal.period"
+        },
+        "@Semantics.fiscal.year": {
+          "$ref": "#/definitions/@Semantics.fiscal.year"
+        },
+        "@Semantics.fiscal.yearPeriod": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearPeriod"
+        },
+        "@Semantics.fiscal.quarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.quarter"
+        },
+        "@Semantics.fiscal.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearQuarter"
+        },
+        "@Semantics.fiscal.week": {
+          "$ref": "#/definitions/@Semantics.fiscal.week"
+        },
+        "@Semantics.fiscal.yearWeek": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearWeek"
+        },
+        "@Semantics.fiscal.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.fiscal.dayOfYear"
+        },
+        "@Semantics.language": {
+          "$ref": "#/definitions/@Semantics.language"
+        },
+        "@Semantics.time": {
+          "$ref": "#/definitions/@Semantics.time"
+        },
+        "@Semantics.text": {
+          "$ref": "#/definitions/@Semantics.text"
+        },
+        "@Semantics.uuid": {
+          "$ref": "#/definitions/@Semantics.uuid"
+        },
+        "@Semantics.businessDate.from": {
+          "$ref": "#/definitions/@Semantics.businessDate.from"
+        },
+        "@Semantics.businessDate.to": {
+          "$ref": "#/definitions/@Semantics.businessDate.to"
         }
       },
       "patternProperties": {
@@ -1002,6 +1080,12 @@
         },
         "@Semantics.uuid": {
           "$ref": "#/definitions/@Semantics.uuid"
+        },
+        "@Semantics.businessDate.from": {
+          "$ref": "#/definitions/@Semantics.businessDate.from"
+        },
+        "@Semantics.businessDate.to": {
+          "$ref": "#/definitions/@Semantics.businessDate.to"
         }
       },
       "patternProperties": {
@@ -1121,6 +1205,84 @@
         },
         "@Semantics.quantity.unitOfMeasure": {
           "$ref": "#/definitions/@Semantics.quantity.unitOfMeasure"
+        },
+        "@Semantics.calendar.dayOfMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfMonth"
+        },
+        "@Semantics.calendar.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfYear"
+        },
+        "@Semantics.calendar.week": {
+          "$ref": "#/definitions/@Semantics.calendar.week"
+        },
+        "@Semantics.calendar.month": {
+          "$ref": "#/definitions/@Semantics.calendar.month"
+        },
+        "@Semantics.calendar.quarter": {
+          "$ref": "#/definitions/@Semantics.calendar.quarter"
+        },
+        "@Semantics.calendar.halfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.halfyear"
+        },
+        "@Semantics.calendar.year": {
+          "$ref": "#/definitions/@Semantics.calendar.year"
+        },
+        "@Semantics.calendar.yearWeek": {
+          "$ref": "#/definitions/@Semantics.calendar.yearWeek"
+        },
+        "@Semantics.calendar.yearMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.yearMonth"
+        },
+        "@Semantics.calendar.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.calendar.yearQuarter"
+        },
+        "@Semantics.calendar.yearHalfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.yearHalfyear"
+        },
+        "@Semantics.fiscal.yearVariant": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearVariant"
+        },
+        "@Semantics.fiscal.period": {
+          "$ref": "#/definitions/@Semantics.fiscal.period"
+        },
+        "@Semantics.fiscal.year": {
+          "$ref": "#/definitions/@Semantics.fiscal.year"
+        },
+        "@Semantics.fiscal.yearPeriod": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearPeriod"
+        },
+        "@Semantics.fiscal.quarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.quarter"
+        },
+        "@Semantics.fiscal.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearQuarter"
+        },
+        "@Semantics.fiscal.week": {
+          "$ref": "#/definitions/@Semantics.fiscal.week"
+        },
+        "@Semantics.fiscal.yearWeek": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearWeek"
+        },
+        "@Semantics.fiscal.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.fiscal.dayOfYear"
+        },
+        "@Semantics.language": {
+          "$ref": "#/definitions/@Semantics.language"
+        },
+        "@Semantics.time": {
+          "$ref": "#/definitions/@Semantics.time"
+        },
+        "@Semantics.text": {
+          "$ref": "#/definitions/@Semantics.text"
+        },
+        "@Semantics.uuid": {
+          "$ref": "#/definitions/@Semantics.uuid"
+        },
+        "@Semantics.businessDate.from": {
+          "$ref": "#/definitions/@Semantics.businessDate.from"
+        },
+        "@Semantics.businessDate.to": {
+          "$ref": "#/definitions/@Semantics.businessDate.to"
         }
       },
       "patternProperties": {
@@ -1302,6 +1464,24 @@
         },
         "@Semantics.fiscal.dayOfYear": {
           "$ref": "#/definitions/@Semantics.fiscal.dayOfYear"
+        },
+        "@Semantics.language": {
+          "$ref": "#/definitions/@Semantics.language"
+        },
+        "@Semantics.time": {
+          "$ref": "#/definitions/@Semantics.time"
+        },
+        "@Semantics.text": {
+          "$ref": "#/definitions/@Semantics.text"
+        },
+        "@Semantics.uuid": {
+          "$ref": "#/definitions/@Semantics.uuid"
+        },
+        "@Semantics.businessDate.from": {
+          "$ref": "#/definitions/@Semantics.businessDate.from"
+        },
+        "@Semantics.businessDate.to": {
+          "$ref": "#/definitions/@Semantics.businessDate.to"
         }
       },
       "patternProperties": {
@@ -1421,6 +1601,84 @@
         },
         "@Semantics.quantity.unitOfMeasure": {
           "$ref": "#/definitions/@Semantics.quantity.unitOfMeasure"
+        },
+        "@Semantics.calendar.dayOfMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfMonth"
+        },
+        "@Semantics.calendar.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfYear"
+        },
+        "@Semantics.calendar.week": {
+          "$ref": "#/definitions/@Semantics.calendar.week"
+        },
+        "@Semantics.calendar.month": {
+          "$ref": "#/definitions/@Semantics.calendar.month"
+        },
+        "@Semantics.calendar.quarter": {
+          "$ref": "#/definitions/@Semantics.calendar.quarter"
+        },
+        "@Semantics.calendar.halfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.halfyear"
+        },
+        "@Semantics.calendar.year": {
+          "$ref": "#/definitions/@Semantics.calendar.year"
+        },
+        "@Semantics.calendar.yearWeek": {
+          "$ref": "#/definitions/@Semantics.calendar.yearWeek"
+        },
+        "@Semantics.calendar.yearMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.yearMonth"
+        },
+        "@Semantics.calendar.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.calendar.yearQuarter"
+        },
+        "@Semantics.calendar.yearHalfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.yearHalfyear"
+        },
+        "@Semantics.fiscal.yearVariant": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearVariant"
+        },
+        "@Semantics.fiscal.period": {
+          "$ref": "#/definitions/@Semantics.fiscal.period"
+        },
+        "@Semantics.fiscal.year": {
+          "$ref": "#/definitions/@Semantics.fiscal.year"
+        },
+        "@Semantics.fiscal.yearPeriod": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearPeriod"
+        },
+        "@Semantics.fiscal.quarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.quarter"
+        },
+        "@Semantics.fiscal.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearQuarter"
+        },
+        "@Semantics.fiscal.week": {
+          "$ref": "#/definitions/@Semantics.fiscal.week"
+        },
+        "@Semantics.fiscal.yearWeek": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearWeek"
+        },
+        "@Semantics.fiscal.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.fiscal.dayOfYear"
+        },
+        "@Semantics.language": {
+          "$ref": "#/definitions/@Semantics.language"
+        },
+        "@Semantics.time": {
+          "$ref": "#/definitions/@Semantics.time"
+        },
+        "@Semantics.text": {
+          "$ref": "#/definitions/@Semantics.text"
+        },
+        "@Semantics.uuid": {
+          "$ref": "#/definitions/@Semantics.uuid"
+        },
+        "@Semantics.businessDate.from": {
+          "$ref": "#/definitions/@Semantics.businessDate.from"
+        },
+        "@Semantics.businessDate.to": {
+          "$ref": "#/definitions/@Semantics.businessDate.to"
         }
       },
       "patternProperties": {
@@ -1554,6 +1812,84 @@
         },
         "@Semantics.quantity.unitOfMeasure": {
           "$ref": "#/definitions/@Semantics.quantity.unitOfMeasure"
+        },
+        "@Semantics.calendar.dayOfMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfMonth"
+        },
+        "@Semantics.calendar.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfYear"
+        },
+        "@Semantics.calendar.week": {
+          "$ref": "#/definitions/@Semantics.calendar.week"
+        },
+        "@Semantics.calendar.month": {
+          "$ref": "#/definitions/@Semantics.calendar.month"
+        },
+        "@Semantics.calendar.quarter": {
+          "$ref": "#/definitions/@Semantics.calendar.quarter"
+        },
+        "@Semantics.calendar.halfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.halfyear"
+        },
+        "@Semantics.calendar.year": {
+          "$ref": "#/definitions/@Semantics.calendar.year"
+        },
+        "@Semantics.calendar.yearWeek": {
+          "$ref": "#/definitions/@Semantics.calendar.yearWeek"
+        },
+        "@Semantics.calendar.yearMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.yearMonth"
+        },
+        "@Semantics.calendar.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.calendar.yearQuarter"
+        },
+        "@Semantics.calendar.yearHalfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.yearHalfyear"
+        },
+        "@Semantics.fiscal.yearVariant": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearVariant"
+        },
+        "@Semantics.fiscal.period": {
+          "$ref": "#/definitions/@Semantics.fiscal.period"
+        },
+        "@Semantics.fiscal.year": {
+          "$ref": "#/definitions/@Semantics.fiscal.year"
+        },
+        "@Semantics.fiscal.yearPeriod": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearPeriod"
+        },
+        "@Semantics.fiscal.quarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.quarter"
+        },
+        "@Semantics.fiscal.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearQuarter"
+        },
+        "@Semantics.fiscal.week": {
+          "$ref": "#/definitions/@Semantics.fiscal.week"
+        },
+        "@Semantics.fiscal.yearWeek": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearWeek"
+        },
+        "@Semantics.fiscal.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.fiscal.dayOfYear"
+        },
+        "@Semantics.language": {
+          "$ref": "#/definitions/@Semantics.language"
+        },
+        "@Semantics.time": {
+          "$ref": "#/definitions/@Semantics.time"
+        },
+        "@Semantics.text": {
+          "$ref": "#/definitions/@Semantics.text"
+        },
+        "@Semantics.uuid": {
+          "$ref": "#/definitions/@Semantics.uuid"
+        },
+        "@Semantics.businessDate.from": {
+          "$ref": "#/definitions/@Semantics.businessDate.from"
+        },
+        "@Semantics.businessDate.to": {
+          "$ref": "#/definitions/@Semantics.businessDate.to"
         }
       },
       "patternProperties": {
@@ -1671,6 +2007,84 @@
         },
         "@Semantics.quantity.unitOfMeasure": {
           "$ref": "#/definitions/@Semantics.quantity.unitOfMeasure"
+        },
+        "@Semantics.calendar.dayOfMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfMonth"
+        },
+        "@Semantics.calendar.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfYear"
+        },
+        "@Semantics.calendar.week": {
+          "$ref": "#/definitions/@Semantics.calendar.week"
+        },
+        "@Semantics.calendar.month": {
+          "$ref": "#/definitions/@Semantics.calendar.month"
+        },
+        "@Semantics.calendar.quarter": {
+          "$ref": "#/definitions/@Semantics.calendar.quarter"
+        },
+        "@Semantics.calendar.halfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.halfyear"
+        },
+        "@Semantics.calendar.year": {
+          "$ref": "#/definitions/@Semantics.calendar.year"
+        },
+        "@Semantics.calendar.yearWeek": {
+          "$ref": "#/definitions/@Semantics.calendar.yearWeek"
+        },
+        "@Semantics.calendar.yearMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.yearMonth"
+        },
+        "@Semantics.calendar.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.calendar.yearQuarter"
+        },
+        "@Semantics.calendar.yearHalfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.yearHalfyear"
+        },
+        "@Semantics.fiscal.yearVariant": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearVariant"
+        },
+        "@Semantics.fiscal.period": {
+          "$ref": "#/definitions/@Semantics.fiscal.period"
+        },
+        "@Semantics.fiscal.year": {
+          "$ref": "#/definitions/@Semantics.fiscal.year"
+        },
+        "@Semantics.fiscal.yearPeriod": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearPeriod"
+        },
+        "@Semantics.fiscal.quarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.quarter"
+        },
+        "@Semantics.fiscal.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearQuarter"
+        },
+        "@Semantics.fiscal.week": {
+          "$ref": "#/definitions/@Semantics.fiscal.week"
+        },
+        "@Semantics.fiscal.yearWeek": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearWeek"
+        },
+        "@Semantics.fiscal.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.fiscal.dayOfYear"
+        },
+        "@Semantics.language": {
+          "$ref": "#/definitions/@Semantics.language"
+        },
+        "@Semantics.time": {
+          "$ref": "#/definitions/@Semantics.time"
+        },
+        "@Semantics.text": {
+          "$ref": "#/definitions/@Semantics.text"
+        },
+        "@Semantics.uuid": {
+          "$ref": "#/definitions/@Semantics.uuid"
+        },
+        "@Semantics.businessDate.from": {
+          "$ref": "#/definitions/@Semantics.businessDate.from"
+        },
+        "@Semantics.businessDate.to": {
+          "$ref": "#/definitions/@Semantics.businessDate.to"
         }
       },
       "patternProperties": {
@@ -1787,6 +2201,78 @@
         },
         "@Semantics.quantity.unitOfMeasure": {
           "$ref": "#/definitions/@Semantics.quantity.unitOfMeasure"
+        },
+        "@Semantics.calendar.dayOfMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfMonth"
+        },
+        "@Semantics.calendar.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfYear"
+        },
+        "@Semantics.calendar.week": {
+          "$ref": "#/definitions/@Semantics.calendar.week"
+        },
+        "@Semantics.calendar.month": {
+          "$ref": "#/definitions/@Semantics.calendar.month"
+        },
+        "@Semantics.calendar.quarter": {
+          "$ref": "#/definitions/@Semantics.calendar.quarter"
+        },
+        "@Semantics.calendar.halfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.halfyear"
+        },
+        "@Semantics.calendar.year": {
+          "$ref": "#/definitions/@Semantics.calendar.year"
+        },
+        "@Semantics.calendar.yearWeek": {
+          "$ref": "#/definitions/@Semantics.calendar.yearWeek"
+        },
+        "@Semantics.calendar.yearMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.yearMonth"
+        },
+        "@Semantics.calendar.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.calendar.yearQuarter"
+        },
+        "@Semantics.calendar.yearHalfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.yearHalfyear"
+        },
+        "@Semantics.fiscal.yearVariant": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearVariant"
+        },
+        "@Semantics.fiscal.period": {
+          "$ref": "#/definitions/@Semantics.fiscal.period"
+        },
+        "@Semantics.fiscal.year": {
+          "$ref": "#/definitions/@Semantics.fiscal.year"
+        },
+        "@Semantics.fiscal.yearPeriod": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearPeriod"
+        },
+        "@Semantics.fiscal.quarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.quarter"
+        },
+        "@Semantics.fiscal.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearQuarter"
+        },
+        "@Semantics.fiscal.week": {
+          "$ref": "#/definitions/@Semantics.fiscal.week"
+        },
+        "@Semantics.fiscal.yearWeek": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearWeek"
+        },
+        "@Semantics.fiscal.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.fiscal.dayOfYear"
+        },
+        "@Semantics.language": {
+          "$ref": "#/definitions/@Semantics.language"
+        },
+        "@Semantics.time": {
+          "$ref": "#/definitions/@Semantics.time"
+        },
+        "@Semantics.text": {
+          "$ref": "#/definitions/@Semantics.text"
+        },
+        "@Semantics.uuid": {
+          "$ref": "#/definitions/@Semantics.uuid"
         },
         "@Semantics.businessDate.from": {
           "$ref": "#/definitions/@Semantics.businessDate.from"
@@ -1907,6 +2393,84 @@
         },
         "@Semantics.quantity.unitOfMeasure": {
           "$ref": "#/definitions/@Semantics.quantity.unitOfMeasure"
+        },
+        "@Semantics.calendar.dayOfMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfMonth"
+        },
+        "@Semantics.calendar.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfYear"
+        },
+        "@Semantics.calendar.week": {
+          "$ref": "#/definitions/@Semantics.calendar.week"
+        },
+        "@Semantics.calendar.month": {
+          "$ref": "#/definitions/@Semantics.calendar.month"
+        },
+        "@Semantics.calendar.quarter": {
+          "$ref": "#/definitions/@Semantics.calendar.quarter"
+        },
+        "@Semantics.calendar.halfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.halfyear"
+        },
+        "@Semantics.calendar.year": {
+          "$ref": "#/definitions/@Semantics.calendar.year"
+        },
+        "@Semantics.calendar.yearWeek": {
+          "$ref": "#/definitions/@Semantics.calendar.yearWeek"
+        },
+        "@Semantics.calendar.yearMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.yearMonth"
+        },
+        "@Semantics.calendar.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.calendar.yearQuarter"
+        },
+        "@Semantics.calendar.yearHalfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.yearHalfyear"
+        },
+        "@Semantics.fiscal.yearVariant": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearVariant"
+        },
+        "@Semantics.fiscal.period": {
+          "$ref": "#/definitions/@Semantics.fiscal.period"
+        },
+        "@Semantics.fiscal.year": {
+          "$ref": "#/definitions/@Semantics.fiscal.year"
+        },
+        "@Semantics.fiscal.yearPeriod": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearPeriod"
+        },
+        "@Semantics.fiscal.quarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.quarter"
+        },
+        "@Semantics.fiscal.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearQuarter"
+        },
+        "@Semantics.fiscal.week": {
+          "$ref": "#/definitions/@Semantics.fiscal.week"
+        },
+        "@Semantics.fiscal.yearWeek": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearWeek"
+        },
+        "@Semantics.fiscal.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.fiscal.dayOfYear"
+        },
+        "@Semantics.language": {
+          "$ref": "#/definitions/@Semantics.language"
+        },
+        "@Semantics.time": {
+          "$ref": "#/definitions/@Semantics.time"
+        },
+        "@Semantics.text": {
+          "$ref": "#/definitions/@Semantics.text"
+        },
+        "@Semantics.uuid": {
+          "$ref": "#/definitions/@Semantics.uuid"
+        },
+        "@Semantics.businessDate.from": {
+          "$ref": "#/definitions/@Semantics.businessDate.from"
+        },
+        "@Semantics.businessDate.to": {
+          "$ref": "#/definitions/@Semantics.businessDate.to"
         }
       },
       "patternProperties": {
@@ -2021,6 +2585,84 @@
         },
         "@Semantics.quantity.unitOfMeasure": {
           "$ref": "#/definitions/@Semantics.quantity.unitOfMeasure"
+        },
+        "@Semantics.calendar.dayOfMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfMonth"
+        },
+        "@Semantics.calendar.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfYear"
+        },
+        "@Semantics.calendar.week": {
+          "$ref": "#/definitions/@Semantics.calendar.week"
+        },
+        "@Semantics.calendar.month": {
+          "$ref": "#/definitions/@Semantics.calendar.month"
+        },
+        "@Semantics.calendar.quarter": {
+          "$ref": "#/definitions/@Semantics.calendar.quarter"
+        },
+        "@Semantics.calendar.halfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.halfyear"
+        },
+        "@Semantics.calendar.year": {
+          "$ref": "#/definitions/@Semantics.calendar.year"
+        },
+        "@Semantics.calendar.yearWeek": {
+          "$ref": "#/definitions/@Semantics.calendar.yearWeek"
+        },
+        "@Semantics.calendar.yearMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.yearMonth"
+        },
+        "@Semantics.calendar.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.calendar.yearQuarter"
+        },
+        "@Semantics.calendar.yearHalfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.yearHalfyear"
+        },
+        "@Semantics.fiscal.yearVariant": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearVariant"
+        },
+        "@Semantics.fiscal.period": {
+          "$ref": "#/definitions/@Semantics.fiscal.period"
+        },
+        "@Semantics.fiscal.year": {
+          "$ref": "#/definitions/@Semantics.fiscal.year"
+        },
+        "@Semantics.fiscal.yearPeriod": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearPeriod"
+        },
+        "@Semantics.fiscal.quarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.quarter"
+        },
+        "@Semantics.fiscal.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearQuarter"
+        },
+        "@Semantics.fiscal.week": {
+          "$ref": "#/definitions/@Semantics.fiscal.week"
+        },
+        "@Semantics.fiscal.yearWeek": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearWeek"
+        },
+        "@Semantics.fiscal.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.fiscal.dayOfYear"
+        },
+        "@Semantics.language": {
+          "$ref": "#/definitions/@Semantics.language"
+        },
+        "@Semantics.time": {
+          "$ref": "#/definitions/@Semantics.time"
+        },
+        "@Semantics.text": {
+          "$ref": "#/definitions/@Semantics.text"
+        },
+        "@Semantics.uuid": {
+          "$ref": "#/definitions/@Semantics.uuid"
+        },
+        "@Semantics.businessDate.from": {
+          "$ref": "#/definitions/@Semantics.businessDate.from"
+        },
+        "@Semantics.businessDate.to": {
+          "$ref": "#/definitions/@Semantics.businessDate.to"
         }
       },
       "patternProperties": {
@@ -2135,6 +2777,84 @@
         },
         "@Semantics.quantity.unitOfMeasure": {
           "$ref": "#/definitions/@Semantics.quantity.unitOfMeasure"
+        },
+        "@Semantics.calendar.dayOfMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfMonth"
+        },
+        "@Semantics.calendar.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfYear"
+        },
+        "@Semantics.calendar.week": {
+          "$ref": "#/definitions/@Semantics.calendar.week"
+        },
+        "@Semantics.calendar.month": {
+          "$ref": "#/definitions/@Semantics.calendar.month"
+        },
+        "@Semantics.calendar.quarter": {
+          "$ref": "#/definitions/@Semantics.calendar.quarter"
+        },
+        "@Semantics.calendar.halfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.halfyear"
+        },
+        "@Semantics.calendar.year": {
+          "$ref": "#/definitions/@Semantics.calendar.year"
+        },
+        "@Semantics.calendar.yearWeek": {
+          "$ref": "#/definitions/@Semantics.calendar.yearWeek"
+        },
+        "@Semantics.calendar.yearMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.yearMonth"
+        },
+        "@Semantics.calendar.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.calendar.yearQuarter"
+        },
+        "@Semantics.calendar.yearHalfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.yearHalfyear"
+        },
+        "@Semantics.fiscal.yearVariant": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearVariant"
+        },
+        "@Semantics.fiscal.period": {
+          "$ref": "#/definitions/@Semantics.fiscal.period"
+        },
+        "@Semantics.fiscal.year": {
+          "$ref": "#/definitions/@Semantics.fiscal.year"
+        },
+        "@Semantics.fiscal.yearPeriod": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearPeriod"
+        },
+        "@Semantics.fiscal.quarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.quarter"
+        },
+        "@Semantics.fiscal.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearQuarter"
+        },
+        "@Semantics.fiscal.week": {
+          "$ref": "#/definitions/@Semantics.fiscal.week"
+        },
+        "@Semantics.fiscal.yearWeek": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearWeek"
+        },
+        "@Semantics.fiscal.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.fiscal.dayOfYear"
+        },
+        "@Semantics.language": {
+          "$ref": "#/definitions/@Semantics.language"
+        },
+        "@Semantics.time": {
+          "$ref": "#/definitions/@Semantics.time"
+        },
+        "@Semantics.text": {
+          "$ref": "#/definitions/@Semantics.text"
+        },
+        "@Semantics.uuid": {
+          "$ref": "#/definitions/@Semantics.uuid"
+        },
+        "@Semantics.businessDate.from": {
+          "$ref": "#/definitions/@Semantics.businessDate.from"
+        },
+        "@Semantics.businessDate.to": {
+          "$ref": "#/definitions/@Semantics.businessDate.to"
         }
       },
       "patternProperties": {
@@ -2246,6 +2966,84 @@
         },
         "@Semantics.quantity.unitOfMeasure": {
           "$ref": "#/definitions/@Semantics.quantity.unitOfMeasure"
+        },
+        "@Semantics.calendar.dayOfMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfMonth"
+        },
+        "@Semantics.calendar.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfYear"
+        },
+        "@Semantics.calendar.week": {
+          "$ref": "#/definitions/@Semantics.calendar.week"
+        },
+        "@Semantics.calendar.month": {
+          "$ref": "#/definitions/@Semantics.calendar.month"
+        },
+        "@Semantics.calendar.quarter": {
+          "$ref": "#/definitions/@Semantics.calendar.quarter"
+        },
+        "@Semantics.calendar.halfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.halfyear"
+        },
+        "@Semantics.calendar.year": {
+          "$ref": "#/definitions/@Semantics.calendar.year"
+        },
+        "@Semantics.calendar.yearWeek": {
+          "$ref": "#/definitions/@Semantics.calendar.yearWeek"
+        },
+        "@Semantics.calendar.yearMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.yearMonth"
+        },
+        "@Semantics.calendar.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.calendar.yearQuarter"
+        },
+        "@Semantics.calendar.yearHalfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.yearHalfyear"
+        },
+        "@Semantics.fiscal.yearVariant": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearVariant"
+        },
+        "@Semantics.fiscal.period": {
+          "$ref": "#/definitions/@Semantics.fiscal.period"
+        },
+        "@Semantics.fiscal.year": {
+          "$ref": "#/definitions/@Semantics.fiscal.year"
+        },
+        "@Semantics.fiscal.yearPeriod": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearPeriod"
+        },
+        "@Semantics.fiscal.quarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.quarter"
+        },
+        "@Semantics.fiscal.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearQuarter"
+        },
+        "@Semantics.fiscal.week": {
+          "$ref": "#/definitions/@Semantics.fiscal.week"
+        },
+        "@Semantics.fiscal.yearWeek": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearWeek"
+        },
+        "@Semantics.fiscal.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.fiscal.dayOfYear"
+        },
+        "@Semantics.language": {
+          "$ref": "#/definitions/@Semantics.language"
+        },
+        "@Semantics.time": {
+          "$ref": "#/definitions/@Semantics.time"
+        },
+        "@Semantics.text": {
+          "$ref": "#/definitions/@Semantics.text"
+        },
+        "@Semantics.uuid": {
+          "$ref": "#/definitions/@Semantics.uuid"
+        },
+        "@Semantics.businessDate.from": {
+          "$ref": "#/definitions/@Semantics.businessDate.from"
+        },
+        "@Semantics.businessDate.to": {
+          "$ref": "#/definitions/@Semantics.businessDate.to"
         }
       },
       "patternProperties": {
@@ -2441,6 +3239,84 @@
         },
         "@Semantics.quantity.unitOfMeasure": {
           "$ref": "#/definitions/@Semantics.quantity.unitOfMeasure"
+        },
+        "@Semantics.calendar.dayOfMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfMonth"
+        },
+        "@Semantics.calendar.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfYear"
+        },
+        "@Semantics.calendar.week": {
+          "$ref": "#/definitions/@Semantics.calendar.week"
+        },
+        "@Semantics.calendar.month": {
+          "$ref": "#/definitions/@Semantics.calendar.month"
+        },
+        "@Semantics.calendar.quarter": {
+          "$ref": "#/definitions/@Semantics.calendar.quarter"
+        },
+        "@Semantics.calendar.halfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.halfyear"
+        },
+        "@Semantics.calendar.year": {
+          "$ref": "#/definitions/@Semantics.calendar.year"
+        },
+        "@Semantics.calendar.yearWeek": {
+          "$ref": "#/definitions/@Semantics.calendar.yearWeek"
+        },
+        "@Semantics.calendar.yearMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.yearMonth"
+        },
+        "@Semantics.calendar.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.calendar.yearQuarter"
+        },
+        "@Semantics.calendar.yearHalfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.yearHalfyear"
+        },
+        "@Semantics.fiscal.yearVariant": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearVariant"
+        },
+        "@Semantics.fiscal.period": {
+          "$ref": "#/definitions/@Semantics.fiscal.period"
+        },
+        "@Semantics.fiscal.year": {
+          "$ref": "#/definitions/@Semantics.fiscal.year"
+        },
+        "@Semantics.fiscal.yearPeriod": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearPeriod"
+        },
+        "@Semantics.fiscal.quarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.quarter"
+        },
+        "@Semantics.fiscal.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearQuarter"
+        },
+        "@Semantics.fiscal.week": {
+          "$ref": "#/definitions/@Semantics.fiscal.week"
+        },
+        "@Semantics.fiscal.yearWeek": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearWeek"
+        },
+        "@Semantics.fiscal.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.fiscal.dayOfYear"
+        },
+        "@Semantics.language": {
+          "$ref": "#/definitions/@Semantics.language"
+        },
+        "@Semantics.time": {
+          "$ref": "#/definitions/@Semantics.time"
+        },
+        "@Semantics.text": {
+          "$ref": "#/definitions/@Semantics.text"
+        },
+        "@Semantics.uuid": {
+          "$ref": "#/definitions/@Semantics.uuid"
+        },
+        "@Semantics.businessDate.from": {
+          "$ref": "#/definitions/@Semantics.businessDate.from"
+        },
+        "@Semantics.businessDate.to": {
+          "$ref": "#/definitions/@Semantics.businessDate.to"
         }
       },
       "patternProperties": {
@@ -2656,6 +3532,84 @@
         },
         "@Semantics.quantity.unitOfMeasure": {
           "$ref": "#/definitions/@Semantics.quantity.unitOfMeasure"
+        },
+        "@Semantics.calendar.dayOfMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfMonth"
+        },
+        "@Semantics.calendar.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfYear"
+        },
+        "@Semantics.calendar.week": {
+          "$ref": "#/definitions/@Semantics.calendar.week"
+        },
+        "@Semantics.calendar.month": {
+          "$ref": "#/definitions/@Semantics.calendar.month"
+        },
+        "@Semantics.calendar.quarter": {
+          "$ref": "#/definitions/@Semantics.calendar.quarter"
+        },
+        "@Semantics.calendar.halfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.halfyear"
+        },
+        "@Semantics.calendar.year": {
+          "$ref": "#/definitions/@Semantics.calendar.year"
+        },
+        "@Semantics.calendar.yearWeek": {
+          "$ref": "#/definitions/@Semantics.calendar.yearWeek"
+        },
+        "@Semantics.calendar.yearMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.yearMonth"
+        },
+        "@Semantics.calendar.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.calendar.yearQuarter"
+        },
+        "@Semantics.calendar.yearHalfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.yearHalfyear"
+        },
+        "@Semantics.fiscal.yearVariant": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearVariant"
+        },
+        "@Semantics.fiscal.period": {
+          "$ref": "#/definitions/@Semantics.fiscal.period"
+        },
+        "@Semantics.fiscal.year": {
+          "$ref": "#/definitions/@Semantics.fiscal.year"
+        },
+        "@Semantics.fiscal.yearPeriod": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearPeriod"
+        },
+        "@Semantics.fiscal.quarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.quarter"
+        },
+        "@Semantics.fiscal.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearQuarter"
+        },
+        "@Semantics.fiscal.week": {
+          "$ref": "#/definitions/@Semantics.fiscal.week"
+        },
+        "@Semantics.fiscal.yearWeek": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearWeek"
+        },
+        "@Semantics.fiscal.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.fiscal.dayOfYear"
+        },
+        "@Semantics.language": {
+          "$ref": "#/definitions/@Semantics.language"
+        },
+        "@Semantics.time": {
+          "$ref": "#/definitions/@Semantics.time"
+        },
+        "@Semantics.text": {
+          "$ref": "#/definitions/@Semantics.text"
+        },
+        "@Semantics.uuid": {
+          "$ref": "#/definitions/@Semantics.uuid"
+        },
+        "@Semantics.businessDate.from": {
+          "$ref": "#/definitions/@Semantics.businessDate.from"
+        },
+        "@Semantics.businessDate.to": {
+          "$ref": "#/definitions/@Semantics.businessDate.to"
         }
       },
       "patternProperties": {
@@ -2813,6 +3767,84 @@
         },
         "@Semantics.quantity.unitOfMeasure": {
           "$ref": "#/definitions/@Semantics.quantity.unitOfMeasure"
+        },
+        "@Semantics.calendar.dayOfMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfMonth"
+        },
+        "@Semantics.calendar.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfYear"
+        },
+        "@Semantics.calendar.week": {
+          "$ref": "#/definitions/@Semantics.calendar.week"
+        },
+        "@Semantics.calendar.month": {
+          "$ref": "#/definitions/@Semantics.calendar.month"
+        },
+        "@Semantics.calendar.quarter": {
+          "$ref": "#/definitions/@Semantics.calendar.quarter"
+        },
+        "@Semantics.calendar.halfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.halfyear"
+        },
+        "@Semantics.calendar.year": {
+          "$ref": "#/definitions/@Semantics.calendar.year"
+        },
+        "@Semantics.calendar.yearWeek": {
+          "$ref": "#/definitions/@Semantics.calendar.yearWeek"
+        },
+        "@Semantics.calendar.yearMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.yearMonth"
+        },
+        "@Semantics.calendar.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.calendar.yearQuarter"
+        },
+        "@Semantics.calendar.yearHalfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.yearHalfyear"
+        },
+        "@Semantics.fiscal.yearVariant": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearVariant"
+        },
+        "@Semantics.fiscal.period": {
+          "$ref": "#/definitions/@Semantics.fiscal.period"
+        },
+        "@Semantics.fiscal.year": {
+          "$ref": "#/definitions/@Semantics.fiscal.year"
+        },
+        "@Semantics.fiscal.yearPeriod": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearPeriod"
+        },
+        "@Semantics.fiscal.quarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.quarter"
+        },
+        "@Semantics.fiscal.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearQuarter"
+        },
+        "@Semantics.fiscal.week": {
+          "$ref": "#/definitions/@Semantics.fiscal.week"
+        },
+        "@Semantics.fiscal.yearWeek": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearWeek"
+        },
+        "@Semantics.fiscal.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.fiscal.dayOfYear"
+        },
+        "@Semantics.language": {
+          "$ref": "#/definitions/@Semantics.language"
+        },
+        "@Semantics.time": {
+          "$ref": "#/definitions/@Semantics.time"
+        },
+        "@Semantics.text": {
+          "$ref": "#/definitions/@Semantics.text"
+        },
+        "@Semantics.uuid": {
+          "$ref": "#/definitions/@Semantics.uuid"
+        },
+        "@Semantics.businessDate.from": {
+          "$ref": "#/definitions/@Semantics.businessDate.from"
+        },
+        "@Semantics.businessDate.to": {
+          "$ref": "#/definitions/@Semantics.businessDate.to"
         }
       },
       "patternProperties": {
@@ -3238,6 +4270,84 @@
         },
         "@Semantics.quantity.unitOfMeasure": {
           "$ref": "#/definitions/@Semantics.quantity.unitOfMeasure"
+        },
+        "@Semantics.calendar.dayOfMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfMonth"
+        },
+        "@Semantics.calendar.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfYear"
+        },
+        "@Semantics.calendar.week": {
+          "$ref": "#/definitions/@Semantics.calendar.week"
+        },
+        "@Semantics.calendar.month": {
+          "$ref": "#/definitions/@Semantics.calendar.month"
+        },
+        "@Semantics.calendar.quarter": {
+          "$ref": "#/definitions/@Semantics.calendar.quarter"
+        },
+        "@Semantics.calendar.halfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.halfyear"
+        },
+        "@Semantics.calendar.year": {
+          "$ref": "#/definitions/@Semantics.calendar.year"
+        },
+        "@Semantics.calendar.yearWeek": {
+          "$ref": "#/definitions/@Semantics.calendar.yearWeek"
+        },
+        "@Semantics.calendar.yearMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.yearMonth"
+        },
+        "@Semantics.calendar.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.calendar.yearQuarter"
+        },
+        "@Semantics.calendar.yearHalfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.yearHalfyear"
+        },
+        "@Semantics.fiscal.yearVariant": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearVariant"
+        },
+        "@Semantics.fiscal.period": {
+          "$ref": "#/definitions/@Semantics.fiscal.period"
+        },
+        "@Semantics.fiscal.year": {
+          "$ref": "#/definitions/@Semantics.fiscal.year"
+        },
+        "@Semantics.fiscal.yearPeriod": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearPeriod"
+        },
+        "@Semantics.fiscal.quarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.quarter"
+        },
+        "@Semantics.fiscal.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearQuarter"
+        },
+        "@Semantics.fiscal.week": {
+          "$ref": "#/definitions/@Semantics.fiscal.week"
+        },
+        "@Semantics.fiscal.yearWeek": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearWeek"
+        },
+        "@Semantics.fiscal.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.fiscal.dayOfYear"
+        },
+        "@Semantics.language": {
+          "$ref": "#/definitions/@Semantics.language"
+        },
+        "@Semantics.time": {
+          "$ref": "#/definitions/@Semantics.time"
+        },
+        "@Semantics.text": {
+          "$ref": "#/definitions/@Semantics.text"
+        },
+        "@Semantics.uuid": {
+          "$ref": "#/definitions/@Semantics.uuid"
+        },
+        "@Semantics.businessDate.from": {
+          "$ref": "#/definitions/@Semantics.businessDate.from"
+        },
+        "@Semantics.businessDate.to": {
+          "$ref": "#/definitions/@Semantics.businessDate.to"
         }
       },
       "allOf": [
