@@ -1317,7 +1317,7 @@ export function writeSpecJsonSchemaFiles(
 ): void {
   const refConvertedJsonSchema = convertRefToDocToStandardRef(jsonSchema);
 
-  // NOTE: only for "main" schemas we remove the x- annotations and write the cleaned-up version also to file system
+  // NOTE: only for "main" schemas we remove the x- annotations and write the cleaned-up version to file system
   // all other auto-generated "extensions" schemas will keep the x- annotations
   // as they cannot be understood by readers without them
   if (isMainSchema) {
@@ -1328,19 +1328,6 @@ export function writeSpecJsonSchemaFiles(
 
     // write it as schema file that does not include all the x- extensions
     fs.outputFileSync(filePath, JSON.stringify(jsonSchema2, null, 2));
-
-    // write it as schema file that includes all the x- extensions
-    fs.outputFileSync(
-      filePath.split(".json").join(".x.json"),
-      JSON.stringify(
-        {
-          description: "JSON Schema with custom (x-) annotations",
-          ...refConvertedJsonSchema,
-        },
-        null,
-        2,
-      ),
-    );
   } else {
     // write it as schema file that includes all the x- extensions
     fs.outputFileSync(

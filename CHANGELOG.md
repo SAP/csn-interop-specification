@@ -17,7 +17,7 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ### Changed
 
-- BREAKING: exported schema `csnInteropEffectiveSchemaWithAnnotations` renamed to `csnInteropEffectiveSchemaWithXProperties`
+- BREAKING: deleted schema `csnInteropEffectiveSchemaWithAnnotations`, for consumers use `csnInteropEffectiveSchema` equivalent instead
 - BREAKING: spec-toolkit no longer part of the csn-interop-specification package exports
 
 ## [0.4.0]
