@@ -10,6 +10,12 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+### Added
+
+- Added `@Semantics.valueRange` annotation
+
+### Changed
+
 - BREAKING: spec-toolkit no longer part of the csn-interop-specification package exports
 
 ## [0.4.0]

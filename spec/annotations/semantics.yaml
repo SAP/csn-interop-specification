@@ -5,6 +5,38 @@ x-extension:
   targetLink: "../spec-v1/csn-interop-effective"
 
 definitions:
+  "@Semantics.valueRange":
+    type: object
+    description: |-
+      Informs consumers about the value range of a CDS element, allowing to specify minimal and/or maximal values, and indicate whether these are exclusive or inclusive. 
+      This value range can be used for client-side validation of user input.
+    properties:
+      minimum:
+        type: string
+        description: |-
+          Specifies the minimum value.
+      exclusiveMinimum:
+        type: boolean
+        description: |-
+          Specifies if the lower boundary should be excluded. 
+          Not specifying this annotation means that the lower boundary is included.
+        default: false
+      maximum:
+        type: string
+        description: |-
+          Specifies the maximum value.
+      exclusiveMaximum:
+        type: boolean
+        description: |-
+          Specifies if the upper boundary should be excluded. 
+          Not specifying this annotation means that the upper boundary is included.
+        default: false
+    x-extension-targets:
+      - IntegerType
+      - Integer64Type
+      - DecimalType
+      - DoubleType
+
   "@Semantics.currencyCode": &semanticsFieldBoolean
     type: boolean
     const: true
@@ -15,7 +47,8 @@ definitions:
 
   "@Semantics.amount.currencyCode": &semanticsFieldElementReference
     description: |-
-      The element contains an amount. The annotation points to an element containing the currency code.
+      The element contains an amount. 
+      The annotation points to an element containing the currency code.
     x-ref-to-doc:
       title: Element Reference
       ref: "#/definitions/ElementReference"
@@ -25,7 +58,7 @@ definitions:
   "@Semantics.unitOfMeasure":
     <<: *semanticsFieldBoolean
     description: |-
-      The property contains a unit of measure.
+      The element contains a unit of measure.
 
   "@Semantics.quantity.unitOfMeasure":
     <<: *semanticsFieldElementReference
@@ -36,112 +69,190 @@ definitions:
   "@Semantics.calendar.dayOfMonth":
     <<: *semanticsFieldBoolean
     description: |-
+      The element states the day of month.
+    x-extension-targets:
+      - Type
 
   "@Semantics.calendar.dayOfYear":
     <<: *semanticsFieldBoolean
     description: |-
+      The element states the day of year.
+    x-extension-targets:
+      - Type
 
   "@Semantics.calendar.week":
     <<: *semanticsFieldBoolean
     description: |-
+      The element states the calendar week.
+    x-extension-targets:
+      - Type
 
   "@Semantics.calendar.month":
     <<: *semanticsFieldBoolean
     description: |-
+      The element states the calendar month.
+    x-extension-targets:
+      - Type
 
   "@Semantics.calendar.quarter":
     <<: *semanticsFieldBoolean
     description: |-
+      The element states the calendar quarter.
+    x-extension-targets:
+      - Type
 
   "@Semantics.calendar.halfyear":
     <<: *semanticsFieldBoolean
     description: |-
+      The element states the calendar halfyear.
+    x-extension-targets:
+      - Type
 
   "@Semantics.calendar.year":
     <<: *semanticsFieldBoolean
     description: |-
+      The element states the calendar year.
+    x-extension-targets:
+      - Type
 
   "@Semantics.calendar.yearWeek":
     <<: *semanticsFieldBoolean
     description: |-
+      The element states the calendar year week.
+    x-extension-targets:
+      - Type
 
   "@Semantics.calendar.yearMonth":
     <<: *semanticsFieldBoolean
     description: |-
+      The element states the calendar year month.
+    x-extension-targets:
+      - Type
 
   "@Semantics.calendar.yearQuarter":
     <<: *semanticsFieldBoolean
     description: |-
+      The element states the calendar year quarter.
+    x-extension-targets:
+      - Type
 
   "@Semantics.calendar.yearHalfyear":
     <<: *semanticsFieldBoolean
     description: |-
+      The element states the calendar year halfyear.
+    x-extension-targets:
+      - Type
 
   "@Semantics.fiscal.yearVariant":
     <<: *semanticsFieldBoolean
     description: |-
+      The element states the calendar year variant.
+    x-extension-targets:
+      - Type
 
   "@Semantics.fiscal.period":
     <<: *semanticsFieldBoolean
     description: |-
+      The element states the fiscal period.
+    x-extension-targets:
+      - Type
 
   "@Semantics.fiscal.year":
     <<: *semanticsFieldBoolean
     description: |-
+      The element states the fiscal year.
+    x-extension-targets:
+      - Type
 
   "@Semantics.fiscal.yearPeriod":
     <<: *semanticsFieldBoolean
     description: |-
+      The element states the fiscal year period.
+    x-extension-targets:
+      - Type
 
   "@Semantics.fiscal.quarter":
     <<: *semanticsFieldBoolean
     description: |-
+      The element states the fiscal quarter.
+    x-extension-targets:
+      - Type
 
   "@Semantics.fiscal.yearQuarter":
     <<: *semanticsFieldBoolean
     description: |-
+      The element states the fiscal year quarter.
+    x-extension-targets:
+      - Type
 
   "@Semantics.fiscal.week":
     <<: *semanticsFieldBoolean
     description: |-
+      The element states the fiscal week.
+    x-extension-targets:
+      - Type
 
   "@Semantics.fiscal.yearWeek":
     <<: *semanticsFieldBoolean
     description: |-
+      The element states the fiscal year week.
+    x-extension-targets:
+      - Type
 
   "@Semantics.fiscal.dayOfYear":
     <<: *semanticsFieldBoolean
     description: |-
+      The element states the fiscal day of year.
+    x-extension-targets:
+      - Type
 
   "@Semantics.language":
     <<: *semanticsFieldBoolean
     description: |-
       The property contains a language code.
+    x-extension-targets:
+      - Type
 
   "@Semantics.time":
     <<: *semanticsFieldBoolean
     description: |-
       This annotation is used to indicate a date semantic for the NVARCHAR-based ABAP type TIMS.
+    x-extension-targets:
+      - Type
 
   "@Semantics.text":
     <<: *semanticsFieldBoolean
     description: |-
       The property contains a human-readable text.
+    x-extension-targets:
+      - Type
 
   "@Semantics.uuid":
     <<: *semanticsFieldBoolean
     description: |-
       Tags a field containing a GUID in RAW16 or CHAR32 format.
 
+      It is RECOMMENDED to explicitly use the `csd.UUID` type.
+    x-extension-targets:
+      - Type
+      # - StringType
+      # - BinaryType # TODO: Currently we dont have cds.Binary yet, but once we do we also apply it here
+
   "@Semantics.businessDate.from":
     <<: *semanticsFieldBoolean
     description: |-
       The property contains a date which is the lower boundary of a (validity) interval (for time dependent master data).
+    x-extension-targets:
+      - Type
+      # - DateType
 
   "@Semantics.businessDate.to":
     <<: *semanticsFieldBoolean
     description: |-
       The property contains a date which is the upper boundary of a (validity) interval (for time dependent master data).
+    x-extension-targets:
+      - Type
+      # - DateType
 
   # "@Semantics.FieldWithBoolean": # Maybe we can define a reuse type here?
   #   type: boolean
