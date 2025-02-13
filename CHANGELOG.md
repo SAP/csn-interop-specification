@@ -13,6 +13,7 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 ### Added
 
 - Added `@Semantics.valueRange` annotation
+- Added `UI_PROVIDER_PROJECTION_SOURCE` as enum value to `ObjectModel.supportedCapabilities`
 
 ### Changed
 

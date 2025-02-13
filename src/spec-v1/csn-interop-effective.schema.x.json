@@ -8122,7 +8122,8 @@
             "SITUATION_DATACONTEXT",
             "KEY_USER_COPYING_TEMPLATE",
             "EXTERNAL_DATA_PROVIDER",
-            "ODM_COMPLIANT_PROVIDER"
+            "ODM_COMPLIANT_PROVIDER",
+            "UI_PROVIDER_PROJECTION_SOURCE"
           ]
         }
       },
