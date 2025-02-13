@@ -2682,7 +2682,8 @@ export interface SupportedCapabilitiesEnumValue {
     | "SITUATION_DATACONTEXT"
     | "KEY_USER_COPYING_TEMPLATE"
     | "EXTERNAL_DATA_PROVIDER"
-    | "ODM_COMPLIANT_PROVIDER";
+    | "ODM_COMPLIANT_PROVIDER"
+    | "UI_PROVIDER_PROJECTION_SOURCE";
 }
 /**
  * A CDS Service indicates that [Entities](#entity-definition) are exposed to outside consumers via an API.
