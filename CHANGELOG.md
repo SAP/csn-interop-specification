@@ -13,6 +13,7 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 ### Added
 
 - Added `@Semantics.valueRange` annotation
+- Added `@ObjectModel.tenantWideUniqueName` annotation
 
 ### Changed
 
