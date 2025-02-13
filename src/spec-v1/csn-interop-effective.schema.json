@@ -5580,7 +5580,7 @@
     "ServiceDefinition": {
       "title": "Service Definition",
       "type": "object",
-      "description": "A CDS Service indicates that [Entities](#entity-definition) are exposed to outside consumers via an API.\n\nTo assign Entities to a Service, the entity name MUST be prefixed with the service name, separated by a `.`.\nPlease be aware that this will also change the `target` values of `cds.Association` and `cds.Composition`.\nFor an example, see [airline-service.json](./examples/airline.md).\n\nA consumer MAY decide to shorten the names by only considering the Entities assigned to a particular Service and then removing the Service prefixes again.\n\nTo indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](../annotations/objectmodel#objectmodelcompositionroot) annotation.\n\nSee [Primer: Service Definitions](../primer.md#service-definitions).",
+      "description": "A CDS Service indicates that [Entities](#entity-definition) are exposed to outside consumers via an API.\n\nTo assign Entities or Custom Types to a Service, their name MUST be prefixed with the service name, separated by a `.`.\nPlease be aware that this will also change the `target` values of `cds.Association` and `cds.Composition`.\nFor an example, see [airline-service.json](./examples/airline.md).\n\nA consumer MAY decide to shorten the names by only considering the Entities assigned to a particular Service and then removing the Service prefixes again.\n\nTo indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](../annotations/objectmodel#objectmodelcompositionroot) annotation.\n\nSee [Primer: Service Definitions](../primer.md#service-definitions).",
       "properties": {
         "kind": {
           "type": "string",
@@ -5629,7 +5629,7 @@
     "ContextDefinition": {
       "title": "Context Definition",
       "type": "object",
-      "description": "A context corresponds to a CAP CSN Namespace. It is used to create a bounded context that bundles elements of different kinds together.\nThe context will become part of the entity / element name.\n\nThe context is also useful to avoid local or global name collisions.\n\nSee [Primer: Context](../primer.md#context-definitions).",
+      "description": "A context corresponds to a CAP CSN Namespace. \nIt is used to create a bounded context that bundles elements of different kinds together.\n\nTo assign Services, Entities or Custom Types to a context, their name MUST be prefixed with the context name, separated by a `.`.\n\nThe context can also be useful to avoid local or global name collisions.\n\nSee [Primer: Context](../primer.md#context-definitions).",
       "properties": {
         "kind": {
           "type": "string",

@@ -410,10 +410,12 @@ export interface Definitions {
   [k: string]: DefinitionEntry;
 }
 /**
- * A context corresponds to a CAP CSN Namespace. It is used to create a bounded context that bundles elements of different kinds together.
- * The context will become part of the entity / element name.
+ * A context corresponds to a CAP CSN Namespace.
+ * It is used to create a bounded context that bundles elements of different kinds together.
  *
- * The context is also useful to avoid local or global name collisions.
+ * To assign Services, Entities or Custom Types to a context, their name MUST be prefixed with the context name, separated by a `.`.
+ *
+ * The context can also be useful to avoid local or global name collisions.
  *
  * See [Primer: Context](../primer.md#context-definitions).
  */
@@ -2600,7 +2602,7 @@ export interface SupportedCapabilitiesEnumValue {
 /**
  * A CDS Service indicates that [Entities](#entity-definition) are exposed to outside consumers via an API.
  *
- * To assign Entities to a Service, the entity name MUST be prefixed with the service name, separated by a `.`.
+ * To assign Entities or Custom Types to a Service, their name MUST be prefixed with the service name, separated by a `.`.
  * Please be aware that this will also change the `target` values of `cds.Association` and `cds.Composition`.
  * For an example, see [airline-service.json](./examples/airline.md).
  *

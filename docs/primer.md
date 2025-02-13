@@ -48,7 +48,11 @@ The actual model content lives in the [definitions section](#definitions), where
 
 The entities can be assigned to a [service](#service-definitions) to indicate that the entity is exposed as an API (or events). [Contexts](#context-definitions) may optionally be used to assign other concepts to a "namespace", ensuring unique names.
 
+<div style={{"text-align": "center", "max-width": "auto"}}>
+
 ![High-level CSN structure overview](/img/high-level-model.drawio.svg "High-level CSN structure overview")
+
+</div>
 
 ## Root Level Structure
 
