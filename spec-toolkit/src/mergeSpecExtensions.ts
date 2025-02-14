@@ -9,14 +9,14 @@ import path from "path";
 
 export function mergeSpecExtensions(configData: ConfigFile): SpecJsonSchemaRoot | undefined {
   for (const docConfig1 of configData.docsConfig) {
-    if (docConfig1.type === "main") {
+    if (docConfig1.type === "spec") {
       const targetDocumentFilePath = docConfig1.targetJsonSchemaFilePath;
       const jsonSchemaFile = fs.readFileSync(path.join(process.cwd(), targetDocumentFilePath)).toString();
       const targetDocument = yaml.load(jsonSchemaFile) as SpecJsonSchemaRoot;
 
       const specExtensions: string[] = [];
       for (const docConfig2 of configData.docsConfig) {
-        if (docConfig2.type === "extension" && docConfig2.targetDocument === docConfig1.sourceFilePath) {
+        if (docConfig2.type === "specExtension" && docConfig2.targetDocument === docConfig1.sourceFilePath) {
           specExtensions.push(docConfig2.sourceFilePath);
         }
       }

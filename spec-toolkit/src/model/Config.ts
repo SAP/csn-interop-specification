@@ -10,11 +10,11 @@ export interface GeneralConfig {
   sortProperties: boolean;
 }
 
-export type SpecType = "main" | "extension";
+export type SpecType = "spec" | "specExtension";
 export type SpecConfig = MainSpecConfig | ExtensionSpecConfig;
 // Configuration Document Interface
 export interface MainSpecConfig {
-  type: "main";
+  type: "spec";
   id: string;
   title: string;
   sourceFilePath: string;
@@ -36,7 +36,7 @@ export interface MainSpecConfig {
   facts?: string[];
 }
 export interface ExtensionSpecConfig {
-  type: "extension";
+  type: "specExtension";
   id: string;
   title: string;
   sourceFilePath: string;

@@ -98,7 +98,7 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
 
     // Read extension target file if given
     let extensionTarget: SpecJsonSchemaRoot | undefined;
-    if (docConfig.type === "extension") {
+    if (docConfig.type === "specExtension") {
       const file = fs.readFileSync(docConfig.targetDocument).toString();
       extensionTarget = yaml.load(file) as SpecJsonSchemaRoot;
     }
@@ -117,7 +117,7 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
 
     text += "\n\n## Schema Definitions\n\n";
 
-    if (docConfig.type === "extension") {
+    if (docConfig.type === "specExtension") {
       text += `* This is an extension vocabulary for [${extensionTarget?.title}](${docConfig.targetLink}).\n`;
     } else if (jsonSchemaRoot.$ref) {
       const referencedSchema = getReferencedSchema(jsonSchemaRoot.$ref, jsonSchemaRoot, docConfig.title);
@@ -147,7 +147,7 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
     }
 
     // If extension: Create extension property overview table
-    if (docConfig.type === "extension") {
+    if (docConfig.type === "specExtension") {
       text += getExtensionOverviewTable(jsonSchemaRoot);
     }
 
@@ -183,7 +183,7 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
     fs.outputFileSync(docConfig.targetMarkdownFilePath, text);
     log.info(`Written: ${docConfig.targetMarkdownFilePath}`);
 
-    if (!jsonSchemaRoot.type && docConfig.type === "main") {
+    if (!jsonSchemaRoot.type && docConfig.type === "spec") {
       jsonSchemaRoot = ensureRootLevelSchema(jsonSchemaRoot);
     }
 
@@ -323,7 +323,7 @@ function getTypeColumnText(
     }
   }
   //in case it is a primitive type just return it
-  else if (jsonSchemaObject["x-ref-to-doc"] && specConfig.type === "extension") {
+  else if (jsonSchemaObject["x-ref-to-doc"] && specConfig.type === "specExtension") {
     return `[${jsonSchemaObject["x-ref-to-doc"].title}](${specConfig.targetLink}${getAnchorLinkFromTitle(jsonSchemaObject["x-ref-to-doc"].title)})`;
   }
   // if its referencing to an interface in another document, create a cross-page link:
@@ -831,7 +831,7 @@ function generatePrimitiveTypeDescription(
     text += `<strong className="introduced-version">Introduced in Version</strong>: ${jsonSchemaObject["x-introduced-in-version"]}<br/>\n`;
   }
 
-  if (jsonSchemaObject["x-ref-to-doc"] && specConfig.type === "extension") {
+  if (jsonSchemaObject["x-ref-to-doc"] && specConfig.type === "specExtension") {
     text += `**External Type**: [${jsonSchemaObject["x-ref-to-doc"].title}](${specConfig.targetLink}${getAnchorLinkFromTitle(jsonSchemaObject["x-ref-to-doc"].title)}) <br/>\n`;
   }
 
@@ -848,7 +848,7 @@ function generatePrimitiveTypeDescription(
         if (
           definition["x-extension-points"] &&
           definition["x-extension-points"].includes(extensionPoint) &&
-          specConfig.type === "extension"
+          specConfig.type === "specExtension"
         ) {
           text += `[${definitionName}](${specConfig.targetLink}${getAnchorLinkFromTitle(definition.title)}), `;
           found++;

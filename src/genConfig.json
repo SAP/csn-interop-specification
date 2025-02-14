@@ -5,7 +5,7 @@
   },
   "docsConfig": [
     {
-      "type": "main",
+      "type": "spec",
       "id": "CSN-Interop-Effective",
       "sourceFilePath": "./spec/v1/CSN-Interop-Effective.schema.yaml",
       "sourceIntroductionFilePath": "./spec/v1/CSN-Interop-Effective.schema.md",
@@ -18,7 +18,7 @@
       "facts": []
     },
     {
-      "type": "extension",
+      "type": "specExtension",
       "id": "@Aggregation",
       "sourceFilePath": "./spec/annotations/aggregation.yaml",
       "sourceIntroductionFilePath": "./spec/annotations/aggregation.md",
@@ -31,7 +31,7 @@
       "targetLink": "../spec-v1/csn-interop-effective"
     },
     {
-      "type": "extension",
+      "type": "specExtension",
       "id": "@AnalyticsDetails",
       "sourceFilePath": "./spec/annotations/analytics-details.yaml",
       "sourceIntroductionFilePath": "./spec/annotations/analytics-details.md",
@@ -44,7 +44,7 @@
       "targetLink": "../spec-v1/csn-interop-effective"
     },
     {
-      "type": "extension",
+      "type": "specExtension",
       "id": "@Consumption",
       "sourceFilePath": "./spec/annotations/consumption.yaml",
       "sourceIntroductionFilePath": "./spec/annotations/consumption.md",
@@ -57,7 +57,7 @@
       "targetLink": "../spec-v1/csn-interop-effective"
     },
     {
-      "type": "extension",
+      "type": "specExtension",
       "id": "@EndUserText",
       "title": "@EndUserText",
       "sourceFilePath": "./spec/annotations/enduser-text.yaml",
@@ -70,7 +70,7 @@
       "targetLink": "../spec-v1/csn-interop-effective"
     },
     {
-      "type": "extension",
+      "type": "specExtension",
       "id": "@EntityRelationship",
       "sourceFilePath": "./spec/annotations/entity-relationship.yaml",
       "sourceIntroductionFilePath": "./spec/annotations/entity-relationship.md",
@@ -84,7 +84,7 @@
       "targetLink": "../spec-v1/csn-interop-effective"
     },
     {
-      "type": "extension",
+      "type": "specExtension",
       "id": "@ObjectModel",
       "sourceFilePath": "./spec/annotations/object-model.yaml",
       "sourceIntroductionFilePath": "./spec/annotations/object-model.md",
@@ -97,7 +97,7 @@
       "targetLink": "../spec-v1/csn-interop-effective"
     },
     {
-      "type": "extension",
+      "type": "specExtension",
       "id": "@ODM",
       "sourceFilePath": "./spec/annotations/odm.yaml",
       "sourceIntroductionFilePath": "./spec/annotations/odm.md",
@@ -110,7 +110,7 @@
       "targetLink": "../spec-v1/csn-interop-effective"
     },
     {
-      "type": "extension",
+      "type": "specExtension",
       "id": "@PersonalData",
       "sourceFilePath": "./spec/annotations/personal-data.yaml",
       "sourceIntroductionFilePath": "./spec/annotations/personal-data.md",
@@ -123,7 +123,7 @@
       "targetLink": "../spec-v1/csn-interop-effective"
     },
     {
-      "type": "extension",
+      "type": "specExtension",
       "id": "@Semantics",
       "sourceFilePath": "./spec/annotations/semantics.yaml",
       "sourceIntroductionFilePath": "./spec/annotations/semantics.md",
