@@ -28,7 +28,7 @@ export async function generate(configData: ConfigFile): Promise<void> {
   log.info("--------------------------------------------------------------------------");
   log.info("GENERATE AND MERGE SPEC EXTENSIONS");
   log.info("--------------------------------------------------------------------------");
-  const mergedSpecSchema = mergeSpecExtensions(configData);
+  mergeSpecExtensions(configData);
 
   log.info(" ");
   log.info("--------------------------------------------------------------------------");
@@ -40,7 +40,7 @@ export async function generate(configData: ConfigFile): Promise<void> {
   log.info("--------------------------------------------------------------------------");
   log.info("GENERATE TypeScript Definitions");
   log.info("--------------------------------------------------------------------------");
-  await generateTypeScriptDefinitions("CSN-Interop-Effective", mergedSpecSchema);
+  await generateTypeScriptDefinitions(configData);
 
   log.info(" ");
   log.info("==========================================================================");
