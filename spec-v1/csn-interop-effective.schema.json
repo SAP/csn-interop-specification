@@ -1,8 +1,8 @@
 {
+  "description": "Root of the CSN Interop Effective JSON document.\n\nSee [Primer: Root Level Structure](../primer.md#root-level-structure).",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#",
   "title": "CSN Interop Root",
-  "description": "Root of the CSN Interop Effective JSON document.\n\nSee [Primer: Root Level Structure](../primer.md#root-level-structure).",
   "definitions": {
     "Meta": {
       "title": "Meta",
@@ -4031,7 +4031,7 @@
       "properties": {
         "src": {
           "type": "number",
-          "description": "Set to `1` to give a hint to database optimizers, that the relationship is \"one to\". \n\nIf `src` is not set then it is unknown and \"many to\" MAY be assumed."
+          "description": "Set to `1` to give a hint to database optimizers, that the relationship is \"one to\".\n\nIf `src` is not set then it is unknown and \"many to\" MAY be assumed."
         },
         "min": {
           "type": "number",
@@ -5638,7 +5638,7 @@
     "ContextDefinition": {
       "title": "Context Definition",
       "type": "object",
-      "description": "A context corresponds to a CAP CSN Namespace. \nIt is used to create a bounded context that bundles elements of different kinds together.\n\nTo assign Services, Entities or Custom Types to a context, their name MUST be prefixed with the context name, separated by a `.`.\n\nThe context can also be useful to avoid local or global name collisions.\n\nSee [Primer: Context](../primer.md#context-definitions).",
+      "description": "A context corresponds to a CAP CSN Namespace.\nIt is used to create a bounded context that bundles elements of different kinds together.\n\nTo assign Services, Entities or Custom Types to a context, their name MUST be prefixed with the context name, separated by a `.`.\n\nThe context can also be useful to avoid local or global name collisions.\n\nSee [Primer: Context](../primer.md#context-definitions).",
       "properties": {
         "kind": {
           "type": "string",
@@ -6484,7 +6484,7 @@
     },
     "@Semantics.valueRange": {
       "type": "object",
-      "description": "Informs consumers about the value range of a CDS element, allowing to specify minimal and/or maximal values, and indicate whether these are exclusive or inclusive. \nThis value range can be used for client-side validation of user input.",
+      "description": "Informs consumers about the value range of a CDS element, allowing to specify minimal and/or maximal values, and indicate whether these are exclusive or inclusive.\nThis value range can be used for client-side validation of user input.",
       "properties": {
         "minimum": {
           "type": "string",
@@ -6492,7 +6492,7 @@
         },
         "exclusiveMinimum": {
           "type": "boolean",
-          "description": "Specifies if the lower boundary should be excluded. \nNot specifying this annotation means that the lower boundary is included.",
+          "description": "Specifies if the lower boundary should be excluded.\nNot specifying this annotation means that the lower boundary is included.",
           "default": false
         },
         "maximum": {
@@ -6501,7 +6501,7 @@
         },
         "exclusiveMaximum": {
           "type": "boolean",
-          "description": "Specifies if the upper boundary should be excluded. \nNot specifying this annotation means that the upper boundary is included.",
+          "description": "Specifies if the upper boundary should be excluded.\nNot specifying this annotation means that the upper boundary is included.",
           "default": false
         }
       }

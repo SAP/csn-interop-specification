@@ -2,10 +2,6 @@
   "description": "JSON Schema with custom (x-) annotations",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "@EntityRelationship",
-  "x-extension": {
-    "targetDocument": "./spec/v1/CSN-Interop-Effective.schema.yaml",
-    "targetLink": "../spec-v1/csn-interop-effective"
-  },
   "definitions": {
     "@EntityRelationship.entityType": {
       "type": "string",
