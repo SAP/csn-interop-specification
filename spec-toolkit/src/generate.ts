@@ -4,7 +4,7 @@
  **
  * */
 import { generateExampleDocumentation } from "./generateExampleDocumentation.js";
-import { generateInterfaceDocumentationFromConfig } from "./generateInterfaceDocumentation.js";
+import { jsonSchemaToDocumentation } from "./generateInterfaceDocumentation.js";
 import { generateTypeScriptDefinitions } from "./generateTypeScriptDefinitions.js";
 import { log } from "./util/log.js";
 import { mergeSpecExtensions } from "./mergeSpecExtensions.js";
@@ -22,30 +22,13 @@ export async function generate(configData: ConfigFile): Promise<void> {
   log.info("--------------------------------------------------------------------------");
   log.info("GENERATE INTERFACE DOCUMENTATION (JSON-SCHEMA -> MD)");
   log.info("--------------------------------------------------------------------------");
-  const result = generateInterfaceDocumentationFromConfig(configData);
-  const csnInteropEffectiveSchema = result[0].jsonSchema;
+  jsonSchemaToDocumentation(configData);
 
   log.info(" ");
   log.info("--------------------------------------------------------------------------");
   log.info("GENERATE AND MERGE SPEC EXTENSIONS");
   log.info("--------------------------------------------------------------------------");
-  // TODO: Load this list from config file (genConfig.json)
-  const mergedSpecSchema = mergeSpecExtensions({
-    specExtensions: [
-      "./spec/annotations/aggregation.yaml",
-      "./spec/annotations/analytics-details.yaml",
-      "./spec/annotations/consumption.yaml",
-      "./spec/annotations/enduser-text.yaml",
-      "./spec/annotations/entity-relationship.yaml",
-      "./spec/annotations/object-model.yaml",
-      "./spec/annotations/odm.yaml",
-      "./spec/annotations/personal-data.yaml",
-      "./spec/annotations/semantics.yaml",
-    ],
-    targetDocument: csnInteropEffectiveSchema,
-    targetDocumentFileName: "csn-interop-effective",
-    targetDocumentFolder: "src/spec-v1",
-  });
+  const mergedSpecSchema = mergeSpecExtensions(configData);
 
   log.info(" ");
   log.info("--------------------------------------------------------------------------");

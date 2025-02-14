@@ -80,15 +80,6 @@ export interface SpecJsonSchemaRoot extends SpecJsonSchema {
   "definitions": SpecJsonSchemaDefinitions;
 
   /**
-   * Mark the root JSON Schema as an extension to another JSON Schema document.
-   * Use `x-extension-targets` to indicate where a property in the JSON Schema needs to be merged into the target document
-   * The target document MUST describe its `x-extension-points`, which is where the merging takes place.
-   */
-  "x-extension"?: {
-    targetDocument: string;
-    targetLink: string;
-  };
-  /**
    * Define the custom typescript types that should be auto-generated and appended to the output generated TS types
    * This can be used by the `tsType` property that aids TypeScript generation.
    */

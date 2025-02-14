@@ -19,7 +19,6 @@ preparedAjv.addKeyword("x-association-target");
 preparedAjv.addKeyword("x-hide-property");
 preparedAjv.addKeyword("x-hide-properties");
 preparedAjv.addKeyword("x-ignore-conventions");
-preparedAjv.addKeyword("x-extension");
 preparedAjv.addKeyword("x-extension-targets");
 preparedAjv.addKeyword("x-extension-points");
 preparedAjv.addKeyword("x-header-level");
