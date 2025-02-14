@@ -45,7 +45,7 @@
             }
           ],
           "x-context": [
-            "./spec/annotations/aggregation.yaml",
+            "./spec/v1/annotations/aggregation.yaml",
             "@Aggregation.default",
             "#"
           ]
@@ -65,12 +65,12 @@
       ],
       "title": "@Aggregation.default",
       "x-context": [
-        "./spec/annotations/aggregation.yaml",
+        "./spec/v1/annotations/aggregation.yaml",
         "@Aggregation.default"
       ]
     }
   },
   "x-context": [
-    "./spec/annotations/aggregation.yaml"
+    "./spec/v1/annotations/aggregation.yaml"
   ]
 }

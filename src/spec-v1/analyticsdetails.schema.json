@@ -25,7 +25,7 @@
             }
           ],
           "x-context": [
-            "./spec/annotations/analytics-details.yaml",
+            "./spec/v1/annotations/analytics-details.yaml",
             "@AnalyticsDetails.measureType",
             "#"
           ]
@@ -45,12 +45,12 @@
       ],
       "title": "@AnalyticsDetails.measureType",
       "x-context": [
-        "./spec/annotations/analytics-details.yaml",
+        "./spec/v1/annotations/analytics-details.yaml",
         "@AnalyticsDetails.measureType"
       ]
     }
   },
   "x-context": [
-    "./spec/annotations/analytics-details.yaml"
+    "./spec/v1/annotations/analytics-details.yaml"
   ]
 }
