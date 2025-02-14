@@ -22,6 +22,7 @@ export interface MainSpecConfig {
   sourceFileOutro?: string;
   targetMarkdownFilePath: string;
   targetJsonSchemaFilePath: string;
+  targetTypescriptTypesFilePath: string;
   targetFolder?: string;
   sideBarPosition: number;
   sideBarDescription: string;

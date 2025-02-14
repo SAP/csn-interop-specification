@@ -15,6 +15,7 @@
       "title": "Interface Documentation",
       "targetMarkdownFilePath": "docs/spec-v1/csn-interop-effective.md",
       "targetJsonSchemaFilePath": "src/spec-v1/csn-interop-effective.schema.json",
+      "targetTypescriptTypesFilePath": "src/types/v1/CSN-Interop-Effective.ts",
       "facts": []
     },
     {

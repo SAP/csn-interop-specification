@@ -7,7 +7,7 @@ import { writeSpecJsonSchemaFiles } from "./generateInterfaceDocumentation.js";
 import { ConfigFile } from "./model/Config.js";
 import path from "path";
 
-export function mergeSpecExtensions(configData: ConfigFile): SpecJsonSchemaRoot | undefined {
+export function mergeSpecExtensions(configData: ConfigFile): void {
   for (const docConfig1 of configData.docsConfig) {
     if (docConfig1.type === "spec") {
       const targetDocumentFilePath = docConfig1.targetJsonSchemaFilePath;
@@ -104,8 +104,6 @@ export function mergeSpecExtensions(configData: ConfigFile): SpecJsonSchemaRoot 
       writeSpecJsonSchemaFiles(targetDocumentFilePath, targetDocument, true);
 
       log.info(`Written: ${targetDocumentFilePath}`);
-
-      return targetDocument;
     }
   }
 }

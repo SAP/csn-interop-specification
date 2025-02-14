@@ -1328,6 +1328,22 @@ export function writeSpecJsonSchemaFiles(
 
     // write it as schema file that does not include all the x- extensions
     fs.outputFileSync(filePath, JSON.stringify(jsonSchema2, null, 2));
+
+    // temporary write it as schema file that includes all the x- extensions to filesystem
+    // needed for the typescript types generation and the file will be deleted afterwards
+    const xSchemaFileName = filePath.split(".json").join(".x.json");
+    fs.outputFileSync(
+      xSchemaFileName,
+      JSON.stringify(
+        {
+          description: "JSON Schema with custom (x-) annotations",
+          ...refConvertedJsonSchema,
+        },
+        null,
+        2,
+      ),
+    );
+    log.info(`Write to file system temporary file ${xSchemaFileName}`);
   } else {
     // write it as schema file that includes all the x- extensions
     fs.outputFileSync(
