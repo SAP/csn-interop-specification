@@ -86,8 +86,5 @@
     "**/*.{md,json,yaml}": [
       "npm run prettier"
     ]
-  },
-  "resolutions": {
-    "image-size": "~1.2.0"
   }
 }
