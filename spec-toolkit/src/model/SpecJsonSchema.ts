@@ -32,44 +32,6 @@ export type SpecJsonSchemaVersion = string;
 
 export type SpecJsonSchemaDefinitions = { [key: string]: SpecJsonSchema };
 
-export type ExtensionTarget = "Entity" | "Service" | "Context" | "Type";
-
-export type ExtensionPoint =
-  | "Entity"
-  | "Service"
-  | "Context"
-  | "Type"
-  | "BooleanType"
-  | "StringType"
-  | "LargeStringType"
-  | "IntegerType"
-  | "Integer64Type"
-  | "DecimalType"
-  | "DoubleType"
-  | "DateType"
-  | "TimeType"
-  | "DateTimeType"
-  | "TimestampType"
-  | "UUIDType"
-  | "AssociationType"
-  | "CompositionType"
-  | "DerivedType"
-  | "TypeDefinition"
-  | "BooleanTypeDefinition"
-  | "StringTypeDefinition"
-  | "LargeStringTypeDefinition"
-  | "IntegerTypeDefinition"
-  | "Integer64TypeDefinition"
-  | "DecimalTypeDefinition"
-  | "DoubleTypeDefinition"
-  | "DateTypeDefinition"
-  | "TimeTypeDefinition"
-  | "DateTimeTypeDefinition"
-  | "TimestampTypeDefinition"
-  | "UUIDTypeDefinition"
-  | "AssociationTypeDefinition"
-  | "CompositionTypeDefinition";
-
 /**
  * Root interface of Spec JSON Schema
  */
@@ -199,11 +161,11 @@ export interface SpecJsonSchema {
   /**
    * Indicate which target document extension pointers this property is merged into
    */
-  "x-extension-targets"?: ExtensionTarget[];
+  "x-extension-targets"?: string[];
   /**
    * Define extension points in the target document
    */
-  "x-extension-points"?: ExtensionPoint[];
+  "x-extension-points"?: string[];
   /**
    * Define the MD heading level in the target document. Default value: 3
    */
