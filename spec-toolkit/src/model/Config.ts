@@ -23,7 +23,10 @@ export interface MainSpecConfig {
   targetMarkdownFilePath: string;
   targetJsonSchemaFilePath: string;
   targetTypescriptTypesFilePath: string;
-  targetFolder?: string;
+  examples?: {
+    sourceJsonFolderPath: "./examples";
+    targetMarkdownFolderPath: "./docs/spec-v1/examples";
+  };
   sideBarPosition: number;
   sideBarDescription: string;
 
@@ -45,7 +48,6 @@ export interface ExtensionSpecConfig {
   sourceFileOutro?: string;
   targetMarkdownFilePath: string;
   targetJsonSchemaFilePath: string;
-  targetFolder?: string;
   sideBarPosition: number;
   sideBarDescription: string;
 

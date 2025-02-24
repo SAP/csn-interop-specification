@@ -34,7 +34,7 @@ export async function generate(configData: ConfigFile): Promise<void> {
   log.info("--------------------------------------------------------------------------");
   log.info("GENERATE INTERFACE EXAMPLE PAGES");
   log.info("--------------------------------------------------------------------------");
-  generateExampleDocumentation("./examples", "CSN Interop Effective", "./docs/spec-v1/examples");
+  generateExampleDocumentation(configData);
 
   log.info(" ");
   log.info("--------------------------------------------------------------------------");

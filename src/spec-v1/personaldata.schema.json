@@ -25,7 +25,7 @@
       ],
       "title": "@PersonalData.entitySemantics",
       "x-context": [
-        "./spec/annotations/personal-data.yaml",
+        "./spec/v1/annotations/personal-data.yaml",
         "@PersonalData.entitySemantics"
       ]
     },
@@ -37,7 +37,7 @@
       ],
       "title": "@PersonalData.dataSubjectRole",
       "x-context": [
-        "./spec/annotations/personal-data.yaml",
+        "./spec/v1/annotations/personal-data.yaml",
         "@PersonalData.dataSubjectRole"
       ]
     },
@@ -49,7 +49,7 @@
       ],
       "title": "@PersonalData.dataSubjectRoleDescription",
       "x-context": [
-        "./spec/annotations/personal-data.yaml",
+        "./spec/v1/annotations/personal-data.yaml",
         "@PersonalData.dataSubjectRoleDescription"
       ]
     },
@@ -103,7 +103,7 @@
       ],
       "title": "@PersonalData.fieldSemantics",
       "x-context": [
-        "./spec/annotations/personal-data.yaml",
+        "./spec/v1/annotations/personal-data.yaml",
         "@PersonalData.fieldSemantics"
       ]
     },
@@ -116,7 +116,7 @@
       ],
       "title": "@PersonalData.isPotentiallyPersonal",
       "x-context": [
-        "./spec/annotations/personal-data.yaml",
+        "./spec/v1/annotations/personal-data.yaml",
         "@PersonalData.isPotentiallyPersonal"
       ]
     },
@@ -129,12 +129,12 @@
       ],
       "title": "@PersonalData.isPotentiallySensitive",
       "x-context": [
-        "./spec/annotations/personal-data.yaml",
+        "./spec/v1/annotations/personal-data.yaml",
         "@PersonalData.isPotentiallySensitive"
       ]
     }
   },
   "x-context": [
-    "./spec/annotations/personal-data.yaml"
+    "./spec/v1/annotations/personal-data.yaml"
   ]
 }

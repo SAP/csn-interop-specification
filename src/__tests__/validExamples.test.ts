@@ -12,7 +12,7 @@ const effectiveCsnSchemaExtended = fs.readJSONSync("./src/spec-v1/csn-interop-ef
 const effectiveCsnSchemaValidator = new Draft07(effectiveCsnSchema);
 const effectiveCsnSchemaExtendedValidator = new Draft07(effectiveCsnSchemaExtended);
 
-const documentFilePaths = fg.sync("./examples/*.json", {});
+const documentFilePaths = fg.sync("./spec/v1/examples/*.json", {});
 
 describe("Valid Example Files", (): void => {
   describe("CSN Interop Effective (core only)", (): void => {

@@ -11,7 +11,7 @@
       ],
       "title": "@ODM.entityName",
       "x-context": [
-        "./spec/annotations/odm.yaml",
+        "./spec/v1/annotations/odm.yaml",
         "@ODM.entityName"
       ]
     },
@@ -26,7 +26,7 @@
       ],
       "title": "@ODM.oid",
       "x-context": [
-        "./spec/annotations/odm.yaml",
+        "./spec/v1/annotations/odm.yaml",
         "@ODM.oid"
       ],
       "$ref": "#/definitions/ElementReference"
@@ -39,12 +39,12 @@
       ],
       "title": "@ODM.oidReference.entityName",
       "x-context": [
-        "./spec/annotations/odm.yaml",
+        "./spec/v1/annotations/odm.yaml",
         "@ODM.oidReference.entityName"
       ]
     }
   },
   "x-context": [
-    "./spec/annotations/odm.yaml"
+    "./spec/v1/annotations/odm.yaml"
   ]
 }

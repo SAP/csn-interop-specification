@@ -18,7 +18,7 @@
       ],
       "title": "@EndUserText.label",
       "x-context": [
-        "./spec/annotations/enduser-text.yaml",
+        "./spec/v1/annotations/enduser-text.yaml",
         "@EndUserText.label"
       ]
     },
@@ -30,7 +30,7 @@
       ],
       "title": "@EndUserText.heading",
       "x-context": [
-        "./spec/annotations/enduser-text.yaml",
+        "./spec/v1/annotations/enduser-text.yaml",
         "@EndUserText.heading"
       ]
     },
@@ -48,7 +48,7 @@
       ],
       "title": "@EndUserText.quickInfo",
       "x-context": [
-        "./spec/annotations/enduser-text.yaml",
+        "./spec/v1/annotations/enduser-text.yaml",
         "@EndUserText.quickInfo"
       ]
     }
@@ -82,6 +82,6 @@
     }
   ],
   "x-context": [
-    "./spec/annotations/enduser-text.yaml"
+    "./spec/v1/annotations/enduser-text.yaml"
   ]
 }

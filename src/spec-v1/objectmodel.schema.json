@@ -12,7 +12,7 @@
       ],
       "title": "@ObjectModel.compositionRoot",
       "x-context": [
-        "./spec/annotations/object-model.yaml",
+        "./spec/v1/annotations/object-model.yaml",
         "@ObjectModel.compositionRoot"
       ]
     },
@@ -28,7 +28,7 @@
       },
       "title": "@ObjectModel.representativeKey",
       "x-context": [
-        "./spec/annotations/object-model.yaml",
+        "./spec/v1/annotations/object-model.yaml",
         "@ObjectModel.representativeKey"
       ],
       "$ref": "#/definitions/ElementReference"
@@ -47,7 +47,7 @@
       },
       "title": "@ObjectModel.semanticKey",
       "x-context": [
-        "./spec/annotations/object-model.yaml",
+        "./spec/v1/annotations/object-model.yaml",
         "@ObjectModel.semanticKey"
       ]
     },
@@ -90,7 +90,7 @@
             "NONE"
           ],
           "x-context": [
-            "./spec/annotations/object-model.yaml",
+            "./spec/v1/annotations/object-model.yaml",
             "@ObjectModel.modelingPattern",
             "#"
           ]
@@ -107,7 +107,7 @@
       ],
       "title": "@ObjectModel.modelingPattern",
       "x-context": [
-        "./spec/annotations/object-model.yaml",
+        "./spec/v1/annotations/object-model.yaml",
         "@ObjectModel.modelingPattern"
       ]
     },
@@ -123,7 +123,7 @@
       },
       "title": "@ObjectModel.supportedCapabilities",
       "x-context": [
-        "./spec/annotations/object-model.yaml",
+        "./spec/v1/annotations/object-model.yaml",
         "@ObjectModel.supportedCapabilities"
       ]
     },
@@ -138,7 +138,7 @@
       },
       "title": "@ObjectModel.foreignKey.association",
       "x-context": [
-        "./spec/annotations/object-model.yaml",
+        "./spec/v1/annotations/object-model.yaml",
         "@ObjectModel.foreignKey.association"
       ],
       "$ref": "#/definitions/ElementReference"
@@ -162,7 +162,7 @@
       ],
       "title": "@ObjectModel.text.element",
       "x-context": [
-        "./spec/annotations/object-model.yaml",
+        "./spec/v1/annotations/object-model.yaml",
         "@ObjectModel.text.element"
       ]
     },
@@ -177,7 +177,7 @@
       },
       "title": "@ObjectModel.text.association",
       "x-context": [
-        "./spec/annotations/object-model.yaml",
+        "./spec/v1/annotations/object-model.yaml",
         "@ObjectModel.text.association"
       ],
       "$ref": "#/definitions/ElementReference"
@@ -222,7 +222,7 @@
             "UI_PROVIDER_PROJECTION_SOURCE"
           ],
           "x-context": [
-            "./spec/annotations/object-model.yaml",
+            "./spec/v1/annotations/object-model.yaml",
             "@ObjectModel.SupportedCapabilities_EnumValue",
             "#"
           ]
@@ -233,12 +233,12 @@
         "#"
       ],
       "x-context": [
-        "./spec/annotations/object-model.yaml",
+        "./spec/v1/annotations/object-model.yaml",
         "@ObjectModel.SupportedCapabilities_EnumValue"
       ]
     }
   },
   "x-context": [
-    "./spec/annotations/object-model.yaml"
+    "./spec/v1/annotations/object-model.yaml"
   ]
 }

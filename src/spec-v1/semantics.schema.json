@@ -11,7 +11,7 @@
           "type": "string",
           "description": "Specifies the minimum value.",
           "x-context": [
-            "./spec/annotations/semantics.yaml",
+            "./spec/v1/annotations/semantics.yaml",
             "@Semantics.valueRange",
             "minimum"
           ]
@@ -21,7 +21,7 @@
           "description": "Specifies if the lower boundary should be excluded.\nNot specifying this annotation means that the lower boundary is included.",
           "default": false,
           "x-context": [
-            "./spec/annotations/semantics.yaml",
+            "./spec/v1/annotations/semantics.yaml",
             "@Semantics.valueRange",
             "exclusiveMinimum"
           ]
@@ -30,7 +30,7 @@
           "type": "string",
           "description": "Specifies the maximum value.",
           "x-context": [
-            "./spec/annotations/semantics.yaml",
+            "./spec/v1/annotations/semantics.yaml",
             "@Semantics.valueRange",
             "maximum"
           ]
@@ -40,7 +40,7 @@
           "description": "Specifies if the upper boundary should be excluded.\nNot specifying this annotation means that the upper boundary is included.",
           "default": false,
           "x-context": [
-            "./spec/annotations/semantics.yaml",
+            "./spec/v1/annotations/semantics.yaml",
             "@Semantics.valueRange",
             "exclusiveMaximum"
           ]
@@ -54,7 +54,7 @@
       ],
       "title": "@Semantics.valueRange",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.valueRange"
       ]
     },
@@ -67,7 +67,7 @@
       ],
       "title": "@Semantics.currencyCode",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.currencyCode"
       ]
     },
@@ -82,7 +82,7 @@
       ],
       "title": "@Semantics.amount.currencyCode",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.amount.currencyCode"
       ],
       "$ref": "#/definitions/ElementReference"
@@ -96,7 +96,7 @@
       ],
       "title": "@Semantics.unitOfMeasure",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.unitOfMeasure"
       ]
     },
@@ -111,7 +111,7 @@
       ],
       "title": "@Semantics.quantity.unitOfMeasure",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.quantity.unitOfMeasure"
       ],
       "$ref": "#/definitions/ElementReference"
@@ -125,7 +125,7 @@
       ],
       "title": "@Semantics.calendar.dayOfMonth",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.calendar.dayOfMonth"
       ]
     },
@@ -138,7 +138,7 @@
       ],
       "title": "@Semantics.calendar.dayOfYear",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.calendar.dayOfYear"
       ]
     },
@@ -151,7 +151,7 @@
       ],
       "title": "@Semantics.calendar.week",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.calendar.week"
       ]
     },
@@ -164,7 +164,7 @@
       ],
       "title": "@Semantics.calendar.month",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.calendar.month"
       ]
     },
@@ -177,7 +177,7 @@
       ],
       "title": "@Semantics.calendar.quarter",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.calendar.quarter"
       ]
     },
@@ -190,7 +190,7 @@
       ],
       "title": "@Semantics.calendar.halfyear",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.calendar.halfyear"
       ]
     },
@@ -203,7 +203,7 @@
       ],
       "title": "@Semantics.calendar.year",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.calendar.year"
       ]
     },
@@ -216,7 +216,7 @@
       ],
       "title": "@Semantics.calendar.yearWeek",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.calendar.yearWeek"
       ]
     },
@@ -229,7 +229,7 @@
       ],
       "title": "@Semantics.calendar.yearMonth",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.calendar.yearMonth"
       ]
     },
@@ -242,7 +242,7 @@
       ],
       "title": "@Semantics.calendar.yearQuarter",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.calendar.yearQuarter"
       ]
     },
@@ -255,7 +255,7 @@
       ],
       "title": "@Semantics.calendar.yearHalfyear",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.calendar.yearHalfyear"
       ]
     },
@@ -268,7 +268,7 @@
       ],
       "title": "@Semantics.fiscal.yearVariant",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.fiscal.yearVariant"
       ]
     },
@@ -281,7 +281,7 @@
       ],
       "title": "@Semantics.fiscal.period",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.fiscal.period"
       ]
     },
@@ -294,7 +294,7 @@
       ],
       "title": "@Semantics.fiscal.year",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.fiscal.year"
       ]
     },
@@ -307,7 +307,7 @@
       ],
       "title": "@Semantics.fiscal.yearPeriod",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.fiscal.yearPeriod"
       ]
     },
@@ -320,7 +320,7 @@
       ],
       "title": "@Semantics.fiscal.quarter",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.fiscal.quarter"
       ]
     },
@@ -333,7 +333,7 @@
       ],
       "title": "@Semantics.fiscal.yearQuarter",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.fiscal.yearQuarter"
       ]
     },
@@ -346,7 +346,7 @@
       ],
       "title": "@Semantics.fiscal.week",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.fiscal.week"
       ]
     },
@@ -359,7 +359,7 @@
       ],
       "title": "@Semantics.fiscal.yearWeek",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.fiscal.yearWeek"
       ]
     },
@@ -372,7 +372,7 @@
       ],
       "title": "@Semantics.fiscal.dayOfYear",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.fiscal.dayOfYear"
       ]
     },
@@ -385,7 +385,7 @@
       ],
       "title": "@Semantics.language",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.language"
       ]
     },
@@ -398,7 +398,7 @@
       ],
       "title": "@Semantics.time",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.time"
       ]
     },
@@ -411,7 +411,7 @@
       ],
       "title": "@Semantics.text",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.text"
       ]
     },
@@ -424,7 +424,7 @@
       ],
       "title": "@Semantics.uuid",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.uuid"
       ]
     },
@@ -437,7 +437,7 @@
       ],
       "title": "@Semantics.businessDate.from",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.businessDate.from"
       ]
     },
@@ -450,12 +450,12 @@
       ],
       "title": "@Semantics.businessDate.to",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.businessDate.to"
       ]
     }
   },
   "x-context": [
-    "./spec/annotations/semantics.yaml"
+    "./spec/v1/annotations/semantics.yaml"
   ]
 }
