@@ -22,8 +22,8 @@ export async function generateTypeScriptDefinitions(configData: ConfigFile): Pro
     // because specExtension documents are just fragments that will be merged into the bigger spec document
     // it does not make sense to have typescript types generated out of fragment files
     if (docConfig.type === "spec") {
-      const xSchemaFileName = docConfig.targetJsonSchemaFilePath.split(".json").join(".x.json");
-      let schema = yaml.load(fs.readFileSync(xSchemaFileName).toString()) as SpecJsonSchemaRoot;
+      const schemaFileName = docConfig.targetJsonSchemaFilePath;
+      let schema = yaml.load(fs.readFileSync(schemaFileName).toString()) as SpecJsonSchemaRoot;
 
       schema = convertRefToDocToStandardRef(schema);
       schema = convertOneOfEnum(schema);
@@ -73,9 +73,6 @@ export async function generateTypeScriptDefinitions(configData: ConfigFile): Pro
       for (const replacement of allPostProcessingReplacements) {
         definitions = definitions.replace(replacement.oldValue, replacement.newValue);
       }
-
-      fs.unlinkSync(xSchemaFileName);
-      log.info(`Cleanup temporary file ${xSchemaFileName}`);
 
       await fs.outputFile(`${process.cwd()}/${docConfig.targetTypescriptTypesFilePath}`, definitions);
       log.info(`Result: ./${docConfig.targetTypescriptTypesFilePath}`);

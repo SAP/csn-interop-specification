@@ -5,8 +5,8 @@
   "description": "CSN Interop Specification.",
   "author": "SAP SE",
   "license": "Apache-2.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "engines": {
     "node": ">=20.0.0",
     "npm": ">=10.0.0"
@@ -18,10 +18,10 @@
   "homepage": "https://sap.github.io/csn-interop-specification/",
   "files": [
     "README.md",
-    "dist/index.js",
-    "dist/index.d.ts",
-    "dist/spec-v1/",
-    "dist/types/"
+    "dist/src/index.js",
+    "dist/src/index.d.ts",
+    "dist/src/spec-v1/",
+    "dist/src/types/"
   ],
   "scripts": {
     "clean": "tsx src/clean.ts",
