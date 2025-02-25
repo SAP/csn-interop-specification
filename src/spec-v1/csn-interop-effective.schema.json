@@ -3,96 +3,6 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#",
   "title": "CSN Interop Root",
-  "x-custom-typescript-types": [
-    {
-      "typeName": "PrivatePropertyKey",
-      "typeValue": "`__${string}`"
-    },
-    {
-      "typeName": "AnnotationPropertyKey",
-      "typeValue": "`@${string}`"
-    },
-    {
-      "typeName": "EntityKind",
-      "typeValue": "\"entity\""
-    },
-    {
-      "typeName": "ContextKind",
-      "typeValue": "\"context\""
-    },
-    {
-      "typeName": "ServiceKind",
-      "typeValue": "\"service\""
-    },
-    {
-      "typeName": "TypeKind",
-      "typeValue": "\"type\""
-    },
-    {
-      "typeName": "BooleanCdsType",
-      "typeValue": "\"cds.Boolean\""
-    },
-    {
-      "typeName": "StringCdsType",
-      "typeValue": "\"cds.String\""
-    },
-    {
-      "typeName": "LargeStringCdsType",
-      "typeValue": "\"cds.LargeString\""
-    },
-    {
-      "typeName": "IntegerCdsType",
-      "typeValue": "\"cds.Integer\""
-    },
-    {
-      "typeName": "Integer64CdsType",
-      "typeValue": "\"cds.Integer64\""
-    },
-    {
-      "typeName": "DecimalCdsType",
-      "typeValue": "\"cds.Decimal\""
-    },
-    {
-      "typeName": "DoubleCdsType",
-      "typeValue": "\"cds.Double\""
-    },
-    {
-      "typeName": "DateCdsType",
-      "typeValue": "\"cds.Date\""
-    },
-    {
-      "typeName": "TimeCdsType",
-      "typeValue": "\"cds.Time\""
-    },
-    {
-      "typeName": "DateTimeCdsType",
-      "typeValue": "\"cds.DateTime\""
-    },
-    {
-      "typeName": "TimestampCdsType",
-      "typeValue": "\"cds.Timestamp\""
-    },
-    {
-      "typeName": "UUIDCdsType",
-      "typeValue": "\"cds.UUID\""
-    },
-    {
-      "typeName": "AssociationCdsType",
-      "typeValue": "\"cds.Association\""
-    },
-    {
-      "typeName": "CompositionCdsType",
-      "typeValue": "\"cds.Composition\""
-    },
-    {
-      "typeName": "CustomTypeValue",
-      "typeValue": "string // MUST not start with `cds.`"
-    },
-    {
-      "typeName": "CdsTypeValue",
-      "typeValue": "BooleanCdsType | StringCdsType | LargeStringCdsType | IntegerCdsType | Integer64CdsType | DecimalCdsType | DoubleCdsType | DateCdsType | TimeCdsType | DateTimeCdsType | TimestampCdsType | UUIDCdsType | AssociationCdsType | CompositionCdsType"
-    }
-  ],
   "definitions": {
     "Meta": {
       "title": "Meta",
@@ -104,11 +14,6 @@
           "description": "Informal description of the creator of this CSN Document.",
           "examples": [
             "CDS Compiler v4.5.0"
-          ],
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "Meta",
-            "creator"
           ]
         },
         "flavor": {
@@ -117,30 +22,13 @@
           "examples": [
             "effective",
             "inferred"
-          ],
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "Meta",
-            "flavor"
           ]
         },
         "document": {
-          "$ref": "#/definitions/MetaDocument",
-          "description": "Meta information about the document content.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "Meta",
-            "document"
-          ]
+          "$ref": "#/definitions/MetaDocument"
         },
         "features": {
-          "$ref": "#/definitions/MetaFeatures",
-          "description": "Feature dimensions that this CSN document fulfills.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "Meta",
-            "features"
-          ]
+          "$ref": "#/definitions/MetaFeatures"
         }
       },
       "patternProperties": {
@@ -165,11 +53,7 @@
           }
         }
       ],
-      "additionalProperties": false,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "Meta"
-      ]
+      "additionalProperties": false
     },
     "MetaDocument": {
       "title": "Document (Metadata)",
@@ -181,38 +65,19 @@
           "description": "The version of the CSN document / the described model itself (not the specification).\n\nWe RECOMMEND to use the [SemVer](https://semver.org/) standard.",
           "examples": [
             "1.3.4"
-          ],
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "MetaDocument",
-            "version"
           ]
         },
         "title": {
           "type": "string",
           "maxLength": 255,
-          "description": "Human readable title for the CSN document (plain-text).\n\nMUST NOT contain linebreaks.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "MetaDocument",
-            "title"
-          ]
+          "description": "Human readable title for the CSN document (plain-text).\n\nMUST NOT contain linebreaks."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation that describes the overall CSN document.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "MetaDocument",
-            "doc"
-          ]
+          "description": "Human readable documentation that describes the overall CSN document.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown)."
         }
       },
-      "additionalProperties": false,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "MetaDocument"
-      ]
+      "additionalProperties": false
     },
     "MetaFeatures": {
       "title": "Features (Metadata)",
@@ -221,12 +86,7 @@
       "properties": {
         "complete": {
           "type": "boolean",
-          "description": "Whether this document is complete and self-contained.\n\nIt is RECOMMENDED to have complete CSN documents and set this to `true`.\n\nIf true references to other CDS elements (e.g. `cds.Association`) MUST be resolvable within the same document.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "MetaFeatures",
-            "complete"
-          ]
+          "description": "Whether this document is complete and self-contained.\n\nIt is RECOMMENDED to have complete CSN documents and set this to `true`.\n\nIf true references to other CDS elements (e.g. `cds.Association`) MUST be resolvable within the same document."
         }
       },
       "x-recommended": [
@@ -237,11 +97,7 @@
           "complete": true
         }
       ],
-      "additionalProperties": false,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "MetaFeatures"
-      ]
+      "additionalProperties": false
     },
     "Definitions": {
       "title": "Definitions",
@@ -266,10 +122,6 @@
             }
           }
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "Definitions"
       ]
     },
     "DefinitionEntry": {
@@ -284,12 +136,7 @@
             "service",
             "type"
           ],
-          "description": "The modeling artefact kind.\nIt's value is been used as a _discriminator_ to distinguish the matching schema that should be further validated.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DefinitionEntry",
-            "kind"
-          ]
+          "description": "The modeling artefact kind.\nIt's value is been used as a _discriminator_ to distinguish the matching schema that should be further validated."
         }
       },
       "required": [
@@ -361,12 +208,7 @@
           }
         }
       ],
-      "x-hide-properties": true,
-      "title": "DefinitionEntry",
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "DefinitionEntry"
-      ]
+      "title": "DefinitionEntry"
     },
     "EntityDefinition": {
       "title": "Entity Definition",
@@ -380,30 +222,14 @@
           "type": "string",
           "const": "entity",
           "description": "The modeling artefact is an entity.",
-          "tsType": "EntityKind",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "EntityDefinition",
-            "kind"
-          ]
+          "tsType": "EntityKind"
         },
         "elements": {
-          "$ref": "#/definitions/ElementDefinitions",
-          "description": "Dictionary of the elements of the entity.\nThe dictionary key is the element `name`, the value the element itself.\n\nMUST have at least one element.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "EntityDefinition",
-            "elements"
-          ]
+          "$ref": "#/definitions/ElementDefinitions"
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "EntityDefinition",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "abstract": {
           "type": [
@@ -413,13 +239,7 @@
             "array",
             "object"
           ],
-          "x-hide-property": true,
-          "description": "Proper syntax element in ABAP CDS producing Abstract CDS Entities",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "EntityDefinition",
-            "abstract"
-          ]
+          "description": "Proper syntax element in ABAP CDS producing Abstract CDS Entities"
         },
         "customEntity": {
           "type": [
@@ -429,13 +249,7 @@
             "array",
             "object"
           ],
-          "x-hide-property": true,
-          "description": "Proper syntax element in ABAP CDS producing Custom CDS Entities",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "EntityDefinition",
-            "customEntity"
-          ]
+          "description": "Proper syntax element in ABAP CDS producing Custom CDS Entities"
         },
         "tableFunction": {
           "type": [
@@ -445,13 +259,7 @@
             "array",
             "object"
           ],
-          "x-hide-property": true,
-          "description": "Proper syntax element in ABAP CDS producing CDS Table Functions.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "EntityDefinition",
-            "tableFunction"
-          ]
+          "description": "Proper syntax element in ABAP CDS producing CDS Table Functions."
         },
         "externalEntity": {
           "type": [
@@ -461,13 +269,7 @@
             "array",
             "object"
           ],
-          "x-hide-property": true,
-          "description": "Proper syntax element in ABAP CDS producing CDS  External Entities",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "EntityDefinition",
-            "externalEntity"
-          ]
+          "description": "Proper syntax element in ABAP CDS producing CDS  External Entities"
         },
         "providerContract": {
           "type": [
@@ -477,13 +279,7 @@
             "array",
             "object"
           ],
-          "x-hide-property": true,
-          "description": "ABAP CDS Projection have the additional information of a provider contract",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "EntityDefinition",
-            "providerContract"
-          ]
+          "description": "ABAP CDS Projection have the additional information of a provider contract"
         },
         "rootEntity": {
           "type": [
@@ -493,13 +289,7 @@
             "array",
             "object"
           ],
-          "x-hide-property": true,
-          "description": "ABAP CDS Root View Entities define a RAP Business Object.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "EntityDefinition",
-            "rootEntity"
-          ]
+          "description": "ABAP CDS Root View Entities define a RAP Business Object."
         },
         "transient": {
           "type": [
@@ -509,13 +299,7 @@
             "array",
             "object"
           ],
-          "x-hide-property": true,
-          "description": "Special kind of analytical ABAP CDS Projection view.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "EntityDefinition",
-            "transient"
-          ]
+          "description": "Special kind of analytical ABAP CDS Projection view."
         },
         "literal": {
           "type": [
@@ -525,13 +309,7 @@
             "array",
             "object"
           ],
-          "x-hide-property": true,
-          "description": "In the selection element list of a CDS view.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "EntityDefinition",
-            "literal"
-          ]
+          "description": "In the selection element list of a CDS view."
         },
         "toCompositionChild": {
           "type": [
@@ -541,13 +319,7 @@
             "array",
             "object"
           ],
-          "x-hide-property": true,
-          "description": "When redirecting associations in ABAP CDS Projections with the additional keywords \"to composition child\", this indicates a Parent-Child-Composition an requires the redirection target to have a matching \"to parent\" association redefinition.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "EntityDefinition",
-            "toCompositionChild"
-          ]
+          "description": "When redirecting associations in ABAP CDS Projections with the additional keywords \"to composition child\", this indicates a Parent-Child-Composition an requires the redirection target to have a matching \"to parent\" association redefinition."
         },
         "toParent": {
           "type": [
@@ -557,13 +329,7 @@
             "array",
             "object"
           ],
-          "x-hide-property": true,
-          "description": "When redirecting associations in ABAP CDS Projections with the additional keywords \"to composition child\", this indicates a Parent-Child-Composition an requires the redirection target to have a matching \"to parent\" association redefinition.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "EntityDefinition",
-            "toParent"
-          ]
+          "description": "When redirecting associations in ABAP CDS Projections with the additional keywords \"to composition child\", this indicates a Parent-Child-Composition an requires the redirection target to have a matching \"to parent\" association redefinition."
         },
         "hana_on_asString": {
           "type": [
@@ -573,14 +339,7 @@
             "array",
             "object"
           ],
-          "x-hide-property": true,
-          "x-ignore-conventions": true,
-          "description": "Contains the SQL on condition as string",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "EntityDefinition",
-            "hana_on_asString"
-          ]
+          "description": "Contains the SQL on condition as string"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
@@ -654,11 +413,7 @@
         "kind",
         "elements"
       ],
-      "additionalProperties": false,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "EntityDefinition"
-      ]
+      "additionalProperties": false
     },
     "ElementDefinitions": {
       "title": "Element Definitions",
@@ -670,23 +425,14 @@
           "$ref": "#/definitions/ElementEntry"
         }
       },
-      "additionalProperties": false,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "ElementDefinitions"
-      ]
+      "additionalProperties": false
     },
     "ElementEntry": {
       "type": "object",
       "description": "Definition of an Element, as put into [Element Definitions](#element-definitions).\n\nAn element can be either of a standard [CDS Types](#cds-type) or a [Custom Type](#custom-type).",
       "properties": {
         "type": {
-          "type": "string",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ElementEntry",
-            "type"
-          ]
+          "type": "string"
         }
       },
       "allOf": [
@@ -726,12 +472,7 @@
       "required": [
         "type"
       ],
-      "x-hide-properties": true,
-      "title": "ElementEntry",
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "ElementEntry"
-      ]
+      "title": "ElementEntry"
     },
     "CdsType": {
       "title": "Cds Type",
@@ -756,11 +497,6 @@
             "cds.UUID",
             "cds.Association",
             "cds.Composition"
-          ],
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CdsType",
-            "type"
           ]
         }
       },
@@ -992,11 +728,6 @@
       ],
       "required": [
         "type"
-      ],
-      "x-hide-properties": true,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "CdsType"
       ]
     },
     "BooleanType": {
@@ -1008,47 +739,22 @@
           "type": "string",
           "const": "cds.Boolean",
           "description": "The modeling artefact is a `cds.Boolean` type.",
-          "tsType": "BooleanCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "BooleanType",
-            "type"
-          ]
+          "tsType": "BooleanCdsType"
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "BooleanType",
-            "key"
-          ]
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "BooleanType",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "BooleanType",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueBoolean",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "BooleanType",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueBoolean"
         },
         "@Aggregation.default": {
           "$ref": "#/definitions/@Aggregation.default"
@@ -1210,7 +916,6 @@
         "Type",
         "BooleanType"
       ],
-      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.Boolean",
@@ -1218,10 +923,6 @@
             "val": true
           }
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "BooleanType"
       ]
     },
     "StringType": {
@@ -1233,65 +934,30 @@
           "type": "string",
           "const": "cds.String",
           "description": "The modeling artefact is a `cds.String` type.",
-          "tsType": "StringCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "StringType",
-            "type"
-          ]
+          "tsType": "StringCdsType"
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "StringType",
-            "key"
-          ]
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "StringType",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "StringType",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueString",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "StringType",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueString"
         },
         "enum": {
-          "$ref": "#/definitions/EnumDictionary",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "StringType",
-            "enum"
-          ]
+          "$ref": "#/definitions/EnumDictionary"
         },
         "length": {
           "type": "number",
           "minimum": 1,
-          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "StringType",
-            "length"
-          ]
+          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed."
         },
         "@Aggregation.default": {
           "$ref": "#/definitions/@Aggregation.default"
@@ -1453,7 +1119,6 @@
         "Type",
         "StringType"
       ],
-      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.String",
@@ -1463,10 +1128,6 @@
             "val": "foo"
           }
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "StringType"
       ]
     },
     "LargeStringType": {
@@ -1478,56 +1139,26 @@
           "type": "string",
           "const": "cds.LargeString",
           "description": "The modeling artefact is a `cds.LargeString` type.",
-          "tsType": "LargeStringCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "LargeStringType",
-            "type"
-          ]
+          "tsType": "LargeStringCdsType"
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "LargeStringType",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "LargeStringType",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueString",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "LargeStringType",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueString"
         },
         "enum": {
-          "$ref": "#/definitions/EnumDictionary",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "LargeStringType",
-            "enum"
-          ]
+          "$ref": "#/definitions/EnumDictionary"
         },
         "length": {
           "type": "number",
           "minimum": 1,
-          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "LargeStringType",
-            "length"
-          ]
+          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed."
         },
         "@Aggregation.default": {
           "$ref": "#/definitions/@Aggregation.default"
@@ -1689,7 +1320,6 @@
         "Type",
         "LargeStringType"
       ],
-      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.LargeString",
@@ -1699,10 +1329,6 @@
           },
           "notNull": true
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "LargeStringType"
       ]
     },
     "IntegerType": {
@@ -1714,55 +1340,25 @@
           "type": "string",
           "const": "cds.Integer",
           "description": "The modeling artefact is a `cds.Integer` type.",
-          "tsType": "IntegerCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "IntegerType",
-            "type"
-          ]
+          "tsType": "IntegerCdsType"
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "IntegerType",
-            "key"
-          ]
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "IntegerType",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "IntegerType",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueInteger",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "IntegerType",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueInteger"
         },
         "enum": {
-          "$ref": "#/definitions/EnumDictionary",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "IntegerType",
-            "enum"
-          ]
+          "$ref": "#/definitions/EnumDictionary"
         },
         "@Aggregation.default": {
           "$ref": "#/definitions/@Aggregation.default"
@@ -1927,7 +1523,6 @@
         "Type",
         "IntegerType"
       ],
-      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.Integer",
@@ -1935,10 +1530,6 @@
             "val": 123
           }
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "IntegerType"
       ]
     },
     "Integer64Type": {
@@ -1950,55 +1541,25 @@
           "type": "string",
           "const": "cds.Integer64",
           "description": "The modeling artefact is a `cds.Integer64` type.",
-          "tsType": "Integer64CdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "Integer64Type",
-            "type"
-          ]
+          "tsType": "Integer64CdsType"
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "Integer64Type",
-            "key"
-          ]
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "Integer64Type",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "Integer64Type",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueInteger",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "Integer64Type",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueInteger"
         },
         "enum": {
-          "$ref": "#/definitions/EnumDictionary",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "Integer64Type",
-            "enum"
-          ]
+          "$ref": "#/definitions/EnumDictionary"
         },
         "@Aggregation.default": {
           "$ref": "#/definitions/@Aggregation.default"
@@ -2163,7 +1724,6 @@
         "Type",
         "Integer64Type"
       ],
-      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.Integer64",
@@ -2171,10 +1731,6 @@
             "val": 123
           }
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "Integer64Type"
       ]
     },
     "DecimalType": {
@@ -2186,57 +1742,27 @@
           "type": "string",
           "const": "cds.Decimal",
           "description": "The modeling artefact is a `cds.Decimal` type.",
-          "tsType": "DecimalCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DecimalType",
-            "type"
-          ]
+          "tsType": "DecimalCdsType"
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DecimalType",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DecimalType",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueNumber",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DecimalType",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueNumber"
         },
         "enum": {
-          "$ref": "#/definitions/EnumDictionary",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DecimalType",
-            "enum"
-          ]
+          "$ref": "#/definitions/EnumDictionary"
         },
         "precision": {
           "type": "number",
           "minimum": 1,
           "description": "Total number of digits in a number.\nThis includes both the digits before and after the decimal point.\n\nThe semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.",
-          "default": 34,
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DecimalType",
-            "precision"
-          ]
+          "default": 34
         },
         "scale": {
           "oneOf": [
@@ -2248,12 +1774,7 @@
             }
           ],
           "description": "Describes the number of digits to the right of the decimal point in a number.",
-          "default": "floating",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DecimalType",
-            "scale"
-          ]
+          "default": "floating"
         },
         "@Aggregation.default": {
           "$ref": "#/definitions/@Aggregation.default"
@@ -2418,7 +1939,6 @@
         "Type",
         "DecimalType"
       ],
-      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.Decimal",
@@ -2428,10 +1948,6 @@
             "val": 12.3
           }
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "DecimalType"
       ]
     },
     "DoubleType": {
@@ -2443,46 +1959,21 @@
           "type": "string",
           "const": "cds.Double",
           "description": "The modeling artefact is a `cds.Double` type.",
-          "tsType": "DoubleCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DoubleType",
-            "type"
-          ]
+          "tsType": "DoubleCdsType"
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DoubleType",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DoubleType",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueNumber",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DoubleType",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueNumber"
         },
         "enum": {
-          "$ref": "#/definitions/EnumDictionary",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DoubleType",
-            "enum"
-          ]
+          "$ref": "#/definitions/EnumDictionary"
         },
         "@Aggregation.default": {
           "$ref": "#/definitions/@Aggregation.default"
@@ -2647,7 +2138,6 @@
         "Type",
         "DoubleType"
       ],
-      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.Double",
@@ -2655,10 +2145,6 @@
             "val": 123
           }
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "DoubleType"
       ]
     },
     "DateType": {
@@ -2670,55 +2156,25 @@
           "type": "string",
           "const": "cds.Date",
           "description": "The modeling artefact is a `cds.Date` type.",
-          "tsType": "DateCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateType",
-            "type"
-          ]
+          "tsType": "DateCdsType"
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateType",
-            "key"
-          ]
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateType",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateType",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueString",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateType",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueString"
         },
         "enum": {
-          "$ref": "#/definitions/EnumDictionary",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateType",
-            "enum"
-          ]
+          "$ref": "#/definitions/EnumDictionary"
         },
         "@Aggregation.default": {
           "$ref": "#/definitions/@Aggregation.default"
@@ -2880,16 +2336,11 @@
         "Type",
         "DateType"
       ],
-      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.Date",
           "key": true
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "DateType"
       ]
     },
     "TimeType": {
@@ -2901,55 +2352,25 @@
           "type": "string",
           "const": "cds.Time",
           "description": "The modeling artefact is a `cds.Time` type.",
-          "tsType": "TimeCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimeType",
-            "type"
-          ]
+          "tsType": "TimeCdsType"
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimeType",
-            "key"
-          ]
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimeType",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimeType",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueString",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimeType",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueString"
         },
         "enum": {
-          "$ref": "#/definitions/EnumDictionary",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimeType",
-            "enum"
-          ]
+          "$ref": "#/definitions/EnumDictionary"
         },
         "@Aggregation.default": {
           "$ref": "#/definitions/@Aggregation.default"
@@ -3111,16 +2532,11 @@
         "Type",
         "TimeType"
       ],
-      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.Time",
           "key": true
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "TimeType"
       ]
     },
     "DateTimeType": {
@@ -3132,55 +2548,25 @@
           "type": "string",
           "const": "cds.DateTime",
           "description": "The modeling artefact is a `cds.DateTime` type.",
-          "tsType": "DateTimeCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateTimeType",
-            "type"
-          ]
+          "tsType": "DateTimeCdsType"
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateTimeType",
-            "key"
-          ]
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateTimeType",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateTimeType",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueString",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateTimeType",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueString"
         },
         "enum": {
-          "$ref": "#/definitions/EnumDictionary",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateTimeType",
-            "enum"
-          ]
+          "$ref": "#/definitions/EnumDictionary"
         },
         "@Aggregation.default": {
           "$ref": "#/definitions/@Aggregation.default"
@@ -3342,16 +2728,11 @@
         "Type",
         "DateTimeType"
       ],
-      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.DateTime",
           "key": true
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "DateTimeType"
       ]
     },
     "TimestampType": {
@@ -3363,55 +2744,25 @@
           "type": "string",
           "const": "cds.Timestamp",
           "description": "The modeling artefact is a `cds.Timestamp` type.",
-          "tsType": "TimestampCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampType",
-            "type"
-          ]
+          "tsType": "TimestampCdsType"
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampType",
-            "key"
-          ]
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampType",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampType",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueString",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampType",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueString"
         },
         "enum": {
-          "$ref": "#/definitions/EnumDictionary",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampType",
-            "enum"
-          ]
+          "$ref": "#/definitions/EnumDictionary"
         },
         "@Aggregation.default": {
           "$ref": "#/definitions/@Aggregation.default"
@@ -3573,16 +2924,11 @@
         "Type",
         "TimestampType"
       ],
-      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.Timestamp",
           "key": true
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "TimestampType"
       ]
     },
     "UUIDType": {
@@ -3594,47 +2940,22 @@
           "type": "string",
           "const": "cds.UUID",
           "description": "The modeling artefact is a `cds.UUID` type.",
-          "tsType": "UUIDCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDType",
-            "type"
-          ]
+          "tsType": "UUIDCdsType"
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDType",
-            "key"
-          ]
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDType",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDType",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueString",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDType",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueString"
         },
         "@Aggregation.default": {
           "$ref": "#/definitions/@Aggregation.default"
@@ -3796,16 +3117,11 @@
         "Type",
         "UUIDType"
       ],
-      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.UUID",
           "key": true
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "UUIDType"
       ]
     },
     "AssociationType": {
@@ -3817,41 +3133,18 @@
           "type": "string",
           "const": "cds.Association",
           "description": "The modeling artefact is a `cds.Association` type.",
-          "tsType": "AssociationCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "AssociationType",
-            "type"
-          ]
+          "tsType": "AssociationCdsType"
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "AssociationType",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "target": {
           "type": "string",
-          "description": "The (fully qualified) target entity name.",
-          "x-association-target": [
-            "#/definitions/EntityDefinition"
-          ],
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "AssociationType",
-            "target"
-          ]
+          "description": "The (fully qualified) target entity name."
         },
         "cardinality": {
-          "$ref": "#/definitions/CardinalityObject",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "AssociationType",
-            "cardinality"
-          ]
+          "$ref": "#/definitions/CardinalityObject"
         },
         "on": {
           "type": "array",
@@ -3939,11 +3232,6 @@
                 "val": "1234567"
               }
             ]
-          ],
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "AssociationType",
-            "on"
           ]
         },
         "@Aggregation.default": {
@@ -4109,7 +3397,6 @@
         "Type",
         "AssociationType"
       ],
-      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.Association",
@@ -4132,10 +3419,6 @@
             }
           ]
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "AssociationType"
       ]
     },
     "CompositionType": {
@@ -4147,41 +3430,18 @@
           "type": "string",
           "const": "cds.Composition",
           "description": "The modeling artefact is a `cds.Composition` type.",
-          "tsType": "CompositionCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionType",
-            "type"
-          ]
+          "tsType": "CompositionCdsType"
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionType",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "target": {
           "type": "string",
-          "description": "The (fully qualified) target entity name.",
-          "x-association-target": [
-            "#/definitions/EntityDefinition"
-          ],
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionType",
-            "target"
-          ]
+          "description": "The (fully qualified) target entity name."
         },
         "cardinality": {
-          "$ref": "#/definitions/CardinalityObject",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionType",
-            "cardinality"
-          ]
+          "$ref": "#/definitions/CardinalityObject"
         },
         "on": {
           "type": "array",
@@ -4269,11 +3529,6 @@
                 "val": "1234567"
               }
             ]
-          ],
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionType",
-            "on"
           ]
         },
         "@Aggregation.default": {
@@ -4439,7 +3694,6 @@
         "Type",
         "CompositionType"
       ],
-      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.Composition",
@@ -4462,10 +3716,6 @@
             }
           ]
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "CompositionType"
       ]
     },
     "CustomType": {
@@ -4477,65 +3727,30 @@
           "type": "string",
           "pattern": "^(?!cds\\.).*$",
           "description": "Use of a custom type. MUST not start with `cds.`.",
-          "tsType": "CustomTypeValue",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CustomType",
-            "type"
-          ]
+          "tsType": "CustomTypeValue"
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CustomType",
-            "key"
-          ]
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CustomType",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CustomType",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueCustomDerived",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CustomType",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueCustomDerived"
         },
         "enum": {
-          "$ref": "#/definitions/EnumDictionary",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CustomType",
-            "enum"
-          ]
+          "$ref": "#/definitions/EnumDictionary"
         },
         "length": {
           "type": "number",
           "minimum": 1,
-          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CustomType",
-            "length"
-          ]
+          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed."
         },
         "scale": {
           "oneOf": [
@@ -4547,23 +3762,13 @@
             }
           ],
           "description": "Describes the number of digits to the right of the decimal point in a number.",
-          "default": "floating",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CustomType",
-            "scale"
-          ]
+          "default": "floating"
         },
         "precision": {
           "type": "number",
           "minimum": 1,
           "description": "Total number of digits in a number.\nThis includes both the digits before and after the decimal point.\n\nThe semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.",
-          "default": 34,
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CustomType",
-            "precision"
-          ]
+          "default": 34
         },
         "@Aggregation.default": {
           "$ref": "#/definitions/@Aggregation.default"
@@ -4730,10 +3935,6 @@
           "type": "CONTROLLING_AREA",
           "key": true
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "CustomType"
       ]
     },
     "DefaultValueCustomDerived": {
@@ -4748,22 +3949,13 @@
             "object",
             "null"
           ],
-          "description": "Default Value for a [Custom Type](#custom-type).\n\nThe chosen value type MUST match the [CDS Type](#cds-type) that the custom type chose.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DefaultValueCustomDerived",
-            "val"
-          ]
+          "description": "Default Value for a [Custom Type](#custom-type).\n\nThe chosen value type MUST match the [CDS Type](#cds-type) that the custom type chose."
         }
       },
       "required": [
         "val"
       ],
-      "additionalProperties": false,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "DefaultValueCustomDerived"
-      ]
+      "additionalProperties": false
     },
     "DefaultValueBoolean": {
       "title": "Default Value (Boolean)",
@@ -4774,22 +3966,13 @@
             "boolean",
             "null"
           ],
-          "description": "Default Value for Boolean Type.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DefaultValueBoolean",
-            "val"
-          ]
+          "description": "Default Value for Boolean Type."
         }
       },
       "required": [
         "val"
       ],
-      "additionalProperties": false,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "DefaultValueBoolean"
-      ]
+      "additionalProperties": false
     },
     "DefaultValueString": {
       "title": "Default Value (String)",
@@ -4800,22 +3983,13 @@
             "string",
             "null"
           ],
-          "description": "Default Value for String Types.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DefaultValueString",
-            "val"
-          ]
+          "description": "Default Value for String Types."
         }
       },
       "required": [
         "val"
       ],
-      "additionalProperties": false,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "DefaultValueString"
-      ]
+      "additionalProperties": false
     },
     "DefaultValueInteger": {
       "title": "Default Value integer",
@@ -4826,22 +4000,13 @@
             "integer",
             "null"
           ],
-          "description": "Default Value for Integer Type.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DefaultValueInteger",
-            "val"
-          ]
+          "description": "Default Value for Integer Type."
         }
       },
       "required": [
         "val"
       ],
-      "additionalProperties": false,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "DefaultValueInteger"
-      ]
+      "additionalProperties": false
     },
     "DefaultValueNumber": {
       "title": "Default Value number",
@@ -4852,22 +4017,13 @@
             "number",
             "null"
           ],
-          "description": "Default Value for DecimalScaleNumber: Type.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DefaultValueNumber",
-            "val"
-          ]
+          "description": "Default Value for DecimalScaleNumber: Type."
         }
       },
       "required": [
         "val"
       ],
-      "additionalProperties": false,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "DefaultValueNumber"
-      ]
+      "additionalProperties": false
     },
     "DefaultValueObject": {
       "title": "Default Value object",
@@ -4878,22 +4034,13 @@
             "object",
             "null"
           ],
-          "description": "Default Value for (structured) Object Types.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DefaultValueObject",
-            "val"
-          ]
+          "description": "Default Value for (structured) Object Types."
         }
       },
       "required": [
         "val"
       ],
-      "additionalProperties": false,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "DefaultValueObject"
-      ]
+      "additionalProperties": false
     },
     "EnumValue": {
       "title": "Value Object",
@@ -4907,12 +4054,7 @@
             "boolean",
             "null"
           ],
-          "description": "Value of the enum.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "EnumValue",
-            "val"
-          ]
+          "description": "Value of the enum."
         }
       },
       "patternProperties": {
@@ -4928,21 +4070,13 @@
           "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
         }
       },
-      "additionalProperties": false,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "EnumValue"
-      ]
+      "additionalProperties": false
     },
     "DecimalScaleNumber": {
       "title": "Decimal Scale (Number)",
       "type": "number",
       "description": "Total number of digits that are present after the decimal point in a number.\nThe scale can hold from zero up to the total numeric precision",
-      "minimum": 0,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "DecimalScaleNumber"
-      ]
+      "minimum": 0
     },
     "DecimalScaleType": {
       "title": "Decimal Scale (Type)",
@@ -4954,11 +4088,7 @@
           "description": "The value floating means that the decimal property represents a decimal floating-point number whose number of significant digits is the value of the `precision`.\n\nSee https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Scale"
         }
       ],
-      "default": "floating",
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "DecimalScaleType"
-      ]
+      "default": "floating"
     },
     "CardinalityObject": {
       "title": "Cardinality Object",
@@ -4967,22 +4097,12 @@
       "properties": {
         "src": {
           "type": "number",
-          "description": "Set to `1` to give a hint to database optimizers, that the relationship is \"one to\".\n\nIf `src` is not set then it is unknown and \"many to\" MAY be assumed.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CardinalityObject",
-            "src"
-          ]
+          "description": "Set to `1` to give a hint to database optimizers, that the relationship is \"one to\".\n\nIf `src` is not set then it is unknown and \"many to\" MAY be assumed."
         },
         "min": {
           "type": "number",
           "description": "Specifies the targets minimum cardinality.",
-          "default": 0,
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CardinalityObject",
-            "min"
-          ]
+          "default": 0
         },
         "max": {
           "description": "Specifies the targets maximum cardinality.\n\nMUST be one of:\n- positive Integer (1,2,...)\n- `*` as String",
@@ -4990,12 +4110,7 @@
             "number",
             "string"
           ],
-          "default": 1,
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CardinalityObject",
-            "max"
-          ]
+          "default": 1
         }
       },
       "x-recommended": [
@@ -5011,11 +4126,7 @@
           "max": "*"
         }
       ],
-      "additionalProperties": false,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "CardinalityObject"
-      ]
+      "additionalProperties": false
     },
     "StructuredElementReference": {
       "title": "Structured Element Reference",
@@ -5026,46 +4137,26 @@
           "type": "array",
           "description": "Description of the target with *association name* and *target element name* in target entity`\nDescription of the source *source element name*\n\nMUST NOT:\n- use $ as leading character of an element\n- use session variables",
           "items": {
-            "type": "string",
-            "x-association-target": [
-              "#/definitions/CdsType"
-            ]
-          },
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "StructuredElementReference",
-            "ref"
-          ]
+            "type": "string"
+          }
         }
       },
       "required": [
         "ref"
       ],
-      "additionalProperties": false,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "StructuredElementReference"
-      ]
+      "additionalProperties": false
     },
     "EqualsOperator": {
       "title": "Equals Operator",
       "type": "string",
       "description": "The operator \"=\"",
-      "const": "=",
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "EqualsOperator"
-      ]
+      "const": "="
     },
     "AndOperator": {
       "title": "AND Operator",
       "type": "string",
       "description": "The operator \"and\"",
-      "const": "and",
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "AndOperator"
-      ]
+      "const": "and"
     },
     "OnValue": {
       "title": "On Value",
@@ -5077,22 +4168,13 @@
             "string",
             "number"
           ],
-          "description": "Value for the on condition.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "OnValue",
-            "val"
-          ]
+          "description": "Value for the on condition."
         }
       },
       "required": [
         "val"
       ],
-      "additionalProperties": false,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "OnValue"
-      ]
+      "additionalProperties": false
     },
     "EnumDictionary": {
       "title": "Enum Dictionary",
@@ -5119,10 +4201,6 @@
             "val": "non-binary"
           }
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "EnumDictionary"
       ]
     },
     "ElementReference": {
@@ -5135,20 +4213,12 @@
         {
           "$ref": "#/definitions/ElementReferenceObject"
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "ElementReference"
       ]
     },
     "ElementReferenceString": {
       "title": "Element Reference String",
       "type": "string",
-      "description": "Element reference to an element within the current entity, using string notation.\n\nThe referenced element MUST exist locally in the same entity.\n\n```js\n\"<definition name>\": {\n  \"<annotation key of type ElementReference>\": \"<element name>\"\n```",
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "ElementReferenceString"
-      ]
+      "description": "Element reference to an element within the current entity, using string notation.\n\nThe referenced element MUST exist locally in the same entity.\n\n```js\n\"<definition name>\": {\n  \"<annotation key of type ElementReference>\": \"<element name>\"\n```"
     },
     "ElementReferenceObject": {
       "title": "Element Reference Object",
@@ -5157,25 +4227,13 @@
       "properties": {
         "=": {
           "type": "string",
-          "description": "This is the references elements name.",
-          "x-association-target": [
-            "#/definitions/CdsType"
-          ],
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ElementReferenceObject",
-            "="
-          ]
+          "description": "This is the references elements name."
         }
       },
       "required": [
         "="
       ],
-      "additionalProperties": false,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "ElementReferenceObject"
-      ]
+      "additionalProperties": false
     },
     "EnumValueObject": {
       "title": "Enum Value Object",
@@ -5184,21 +4242,12 @@
       "properties": {
         "#": {
           "type": "string",
-          "description": "The enum value as a string.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "EnumValueObject",
-            "#"
-          ]
+          "description": "The enum value as a string."
         }
       },
       "additionalProperties": false,
       "required": [
         "#"
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "EnumValueObject"
       ]
     },
     "TypeDefinition": {
@@ -5214,12 +4263,7 @@
           "type": "string",
           "const": "type",
           "description": "The kind property is used when defining derived types.\nIn this case `Kind = \"type\"` MUST be provided.",
-          "tsType": "TypeKind",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TypeDefinition",
-            "kind"
-          ]
+          "tsType": "TypeKind"
         },
         "type": {
           "type": "string",
@@ -5239,11 +4283,6 @@
             "cds.UUID",
             "cds.Association",
             "cds.Composition"
-          ],
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TypeDefinition",
-            "type"
           ]
         },
         "@Aggregation.default": {
@@ -5628,11 +4667,6 @@
       "required": [
         "kind",
         "type"
-      ],
-      "x-hide-properties": true,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "TypeDefinition"
       ]
     },
     "BooleanTypeDefinition": {
@@ -5643,49 +4677,24 @@
         "kind": {
           "type": "string",
           "const": "type",
-          "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "BooleanTypeDefinition",
-            "kind"
-          ]
+          "description": "The kind property is used when defining derived types. In this case Kind = \"type\"."
         },
         "type": {
           "type": "string",
           "const": "cds.Boolean",
           "description": "The modeling artefact is a `cds.Boolean` type.",
-          "tsType": "BooleanCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "BooleanTypeDefinition",
-            "type"
-          ]
+          "tsType": "BooleanCdsType"
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "BooleanTypeDefinition",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "BooleanTypeDefinition",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueBoolean",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "BooleanTypeDefinition",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueBoolean"
         }
       },
       "patternProperties": {
@@ -5710,7 +4719,6 @@
         "TypeDefinition",
         "BooleanTypeDefinition"
       ],
-      "x-header-level": 4,
       "examples": [
         {
           "kind": "type",
@@ -5719,10 +4727,6 @@
             "val": true
           }
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "BooleanTypeDefinition"
       ]
     },
     "StringTypeDefinition": {
@@ -5733,67 +4737,32 @@
         "kind": {
           "type": "string",
           "const": "type",
-          "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "StringTypeDefinition",
-            "kind"
-          ]
+          "description": "The kind property is used when defining derived types. In this case Kind = \"type\"."
         },
         "type": {
           "type": "string",
           "const": "cds.String",
           "description": "The modeling artefact is a `cds.String` type.",
-          "tsType": "StringCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "StringTypeDefinition",
-            "type"
-          ]
+          "tsType": "StringCdsType"
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "StringTypeDefinition",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "StringTypeDefinition",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueString",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "StringTypeDefinition",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueString"
         },
         "enum": {
-          "$ref": "#/definitions/EnumDictionary",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "StringTypeDefinition",
-            "enum"
-          ]
+          "$ref": "#/definitions/EnumDictionary"
         },
         "length": {
           "type": "number",
           "minimum": 1,
-          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "StringTypeDefinition",
-            "length"
-          ]
+          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed."
         }
       },
       "patternProperties": {
@@ -5818,7 +4787,6 @@
         "TypeDefinition",
         "StringTypeDefinition"
       ],
-      "x-header-level": 4,
       "examples": [
         {
           "kind": "type",
@@ -5828,10 +4796,6 @@
             "val": "foo"
           }
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "StringTypeDefinition"
       ]
     },
     "LargeStringTypeDefinition": {
@@ -5842,67 +4806,32 @@
         "kind": {
           "type": "string",
           "const": "type",
-          "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "LargeStringTypeDefinition",
-            "kind"
-          ]
+          "description": "The kind property is used when defining derived types. In this case Kind = \"type\"."
         },
         "type": {
           "type": "string",
           "const": "cds.LargeString",
           "description": "The modeling artefact is a `cds.LargeString` type.",
-          "tsType": "LargeStringCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "LargeStringTypeDefinition",
-            "type"
-          ]
+          "tsType": "LargeStringCdsType"
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "LargeStringTypeDefinition",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "LargeStringTypeDefinition",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueString",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "LargeStringTypeDefinition",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueString"
         },
         "enum": {
-          "$ref": "#/definitions/EnumDictionary",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "LargeStringTypeDefinition",
-            "enum"
-          ]
+          "$ref": "#/definitions/EnumDictionary"
         },
         "length": {
           "type": "number",
           "minimum": 1,
-          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "LargeStringTypeDefinition",
-            "length"
-          ]
+          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed."
         }
       },
       "patternProperties": {
@@ -5925,11 +4854,6 @@
       "additionalProperties": false,
       "x-extension-points": [
         "TypeDefinition",
-        "LargeStringTypeDefinition"
-      ],
-      "x-header-level": 4,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
         "LargeStringTypeDefinition"
       ]
     },
@@ -5941,57 +4865,27 @@
         "kind": {
           "type": "string",
           "const": "type",
-          "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "IntegerTypeDefinition",
-            "kind"
-          ]
+          "description": "The kind property is used when defining derived types. In this case Kind = \"type\"."
         },
         "type": {
           "type": "string",
           "const": "cds.Integer",
           "description": "The modeling artefact is a `cds.Integer` type.",
-          "tsType": "IntegerCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "IntegerTypeDefinition",
-            "type"
-          ]
+          "tsType": "IntegerCdsType"
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "IntegerTypeDefinition",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "IntegerTypeDefinition",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueInteger",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "IntegerTypeDefinition",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueInteger"
         },
         "enum": {
-          "$ref": "#/definitions/EnumDictionary",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "IntegerTypeDefinition",
-            "enum"
-          ]
+          "$ref": "#/definitions/EnumDictionary"
         }
       },
       "patternProperties": {
@@ -6016,7 +4910,6 @@
         "TypeDefinition",
         "IntegerTypeDefinition"
       ],
-      "x-header-level": 4,
       "examples": [
         {
           "kind": "type",
@@ -6025,10 +4918,6 @@
             "val": 123
           }
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "IntegerTypeDefinition"
       ]
     },
     "Integer64TypeDefinition": {
@@ -6039,57 +4928,27 @@
         "kind": {
           "type": "string",
           "const": "type",
-          "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "Integer64TypeDefinition",
-            "kind"
-          ]
+          "description": "The kind property is used when defining derived types. In this case Kind = \"type\"."
         },
         "type": {
           "type": "string",
           "const": "cds.Integer64",
           "description": "The modeling artefact is a `cds.Integer64` type.",
-          "tsType": "Integer64CdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "Integer64TypeDefinition",
-            "type"
-          ]
+          "tsType": "Integer64CdsType"
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "Integer64TypeDefinition",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "Integer64TypeDefinition",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueInteger",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "Integer64TypeDefinition",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueInteger"
         },
         "enum": {
-          "$ref": "#/definitions/EnumDictionary",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "Integer64TypeDefinition",
-            "enum"
-          ]
+          "$ref": "#/definitions/EnumDictionary"
         }
       },
       "patternProperties": {
@@ -6112,11 +4971,6 @@
       "additionalProperties": false,
       "x-extension-points": [
         "TypeDefinition",
-        "Integer64TypeDefinition"
-      ],
-      "x-header-level": 4,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
         "Integer64TypeDefinition"
       ]
     },
@@ -6128,68 +4982,33 @@
         "kind": {
           "type": "string",
           "const": "type",
-          "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DecimalTypeDefinition",
-            "kind"
-          ]
+          "description": "The kind property is used when defining derived types. In this case Kind = \"type\"."
         },
         "type": {
           "type": "string",
           "const": "cds.Decimal",
           "description": "The modeling artefact is a `cds.Decimal` type.",
-          "tsType": "DecimalCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DecimalTypeDefinition",
-            "type"
-          ]
+          "tsType": "DecimalCdsType"
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DecimalTypeDefinition",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DecimalTypeDefinition",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueNumber",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DecimalTypeDefinition",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueNumber"
         },
         "enum": {
-          "$ref": "#/definitions/EnumDictionary",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DecimalTypeDefinition",
-            "enum"
-          ]
+          "$ref": "#/definitions/EnumDictionary"
         },
         "precision": {
           "type": "number",
           "minimum": 1,
           "description": "Total number of digits in a number.\nThis includes both the digits before and after the decimal point.\n\nThe semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.",
-          "default": 34,
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DecimalTypeDefinition",
-            "precision"
-          ]
+          "default": 34
         },
         "scale": {
           "oneOf": [
@@ -6201,12 +5020,7 @@
             }
           ],
           "description": "Describes the number of digits to the right of the decimal point in a number.",
-          "default": "floating",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DecimalTypeDefinition",
-            "scale"
-          ]
+          "default": "floating"
         }
       },
       "patternProperties": {
@@ -6231,7 +5045,6 @@
         "TypeDefinition",
         "DecimalTypeDefinition"
       ],
-      "x-header-level": 4,
       "examples": [
         {
           "kind": "type",
@@ -6242,10 +5055,6 @@
             "val": 12.3
           }
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "DecimalTypeDefinition"
       ]
     },
     "DoubleTypeDefinition": {
@@ -6256,57 +5065,27 @@
         "kind": {
           "type": "string",
           "const": "type",
-          "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DoubleTypeDefinition",
-            "kind"
-          ]
+          "description": "The kind property is used when defining derived types. In this case Kind = \"type\"."
         },
         "type": {
           "type": "string",
           "const": "cds.Double",
           "description": "The modeling artefact is a `cds.Double` type.",
-          "tsType": "DoubleCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DoubleTypeDefinition",
-            "type"
-          ]
+          "tsType": "DoubleCdsType"
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DoubleTypeDefinition",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DoubleTypeDefinition",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueNumber",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DoubleTypeDefinition",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueNumber"
         },
         "enum": {
-          "$ref": "#/definitions/EnumDictionary",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DoubleTypeDefinition",
-            "enum"
-          ]
+          "$ref": "#/definitions/EnumDictionary"
         }
       },
       "patternProperties": {
@@ -6329,11 +5108,6 @@
       "additionalProperties": false,
       "x-extension-points": [
         "TypeDefinition",
-        "DoubleTypeDefinition"
-      ],
-      "x-header-level": 4,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
         "DoubleTypeDefinition"
       ]
     },
@@ -6345,57 +5119,27 @@
         "kind": {
           "type": "string",
           "const": "type",
-          "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateTypeDefinition",
-            "kind"
-          ]
+          "description": "The kind property is used when defining derived types. In this case Kind = \"type\"."
         },
         "type": {
           "type": "string",
           "const": "cds.Date",
           "description": "The modeling artefact is a `cds.Date` type.",
-          "tsType": "DateCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateTypeDefinition",
-            "type"
-          ]
+          "tsType": "DateCdsType"
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateTypeDefinition",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateTypeDefinition",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueString",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateTypeDefinition",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueString"
         },
         "enum": {
-          "$ref": "#/definitions/EnumDictionary",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateTypeDefinition",
-            "enum"
-          ]
+          "$ref": "#/definitions/EnumDictionary"
         }
       },
       "patternProperties": {
@@ -6420,16 +5164,11 @@
         "TypeDefinition",
         "DateTypeDefinition"
       ],
-      "x-header-level": 4,
       "examples": [
         {
           "kind": "type",
           "type": "cds.Date"
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "DateTypeDefinition"
       ]
     },
     "TimeTypeDefinition": {
@@ -6440,57 +5179,27 @@
         "kind": {
           "type": "string",
           "const": "type",
-          "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimeTypeDefinition",
-            "kind"
-          ]
+          "description": "The kind property is used when defining derived types. In this case Kind = \"type\"."
         },
         "type": {
           "type": "string",
           "const": "cds.Time",
           "description": "The modeling artefact is a `cds.Time` type.",
-          "tsType": "TimeCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimeTypeDefinition",
-            "type"
-          ]
+          "tsType": "TimeCdsType"
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimeTypeDefinition",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimeTypeDefinition",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueString",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimeTypeDefinition",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueString"
         },
         "enum": {
-          "$ref": "#/definitions/EnumDictionary",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimeTypeDefinition",
-            "enum"
-          ]
+          "$ref": "#/definitions/EnumDictionary"
         }
       },
       "patternProperties": {
@@ -6513,11 +5222,6 @@
       "additionalProperties": false,
       "x-extension-points": [
         "TypeDefinition",
-        "TimeTypeDefinition"
-      ],
-      "x-header-level": 4,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
         "TimeTypeDefinition"
       ]
     },
@@ -6529,57 +5233,27 @@
         "kind": {
           "type": "string",
           "const": "type",
-          "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateTimeTypeDefinition",
-            "kind"
-          ]
+          "description": "The kind property is used when defining derived types. In this case Kind = \"type\"."
         },
         "type": {
           "type": "string",
           "const": "cds.DateTime",
           "description": "The modeling artefact is a `cds.DateTime` type.",
-          "tsType": "DateTimeCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateTimeTypeDefinition",
-            "type"
-          ]
+          "tsType": "DateTimeCdsType"
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateTimeTypeDefinition",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateTimeTypeDefinition",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueString",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateTimeTypeDefinition",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueString"
         },
         "enum": {
-          "$ref": "#/definitions/EnumDictionary",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "DateTimeTypeDefinition",
-            "enum"
-          ]
+          "$ref": "#/definitions/EnumDictionary"
         }
       },
       "patternProperties": {
@@ -6602,11 +5276,6 @@
       "additionalProperties": false,
       "x-extension-points": [
         "TypeDefinition",
-        "DateTimeTypeDefinition"
-      ],
-      "x-header-level": 4,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
         "DateTimeTypeDefinition"
       ]
     },
@@ -6618,57 +5287,27 @@
         "kind": {
           "type": "string",
           "const": "type",
-          "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
-            "kind"
-          ]
+          "description": "The kind property is used when defining derived types. In this case Kind = \"type\"."
         },
         "type": {
           "type": "string",
           "const": "cds.Timestamp",
           "description": "The modeling artefact is a `cds.Timestamp` type.",
-          "tsType": "TimestampCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
-            "type"
-          ]
+          "tsType": "TimestampCdsType"
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueString",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueString"
         },
         "enum": {
-          "$ref": "#/definitions/EnumDictionary",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "TimestampTypeDefinition",
-            "enum"
-          ]
+          "$ref": "#/definitions/EnumDictionary"
         }
       },
       "patternProperties": {
@@ -6691,11 +5330,6 @@
       "additionalProperties": false,
       "x-extension-points": [
         "TypeDefinition",
-        "TimestampTypeDefinition"
-      ],
-      "x-header-level": 4,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
         "TimestampTypeDefinition"
       ]
     },
@@ -6707,49 +5341,24 @@
         "kind": {
           "type": "string",
           "const": "type",
-          "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
-            "kind"
-          ]
+          "description": "The kind property is used when defining derived types. In this case Kind = \"type\"."
         },
         "type": {
           "type": "string",
           "const": "cds.UUID",
           "description": "The modeling artefact is a `cds.UUID` type.",
-          "tsType": "UUIDCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
-            "type"
-          ]
+          "tsType": "UUIDCdsType"
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
-            "notNull"
-          ]
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "default": {
-          "$ref": "#/definitions/DefaultValueString",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "UUIDTypeDefinition",
-            "default"
-          ]
+          "$ref": "#/definitions/DefaultValueString"
         }
       },
       "patternProperties": {
@@ -6773,11 +5382,6 @@
       "x-extension-points": [
         "TypeDefinition",
         "UUIDTypeDefinition"
-      ],
-      "x-header-level": 4,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "UUIDTypeDefinition"
       ]
     },
     "AssociationTypeDefinition": {
@@ -6788,52 +5392,24 @@
         "kind": {
           "type": "string",
           "const": "type",
-          "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "AssociationTypeDefinition",
-            "kind"
-          ]
+          "description": "The kind property is used when defining derived types. In this case Kind = \"type\"."
         },
         "type": {
           "type": "string",
           "const": "cds.Association",
           "description": "The modeling artefact is a `cds.Association` type.",
-          "tsType": "AssociationCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "AssociationTypeDefinition",
-            "type"
-          ]
+          "tsType": "AssociationCdsType"
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "AssociationTypeDefinition",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "target": {
           "type": "string",
-          "description": "The (fully qualified) target entity name.",
-          "x-association-target": [
-            "#/definitions/EntityDefinition"
-          ],
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "AssociationTypeDefinition",
-            "target"
-          ]
+          "description": "The (fully qualified) target entity name."
         },
         "cardinality": {
-          "$ref": "#/definitions/CardinalityObject",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "AssociationTypeDefinition",
-            "cardinality"
-          ]
+          "$ref": "#/definitions/CardinalityObject"
         },
         "on": {
           "type": "array",
@@ -6921,11 +5497,6 @@
                 "val": "1234567"
               }
             ]
-          ],
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "AssociationTypeDefinition",
-            "on"
           ]
         }
       },
@@ -6954,7 +5525,6 @@
         "TypeDefinition",
         "AssociationTypeDefinition"
       ],
-      "x-header-level": 4,
       "examples": [
         {
           "kind": "type",
@@ -6978,10 +5548,6 @@
             }
           ]
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "AssociationTypeDefinition"
       ]
     },
     "CompositionTypeDefinition": {
@@ -6992,52 +5558,24 @@
         "kind": {
           "type": "string",
           "const": "type",
-          "description": "The kind property is used when defining derived types. In this case Kind = \"type\".",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
-            "kind"
-          ]
+          "description": "The kind property is used when defining derived types. In this case Kind = \"type\"."
         },
         "type": {
           "type": "string",
           "const": "cds.Composition",
           "description": "The modeling artefact is a `cds.Composition` type.",
-          "tsType": "CompositionCdsType",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
-            "type"
-          ]
+          "tsType": "CompositionCdsType"
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "target": {
           "type": "string",
-          "description": "The (fully qualified) target entity name.",
-          "x-association-target": [
-            "#/definitions/EntityDefinition"
-          ],
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
-            "target"
-          ]
+          "description": "The (fully qualified) target entity name."
         },
         "cardinality": {
-          "$ref": "#/definitions/CardinalityObject",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
-            "cardinality"
-          ]
+          "$ref": "#/definitions/CardinalityObject"
         },
         "on": {
           "type": "array",
@@ -7125,11 +5663,6 @@
                 "val": "1234567"
               }
             ]
-          ],
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "CompositionTypeDefinition",
-            "on"
           ]
         }
       },
@@ -7158,7 +5691,6 @@
         "TypeDefinition",
         "CompositionTypeDefinition"
       ],
-      "x-header-level": 4,
       "examples": [
         {
           "kind": "type",
@@ -7182,10 +5714,6 @@
             }
           ]
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "CompositionTypeDefinition"
       ]
     },
     "ServiceDefinition": {
@@ -7200,21 +5728,11 @@
           "type": "string",
           "const": "service",
           "description": "The modeling artefact is a service.",
-          "tsType": "ServiceKind",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ServiceDefinition",
-            "kind"
-          ]
+          "tsType": "ServiceKind"
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ServiceDefinition",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -7248,11 +5766,7 @@
       "required": [
         "kind"
       ],
-      "additionalProperties": false,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "ServiceDefinition"
-      ]
+      "additionalProperties": false
     },
     "ContextDefinition": {
       "title": "Context Definition",
@@ -7266,21 +5780,11 @@
           "type": "string",
           "const": "context",
           "description": "The modeling artefact is a context.",
-          "tsType": "ContextKind",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
-            "kind"
-          ]
+          "tsType": "ContextKind"
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.",
-          "x-context": [
-            "./spec/v1/CSN-Interop-Effective.schema.yaml",
-            "ContextDefinition",
-            "doc"
-          ]
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -7305,11 +5809,7 @@
       "required": [
         "kind"
       ],
-      "additionalProperties": false,
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "ContextDefinition"
-      ]
+      "additionalProperties": false
     },
     "i18n": {
       "title": "i18n",
@@ -7328,10 +5828,6 @@
             "I_COSTCENTER.CONTROLLINGAREA@ENDUSERTEXT.LABEL": "Kostenrechnungskreis"
           }
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "i18n"
       ]
     },
     "LanguageText": {
@@ -7350,10 +5846,6 @@
           "I_COSTCENTER@ENDUSERTEXT.LABEL": "Kostenstelle",
           "I_COSTCENTER.CONTROLLINGAREA@ENDUSERTEXT.LABEL": "Kostenrechnungskreis"
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "LanguageText"
       ]
     },
     "@Aggregation.default": {
@@ -7474,11 +5966,6 @@
           "description": "Additional bindings for filtering the value help result list."
         },
         "association": {
-          "x-ref-to-doc": {
-            "title": "Element Reference",
-            "ref": "#/definitions/ElementReference"
-          },
-          "description": "Reference to the modelled association (in local entity) for which the target view represents the value help providing view or entity for the annotated local field. The on-condition of the association may only contain bindings of the source and target fields that use an equal operator. All these bindings are automatically considered by the value help for both filter and result mappings.\nMutually exclusive to the usage of `valueHelpDefinition.entity`.",
           "$ref": "#/definitions/ElementReference"
         },
         "distinctValues": {
@@ -7833,12 +6320,10 @@
           ]
         },
         "temporalIntervalStartProperty": {
-          "$ref": "#/definitions/@EntityRelationship.LocalPropertyName",
-          "description": "Property in the local entity that is used to define the start of the interval."
+          "$ref": "#/definitions/@EntityRelationship.LocalPropertyName"
         },
         "temporalIntervalEndProperty": {
-          "$ref": "#/definitions/@EntityRelationship.LocalPropertyName",
-          "description": "Property in the local entity that is used to define the end of the interval."
+          "$ref": "#/definitions/@EntityRelationship.LocalPropertyName"
         }
       },
       "required": [
@@ -7881,8 +6366,7 @@
           ]
         },
         "selectionDateProperty": {
-          "$ref": "#/definitions/@EntityRelationship.LocalPropertyName",
-          "description": "Property in the local entity that is used to select the right date interval."
+          "$ref": "#/definitions/@EntityRelationship.LocalPropertyName"
         }
       },
       "required": [
@@ -7971,15 +6455,10 @@
       ]
     },
     "@ObjectModel.representativeKey": {
-      "description": "In case of multiple key elements: key element which represents the entity (in the sense that the entity itself is the list of values for this key element)",
       "x-extension-targets": [
         "Entity",
         "Service"
       ],
-      "x-ref-to-doc": {
-        "title": "Element Reference",
-        "ref": "#/definitions/ElementReference"
-      },
       "$ref": "#/definitions/ElementReference"
     },
     "@ObjectModel.semanticKey": {
@@ -7988,12 +6467,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "items": {
-        "x-ref-to-doc": {
-          "title": "Element Reference",
-          "ref": "#/definitions/ElementReference"
-        }
-      }
+      "items": {}
     },
     "@ObjectModel.modelingPattern": {
       "type": "object",
@@ -8057,14 +6531,9 @@
       }
     },
     "@ObjectModel.foreignKey.association": {
-      "description": "The element is of type `cds.Association` which points to the list of values.\n\nUse only for service internal associations. For cross service associations, use the [@EntityRelationship Vocabulary](./entity-relationship) instead.",
       "x-extension-targets": [
         "Type"
       ],
-      "x-ref-to-doc": {
-        "title": "Element Reference",
-        "ref": "#/definitions/ElementReference"
-      },
       "$ref": "#/definitions/ElementReference"
     },
     "@ObjectModel.text.element": {
@@ -8073,12 +6542,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "items": {
-        "x-ref-to-doc": {
-          "title": "Element Reference",
-          "ref": "#/definitions/ElementReference"
-        }
-      },
+      "items": {},
       "examples": [
         [
           "BillingDocumentTypeName"
@@ -8086,14 +6550,9 @@
       ]
     },
     "@ObjectModel.text.association": {
-      "description": "The element is of type cds.association, which points to an entity containing (language-dependent) texts for the annotated (id) element",
       "x-extension-targets": [
         "Type"
       ],
-      "x-ref-to-doc": {
-        "title": "Element Reference",
-        "ref": "#/definitions/ElementReference"
-      },
       "$ref": "#/definitions/ElementReference"
     },
     "@ObjectModel.SupportedCapabilities_EnumValue": {
@@ -8150,11 +6609,6 @@
       ]
     },
     "@ODM.oid": {
-      "description": "The annotation references the element which contains the oid.",
-      "x-ref-to-doc": {
-        "title": "Element Reference",
-        "ref": "#/definitions/ElementReference"
-      },
       "x-extension-targets": [
         "Entity"
       ],
@@ -8306,11 +6760,6 @@
       ]
     },
     "@Semantics.amount.currencyCode": {
-      "description": "The element contains an amount.\nThe annotation points to an element containing the currency code.",
-      "x-ref-to-doc": {
-        "title": "Element Reference",
-        "ref": "#/definitions/ElementReference"
-      },
       "x-extension-targets": [
         "Type"
       ],
@@ -8325,11 +6774,6 @@
       ]
     },
     "@Semantics.quantity.unitOfMeasure": {
-      "description": "The element contains a quantity.\nThe annotation points to an element containing the unit of measure.",
-      "x-ref-to-doc": {
-        "title": "Element Reference",
-        "ref": "#/definitions/ElementReference"
-      },
       "x-extension-targets": [
         "Type"
       ],
@@ -8544,10 +6988,6 @@
       ]
     }
   },
-  "x-context": [
-    "./spec/v1/CSN-Interop-Effective.schema.yaml",
-    "CsnInteropEffectiveRoot"
-  ],
   "type": "object",
   "properties": {
     "$schema": {
@@ -8562,33 +7002,18 @@
           "type": "string",
           "format": "uri-reference"
         }
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "CsnInteropEffectiveRoot",
-        "$schema"
       ]
     },
     "$id": {
       "type": "string",
       "format": "uri-reference",
-      "description": "Optional URI for this document, that can acts as an ID or as location to retrieve the document.\n\nSee https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema\n",
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "CsnInteropEffectiveRoot",
-        "$id"
-      ]
+      "description": "Optional URI for this document, that can acts as an ID or as location to retrieve the document.\n\nSee https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema\n"
     },
     "csnInteropEffective": {
       "type": "string",
       "description": "Existence of this property indicated that the file is a CSN Interop Effective document.\nThe value states the specification version it has been created against.",
       "enum": [
         "1.0"
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "CsnInteropEffectiveRoot",
-        "csnInteropEffective"
       ]
     },
     "$version": {
@@ -8596,40 +7021,20 @@
       "description": "The version of the CDS CSN. For this version of CSN Interop it is fixed to `2.0`.\n\nThis MUST be provided to ensure that CSN Interop is a valid subset of CDS CSN in general.",
       "enum": [
         "2.0"
-      ],
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "CsnInteropEffectiveRoot",
-        "$version"
       ]
     },
     "meta": {
       "type": "object",
       "description": "Meta information that apply to the CSN document as a whole.",
-      "$ref": "#/definitions/Meta",
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "CsnInteropEffectiveRoot",
-        "meta"
-      ]
+      "$ref": "#/definitions/Meta"
     },
     "definitions": {
       "$ref": "#/definitions/Definitions",
-      "description": "Dictionary of CSN modeling artifacts.\n",
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "CsnInteropEffectiveRoot",
-        "definitions"
-      ]
+      "description": "Dictionary of CSN modeling artifacts.\n"
     },
     "i18n": {
       "$ref": "#/definitions/i18n",
-      "description": "Dictionary of translated texts.\n",
-      "x-context": [
-        "./spec/v1/CSN-Interop-Effective.schema.yaml",
-        "CsnInteropEffectiveRoot",
-        "i18n"
-      ]
+      "description": "Dictionary of translated texts.\n"
     }
   },
   "patternProperties": {

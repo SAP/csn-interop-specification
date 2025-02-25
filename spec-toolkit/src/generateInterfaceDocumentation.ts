@@ -1310,20 +1310,52 @@ export function getAnyOfDescription(jsonSchemaObject: SpecJsonSchema, title = "R
 // ------------------ Output Functions - ------------------
 ////////////////////////////////////////////////////////////
 
-export function writeSpecJsonSchemaFiles(filePath: string, jsonSchema: SpecJsonSchemaRoot): void {
+export function writeSpecJsonSchemaFiles(
+  filePath: string,
+  jsonSchema: SpecJsonSchemaRoot,
+  isMainSchema?: boolean,
+): void {
   const refConvertedJsonSchema = convertRefToDocToStandardRef(jsonSchema);
 
-  // write it as schema file that includes all the x- extensions
-  fs.outputFileSync(
-    filePath,
-    JSON.stringify(
-      {
-        description: "JSON Schema with custom (x-) properties",
-        ...refConvertedJsonSchema,
-      },
-      null,
-      2,
-    ),
-  );
-  log.info(`Write to file system ${filePath}`);
+  // NOTE: only for "main" schemas we remove the x- annotations and write the cleaned-up version to file system
+  // all other auto-generated "extensions" schemas will keep the x- annotations
+  // as they cannot be understood by readers without them
+  if (isMainSchema) {
+    // Clean up the JSON Schema from everything spec specific
+    // As this could cause confusion with other JSON Schema based libraries
+    const jsonSchema1 = removeDescriptionsFromRefPointers(refConvertedJsonSchema);
+    const jsonSchema2 = removeExtensionAttributes(jsonSchema1);
+
+    // write it as schema file that does not include all the x- extensions
+    fs.outputFileSync(filePath, JSON.stringify(jsonSchema2, null, 2));
+
+    // temporary write it as schema file that includes all the x- extensions to filesystem
+    // needed for the typescript types generation and the file will be deleted afterwards
+    const xSchemaFileName = filePath.split(".json").join(".x.json");
+    fs.outputFileSync(
+      xSchemaFileName,
+      JSON.stringify(
+        {
+          description: "JSON Schema with custom (x-) properties",
+          ...refConvertedJsonSchema,
+        },
+        null,
+        2,
+      ),
+    );
+    log.info(`Write to file system temporary file ${xSchemaFileName}`);
+  } else {
+    // write it as schema file that includes all the x- extensions
+    fs.outputFileSync(
+      filePath,
+      JSON.stringify(
+        {
+          description: "JSON Schema with custom (x-) properties",
+          ...refConvertedJsonSchema,
+        },
+        null,
+        2,
+      ),
+    );
+  }
 }

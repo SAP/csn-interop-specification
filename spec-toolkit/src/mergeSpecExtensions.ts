@@ -101,7 +101,7 @@ export function mergeSpecExtensions(configData: ConfigFile): void {
       // Validate resulting JSON Schema document
       validateSpecJsonSchema(targetDocument);
 
-      writeSpecJsonSchemaFiles(targetDocumentFilePath, targetDocument);
+      writeSpecJsonSchemaFiles(targetDocumentFilePath, targetDocument, true);
 
       log.info(`Written: ${targetDocumentFilePath}`);
     }
