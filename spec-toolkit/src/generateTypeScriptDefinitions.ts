@@ -5,7 +5,7 @@ import {
   ensureRootLevelSchema,
   convertRefToDocToStandardRef,
   removeDescriptionsFromRefPointers,
-  removeExtensionAttributes,
+  removeAllExtensionProperties,
 } from "./util/jsonSchemaConversion.js";
 
 import { JSONSchema4 } from "json-schema";
@@ -33,7 +33,7 @@ export async function generateTypeScriptDefinitions(configData: ConfigFile): Pro
       // Schema cleaned up
       schema = removeDescriptionsFromRefPointers(schema);
       const allCustomPropertiesTypescriptTypes = schema["x-custom-typescript-types"];
-      schema = removeExtensionAttributes(schema);
+      schema = removeAllExtensionProperties(schema);
       schema = ensureRootLevelSchema(schema);
       const convertedDocumentSchema = schema as JSONSchema4;
 

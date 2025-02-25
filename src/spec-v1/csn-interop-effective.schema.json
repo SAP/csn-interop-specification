@@ -3141,7 +3141,10 @@
         },
         "target": {
           "type": "string",
-          "description": "The (fully qualified) target entity name."
+          "description": "The (fully qualified) target entity name.",
+          "x-association-target": [
+            "#/definitions/EntityDefinition"
+          ]
         },
         "cardinality": {
           "$ref": "#/definitions/CardinalityObject"
@@ -3438,7 +3441,10 @@
         },
         "target": {
           "type": "string",
-          "description": "The (fully qualified) target entity name."
+          "description": "The (fully qualified) target entity name.",
+          "x-association-target": [
+            "#/definitions/EntityDefinition"
+          ]
         },
         "cardinality": {
           "$ref": "#/definitions/CardinalityObject"
@@ -4137,7 +4143,10 @@
           "type": "array",
           "description": "Description of the target with *association name* and *target element name* in target entity`\nDescription of the source *source element name*\n\nMUST NOT:\n- use $ as leading character of an element\n- use session variables",
           "items": {
-            "type": "string"
+            "type": "string",
+            "x-association-target": [
+              "#/definitions/CdsType"
+            ]
           }
         }
       },
@@ -4227,7 +4236,10 @@
       "properties": {
         "=": {
           "type": "string",
-          "description": "This is the references elements name."
+          "description": "This is the references elements name.",
+          "x-association-target": [
+            "#/definitions/CdsType"
+          ]
         }
       },
       "required": [
@@ -5406,7 +5418,10 @@
         },
         "target": {
           "type": "string",
-          "description": "The (fully qualified) target entity name."
+          "description": "The (fully qualified) target entity name.",
+          "x-association-target": [
+            "#/definitions/EntityDefinition"
+          ]
         },
         "cardinality": {
           "$ref": "#/definitions/CardinalityObject"
@@ -5572,7 +5587,10 @@
         },
         "target": {
           "type": "string",
-          "description": "The (fully qualified) target entity name."
+          "description": "The (fully qualified) target entity name.",
+          "x-association-target": [
+            "#/definitions/EntityDefinition"
+          ]
         },
         "cardinality": {
           "$ref": "#/definitions/CardinalityObject"
