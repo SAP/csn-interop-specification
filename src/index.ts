@@ -1,6 +1,5 @@
 import * as staticCsnInteropEffectiveSchema from "./spec-v1/csn-interop-effective.schema.json";
-import { JSONSchema7 } from "json-schema";
-
+import { SpecJsonSchemaRoot } from "../spec-toolkit/src/index";
 export * from "./types";
 
 export const schemas = {
@@ -9,5 +8,5 @@ export const schemas = {
    *
    * This schema also includes the standardized annotations.
    */
-  csnInteropEffectiveSchema: staticCsnInteropEffectiveSchema as unknown as JSONSchema7,
+  csnInteropEffectiveSchema: staticCsnInteropEffectiveSchema as unknown as SpecJsonSchemaRoot,
 };

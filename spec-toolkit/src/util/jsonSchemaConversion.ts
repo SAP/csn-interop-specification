@@ -262,11 +262,10 @@ export function removeDescriptionsFromRefPointers(jsonSchema: SpecJsonSchemaRoot
 }
 
 /**
- * Clean up x-attributes which should not appear in final schema
+ * Clean up all x-properties from schema
  *
- * Done in a very generic manner
  */
-export function removeExtensionAttributes(jsonSchema: SpecJsonSchemaRoot): SpecJsonSchemaRoot {
+export function removeAllExtensionProperties(jsonSchema: SpecJsonSchemaRoot): SpecJsonSchemaRoot {
   return JSON.parse(
     JSON.stringify(jsonSchema, (key, val) => {
       return key.startsWith("x-") ? undefined : val;
@@ -275,7 +274,31 @@ export function removeExtensionAttributes(jsonSchema: SpecJsonSchemaRoot): SpecJ
 }
 
 /**
- * Clean up x-attributes which should not appear in final schema
+ * Clean up x-properties from schema
+ *
+ */
+export function removeSomeExtensionProperties(jsonSchema: SpecJsonSchemaRoot): SpecJsonSchemaRoot {
+  // list of "x-" properties that are considered relevant for end spec consumers and should not be cleaned
+  const allowedListProperties = [
+    "x-extension-targets",
+    "x-extension-points",
+    "x-recommended",
+    "x-introduced-in-version",
+    "x-feature-status",
+    "x-pattern-properties-description",
+    "x-association-target",
+    "x-root-entity",
+  ];
+
+  return JSON.parse(
+    JSON.stringify(jsonSchema, (key, val) => {
+      return key.startsWith("x-") && allowedListProperties.indexOf(key) < 0 ? undefined : val;
+    }),
+  );
+}
+
+/**
+ * Clean up x-properties which should not appear in final schema
  *
  * Done in a very generic manner
  */
