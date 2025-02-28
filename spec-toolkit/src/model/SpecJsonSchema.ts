@@ -112,8 +112,26 @@ export interface SpecJsonSchema {
 
   /**
    * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-7
+   * @see https://datatracker.ietf.org/doc/html/draft-handrews-json-schema-validation-01#section-7.3
    */
-  "format"?: string;
+  "format"?:
+    | "date-time"
+    | "date"
+    | "time"
+    | "uri"
+    | "uri-reference"
+    | "uri-template"
+    | "iri"
+    | "iri-reference"
+    | "email"
+    | "hostname"
+    | "idn-hostname"
+    | "ipv4"
+    | "ipv6"
+    | "json-pointer"
+    | "relative-json-pointer"
+    | "regex"
+    | string;
 
   // contentMediaType?: string;
   // contentEncoding?: string;
@@ -124,7 +142,8 @@ export interface SpecJsonSchema {
   "title"?: string;
   "description"?: string;
   "default"?: SpecJsonSchemaType;
-  "examples"?: SpecJsonSchemaType;
+  /** Examples, in Spec JSON Schema this is always an array of examples! */
+  "examples"?: SpecJsonSchemaType[];
 
   //////////////////////////////////////////
   // Spec JSON Schema extensions          //
@@ -177,6 +196,20 @@ export interface SpecJsonSchema {
     title: string;
     ref: string;
   };
+
+  /**
+   * Marks JSON Schema object as a root entity
+   *
+   * This MUST be provided for export to UMS Models
+   */
+  "x-root-entity"?: boolean;
+
+  /**
+   *Override for UMS metadata name
+   *
+   * TODO: Port back to Spec JSON Schema
+   */
+  "x-ums-metadata-name"?: string;
 
   /**
    * Overwrite TypeScript Type
