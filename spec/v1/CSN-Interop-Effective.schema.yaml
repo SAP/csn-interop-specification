@@ -1,4 +1,4 @@
-$schema: "http://json-schema.org/draft-07/schema#"
+$schema: "https://json-schema.org/draft/2020-12/schema"
 $id: "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#"
 title: CSN Interop Effective
 description: |-
@@ -1075,19 +1075,27 @@ definitions:
           - Equals Operator "="
           - One of the following:
             - Reference to a field of the source entity
-            - Constant Value
+            - Constant Literal Value
 
           This building block states that the value of the first entry of the array using "ref" should equal the value of the third entry of the array.
           In addition, several building blocks can be lined up using an "and" operator.
 
           See also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
 
-        items:
-          oneOf:
-            - $ref: "#/definitions/StructuredElementReference"
-            - $ref: "#/definitions/EqualsOperator"
-            - $ref: "#/definitions/AndOperator"
-            - $ref: "#/definitions/OnValue"
+        prefixItems:
+          - $ref: "#/definitions/CXNReference"
+          - $ref: "#/definitions/CXNEqualsOperator"
+          - oneOf:
+              - $ref: "#/definitions/CXNReference"
+              - $ref: "#/definitions/CXNLiteralValue"
+          - $ref: "#/definitions/CXNAndOperator"
+          - $ref: "#/definitions/CXNReference"
+          - $ref: "#/definitions/CXNEqualsOperator"
+          - oneOf:
+              - $ref: "#/definitions/CXNReference"
+              - $ref: "#/definitions/CXNLiteralValue"
+        minItems: 3
+
         examples:
           - [{ "ref": ["to_Connection", "AirlineID"] }, "=", { "ref": ["AirlineID"] }]
           - [
@@ -1382,8 +1390,8 @@ definitions:
       - { "min": 1, "max": "*" }
     additionalProperties: false
 
-  StructuredElementReference:
-    title: Structured Element Reference
+  CXNReference:
+    title: CXNReference
     type: object
     description: |-
       Describes the target or source of the association.
@@ -1405,30 +1413,30 @@ definitions:
       - ref
     additionalProperties: false
 
-  EqualsOperator:
-    title: Equals Operator
+  CXNEqualsOperator:
+    title: CXNEqualsOperator
     type: string
     description: |-
       The operator "="
     const: "="
 
-  AndOperator:
-    title: AND Operator
+  CXNAndOperator:
+    title: CXNAndOperator
     type: string
     description: |-
       The operator "and"
     const: "and"
 
-  OnValue:
-    title: On Value
+  CXNLiteralValue:
+    title: CXNLiteralValue
     type: object
     description: |-
-      Value for an on condition
+      Plain type literal value.
     properties:
       val:
-        type: ["string", "number"]
+        type: ["string", "number", "boolean", "null"]
         description: |-
-          Value for the on condition.
+          Actual value of the literal.
     required:
       - val
     additionalProperties: false

@@ -289,24 +289,44 @@ function handleRefToCore(jsonSchemaObject: SpecJsonSchema, docsConfigs: SpecConf
     return `[${refToDocTitle}](${refToDocDoc}#${refToDocTitle.toLowerCase().replace(/ /g, "-").replace("#/definitions/", "")})`;
   } else return "";
 }
-//Calculates the Text for the "Type Column Entry"
+
+// Calculates the Text for the "Type Column Entry"
 function getTypeColumnText(
   jsonSchemaObject: SpecJsonSchema,
   jsonSchemaRoot: SpecJsonSchemaRoot,
   docsConfigs: SpecConfig[],
   specConfig: SpecConfig,
 ): string {
-  //in case of an Array: Array< Type of ArrayItems>
-  if (jsonSchemaObject && jsonSchemaObject.type === "array") {
+  // in case of an Array: Array< Type of ArrayItems>
+  if (jsonSchemaObject && jsonSchemaObject.type === "array" && !jsonSchemaObject.prefixItems) {
     return escapeHtmlChars(
       `Array<${getTypeColumnText(jsonSchemaObject.items as SpecJsonSchema, jsonSchemaRoot, docsConfigs, specConfig)}>`,
     );
+  }
+  // in case of an Array with prefixItems: each Array[item]< Type of ArrayItem[item]>
+  else if (jsonSchemaObject && jsonSchemaObject.type === "array" && jsonSchemaObject.prefixItems) {
+    let computedPrefixItemsTypes = "Array:<br/><ul class='prefixItemsList'>";
+
+    for (let i = 0; i < jsonSchemaObject.prefixItems.length; i++) {
+      const itemRef = jsonSchemaObject.prefixItems[i].$ref;
+      if (jsonSchemaObject.prefixItems[i] && !!itemRef) {
+        computedPrefixItemsTypes += `<li>Item[${i}]&lt;${getMdLinkFromRef(itemRef, jsonSchemaObject, jsonSchemaRoot)}&gt;</li>`;
+      } else if (jsonSchemaObject.prefixItems[i] && jsonSchemaObject.prefixItems[i].oneOf) {
+        computedPrefixItemsTypes += `<li>Item[${i}]&lt;${oneOfReferenceHandling(jsonSchemaObject.prefixItems[i], jsonSchemaRoot)}&gt;</li>`;
+      } else {
+        throw new Error(
+          "ERROR: Array with prefixItems must contain valid items. Please define valid items and use $ref or oneOf!",
+        );
+      }
+    }
+    computedPrefixItemsTypes += "...</ul><br/>";
+    return computedPrefixItemsTypes;
   }
   // in case of a reference link to the reference object
   else if (jsonSchemaObject && jsonSchemaObject.$ref) {
     return getMdLinkFromRef(jsonSchemaObject.$ref, jsonSchemaObject, jsonSchemaRoot);
   }
-  //in case it is an object through an error that $ ref should be used!
+  // in case it is an object through an error that $ ref should be used!
   else if (jsonSchemaObject && jsonSchemaObject.type === "object") {
     //Check if we have a reference to another file
     const text = handleRefToCore(jsonSchemaObject, docsConfigs);
@@ -322,15 +342,15 @@ function getTypeColumnText(
       );
     }
   }
-  //in case it is a primitive type just return it
-  else if (jsonSchemaObject["x-ref-to-doc"] && specConfig.type === "specExtension") {
+  // in case it is a primitive type just return it
+  else if (jsonSchemaObject && jsonSchemaObject["x-ref-to-doc"] && specConfig.type === "specExtension") {
     return `[${jsonSchemaObject["x-ref-to-doc"].title}](${specConfig.targetLink}${getAnchorLinkFromTitle(jsonSchemaObject["x-ref-to-doc"].title)})`;
   }
   // if its referencing to an interface in another document, create a cross-page link:
   else if (jsonSchemaObject && jsonSchemaObject.type) {
     return jsonSchemaObject.type as string;
   }
-  //in case it is a anyOf: option 1 | option 2 | option 3 ...
+  // in case it is a anyOf: option 1 | option 2 | option 3 ...
   else if (jsonSchemaObject && jsonSchemaObject.anyOf) {
     const anyOfReferences: string[] = [];
     for (const anyOf of jsonSchemaObject.anyOf) {
@@ -341,7 +361,7 @@ function getTypeColumnText(
     }
     return anyOfReferences.join(" \\| ");
   }
-  //in case it is a oneOf: option 1 | option 2 | option 3 ...
+  // in case it is a oneOf: option 1 | option 2 | option 3 ...
   //TODO: the syntax is exactly the same as anyOf - Is this correct?
   else if (jsonSchemaObject && jsonSchemaObject.oneOf) {
     return oneOfReferenceHandling(jsonSchemaObject, jsonSchemaRoot);

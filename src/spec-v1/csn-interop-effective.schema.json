@@ -1,6 +1,6 @@
 {
   "description": "Root of the CSN Interop Effective JSON document.\n\nSee [Primer: Root Level Structure](../primer.md#root-level-structure).",
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#",
   "title": "CSN Interop Root",
   "definitions": {
@@ -3151,23 +3151,45 @@
         },
         "on": {
           "type": "array",
-          "description": "The property `on` holds a sequence of operators and operands to describe the join condition.\n\nOne building block of the sequence consists of the following in the given order:\n- Reference to a field of the association or composition target\n- Equals Operator \"=\"\n- One of the following:\n  - Reference to a field of the source entity\n  - Constant Value\n\nThis building block states that the value of the first entry of the array using \"ref\" should equal the value of the third entry of the array.\nIn addition, several building blocks can be lined up using an \"and\" operator.\n\nSee also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
-          "items": {
-            "oneOf": [
-              {
-                "$ref": "#/definitions/StructuredElementReference"
-              },
-              {
-                "$ref": "#/definitions/EqualsOperator"
-              },
-              {
-                "$ref": "#/definitions/AndOperator"
-              },
-              {
-                "$ref": "#/definitions/OnValue"
-              }
-            ]
-          },
+          "description": "The property `on` holds a sequence of operators and operands to describe the join condition.\n\nOne building block of the sequence consists of the following in the given order:\n- Reference to a field of the association or composition target\n- Equals Operator \"=\"\n- One of the following:\n  - Reference to a field of the source entity\n  - Constant Literal Value\n\nThis building block states that the value of the first entry of the array using \"ref\" should equal the value of the third entry of the array.\nIn addition, several building blocks can be lined up using an \"and\" operator.\n\nSee also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
+          "prefixItems": [
+            {
+              "$ref": "#/definitions/CXNReference"
+            },
+            {
+              "$ref": "#/definitions/CXNEqualsOperator"
+            },
+            {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/CXNReference"
+                },
+                {
+                  "$ref": "#/definitions/CXNLiteralValue"
+                }
+              ]
+            },
+            {
+              "$ref": "#/definitions/CXNAndOperator"
+            },
+            {
+              "$ref": "#/definitions/CXNReference"
+            },
+            {
+              "$ref": "#/definitions/CXNEqualsOperator"
+            },
+            {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/CXNReference"
+                },
+                {
+                  "$ref": "#/definitions/CXNLiteralValue"
+                }
+              ]
+            }
+          ],
+          "minItems": 3,
           "examples": [
             [
               {
@@ -3451,23 +3473,45 @@
         },
         "on": {
           "type": "array",
-          "description": "The property `on` holds a sequence of operators and operands to describe the join condition.\n\nOne building block of the sequence consists of the following in the given order:\n- Reference to a field of the association or composition target\n- Equals Operator \"=\"\n- One of the following:\n  - Reference to a field of the source entity\n  - Constant Value\n\nThis building block states that the value of the first entry of the array using \"ref\" should equal the value of the third entry of the array.\nIn addition, several building blocks can be lined up using an \"and\" operator.\n\nSee also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
-          "items": {
-            "oneOf": [
-              {
-                "$ref": "#/definitions/StructuredElementReference"
-              },
-              {
-                "$ref": "#/definitions/EqualsOperator"
-              },
-              {
-                "$ref": "#/definitions/AndOperator"
-              },
-              {
-                "$ref": "#/definitions/OnValue"
-              }
-            ]
-          },
+          "description": "The property `on` holds a sequence of operators and operands to describe the join condition.\n\nOne building block of the sequence consists of the following in the given order:\n- Reference to a field of the association or composition target\n- Equals Operator \"=\"\n- One of the following:\n  - Reference to a field of the source entity\n  - Constant Literal Value\n\nThis building block states that the value of the first entry of the array using \"ref\" should equal the value of the third entry of the array.\nIn addition, several building blocks can be lined up using an \"and\" operator.\n\nSee also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
+          "prefixItems": [
+            {
+              "$ref": "#/definitions/CXNReference"
+            },
+            {
+              "$ref": "#/definitions/CXNEqualsOperator"
+            },
+            {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/CXNReference"
+                },
+                {
+                  "$ref": "#/definitions/CXNLiteralValue"
+                }
+              ]
+            },
+            {
+              "$ref": "#/definitions/CXNAndOperator"
+            },
+            {
+              "$ref": "#/definitions/CXNReference"
+            },
+            {
+              "$ref": "#/definitions/CXNEqualsOperator"
+            },
+            {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/CXNReference"
+                },
+                {
+                  "$ref": "#/definitions/CXNLiteralValue"
+                }
+              ]
+            }
+          ],
+          "minItems": 3,
           "examples": [
             [
               {
@@ -4134,8 +4178,8 @@
       ],
       "additionalProperties": false
     },
-    "StructuredElementReference": {
-      "title": "Structured Element Reference",
+    "CXNReference": {
+      "title": "CXNReference",
       "type": "object",
       "description": "Describes the target or source of the association.",
       "properties": {
@@ -4155,29 +4199,31 @@
       ],
       "additionalProperties": false
     },
-    "EqualsOperator": {
-      "title": "Equals Operator",
+    "CXNEqualsOperator": {
+      "title": "CXNEqualsOperator",
       "type": "string",
       "description": "The operator \"=\"",
       "const": "="
     },
-    "AndOperator": {
-      "title": "AND Operator",
+    "CXNAndOperator": {
+      "title": "CXNAndOperator",
       "type": "string",
       "description": "The operator \"and\"",
       "const": "and"
     },
-    "OnValue": {
-      "title": "On Value",
+    "CXNLiteralValue": {
+      "title": "CXNLiteralValue",
       "type": "object",
-      "description": "Value for an on condition",
+      "description": "Plain type literal value.",
       "properties": {
         "val": {
           "type": [
             "string",
-            "number"
+            "number",
+            "boolean",
+            "null"
           ],
-          "description": "Value for the on condition."
+          "description": "Actual value of the literal."
         }
       },
       "required": [
@@ -5428,23 +5474,45 @@
         },
         "on": {
           "type": "array",
-          "description": "The property `on` holds a sequence of operators and operands to describe the join condition.\n\nOne building block of the sequence consists of the following in the given order:\n- Reference to a field of the association or composition target\n- Equals Operator \"=\"\n- One of the following:\n  - Reference to a field of the source entity\n  - Constant Value\n\nThis building block states that the value of the first entry of the array using \"ref\" should equal the value of the third entry of the array.\nIn addition, several building blocks can be lined up using an \"and\" operator.\n\nSee also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
-          "items": {
-            "oneOf": [
-              {
-                "$ref": "#/definitions/StructuredElementReference"
-              },
-              {
-                "$ref": "#/definitions/EqualsOperator"
-              },
-              {
-                "$ref": "#/definitions/AndOperator"
-              },
-              {
-                "$ref": "#/definitions/OnValue"
-              }
-            ]
-          },
+          "description": "The property `on` holds a sequence of operators and operands to describe the join condition.\n\nOne building block of the sequence consists of the following in the given order:\n- Reference to a field of the association or composition target\n- Equals Operator \"=\"\n- One of the following:\n  - Reference to a field of the source entity\n  - Constant Literal Value\n\nThis building block states that the value of the first entry of the array using \"ref\" should equal the value of the third entry of the array.\nIn addition, several building blocks can be lined up using an \"and\" operator.\n\nSee also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
+          "prefixItems": [
+            {
+              "$ref": "#/definitions/CXNReference"
+            },
+            {
+              "$ref": "#/definitions/CXNEqualsOperator"
+            },
+            {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/CXNReference"
+                },
+                {
+                  "$ref": "#/definitions/CXNLiteralValue"
+                }
+              ]
+            },
+            {
+              "$ref": "#/definitions/CXNAndOperator"
+            },
+            {
+              "$ref": "#/definitions/CXNReference"
+            },
+            {
+              "$ref": "#/definitions/CXNEqualsOperator"
+            },
+            {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/CXNReference"
+                },
+                {
+                  "$ref": "#/definitions/CXNLiteralValue"
+                }
+              ]
+            }
+          ],
+          "minItems": 3,
           "examples": [
             [
               {
@@ -5597,23 +5665,45 @@
         },
         "on": {
           "type": "array",
-          "description": "The property `on` holds a sequence of operators and operands to describe the join condition.\n\nOne building block of the sequence consists of the following in the given order:\n- Reference to a field of the association or composition target\n- Equals Operator \"=\"\n- One of the following:\n  - Reference to a field of the source entity\n  - Constant Value\n\nThis building block states that the value of the first entry of the array using \"ref\" should equal the value of the third entry of the array.\nIn addition, several building blocks can be lined up using an \"and\" operator.\n\nSee also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
-          "items": {
-            "oneOf": [
-              {
-                "$ref": "#/definitions/StructuredElementReference"
-              },
-              {
-                "$ref": "#/definitions/EqualsOperator"
-              },
-              {
-                "$ref": "#/definitions/AndOperator"
-              },
-              {
-                "$ref": "#/definitions/OnValue"
-              }
-            ]
-          },
+          "description": "The property `on` holds a sequence of operators and operands to describe the join condition.\n\nOne building block of the sequence consists of the following in the given order:\n- Reference to a field of the association or composition target\n- Equals Operator \"=\"\n- One of the following:\n  - Reference to a field of the source entity\n  - Constant Literal Value\n\nThis building block states that the value of the first entry of the array using \"ref\" should equal the value of the third entry of the array.\nIn addition, several building blocks can be lined up using an \"and\" operator.\n\nSee also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
+          "prefixItems": [
+            {
+              "$ref": "#/definitions/CXNReference"
+            },
+            {
+              "$ref": "#/definitions/CXNEqualsOperator"
+            },
+            {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/CXNReference"
+                },
+                {
+                  "$ref": "#/definitions/CXNLiteralValue"
+                }
+              ]
+            },
+            {
+              "$ref": "#/definitions/CXNAndOperator"
+            },
+            {
+              "$ref": "#/definitions/CXNReference"
+            },
+            {
+              "$ref": "#/definitions/CXNEqualsOperator"
+            },
+            {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/CXNReference"
+                },
+                {
+                  "$ref": "#/definitions/CXNLiteralValue"
+                }
+              ]
+            }
+          ],
+          "minItems": 3,
           "examples": [
             [
               {

@@ -1,6 +1,6 @@
 import fs from "fs-extra";
 
-import Ajv, { ValidateFunction } from "ajv";
+import Ajv2020, { ValidateFunction } from "ajv/dist/2020.js";
 import { SpecJsonSchema, SpecJsonSchemaRoot } from "../model/SpecJsonSchema.js";
 
 import _ from "lodash";
@@ -8,7 +8,11 @@ import addFormats from "ajv-formats";
 import { log } from "./log.js";
 
 // Prepare JSON Schema validator
-export const preparedAjv = new Ajv.default({ allErrors: true, allowUnionTypes: true, allowMatchingProperties: true });
+export const preparedAjv = new Ajv2020.default({
+  allErrors: true,
+  allowUnionTypes: true,
+  allowMatchingProperties: true,
+});
 addFormats.default(preparedAjv);
 preparedAjv.addKeyword("x-recommended");
 preparedAjv.addKeyword("x-introduced-in-version");
@@ -85,7 +89,7 @@ export function validateSpecJsonSchema(jsonSchema: SpecJsonSchemaRoot, exception
 /**
  * Returns a JSON Schema validator instance that validates JSON objects according to the given JSON Schema
  */
-export function getJsonSchemaValidator(jsonSchema: SpecJsonSchemaRoot): ValidateFunction {
+export function getJsonSchemaValidator(jsonSchema: Ajv2020.Schema): ValidateFunction {
   try {
     return preparedAjv.compile(jsonSchema);
   } catch (err) {
@@ -102,7 +106,7 @@ export function getJsonSchemaValidator(jsonSchema: SpecJsonSchemaRoot): Validate
 export function validateJsonSchema(jsonSchema: SpecJsonSchemaRoot | SpecJsonSchema): ValidationResultEntry[] {
   const errors: ValidationResultEntry[] = [];
 
-  const jsonSchemaMeta = fs.readJSONSync("./node_modules/ajv/lib/refs/json-schema-draft-07.json") as SpecJsonSchemaRoot;
+  const jsonSchemaMeta = fs.readJSONSync("./node_modules/ajv/lib/refs/json-schema-2020-12/meta/core.json");
   delete jsonSchemaMeta.$id;
 
   const validateMetaSchema = getJsonSchemaValidator(jsonSchemaMeta);

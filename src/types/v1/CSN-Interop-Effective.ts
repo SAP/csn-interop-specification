@@ -259,14 +259,6 @@ export type DecimalScaleType = DecimalScaleType1 & DecimalScaleType2;
 export type DecimalScaleType1 = "floating";
 export type DecimalScaleType2 = string;
 /**
- * The operator "="
- */
-export type EqualsOperator = "=";
-/**
- * The operator "and"
- */
-export type ANDOperator = "and";
-/**
  * Defines which [Entity Type](#entity-type) the current data object represents.
  *
  * There could be several data objects that are assigned to the same Entity Type.
@@ -2111,14 +2103,16 @@ export interface AssociationType {
    * - Equals Operator "="
    * - One of the following:
    *   - Reference to a field of the source entity
-   *   - Constant Value
+   *   - Constant Literal Value
    *
    * This building block states that the value of the first entry of the array using "ref" should equal the value of the third entry of the array.
    * In addition, several building blocks can be lined up using an "and" operator.
    *
    * See also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
+   *
+   * @minItems 3
    */
-  on: (StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[];
+  on: [unknown, unknown, unknown, ...unknown[]];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@Consumption.valueHelpDefinition"?: Consumption;
@@ -2215,29 +2209,6 @@ export interface CardinalityObject {
   max?: number | string;
 }
 /**
- * Describes the target or source of the association.
- */
-export interface StructuredElementReference {
-  /**
-   * Description of the target with *association name* and *target element name* in target entity`
-   * Description of the source *source element name*
-   *
-   * MUST NOT:
-   * - use $ as leading character of an element
-   * - use session variables
-   */
-  ref: string[];
-}
-/**
- * Value for an on condition
- */
-export interface OnValue {
-  /**
-   * Value for the on condition.
-   */
-  val: string | number;
-}
-/**
  * An element of type `cds.Composition`, to express a "contains" relation across Entities.
  * It works the same as a [`cds.Association`](#association-type).
  *
@@ -2269,14 +2240,16 @@ export interface CompositionType {
    * - Equals Operator "="
    * - One of the following:
    *   - Reference to a field of the source entity
-   *   - Constant Value
+   *   - Constant Literal Value
    *
    * This building block states that the value of the first entry of the array using "ref" should equal the value of the third entry of the array.
    * In addition, several building blocks can be lined up using an "and" operator.
    *
    * See also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
+   *
+   * @minItems 3
    */
-  on: (StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[];
+  on: [unknown, unknown, unknown, ...unknown[]];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@Consumption.valueHelpDefinition"?: Consumption;
@@ -3353,14 +3326,16 @@ export interface AssociationTypeDefinition {
    * - Equals Operator "="
    * - One of the following:
    *   - Reference to a field of the source entity
-   *   - Constant Value
+   *   - Constant Literal Value
    *
    * This building block states that the value of the first entry of the array using "ref" should equal the value of the third entry of the array.
    * In addition, several building blocks can be lined up using an "and" operator.
    *
    * See also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
+   *
+   * @minItems 3
    */
-  on: (StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[];
+  on: [unknown, unknown, unknown, ...unknown[]];
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3415,14 +3390,16 @@ export interface CompositionTypeDefinition {
    * - Equals Operator "="
    * - One of the following:
    *   - Reference to a field of the source entity
-   *   - Constant Value
+   *   - Constant Literal Value
    *
    * This building block states that the value of the first entry of the array using "ref" should equal the value of the third entry of the array.
    * In addition, several building blocks can be lined up using an "and" operator.
    *
    * See also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
+   *
+   * @minItems 3
    */
-  on: (StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[];
+  on: [unknown, unknown, unknown, ...unknown[]];
   /**
    * Annotations or private properties MAY be added.
    *

@@ -243,7 +243,7 @@ function getAssociationTypeTestData(): AssociationType {
     type: "cds.Association",
     target: "cds.MyTargetAssociationEntity",
     cardinality: { max: 1, min: 0 },
-    on: [{ val: "someVal" }],
+    on: [{ ref: ["to_Connection", "ConnectionID"] }, "=", { val: "someVal" }],
   };
 }
 
@@ -256,7 +256,7 @@ function getCompositionTypeTestData(): CompositionType {
     type: "cds.Composition",
     target: "cds.MyTargetCompositionEntity",
     cardinality: { max: 1, min: 0 },
-    on: [{ val: "someVal" }],
+    on: [{ ref: ["to_Connection", "ConnectionID"] }, "=", { val: "someVal" }],
   };
 }
 

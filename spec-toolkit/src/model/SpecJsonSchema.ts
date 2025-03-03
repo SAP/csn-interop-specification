@@ -52,9 +52,8 @@ export interface SpecJsonSchemaRoot extends SpecJsonSchema {
 }
 
 /**
- * Spec JSON Schema, based on JSON Schema v7
+ * Spec JSON Schema, based on JSON Schema 2020-12
  *
- * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01
  */
 export interface SpecJsonSchema {
   "$comment"?: string;
@@ -125,7 +124,7 @@ export interface SpecJsonSchema {
   "description"?: string;
   "default"?: SpecJsonSchemaType;
   "examples"?: SpecJsonSchemaType;
-
+  "prefixItems"?: SpecJsonSchema[];
   //////////////////////////////////////////
   // Spec JSON Schema extensions          //
   //////////////////////////////////////////
