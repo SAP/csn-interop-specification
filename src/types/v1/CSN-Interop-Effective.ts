@@ -310,6 +310,13 @@ export type ObjectModelCompositionRoot = boolean;
  */
 export type ObjectModel2 = SupportedCapabilitiesEnumValue[];
 /**
+ * The size category enables the consumer to judge the possible result set.
+ * It reflects the set of data which has to be searched through to compute for example a count(*) of the data.
+ * The labels correspond to the following size categories:
+ * S, M, L, XL, XXL (expected number of rows at production customers <1000, <100.000, <10.000.000, <100.000.000, >= 100.000.000).
+ */
+export type ObjectModelUsageTypeSizeCategory = "S" | "M" | "L" | "XL" | "XXL";
+/**
  * The entity represents an ODM Entity with this official name.
  */
 export type ODMEntityName = string;
@@ -669,6 +676,7 @@ export interface EntityDefinition {
   "@ObjectModel.representativeKey"?: ElementReference;
   "@ObjectModel.modelingPattern"?: ObjectModel1;
   "@ObjectModel.supportedCapabilities"?: ObjectModel2;
+  "@ObjectModel.usageType.sizeCategory"?: ObjectModelUsageTypeSizeCategory;
   "@ODM.entityName"?: ODMEntityName;
   "@ODM.oid"?: ElementReference;
   /**
