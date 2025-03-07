@@ -14,11 +14,13 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 - Added `@Semantics.valueRange` annotation
 - Added `UI_PROVIDER_PROJECTION_SOURCE` as enum value to `ObjectModel.supportedCapabilities`
+- Added `@ObjectModel.usageType.sizeCategory` annotation
 
 ### Changed
 
 - Changed `cardinality` from mandatory to recommended property.
   - All its values have defaults, so if it is missing `{ "min": 0, "max": 1}` is assumed.
+- BREAKING: deleted schema `csnInteropEffectiveSchemaWithAnnotations`, for consumers use `csnInteropEffectiveSchema` equivalent instead
 - BREAKING: spec-toolkit no longer part of the csn-interop-specification package exports
 
 ## [0.4.0]
