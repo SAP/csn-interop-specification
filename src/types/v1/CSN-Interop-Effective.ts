@@ -2115,7 +2115,7 @@ export interface AssociationType {
    * The (fully qualified) target entity name.
    */
   target: string;
-  cardinality: CardinalityObject;
+  cardinality?: CardinalityObject;
   /**
    * The property `on` holds a sequence of operators and operands to describe the join condition.
    *
@@ -2273,7 +2273,7 @@ export interface CompositionType {
    * The (fully qualified) target entity name.
    */
   target: string;
-  cardinality: CardinalityObject;
+  cardinality?: CardinalityObject;
   /**
    * The property `on` holds a sequence of operators and operands to describe the join condition.
    *

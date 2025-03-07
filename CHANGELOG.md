@@ -18,6 +18,8 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ### Changed
 
+- Changed `cardinality` from mandatory to recommended property.
+  - All its values have defaults, so if it is missing `{ "min": 0, "max": 1}` is assumed.
 - BREAKING: deleted schema `csnInteropEffectiveSchemaWithAnnotations`, for consumers use `csnInteropEffectiveSchema` equivalent instead
 - BREAKING: spec-toolkit no longer part of the csn-interop-specification package exports
 
