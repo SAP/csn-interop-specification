@@ -380,6 +380,9 @@
         "@ObjectModel.supportedCapabilities": {
           "$ref": "#/definitions/@ObjectModel.supportedCapabilities"
         },
+        "@ObjectModel.usageType.sizeCategory": {
+          "$ref": "#/definitions/@ObjectModel.usageType.sizeCategory"
+        },
         "@ODM.entityName": {
           "$ref": "#/definitions/@ODM.entityName"
         },
@@ -6572,6 +6575,20 @@
         "Type"
       ],
       "$ref": "#/definitions/ElementReference"
+    },
+    "@ObjectModel.usageType.sizeCategory": {
+      "type": "string",
+      "enum": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "The size category enables the consumer to judge the possible result set. \nIt reflects the set of data which has to be searched through to compute for example a count(*) of the data. \n\nThe labels correspond to the following size categories (expected number of rows at production customers):\n- S: less than 1000\n- M: less than 100.000\n- L: less than 10.000.000\n- XL: less than 100.000.000  \n- XXL: more than 100.000.000",
+      "x-extension-targets": [
+        "Entity"
+      ]
     },
     "@ObjectModel.SupportedCapabilities_EnumValue": {
       "title": "Supported Capabilities Enum Value",
