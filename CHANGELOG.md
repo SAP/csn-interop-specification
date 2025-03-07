@@ -10,6 +10,8 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+## [1.0.0]
+
 ### Added
 
 - Added `@Semantics.valueRange` annotation
