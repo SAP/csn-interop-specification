@@ -445,7 +445,7 @@ So within this scope of expressiveness the pattern of an association’s on cond
         ]
 ```
 
-Note that that commutation rules of logical expressions apply, i.e. the sequence of expressions combined with and "=" or with an "and" is not significant and can thus be arbitrarily chosen (as we want to bind target elements it is natural to start with those on the left side of the equation).
+Note that that commutation rules of logical expressions apply, i.e. the sequence of expressions combined with an "=" or with an "and" is not significant and can thus be arbitrarily chosen (as we want to bind target elements, it is natural to start with those on the left side of the equation).
 Further note that the usual operator precedencies apply, especially "=" operators are applied first and only then "and" operators.
 
 ### Foreign Key Associations
