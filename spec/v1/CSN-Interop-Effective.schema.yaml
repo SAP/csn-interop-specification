@@ -1082,7 +1082,7 @@ definitions:
 
           In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
 
-          See also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
+          See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
 
         items:
           oneOf:
