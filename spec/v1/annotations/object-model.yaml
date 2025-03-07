@@ -132,10 +132,10 @@ definitions:
 
       The labels correspond to the following size categories (expected number of rows at production customers):
       - S: less than 1000
-      - M: expected less than 100.000
-      - L: expected less than 10.000.000
-      - XL: expected less than 100.000.000  
-      - XXL: expected more than 100.000.000
+      - M: less than 100.000
+      - L: less than 10.000.000
+      - XL: less than 100.000.000  
+      - XXL: more than 100.000.000
     x-extension-targets:
       - "Entity"
 
