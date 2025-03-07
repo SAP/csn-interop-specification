@@ -409,7 +409,9 @@ The last entry in the array is the unqualified element name.
 For local references, the array will only have one item, the local element name.
 
 A reference to an element in the target entity is uniquely referred to by a an array with two entries:
-First, the association name, and second, the name of the element in the target entity (short: target element).
+
+- First: The association name (not the target entity name!)
+- Second: The name of the element in the target entity (short: target element)
 
 So within this scope of expressiveness the pattern of an association’s on condition looks like this:
 
