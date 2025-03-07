@@ -1,11 +1,7 @@
 {
-  "description": "JSON Schema with custom (x-) annotations",
+  "description": "JSON Schema with custom (x-) properties",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Consumption",
-  "x-extension": {
-    "targetDocument": "./spec/v1/CSN-Interop-Effective.schema.yaml",
-    "targetLink": "../spec-v1/csn-interop-effective"
-  },
   "definitions": {
     "@Consumption.valueHelpDefinition": {
       "type": "array",
@@ -19,7 +15,7 @@
       ],
       "title": "@Consumption.valueHelpDefinition",
       "x-context": [
-        "./spec/annotations/consumption.yaml",
+        "./spec/v1/annotations/consumption.yaml",
         "@Consumption.valueHelpDefinition"
       ]
     },
@@ -30,7 +26,7 @@
         "entity": {
           "$ref": "#/definitions/@Consumption.ConsumptionValueHelpDefinition.Entity",
           "x-context": [
-            "./spec/annotations/consumption.yaml",
+            "./spec/v1/annotations/consumption.yaml",
             "@Consumption.ConsumptionValueHelpDefinition",
             "entity"
           ]
@@ -42,7 +38,7 @@
           },
           "description": "Additional bindings for filtering the value help result list.",
           "x-context": [
-            "./spec/annotations/consumption.yaml",
+            "./spec/v1/annotations/consumption.yaml",
             "@Consumption.ConsumptionValueHelpDefinition",
             "additionalBinding"
           ]
@@ -54,7 +50,7 @@
           },
           "description": "Reference to the modelled association (in local entity) for which the target view represents the value help providing view or entity for the annotated local field. The on-condition of the association may only contain bindings of the source and target fields that use an equal operator. All these bindings are automatically considered by the value help for both filter and result mappings.\nMutually exclusive to the usage of `valueHelpDefinition.entity`.",
           "x-context": [
-            "./spec/annotations/consumption.yaml",
+            "./spec/v1/annotations/consumption.yaml",
             "@Consumption.ConsumptionValueHelpDefinition",
             "association"
           ],
@@ -65,7 +61,7 @@
           "description": "Specifies whether the value help result list shall only contain distinct values for the annotated field or parameter.\nIf set to true all mappings will be used for filtering, but only the value for the field/parameter which the value help was requested for will be returned by the value help.",
           "default": true,
           "x-context": [
-            "./spec/annotations/consumption.yaml",
+            "./spec/v1/annotations/consumption.yaml",
             "@Consumption.ConsumptionValueHelpDefinition",
             "distinctValues"
           ]
@@ -98,7 +94,7 @@
         }
       ],
       "x-context": [
-        "./spec/annotations/consumption.yaml",
+        "./spec/v1/annotations/consumption.yaml",
         "@Consumption.ConsumptionValueHelpDefinition"
       ]
     },
@@ -111,7 +107,7 @@
           "type": "string",
           "description": "Name of the value help providing view or entity",
           "x-context": [
-            "./spec/annotations/consumption.yaml",
+            "./spec/v1/annotations/consumption.yaml",
             "@Consumption.ConsumptionValueHelpDefinition.Entity",
             "name"
           ]
@@ -120,7 +116,7 @@
           "type": "string",
           "description": "Name of the field of the value help view or entity, which the annotated local field or parameter is bound to.\n\nMutually exclusive to the usage of `valueHelpDefinition.association`.",
           "x-context": [
-            "./spec/annotations/consumption.yaml",
+            "./spec/v1/annotations/consumption.yaml",
             "@Consumption.ConsumptionValueHelpDefinition.Entity",
             "element"
           ]
@@ -128,7 +124,7 @@
       },
       "additionalProperties": false,
       "x-context": [
-        "./spec/annotations/consumption.yaml",
+        "./spec/v1/annotations/consumption.yaml",
         "@Consumption.ConsumptionValueHelpDefinition.Entity"
       ]
     },
@@ -141,7 +137,7 @@
           "type": "string",
           "description": "Field of the current view/entity; mutually exclusive to the usage of `localParameter`.",
           "x-context": [
-            "./spec/annotations/consumption.yaml",
+            "./spec/v1/annotations/consumption.yaml",
             "@Consumption.ConsumptionValueHelpDefinition.AdditionalBinding",
             "localElement"
           ]
@@ -150,7 +146,7 @@
           "type": "string",
           "description": "Name of the field of the value help view or entity, which the annotated local field or parameter is bound to.",
           "x-context": [
-            "./spec/annotations/consumption.yaml",
+            "./spec/v1/annotations/consumption.yaml",
             "@Consumption.ConsumptionValueHelpDefinition.AdditionalBinding",
             "element"
           ]
@@ -158,7 +154,7 @@
         "usage": {
           "$ref": "#/definitions/@Consumption.ConsumptionValueHelpDefinition.AdditionalBinding.Usage",
           "x-context": [
-            "./spec/annotations/consumption.yaml",
+            "./spec/v1/annotations/consumption.yaml",
             "@Consumption.ConsumptionValueHelpDefinition.AdditionalBinding",
             "usage"
           ]
@@ -166,7 +162,7 @@
       },
       "additionalProperties": false,
       "x-context": [
-        "./spec/annotations/consumption.yaml",
+        "./spec/v1/annotations/consumption.yaml",
         "@Consumption.ConsumptionValueHelpDefinition.AdditionalBinding"
       ]
     },
@@ -184,7 +180,7 @@
           ],
           "default": "FILTER_AND_RESULT",
           "x-context": [
-            "./spec/annotations/consumption.yaml",
+            "./spec/v1/annotations/consumption.yaml",
             "@Consumption.ConsumptionValueHelpDefinition.AdditionalBinding.Usage",
             "#"
           ]
@@ -201,12 +197,12 @@
       ],
       "title": "@Consumption.ConsumptionValueHelpDefinition.AdditionalBinding.Usage",
       "x-context": [
-        "./spec/annotations/consumption.yaml",
+        "./spec/v1/annotations/consumption.yaml",
         "@Consumption.ConsumptionValueHelpDefinition.AdditionalBinding.Usage"
       ]
     }
   },
   "x-context": [
-    "./spec/annotations/consumption.yaml"
+    "./spec/v1/annotations/consumption.yaml"
   ]
 }

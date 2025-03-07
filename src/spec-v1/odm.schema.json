@@ -1,11 +1,7 @@
 {
-  "description": "JSON Schema with custom (x-) annotations",
+  "description": "JSON Schema with custom (x-) properties",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "ODM",
-  "x-extension": {
-    "targetDocument": "./spec/v1/CSN-Interop-Effective.schema.yaml",
-    "targetLink": "../spec-v1/csn-interop-effective"
-  },
   "definitions": {
     "@ODM.entityName": {
       "type": "string",
@@ -15,7 +11,7 @@
       ],
       "title": "@ODM.entityName",
       "x-context": [
-        "./spec/annotations/odm.yaml",
+        "./spec/v1/annotations/odm.yaml",
         "@ODM.entityName"
       ]
     },
@@ -30,7 +26,7 @@
       ],
       "title": "@ODM.oid",
       "x-context": [
-        "./spec/annotations/odm.yaml",
+        "./spec/v1/annotations/odm.yaml",
         "@ODM.oid"
       ],
       "$ref": "#/definitions/ElementReference"
@@ -43,12 +39,12 @@
       ],
       "title": "@ODM.oidReference.entityName",
       "x-context": [
-        "./spec/annotations/odm.yaml",
+        "./spec/v1/annotations/odm.yaml",
         "@ODM.oidReference.entityName"
       ]
     }
   },
   "x-context": [
-    "./spec/annotations/odm.yaml"
+    "./spec/v1/annotations/odm.yaml"
   ]
 }

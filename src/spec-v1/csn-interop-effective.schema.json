@@ -1,8 +1,8 @@
 {
+  "description": "Root of the CSN Interop Effective JSON document.\n\nSee [Primer: Root Level Structure](../primer.md#root-level-structure).",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#",
   "title": "CSN Interop Root",
-  "description": "Root of the CSN Interop Effective JSON document.\n\nSee [Primer: Root Level Structure](../primer.md#root-level-structure).",
   "definitions": {
     "Meta": {
       "title": "Meta",
@@ -89,6 +89,9 @@
           "description": "Whether this document is complete and self-contained.\n\nIt is RECOMMENDED to have complete CSN documents and set this to `true`.\n\nIf true references to other CDS elements (e.g. `cds.Association`) MUST be resolvable within the same document."
         }
       },
+      "x-recommended": [
+        "complete"
+      ],
       "examples": [
         {
           "complete": true
@@ -211,6 +214,9 @@
       "title": "Entity Definition",
       "type": "object",
       "description": "Entity definition refers to the structured description of an object or concept.\n\nIf it is exposed through a [Service](#service-definition), it describes a data model.\nTo expose it through a Service, the service name MUST be prefixed to the Entity name, separated by a `.` (dot).\nThe actual data serialization format is defined by the Service protocol and chosen data format [mapping](../mappings).\n\nIf the entity is not exposed via a service, it only describes a conceptual domain object.",
+      "x-extension-points": [
+        "Entity"
+      ],
       "properties": {
         "kind": {
           "type": "string",
@@ -373,6 +379,9 @@
         },
         "@ObjectModel.supportedCapabilities": {
           "$ref": "#/definitions/@ObjectModel.supportedCapabilities"
+        },
+        "@ObjectModel.usageType.sizeCategory": {
+          "$ref": "#/definitions/@ObjectModel.usageType.sizeCategory"
         },
         "@ODM.entityName": {
           "$ref": "#/definitions/@ODM.entityName"
@@ -906,6 +915,10 @@
         "type"
       ],
       "additionalProperties": false,
+      "x-extension-points": [
+        "Type",
+        "BooleanType"
+      ],
       "examples": [
         {
           "type": "cds.Boolean",
@@ -1105,6 +1118,10 @@
         "type"
       ],
       "additionalProperties": false,
+      "x-extension-points": [
+        "Type",
+        "StringType"
+      ],
       "examples": [
         {
           "type": "cds.String",
@@ -1302,6 +1319,10 @@
         "type"
       ],
       "additionalProperties": false,
+      "x-extension-points": [
+        "Type",
+        "LargeStringType"
+      ],
       "examples": [
         {
           "type": "cds.LargeString",
@@ -1501,6 +1522,10 @@
         "type"
       ],
       "additionalProperties": false,
+      "x-extension-points": [
+        "Type",
+        "IntegerType"
+      ],
       "examples": [
         {
           "type": "cds.Integer",
@@ -1698,6 +1723,10 @@
         "type"
       ],
       "additionalProperties": false,
+      "x-extension-points": [
+        "Type",
+        "Integer64Type"
+      ],
       "examples": [
         {
           "type": "cds.Integer64",
@@ -1909,6 +1938,10 @@
         "type"
       ],
       "additionalProperties": false,
+      "x-extension-points": [
+        "Type",
+        "DecimalType"
+      ],
       "examples": [
         {
           "type": "cds.Decimal",
@@ -2104,6 +2137,10 @@
         "type"
       ],
       "additionalProperties": false,
+      "x-extension-points": [
+        "Type",
+        "DoubleType"
+      ],
       "examples": [
         {
           "type": "cds.Double",
@@ -2298,6 +2335,10 @@
         "type"
       ],
       "additionalProperties": false,
+      "x-extension-points": [
+        "Type",
+        "DateType"
+      ],
       "examples": [
         {
           "type": "cds.Date",
@@ -2490,6 +2531,10 @@
         "type"
       ],
       "additionalProperties": false,
+      "x-extension-points": [
+        "Type",
+        "TimeType"
+      ],
       "examples": [
         {
           "type": "cds.Time",
@@ -2682,6 +2727,10 @@
         "type"
       ],
       "additionalProperties": false,
+      "x-extension-points": [
+        "Type",
+        "DateTimeType"
+      ],
       "examples": [
         {
           "type": "cds.DateTime",
@@ -2874,6 +2923,10 @@
         "type"
       ],
       "additionalProperties": false,
+      "x-extension-points": [
+        "Type",
+        "TimestampType"
+      ],
       "examples": [
         {
           "type": "cds.Timestamp",
@@ -3063,6 +3116,10 @@
         "type"
       ],
       "additionalProperties": false,
+      "x-extension-points": [
+        "Type",
+        "UUIDType"
+      ],
       "examples": [
         {
           "type": "cds.UUID",
@@ -3087,7 +3144,10 @@
         },
         "target": {
           "type": "string",
-          "description": "The (fully qualified) target entity name."
+          "description": "The (fully qualified) target entity name.",
+          "x-association-target": [
+            "#/definitions/EntityDefinition"
+          ]
         },
         "cardinality": {
           "$ref": "#/definitions/CardinalityObject"
@@ -3337,7 +3397,14 @@
         "target",
         "on"
       ],
+      "x-recommended": [
+        "cardinality"
+      ],
       "additionalProperties": false,
+      "x-extension-points": [
+        "Type",
+        "AssociationType"
+      ],
       "examples": [
         {
           "type": "cds.Association",
@@ -3379,7 +3446,10 @@
         },
         "target": {
           "type": "string",
-          "description": "The (fully qualified) target entity name."
+          "description": "The (fully qualified) target entity name.",
+          "x-association-target": [
+            "#/definitions/EntityDefinition"
+          ]
         },
         "cardinality": {
           "$ref": "#/definitions/CardinalityObject"
@@ -3629,7 +3699,14 @@
         "target",
         "on"
       ],
+      "x-recommended": [
+        "cardinality"
+      ],
       "additionalProperties": false,
+      "x-extension-points": [
+        "Type",
+        "CompositionType"
+      ],
       "examples": [
         {
           "type": "cds.Composition",
@@ -3862,6 +3939,10 @@
         "type"
       ],
       "additionalProperties": false,
+      "x-extension-points": [
+        "Type",
+        "CustomType"
+      ],
       "examples": [
         {
           "type": "CONTROLLING_AREA",
@@ -4029,7 +4110,7 @@
       "properties": {
         "src": {
           "type": "number",
-          "description": "Set to `1` to give a hint to database optimizers, that the relationship is \"one to\". \n\nIf `src` is not set then it is unknown and \"many to\" MAY be assumed."
+          "description": "Set to `1` to give a hint to database optimizers, that the relationship is \"one to\".\n\nIf `src` is not set then it is unknown and \"many to\" MAY be assumed."
         },
         "min": {
           "type": "number",
@@ -4045,6 +4126,10 @@
           "default": 1
         }
       },
+      "x-recommended": [
+        "min",
+        "max"
+      ],
       "examples": [
         {
           "max": "*"
@@ -4065,7 +4150,10 @@
           "type": "array",
           "description": "Description of the target with *association name* and *target element name* in target entity`\nDescription of the source *source element name*\n\nMUST NOT:\n- use $ as leading character of an element\n- use session variables",
           "items": {
-            "type": "string"
+            "type": "string",
+            "x-association-target": [
+              "#/definitions/CdsType"
+            ]
           }
         }
       },
@@ -4155,7 +4243,10 @@
       "properties": {
         "=": {
           "type": "string",
-          "description": "This is the references elements name."
+          "description": "This is the references elements name.",
+          "x-association-target": [
+            "#/definitions/CdsType"
+          ]
         }
       },
       "required": [
@@ -4182,6 +4273,10 @@
       "title": "Type Definition",
       "type": "object",
       "description": "In CSN it is possible to define [Custom Types](#custom-type).\nThey can be referred to in [Element](#elemententry) `type`, making them \"reusable\" / \"shared\" types.\n\nIn CSN Interop Effective, the \"effective\" quality brings additional requirements:\n\n- The derived types MUST always have a `cds.*` type and MUST NOT point to other derived types.\n  This ensures that consumers do not have to support recursive type lookups.\n\n- Attributes and annotations MUST be also copied and merged with those defined in the [element](#elemententry) using this derived type.\n  This ensures that consumers only have to lookup the CDS type and don't have to merge attributes and annotations.",
+      "x-extension-points": [
+        "TypeDefinition",
+        "Type"
+      ],
       "properties": {
         "kind": {
           "type": "string",
@@ -4639,6 +4734,10 @@
         "type"
       ],
       "additionalProperties": false,
+      "x-extension-points": [
+        "TypeDefinition",
+        "BooleanTypeDefinition"
+      ],
       "examples": [
         {
           "kind": "type",
@@ -4703,6 +4802,10 @@
         "kind"
       ],
       "additionalProperties": false,
+      "x-extension-points": [
+        "TypeDefinition",
+        "StringTypeDefinition"
+      ],
       "examples": [
         {
           "kind": "type",
@@ -4767,7 +4870,11 @@
         "type",
         "kind"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "x-extension-points": [
+        "TypeDefinition",
+        "LargeStringTypeDefinition"
+      ]
     },
     "IntegerTypeDefinition": {
       "title": "Integer Type Definition",
@@ -4818,6 +4925,10 @@
         "kind"
       ],
       "additionalProperties": false,
+      "x-extension-points": [
+        "TypeDefinition",
+        "IntegerTypeDefinition"
+      ],
       "examples": [
         {
           "kind": "type",
@@ -4876,7 +4987,11 @@
         "type",
         "kind"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "x-extension-points": [
+        "TypeDefinition",
+        "Integer64TypeDefinition"
+      ]
     },
     "DecimalTypeDefinition": {
       "title": "Decimal Type Definition",
@@ -4945,6 +5060,10 @@
         "kind"
       ],
       "additionalProperties": false,
+      "x-extension-points": [
+        "TypeDefinition",
+        "DecimalTypeDefinition"
+      ],
       "examples": [
         {
           "kind": "type",
@@ -5005,7 +5124,11 @@
         "type",
         "kind"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "x-extension-points": [
+        "TypeDefinition",
+        "DoubleTypeDefinition"
+      ]
     },
     "DateTypeDefinition": {
       "title": "Date Type Definition",
@@ -5056,6 +5179,10 @@
         "type"
       ],
       "additionalProperties": false,
+      "x-extension-points": [
+        "TypeDefinition",
+        "DateTypeDefinition"
+      ],
       "examples": [
         {
           "kind": "type",
@@ -5111,7 +5238,11 @@
         "kind",
         "type"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "x-extension-points": [
+        "TypeDefinition",
+        "TimeTypeDefinition"
+      ]
     },
     "DateTimeTypeDefinition": {
       "title": "DateTime Type Definition",
@@ -5161,7 +5292,11 @@
         "kind",
         "type"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "x-extension-points": [
+        "TypeDefinition",
+        "DateTimeTypeDefinition"
+      ]
     },
     "TimestampTypeDefinition": {
       "title": "Timestamp Type Definition",
@@ -5211,7 +5346,11 @@
         "kind",
         "type"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "x-extension-points": [
+        "TypeDefinition",
+        "TimestampTypeDefinition"
+      ]
     },
     "UUIDTypeDefinition": {
       "title": "UUID Type Definition",
@@ -5258,7 +5397,11 @@
         "kind",
         "type"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "x-extension-points": [
+        "TypeDefinition",
+        "UUIDTypeDefinition"
+      ]
     },
     "AssociationTypeDefinition": {
       "title": "Association Type Definition",
@@ -5282,7 +5425,10 @@
         },
         "target": {
           "type": "string",
-          "description": "The (fully qualified) target entity name."
+          "description": "The (fully qualified) target entity name.",
+          "x-association-target": [
+            "#/definitions/EntityDefinition"
+          ]
         },
         "cardinality": {
           "$ref": "#/definitions/CardinalityObject"
@@ -5397,6 +5543,10 @@
         "on"
       ],
       "additionalProperties": false,
+      "x-extension-points": [
+        "TypeDefinition",
+        "AssociationTypeDefinition"
+      ],
       "examples": [
         {
           "kind": "type",
@@ -5444,7 +5594,10 @@
         },
         "target": {
           "type": "string",
-          "description": "The (fully qualified) target entity name."
+          "description": "The (fully qualified) target entity name.",
+          "x-association-target": [
+            "#/definitions/EntityDefinition"
+          ]
         },
         "cardinality": {
           "$ref": "#/definitions/CardinalityObject"
@@ -5559,6 +5712,10 @@
         "on"
       ],
       "additionalProperties": false,
+      "x-extension-points": [
+        "TypeDefinition",
+        "CompositionTypeDefinition"
+      ],
       "examples": [
         {
           "kind": "type",
@@ -5588,6 +5745,9 @@
       "title": "Service Definition",
       "type": "object",
       "description": "A CDS Service indicates that [Entities](#entity-definition) are exposed to outside consumers via an API.\n\nTo assign Entities or Custom Types to a Service, their name MUST be prefixed with the service name, separated by a `.`.\nPlease be aware that this will also change the `target` values of `cds.Association` and `cds.Composition`.\nFor an example, see [airline-service.json](./examples/airline.md).\n\nA consumer MAY decide to shorten the names by only considering the Entities assigned to a particular Service and then removing the Service prefixes again.\n\nTo indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](../annotations/objectmodel#objectmodelcompositionroot) annotation.\n\nSee [Primer: Service Definitions](../primer.md#service-definitions).",
+      "x-extension-points": [
+        "Service"
+      ],
       "properties": {
         "kind": {
           "type": "string",
@@ -5636,7 +5796,10 @@
     "ContextDefinition": {
       "title": "Context Definition",
       "type": "object",
-      "description": "A context corresponds to a CAP CSN Namespace. \nIt is used to create a bounded context that bundles elements of different kinds together.\n\nTo assign Services, Entities or Custom Types to a context, their name MUST be prefixed with the context name, separated by a `.`.\n\nThe context can also be useful to avoid local or global name collisions.\n\nSee [Primer: Context](../primer.md#context-definitions).",
+      "description": "A context corresponds to a CAP CSN Namespace.\nIt is used to create a bounded context that bundles elements of different kinds together.\n\nTo assign Services, Entities or Custom Types to a context, their name MUST be prefixed with the context name, separated by a `.`.\n\nThe context can also be useful to avoid local or global name collisions.\n\nSee [Primer: Context](../primer.md#context-definitions).",
+      "x-extension-points": [
+        "Context"
+      ],
       "properties": {
         "kind": {
           "type": "string",
@@ -5757,6 +5920,9 @@
       "required": [
         "#"
       ],
+      "x-extension-targets": [
+        "Type"
+      ],
       "examples": [
         {
           "#": "SUM"
@@ -5790,6 +5956,9 @@
       "required": [
         "#"
       ],
+      "x-extension-targets": [
+        "Type"
+      ],
       "examples": [
         {
           "#": "BASE"
@@ -5801,7 +5970,11 @@
       "description": "The property defines how value helps for this element shall be constructed.\n\nIt allows to associate a (set of) View/Entity that provides the \"Value Help\" for the annotated field or parameter.\nThis is achieved by either referencing the target view/entity of a modelled association or by directly establishing a relationship to view/entity that shall act as a value help provider.",
       "items": {
         "$ref": "#/definitions/@Consumption.ConsumptionValueHelpDefinition"
-      }
+      },
+      "x-extension-targets": [
+        "Entity",
+        "Type"
+      ]
     },
     "@Consumption.ConsumptionValueHelpDefinition": {
       "title": "Consumption Value Help Definition",
@@ -5919,17 +6092,32 @@
       "examples": [
         "Sales Order Header",
         "{i18n>AD01PROFNR@ENDUSERTEXT.LABEL}"
+      ],
+      "x-extension-targets": [
+        "Entity",
+        "Type",
+        "Service",
+        "Context"
       ]
     },
     "@EndUserText.heading": {
       "type": "string",
-      "description": "Defines a human-readable text that is displayed as column headers."
+      "description": "Defines a human-readable text that is displayed as column headers.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@EndUserText.quickInfo": {
       "type": "string",
       "description": "Defines a human-readable text that provides additional information compared to the label text.\nThe quickInfo is used for accessibility hints or the \"Mouse over\" function.\n\nCorresponds to CAP CDS `@description` annotation.",
       "examples": [
         "Sales Order Header that contains data relevant for all items"
+      ],
+      "x-extension-targets": [
+        "Entity",
+        "Type",
+        "Service",
+        "Context"
       ]
     },
     "@EntityRelationship.entityType": {
@@ -5937,6 +6125,9 @@
       "description": "Defines which [Entity Type](#entity-type) the current data object represents.\n\nThere could be several data objects that are assigned to the same Entity Type.\nOne data object can only have one Entity Type assigned, which corresponds to the applications own Entity Type definition.",
       "examples": [
         "sap.vdm.sont:BillOfMaterial"
+      ],
+      "x-extension-targets": [
+        "Entity"
       ]
     },
     "@EntityRelationship.propertyType": {
@@ -5944,6 +6135,9 @@
       "description": "Defines the logical [Property Type](#property-type) of a property.\nThe reason is to have an ID to relate to the property, especially to state that it can be used as an ID or is part of a composite ID.",
       "examples": [
         "sap.vdm.gfn:BillOfMaterialUUID"
+      ],
+      "x-extension-targets": [
+        "Type"
       ]
     },
     "@EntityRelationship.entityIds": {
@@ -5951,42 +6145,60 @@
       "description": "Defines a list of IDs, which are available to look up the Entity Type or create a reference to it.\nAn Entity Type can have multiple IDs:\n* There can be **alternative IDs** that can also be used to create a reference to the Entity Type\n* Some ID properties form a **composite ID** together and need to be combined to function as a unique ID for references\n* This is indicated by a [`propertyTypes`](#property-type) array with more than one Property Type ID entry.",
       "items": {
         "$ref": "#/definitions/@EntityRelationship.EntityId"
-      }
+      },
+      "x-extension-targets": [
+        "Entity"
+      ]
     },
     "@EntityRelationship.reference": {
       "type": "array",
       "description": "Defines references to other Entity Types based on a single ID.",
       "items": {
         "$ref": "#/definitions/@EntityRelationship.ReferenceTarget"
-      }
+      },
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@EntityRelationship.compositeReferences": {
       "type": "array",
       "description": "Defines one or many references to other Entity Types based on a composite IDs.",
       "items": {
         "$ref": "#/definitions/@EntityRelationship.CompositeReference"
-      }
+      },
+      "x-extension-targets": [
+        "Entity"
+      ]
     },
     "@EntityRelationship.temporalIds": {
       "type": "array",
       "description": "Defines a list of temporal IDs",
       "items": {
         "$ref": "#/definitions/@EntityRelationship.TemporalId"
-      }
+      },
+      "x-extension-targets": [
+        "Entity"
+      ]
     },
     "@EntityRelationship.temporalReferences": {
       "type": "array",
       "description": "Defines a list of temporal references",
       "items": {
         "$ref": "#/definitions/@EntityRelationship.TemporalReference"
-      }
+      },
+      "x-extension-targets": [
+        "Entity"
+      ]
     },
     "@EntityRelationship.referencesWithConstantIds": {
       "type": "array",
       "description": "Defines one or many references to other Entity Types based on a composite IDs where some properties of the references are constant values.",
       "items": {
         "$ref": "#/definitions/@EntityRelationship.ReferenceTargetWithConstantId"
-      }
+      },
+      "x-extension-targets": [
+        "Entity"
+      ]
     },
     "@EntityRelationship.ReferenceTarget": {
       "title": "Reference Target",
@@ -6262,19 +6474,33 @@
     "@ObjectModel.compositionRoot": {
       "type": "boolean",
       "default": true,
-      "description": "Entity is the root of a compositional hierarchy."
+      "description": "Entity is the root of a compositional hierarchy.",
+      "x-extension-targets": [
+        "Entity"
+      ]
     },
     "@ObjectModel.representativeKey": {
+      "x-extension-targets": [
+        "Entity",
+        "Service"
+      ],
       "$ref": "#/definitions/ElementReference"
     },
     "@ObjectModel.semanticKey": {
       "type": "array",
       "description": "The property contains element(s) which shall be used to display the key in UIs (instead of the technical key).",
+      "x-extension-targets": [
+        "Type"
+      ],
       "items": {}
     },
     "@ObjectModel.modelingPattern": {
       "type": "object",
       "description": "The property declares the modeling pattern applied in this entity definition.",
+      "x-extension-targets": [
+        "Entity",
+        "Service"
+      ],
       "properties": {
         "#": {
           "type": "string",
@@ -6321,16 +6547,26 @@
     "@ObjectModel.supportedCapabilities": {
       "type": "array",
       "description": "The property declares the supported usage type for this entity in the context of consuming data models.",
+      "x-extension-targets": [
+        "Entity",
+        "Service"
+      ],
       "items": {
         "$ref": "#/definitions/@ObjectModel.SupportedCapabilities_EnumValue"
       }
     },
     "@ObjectModel.foreignKey.association": {
+      "x-extension-targets": [
+        "Type"
+      ],
       "$ref": "#/definitions/ElementReference"
     },
     "@ObjectModel.text.element": {
       "type": "array",
       "description": "The property contains element(s) containing a text for the annotated (id)element",
+      "x-extension-targets": [
+        "Type"
+      ],
       "items": {},
       "examples": [
         [
@@ -6339,7 +6575,24 @@
       ]
     },
     "@ObjectModel.text.association": {
+      "x-extension-targets": [
+        "Type"
+      ],
       "$ref": "#/definitions/ElementReference"
+    },
+    "@ObjectModel.usageType.sizeCategory": {
+      "type": "string",
+      "enum": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": "The size category enables the consumer to judge the possible result set. \nIt reflects the set of data which has to be searched through to compute for example a count(*) of the data. \n\nThe labels correspond to the following size categories (expected number of rows at production customers):\n- S: less than 1000\n- M: less than 100.000\n- L: less than 10.000.000\n- XL: less than 100.000.000  \n- XXL: more than 100.000.000",
+      "x-extension-targets": [
+        "Entity"
+      ]
     },
     "@ObjectModel.SupportedCapabilities_EnumValue": {
       "title": "Supported Capabilities Enum Value",
@@ -6389,14 +6642,23 @@
     },
     "@ODM.entityName": {
       "type": "string",
-      "description": "The entity represents an ODM Entity with this official name."
+      "description": "The entity represents an ODM Entity with this official name.",
+      "x-extension-targets": [
+        "Entity"
+      ]
     },
     "@ODM.oid": {
+      "x-extension-targets": [
+        "Entity"
+      ],
       "$ref": "#/definitions/ElementReference"
     },
     "@ODM.oidReference.entityName": {
       "type": "string",
-      "description": "The property contains an OID for the ODM Entity with this official name"
+      "description": "The property contains an OID for the ODM Entity with this official name",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@PersonalData.entitySemantics": {
       "type": "string",
@@ -6414,15 +6676,24 @@
           "const": "Other",
           "description": "Entities that contain personal data or references to data subjects but do not represent data subjects or details itself. For example: customer quote, customer order, or purchase order."
         }
+      ],
+      "x-extension-targets": [
+        "Entity"
       ]
     },
     "@PersonalData.dataSubjectRole": {
       "type": "string",
-      "description": "Role of the data subjects in this set (e.g. employee, customer). Values are application-specific."
+      "description": "Role of the data subjects in this set (e.g. employee, customer). Values are application-specific.",
+      "x-extension-targets": [
+        "Entity"
+      ]
     },
     "@PersonalData.dataSubjectRoleDescription": {
       "type": "string",
-      "description": "Language-dependent description of the role of the data subjects in this set (e.g. employee, customer). Values are application-specific."
+      "description": "Language-dependent description of the role of the data subjects in this set (e.g. employee, customer). Values are application-specific.",
+      "x-extension-targets": [
+        "Entity"
+      ]
     },
     "@PersonalData.fieldSemantics": {
       "type": "string",
@@ -6468,21 +6739,30 @@
           "const": "EndOfRetentionDate",
           "description": "Defines a date that marks when the provider of the data can destroy these. Consumers of the data should consider if there is an additional purpose (or a legal hold) to process the data beyond the defined destruction date."
         }
+      ],
+      "x-extension-targets": [
+        "Type"
       ]
     },
     "@PersonalData.isPotentiallyPersonal": {
       "type": "boolean",
       "description": "Property contains potentially personal data. Properties annotated with `@PersonalData.fieldSemantics` need not be additionally annotated with this annotation. Personal data describes any information which is related to an identified or identifiable natural person (data subject). An identifiable person is one who can be identified, directly or indirectly, in particular by a reference to an identifier such as a name, an identification number, location data, an online identifier, or to one or more factors specific to the physical, physiological, genetic, mental, economic, cultural, or social identity of that natural person.",
-      "default": true
+      "default": true,
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@PersonalData.isPotentiallySensitive": {
       "type": "boolean",
       "description": "Property contains potentially sensitive personal data. Sensitive personal data is a category of personal data that needs special handling. The determination which personal data is sensitive may differ for different legal areas or industries.\nExamples of sensitive personal data:\n-\tSpecial categories of personal data, such as data revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, trade union membership, genetic data, biometric data, data concerning health or sex life or sexual orientation.\n-\tPersonal data subject to professional secrecy\n-\tPersonal data relating to criminal or administrative offenses\n-\tPersonal data concerning insurances and bank or credit card accounts",
-      "default": true
+      "default": true,
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.valueRange": {
       "type": "object",
-      "description": "Informs consumers about the value range of a CDS element, allowing to specify minimal and/or maximal values, and indicate whether these are exclusive or inclusive. \nThis value range can be used for client-side validation of user input.",
+      "description": "Informs consumers about the value range of a CDS element, allowing to specify minimal and/or maximal values, and indicate whether these are exclusive or inclusive.\nThis value range can be used for client-side validation of user input.",
       "properties": {
         "minimum": {
           "type": "string",
@@ -6490,7 +6770,7 @@
         },
         "exclusiveMinimum": {
           "type": "boolean",
-          "description": "Specifies if the lower boundary should be excluded. \nNot specifying this annotation means that the lower boundary is included.",
+          "description": "Specifies if the lower boundary should be excluded.\nNot specifying this annotation means that the lower boundary is included.",
           "default": false
         },
         "maximum": {
@@ -6499,156 +6779,252 @@
         },
         "exclusiveMaximum": {
           "type": "boolean",
-          "description": "Specifies if the upper boundary should be excluded. \nNot specifying this annotation means that the upper boundary is included.",
+          "description": "Specifies if the upper boundary should be excluded.\nNot specifying this annotation means that the upper boundary is included.",
           "default": false
         }
-      }
+      },
+      "x-extension-targets": [
+        "IntegerType",
+        "Integer64Type",
+        "DecimalType",
+        "DoubleType"
+      ]
     },
     "@Semantics.currencyCode": {
       "type": "boolean",
       "const": true,
-      "description": "The property contains a currency code."
+      "description": "The property contains a currency code.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.amount.currencyCode": {
+      "x-extension-targets": [
+        "Type"
+      ],
       "$ref": "#/definitions/ElementReference"
     },
     "@Semantics.unitOfMeasure": {
       "type": "boolean",
       "const": true,
-      "description": "The element contains a unit of measure."
+      "description": "The element contains a unit of measure.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.quantity.unitOfMeasure": {
+      "x-extension-targets": [
+        "Type"
+      ],
       "$ref": "#/definitions/ElementReference"
     },
     "@Semantics.calendar.dayOfMonth": {
       "type": "boolean",
       "const": true,
-      "description": "The element states the day of month."
+      "description": "The element states the day of month.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.calendar.dayOfYear": {
       "type": "boolean",
       "const": true,
-      "description": "The element states the day of year."
+      "description": "The element states the day of year.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.calendar.week": {
       "type": "boolean",
       "const": true,
-      "description": "The element states the calendar week."
+      "description": "The element states the calendar week.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.calendar.month": {
       "type": "boolean",
       "const": true,
-      "description": "The element states the calendar month."
+      "description": "The element states the calendar month.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.calendar.quarter": {
       "type": "boolean",
       "const": true,
-      "description": "The element states the calendar quarter."
+      "description": "The element states the calendar quarter.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.calendar.halfyear": {
       "type": "boolean",
       "const": true,
-      "description": "The element states the calendar halfyear."
+      "description": "The element states the calendar halfyear.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.calendar.year": {
       "type": "boolean",
       "const": true,
-      "description": "The element states the calendar year."
+      "description": "The element states the calendar year.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.calendar.yearWeek": {
       "type": "boolean",
       "const": true,
-      "description": "The element states the calendar year week."
+      "description": "The element states the calendar year week.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.calendar.yearMonth": {
       "type": "boolean",
       "const": true,
-      "description": "The element states the calendar year month."
+      "description": "The element states the calendar year month.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.calendar.yearQuarter": {
       "type": "boolean",
       "const": true,
-      "description": "The element states the calendar year quarter."
+      "description": "The element states the calendar year quarter.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.calendar.yearHalfyear": {
       "type": "boolean",
       "const": true,
-      "description": "The element states the calendar year halfyear."
+      "description": "The element states the calendar year halfyear.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.fiscal.yearVariant": {
       "type": "boolean",
       "const": true,
-      "description": "The element states the calendar year variant."
+      "description": "The element states the calendar year variant.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.fiscal.period": {
       "type": "boolean",
       "const": true,
-      "description": "The element states the fiscal period."
+      "description": "The element states the fiscal period.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.fiscal.year": {
       "type": "boolean",
       "const": true,
-      "description": "The element states the fiscal year."
+      "description": "The element states the fiscal year.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.fiscal.yearPeriod": {
       "type": "boolean",
       "const": true,
-      "description": "The element states the fiscal year period."
+      "description": "The element states the fiscal year period.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.fiscal.quarter": {
       "type": "boolean",
       "const": true,
-      "description": "The element states the fiscal quarter."
+      "description": "The element states the fiscal quarter.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.fiscal.yearQuarter": {
       "type": "boolean",
       "const": true,
-      "description": "The element states the fiscal year quarter."
+      "description": "The element states the fiscal year quarter.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.fiscal.week": {
       "type": "boolean",
       "const": true,
-      "description": "The element states the fiscal week."
+      "description": "The element states the fiscal week.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.fiscal.yearWeek": {
       "type": "boolean",
       "const": true,
-      "description": "The element states the fiscal year week."
+      "description": "The element states the fiscal year week.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.fiscal.dayOfYear": {
       "type": "boolean",
       "const": true,
-      "description": "The element states the fiscal day of year."
+      "description": "The element states the fiscal day of year.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.language": {
       "type": "boolean",
       "const": true,
-      "description": "The property contains a language code."
+      "description": "The property contains a language code.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.time": {
       "type": "boolean",
       "const": true,
-      "description": "This annotation is used to indicate a date semantic for the NVARCHAR-based ABAP type TIMS."
+      "description": "This annotation is used to indicate a date semantic for the NVARCHAR-based ABAP type TIMS.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.text": {
       "type": "boolean",
       "const": true,
-      "description": "The property contains a human-readable text."
+      "description": "The property contains a human-readable text.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.uuid": {
       "type": "boolean",
       "const": true,
-      "description": "Tags a field containing a GUID in RAW16 or CHAR32 format.\n\nIt is RECOMMENDED to explicitly use the `csd.UUID` type."
+      "description": "Tags a field containing a GUID in RAW16 or CHAR32 format.\n\nIt is RECOMMENDED to explicitly use the `csd.UUID` type.",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.businessDate.from": {
       "type": "boolean",
       "const": true,
-      "description": "The property contains a date which is the lower boundary of a (validity) interval (for time dependent master data)."
+      "description": "The property contains a date which is the lower boundary of a (validity) interval (for time dependent master data).",
+      "x-extension-targets": [
+        "Type"
+      ]
     },
     "@Semantics.businessDate.to": {
       "type": "boolean",
       "const": true,
-      "description": "The property contains a date which is the upper boundary of a (validity) interval (for time dependent master data)."
+      "description": "The property contains a date which is the upper boundary of a (validity) interval (for time dependent master data).",
+      "x-extension-targets": [
+        "Type"
+      ]
     }
   },
   "type": "object",

@@ -1,8 +1,5 @@
 $schema: "http://json-schema.org/draft-07/schema#"
 title: "ObjectModel"
-x-extension:
-  targetDocument: "./spec/v1/CSN-Interop-Effective.schema.yaml"
-  targetLink: "../spec-v1/csn-interop-effective"
 
 definitions:
   "@ObjectModel.compositionRoot":
@@ -90,7 +87,7 @@ definitions:
 
   "@ObjectModel.foreignKey.association":
     description: |-
-      The element is of type `cds.Association` which points to the list of values. 
+      The element is of type `cds.Association` which points to the list of values.
 
       Use only for service internal associations. For cross service associations, use the [@EntityRelationship Vocabulary](./entity-relationship) instead.
     x-extension-targets:
@@ -120,6 +117,27 @@ definitions:
     x-ref-to-doc:
       title: Element Reference
       ref: "#/definitions/ElementReference"
+
+  "@ObjectModel.usageType.sizeCategory":
+    type: string
+    enum:
+      - "S"
+      - "M"
+      - "L"
+      - "XL"
+      - "XXL"
+    description: |-
+      The size category enables the consumer to judge the possible result set. 
+      It reflects the set of data which has to be searched through to compute for example a count(*) of the data. 
+
+      The labels correspond to the following size categories (expected number of rows at production customers):
+      - S: less than 1000
+      - M: less than 100.000
+      - L: less than 10.000.000
+      - XL: less than 100.000.000  
+      - XXL: more than 100.000.000
+    x-extension-targets:
+      - "Entity"
 
   # //////////////////////////////////////////
   # // Referenced JSON Schema Objects       //

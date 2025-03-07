@@ -1,8 +1,5 @@
 $schema: "http://json-schema.org/draft-07/schema#"
 title: "ODM"
-x-extension:
-  targetDocument: "./spec/v1/CSN-Interop-Effective.schema.yaml"
-  targetLink: "../spec-v1/csn-interop-effective"
 
 definitions:
   "@ODM.entityName":

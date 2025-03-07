@@ -50,7 +50,7 @@ The entities can be assigned to a [service](#service-definitions) to indicate th
 
 <div style={{"text-align": "center", "max-width": "auto"}}>
 
-![High-level CSN structure overview](/img/high-level-model.drawio.svg "High-level CSN structure overview")
+<img src="img/high-level-model.drawio.svg" title="High-level CSN structure overview"></img>
 
 </div>
 

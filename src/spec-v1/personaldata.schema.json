@@ -1,11 +1,7 @@
 {
-  "description": "JSON Schema with custom (x-) annotations",
+  "description": "JSON Schema with custom (x-) properties",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "@PersonalData",
-  "x-extension": {
-    "targetDocument": "./spec/v1/CSN-Interop-Effective.schema.yaml",
-    "targetLink": "../spec-v1/csn-interop-effective"
-  },
   "definitions": {
     "@PersonalData.entitySemantics": {
       "type": "string",
@@ -29,7 +25,7 @@
       ],
       "title": "@PersonalData.entitySemantics",
       "x-context": [
-        "./spec/annotations/personal-data.yaml",
+        "./spec/v1/annotations/personal-data.yaml",
         "@PersonalData.entitySemantics"
       ]
     },
@@ -41,7 +37,7 @@
       ],
       "title": "@PersonalData.dataSubjectRole",
       "x-context": [
-        "./spec/annotations/personal-data.yaml",
+        "./spec/v1/annotations/personal-data.yaml",
         "@PersonalData.dataSubjectRole"
       ]
     },
@@ -53,7 +49,7 @@
       ],
       "title": "@PersonalData.dataSubjectRoleDescription",
       "x-context": [
-        "./spec/annotations/personal-data.yaml",
+        "./spec/v1/annotations/personal-data.yaml",
         "@PersonalData.dataSubjectRoleDescription"
       ]
     },
@@ -107,7 +103,7 @@
       ],
       "title": "@PersonalData.fieldSemantics",
       "x-context": [
-        "./spec/annotations/personal-data.yaml",
+        "./spec/v1/annotations/personal-data.yaml",
         "@PersonalData.fieldSemantics"
       ]
     },
@@ -120,7 +116,7 @@
       ],
       "title": "@PersonalData.isPotentiallyPersonal",
       "x-context": [
-        "./spec/annotations/personal-data.yaml",
+        "./spec/v1/annotations/personal-data.yaml",
         "@PersonalData.isPotentiallyPersonal"
       ]
     },
@@ -133,12 +129,12 @@
       ],
       "title": "@PersonalData.isPotentiallySensitive",
       "x-context": [
-        "./spec/annotations/personal-data.yaml",
+        "./spec/v1/annotations/personal-data.yaml",
         "@PersonalData.isPotentiallySensitive"
       ]
     }
   },
   "x-context": [
-    "./spec/annotations/personal-data.yaml"
+    "./spec/v1/annotations/personal-data.yaml"
   ]
 }
