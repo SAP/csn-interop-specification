@@ -15,7 +15,7 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 ### Fixed
 
 - Fixed wrong enum notation for `@ObjectModel.usageType.sizeCategory`
-  - Correct use: `"@ObjectModel.usageType.sizeCategory": "{ "#": "XL" }"`
+  - Correct use: `"@ObjectModel.usageType.sizeCategory": { "#": "XL" }`
 
 ## [1.0.0]
 
