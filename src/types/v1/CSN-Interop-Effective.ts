@@ -2687,7 +2687,8 @@ export interface SupportedCapabilitiesEnumValue {
     | "UI_PROVIDER_PROJECTION_SOURCE";
 }
 /**
- * The size category enables the consumer to judge the possible result set.
+ * The size category enables the consumer to judge the possible result data set size.
+ * It is a pure estimation at design time while modeling the entity what the data set size would be at runtime.
  * It reflects the set of data which has to be searched through to compute for example a count(*) of the data.
  *
  * The labels correspond to the following size categories (expected number of rows at production customers):
