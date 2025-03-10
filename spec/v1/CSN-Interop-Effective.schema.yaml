@@ -1074,7 +1074,7 @@ definitions:
           The `on` condition is constructed by triples of:
           - Reference to the target element (ID) as array with 2 items 
           - Equals Operator "="
-          - Reference to the local element (ID)as array with 1 item OR a constant value (`val`)
+          - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
 
           The first and third entry MAY be reversed but the `=` operator MUST be in the middle.
           The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
