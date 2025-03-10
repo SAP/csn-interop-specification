@@ -119,7 +119,7 @@ definitions:
       ref: "#/definitions/ElementReference"
 
   "@ObjectModel.usageType.sizeCategory":
-    type: string
+    type: object
     description: |-
       The size category enables the consumer to judge the possible result set. 
       It reflects the set of data which has to be searched through to compute for example a count(*) of the data. 
