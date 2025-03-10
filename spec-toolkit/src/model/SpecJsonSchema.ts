@@ -198,13 +198,6 @@ export interface SpecJsonSchema {
   };
 
   /**
-   * Marks JSON Schema object as a root entity
-   *
-   * This MUST be provided for export to UMS Models
-   */
-  "x-root-entity"?: boolean;
-
-  /**
    * Overwrite TypeScript Type
    * Used and defined by https://www.npmjs.com/package/json-schema-to-typescript
    *
