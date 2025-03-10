@@ -120,12 +120,6 @@ definitions:
 
   "@ObjectModel.usageType.sizeCategory":
     type: string
-    enum:
-      - "S"
-      - "M"
-      - "L"
-      - "XL"
-      - "XXL"
     description: |-
       The size category enables the consumer to judge the possible result set. 
       It reflects the set of data which has to be searched through to compute for example a count(*) of the data. 
@@ -136,8 +130,24 @@ definitions:
       - L: less than 10.000.000
       - XL: less than 100.000.000  
       - XXL: more than 100.000.000
+    properties:
+      "#":
+        type: string
+        description: |-
+          Provide the value in `{ "#": "<value>" }` enum notation.
+        enum:
+          - "S"
+          - "M"
+          - "L"
+          - "XL"
+          - "XXL"
+    additionalProperties: false
+    required:
+      - "#"
     x-extension-targets:
       - "Entity"
+    examples:
+      - { "#": "XL" }
 
   # //////////////////////////////////////////
   # // Referenced JSON Schema Objects       //
