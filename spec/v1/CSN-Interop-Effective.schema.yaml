@@ -1090,6 +1090,7 @@ definitions:
             - $ref: "#/definitions/EqualsOperator"
             - $ref: "#/definitions/AndOperator"
             - $ref: "#/definitions/OnValue"
+        minItems: 3
         examples:
           - [{ "ref": ["to_Connection", "AirlineID"] }, "=", { "ref": ["AirlineID"] }]
           - [
