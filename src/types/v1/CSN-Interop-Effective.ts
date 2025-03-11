@@ -310,18 +310,6 @@ export type ObjectModelCompositionRoot = boolean;
  */
 export type ObjectModel2 = SupportedCapabilitiesEnumValue[];
 /**
- * The size category enables the consumer to judge the possible result set.
- * It reflects the set of data which has to be searched through to compute for example a count(*) of the data.
- *
- * The labels correspond to the following size categories (expected number of rows at production customers):
- * - S: less than 1000
- * - M: less than 100.000
- * - L: less than 10.000.000
- * - XL: less than 100.000.000
- * - XXL: more than 100.000.000
- */
-export type ObjectModelUsageTypeSizeCategory = "S" | "M" | "L" | "XL" | "XXL";
-/**
  * The entity represents an ODM Entity with this official name.
  */
 export type ODMEntityName = string;
@@ -681,7 +669,7 @@ export interface EntityDefinition {
   "@ObjectModel.representativeKey"?: ElementReference;
   "@ObjectModel.modelingPattern"?: ObjectModel1;
   "@ObjectModel.supportedCapabilities"?: ObjectModel2;
-  "@ObjectModel.usageType.sizeCategory"?: ObjectModelUsageTypeSizeCategory;
+  "@ObjectModel.usageType.sizeCategory"?: ObjectModelUsageType;
   "@ODM.entityName"?: ODMEntityName;
   "@ODM.oid"?: ElementReference;
   /**
@@ -2699,6 +2687,24 @@ export interface SupportedCapabilitiesEnumValue {
     | "EXTERNAL_DATA_PROVIDER"
     | "ODM_COMPLIANT_PROVIDER"
     | "UI_PROVIDER_PROJECTION_SOURCE";
+}
+/**
+ * The size category enables the consumer to judge the possible result data set size.
+ * It is a pure estimation at design time while modeling the entity what the data set size would be at runtime.
+ * It reflects the set of data which has to be searched through to compute for example a count(*) of the data.
+ *
+ * The labels correspond to the following size categories (expected number of rows at production customers):
+ * - S: less than 1000
+ * - M: less than 100.000
+ * - L: less than 10.000.000
+ * - XL: less than 100.000.000
+ * - XXL: more than 100.000.000
+ */
+export interface ObjectModelUsageType {
+  /**
+   * Provide the value in `{ "#": "<value>" }` enum notation.
+   */
+  "#": "S" | "M" | "L" | "XL" | "XXL";
 }
 /**
  * A CDS Service indicates that [Entities](#entity-definition) are exposed to outside consumers via an API.
