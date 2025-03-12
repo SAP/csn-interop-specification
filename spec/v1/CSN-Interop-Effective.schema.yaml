@@ -1308,10 +1308,11 @@ definitions:
       - val
     additionalProperties: false
 
-  EnumValue:
-    title: Enum Value Object
+  EnumDictionaryEntry:
+    title: Enum Dictionary Entry
     type: object
     description: |-
+      Describes a member / entry for enums (on metadata level).
       The `val` optionally specifies a constant val as a literal plus optional annotations.
     x-extension-points:
       - EnumValue
@@ -1447,7 +1448,7 @@ definitions:
     type: object
     patternProperties:
       "^.+$":
-        $ref: "#/definitions/EnumValue"
+        $ref: "#/definitions/EnumDictionaryEntry"
     examples:
       - { "submitted": { val: 1 }, "fulfilled": { val: 2, "@EndUserText.label": "Fulfilled" } }
       - { "male": {}, "female": {}, "non_binary": { val: "non-binary" } }
@@ -1504,11 +1505,10 @@ definitions:
     title: Enum Value Object
     type: object
     description: |-
-      Enum values are given in object format:
+      Enum values are given in object format, usually used for annotations.
 
       ```js
-      "<definition name>": {
-        "<annotation key of type Enum>": {"#": "<enum value>"}
+        "@<annotation type Enum>": {"#": "<enum value>"}
       ```
     properties:
       "#":
