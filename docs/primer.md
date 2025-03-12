@@ -319,11 +319,7 @@ or as a string
 }
 ```
 
-(In CDL notation this is the difference between
-\<annotation term\>: \<element name\> (CAP style)
-and
-\<annotation term\>: ‘\<element name\>’ (RAP style)
-)
+> In CDL notation this is the difference between `<annotation term>: <element name>` (CAP style) and `<annotation term>: '<element name>'` (RAP style)
 
 ### Language-dependent annotation values
 

@@ -4055,10 +4055,13 @@
       ],
       "additionalProperties": false
     },
-    "EnumValue": {
-      "title": "Value Object",
+    "EnumDictionaryEntry": {
+      "title": "Enum Dictionary Entry",
       "type": "object",
-      "description": "Enum CQN literal value expression.\n\nThe literal expression optionally specifies a constant val as a literal plus optional annotations.",
+      "description": "Describes a possible member for enums.\nThe `val` optionally specifies a constant val as a literal plus optional annotations.",
+      "x-extension-points": [
+        "EnumDictionaryEntry"
+      ],
       "properties": {
         "val": {
           "type": [
@@ -4068,6 +4071,12 @@
             "null"
           ],
           "description": "Value of the enum."
+        },
+        "@EndUserText.label": {
+          "$ref": "#/definitions/@EndUserText.label"
+        },
+        "@EndUserText.quickInfo": {
+          "$ref": "#/definitions/@EndUserText.quickInfo"
         }
       },
       "patternProperties": {
@@ -4152,12 +4161,12 @@
           "items": {
             "type": "string",
             "pattern": "^(?!\\$).*",
-            "minItems": 1,
-            "maxItems": 2,
             "x-association-target": [
               "#/definitions/CdsType"
             ]
-          }
+          },
+          "minItems": 1,
+          "maxItems": 2
         }
       },
       "required": [
@@ -4197,11 +4206,11 @@
     },
     "EnumDictionary": {
       "title": "Enum Dictionary",
-      "description": "Dictionary of enum member elements with the name being the enum symbol and the value being a CQN literal value expression.",
+      "description": "Dictionary of enum member elements with the name is the enum symbol and the value the literal value.",
       "type": "object",
       "patternProperties": {
         "^.+$": {
-          "$ref": "#/definitions/EnumValue"
+          "$ref": "#/definitions/EnumDictionaryEntry"
         }
       },
       "examples": [
@@ -4210,7 +4219,8 @@
             "val": 1
           },
           "fulfilled": {
-            "val": 2
+            "val": 2,
+            "@EndUserText.label": "Fulfilled"
           }
         },
         {
@@ -4256,21 +4266,6 @@
         "="
       ],
       "additionalProperties": false
-    },
-    "EnumValueObject": {
-      "title": "Enum Value Object",
-      "type": "object",
-      "description": "Enum values are given in object format:\n\n```js\n\"<definition name>\": {\n  \"<annotation key of type Enum>\": {\"#\": \"<enum value>\"}\n```",
-      "properties": {
-        "#": {
-          "type": "string",
-          "description": "The enum value as a string."
-        }
-      },
-      "additionalProperties": false,
-      "required": [
-        "#"
-      ]
     },
     "TypeDefinition": {
       "title": "Type Definition",
@@ -6100,7 +6095,8 @@
         "Entity",
         "Type",
         "Service",
-        "Context"
+        "Context",
+        "EnumDictionaryEntry"
       ]
     },
     "@EndUserText.heading": {
@@ -6120,7 +6116,8 @@
         "Entity",
         "Type",
         "Service",
-        "Context"
+        "Context",
+        "EnumDictionaryEntry"
       ]
     },
     "@EntityRelationship.entityType": {

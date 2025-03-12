@@ -1030,24 +1030,25 @@ export interface DefaultValueString {
   val: string | null;
 }
 /**
- * Dictionary of enum member elements with the name being the enum symbol and the value being a CQN literal value expression.
+ * Dictionary of enum member elements with the name is the enum symbol and the value the literal value.
  */
 export interface EnumDictionary {
-  [k: string]: ValueObject;
+  [k: string]: EnumDictionaryEntry;
 }
 /**
- * Enum CQN literal value expression.
- *
- * The literal expression optionally specifies a constant val as a literal plus optional annotations.
+ * Describes a possible member for enums.
+ * The `val` optionally specifies a constant val as a literal plus optional annotations.
  *
  * This interface was referenced by `EnumDictionary`'s JSON-Schema definition
  * via the `patternProperty` "^.+$".
  */
-export interface ValueObject {
+export interface EnumDictionaryEntry {
   /**
    * Value of the enum.
    */
   val?: string | number | boolean | null;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -2225,8 +2226,11 @@ export interface StructuredElementReference {
    *
    * MUST NOT:
    * - use $ as leading character of an element (e.g. for session variables)
+   *
+   * @minItems 1
+   * @maxItems 2
    */
-  ref: string[];
+  ref: [string] | [string, string];
 }
 /**
  * Value for an on condition
