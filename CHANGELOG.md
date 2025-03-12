@@ -10,6 +10,8 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+- Added JSON Schema based constraints for `on` condition element references in associations and compositions
+
 ## [1.0.1]
 
 ### Fixed
