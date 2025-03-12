@@ -6,7 +6,7 @@ title: "Overview"
 
 # Core Schema Notation Interoperability Specification
 
-**STATUS**: v1.0.
+**VERSION**: v1.0
 
 ## Summary
 
