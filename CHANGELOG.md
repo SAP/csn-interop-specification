@@ -10,6 +10,9 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+- Clarifications on enums
+- Adding relevant annotations (extensions) explicitly to enum value object
+
 ## [1.0.1]
 
 ### Fixed
