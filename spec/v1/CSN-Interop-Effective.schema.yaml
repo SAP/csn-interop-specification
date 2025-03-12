@@ -1396,8 +1396,8 @@ definitions:
       ref:
         type: array
         description: |-
-          Reference to external target with *association name* and *target element name* in `target` entity (2 array items)
-          Reference to local *source element name* (1 array item).
+          Reference to external target with *association name* and *target element name* in `target` entity (array with 2 items)
+          Reference to local *source element name* (array with 1 item).
 
           MUST NOT:
           - use $ as leading character of an element (e.g. for session variables)
