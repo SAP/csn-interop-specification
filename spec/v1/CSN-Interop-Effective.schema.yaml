@@ -1309,15 +1309,12 @@ definitions:
     additionalProperties: false
 
   EnumValue:
-    title: Value Object
+    title: Enum Value Object
     type: object
     description: |-
       The `val` optionally specifies a constant val as a literal plus optional annotations.
     x-extension-points:
-      - Type
-      - StringType
-      - NumberType
-      - BooleanType
+      - EnumValue
     properties:
       val:
         type: ["string", "number", "boolean", "null"]

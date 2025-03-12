@@ -16,6 +16,7 @@ definitions:
       - Type
       - Service
       - Context
+      - EnumValue
 
   "@EndUserText.heading":
     type: string
@@ -38,6 +39,7 @@ definitions:
       - Type
       - Service
       - Context
+      - EnumValue
 
 examples:
   - {
