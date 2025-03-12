@@ -4055,10 +4055,10 @@
       ],
       "additionalProperties": false
     },
-    "EnumValue": {
-      "title": "Enum Value Object",
+    "EnumDictionaryEntry": {
+      "title": "Enum Dictionary Entry",
       "type": "object",
-      "description": "The `val` optionally specifies a constant val as a literal plus optional annotations.",
+      "description": "Describes a member / entry for enums (on metadata level).\nThe `val` optionally specifies a constant val as a literal plus optional annotations.",
       "x-extension-points": [
         "EnumValue"
       ],
@@ -4210,7 +4210,7 @@
       "type": "object",
       "patternProperties": {
         "^.+$": {
-          "$ref": "#/definitions/EnumValue"
+          "$ref": "#/definitions/EnumDictionaryEntry"
         }
       },
       "examples": [
@@ -4270,7 +4270,7 @@
     "EnumValueObject": {
       "title": "Enum Value Object",
       "type": "object",
-      "description": "Enum values are given in object format:\n\n```js\n\"<definition name>\": {\n  \"<annotation key of type Enum>\": {\"#\": \"<enum value>\"}\n```",
+      "description": "Enum values are given in object format, usually used for annotations.\n\n```js\n  \"@<annotation type Enum>\": {\"#\": \"<enum value>\"}\n```",
       "properties": {
         "#": {
           "type": "string",

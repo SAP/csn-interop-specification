@@ -1033,15 +1033,16 @@ export interface DefaultValueString {
  * Dictionary of enum member elements with the name is the enum symbol and the value the literal value.
  */
 export interface EnumDictionary {
-  [k: string]: EnumValueObject;
+  [k: string]: EnumDictionaryEntry;
 }
 /**
+ * Describes a member / entry for enums (on metadata level).
  * The `val` optionally specifies a constant val as a literal plus optional annotations.
  *
  * This interface was referenced by `EnumDictionary`'s JSON-Schema definition
  * via the `patternProperty` "^.+$".
  */
-export interface EnumValueObject {
+export interface EnumDictionaryEntry {
   /**
    * Value of the enum.
    */
