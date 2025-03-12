@@ -1313,6 +1313,11 @@ definitions:
     type: object
     description: |-
       The `val` optionally specifies a constant val as a literal plus optional annotations.
+    x-extension-points:
+      - Type
+      - StringType
+      - NumberType
+      - BooleanType
     properties:
       val:
         type: ["string", "number", "boolean", "null"]
@@ -1445,7 +1450,7 @@ definitions:
       "^.+$":
         $ref: "#/definitions/EnumValue"
     examples:
-      - { "submitted": { val: 1 }, "fulfilled": { val: 2 } }
+      - { "submitted": { val: 1 }, "fulfilled": { val: 2, "@EndUserText.label": "Fullfilled" } }
       - { "male": {}, "female": {}, "non_binary": { val: "non-binary" } }
 
   ElementReference:
