@@ -2120,8 +2120,15 @@ export interface AssociationType {
    * In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
    *
    * See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
+   *
+   * @minItems 3
    */
-  on: (StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[];
+  on: [
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    ...(StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[]
+  ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@Consumption.valueHelpDefinition"?: Consumption;
@@ -2281,8 +2288,15 @@ export interface CompositionType {
    * In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
    *
    * See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
+   *
+   * @minItems 3
    */
-  on: (StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[];
+  on: [
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    ...(StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[]
+  ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@Consumption.valueHelpDefinition"?: Consumption;
@@ -3384,8 +3398,15 @@ export interface AssociationTypeDefinition {
    * In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
    *
    * See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
+   *
+   * @minItems 3
    */
-  on: (StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[];
+  on: [
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    ...(StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[]
+  ];
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3447,8 +3468,15 @@ export interface CompositionTypeDefinition {
    * In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
    *
    * See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
+   *
+   * @minItems 3
    */
-  on: (StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[];
+  on: [
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    ...(StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[]
+  ];
   /**
    * Annotations or private properties MAY be added.
    *

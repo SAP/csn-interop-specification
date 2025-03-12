@@ -3171,6 +3171,7 @@
               }
             ]
           },
+          "minItems": 3,
           "examples": [
             [
               {
@@ -3473,6 +3474,7 @@
               }
             ]
           },
+          "minItems": 3,
           "examples": [
             [
               {
@@ -5450,6 +5452,7 @@
               }
             ]
           },
+          "minItems": 3,
           "examples": [
             [
               {
@@ -5619,6 +5622,7 @@
               }
             ]
           },
+          "minItems": 3,
           "examples": [
             [
               {
