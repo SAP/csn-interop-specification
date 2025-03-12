@@ -11,7 +11,6 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 ## [unreleased]
 
 - Added JSON Schema based constraints for `on` condition in associations and compositions
-  - They help finding problems earlier, on schema validation
 
 ## [1.0.1]
 
