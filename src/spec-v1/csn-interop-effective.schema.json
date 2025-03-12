@@ -4148,9 +4148,12 @@
       "properties": {
         "ref": {
           "type": "array",
-          "description": "Description of the target with *association name* and *target element name* in target entity`\nDescription of the source *source element name*\n\nMUST NOT:\n- use $ as leading character of an element\n- use session variables",
+          "description": "Reference to external target with *association name* and *target element name* in `target` entity (2 array items)\nReference to local *source element name* (1 array item).\n\nMUST NOT:\n- use $ as leading character of an element (e.g. for session variables)",
           "items": {
             "type": "string",
+            "pattern": "^(?!\\$).*",
+            "minItems": 1,
+            "maxItems": 2,
             "x-association-target": [
               "#/definitions/CdsType"
             ]
