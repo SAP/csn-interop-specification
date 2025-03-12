@@ -16,7 +16,7 @@ definitions:
       - Type
       - Service
       - Context
-      - EnumValue
+      - EnumDictionaryEntry
 
   "@EndUserText.heading":
     type: string
@@ -39,7 +39,7 @@ definitions:
       - Type
       - Service
       - Context
-      - EnumValue
+      - EnumDictionaryEntry
 
 examples:
   - {
