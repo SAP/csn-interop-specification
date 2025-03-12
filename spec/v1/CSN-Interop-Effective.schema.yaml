@@ -1508,7 +1508,7 @@ definitions:
       Enum values are given in object format, usually used for annotations.
 
       ```js
-        "@<annotation type Enum>": {"#": "<enum value>"}
+        "@<annotation with enum values>": {"#": "<enum value>"}
       ```
     properties:
       "#":

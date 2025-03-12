@@ -15,7 +15,7 @@
         "Type",
         "Service",
         "Context",
-        "EnumValue"
+        "EnumDictionaryEntry"
       ],
       "title": "@EndUserText.label",
       "x-context": [
@@ -46,7 +46,7 @@
         "Type",
         "Service",
         "Context",
-        "EnumValue"
+        "EnumDictionaryEntry"
       ],
       "title": "@EndUserText.quickInfo",
       "x-context": [

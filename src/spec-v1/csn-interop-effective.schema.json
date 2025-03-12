@@ -4060,7 +4060,7 @@
       "type": "object",
       "description": "Describes a possible member for enums.\nThe `val` optionally specifies a constant val as a literal plus optional annotations.",
       "x-extension-points": [
-        "EnumValue"
+        "EnumDictionaryEntry"
       ],
       "properties": {
         "val": {
@@ -4270,7 +4270,7 @@
     "EnumValueObject": {
       "title": "Enum Value Object",
       "type": "object",
-      "description": "Enum values are given in object format, usually used for annotations.\n\n```js\n  \"@<annotation type Enum>\": {\"#\": \"<enum value>\"}\n```",
+      "description": "Enum values are given in object format, usually used for annotations.\n\n```js\n  \"@<annotation with enum values>\": {\"#\": \"<enum value>\"}\n```",
       "properties": {
         "#": {
           "type": "string",
@@ -6111,7 +6111,7 @@
         "Type",
         "Service",
         "Context",
-        "EnumValue"
+        "EnumDictionaryEntry"
       ]
     },
     "@EndUserText.heading": {
@@ -6132,7 +6132,7 @@
         "Type",
         "Service",
         "Context",
-        "EnumValue"
+        "EnumDictionaryEntry"
       ]
     },
     "@EntityRelationship.entityType": {
