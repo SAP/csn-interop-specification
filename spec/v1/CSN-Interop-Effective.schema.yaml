@@ -1312,9 +1312,7 @@ definitions:
     title: Value Object
     type: object
     description: |-
-      Enum CQN literal value expression.
-
-      The literal expression optionally specifies a constant val as a literal plus optional annotations.
+      The `val` optionally specifies a constant val as a literal plus optional annotations.
     properties:
       val:
         type: ["string", "number", "boolean", "null"]
@@ -1441,7 +1439,7 @@ definitions:
   EnumDictionary:
     title: Enum Dictionary
     description: |-
-      Dictionary of enum member elements with the name being the enum symbol and the value being a CQN literal value expression.
+      Dictionary of enum member elements with the name is the enum symbol and the value the literal value.
     type: object
     patternProperties:
       "^.+$":
