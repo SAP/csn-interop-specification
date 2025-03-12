@@ -6,7 +6,7 @@ title: "Overview"
 
 # Core Schema Notation Interoperability Specification
 
-**STATUS**: v1.0 <span className="feature-status-beta">BETA</span>, stable release planned for 2025-02.
+**STATUS**: v1.0.
 
 ## Summary
 
