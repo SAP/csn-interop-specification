@@ -2267,12 +2267,11 @@ export interface CardinalityObject {
  */
 export interface StructuredElementReference {
   /**
-   * Description of the target with *association name* and *target element name* in target entity`
-   * Description of the source *source element name*
+   * Reference to external target with *association name* and *target element name* in `target` entity (array with 2 items)
+   * Reference to local *source element name* (array with 1 item).
    *
    * MUST NOT:
-   * - use $ as leading character of an element
-   * - use session variables
+   * - use $ as leading character of an element (e.g. for session variables)
    */
   ref: string[];
 }

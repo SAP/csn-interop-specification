@@ -12,6 +12,7 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 - Clarifications on enums
 - Adding relevant annotations (extensions) explicitly to enum value object
+- Added JSON Schema based constraints for `on` condition element references in associations and compositions
 
 ## [1.0.1]
 
