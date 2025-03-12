@@ -4161,12 +4161,12 @@
           "items": {
             "type": "string",
             "pattern": "^(?!\\$).*",
-            "minItems": 1,
-            "maxItems": 2,
             "x-association-target": [
               "#/definitions/CdsType"
             ]
-          }
+          },
+          "minItems": 1,
+          "maxItems": 2
         }
       },
       "required": [
@@ -4266,21 +4266,6 @@
         "="
       ],
       "additionalProperties": false
-    },
-    "EnumValueObject": {
-      "title": "Enum Value Object",
-      "type": "object",
-      "description": "Enum values are given in object format, usually used for annotations.\n\n```js\n  \"@<annotation with enum values>\": {\"#\": \"<enum value>\"}\n```",
-      "properties": {
-        "#": {
-          "type": "string",
-          "description": "The enum value as a string."
-        }
-      },
-      "additionalProperties": false,
-      "required": [
-        "#"
-      ]
     },
     "TypeDefinition": {
       "title": "Type Definition",

@@ -1405,10 +1405,10 @@ definitions:
         items:
           type: string
           pattern: ^(?!\$).*
-          minItems: 1
-          maxItems: 2
           x-association-target: &associationTargetAllElements
             - "#/definitions/CdsType"
+        minItems: 1
+        maxItems: 2
     required:
       - ref
     additionalProperties: false
@@ -1500,24 +1500,6 @@ definitions:
     required:
       - "="
     additionalProperties: false
-
-  EnumValueObject:
-    title: Enum Value Object
-    type: object
-    description: |-
-      Enum values are given in object format, usually used for annotations.
-
-      ```js
-        "@<annotation with enum values>": {"#": "<enum value>"}
-      ```
-    properties:
-      "#":
-        type: string
-        description: |-
-          The enum value as a string.
-    additionalProperties: false
-    required:
-      - "#"
 
   TypeDefinition:
     title: Type Definition

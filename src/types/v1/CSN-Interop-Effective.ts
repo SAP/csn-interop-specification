@@ -2226,8 +2226,11 @@ export interface StructuredElementReference {
    *
    * MUST NOT:
    * - use $ as leading character of an element (e.g. for session variables)
+   *
+   * @minItems 1
+   * @maxItems 2
    */
-  ref: string[];
+  ref: [string] | [string, string];
 }
 /**
  * Value for an on condition
