@@ -15,7 +15,8 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 ### Added
 
 - Added relevant annotations (extensions) explicitly to enum value object
-- Added JSON Schema based constraints for `on` condition element references in associations and compositions
+- Added JSON Schema based constraints for element references used in `on` conditions, element references array must have at least 1 item and most 2 items
+- Added JSON Schema based constraints for `on` used in association and and composition, `on` array must have min array items 3
 
 ### Changed
 

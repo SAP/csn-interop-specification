@@ -2106,21 +2106,29 @@ export interface AssociationType {
   target: string;
   cardinality?: CardinalityObject;
   /**
-   * The property `on` holds a sequence of operators and operands to describe the join condition.
+   * The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.
    *
-   * One building block of the sequence consists of the following in the given order:
-   * - Reference to a field of the association or composition target
+   * The `on` condition is constructed by triples of:
+   * - Reference to the target element (ID) as array with 2 items
    * - Equals Operator "="
-   * - One of the following:
-   *   - Reference to a field of the source entity
-   *   - Constant Value
+   * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * This building block states that the value of the first entry of the array using "ref" should equal the value of the third entry of the array.
-   * In addition, several building blocks can be lined up using an "and" operator.
+   * The first and third entry MAY be reversed but the `=` operator MUST be in the middle.
+   * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
+   * The local element reference MUST have one array item, which is the local element name.
    *
-   * See also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
+   * In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
+   *
+   * See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
+   *
+   * @minItems 3
    */
-  on: (StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[];
+  on: [
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    ...(StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[]
+  ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@Consumption.valueHelpDefinition"?: Consumption;
@@ -2266,21 +2274,29 @@ export interface CompositionType {
   target: string;
   cardinality?: CardinalityObject;
   /**
-   * The property `on` holds a sequence of operators and operands to describe the join condition.
+   * The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.
    *
-   * One building block of the sequence consists of the following in the given order:
-   * - Reference to a field of the association or composition target
+   * The `on` condition is constructed by triples of:
+   * - Reference to the target element (ID) as array with 2 items
    * - Equals Operator "="
-   * - One of the following:
-   *   - Reference to a field of the source entity
-   *   - Constant Value
+   * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * This building block states that the value of the first entry of the array using "ref" should equal the value of the third entry of the array.
-   * In addition, several building blocks can be lined up using an "and" operator.
+   * The first and third entry MAY be reversed but the `=` operator MUST be in the middle.
+   * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
+   * The local element reference MUST have one array item, which is the local element name.
    *
-   * See also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
+   * In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
+   *
+   * See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
+   *
+   * @minItems 3
    */
-  on: (StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[];
+  on: [
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    ...(StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[]
+  ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@Consumption.valueHelpDefinition"?: Consumption;
@@ -3368,21 +3384,29 @@ export interface AssociationTypeDefinition {
   target: string;
   cardinality: CardinalityObject;
   /**
-   * The property `on` holds a sequence of operators and operands to describe the join condition.
+   * The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.
    *
-   * One building block of the sequence consists of the following in the given order:
-   * - Reference to a field of the association or composition target
+   * The `on` condition is constructed by triples of:
+   * - Reference to the target element (ID) as array with 2 items
    * - Equals Operator "="
-   * - One of the following:
-   *   - Reference to a field of the source entity
-   *   - Constant Value
+   * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * This building block states that the value of the first entry of the array using "ref" should equal the value of the third entry of the array.
-   * In addition, several building blocks can be lined up using an "and" operator.
+   * The first and third entry MAY be reversed but the `=` operator MUST be in the middle.
+   * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
+   * The local element reference MUST have one array item, which is the local element name.
    *
-   * See also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
+   * In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
+   *
+   * See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
+   *
+   * @minItems 3
    */
-  on: (StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[];
+  on: [
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    ...(StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[]
+  ];
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3430,21 +3454,29 @@ export interface CompositionTypeDefinition {
   target: string;
   cardinality: CardinalityObject;
   /**
-   * The property `on` holds a sequence of operators and operands to describe the join condition.
+   * The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.
    *
-   * One building block of the sequence consists of the following in the given order:
-   * - Reference to a field of the association or composition target
+   * The `on` condition is constructed by triples of:
+   * - Reference to the target element (ID) as array with 2 items
    * - Equals Operator "="
-   * - One of the following:
-   *   - Reference to a field of the source entity
-   *   - Constant Value
+   * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * This building block states that the value of the first entry of the array using "ref" should equal the value of the third entry of the array.
-   * In addition, several building blocks can be lined up using an "and" operator.
+   * The first and third entry MAY be reversed but the `=` operator MUST be in the middle.
+   * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
+   * The local element reference MUST have one array item, which is the local element name.
    *
-   * See also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
+   * In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
+   *
+   * See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
+   *
+   * @minItems 3
    */
-  on: (StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[];
+  on: [
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+    ...(StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[]
+  ];
   /**
    * Annotations or private properties MAY be added.
    *

@@ -3154,7 +3154,7 @@
         },
         "on": {
           "type": "array",
-          "description": "The property `on` holds a sequence of operators and operands to describe the join condition.\n\nOne building block of the sequence consists of the following in the given order:\n- Reference to a field of the association or composition target\n- Equals Operator \"=\"\n- One of the following:\n  - Reference to a field of the source entity\n  - Constant Value\n\nThis building block states that the value of the first entry of the array using \"ref\" should equal the value of the third entry of the array.\nIn addition, several building blocks can be lined up using an \"and\" operator.\n\nSee also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
+          "description": "The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.\n\nThe `on` condition is constructed by triples of:\n- Reference to the target element (ID) as array with 2 items \n- Equals Operator \"=\"\n- Reference to the local element (ID) as array with 1 item OR a constant value (`val`)\n\nThe first and third entry MAY be reversed but the `=` operator MUST be in the middle.\nThe target element reference MUST have two array items. The first item is the association name and the second item is the target element name.\nThe local element reference MUST have one array item, which is the local element name.\n\nIn case of composite references / IDs, any number of \"triples\" can be combined with the `and` operator in between.\n\nSee also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
           "items": {
             "oneOf": [
               {
@@ -3171,6 +3171,7 @@
               }
             ]
           },
+          "minItems": 3,
           "examples": [
             [
               {
@@ -3456,7 +3457,7 @@
         },
         "on": {
           "type": "array",
-          "description": "The property `on` holds a sequence of operators and operands to describe the join condition.\n\nOne building block of the sequence consists of the following in the given order:\n- Reference to a field of the association or composition target\n- Equals Operator \"=\"\n- One of the following:\n  - Reference to a field of the source entity\n  - Constant Value\n\nThis building block states that the value of the first entry of the array using \"ref\" should equal the value of the third entry of the array.\nIn addition, several building blocks can be lined up using an \"and\" operator.\n\nSee also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
+          "description": "The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.\n\nThe `on` condition is constructed by triples of:\n- Reference to the target element (ID) as array with 2 items \n- Equals Operator \"=\"\n- Reference to the local element (ID) as array with 1 item OR a constant value (`val`)\n\nThe first and third entry MAY be reversed but the `=` operator MUST be in the middle.\nThe target element reference MUST have two array items. The first item is the association name and the second item is the target element name.\nThe local element reference MUST have one array item, which is the local element name.\n\nIn case of composite references / IDs, any number of \"triples\" can be combined with the `and` operator in between.\n\nSee also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
           "items": {
             "oneOf": [
               {
@@ -3473,6 +3474,7 @@
               }
             ]
           },
+          "minItems": 3,
           "examples": [
             [
               {
@@ -5433,7 +5435,7 @@
         },
         "on": {
           "type": "array",
-          "description": "The property `on` holds a sequence of operators and operands to describe the join condition.\n\nOne building block of the sequence consists of the following in the given order:\n- Reference to a field of the association or composition target\n- Equals Operator \"=\"\n- One of the following:\n  - Reference to a field of the source entity\n  - Constant Value\n\nThis building block states that the value of the first entry of the array using \"ref\" should equal the value of the third entry of the array.\nIn addition, several building blocks can be lined up using an \"and\" operator.\n\nSee also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
+          "description": "The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.\n\nThe `on` condition is constructed by triples of:\n- Reference to the target element (ID) as array with 2 items \n- Equals Operator \"=\"\n- Reference to the local element (ID) as array with 1 item OR a constant value (`val`)\n\nThe first and third entry MAY be reversed but the `=` operator MUST be in the middle.\nThe target element reference MUST have two array items. The first item is the association name and the second item is the target element name.\nThe local element reference MUST have one array item, which is the local element name.\n\nIn case of composite references / IDs, any number of \"triples\" can be combined with the `and` operator in between.\n\nSee also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
           "items": {
             "oneOf": [
               {
@@ -5450,6 +5452,7 @@
               }
             ]
           },
+          "minItems": 3,
           "examples": [
             [
               {
@@ -5602,7 +5605,7 @@
         },
         "on": {
           "type": "array",
-          "description": "The property `on` holds a sequence of operators and operands to describe the join condition.\n\nOne building block of the sequence consists of the following in the given order:\n- Reference to a field of the association or composition target\n- Equals Operator \"=\"\n- One of the following:\n  - Reference to a field of the source entity\n  - Constant Value\n\nThis building block states that the value of the first entry of the array using \"ref\" should equal the value of the third entry of the array.\nIn addition, several building blocks can be lined up using an \"and\" operator.\n\nSee also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
+          "description": "The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.\n\nThe `on` condition is constructed by triples of:\n- Reference to the target element (ID) as array with 2 items \n- Equals Operator \"=\"\n- Reference to the local element (ID) as array with 1 item OR a constant value (`val`)\n\nThe first and third entry MAY be reversed but the `=` operator MUST be in the middle.\nThe target element reference MUST have two array items. The first item is the association name and the second item is the target element name.\nThe local element reference MUST have one array item, which is the local element name.\n\nIn case of composite references / IDs, any number of \"triples\" can be combined with the `and` operator in between.\n\nSee also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
           "items": {
             "oneOf": [
               {
@@ -5619,6 +5622,7 @@
               }
             ]
           },
+          "minItems": 3,
           "examples": [
             [
               {
