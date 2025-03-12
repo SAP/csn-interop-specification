@@ -1396,14 +1396,16 @@ definitions:
       ref:
         type: array
         description: |-
-          Description of the target with *association name* and *target element name* in target entity`
-          Description of the source *source element name*
+          Reference to the target with *association name* and *target element name* in target entity (2 array items)
+          Description of the local *source element name* (1 array item).
 
           MUST NOT:
-          - use $ as leading character of an element
-          - use session variables
+          - use $ as leading character of an element (e.g. for session variables)
         items:
           type: string
+          pattern: ^(?!\$).*
+          minItems: 1
+          maxItems: 2
           x-association-target: &associationTargetAllElements
             - "#/definitions/CdsType"
     required:
