@@ -1450,7 +1450,7 @@ definitions:
       "^.+$":
         $ref: "#/definitions/EnumValue"
     examples:
-      - { "submitted": { val: 1 }, "fulfilled": { val: 2, "@EndUserText.label": "Fullfilled" } }
+      - { "submitted": { val: 1 }, "fulfilled": { val: 2, "@EndUserText.label": "Fulfilled" } }
       - { "male": {}, "female": {}, "non_binary": { val: "non-binary" } }
 
   ElementReference:
