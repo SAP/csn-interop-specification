@@ -1310,13 +1310,14 @@ definitions:
       - val
     additionalProperties: false
 
-  EnumValue:
-    title: Value Object
+  EnumDictionaryEntry:
+    title: Enum Dictionary Entry
     type: object
     description: |-
-      Enum CQN literal value expression.
-
-      The literal expression optionally specifies a constant val as a literal plus optional annotations.
+      Describes a possible member for enums.
+      The `val` optionally specifies a constant val as a literal plus optional annotations.
+    x-extension-points:
+      - EnumDictionaryEntry
     properties:
       val:
         type: ["string", "number", "boolean", "null"]
@@ -1398,16 +1399,18 @@ definitions:
       ref:
         type: array
         description: |-
-          Description of the target with *association name* and *target element name* in target entity`
-          Description of the source *source element name*
+          Reference to external target with *association name* and *target element name* in `target` entity (array with 2 items)
+          Reference to local *source element name* (array with 1 item).
 
           MUST NOT:
-          - use $ as leading character of an element
-          - use session variables
+          - use $ as leading character of an element (e.g. for session variables)
         items:
           type: string
+          pattern: ^(?!\$).*
           x-association-target: &associationTargetAllElements
             - "#/definitions/CdsType"
+        minItems: 1
+        maxItems: 2
     required:
       - ref
     additionalProperties: false
@@ -1443,13 +1446,13 @@ definitions:
   EnumDictionary:
     title: Enum Dictionary
     description: |-
-      Dictionary of enum member elements with the name being the enum symbol and the value being a CQN literal value expression.
+      Dictionary of enum member elements with the name is the enum symbol and the value the literal value.
     type: object
     patternProperties:
       "^.+$":
-        $ref: "#/definitions/EnumValue"
+        $ref: "#/definitions/EnumDictionaryEntry"
     examples:
-      - { "submitted": { val: 1 }, "fulfilled": { val: 2 } }
+      - { "submitted": { val: 1 }, "fulfilled": { val: 2, "@EndUserText.label": "Fulfilled" } }
       - { "male": {}, "female": {}, "non_binary": { val: "non-binary" } }
 
   ElementReference:
@@ -1499,25 +1502,6 @@ definitions:
     required:
       - "="
     additionalProperties: false
-
-  EnumValueObject:
-    title: Enum Value Object
-    type: object
-    description: |-
-      Enum values are given in object format:
-
-      ```js
-      "<definition name>": {
-        "<annotation key of type Enum>": {"#": "<enum value>"}
-      ```
-    properties:
-      "#":
-        type: string
-        description: |-
-          The enum value as a string.
-    additionalProperties: false
-    required:
-      - "#"
 
   TypeDefinition:
     title: Type Definition

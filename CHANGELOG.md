@@ -10,6 +10,17 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+## [1.0.2]
+
+### Added
+
+- Added relevant annotations (extensions) explicitly to enum value object
+- Added JSON Schema based constraints for `on` condition element references in associations and compositions
+
+### Changed
+
+- BREAKING: TypeScript interface `ValueObject` renamed to `EnumDictionaryEntry` for more clarity
+
 ## [1.0.1]
 
 ### Fixed
