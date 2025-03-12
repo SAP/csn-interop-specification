@@ -1312,7 +1312,7 @@ definitions:
     title: Enum Dictionary Entry
     type: object
     description: |-
-      Describes a member / entry for enums (on metadata level).
+      Describes a possible member for enums.
       The `val` optionally specifies a constant val as a literal plus optional annotations.
     x-extension-points:
       - EnumValue

@@ -1036,7 +1036,7 @@ export interface EnumDictionary {
   [k: string]: EnumDictionaryEntry;
 }
 /**
- * Describes a member / entry for enums (on metadata level).
+ * Describes a possible member for enums.
  * The `val` optionally specifies a constant val as a literal plus optional annotations.
  *
  * This interface was referenced by `EnumDictionary`'s JSON-Schema definition

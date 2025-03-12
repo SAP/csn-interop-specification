@@ -4058,7 +4058,7 @@
     "EnumDictionaryEntry": {
       "title": "Enum Dictionary Entry",
       "type": "object",
-      "description": "Describes a member / entry for enums (on metadata level).\nThe `val` optionally specifies a constant val as a literal plus optional annotations.",
+      "description": "Describes a possible member for enums.\nThe `val` optionally specifies a constant val as a literal plus optional annotations.",
       "x-extension-points": [
         "EnumValue"
       ],
