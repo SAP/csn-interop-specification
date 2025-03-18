@@ -1,4 +1,4 @@
-import * as staticCsnInteropEffectiveSchema from "./generated/spec-v1/specs/csn-interop-effective.schema.json";
+import * as staticCsnInteropEffectiveSchema from "./generated/spec-v1/schemas/csn-interop-effective.schema.json";
 import { SpecJsonSchemaRoot } from "../spec-toolkit/src/index";
 export * from "./generated/spec-v1/types";
 

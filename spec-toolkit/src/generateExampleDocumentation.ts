@@ -53,8 +53,9 @@ export function generateExampleDocumentation(configData: ConfigFile): void {
 
       for (const fileName in mdExamplePages) {
         const fileContent = mdExamplePages[fileName];
-        fs.outputFileSync(path.join(docConfig.examples.targetMarkdownFolderPath, fileName), fileContent);
-        log.info("Written: " + path.join(docConfig.examples.targetMarkdownFolderPath, fileName));
+        const exampleFilePath = path.join(`${configData.outputPath}/docs/examples`, fileName);
+        fs.outputFileSync(exampleFilePath, fileContent);
+        log.info("Written: " + exampleFilePath);
       }
     }
   }

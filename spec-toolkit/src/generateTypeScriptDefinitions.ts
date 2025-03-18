@@ -17,17 +17,16 @@ import yaml from "js-yaml";
 import { ConfigFile } from "./model/Config.js";
 
 export async function generateTypeScriptDefinitions(configData: ConfigFile): Promise<void> {
-  // TODO: This is a temporary solution, path to write the index.ts file should be taken from the spec-toolkit CLI arguments
-  // change this to: const indexExportStatements: string[] = [];
-  const indexExportStatements = { exportStatements: "", filePath: "" };
+  let indexExportStatements = "";
 
   for (const docConfig of configData.docsConfig) {
     // typescript types will be generated only for spec documents
     // because specExtension documents are just fragments that will be merged into the bigger spec document
     // it does not make sense to have typescript types generated out of fragment files
     if (docConfig.type === "spec") {
-      const xSchemaFileName = docConfig.targetJsonSchemaFilePath.split(".json").join(".x.json");
-      let schema = yaml.load(fs.readFileSync(xSchemaFileName).toString()) as SpecJsonSchemaRoot;
+      const xSchemaFileName = `${docConfig.id}.schema.json`.split(".json").join(".x.json");
+      const xSchemaFilePath = `${configData.outputPath}/schemas/${xSchemaFileName}`;
+      let schema = yaml.load(fs.readFileSync(`${xSchemaFilePath}`).toString()) as SpecJsonSchemaRoot;
 
       schema = convertRefToDocToStandardRef(schema);
       schema = convertOneOfEnum(schema);
@@ -78,20 +77,16 @@ export async function generateTypeScriptDefinitions(configData: ConfigFile): Pro
         definitions = definitions.replace(replacement.oldValue, replacement.newValue);
       }
 
-      fs.unlinkSync(xSchemaFileName);
-      log.info(`Cleanup temporary file ${xSchemaFileName}`);
+      fs.unlinkSync(xSchemaFilePath);
+      log.info(`Cleanup temporary file ${xSchemaFilePath}`);
 
-      await fs.outputFile(`${process.cwd()}/${docConfig.targetTypescriptTypesFilePath}`, definitions);
-      log.info(`Result: ./${docConfig.targetTypescriptTypesFilePath}`);
-      indexExportStatements.exportStatements += `export * from "./${docConfig.targetTypescriptTypesFilePath.split("/").pop()?.replace(".ts", "")}";\n`;
-      indexExportStatements.filePath = docConfig.targetTypescriptTypesFilePath;
+      const typesFile = `${process.cwd()}/${configData.outputPath}/types/${docConfig.id}.ts`;
+      await fs.outputFile(typesFile, definitions);
+      log.info(`Result: ${typesFile}`);
+      indexExportStatements += `export * from "./${docConfig.id}";\n`;
     }
   }
 
-  if (indexExportStatements.filePath.length > 0) {
-    // TODO: This is a temporary solution, path to write the index.ts file should be taken from the spec-toolkit CLI arguments
-    let indexFilePath = `${process.cwd()}/${indexExportStatements.filePath}`;
-    indexFilePath = indexFilePath.replace(/(.*)\/.*(\.ts$)/i, "$1/index$2");
-    fs.outputFileSync(indexFilePath, indexExportStatements.exportStatements);
-  }
+  const indexFilePath = `${process.cwd()}/${configData.outputPath}/types/index.ts`;
+  fs.outputFileSync(indexFilePath, indexExportStatements);
 }

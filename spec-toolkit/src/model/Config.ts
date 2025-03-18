@@ -2,6 +2,7 @@ import fs from "fs-extra";
 import path from "path";
 export interface ConfigFile {
   generalConfig: GeneralConfig;
+  outputPath: string;
   docsConfig: SpecConfig[];
 }
 
@@ -20,12 +21,8 @@ export interface MainSpecConfig {
   sourceFilePath: string;
   sourceIntroductionFilePath?: string;
   sourceFileOutro?: string;
-  targetMarkdownFilePath: string;
-  targetJsonSchemaFilePath: string;
-  targetTypescriptTypesFilePath: string;
   examples?: {
     sourceJsonFolderPath: string;
-    targetMarkdownFolderPath: string;
   };
   sideBarPosition: number;
   sideBarDescription: string;
@@ -46,8 +43,6 @@ export interface ExtensionSpecConfig {
   sourceFilePath: string;
   sourceIntroductionFilePath?: string;
   sourceFileOutro?: string;
-  targetMarkdownFilePath: string;
-  targetJsonSchemaFilePath: string;
   sideBarPosition: number;
   sideBarDescription: string;
 
@@ -59,7 +54,7 @@ export interface ExtensionSpecConfig {
 
   /** List of bullet points to add at the top as quick facts / links (in markdown) */
   facts?: string[];
-  targetDocument: string;
+  targetDocumentId: string;
   targetLink: string;
 }
 
@@ -90,13 +85,4 @@ export function getOutroText(docConfig: SpecConfig): string {
   }
 
   return fs.readFileSync(mdFilePath, "utf-8");
-}
-
-export function getTargetDocumentForDocumentId(documentID: string, docsConfigs: SpecConfig[]): string {
-  for (let i = 0; i < docsConfigs.length; i++) {
-    if (docsConfigs[i].id === documentID) {
-      return docsConfigs[i].targetMarkdownFilePath;
-    }
-  }
-  return "";
 }

@@ -1,1 +1,1 @@
-export * from "./CSN-Interop-Effective";
+export * from "./csn-interop-effective";
