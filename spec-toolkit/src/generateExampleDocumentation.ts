@@ -10,8 +10,8 @@ interface ExampleDocumentsDict {
 
 export function generateExampleDocumentation(configData: ConfigFile): void {
   for (const docConfig of configData.docsConfig) {
-    if (docConfig.type === "spec" && docConfig.examples) {
-      const jsonExampleFilePaths = fg.sync(`${docConfig.examples.sourceJsonFolderPath}/*.json`, { ignore: ["_*"] });
+    if (docConfig.type === "spec" && docConfig.examplesFolderPath) {
+      const jsonExampleFilePaths = fg.sync(`${docConfig.examplesFolderPath}/*.json`, { ignore: ["_*"] });
 
       const mdExamplePages: ExampleDocumentsDict = {};
 

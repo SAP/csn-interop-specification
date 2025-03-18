@@ -19,11 +19,10 @@ export interface MainSpecConfig {
   id: string;
   title: string;
   sourceFilePath: string;
-  sourceIntroductionFilePath?: string;
-  sourceFileOutro?: string;
-  examples?: {
-    sourceJsonFolderPath: string;
-  };
+  sourceIntroFilePath?: string;
+  sourceOutroFilePath?: string;
+  examplesFolderPath?: string;
+
   sideBarPosition: number;
   sideBarDescription: string;
 
@@ -41,8 +40,8 @@ export interface ExtensionSpecConfig {
   id: string;
   title: string;
   sourceFilePath: string;
-  sourceIntroductionFilePath?: string;
-  sourceFileOutro?: string;
+  sourceIntroFilePath?: string;
+  sourceOutroFilePath?: string;
   sideBarPosition: number;
   sideBarDescription: string;
 
@@ -60,11 +59,11 @@ export interface ExtensionSpecConfig {
 
 //Retrieve Text from Introduction File
 export function getIntroductionText(docConfig: SpecConfig): string {
-  if (!docConfig.sourceIntroductionFilePath) {
+  if (!docConfig.sourceIntroFilePath) {
     return "";
   }
 
-  const mdFilePath = path.resolve(docConfig.sourceIntroductionFilePath);
+  const mdFilePath = path.resolve(docConfig.sourceIntroFilePath);
 
   if (!fs.existsSync(mdFilePath)) {
     throw new Error("Could not read markdown file: " + mdFilePath);
@@ -74,11 +73,11 @@ export function getIntroductionText(docConfig: SpecConfig): string {
 }
 //Retrieve Text from Introduction File
 export function getOutroText(docConfig: SpecConfig): string {
-  if (!docConfig.sourceFileOutro) {
+  if (!docConfig.sourceOutroFilePath) {
     return "";
   }
 
-  const mdFilePath = path.resolve(docConfig.sourceFileOutro);
+  const mdFilePath = path.resolve(docConfig.sourceOutroFilePath);
 
   if (!fs.existsSync(mdFilePath)) {
     throw new Error("Could not read markdown file: " + mdFilePath);
