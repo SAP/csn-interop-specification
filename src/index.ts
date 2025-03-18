@@ -1,6 +1,6 @@
-import * as staticCsnInteropEffectiveSchema from "./spec-v1/csn-interop-effective.schema.json";
+import * as staticCsnInteropEffectiveSchema from "./generated/spec-v1/specs/csn-interop-effective.schema.json";
 import { SpecJsonSchemaRoot } from "../spec-toolkit/src/index";
-export * from "./types";
+export * from "./generated/spec-v1/types";
 
 export const schemas = {
   /**

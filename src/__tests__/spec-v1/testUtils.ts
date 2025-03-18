@@ -19,7 +19,7 @@ import {
   UUIDType,
   CSNInteropRoot,
   Definitions,
-} from "../types/v1/CSN-Interop-Effective";
+} from "../../generated/spec-v1/types";
 
 export function getElementTestDataByElementType(elementType: CdsTypeValue | CustomTypeValue): CdsType | CustomType {
   switch (elementType) {

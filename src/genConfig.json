@@ -13,12 +13,12 @@
       "tocMaxHeadingLevel": 4,
       "sideBarDescription": "Describes the technical interface / schema for CSN Interop Effective.",
       "title": "Interface Documentation",
-      "targetMarkdownFilePath": "./docs/spec-v1/csn-interop-effective.md",
-      "targetJsonSchemaFilePath": "./src/spec-v1/csn-interop-effective.schema.json",
-      "targetTypescriptTypesFilePath": "./src/types/v1/CSN-Interop-Effective.ts",
+      "targetMarkdownFilePath": "./src/generated/spec-v1/docs/csn-interop-effective.md",
+      "targetJsonSchemaFilePath": "./src/generated/spec-v1/specs/csn-interop-effective.schema.json",
+      "targetTypescriptTypesFilePath": "./src/generated/spec-v1/types/CSN-Interop-Effective.ts",
       "examples": {
         "sourceJsonFolderPath": "./spec/v1/examples",
-        "targetMarkdownFolderPath": "./docs/spec-v1/examples"
+        "targetMarkdownFolderPath": "./src/generated/spec-v1/docs/examples"
       },
       "facts": []
     },
@@ -30,8 +30,8 @@
       "sideBarPosition": 2,
       "sideBarDescription": "@Aggregation annotations.",
       "title": "@Aggregation",
-      "targetMarkdownFilePath": "./docs/annotations/aggregation.md",
-      "targetJsonSchemaFilePath": "./src/spec-v1/aggregation.schema.json",
+      "targetMarkdownFilePath": "./src/generated/spec-v1/docs/extensions/aggregation.md",
+      "targetJsonSchemaFilePath": "./src/generated/spec-v1/specs/aggregation.schema.json",
       "targetDocument": "./spec/v1/CSN-Interop-Effective.schema.yaml",
       "targetLink": "../spec-v1/csn-interop-effective"
     },
@@ -43,8 +43,8 @@
       "sideBarPosition": 3,
       "sideBarDescription": "@AnalyticsDetails for data analytics use cases.",
       "title": "@AnalyticsDetails",
-      "targetMarkdownFilePath": "./docs/annotations/analytics-details.md",
-      "targetJsonSchemaFilePath": "./src/spec-v1/analyticsdetails.schema.json",
+      "targetMarkdownFilePath": "./src/generated/spec-v1/docs/extensions/analytics-details.md",
+      "targetJsonSchemaFilePath": "./src/generated/spec-v1/specs/analyticsdetails.schema.json",
       "targetDocument": "./spec/v1/CSN-Interop-Effective.schema.yaml",
       "targetLink": "../spec-v1/csn-interop-effective"
     },
@@ -56,8 +56,8 @@
       "sideBarPosition": 4,
       "sideBarDescription": "@Consumption annotations.",
       "title": "@Consumption",
-      "targetMarkdownFilePath": "./docs/annotations/consumption.md",
-      "targetJsonSchemaFilePath": "./src/spec-v1/consumption.schema.json",
+      "targetMarkdownFilePath": "./src/generated/spec-v1/docs/extensions/consumption.md",
+      "targetJsonSchemaFilePath": "./src/generated/spec-v1/specs/consumption.schema.json",
       "targetDocument": "./spec/v1/CSN-Interop-Effective.schema.yaml",
       "targetLink": "../spec-v1/csn-interop-effective"
     },
@@ -67,8 +67,8 @@
       "title": "@EndUserText",
       "sourceFilePath": "./spec/v1/annotations/enduser-text.yaml",
       "sourceIntroductionFilePath": "./spec/v1/annotations/enduser-text.md",
-      "targetMarkdownFilePath": "./docs/annotations/enduser-text.md",
-      "targetJsonSchemaFilePath": "./src/spec-v1/endusertext.schema.json",
+      "targetMarkdownFilePath": "./src/generated/spec-v1/docs/extensions/enduser-text.md",
+      "targetJsonSchemaFilePath": "./src/generated/spec-v1/specs/endusertext.schema.json",
       "sideBarPosition": 5,
       "sideBarDescription": "@EndUserText annotations for end user UIs.",
       "targetDocument": "./spec/v1/CSN-Interop-Effective.schema.yaml",
@@ -83,8 +83,8 @@
       "sideBarPosition": 6,
       "sideBarDescription": "@EntityRelationship annotations for cross boundary Entity-Relationship IDs and associations.",
       "title": "@EntityRelationship",
-      "targetMarkdownFilePath": "./docs/annotations/entity-relationship.md",
-      "targetJsonSchemaFilePath": "./src/spec-v1/entityrelationship.schema.json",
+      "targetMarkdownFilePath": "./src/generated/spec-v1/docs/extensions/entity-relationship.md",
+      "targetJsonSchemaFilePath": "./src/generated/spec-v1/specs/entityrelationship.schema.json",
       "targetDocument": "./spec/v1/CSN-Interop-Effective.schema.yaml",
       "targetLink": "../spec-v1/csn-interop-effective"
     },
@@ -96,8 +96,8 @@
       "sideBarPosition": 7,
       "sideBarDescription": "@ObjectModel annotations.",
       "title": "@ObjectModel",
-      "targetMarkdownFilePath": "./docs/annotations/objectmodel.md",
-      "targetJsonSchemaFilePath": "./src/spec-v1/objectmodel.schema.json",
+      "targetMarkdownFilePath": "./src/generated/spec-v1/docs/extensions/objectmodel.md",
+      "targetJsonSchemaFilePath": "./src/generated/spec-v1/specs/objectmodel.schema.json",
       "targetDocument": "./spec/v1/CSN-Interop-Effective.schema.yaml",
       "targetLink": "../spec-v1/csn-interop-effective"
     },
@@ -109,8 +109,8 @@
       "sideBarPosition": 8,
       "sideBarDescription": "@ODM for One Domain Model (ODM) related annotations.",
       "title": "@ODM",
-      "targetMarkdownFilePath": "./docs/annotations/odm.md",
-      "targetJsonSchemaFilePath": "./src/spec-v1/odm.schema.json",
+      "targetMarkdownFilePath": "./src/generated/spec-v1/docs/extensions/odm.md",
+      "targetJsonSchemaFilePath": "./src/generated/spec-v1/specs/odm.schema.json",
       "targetDocument": "./spec/v1/CSN-Interop-Effective.schema.yaml",
       "targetLink": "../spec-v1/csn-interop-effective"
     },
@@ -122,8 +122,8 @@
       "sideBarPosition": 9,
       "sideBarDescription": "@PersonalData to annotate DPP relevant information.",
       "title": "@PersonalData",
-      "targetMarkdownFilePath": "./docs/annotations/personal-data.md",
-      "targetJsonSchemaFilePath": "./src/spec-v1/personaldata.schema.json",
+      "targetMarkdownFilePath": "./src/generated/spec-v1/docs/extensions/personal-data.md",
+      "targetJsonSchemaFilePath": "./src/generated/spec-v1/specs/personaldata.schema.json",
       "targetDocument": "./spec/v1/CSN-Interop-Effective.schema.yaml",
       "targetLink": "../spec-v1/csn-interop-effective"
     },
@@ -135,8 +135,8 @@
       "sideBarPosition": 10,
       "sideBarDescription": "@Semantics annotations.",
       "title": "@Semantics",
-      "targetMarkdownFilePath": "./docs/annotations/semantics.md",
-      "targetJsonSchemaFilePath": "./src/spec-v1/semantics.schema.json",
+      "targetMarkdownFilePath": "./src/generated/spec-v1/docs/extensions/semantics.md",
+      "targetJsonSchemaFilePath": "./src/generated/spec-v1/specs/semantics.schema.json",
       "targetDocument": "./spec/v1/CSN-Interop-Effective.schema.yaml",
       "targetLink": "../spec-v1/csn-interop-effective"
     }

@@ -24,8 +24,8 @@ export interface MainSpecConfig {
   targetJsonSchemaFilePath: string;
   targetTypescriptTypesFilePath: string;
   examples?: {
-    sourceJsonFolderPath: "./examples";
-    targetMarkdownFolderPath: "./docs/spec-v1/examples";
+    sourceJsonFolderPath: string;
+    targetMarkdownFolderPath: string;
   };
   sideBarPosition: number;
   sideBarDescription: string;
