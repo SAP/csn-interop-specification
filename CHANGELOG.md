@@ -10,6 +10,10 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+### Added
+
+- Added `@ObjectModel.modelingPattern` enum option: `EXTRACTION_DATA_SOURCE`
+
 ## [1.0.2]
 
 ### Added
