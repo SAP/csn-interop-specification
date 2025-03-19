@@ -6336,7 +6336,7 @@
     },
     "@ObjectModel.tenantWideUniqueName": {
       "type": "string",
-      "description": "Unique name of the entity within the tenant / isolation context it is deployed to. \nThis may be used as a hint for database table names and help to keep them short enough.",
+      "description": "Unique technical name of the entity within the tenant / isolation context it is deployed to. \nThis may be used as a hint for database table names and help to keep them short enough.\n\nOnce chosen the technical name ID MUST be kept stable (immutable).",
       "maxLength": 120
     },
     "@ObjectModel.SupportedCapabilities_EnumValue": {

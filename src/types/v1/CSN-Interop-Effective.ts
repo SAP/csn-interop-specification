@@ -248,8 +248,10 @@ export type ObjectModelCompositionRoot = boolean;
  */
 export type ObjectModel2 = SupportedCapabilitiesEnumValue[];
 /**
- * Unique name of the entity within the tenant / isolation context it is deployed to.
+ * Unique technical name of the entity within the tenant / isolation context it is deployed to.
  * This may be used as a hint for database table names and help to keep them short enough.
+ *
+ * Once chosen the technical name ID MUST be kept stable (immutable).
  */
 export type ObjectModelTenantWideUniqueName = string;
 /**
