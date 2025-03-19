@@ -31,6 +31,18 @@ definitions:
         title: Element Reference
         ref: "#/definitions/ElementReference"
 
+  "@ObjectModel.custom":
+    type: boolean
+    description: |-
+      Added through custom development, diverges from the "core" model.
+
+      If applied to an entity or service, everything that it contains is also considered custom.
+    default: true
+    x-extension-targets:
+      - "Type"
+      - "Entity"
+      - "Service"
+
   "@ObjectModel.modelingPattern":
     type: object
     description: |-
