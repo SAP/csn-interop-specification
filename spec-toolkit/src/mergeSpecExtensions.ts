@@ -6,11 +6,12 @@ import { validateSpecJsonSchema } from "./util/validation.js";
 import { writeSpecJsonSchemaFiles } from "./generateInterfaceDocumentation.js";
 import { ConfigFile } from "./model/Config.js";
 import path from "path";
+import { schemasOutputFolderName } from "./generate.js";
 
 export function mergeSpecExtensions(configData: ConfigFile): void {
   for (const docConfig1 of configData.docsConfig) {
     if (docConfig1.type === "spec") {
-      const targetDocumentFilePath = `${configData.outputPath}/schemas/${docConfig1.id}.schema.json`;
+      const targetDocumentFilePath = `${configData.outputPath}/${schemasOutputFolderName}/${docConfig1.id}.schema.json`;
       const jsonSchemaFile = fs.readFileSync(path.join(process.cwd(), targetDocumentFilePath)).toString();
       const targetDocument = yaml.load(jsonSchemaFile) as SpecJsonSchemaRoot;
 

@@ -3,6 +3,7 @@ import fs from "fs-extra";
 import * as path from "path";
 import { log } from "./util/log.js";
 import { ConfigFile } from "./model/Config.js";
+import { documentationExamplesOutputFolderName } from "./generate.js";
 
 interface ExampleDocumentsDict {
   [fileName: string]: string;
@@ -53,7 +54,10 @@ export function generateExampleDocumentation(configData: ConfigFile): void {
 
       for (const fileName in mdExamplePages) {
         const fileContent = mdExamplePages[fileName];
-        const exampleFilePath = path.join(`${configData.outputPath}/docs/examples`, fileName);
+        const exampleFilePath = path.join(
+          `${configData.outputPath}/${documentationExamplesOutputFolderName}`,
+          fileName,
+        );
         fs.outputFileSync(exampleFilePath, fileContent);
         log.info("Written: " + exampleFilePath);
       }

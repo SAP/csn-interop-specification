@@ -47,6 +47,7 @@ import {
   getIdForSchema as getSchemaObjectId,
   getTitleFromSchemaObject,
 } from "./util/specJsonSchemaHelper.js";
+import { documentationExtensionsOutputFolderName, documentationOutputFolderName } from "./generate.js";
 
 ////////////////////////////////////////////////////////////
 // JSON SCHEMA TO MARKDOWN                                //
@@ -174,9 +175,9 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
     // Write Markdown Documentation
     let filePath = "";
     if (docConfig.type === "spec") {
-      filePath = configData.outputPath + `/docs/${docConfig.id}.md`;
+      filePath = configData.outputPath + `/${documentationOutputFolderName}/${docConfig.id}.md`;
     } else {
-      filePath = configData.outputPath + `/docs/extensions/${docConfig.id}.md`;
+      filePath = configData.outputPath + `/${documentationExtensionsOutputFolderName}/${docConfig.id}.md`;
     }
     fs.outputFileSync(filePath, text);
     log.info(`Written: ${filePath}`);
@@ -274,7 +275,7 @@ function handleRefToCore(jsonSchemaObject: SpecJsonSchema, outputPath: string): 
     if (typeof refToDoc === "object" && refToDoc !== undefined) {
       refToDocTitle = "title" in refToDoc ? refToDoc.title + "" : ""; // TODO: Simplify this
       refToDocDocId = "$refDoc" in refToDoc ? refToDoc.$refDoc + "" : ""; // TODO: Simplify this
-      refToDocDoc = `${outputPath}/docs/${refToDocDocId}.md`;
+      refToDocDoc = `${outputPath}/${documentationOutputFolderName}/${refToDocDocId}.md`;
     }
     //TODO: Calculate RefToCore from Document Title?
     //TODO: remove calculation, use general function

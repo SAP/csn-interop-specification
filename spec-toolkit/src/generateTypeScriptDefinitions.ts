@@ -15,6 +15,7 @@ import { compile as jsonSchemaToTypeScript } from "json-schema-to-typescript";
 import { log } from "./util/log.js";
 import yaml from "js-yaml";
 import { ConfigFile } from "./model/Config.js";
+import { typesOutputFolderName } from "./generate.js";
 
 export async function generateTypeScriptDefinitions(configData: ConfigFile): Promise<void> {
   let indexExportStatements = "";
@@ -80,13 +81,13 @@ export async function generateTypeScriptDefinitions(configData: ConfigFile): Pro
       fs.unlinkSync(xSchemaFilePath);
       log.info(`Cleanup temporary file ${xSchemaFilePath}`);
 
-      const typesFile = `${process.cwd()}/${configData.outputPath}/types/${docConfig.id}.ts`;
+      const typesFile = `${process.cwd()}/${configData.outputPath}/${typesOutputFolderName}/${docConfig.id}.ts`;
       await fs.outputFile(typesFile, definitions);
       log.info(`Result: ${typesFile}`);
       indexExportStatements += `export * from "./${docConfig.id}";\n`;
     }
   }
 
-  const indexFilePath = `${process.cwd()}/${configData.outputPath}/types/index.ts`;
+  const indexFilePath = `${process.cwd()}/${configData.outputPath}/${typesOutputFolderName}/index.ts`;
   fs.outputFileSync(indexFilePath, indexExportStatements);
 }
