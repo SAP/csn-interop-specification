@@ -20,8 +20,7 @@
     "README.md",
     "dist/src/index.js",
     "dist/src/index.d.ts",
-    "dist/src/spec-v1/",
-    "dist/src/types/"
+    "dist/src/generated/spec-v1"
   ],
   "scripts": {
     "clean": "tsx src/clean.ts",
