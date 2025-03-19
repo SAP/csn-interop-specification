@@ -10,7 +10,13 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
-- ADDED: `@ObjectModel.tenantWideUniqueName` annotation
+### Added
+
+- Added `@Semantics.valueRange` annotation
+- Added `@ObjectModel.tenantWideUniqueName` annotation
+
+### Changed
+
 - BREAKING: spec-toolkit no longer part of the csn-interop-specification package exports
 
 ## [0.4.0]
@@ -19,7 +25,6 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 - ADDED: Clear statement that `ElementRef` referenced element MUST exist locally in the same entity.
 - ADDED: `meta.document.title` to give the overall document a human-readable title
--
 
 ### Changed
 
