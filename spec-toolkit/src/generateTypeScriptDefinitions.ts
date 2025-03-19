@@ -15,7 +15,7 @@ import { compile as jsonSchemaToTypeScript } from "json-schema-to-typescript";
 import { log } from "./util/log.js";
 import yaml from "js-yaml";
 import { ConfigFile } from "./model/Config.js";
-import { typesOutputFolderName } from "./generate.js";
+import { schemasOutputFolderName, typesOutputFolderName } from "./generate.js";
 
 export async function generateTypeScriptDefinitions(configData: ConfigFile): Promise<void> {
   let indexExportStatements = "";
@@ -26,7 +26,7 @@ export async function generateTypeScriptDefinitions(configData: ConfigFile): Pro
     // it does not make sense to have typescript types generated out of fragment files
     if (docConfig.type === "spec") {
       const xSchemaFileName = `${docConfig.id}.schema.json`.split(".json").join(".x.json");
-      const xSchemaFilePath = `${configData.outputPath}/schemas/${xSchemaFileName}`;
+      const xSchemaFilePath = `${configData.outputPath}/${schemasOutputFolderName}/${xSchemaFileName}`;
       let schema = yaml.load(fs.readFileSync(`${xSchemaFilePath}`).toString()) as SpecJsonSchemaRoot;
 
       schema = convertRefToDocToStandardRef(schema);

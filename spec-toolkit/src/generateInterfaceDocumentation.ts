@@ -47,7 +47,11 @@ import {
   getIdForSchema as getSchemaObjectId,
   getTitleFromSchemaObject,
 } from "./util/specJsonSchemaHelper.js";
-import { documentationExtensionsOutputFolderName, documentationOutputFolderName } from "./generate.js";
+import {
+  documentationExtensionsOutputFolderName,
+  documentationOutputFolderName,
+  schemasOutputFolderName,
+} from "./generate.js";
 
 ////////////////////////////////////////////////////////////
 // JSON SCHEMA TO MARKDOWN                                //
@@ -99,7 +103,9 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
         const file = fs.readFileSync(target.sourceFilePath).toString();
         extensionTarget = yaml.load(file) as SpecJsonSchemaRoot;
       } else {
-        log.error(`No valid "targetDocumentId" defined for specExtension with "id": ${docConfig.id}`);
+        log.error(
+          `Spec extensions are merged into main specs, but there was no valid "targetDocumentId" defined for specExtension with "id": ${docConfig.id}`,
+        );
       }
     }
 
@@ -176,7 +182,7 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
     let filePath = "";
     if (docConfig.type === "spec") {
       filePath = configData.outputPath + `/${documentationOutputFolderName}/${docConfig.id}.md`;
-    } else {
+    } else if (docConfig.type === "specExtension") {
       filePath = configData.outputPath + `/${documentationExtensionsOutputFolderName}/${docConfig.id}.md`;
     }
     fs.outputFileSync(filePath, text);
@@ -186,7 +192,10 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
       jsonSchemaRoot = ensureRootLevelSchema(jsonSchemaRoot);
     }
 
-    writeSpecJsonSchemaFiles(`${configData.outputPath}/schemas/${docConfig.id}.schema.json`, jsonSchemaRoot);
+    writeSpecJsonSchemaFiles(
+      `${configData.outputPath}/${schemasOutputFolderName}/${docConfig.id}.schema.json`,
+      jsonSchemaRoot,
+    );
 
     log.info("--------------------------------------------------------------------------");
   }
