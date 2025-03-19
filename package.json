@@ -28,7 +28,7 @@
     "clear": "docusaurus clear",
     "build": "npm run build:ts && npm run generate && npm run build:docu && touch ./build/.nojekyll",
     "build:ts": "tsc -p ./tsconfig.json",
-    "build:docu": "cp -r src/generated/spec-v1/schemas/*.schema.json -t static/spec-v1/ && cp -r src/generated/spec-v1/docs/extensions/* -t \"docs/annotations/\" && cp -r src/generated/spec-v1/docs/examples/* -t \"docs/spec-v1/examples/\" && cp src/generated/spec-v1/docs/csn-interop-effective.md -t \"docs/spec-v1/\" && docusaurus build",
+    "build:docu": "rm -rf \"static/spec-v1/\" && mkdir \"static/spec-v1/\" && cp -r src/generated/spec-v1/schemas/*.schema.json -t \"static/spec-v1/\" && cp -r src/generated/spec-v1/docs/extensions/* -t \"docs/annotations/\" && cp -r src/generated/spec-v1/docs/examples/* -t \"docs/spec-v1/examples/\" && cp src/generated/spec-v1/docs/csn-interop-effective.md -t \"docs/spec-v1/\" && docusaurus build",
     "generate": "cd ./spec-toolkit && npm ci && npm run build && cd .. && node ./spec-toolkit/dist/src/cli.js --config \"./src/genConfig.json\"",
     "lint:staged": "lint-staged",
     "eslint": "eslint . --fix",
