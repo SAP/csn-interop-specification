@@ -51,6 +51,21 @@
         "@ObjectModel.semanticKey"
       ]
     },
+    "@ObjectModel.custom": {
+      "type": "boolean",
+      "description": "Added through custom development, diverges from the \"core\" model.\n\nIf applied to an entity or service, everything that it contains is also considered custom.",
+      "default": true,
+      "x-extension-targets": [
+        "Type",
+        "Entity",
+        "Service"
+      ],
+      "title": "@ObjectModel.custom",
+      "x-context": [
+        "./spec/v1/annotations/object-model.yaml",
+        "@ObjectModel.custom"
+      ]
+    },
     "@ObjectModel.modelingPattern": {
       "type": "object",
       "description": "The property declares the modeling pattern applied in this entity definition.",

@@ -99,6 +99,12 @@ export type EntityRelationship = ReferenceTarget[];
  */
 export type ObjectModel = unknown[];
 /**
+ * Added through custom development, diverges from the "core" model.
+ *
+ * If applied to an entity or service, everything that it contains is also considered custom.
+ */
+export type ObjectModelCustom = boolean;
+/**
  * The property contains element(s) containing a text for the annotated (id)element
  */
 export type ObjectModelText = unknown[];
@@ -667,6 +673,7 @@ export interface EntityDefinition {
   "@EntityRelationship.referencesWithConstantIds"?: EntityRelationship5;
   "@ObjectModel.compositionRoot"?: ObjectModelCompositionRoot;
   "@ObjectModel.representativeKey"?: ElementReference;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.modelingPattern"?: ObjectModel1;
   "@ObjectModel.supportedCapabilities"?: ObjectModel2;
   "@ObjectModel.usageType.sizeCategory"?: ObjectModelUsageType;
@@ -749,6 +756,7 @@ export interface BooleanType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -962,6 +970,7 @@ export interface StringType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1106,6 +1115,7 @@ export interface LargeStringType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1203,6 +1213,7 @@ export interface IntegerType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1332,6 +1343,7 @@ export interface Integer64Type {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1436,6 +1448,7 @@ export interface DecimalType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1535,6 +1548,7 @@ export interface DoubleType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1633,6 +1647,7 @@ export interface DateType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1730,6 +1745,7 @@ export interface TimeType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1827,6 +1843,7 @@ export interface DateTimeType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1924,6 +1941,7 @@ export interface TimestampType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -2020,6 +2038,7 @@ export interface UUIDType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -2138,6 +2157,7 @@ export interface AssociationType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -2306,6 +2326,7 @@ export interface CompositionType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -2439,6 +2460,7 @@ export interface CustomType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -2752,6 +2774,7 @@ export interface ServiceDefinition {
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@ObjectModel.representativeKey"?: ElementReference;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.modelingPattern"?: ObjectModel1;
   "@ObjectModel.supportedCapabilities"?: ObjectModel2;
   /**
