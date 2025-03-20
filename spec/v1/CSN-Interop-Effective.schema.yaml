@@ -1064,23 +1064,25 @@ definitions:
 
       cardinality:
         $ref: "#/definitions/CardinalityObject"
-
+        description: |-
+          Cardinality of the association. If omitted, `{ "min": 0, "max": 1}` is assumed.
       "on": &on
         type: array
         description: |-
-          The property `on` holds a sequence of operators and operands to describe the join condition.
+          The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.
 
-          One building block of the sequence consists of the following in the given order:
-          - Reference to a field of the association or composition target
+          The `on` condition is constructed by triples of:
+          - Reference to the target element (ID) as array with 2 items 
           - Equals Operator "="
-          - One of the following:
-            - Reference to a field of the source entity
-            - Constant Value
+          - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
 
-          This building block states that the value of the first entry of the array using "ref" should equal the value of the third entry of the array.
-          In addition, several building blocks can be lined up using an "and" operator.
+          The first and third entry MAY be reversed but the `=` operator MUST be in the middle.
+          The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
+          The local element reference MUST have one array item, which is the local element name.
 
-          See also [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
+          In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
+
+          See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
 
         items:
           oneOf:
@@ -1088,6 +1090,7 @@ definitions:
             - $ref: "#/definitions/EqualsOperator"
             - $ref: "#/definitions/AndOperator"
             - $ref: "#/definitions/OnValue"
+        minItems: 3
         examples:
           - [{ "ref": ["to_Connection", "AirlineID"] }, "=", { "ref": ["AirlineID"] }]
           - [
@@ -1112,8 +1115,9 @@ definitions:
     required:
       - "type"
       - "target"
-      - "cardinality"
       - "on"
+    x-recommended:
+      - "cardinality"
     additionalProperties: false
     x-extension-points:
       - Type
@@ -1156,6 +1160,8 @@ definitions:
 
       cardinality:
         $ref: "#/definitions/CardinalityObject"
+        description: |-
+          Cardinality of the composition. If omitted, `{ "min": 0, "max": 1}` is assumed.
 
       on: *on
 
@@ -1163,8 +1169,9 @@ definitions:
     required:
       - "type"
       - "target"
-      - "cardinality"
       - "on"
+    x-recommended:
+      - "cardinality"
     additionalProperties: false
     x-extension-points:
       - Type
@@ -1303,13 +1310,14 @@ definitions:
       - val
     additionalProperties: false
 
-  EnumValue:
-    title: Value Object
+  EnumDictionaryEntry:
+    title: Enum Dictionary Entry
     type: object
     description: |-
-      Enum CQN literal value expression.
-
-      The literal expression optionally specifies a constant val as a literal plus optional annotations.
+      Describes a possible member for enums.
+      The `val` optionally specifies a constant val as a literal plus optional annotations.
+    x-extension-points:
+      - EnumDictionaryEntry
     properties:
       val:
         type: ["string", "number", "boolean", "null"]
@@ -1391,16 +1399,18 @@ definitions:
       ref:
         type: array
         description: |-
-          Description of the target with *association name* and *target element name* in target entity`
-          Description of the source *source element name*
+          Reference to external target with *association name* and *target element name* in `target` entity (array with 2 items)
+          Reference to local *source element name* (array with 1 item).
 
           MUST NOT:
-          - use $ as leading character of an element
-          - use session variables
+          - use $ as leading character of an element (e.g. for session variables)
         items:
           type: string
+          pattern: ^(?!\$).*
           x-association-target: &associationTargetAllElements
             - "#/definitions/CdsType"
+        minItems: 1
+        maxItems: 2
     required:
       - ref
     additionalProperties: false
@@ -1436,13 +1446,13 @@ definitions:
   EnumDictionary:
     title: Enum Dictionary
     description: |-
-      Dictionary of enum member elements with the name being the enum symbol and the value being a CQN literal value expression.
+      Dictionary of enum member elements with the name is the enum symbol and the value the literal value.
     type: object
     patternProperties:
       "^.+$":
-        $ref: "#/definitions/EnumValue"
+        $ref: "#/definitions/EnumDictionaryEntry"
     examples:
-      - { "submitted": { val: 1 }, "fulfilled": { val: 2 } }
+      - { "submitted": { val: 1 }, "fulfilled": { val: 2, "@EndUserText.label": "Fulfilled" } }
       - { "male": {}, "female": {}, "non_binary": { val: "non-binary" } }
 
   ElementReference:
@@ -1493,25 +1503,6 @@ definitions:
       - "="
     additionalProperties: false
 
-  EnumValueObject:
-    title: Enum Value Object
-    type: object
-    description: |-
-      Enum values are given in object format:
-
-      ```js
-      "<definition name>": {
-        "<annotation key of type Enum>": {"#": "<enum value>"}
-      ```
-    properties:
-      "#":
-        type: string
-        description: |-
-          The enum value as a string.
-    additionalProperties: false
-    required:
-      - "#"
-
   TypeDefinition:
     title: Type Definition
     type: object
@@ -1527,7 +1518,6 @@ definitions:
       - Attributes and annotations MUST be also copied and merged with those defined in the [element](#elemententry) using this derived type.
         This ensures that consumers only have to lookup the CDS type and don't have to merge attributes and annotations.
     x-extension-points:
-      - TypeDefinition
       - Type
     properties:
       kind:
@@ -1725,8 +1715,8 @@ definitions:
       - type
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - BooleanTypeDefinition
+      - Type
+      - BooleanType
     x-header-level: 4
     examples:
       - { "kind": "type", "type": "cds.Boolean", "default": { "val": true } }
@@ -1745,8 +1735,8 @@ definitions:
       - kind
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - StringTypeDefinition
+      - Type
+      - StringType
     x-header-level: 4
     examples:
       - { "kind": "type", "type": "cds.String", "length": 3, "default": { "val": "foo" } }
@@ -1765,8 +1755,8 @@ definitions:
       - kind
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - LargeStringTypeDefinition
+      - Type
+      - LargeStringType
     x-header-level: 4
 
   IntegerTypeDefinition:
@@ -1783,8 +1773,8 @@ definitions:
       - kind
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - IntegerTypeDefinition
+      - Type
+      - IntegerType
     x-header-level: 4
     examples:
       - { "kind": "type", "type": "cds.Integer", "default": { "val": 123 } }
@@ -1803,8 +1793,8 @@ definitions:
       - kind
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - Integer64TypeDefinition
+      - Type
+      - Integer64Type
     x-header-level: 4
 
   DecimalTypeDefinition:
@@ -1821,8 +1811,8 @@ definitions:
       - kind
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - DecimalTypeDefinition
+      - Type
+      - DecimalType
     x-header-level: 4
     examples:
       - { "kind": "type", "type": "cds.Decimal", "precision": 16, "scale": 3, "default": { "val": 12.3 } }
@@ -1841,8 +1831,8 @@ definitions:
       - kind
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - DoubleTypeDefinition
+      - Type
+      - DoubleType
     x-header-level: 4
 
   DateTypeDefinition:
@@ -1859,8 +1849,8 @@ definitions:
       - type
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - DateTypeDefinition
+      - Type
+      - DateType
     x-header-level: 4
     examples:
       - { "kind": "type", "type": "cds.Date" }
@@ -1879,8 +1869,8 @@ definitions:
       - type
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - TimeTypeDefinition
+      - Type
+      - TimeType
     x-header-level: 4
 
   DateTimeTypeDefinition:
@@ -1897,8 +1887,8 @@ definitions:
       - type
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - DateTimeTypeDefinition
+      - Type
+      - DateTimeType
     x-header-level: 4
 
   TimestampTypeDefinition:
@@ -1915,8 +1905,8 @@ definitions:
       - type
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - TimestampTypeDefinition
+      - Type
+      - TimestampType
     x-header-level: 4
 
   UUIDTypeDefinition:
@@ -1933,8 +1923,8 @@ definitions:
       - type
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - UUIDTypeDefinition
+      - Type
+      - UUIDType
     x-header-level: 4
 
   AssociationTypeDefinition:
@@ -1954,8 +1944,8 @@ definitions:
       - "on"
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - AssociationTypeDefinition
+      - Type
+      - AssociationType
     x-header-level: 4
     examples:
       - {
@@ -1983,8 +1973,8 @@ definitions:
       - "on"
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - CompositionTypeDefinition
+      - Type
+      - CompositionType
     x-header-level: 4
     examples:
       - {

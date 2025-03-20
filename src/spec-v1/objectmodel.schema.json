@@ -182,6 +182,45 @@
       ],
       "$ref": "#/definitions/ElementReference"
     },
+    "@ObjectModel.usageType.sizeCategory": {
+      "type": "object",
+      "description": "The size category enables the consumer to judge the possible result data set size. \nIt is a pure estimation at design time while modeling the entity what the data set size would be at runtime.\nIt reflects the set of data which has to be searched through to compute for example a count(*) of the data. \n\nThe labels correspond to the following size categories (expected number of rows at production customers):\n- S: less than 1000\n- M: less than 100.000\n- L: less than 10.000.000\n- XL: less than 100.000.000  \n- XXL: more than 100.000.000",
+      "properties": {
+        "#": {
+          "type": "string",
+          "description": "Provide the value in `{ \"#\": \"<value>\" }` enum notation.",
+          "enum": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+          ],
+          "x-context": [
+            "./spec/v1/annotations/object-model.yaml",
+            "@ObjectModel.usageType.sizeCategory",
+            "#"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "#"
+      ],
+      "x-extension-targets": [
+        "Entity"
+      ],
+      "examples": [
+        {
+          "#": "XL"
+        }
+      ],
+      "title": "@ObjectModel.usageType.sizeCategory",
+      "x-context": [
+        "./spec/v1/annotations/object-model.yaml",
+        "@ObjectModel.usageType.sizeCategory"
+      ]
+    },
     "@ObjectModel.SupportedCapabilities_EnumValue": {
       "title": "Supported Capabilities Enum Value",
       "type": "object",

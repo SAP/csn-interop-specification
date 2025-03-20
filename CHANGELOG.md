@@ -10,13 +10,41 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+### Fixed
+
+- Fixed the "scope" of annotations that belong to type, that they also apply to type definitions
+
+## [1.0.2]
+
+### Added
+
+- Added relevant annotations (extensions) explicitly to enum value object
+- Added JSON Schema based constraints for element references used in `on` conditions, element references array must have at least 1 item and most 2 items
+- Added JSON Schema based constraints for `on` used in association and and composition, `on` array must have min array items 3
+
+### Changed
+
+- BREAKING: TypeScript interface `ValueObject` renamed to `EnumDictionaryEntry` for more clarity
+
+## [1.0.1]
+
+### Fixed
+
+- Fixed wrong enum notation for `@ObjectModel.usageType.sizeCategory`
+  - Correct use: `"@ObjectModel.usageType.sizeCategory": { "#": "XL" }`
+
+## [1.0.0]
+
 ### Added
 
 - Added `@Semantics.valueRange` annotation
 - Added `UI_PROVIDER_PROJECTION_SOURCE` as enum value to `ObjectModel.supportedCapabilities`
+- Added `@ObjectModel.usageType.sizeCategory` annotation
 
 ### Changed
 
+- Changed `cardinality` from mandatory to recommended property.
+  - All its values have defaults, so if it is missing `{ "min": 0, "max": 1}` is assumed.
 - BREAKING: deleted schema `csnInteropEffectiveSchemaWithAnnotations`, for consumers use `csnInteropEffectiveSchema` equivalent instead
 - BREAKING: spec-toolkit no longer part of the csn-interop-specification package exports
 

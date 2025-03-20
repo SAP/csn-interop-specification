@@ -94,6 +94,10 @@ const config = {
             to: "/spec-v1/csn-interop-effective",
           },
           {
+            label: "Tools",
+            to: "/tools",
+          },
+          {
             label: "FAQ",
             to: "/faq",
           },

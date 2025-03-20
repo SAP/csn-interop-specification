@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/package",
   "name": "@sap/csn-interop-specification",
-  "version": "0.4.0",
+  "version": "1.0.2",
   "description": "CSN Interop Specification.",
   "author": "SAP SE",
   "license": "Apache-2.0",
@@ -55,9 +55,13 @@
     "@types/fs-extra": "11.0.4",
     "@types/jest": "29.5.14",
     "@types/js-yaml": "4.0.9",
-    "@types/lodash": "4.17.15",
+    "@types/lodash": "4.17.16",
     "@types/minimist": "1.2.5",
+<<<<<<< HEAD
     "@types/node": "22.13.5",
+=======
+    "@types/node": "22.13.9",
+>>>>>>> main
     "fast-glob": "3.3.3",
     "fs-extra": "11.3.0",
     "gfm-escape": "0.2.0",
@@ -69,13 +73,21 @@
     "json-schema": "0.4.0",
     "json-schema-library": "9.3.5",
     "lint-staged": "15.4.3",
+<<<<<<< HEAD
     "prettier": "3.5.2",
+=======
+    "prettier": "3.5.3",
+>>>>>>> main
     "prism-react-renderer": "2.4.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "ts-jest": "29.2.6",
     "tsx": "4.19.3",
+<<<<<<< HEAD
     "typescript": "5.7.3"
+=======
+    "typescript": "5.8.2"
+>>>>>>> main
   },
   "lint-staged": {
     "./spec/*/*.yaml": [
