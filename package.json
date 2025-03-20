@@ -1,12 +1,12 @@
 {
   "$schema": "http://json.schemastore.org/package",
   "name": "@sap/csn-interop-specification",
-  "version": "0.4.0",
+  "version": "1.0.2",
   "description": "CSN Interop Specification.",
   "author": "SAP SE",
   "license": "Apache-2.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "engines": {
     "node": ">=20.0.0",
     "npm": ">=10.0.0"
@@ -18,10 +18,10 @@
   "homepage": "https://sap.github.io/csn-interop-specification/",
   "files": [
     "README.md",
-    "dist/index.js",
-    "dist/index.d.ts",
-    "dist/spec-v1/",
-    "dist/types/"
+    "dist/src/index.js",
+    "dist/src/index.d.ts",
+    "dist/src/spec-v1/",
+    "dist/src/types/"
   ],
   "scripts": {
     "clean": "tsx src/clean.ts",
@@ -55,9 +55,9 @@
     "@types/fs-extra": "11.0.4",
     "@types/jest": "29.5.14",
     "@types/js-yaml": "4.0.9",
-    "@types/lodash": "4.17.15",
+    "@types/lodash": "4.17.16",
     "@types/minimist": "1.2.5",
-    "@types/node": "22.13.1",
+    "@types/node": "22.13.9",
     "fast-glob": "3.3.3",
     "fs-extra": "11.3.0",
     "gfm-escape": "0.2.0",
@@ -69,13 +69,13 @@
     "json-schema": "0.4.0",
     "json-schema-library": "9.3.5",
     "lint-staged": "15.4.3",
-    "prettier": "3.5.0",
+    "prettier": "3.5.3",
     "prism-react-renderer": "2.4.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "ts-jest": "29.2.5",
-    "tsx": "4.19.2",
-    "typescript": "5.7.3"
+    "ts-jest": "29.2.6",
+    "tsx": "4.19.3",
+    "typescript": "5.8.2"
   },
   "lint-staged": {
     "./spec/*/*.yaml": [

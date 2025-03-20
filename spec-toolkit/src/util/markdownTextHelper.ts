@@ -45,10 +45,6 @@ export function escapeHtmlChars(input: string): string {
   return input;
 }
 
-export function getOutputFileName(title: string): string {
-  return title.toLowerCase().split(" ").join("-");
-}
-
 /**
  * Generates a YAML Frontmatter header with common needed meta information
  */

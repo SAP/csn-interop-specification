@@ -1,31 +1,27 @@
 {
-  "description": "JSON Schema with custom (x-) annotations",
+  "description": "JSON Schema with custom (x-) properties",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "@Semantics",
-  "x-extension": {
-    "targetDocument": "./spec/v1/CSN-Interop-Effective.schema.yaml",
-    "targetLink": "../spec-v1/csn-interop-effective"
-  },
   "definitions": {
     "@Semantics.valueRange": {
       "type": "object",
-      "description": "Informs consumers about the value range of a CDS element, allowing to specify minimal and/or maximal values, and indicate whether these are exclusive or inclusive. \nThis value range can be used for client-side validation of user input.",
+      "description": "Informs consumers about the value range of a CDS element, allowing to specify minimal and/or maximal values, and indicate whether these are exclusive or inclusive.\nThis value range can be used for client-side validation of user input.",
       "properties": {
         "minimum": {
           "type": "string",
           "description": "Specifies the minimum value.",
           "x-context": [
-            "./spec/annotations/semantics.yaml",
+            "./spec/v1/annotations/semantics.yaml",
             "@Semantics.valueRange",
             "minimum"
           ]
         },
         "exclusiveMinimum": {
           "type": "boolean",
-          "description": "Specifies if the lower boundary should be excluded. \nNot specifying this annotation means that the lower boundary is included.",
+          "description": "Specifies if the lower boundary should be excluded.\nNot specifying this annotation means that the lower boundary is included.",
           "default": false,
           "x-context": [
-            "./spec/annotations/semantics.yaml",
+            "./spec/v1/annotations/semantics.yaml",
             "@Semantics.valueRange",
             "exclusiveMinimum"
           ]
@@ -34,17 +30,17 @@
           "type": "string",
           "description": "Specifies the maximum value.",
           "x-context": [
-            "./spec/annotations/semantics.yaml",
+            "./spec/v1/annotations/semantics.yaml",
             "@Semantics.valueRange",
             "maximum"
           ]
         },
         "exclusiveMaximum": {
           "type": "boolean",
-          "description": "Specifies if the upper boundary should be excluded. \nNot specifying this annotation means that the upper boundary is included.",
+          "description": "Specifies if the upper boundary should be excluded.\nNot specifying this annotation means that the upper boundary is included.",
           "default": false,
           "x-context": [
-            "./spec/annotations/semantics.yaml",
+            "./spec/v1/annotations/semantics.yaml",
             "@Semantics.valueRange",
             "exclusiveMaximum"
           ]
@@ -58,7 +54,7 @@
       ],
       "title": "@Semantics.valueRange",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.valueRange"
       ]
     },
@@ -71,12 +67,12 @@
       ],
       "title": "@Semantics.currencyCode",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.currencyCode"
       ]
     },
     "@Semantics.amount.currencyCode": {
-      "description": "The element contains an amount. \nThe annotation points to an element containing the currency code.",
+      "description": "The element contains an amount.\nThe annotation points to an element containing the currency code.",
       "x-ref-to-doc": {
         "title": "Element Reference",
         "ref": "#/definitions/ElementReference"
@@ -86,7 +82,7 @@
       ],
       "title": "@Semantics.amount.currencyCode",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.amount.currencyCode"
       ],
       "$ref": "#/definitions/ElementReference"
@@ -100,7 +96,7 @@
       ],
       "title": "@Semantics.unitOfMeasure",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.unitOfMeasure"
       ]
     },
@@ -115,7 +111,7 @@
       ],
       "title": "@Semantics.quantity.unitOfMeasure",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.quantity.unitOfMeasure"
       ],
       "$ref": "#/definitions/ElementReference"
@@ -125,12 +121,11 @@
       "const": true,
       "description": "The element states the day of month.",
       "x-extension-targets": [
-        "IntegerType",
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.calendar.dayOfMonth",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.calendar.dayOfMonth"
       ]
     },
@@ -139,12 +134,11 @@
       "const": true,
       "description": "The element states the day of year.",
       "x-extension-targets": [
-        "IntegerType",
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.calendar.dayOfYear",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.calendar.dayOfYear"
       ]
     },
@@ -153,12 +147,11 @@
       "const": true,
       "description": "The element states the calendar week.",
       "x-extension-targets": [
-        "IntegerType",
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.calendar.week",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.calendar.week"
       ]
     },
@@ -167,12 +160,11 @@
       "const": true,
       "description": "The element states the calendar month.",
       "x-extension-targets": [
-        "IntegerType",
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.calendar.month",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.calendar.month"
       ]
     },
@@ -181,12 +173,11 @@
       "const": true,
       "description": "The element states the calendar quarter.",
       "x-extension-targets": [
-        "IntegerType",
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.calendar.quarter",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.calendar.quarter"
       ]
     },
@@ -195,12 +186,11 @@
       "const": true,
       "description": "The element states the calendar halfyear.",
       "x-extension-targets": [
-        "IntegerType",
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.calendar.halfyear",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.calendar.halfyear"
       ]
     },
@@ -209,12 +199,11 @@
       "const": true,
       "description": "The element states the calendar year.",
       "x-extension-targets": [
-        "IntegerType",
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.calendar.year",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.calendar.year"
       ]
     },
@@ -223,12 +212,11 @@
       "const": true,
       "description": "The element states the calendar year week.",
       "x-extension-targets": [
-        "IntegerType",
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.calendar.yearWeek",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.calendar.yearWeek"
       ]
     },
@@ -237,12 +225,11 @@
       "const": true,
       "description": "The element states the calendar year month.",
       "x-extension-targets": [
-        "IntegerType",
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.calendar.yearMonth",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.calendar.yearMonth"
       ]
     },
@@ -251,12 +238,11 @@
       "const": true,
       "description": "The element states the calendar year quarter.",
       "x-extension-targets": [
-        "IntegerType",
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.calendar.yearQuarter",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.calendar.yearQuarter"
       ]
     },
@@ -265,12 +251,11 @@
       "const": true,
       "description": "The element states the calendar year halfyear.",
       "x-extension-targets": [
-        "IntegerType",
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.calendar.yearHalfyear",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.calendar.yearHalfyear"
       ]
     },
@@ -279,12 +264,11 @@
       "const": true,
       "description": "The element states the calendar year variant.",
       "x-extension-targets": [
-        "IntegerType",
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.fiscal.yearVariant",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.fiscal.yearVariant"
       ]
     },
@@ -293,12 +277,11 @@
       "const": true,
       "description": "The element states the fiscal period.",
       "x-extension-targets": [
-        "IntegerType",
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.fiscal.period",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.fiscal.period"
       ]
     },
@@ -307,12 +290,11 @@
       "const": true,
       "description": "The element states the fiscal year.",
       "x-extension-targets": [
-        "IntegerType",
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.fiscal.year",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.fiscal.year"
       ]
     },
@@ -321,12 +303,11 @@
       "const": true,
       "description": "The element states the fiscal year period.",
       "x-extension-targets": [
-        "IntegerType",
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.fiscal.yearPeriod",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.fiscal.yearPeriod"
       ]
     },
@@ -335,12 +316,11 @@
       "const": true,
       "description": "The element states the fiscal quarter.",
       "x-extension-targets": [
-        "IntegerType",
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.fiscal.quarter",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.fiscal.quarter"
       ]
     },
@@ -349,12 +329,11 @@
       "const": true,
       "description": "The element states the fiscal year quarter.",
       "x-extension-targets": [
-        "IntegerType",
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.fiscal.yearQuarter",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.fiscal.yearQuarter"
       ]
     },
@@ -363,12 +342,11 @@
       "const": true,
       "description": "The element states the fiscal week.",
       "x-extension-targets": [
-        "IntegerType",
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.fiscal.week",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.fiscal.week"
       ]
     },
@@ -377,12 +355,11 @@
       "const": true,
       "description": "The element states the fiscal year week.",
       "x-extension-targets": [
-        "IntegerType",
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.fiscal.yearWeek",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.fiscal.yearWeek"
       ]
     },
@@ -391,12 +368,11 @@
       "const": true,
       "description": "The element states the fiscal day of year.",
       "x-extension-targets": [
-        "IntegerType",
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.fiscal.dayOfYear",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.fiscal.dayOfYear"
       ]
     },
@@ -405,11 +381,11 @@
       "const": true,
       "description": "The property contains a language code.",
       "x-extension-targets": [
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.language",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.language"
       ]
     },
@@ -418,11 +394,11 @@
       "const": true,
       "description": "This annotation is used to indicate a date semantic for the NVARCHAR-based ABAP type TIMS.",
       "x-extension-targets": [
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.time",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.time"
       ]
     },
@@ -431,11 +407,11 @@
       "const": true,
       "description": "The property contains a human-readable text.",
       "x-extension-targets": [
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.text",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.text"
       ]
     },
@@ -444,11 +420,11 @@
       "const": true,
       "description": "Tags a field containing a GUID in RAW16 or CHAR32 format.\n\nIt is RECOMMENDED to explicitly use the `csd.UUID` type.",
       "x-extension-targets": [
-        "StringType"
+        "Type"
       ],
       "title": "@Semantics.uuid",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.uuid"
       ]
     },
@@ -457,11 +433,11 @@
       "const": true,
       "description": "The property contains a date which is the lower boundary of a (validity) interval (for time dependent master data).",
       "x-extension-targets": [
-        "DateType"
+        "Type"
       ],
       "title": "@Semantics.businessDate.from",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.businessDate.from"
       ]
     },
@@ -470,16 +446,16 @@
       "const": true,
       "description": "The property contains a date which is the upper boundary of a (validity) interval (for time dependent master data).",
       "x-extension-targets": [
-        "DateType"
+        "Type"
       ],
       "title": "@Semantics.businessDate.to",
       "x-context": [
-        "./spec/annotations/semantics.yaml",
+        "./spec/v1/annotations/semantics.yaml",
         "@Semantics.businessDate.to"
       ]
     }
   },
   "x-context": [
-    "./spec/annotations/semantics.yaml"
+    "./spec/v1/annotations/semantics.yaml"
   ]
 }

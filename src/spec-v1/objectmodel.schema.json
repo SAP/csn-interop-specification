@@ -1,11 +1,7 @@
 {
-  "description": "JSON Schema with custom (x-) annotations",
+  "description": "JSON Schema with custom (x-) properties",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "ObjectModel",
-  "x-extension": {
-    "targetDocument": "./spec/v1/CSN-Interop-Effective.schema.yaml",
-    "targetLink": "../spec-v1/csn-interop-effective"
-  },
   "definitions": {
     "@ObjectModel.compositionRoot": {
       "type": "boolean",
@@ -16,7 +12,7 @@
       ],
       "title": "@ObjectModel.compositionRoot",
       "x-context": [
-        "./spec/annotations/object-model.yaml",
+        "./spec/v1/annotations/object-model.yaml",
         "@ObjectModel.compositionRoot"
       ]
     },
@@ -32,7 +28,7 @@
       },
       "title": "@ObjectModel.representativeKey",
       "x-context": [
-        "./spec/annotations/object-model.yaml",
+        "./spec/v1/annotations/object-model.yaml",
         "@ObjectModel.representativeKey"
       ],
       "$ref": "#/definitions/ElementReference"
@@ -51,7 +47,7 @@
       },
       "title": "@ObjectModel.semanticKey",
       "x-context": [
-        "./spec/annotations/object-model.yaml",
+        "./spec/v1/annotations/object-model.yaml",
         "@ObjectModel.semanticKey"
       ]
     },
@@ -94,7 +90,7 @@
             "NONE"
           ],
           "x-context": [
-            "./spec/annotations/object-model.yaml",
+            "./spec/v1/annotations/object-model.yaml",
             "@ObjectModel.modelingPattern",
             "#"
           ]
@@ -111,7 +107,7 @@
       ],
       "title": "@ObjectModel.modelingPattern",
       "x-context": [
-        "./spec/annotations/object-model.yaml",
+        "./spec/v1/annotations/object-model.yaml",
         "@ObjectModel.modelingPattern"
       ]
     },
@@ -127,12 +123,12 @@
       },
       "title": "@ObjectModel.supportedCapabilities",
       "x-context": [
-        "./spec/annotations/object-model.yaml",
+        "./spec/v1/annotations/object-model.yaml",
         "@ObjectModel.supportedCapabilities"
       ]
     },
     "@ObjectModel.foreignKey.association": {
-      "description": "The element is of type `cds.Association` which points to the list of values. \n\nUse only for service internal associations. For cross service associations, use the [@EntityRelationship Vocabulary](./entity-relationship) instead.",
+      "description": "The element is of type `cds.Association` which points to the list of values.\n\nUse only for service internal associations. For cross service associations, use the [@EntityRelationship Vocabulary](./entity-relationship) instead.",
       "x-extension-targets": [
         "Type"
       ],
@@ -142,7 +138,7 @@
       },
       "title": "@ObjectModel.foreignKey.association",
       "x-context": [
-        "./spec/annotations/object-model.yaml",
+        "./spec/v1/annotations/object-model.yaml",
         "@ObjectModel.foreignKey.association"
       ],
       "$ref": "#/definitions/ElementReference"
@@ -166,7 +162,7 @@
       ],
       "title": "@ObjectModel.text.element",
       "x-context": [
-        "./spec/annotations/object-model.yaml",
+        "./spec/v1/annotations/object-model.yaml",
         "@ObjectModel.text.element"
       ]
     },
@@ -181,7 +177,7 @@
       },
       "title": "@ObjectModel.text.association",
       "x-context": [
-        "./spec/annotations/object-model.yaml",
+        "./spec/v1/annotations/object-model.yaml",
         "@ObjectModel.text.association"
       ],
       "$ref": "#/definitions/ElementReference"
@@ -195,8 +191,47 @@
       ],
       "title": "@ObjectModel.tenantWideUniqueName",
       "x-context": [
-        "./spec/annotations/object-model.yaml",
+        "./spec/v1/annotations/object-model.yaml",
         "@ObjectModel.tenantWideUniqueName"
+      ]
+    },
+    "@ObjectModel.usageType.sizeCategory": {
+      "type": "object",
+      "description": "The size category enables the consumer to judge the possible result data set size. \nIt is a pure estimation at design time while modeling the entity what the data set size would be at runtime.\nIt reflects the set of data which has to be searched through to compute for example a count(*) of the data. \n\nThe labels correspond to the following size categories (expected number of rows at production customers):\n- S: less than 1000\n- M: less than 100.000\n- L: less than 10.000.000\n- XL: less than 100.000.000  \n- XXL: more than 100.000.000",
+      "properties": {
+        "#": {
+          "type": "string",
+          "description": "Provide the value in `{ \"#\": \"<value>\" }` enum notation.",
+          "enum": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+          ],
+          "x-context": [
+            "./spec/v1/annotations/object-model.yaml",
+            "@ObjectModel.usageType.sizeCategory",
+            "#"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "#"
+      ],
+      "x-extension-targets": [
+        "Entity"
+      ],
+      "examples": [
+        {
+          "#": "XL"
+        }
+      ],
+      "title": "@ObjectModel.usageType.sizeCategory",
+      "x-context": [
+        "./spec/v1/annotations/object-model.yaml",
+        "@ObjectModel.usageType.sizeCategory"
       ]
     },
     "@ObjectModel.SupportedCapabilities_EnumValue": {
@@ -235,10 +270,11 @@
             "SITUATION_DATACONTEXT",
             "KEY_USER_COPYING_TEMPLATE",
             "EXTERNAL_DATA_PROVIDER",
-            "ODM_COMPLIANT_PROVIDER"
+            "ODM_COMPLIANT_PROVIDER",
+            "UI_PROVIDER_PROJECTION_SOURCE"
           ],
           "x-context": [
-            "./spec/annotations/object-model.yaml",
+            "./spec/v1/annotations/object-model.yaml",
             "@ObjectModel.SupportedCapabilities_EnumValue",
             "#"
           ]
@@ -249,12 +285,12 @@
         "#"
       ],
       "x-context": [
-        "./spec/annotations/object-model.yaml",
+        "./spec/v1/annotations/object-model.yaml",
         "@ObjectModel.SupportedCapabilities_EnumValue"
       ]
     }
   },
   "x-context": [
-    "./spec/annotations/object-model.yaml"
+    "./spec/v1/annotations/object-model.yaml"
   ]
 }

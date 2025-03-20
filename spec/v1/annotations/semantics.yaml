@@ -1,14 +1,11 @@
 $schema: "http://json-schema.org/draft-07/schema#"
 title: "@Semantics"
-x-extension:
-  targetDocument: "./spec/v1/CSN-Interop-Effective.schema.yaml"
-  targetLink: "../spec-v1/csn-interop-effective"
 
 definitions:
   "@Semantics.valueRange":
     type: object
     description: |-
-      Informs consumers about the value range of a CDS element, allowing to specify minimal and/or maximal values, and indicate whether these are exclusive or inclusive. 
+      Informs consumers about the value range of a CDS element, allowing to specify minimal and/or maximal values, and indicate whether these are exclusive or inclusive.
       This value range can be used for client-side validation of user input.
     properties:
       minimum:
@@ -18,7 +15,7 @@ definitions:
       exclusiveMinimum:
         type: boolean
         description: |-
-          Specifies if the lower boundary should be excluded. 
+          Specifies if the lower boundary should be excluded.
           Not specifying this annotation means that the lower boundary is included.
         default: false
       maximum:
@@ -28,7 +25,7 @@ definitions:
       exclusiveMaximum:
         type: boolean
         description: |-
-          Specifies if the upper boundary should be excluded. 
+          Specifies if the upper boundary should be excluded.
           Not specifying this annotation means that the upper boundary is included.
         default: false
     x-extension-targets:
@@ -47,7 +44,7 @@ definitions:
 
   "@Semantics.amount.currencyCode": &semanticsFieldElementReference
     description: |-
-      The element contains an amount. 
+      The element contains an amount.
       The annotation points to an element containing the currency code.
     x-ref-to-doc:
       title: Element Reference

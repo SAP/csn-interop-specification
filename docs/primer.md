@@ -50,7 +50,7 @@ The entities can be assigned to a [service](#service-definitions) to indicate th
 
 <div style={{"text-align": "center", "max-width": "auto"}}>
 
-![High-level CSN structure overview](/img/high-level-model.drawio.svg "High-level CSN structure overview")
+<img src="img/high-level-model.drawio.svg" title="High-level CSN structure overview"></img>
 
 </div>
 
@@ -319,11 +319,7 @@ or as a string
 }
 ```
 
-(In CDL notation this is the difference between
-\<annotation term\>: \<element name\> (CAP style)
-and
-\<annotation term\>: ‘\<element name\>’ (RAP style)
-)
+> In CDL notation this is the difference between `<annotation term>: <element name>` (CAP style) and `<annotation term>: '<element name>'` (RAP style)
 
 ### Language-dependent annotation values
 
@@ -400,9 +396,19 @@ The (mandatory) `on` property maps elements of the local entity to elements of t
 ### On Condition
 
 The `on` condition is a predicate expression in [CXN](https://cap.cloud.sap/docs/cds/cxn#expressions) format, which binds elements of the target entity.
-In this version of the spec we limit the scope to bindings via the "=" operator, and logical operators between single target element bindings to "and".
-An operand can either refer to an element, or can be given as a fix value (a literal). Fix values are notated as a property `val` containing a literal. Element references are notated as a property `ref` containing a path to the element in question, given as an array of element names. The last entry in the array is the unqualified element name.
-Thus an element in an association target is uniquely referred to by a an array with two entries: The association name, and the name of the element in the target entity (short: target element). An element in the source/local entity does not need further qualification and shall be given by a single entry with the name of the source element.
+In CSN Interop effective we limit the scope to bindings via the `=` operator, and logical operators between single target element bindings to `and`.
+An operand can either refer to an element, or can be given as a constant value (a literal).
+Constant values are notated as a property `val` containing a literal.
+
+Element references are notated as a property `ref` containing a path to the element in question, given as an array of element names.
+The last entry in the array is the unqualified element name.
+For local references, the array will only have one item, the local element name.
+
+A reference to an element in the target entity is uniquely referred to by a an array with two entries:
+
+- First: The association name (not the target entity name!)
+- Second: The name of the element in the target entity (short: target element)
+
 So within this scope of expressiveness the pattern of an association’s on condition looks like this:
 
 ```js
@@ -429,14 +435,14 @@ So within this scope of expressiveness the pattern of an association’s on cond
           },
           "=",
           {
-            "val": <value>        // or "ref": [ <source element name> ]
+            "val": "<value>"        // or "ref": [ <source element name> ]
           },
           // "and" ...
         ]
 ```
 
-Note that that commutation rules of logical expressions apply, i.e. the sequence of expressions combined with and "=" or with an "and" is not significant and can thus be arbitrarily chosen. (As we want to bind target elements it is natural to start with those on the left side of the equation.)
-Further note that the usual operator precedencies apply, especially "=" operators are applied first and only then "and" operators. It is not necessary to add brackets in this case. (Brackets would be given as an "(" or ")" entry in the array, at the place of their occurrence.)
+Note that that commutation rules of logical expressions apply, i.e. the sequence of expressions combined with an "=" or with an "and" is not significant and can thus be arbitrarily chosen (as we want to bind target elements, it is natural to start with those on the left side of the equation).
+Further note that the usual operator precedencies apply, especially "=" operators are applied first and only then "and" operators.
 
 ### Foreign Key Associations
 

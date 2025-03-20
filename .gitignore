@@ -7,6 +7,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
+*.tgz
 
 # Dependency directories
 node_modules/
@@ -22,6 +23,7 @@ build/
 
 # Generated
 docs/spec-v1/*.md
+!docs/spec-v1/consumption.md
 docs/spec-v1/examples/*.md
 docs/annotations/*.md
 static/spec-v1/*
