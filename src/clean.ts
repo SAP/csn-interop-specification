@@ -29,7 +29,7 @@ function clean(): void {
     const files = fg.sync("**/*", {
       cwd: folder,
       absolute: true,
-      ignore: ["**/index.md", "**/index.mdx", "**/_category_.json"],
+      ignore: ["**/index.md", "**/index.mdx", "**/_category_.json", "**/consumption.md"],
     });
     for (const file of files) {
       console.debug("Deleting: " + file);

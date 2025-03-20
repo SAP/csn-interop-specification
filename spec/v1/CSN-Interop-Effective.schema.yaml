@@ -1072,7 +1072,7 @@ definitions:
           The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.
 
           The `on` condition is constructed by triples of:
-          - Reference to the target element (ID) as array with 2 items 
+          - Reference to the target element (ID) as array with 2 items
           - Equals Operator "="
           - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
 
@@ -1998,7 +1998,7 @@ definitions:
 
       A consumer MAY decide to shorten the names by only considering the Entities assigned to a particular Service and then removing the Service prefixes again.
 
-      To indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](../annotations/objectmodel#objectmodelcompositionroot) annotation.
+      To indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](../annotations/object-model#objectmodelcompositionroot) annotation.
 
       See [Primer: Service Definitions](../primer.md#service-definitions).
     x-extension-points:
