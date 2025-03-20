@@ -112,13 +112,8 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
     // Validate JSON Schema to be a valid JSON Schema document
     validateSpecJsonSchema(jsonSchemaRoot, true);
 
-    //Write Header Information and Introduction Text
-    let text = getMarkdownFrontMatter(
-      docConfig.title,
-      docConfig.sideBarPosition,
-      docConfig.sideBarDescription,
-      docConfig.tocMaxHeadingLevel,
-    );
+    // Write Header Information and Introduction Text
+    let text = getMarkdownFrontMatter(docConfig.mdFrontmatter);
     text += getIntroductionText(docConfig).trimEnd();
 
     text += "\n\n## Schema Definitions\n\n";
@@ -126,7 +121,7 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
     if (docConfig.type === "specExtension") {
       text += `* This is an extension vocabulary for [${extensionTarget?.title}](${docConfig.targetLink}).\n`;
     } else if (jsonSchemaRoot.$ref) {
-      const referencedSchema = getReferencedSchema(jsonSchemaRoot.$ref, jsonSchemaRoot, docConfig.title);
+      const referencedSchema = getReferencedSchema(jsonSchemaRoot.$ref, jsonSchemaRoot, docConfig.id);
       if (referencedSchema.title) {
         const link = getAnchorLinkFromTitle(referencedSchema.title);
         text += `* The root schema of the document is [${referencedSchema.title}](${link})\n`;
@@ -143,13 +138,6 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
       // text += `* Visual diagrams can be found here: [ORD ${title} Class Diagram](/spec-v1/diagrams/${title}.md).\n`
       text += `* The interface is available as JSON Schema: [${docConfig.id}.schema.json](${jsonSchemaRoot.$id}).\n`;
       // text += `* A high-level overview can also be exported as [Excel](/spec-v1/interfaces/${docConfig.title}.xlsx) and [CSV](/spec-v1/interfaces/${docConfig.title}.csv) file.\n`
-    }
-
-    // Add custom facts / bullet points
-    if (docConfig.facts) {
-      for (const fact of docConfig.facts) {
-        text += `* ${fact}\n`;
-      }
     }
 
     // If extension: Create extension property overview table
