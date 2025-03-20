@@ -1072,7 +1072,7 @@ definitions:
           The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.
 
           The `on` condition is constructed by triples of:
-          - Reference to the target element (ID) as array with 2 items 
+          - Reference to the target element (ID) as array with 2 items
           - Equals Operator "="
           - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
 
