@@ -264,7 +264,8 @@ Note: As a general convention we recommend to omit optional boolean properties, 
 
 ### Cardinality
 
-Please note that CSN Interop does not support arrays of scalar types, only of [cds.Association](#associations-and-compositions) and `cds.Composition` where the [cardinality](./spec-v1/csn-interop-effective#cardinality-object) can be defined.
+Please note that CSN Interop does not support arrays of scalar types, only of [cds.Association](./spec-v1/csn-interop-effective#association-type) and [cds.Composition](./spec-v1/csn-interop-effective#composition-type), which can express this in their [cardinality](./spec-v1/csn-interop-effective#cardinality-object) object.
+
 The reason is that arrays of scalar types are not supported in all tech-stacks and would require a more complex mapping.
 By not supporting this in CSN Interop, the model needs to make the decision how multi-value scalar types are to be mapped.
 

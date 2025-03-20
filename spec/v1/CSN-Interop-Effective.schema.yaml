@@ -494,11 +494,7 @@ definitions:
       An element can be either of a standard [CDS Types](#cds-type) or a [Custom Type](#custom-type).
 
       Please note that CSN Interop does not support arrays of scalar types, only of `cds.Association` and `cds.Composition`.
-      The reason is that arrays of scalar types are not supported in all tech-stacks and would require a more complex mapping.
-
-      To avoid this either: 
-        - Convert the scalar type to an Entity and use `cds.Association` or `cds.Composition` with the appropriate cardinality (RECOMMENDED).
-        - Convert the array of values into a single string, e.g. by using a delimiter or parsing it to a JSON string.
+      See [Primer: Cardinality](../primer.md#cardinality).
     properties:
       type:
         type: string
