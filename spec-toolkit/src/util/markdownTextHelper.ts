@@ -48,21 +48,22 @@ export function escapeHtmlChars(input: string): string {
 /**
  * Generates a YAML Frontmatter header with common needed meta information
  */
-export function getMarkdownFrontMatter(
-  title: string,
-  sideBarPosition: number,
-  sideBarDescription: string,
-  tocMaxHeadingLevel?: number,
-): string {
+export function getMarkdownFrontMatter(mdFrontmatter?: { [key: string]: string }): string {
   let text = "";
-  text += "---\n";
-  text += `title: "${title.split("-").join(" ")}"\n`;
-  text += `sidebar_position: ${sideBarPosition}\n`;
-  if (tocMaxHeadingLevel) {
-    text += `toc_max_heading_level: ${tocMaxHeadingLevel}\n`;
+  if (mdFrontmatter) {
+    text += "---\n";
+    for (const [key, value] of Object.entries(mdFrontmatter)) {
+      text += `${key}: "${value}"\n`;
+    }
+
+    // text += `title: "${title.split("-").join(" ")}"\n`;
+    // text += `sidebar_position: ${sideBarPosition}\n`;
+    // if (tocMaxHeadingLevel) {
+    //   text += `toc_max_heading_level: ${tocMaxHeadingLevel}\n`;
+    // }
+    // text += `description: "${sideBarDescription}"\n`;
+    text += "---\n\n";
   }
-  text += `description: "${sideBarDescription}"\n`;
-  text += "---\n\n";
   return text;
 }
 

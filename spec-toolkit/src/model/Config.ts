@@ -17,44 +17,25 @@ export type SpecConfig = MainSpecConfig | ExtensionSpecConfig;
 export interface MainSpecConfig {
   type: "spec";
   id: string;
-  title: string;
   sourceFilePath: string;
   sourceIntroFilePath?: string;
   sourceOutroFilePath?: string;
   examplesFolderPath?: string;
-
-  sideBarPosition: number;
-  sideBarDescription: string;
-
-  /**
-   * Overrides docusaurus max MD heading level that should be displayed in the table of contents (in the docusaurus right sidebar).
-   * Docusaurus default value if not specified: 3
-   */
-  tocMaxHeadingLevel?: number;
-
-  /** List of bullet points to add at the top as quick facts / links (in markdown) */
-  facts?: string[];
+  mdFrontmatter?: {
+    [key: string]: string;
+  };
 }
 export interface ExtensionSpecConfig {
   type: "specExtension";
   id: string;
-  title: string;
   sourceFilePath: string;
   sourceIntroFilePath?: string;
   sourceOutroFilePath?: string;
-  sideBarPosition: number;
-  sideBarDescription: string;
-
-  /**
-   * Overrides docusaurus max MD heading level that should be displayed in the table of contents (in the docusaurus right sidebar).
-   * Docusaurus default value if not specified: 3
-   */
-  tocMaxHeadingLevel?: number;
-
-  /** List of bullet points to add at the top as quick facts / links (in markdown) */
-  facts?: string[];
   targetDocumentId: string;
   targetLink: string;
+  mdFrontmatter?: {
+    [key: string]: string;
+  };
 }
 
 //Retrieve Text from Introduction File
