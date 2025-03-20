@@ -25,6 +25,9 @@ export type EndUserTextQuickInfo = string;
  *
  * An element can be either of a standard [CDS Types](#cds-type) or a [Custom Type](#custom-type).
  *
+ * CSN Interop does not support arrays of scalar types, only of `cds.Association` and `cds.Composition`.
+ * See [Primer: Cardinality](../primer.md#cardinality).
+ *
  * This interface was referenced by `ElementDefinitions`'s JSON-Schema definition
  * via the `patternProperty` "^(?![@]|__|\.|::).+$".
  */
@@ -2085,7 +2088,7 @@ export interface UUIDType {
  * An element of type `cds.Association`, to express a "reference" relation across Entities.
  * It works the same way as a [`cds.Composition`](#composition-type), with the difference that the latter assumes a composite relationship.
  *
- * See [Primer: Associations](../primer.md#associations).
+ * See [Primer: Associations and Compositions](../primer.md#associations-and-compositions).
  */
 export interface AssociationType {
   /**
@@ -2253,7 +2256,7 @@ export interface OnValue {
  * An element of type `cds.Composition`, to express a "contains" relation across Entities.
  * It works the same as a [`cds.Association`](#association-type).
  *
- * See [Primer: Associations](../primer.md#associations).
+ * See [Primer: Associations and Compositions](../primer.md#associations-and-compositions).
  */
 export interface CompositionType {
   /**

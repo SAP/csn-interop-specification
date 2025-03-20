@@ -432,7 +432,7 @@
     },
     "ElementEntry": {
       "type": "object",
-      "description": "Definition of an Element, as put into [Element Definitions](#element-definitions).\n\nAn element can be either of a standard [CDS Types](#cds-type) or a [Custom Type](#custom-type).",
+      "description": "Definition of an Element, as put into [Element Definitions](#element-definitions).\n\nAn element can be either of a standard [CDS Types](#cds-type) or a [Custom Type](#custom-type).\n\nCSN Interop does not support arrays of scalar types, only of `cds.Association` and `cds.Composition`.\nSee [Primer: Cardinality](../primer.md#cardinality).",
       "properties": {
         "type": {
           "type": "string"
@@ -3130,7 +3130,7 @@
     "AssociationType": {
       "title": "Association Type",
       "type": "object",
-      "description": "An element of type `cds.Association`, to express a \"reference\" relation across Entities.\nIt works the same way as a [`cds.Composition`](#composition-type), with the difference that the latter assumes a composite relationship.\n\nSee [Primer: Associations](../primer.md#associations).",
+      "description": "An element of type `cds.Association`, to express a \"reference\" relation across Entities.\nIt works the same way as a [`cds.Composition`](#composition-type), with the difference that the latter assumes a composite relationship.\n\nSee [Primer: Associations and Compositions](../primer.md#associations-and-compositions).",
       "properties": {
         "type": {
           "type": "string",
@@ -3433,7 +3433,7 @@
     "CompositionType": {
       "title": "Composition Type",
       "type": "object",
-      "description": "An element of type `cds.Composition`, to express a \"contains\" relation across Entities.\nIt works the same as a [`cds.Association`](#association-type).\n\nSee [Primer: Associations](../primer.md#associations).",
+      "description": "An element of type `cds.Composition`, to express a \"contains\" relation across Entities.\nIt works the same as a [`cds.Association`](#association-type).\n\nSee [Primer: Associations and Compositions](../primer.md#associations-and-compositions).",
       "properties": {
         "type": {
           "type": "string",
