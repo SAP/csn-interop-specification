@@ -2,6 +2,7 @@ import fs from "fs-extra";
 import path from "path";
 export interface ConfigFile {
   generalConfig: GeneralConfig;
+  outputPath: string;
   docsConfig: SpecConfig[];
 }
 
@@ -18,15 +19,10 @@ export interface MainSpecConfig {
   id: string;
   title: string;
   sourceFilePath: string;
-  sourceIntroductionFilePath?: string;
-  sourceFileOutro?: string;
-  targetMarkdownFilePath: string;
-  targetJsonSchemaFilePath: string;
-  targetTypescriptTypesFilePath: string;
-  examples?: {
-    sourceJsonFolderPath: "./examples";
-    targetMarkdownFolderPath: "./docs/spec-v1/examples";
-  };
+  sourceIntroFilePath?: string;
+  sourceOutroFilePath?: string;
+  examplesFolderPath?: string;
+
   sideBarPosition: number;
   sideBarDescription: string;
 
@@ -44,10 +40,8 @@ export interface ExtensionSpecConfig {
   id: string;
   title: string;
   sourceFilePath: string;
-  sourceIntroductionFilePath?: string;
-  sourceFileOutro?: string;
-  targetMarkdownFilePath: string;
-  targetJsonSchemaFilePath: string;
+  sourceIntroFilePath?: string;
+  sourceOutroFilePath?: string;
   sideBarPosition: number;
   sideBarDescription: string;
 
@@ -59,17 +53,17 @@ export interface ExtensionSpecConfig {
 
   /** List of bullet points to add at the top as quick facts / links (in markdown) */
   facts?: string[];
-  targetDocument: string;
+  targetDocumentId: string;
   targetLink: string;
 }
 
 //Retrieve Text from Introduction File
 export function getIntroductionText(docConfig: SpecConfig): string {
-  if (!docConfig.sourceIntroductionFilePath) {
+  if (!docConfig.sourceIntroFilePath) {
     return "";
   }
 
-  const mdFilePath = path.resolve(docConfig.sourceIntroductionFilePath);
+  const mdFilePath = path.resolve(docConfig.sourceIntroFilePath);
 
   if (!fs.existsSync(mdFilePath)) {
     throw new Error("Could not read markdown file: " + mdFilePath);
@@ -79,24 +73,15 @@ export function getIntroductionText(docConfig: SpecConfig): string {
 }
 //Retrieve Text from Introduction File
 export function getOutroText(docConfig: SpecConfig): string {
-  if (!docConfig.sourceFileOutro) {
+  if (!docConfig.sourceOutroFilePath) {
     return "";
   }
 
-  const mdFilePath = path.resolve(docConfig.sourceFileOutro);
+  const mdFilePath = path.resolve(docConfig.sourceOutroFilePath);
 
   if (!fs.existsSync(mdFilePath)) {
     throw new Error("Could not read markdown file: " + mdFilePath);
   }
 
   return fs.readFileSync(mdFilePath, "utf-8");
-}
-
-export function getTargetDocumentForDocumentId(documentID: string, docsConfigs: SpecConfig[]): string {
-  for (let i = 0; i < docsConfigs.length; i++) {
-    if (docsConfigs[i].id === documentID) {
-      return docsConfigs[i].targetMarkdownFilePath;
-    }
-  }
-  return "";
 }
