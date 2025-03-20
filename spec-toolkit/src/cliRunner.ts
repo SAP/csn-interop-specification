@@ -3,6 +3,7 @@ import * as packageJson from "../package.json" with { type: "json" };
 import { readFileSync } from "node:fs";
 import { generate } from "./generate.js";
 import path from "node:path";
+import { ConfigFile } from "./model/Config.js";
 
 interface CliOptions {
   config: string;
@@ -30,18 +31,21 @@ function init(argv: string[]): void {
 }
 
 async function run(argv: CliOptions): Promise<void> {
-  let configData = "";
+  let configFileContent = "";
   const configFilePath = path.join(process.cwd(), argv.config);
 
   try {
-    configData = readFileSync(configFilePath, "utf-8");
+    configFileContent = readFileSync(configFilePath, "utf-8");
   } catch (error) {
     process.stderr.write(`[error]: ${error}\n\n`);
     process.exit(1);
   }
 
   try {
-    await generate(JSON.parse(configData));
+    const configData = JSON.parse(configFileContent);
+    // TODO: Validate configData against spec-toolkit config JSON schema(tbd) before casting it as ConfigFile
+    // throw error if validation fails
+    await generate(configData as ConfigFile);
   } catch (error) {
     process.stderr.write(`${error}\n\n`);
     process.exit(1);

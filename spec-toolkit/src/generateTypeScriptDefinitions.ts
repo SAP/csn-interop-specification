@@ -15,15 +15,19 @@ import { compile as jsonSchemaToTypeScript } from "json-schema-to-typescript";
 import { log } from "./util/log.js";
 import yaml from "js-yaml";
 import { ConfigFile } from "./model/Config.js";
+import { schemasOutputFolderName, typesOutputFolderName } from "./generate.js";
 
 export async function generateTypeScriptDefinitions(configData: ConfigFile): Promise<void> {
+  let indexExportStatements = "";
+
   for (const docConfig of configData.docsConfig) {
     // typescript types will be generated only for spec documents
     // because specExtension documents are just fragments that will be merged into the bigger spec document
     // it does not make sense to have typescript types generated out of fragment files
     if (docConfig.type === "spec") {
-      const xSchemaFileName = docConfig.targetJsonSchemaFilePath.split(".json").join(".x.json");
-      let schema = yaml.load(fs.readFileSync(xSchemaFileName).toString()) as SpecJsonSchemaRoot;
+      const xSchemaFileName = `${docConfig.id}.schema.json`.split(".json").join(".x.json");
+      const xSchemaFilePath = `${configData.outputPath}/${schemasOutputFolderName}/${xSchemaFileName}`;
+      let schema = yaml.load(fs.readFileSync(`${xSchemaFilePath}`).toString()) as SpecJsonSchemaRoot;
 
       schema = convertRefToDocToStandardRef(schema);
       schema = convertOneOfEnum(schema);
@@ -74,11 +78,16 @@ export async function generateTypeScriptDefinitions(configData: ConfigFile): Pro
         definitions = definitions.replace(replacement.oldValue, replacement.newValue);
       }
 
-      fs.unlinkSync(xSchemaFileName);
-      log.info(`Cleanup temporary file ${xSchemaFileName}`);
+      fs.unlinkSync(xSchemaFilePath);
+      log.info(`Cleanup temporary file ${xSchemaFilePath}`);
 
-      await fs.outputFile(`${process.cwd()}/${docConfig.targetTypescriptTypesFilePath}`, definitions);
-      log.info(`Result: ./${docConfig.targetTypescriptTypesFilePath}`);
+      const typesFile = `${process.cwd()}/${configData.outputPath}/${typesOutputFolderName}/${docConfig.id}.ts`;
+      await fs.outputFile(typesFile, definitions);
+      log.info(`Result: ${typesFile}`);
+      indexExportStatements += `export * from "./${docConfig.id}";\n`;
     }
   }
+
+  const indexFilePath = `${process.cwd()}/${configData.outputPath}/${typesOutputFolderName}/index.ts`;
+  fs.outputFileSync(indexFilePath, indexExportStatements);
 }

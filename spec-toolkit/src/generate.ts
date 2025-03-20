@@ -10,6 +10,12 @@ import { log } from "./util/log.js";
 import { mergeSpecExtensions } from "./mergeSpecExtensions.js";
 import { ConfigFile } from "./model/Config.js";
 
+export const documentationOutputFolderName = "docs";
+export const documentationExtensionsOutputFolderName = "docs/extensions";
+export const documentationExamplesOutputFolderName = "docs/examples";
+export const typesOutputFolderName = "types";
+export const schemasOutputFolderName = "schemas";
+
 export async function generate(configData: ConfigFile): Promise<void> {
   log.info(" ");
   log.info("==========================================================================");

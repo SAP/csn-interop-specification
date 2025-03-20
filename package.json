@@ -20,16 +20,15 @@
     "README.md",
     "dist/src/index.js",
     "dist/src/index.d.ts",
-    "dist/src/spec-v1/",
-    "dist/src/types/"
+    "dist/src/generated/spec-v1"
   ],
   "scripts": {
     "clean": "tsx src/clean.ts",
     "clear": "docusaurus clear",
     "build": "npm run build:ts && npm run generate && npm run build:docu && touch ./build/.nojekyll",
     "build:ts": "tsc -p ./tsconfig.json",
-    "build:docu": "cp -r \"src/spec-v1\" -t \"static/\" && docusaurus build",
-    "generate": "cd ./spec-toolkit && npm ci && npm run build && cd .. && node ./spec-toolkit/dist/src/cli.js --config \"./src/genConfig.json\"",
+    "build:docu": "rm -rf \"static/spec-v1/\" && mkdir \"static/spec-v1/\" && cp -r src/generated/spec-v1/schemas/*.schema.json -t \"static/spec-v1/\" && cp -r src/generated/spec-v1/docs/extensions/* -t \"docs/annotations/\" && cp -r src/generated/spec-v1/docs/examples/* -t \"docs/spec-v1/examples/\" && cp src/generated/spec-v1/docs/csn-interop-effective.md -t \"docs/spec-v1/\" && docusaurus build",
+    "generate": "cd ./spec-toolkit && npm ci && npm run build && cd .. && node ./spec-toolkit/dist/src/cli.js --config ./src/genConfig.json",
     "lint:staged": "lint-staged",
     "eslint": "eslint . --fix",
     "eslint:ci": "eslint .",
@@ -80,8 +79,8 @@
   "lint-staged": {
     "./spec/*/*.yaml": [
       "npm run generate",
-      "git add ./src/types/v1/CSN-Interop-Effective.ts",
-      "git add ./src/spec-v1/*"
+      "git add ./src/generated/spec-v1/types/v1/csn-interop-effective.ts",
+      "git add ./src/generated/spec-v1/schemas/*"
     ],
     "**/*.{md,json,yaml}": [
       "npm run prettier"

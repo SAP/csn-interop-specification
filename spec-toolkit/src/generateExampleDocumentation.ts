@@ -3,6 +3,7 @@ import fs from "fs-extra";
 import * as path from "path";
 import { log } from "./util/log.js";
 import { ConfigFile } from "./model/Config.js";
+import { documentationExamplesOutputFolderName } from "./generate.js";
 
 interface ExampleDocumentsDict {
   [fileName: string]: string;
@@ -10,8 +11,8 @@ interface ExampleDocumentsDict {
 
 export function generateExampleDocumentation(configData: ConfigFile): void {
   for (const docConfig of configData.docsConfig) {
-    if (docConfig.type === "spec" && docConfig.examples) {
-      const jsonExampleFilePaths = fg.sync(`${docConfig.examples.sourceJsonFolderPath}/*.json`, { ignore: ["_*"] });
+    if (docConfig.type === "spec" && docConfig.examplesFolderPath) {
+      const jsonExampleFilePaths = fg.sync(`${docConfig.examplesFolderPath}/*.json`, { ignore: ["_*"] });
 
       const mdExamplePages: ExampleDocumentsDict = {};
 
@@ -53,8 +54,12 @@ export function generateExampleDocumentation(configData: ConfigFile): void {
 
       for (const fileName in mdExamplePages) {
         const fileContent = mdExamplePages[fileName];
-        fs.outputFileSync(path.join(docConfig.examples.targetMarkdownFolderPath, fileName), fileContent);
-        log.info("Written: " + path.join(docConfig.examples.targetMarkdownFolderPath, fileName));
+        const exampleFilePath = path.join(
+          `${configData.outputPath}/${documentationExamplesOutputFolderName}`,
+          fileName,
+        );
+        fs.outputFileSync(exampleFilePath, fileContent);
+        log.info("Written: " + exampleFilePath);
       }
     }
   }
