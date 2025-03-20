@@ -10,11 +10,11 @@
       "id": "csn-interop-effective",
       "sourceFilePath": "./spec/v1/CSN-Interop-Effective.schema.yaml",
       "sourceIntroFilePath": "./spec/v1/CSN-Interop-Effective.schema.md",
-      "sideBarDescription": "Describes the technical interface / schema for CSN Interop Effective.",
       "examplesFolderPath": "./spec/v1/examples",
       "mdFrontmatter": {
         "title": "Interface Documentation",
         "sidebar_position": 1,
+        "description": "Describes the technical interface / schema for CSN Interop Effective.",
         "toc_max_heading_level": 4
       }
     },
