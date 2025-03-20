@@ -21,6 +21,10 @@ export interface MainSpecConfig {
   sourceIntroFilePath?: string;
   sourceOutroFilePath?: string;
   examplesFolderPath?: string;
+  /**
+   * Custom markdown frontmatter "key": "value" pairs that should be added to the generated markdown file.
+   * By this spec-toolkit offers support for different markdown browser rendering tools.
+   */
   mdFrontmatter?: {
     [key: string]: string;
   };
@@ -33,6 +37,10 @@ export interface ExtensionSpecConfig {
   sourceOutroFilePath?: string;
   targetDocumentId: string;
   targetLink: string;
+  /**
+   * Custom markdown frontmatter "key": "value" pairs that should be added to the generated markdown file.
+   * By this spec-toolkit offers support for different markdown browser rendering tools.
+   */
   mdFrontmatter?: {
     [key: string]: string;
   };
