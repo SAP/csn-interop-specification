@@ -1072,7 +1072,7 @@ definitions:
           The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.
 
           The `on` condition is constructed by triples of:
-          - Reference to the target element (ID) as array with 2 items 
+          - Reference to the target element (ID) as array with 2 items
           - Equals Operator "="
           - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
 
@@ -1518,6 +1518,7 @@ definitions:
       - Attributes and annotations MUST be also copied and merged with those defined in the [element](#elemententry) using this derived type.
         This ensures that consumers only have to lookup the CDS type and don't have to merge attributes and annotations.
     x-extension-points:
+      - TypeDefinition
       - Type
     properties:
       kind:
@@ -1715,8 +1716,8 @@ definitions:
       - type
     additionalProperties: false
     x-extension-points:
-      - Type
-      - BooleanType
+      - TypeDefinition
+      - BooleanTypeDefinition
     x-header-level: 4
     examples:
       - { "kind": "type", "type": "cds.Boolean", "default": { "val": true } }
@@ -1735,8 +1736,8 @@ definitions:
       - kind
     additionalProperties: false
     x-extension-points:
-      - Type
-      - StringType
+      - TypeDefinition
+      - StringTypeDefinition
     x-header-level: 4
     examples:
       - { "kind": "type", "type": "cds.String", "length": 3, "default": { "val": "foo" } }
@@ -1755,8 +1756,8 @@ definitions:
       - kind
     additionalProperties: false
     x-extension-points:
-      - Type
-      - LargeStringType
+      - TypeDefinition
+      - LargeStringTypeDefinition
     x-header-level: 4
 
   IntegerTypeDefinition:
@@ -1773,8 +1774,8 @@ definitions:
       - kind
     additionalProperties: false
     x-extension-points:
-      - Type
-      - IntegerType
+      - TypeDefinition
+      - IntegerTypeDefinition
     x-header-level: 4
     examples:
       - { "kind": "type", "type": "cds.Integer", "default": { "val": 123 } }
@@ -1793,8 +1794,8 @@ definitions:
       - kind
     additionalProperties: false
     x-extension-points:
-      - Type
-      - Integer64Type
+      - TypeDefinition
+      - Integer64TypeDefinition
     x-header-level: 4
 
   DecimalTypeDefinition:
@@ -1811,8 +1812,8 @@ definitions:
       - kind
     additionalProperties: false
     x-extension-points:
-      - Type
-      - DecimalType
+      - TypeDefinition
+      - DecimalTypeDefinition
     x-header-level: 4
     examples:
       - { "kind": "type", "type": "cds.Decimal", "precision": 16, "scale": 3, "default": { "val": 12.3 } }
@@ -1831,8 +1832,8 @@ definitions:
       - kind
     additionalProperties: false
     x-extension-points:
-      - Type
-      - DoubleType
+      - TypeDefinition
+      - DoubleTypeDefinition
     x-header-level: 4
 
   DateTypeDefinition:
@@ -1849,8 +1850,8 @@ definitions:
       - type
     additionalProperties: false
     x-extension-points:
-      - Type
-      - DateType
+      - TypeDefinition
+      - DateTypeDefinition
     x-header-level: 4
     examples:
       - { "kind": "type", "type": "cds.Date" }
@@ -1869,8 +1870,8 @@ definitions:
       - type
     additionalProperties: false
     x-extension-points:
-      - Type
-      - TimeType
+      - TypeDefinition
+      - TimeTypeDefinition
     x-header-level: 4
 
   DateTimeTypeDefinition:
@@ -1887,8 +1888,8 @@ definitions:
       - type
     additionalProperties: false
     x-extension-points:
-      - Type
-      - DateTimeType
+      - TypeDefinition
+      - DateTimeTypeDefinition
     x-header-level: 4
 
   TimestampTypeDefinition:
@@ -1905,8 +1906,8 @@ definitions:
       - type
     additionalProperties: false
     x-extension-points:
-      - Type
-      - TimestampType
+      - TypeDefinition
+      - TimestampTypeDefinition
     x-header-level: 4
 
   UUIDTypeDefinition:
@@ -1923,8 +1924,8 @@ definitions:
       - type
     additionalProperties: false
     x-extension-points:
-      - Type
-      - UUIDType
+      - TypeDefinition
+      - UUIDTypeDefinition
     x-header-level: 4
 
   AssociationTypeDefinition:
@@ -1944,8 +1945,8 @@ definitions:
       - "on"
     additionalProperties: false
     x-extension-points:
-      - Type
-      - AssociationType
+      - TypeDefinition
+      - AssociationTypeDefinition
     x-header-level: 4
     examples:
       - {
@@ -1973,8 +1974,8 @@ definitions:
       - "on"
     additionalProperties: false
     x-extension-points:
-      - Type
-      - CompositionType
+      - TypeDefinition
+      - CompositionTypeDefinition
     x-header-level: 4
     examples:
       - {

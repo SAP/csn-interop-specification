@@ -10,10 +10,6 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
-### Fixed
-
-- Fixed the "scope" of annotations that belong to type, that they also apply to type definitions
-
 ## [1.0.2]
 
 ### Added
