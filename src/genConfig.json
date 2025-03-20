@@ -10,56 +10,65 @@
       "id": "csn-interop-effective",
       "sourceFilePath": "./spec/v1/CSN-Interop-Effective.schema.yaml",
       "sourceIntroFilePath": "./spec/v1/CSN-Interop-Effective.schema.md",
-      "sideBarPosition": 1,
-      "tocMaxHeadingLevel": 4,
-      "sideBarDescription": "Describes the technical interface / schema for CSN Interop Effective.",
-      "title": "Interface Documentation",
       "examplesFolderPath": "./spec/v1/examples",
-      "facts": []
+      "mdFrontmatter": {
+        "title": "Interface Documentation",
+        "sidebar_position": 1,
+        "description": "Describes the technical interface / schema for CSN Interop Effective.",
+        "toc_max_heading_level": 4
+      }
     },
     {
       "type": "specExtension",
       "id": "aggregation",
       "sourceFilePath": "./spec/v1/annotations/aggregation.yaml",
       "sourceIntroFilePath": "./spec/v1/annotations/aggregation.md",
-      "sideBarPosition": 2,
-      "sideBarDescription": "@Aggregation annotations.",
-      "title": "@Aggregation",
       "targetDocumentId": "csn-interop-effective",
-      "targetLink": "../spec-v1/csn-interop-effective"
+      "targetLink": "../spec-v1/csn-interop-effective",
+      "mdFrontmatter": {
+        "title": "@Aggregation",
+        "sidebar_position": 2,
+        "description": "@Aggregation annotations."
+      }
     },
     {
       "type": "specExtension",
       "id": "analytics-details",
       "sourceFilePath": "./spec/v1/annotations/analytics-details.yaml",
       "sourceIntroFilePath": "./spec/v1/annotations/analytics-details.md",
-      "sideBarPosition": 3,
-      "sideBarDescription": "@AnalyticsDetails for data analytics use cases.",
-      "title": "@AnalyticsDetails",
       "targetDocumentId": "csn-interop-effective",
-      "targetLink": "../spec-v1/csn-interop-effective"
+      "targetLink": "../spec-v1/csn-interop-effective",
+      "mdFrontmatter": {
+        "title": "@AnalyticsDetails",
+        "sidebar_position": 3,
+        "description": "@AnalyticsDetails for data analytics use cases."
+      }
     },
     {
       "type": "specExtension",
       "id": "consumption",
       "sourceFilePath": "./spec/v1/annotations/consumption.yaml",
       "sourceIntroFilePath": "./spec/v1/annotations/consumption.md",
-      "sideBarPosition": 4,
-      "sideBarDescription": "@Consumption annotations.",
-      "title": "@Consumption",
       "targetDocumentId": "csn-interop-effective",
-      "targetLink": "../spec-v1/csn-interop-effective"
+      "targetLink": "../spec-v1/csn-interop-effective",
+      "mdFrontmatter": {
+        "title": "@Consumption",
+        "sidebar_position": 4,
+        "description": "@Consumption annotations."
+      }
     },
     {
       "type": "specExtension",
       "id": "enduser-text",
-      "title": "@EndUserText",
       "sourceFilePath": "./spec/v1/annotations/enduser-text.yaml",
       "sourceIntroFilePath": "./spec/v1/annotations/enduser-text.md",
-      "sideBarPosition": 5,
-      "sideBarDescription": "@EndUserText annotations for end user UIs.",
       "targetDocumentId": "csn-interop-effective",
-      "targetLink": "../spec-v1/csn-interop-effective"
+      "targetLink": "../spec-v1/csn-interop-effective",
+      "mdFrontmatter": {
+        "title": "@EndUserText",
+        "sidebar_position": 5,
+        "description": "@EndUserText annotations for end user UIs."
+      }
     },
     {
       "type": "specExtension",
@@ -67,55 +76,65 @@
       "sourceFilePath": "./spec/v1/annotations/entity-relationship.yaml",
       "sourceIntroFilePath": "./spec/v1/annotations/entity-relationship.md",
       "sourceOutroFilePath": "./spec/v1/annotations/entity-relationship.outro.md",
-      "sideBarPosition": 6,
-      "sideBarDescription": "@EntityRelationship annotations for cross boundary Entity-Relationship IDs and associations.",
-      "title": "@EntityRelationship",
       "targetDocumentId": "csn-interop-effective",
-      "targetLink": "../spec-v1/csn-interop-effective"
+      "targetLink": "../spec-v1/csn-interop-effective",
+      "mdFrontmatter": {
+        "title": "@EntityRelationship",
+        "sidebar_position": 6,
+        "description": "@EntityRelationship annotations for cross boundary Entity-Relationship IDs and associations."
+      }
     },
     {
       "type": "specExtension",
       "id": "object-model",
       "sourceFilePath": "./spec/v1/annotations/object-model.yaml",
       "sourceIntroFilePath": "./spec/v1/annotations/object-model.md",
-      "sideBarPosition": 7,
-      "sideBarDescription": "@ObjectModel annotations.",
-      "title": "@ObjectModel",
       "targetDocumentId": "csn-interop-effective",
-      "targetLink": "../spec-v1/csn-interop-effective"
+      "targetLink": "../spec-v1/csn-interop-effective",
+      "mdFrontmatter": {
+        "title": "@ObjectModel",
+        "sidebar_position": 7,
+        "description": "@ObjectModel annotations."
+      }
     },
     {
       "type": "specExtension",
       "id": "odm",
       "sourceFilePath": "./spec/v1/annotations/odm.yaml",
       "sourceIntroFilePath": "./spec/v1/annotations/odm.md",
-      "sideBarPosition": 8,
-      "sideBarDescription": "@ODM for One Domain Model (ODM) related annotations.",
-      "title": "@ODM",
       "targetDocumentId": "csn-interop-effective",
-      "targetLink": "../spec-v1/csn-interop-effective"
+      "targetLink": "../spec-v1/csn-interop-effective",
+      "mdFrontmatter": {
+        "title": "@ODM",
+        "sidebar_position": 8,
+        "description": "@ODM for One Domain Model (ODM) related annotations."
+      }
     },
     {
       "type": "specExtension",
       "id": "personal-data",
       "sourceFilePath": "./spec/v1/annotations/personal-data.yaml",
       "sourceIntroFilePath": "./spec/v1/annotations/personal-data.md",
-      "sideBarPosition": 9,
-      "sideBarDescription": "@PersonalData to annotate DPP relevant information.",
-      "title": "@PersonalData",
       "targetDocumentId": "csn-interop-effective",
-      "targetLink": "../spec-v1/csn-interop-effective"
+      "targetLink": "../spec-v1/csn-interop-effective",
+      "mdFrontmatter": {
+        "title": "@PersonalData",
+        "sidebar_position": 9,
+        "description": "@PersonalData to annotate DPP relevant information."
+      }
     },
     {
       "type": "specExtension",
       "id": "semantics",
       "sourceFilePath": "./spec/v1/annotations/semantics.yaml",
       "sourceIntroFilePath": "./spec/v1/annotations/semantics.md",
-      "sideBarPosition": 10,
-      "sideBarDescription": "@Semantics annotations.",
-      "title": "@Semantics",
       "targetDocumentId": "csn-interop-effective",
-      "targetLink": "../spec-v1/csn-interop-effective"
+      "targetLink": "../spec-v1/csn-interop-effective",
+      "mdFrontmatter": {
+        "title": "@Semantics",
+        "sidebar_position": 10,
+        "description": "@Semantics annotations."
+      }
     }
   ]
 }
