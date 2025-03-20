@@ -493,7 +493,7 @@ definitions:
 
       An element can be either of a standard [CDS Types](#cds-type) or a [Custom Type](#custom-type).
 
-      Please note that CSN Interop does not support arrays of scalar types or arrays, see [Primer: Cardinality](../primer.md#cardinality).
+      Please note that CSN Interop does not support arrays of scalar types or arrays of arrays, see [Primer: Cardinality](../primer.md#cardinality).
     properties:
       type:
         type: string

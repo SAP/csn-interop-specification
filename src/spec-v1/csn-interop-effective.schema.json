@@ -432,7 +432,7 @@
     },
     "ElementEntry": {
       "type": "object",
-      "description": "Definition of an Element, as put into [Element Definitions](#element-definitions).\n\nAn element can be either of a standard [CDS Types](#cds-type) or a [Custom Type](#custom-type).\n\nCSN Interop does not support arrays of scalar types, only of `cds.Association` and `cds.Composition`.\nSee [Primer: Cardinality](../primer.md#cardinality).",
+      "description": "Definition of an Element, as put into [Element Definitions](#element-definitions).\n\nAn element can be either of a standard [CDS Types](#cds-type) or a [Custom Type](#custom-type).\n\nPlease note that CSN Interop does not support arrays of scalar types or arrays of arrays, see [Primer: Cardinality](../primer.md#cardinality).",
       "properties": {
         "type": {
           "type": "string"

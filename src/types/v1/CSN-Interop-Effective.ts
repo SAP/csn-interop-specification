@@ -25,8 +25,7 @@ export type EndUserTextQuickInfo = string;
  *
  * An element can be either of a standard [CDS Types](#cds-type) or a [Custom Type](#custom-type).
  *
- * CSN Interop does not support arrays of scalar types, only of `cds.Association` and `cds.Composition`.
- * See [Primer: Cardinality](../primer.md#cardinality).
+ * Please note that CSN Interop does not support arrays of scalar types or arrays of arrays, see [Primer: Cardinality](../primer.md#cardinality).
  *
  * This interface was referenced by `ElementDefinitions`'s JSON-Schema definition
  * via the `patternProperty` "^(?![@]|__|\.|::).+$".
