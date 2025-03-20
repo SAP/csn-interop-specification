@@ -492,6 +492,13 @@ definitions:
       Definition of an Element, as put into [Element Definitions](#element-definitions).
 
       An element can be either of a standard [CDS Types](#cds-type) or a [Custom Type](#custom-type).
+
+      Please note that CSN Interop does not support arrays of scalar types, only of `cds.Association` and `cds.Composition`.
+      The reason is that arrays of scalar types are not supported in all tech-stacks and would require a more complex mapping.
+
+      To avoid this either: 
+        - Convert the scalar type to an Entity and use `cds.Association` or `cds.Composition` with the appropriate cardinality (RECOMMENDED).
+        - Convert the array of values into a single string, e.g. by using a delimiter or parsing it to a JSON string.
     properties:
       type:
         type: string
@@ -1041,7 +1048,7 @@ definitions:
       An element of type `cds.Association`, to express a "reference" relation across Entities.
       It works the same way as a [`cds.Composition`](#composition-type), with the difference that the latter assumes a composite relationship.
 
-      See [Primer: Associations](../primer.md#associations).
+      See [Primer: Associations and Compositions](../primer.md#associations-and-compositions).
 
     properties: &AssociationTypeProperties
       type:
@@ -1138,7 +1145,7 @@ definitions:
       An element of type `cds.Composition`, to express a "contains" relation across Entities.
       It works the same as a [`cds.Association`](#association-type).
 
-      See [Primer: Associations](../primer.md#associations).
+      See [Primer: Associations and Compositions](../primer.md#associations-and-compositions).
     properties: &CompositionTypeProperties
       type:
         type: string
