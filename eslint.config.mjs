@@ -8,8 +8,7 @@ export default withCustomConfig([
       "spec-toolkit",
       ".docusaurus",
       "tmp",
-      "src/types/",
-      "src/types/v1/CSN-Interop-Effective.ts",
+      "src/generated/spec-v1/types/csn-interop-effective.ts",
     ],
   },
   {

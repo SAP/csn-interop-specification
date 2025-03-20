@@ -2732,7 +2732,7 @@ export interface ObjectModelUsageType {
  *
  * A consumer MAY decide to shorten the names by only considering the Entities assigned to a particular Service and then removing the Service prefixes again.
  *
- * To indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](../annotations/objectmodel#objectmodelcompositionroot) annotation.
+ * To indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](../annotations/object-model#objectmodelcompositionroot) annotation.
  *
  * See [Primer: Service Definitions](../primer.md#service-definitions).
  */
