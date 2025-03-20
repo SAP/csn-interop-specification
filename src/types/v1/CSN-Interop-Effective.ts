@@ -99,7 +99,10 @@ export type EntityRelationship = ReferenceTarget[];
  */
 export type ObjectModel = unknown[];
 /**
- * Added through custom development, diverges from the "core" model.
+ * If set to true, it is a custom element (field, entity, service, etc.).
+ * If set to false, it is not a custom element.
+ * If annotation not present, then it is not defined whether it is a custom element.
+ * Note that `@ObjectModel.customer: false` is not the same as if the annotation is not present at all.
  *
  * If applied to an entity or service, everything that it contains is also considered custom.
  */
