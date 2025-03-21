@@ -1,6 +1,5 @@
 import { Command, Option } from "commander";
 import * as packageJson from "../package.json" with { type: "json" };
-import { readFileSync } from "node:fs";
 import { generate } from "./generate.js";
 import path from "node:path";
 import { ConfigFile } from "./model/Config.js";
@@ -14,15 +13,15 @@ interface CliOptions {
  */
 function init(argv: string[]): void {
   const configFilePath = new Option(
-    "--config <configFilePath>",
-    "config file, containing spec-toolkit configuration options",
-  ).makeOptionMandatory();
+    "-c, --config <configFilePath>",
+    "path to spec-toolkit config file (default: `./spec-toolkit.config.js`)",
+  ).default("spec-toolkit.config.js");
 
   const program = new Command();
   program
     .version(packageJson.default.version)
     .name("spec-toolkit")
-    .usage("--config <configFilePath>")
+    .usage("[options]")
     .description("Generates schema based interface documentation")
     .addOption(configFilePath)
     .action(run);
@@ -31,21 +30,20 @@ function init(argv: string[]): void {
 }
 
 async function run(argv: CliOptions): Promise<void> {
-  let configFileContent = "";
+  let configJsModule;
   const configFilePath = path.join(process.cwd(), argv.config);
 
   try {
-    configFileContent = readFileSync(configFilePath, "utf-8");
+    configJsModule = await import(`file:///${configFilePath}`);
   } catch (error) {
     process.stderr.write(`[error]: ${error}\n\n`);
     process.exit(1);
   }
 
   try {
-    const configData = JSON.parse(configFileContent);
     // TODO: Validate configData against spec-toolkit config JSON schema(tbd) before casting it as ConfigFile
     // throw error if validation fails
-    await generate(configData as ConfigFile);
+    await generate(configJsModule.default as ConfigFile);
   } catch (error) {
     process.stderr.write(`${error}\n\n`);
     process.exit(1);
