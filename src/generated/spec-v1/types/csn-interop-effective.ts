@@ -2810,6 +2810,55 @@ export interface BooleanTypeDefinition {
    */
   doc?: string;
   default?: DefaultValueBoolean;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  /**
+   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   */
+  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -2862,6 +2911,55 @@ export interface StringTypeDefinition {
    * If not provided, **unlimited** length is assumed.
    */
   length?: number;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  /**
+   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   */
+  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -2914,6 +3012,55 @@ export interface LargeStringTypeDefinition {
    * If not provided, **unlimited** length is assumed.
    */
   length?: number;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  /**
+   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   */
+  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -2961,6 +3108,56 @@ export interface IntegerTypeDefinition {
   doc?: string;
   default?: DefaultValueInteger;
   enum?: EnumDictionary;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  /**
+   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   */
+  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.valueRange"?: Semantics;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3008,6 +3205,56 @@ export interface Integer64TypeDefinition {
   doc?: string;
   default?: DefaultValueInteger;
   enum?: EnumDictionary;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  /**
+   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   */
+  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.valueRange"?: Semantics;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3066,6 +3313,56 @@ export interface DecimalTypeDefinition {
    * Describes the number of digits to the right of the decimal point in a number.
    */
   scale?: DecimalScaleNumber | DecimalScaleType;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  /**
+   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   */
+  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.valueRange"?: Semantics;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3113,6 +3410,56 @@ export interface DoubleTypeDefinition {
   doc?: string;
   default?: DefaultValueNumber;
   enum?: EnumDictionary;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  /**
+   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   */
+  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.valueRange"?: Semantics;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3160,6 +3507,55 @@ export interface DateTypeDefinition {
   doc?: string;
   default?: DefaultValueString;
   enum?: EnumDictionary;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  /**
+   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   */
+  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3207,6 +3603,55 @@ export interface TimeTypeDefinition {
   doc?: string;
   default?: DefaultValueString;
   enum?: EnumDictionary;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  /**
+   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   */
+  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3254,6 +3699,55 @@ export interface DateTimeTypeDefinition {
   doc?: string;
   default?: DefaultValueString;
   enum?: EnumDictionary;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  /**
+   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   */
+  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3301,6 +3795,55 @@ export interface TimestampTypeDefinition {
   doc?: string;
   default?: DefaultValueString;
   enum?: EnumDictionary;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  /**
+   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   */
+  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3347,6 +3890,55 @@ export interface UUIDTypeDefinition {
    */
   doc?: string;
   default?: DefaultValueString;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  /**
+   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   */
+  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3417,6 +4009,55 @@ export interface AssociationTypeDefinition {
     StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
     ...(StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[]
   ];
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  /**
+   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   */
+  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3487,6 +4128,55 @@ export interface CompositionTypeDefinition {
     StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
     ...(StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[]
   ];
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  /**
+   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   */
+  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
    * Annotations or private properties MAY be added.
    *
