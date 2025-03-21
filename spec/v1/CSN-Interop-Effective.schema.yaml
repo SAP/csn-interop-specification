@@ -492,6 +492,8 @@ definitions:
       Definition of an Element, as put into [Element Definitions](#element-definitions).
 
       An element can be either of a standard [CDS Types](#cds-type) or a [Custom Type](#custom-type).
+
+      Please note that CSN Interop does not support arrays of scalar types or arrays of arrays, see [Primer: Cardinality](../primer.md#cardinality).
     properties:
       type:
         type: string
@@ -1041,7 +1043,7 @@ definitions:
       An element of type `cds.Association`, to express a "reference" relation across Entities.
       It works the same way as a [`cds.Composition`](#composition-type), with the difference that the latter assumes a composite relationship.
 
-      See [Primer: Associations](../primer.md#associations).
+      See [Primer: Associations and Compositions](../primer.md#associations-and-compositions).
 
     properties: &AssociationTypeProperties
       type:
@@ -1138,7 +1140,7 @@ definitions:
       An element of type `cds.Composition`, to express a "contains" relation across Entities.
       It works the same as a [`cds.Association`](#association-type).
 
-      See [Primer: Associations](../primer.md#associations).
+      See [Primer: Associations and Compositions](../primer.md#associations-and-compositions).
     properties: &CompositionTypeProperties
       type:
         type: string
@@ -1518,7 +1520,6 @@ definitions:
       - Attributes and annotations MUST be also copied and merged with those defined in the [element](#elemententry) using this derived type.
         This ensures that consumers only have to lookup the CDS type and don't have to merge attributes and annotations.
     x-extension-points:
-      - TypeDefinition
       - Type
     properties:
       kind:
@@ -1716,8 +1717,8 @@ definitions:
       - type
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - BooleanTypeDefinition
+      - Type
+      - BooleanType
     x-header-level: 4
     examples:
       - { "kind": "type", "type": "cds.Boolean", "default": { "val": true } }
@@ -1736,8 +1737,8 @@ definitions:
       - kind
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - StringTypeDefinition
+      - Type
+      - StringType
     x-header-level: 4
     examples:
       - { "kind": "type", "type": "cds.String", "length": 3, "default": { "val": "foo" } }
@@ -1756,8 +1757,8 @@ definitions:
       - kind
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - LargeStringTypeDefinition
+      - Type
+      - LargeStringType
     x-header-level: 4
 
   IntegerTypeDefinition:
@@ -1774,8 +1775,8 @@ definitions:
       - kind
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - IntegerTypeDefinition
+      - Type
+      - IntegerType
     x-header-level: 4
     examples:
       - { "kind": "type", "type": "cds.Integer", "default": { "val": 123 } }
@@ -1794,8 +1795,8 @@ definitions:
       - kind
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - Integer64TypeDefinition
+      - Type
+      - Integer64Type
     x-header-level: 4
 
   DecimalTypeDefinition:
@@ -1812,8 +1813,8 @@ definitions:
       - kind
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - DecimalTypeDefinition
+      - Type
+      - DecimalType
     x-header-level: 4
     examples:
       - { "kind": "type", "type": "cds.Decimal", "precision": 16, "scale": 3, "default": { "val": 12.3 } }
@@ -1832,8 +1833,8 @@ definitions:
       - kind
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - DoubleTypeDefinition
+      - Type
+      - DoubleType
     x-header-level: 4
 
   DateTypeDefinition:
@@ -1850,8 +1851,8 @@ definitions:
       - type
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - DateTypeDefinition
+      - Type
+      - DateType
     x-header-level: 4
     examples:
       - { "kind": "type", "type": "cds.Date" }
@@ -1870,8 +1871,8 @@ definitions:
       - type
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - TimeTypeDefinition
+      - Type
+      - TimeType
     x-header-level: 4
 
   DateTimeTypeDefinition:
@@ -1888,8 +1889,8 @@ definitions:
       - type
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - DateTimeTypeDefinition
+      - Type
+      - DateTimeType
     x-header-level: 4
 
   TimestampTypeDefinition:
@@ -1906,8 +1907,8 @@ definitions:
       - type
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - TimestampTypeDefinition
+      - Type
+      - TimestampType
     x-header-level: 4
 
   UUIDTypeDefinition:
@@ -1924,8 +1925,8 @@ definitions:
       - type
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - UUIDTypeDefinition
+      - Type
+      - UUIDType
     x-header-level: 4
 
   AssociationTypeDefinition:
@@ -1945,8 +1946,8 @@ definitions:
       - "on"
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - AssociationTypeDefinition
+      - Type
+      - AssociationType
     x-header-level: 4
     examples:
       - {
@@ -1974,8 +1975,8 @@ definitions:
       - "on"
     additionalProperties: false
     x-extension-points:
-      - TypeDefinition
-      - CompositionTypeDefinition
+      - Type
+      - CompositionType
     x-header-level: 4
     examples:
       - {
