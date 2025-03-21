@@ -101,6 +101,16 @@ export type EntityRelationship = ReferenceTarget[];
  */
 export type ObjectModel = unknown[];
 /**
+ * State the owner of the CSN model part, where it differs from the main ownership.
+ * This can happen with extensions, which can be created by customers, partners or by industry extensions.
+ *
+ * The value MUST be a valid [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1#namespaces).
+ * If the annotation is not present, the owner is identical to the owner of the overall CSN model.
+ *
+ * For extensions created by the customer / owner of the system instance, use the reserved `customer` namespace.
+ */
+export type ObjectModelOwner = string;
+/**
  * The property contains element(s) containing a text for the annotated (id)element
  */
 export type ObjectModelText = unknown[];
@@ -676,6 +686,7 @@ export interface EntityDefinition {
   "@EntityRelationship.referencesWithConstantIds"?: EntityRelationship5;
   "@ObjectModel.compositionRoot"?: ObjectModelCompositionRoot;
   "@ObjectModel.representativeKey"?: ElementReference;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.modelingPattern"?: ObjectModel1;
   "@ObjectModel.supportedCapabilities"?: ObjectModel2;
   "@ObjectModel.tenantWideUniqueName"?: ObjectModelTenantWideUniqueName;
@@ -759,6 +770,7 @@ export interface BooleanType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -972,6 +984,7 @@ export interface StringType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1116,6 +1129,7 @@ export interface LargeStringType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1213,6 +1227,7 @@ export interface IntegerType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1342,6 +1357,7 @@ export interface Integer64Type {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1446,6 +1462,7 @@ export interface DecimalType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1545,6 +1562,7 @@ export interface DoubleType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1643,6 +1661,7 @@ export interface DateType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1740,6 +1759,7 @@ export interface TimeType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1837,6 +1857,7 @@ export interface DateTimeType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1934,6 +1955,7 @@ export interface TimestampType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -2030,6 +2052,7 @@ export interface UUIDType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -2148,6 +2171,7 @@ export interface AssociationType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -2316,6 +2340,7 @@ export interface CompositionType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -2449,6 +2474,7 @@ export interface CustomType {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -2762,6 +2788,7 @@ export interface ServiceDefinition {
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@ObjectModel.representativeKey"?: ElementReference;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.modelingPattern"?: ObjectModel1;
   "@ObjectModel.supportedCapabilities"?: ObjectModel2;
   /**
@@ -2819,6 +2846,7 @@ export interface BooleanTypeDefinition {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -2920,6 +2948,7 @@ export interface StringTypeDefinition {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3021,6 +3050,7 @@ export interface LargeStringTypeDefinition {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3117,6 +3147,7 @@ export interface IntegerTypeDefinition {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3214,6 +3245,7 @@ export interface Integer64TypeDefinition {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3322,6 +3354,7 @@ export interface DecimalTypeDefinition {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3419,6 +3452,7 @@ export interface DoubleTypeDefinition {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3516,6 +3550,7 @@ export interface DateTypeDefinition {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3612,6 +3647,7 @@ export interface TimeTypeDefinition {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3708,6 +3744,7 @@ export interface DateTimeTypeDefinition {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3804,6 +3841,7 @@ export interface TimestampTypeDefinition {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3899,6 +3937,7 @@ export interface UUIDTypeDefinition {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -4018,6 +4057,7 @@ export interface AssociationTypeDefinition {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -4137,6 +4177,7 @@ export interface CompositionTypeDefinition {
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.owner"?: ObjectModelOwner;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
