@@ -9,20 +9,22 @@ interface CliOptions {
   config: string;
 }
 
+const DEFAULT_CONFIG_FILE_NAME = "./spec-toolkit.config.json";
+
 /**
  * Executes the CLI with additional command line arguments (argv)
  */
 function init(argv: string[]): void {
   const configFilePath = new Option(
-    "--config <configFilePath>",
-    "config file, containing spec-toolkit configuration options",
-  ).makeOptionMandatory();
+    "-c, --config <configFilePath>",
+    `path to spec-toolkit config file (default: ${DEFAULT_CONFIG_FILE_NAME})`,
+  ).default(DEFAULT_CONFIG_FILE_NAME);
 
   const program = new Command();
   program
     .version(packageJson.default.version)
     .name("spec-toolkit")
-    .usage("--config <configFilePath>")
+    .usage("[options]")
     .description("Generates schema based interface documentation")
     .addOption(configFilePath)
     .action(run);
@@ -31,18 +33,22 @@ function init(argv: string[]): void {
 }
 
 async function run(argv: CliOptions): Promise<void> {
-  let configFileContent = "";
+  let configData: unknown;
   const configFilePath = path.join(process.cwd(), argv.config);
 
   try {
-    configFileContent = readFileSync(configFilePath, "utf-8");
+    if (configFilePath.endsWith(".json")) {
+      const configFileContent = readFileSync(configFilePath, "utf-8");
+      configData = JSON.parse(configFileContent);
+    } else {
+      throw new Error(`Unsupported file extension: ${configFilePath}`);
+    }
   } catch (error) {
     process.stderr.write(`[error]: ${error}\n\n`);
     process.exit(1);
   }
 
   try {
-    const configData = JSON.parse(configFileContent);
     // TODO: Validate configData against spec-toolkit config JSON schema(tbd) before casting it as ConfigFile
     // throw error if validation fails
     await generate(configData as ConfigFile);

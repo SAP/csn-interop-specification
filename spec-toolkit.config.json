@@ -1,5 +1,4 @@
 {
-  "$comment": "Maybe this file can be replaced by putting the config into the spec YAML files directly as x- properties",
   "generalConfig": {
     "sortProperties": false
   },
