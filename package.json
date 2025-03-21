@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/package",
   "name": "@sap/csn-interop-specification",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "CSN Interop Specification.",
   "author": "SAP SE",
   "license": "Apache-2.0",
