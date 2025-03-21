@@ -262,6 +262,19 @@ In addition an element has the optional properties `notNull`, and `default` (bot
 
 Note: As a general convention we recommend to omit optional boolean properties, if the value is `false`.
 
+### Cardinality
+
+Please note that CSN Interop does not support arrays of scalar types and arrays of arrays.
+There is [cds.Association](./spec-v1/csn-interop-effective#association-type) (array of pointers) and [cds.Composition](./spec-v1/csn-interop-effective#composition-type) (array of entities), which can express "to many" relationship via the [cardinality](./spec-v1/csn-interop-effective#cardinality-object) object.
+
+The reason for not supporting arrays of scalar types is that this is not supported in all tech-stacks and would require a more complex mapping.
+By not supporting this in CSN Interop, the model needs to make the decision how multi-value scalar types are to be mapped.
+
+This can be done, e.g. by:
+
+- converting the scalar type to an Entity and use `cds.Association` or `cds.Composition` with the appropriate cardinality (RECOMMENDED).
+- converting the array of values into a single string, e.g. by using a delimiter or parsing it to a JSON string.
+
 ## Annotations
 
 Annotations are represented as properties, prefixed with **@**. This format applies to type/entity-level annotations as well as to element-level ones.
@@ -344,14 +357,15 @@ where `<label ID\>` uniquely refers to an i18n entry, e.g.
 
 i18n entries (key/value pairs) can be provided as part of the CSN document, as described in section Localization (i18n).
 
-## Associations
+## Associations and Compositions
 
-An Association expresses a relation between two entities. An association is directed from the source to the target and always defined at the source.
+An [cds.Association](./spec-v1/csn-interop-effective#association-type) or [cds.Composition](./spec-v1/csn-interop-effective#composition-type) expresses a **relation** between two entities.
+It is directed from the source to the target and always defined at the source.
 
-> Note:
-> Bidirectional relations can be defined via associations at both related entities. This is often not necessary, however, because the consumer can derive the inverse relation from a single association.
+> Note: Bidirectional relations can be defined via associations at both related entities.
+> This is often not necessary, however, because the consumer can derive the inverse relation from a single association.
 
-Associations are element definitions with `type` being `cds.Association` or `cds.Composition` plus additional properties specifying the association `target`, the `cardinality`, and an `on` condition.
+Relations are element definitions with `type` being `cds.Association` or `cds.Composition` plus additional properties specifying the association `target`, the `cardinality`, and an `on` condition.
 
 Property `cardinality` is an object \{`src`?, `min`?, `max`\} with...
 
