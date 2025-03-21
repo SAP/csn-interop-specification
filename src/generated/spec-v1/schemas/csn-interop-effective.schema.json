@@ -374,6 +374,9 @@
         "@ObjectModel.representativeKey": {
           "$ref": "#/definitions/@ObjectModel.representativeKey"
         },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
+        },
         "@ObjectModel.modelingPattern": {
           "$ref": "#/definitions/@ObjectModel.modelingPattern"
         },
@@ -789,6 +792,9 @@
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -992,6 +998,9 @@
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -1193,6 +1202,9 @@
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -1392,6 +1404,9 @@
         },
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
+        },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -1593,6 +1608,9 @@
         },
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
+        },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -1809,6 +1827,9 @@
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -2007,6 +2028,9 @@
         },
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
+        },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -2209,6 +2233,9 @@
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -2404,6 +2431,9 @@
         },
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
+        },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -2601,6 +2631,9 @@
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -2797,6 +2830,9 @@
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -2989,6 +3025,9 @@
         },
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
+        },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -3270,6 +3309,9 @@
         },
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
+        },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -3574,6 +3616,9 @@
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -3814,6 +3859,9 @@
         },
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
+        },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -4333,6 +4381,9 @@
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -4744,6 +4795,9 @@
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -4949,6 +5003,9 @@
         },
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
+        },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -5157,6 +5214,9 @@
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -5348,6 +5408,9 @@
         },
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
+        },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -5552,6 +5615,9 @@
         },
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
+        },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -5766,6 +5832,9 @@
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -5972,6 +6041,9 @@
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -6166,6 +6238,9 @@
         },
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
+        },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -6365,6 +6440,9 @@
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -6556,6 +6634,9 @@
         },
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
+        },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -6749,6 +6830,9 @@
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -6937,6 +7021,9 @@
         },
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
+        },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -7218,6 +7305,9 @@
         },
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
+        },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -7527,6 +7617,9 @@
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -7715,6 +7808,9 @@
         },
         "@ObjectModel.representativeKey": {
           "$ref": "#/definitions/@ObjectModel.representativeKey"
+        },
+        "@ObjectModel.owner": {
+          "$ref": "#/definitions/@ObjectModel.owner"
         },
         "@ObjectModel.modelingPattern": {
           "$ref": "#/definitions/@ObjectModel.modelingPattern"
@@ -8444,6 +8540,20 @@
       ],
       "items": {}
     },
+    "@ObjectModel.owner": {
+      "type": "string",
+      "description": "State the owner of the CSN model part, where it differs from the main ownership of the CSN document.\nThis can happen with model extensions, created by customers, partners or by industry extensions.\n\nThe value MUST be a valid [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1#namespaces).\nIf the annotation is not present, the owner is identical to the owner of the overall CSN model.\n\nFor extensions created by the customer / owner of the system instance, use the reserved `customer` namespace.\nFor extensions created by partners, use a [vendor namespace](https://open-resource-discovery.github.io/specification/spec-v1#vendor-namespace), representing the partner.\nFor industry extensions, use an [authority namespace](https://open-resource-discovery.github.io/specification/spec-v1#authority-namespace) if the industry is independent from a particular application or [sub-context namespace](https://open-resource-discovery.github.io/specification/spec-v1#sub-context-namespace) if it is owned by a sub-team / sub-domain of the application.",
+      "pattern": "^[a-z0-9]+(?:[.][a-z0-9]+)*$",
+      "x-extension-targets": [
+        "Entity",
+        "Type",
+        "Service"
+      ],
+      "examples": [
+        "customer",
+        "somevendor.authority"
+      ]
+    },
     "@ObjectModel.modelingPattern": {
       "type": "object",
       "description": "The property declares the modeling pattern applied in this entity definition.",
@@ -8532,7 +8642,7 @@
     },
     "@ObjectModel.tenantWideUniqueName": {
       "type": "string",
-      "description": "Unique technical name of the entity within the tenant / isolation context it is deployed to. \nThis may be used as a hint for database table names and help to keep them short enough.\n\nOnce chosen the technical name ID MUST be kept stable (immutable).",
+      "description": "Unique technical name of the entity within the tenant / isolation context it is deployed to.\nThis may be used as a hint for database table names and help to keep them short enough.\n\nOnce chosen the technical name ID MUST be kept stable (immutable).",
       "maxLength": 120,
       "x-extension-targets": [
         "Entity"
@@ -8540,7 +8650,7 @@
     },
     "@ObjectModel.usageType.sizeCategory": {
       "type": "object",
-      "description": "The size category enables the consumer to judge the possible result data set size. \nIt is a pure estimation at design time while modeling the entity what the data set size would be at runtime.\nIt reflects the set of data which has to be searched through to compute for example a count(*) of the data. \n\nThe labels correspond to the following size categories (expected number of rows at production customers):\n- S: less than 1000\n- M: less than 100.000\n- L: less than 10.000.000\n- XL: less than 100.000.000  \n- XXL: more than 100.000.000",
+      "description": "The size category enables the consumer to judge the possible result data set size.\nIt is a pure estimation at design time while modeling the entity what the data set size would be at runtime.\nIt reflects the set of data which has to be searched through to compute for example a count(*) of the data.\n\nThe labels correspond to the following size categories (expected number of rows at production customers):\n- S: less than 1000\n- M: less than 100.000\n- L: less than 10.000.000\n- XL: less than 100.000.000\n- XXL: more than 100.000.000",
       "properties": {
         "#": {
           "type": "string",

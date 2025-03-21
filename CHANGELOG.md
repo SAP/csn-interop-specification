@@ -10,6 +10,10 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+### Added
+
+- Added `@ObjectModel.owner` annotation to state ownership for parts of the CSN model where it differs from the main ownership.
+
 ## [1.0.3]
 
 ### Fixed
