@@ -31,6 +31,27 @@ definitions:
         title: Element Reference
         ref: "#/definitions/ElementReference"
 
+  "@ObjectModel.owner":
+    type: string
+    description: |-
+      Annotates the owner of the element.
+      This can happen with model extensions, created by customers, partners or by industry extensions.
+
+      The value MUST be a valid [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1#namespaces).
+      If the annotation is not present, the owner is identical to the owner of the overall CSN model.
+
+      For elements owned by the customer, use the reserved namespace `customer`.
+      For extensions created by partners, use [vendor namespaces](https://open-resource-discovery.github.io/specification/spec-v1#vendor-namespace).
+      For industry extensions, use [authority namespaces](https://open-resource-discovery.github.io/specification/spec-v1#authority-namespace) if the industry is independent from a particular application. Use [sub-context namespaces](https://open-resource-discovery.github.io/specification/spec-v1#sub-context-namespace) if it is owned by a sub-team / sub-domain of the application.
+    pattern: ^[a-z0-9]+(?:[.][a-z0-9]+)*$
+    x-extension-targets:
+      - "Entity"
+      - "Type"
+      - "Service"
+    examples:
+      - "customer"
+      - "somevendor.authority"
+
   "@ObjectModel.modelingPattern":
     type: object
     description: |-
@@ -121,7 +142,7 @@ definitions:
   "@ObjectModel.tenantWideUniqueName":
     type: string
     description: |-
-      Unique technical name of the entity within the tenant / isolation context it is deployed to. 
+      Unique technical name of the entity within the tenant / isolation context it is deployed to.
       This may be used as a hint for database table names and help to keep them short enough.
 
       Once chosen the technical name ID MUST be kept stable (immutable).
@@ -131,15 +152,15 @@ definitions:
   "@ObjectModel.usageType.sizeCategory":
     type: object
     description: |-
-      The size category enables the consumer to judge the possible result data set size. 
+      The size category enables the consumer to judge the possible result data set size.
       It is a pure estimation at design time while modeling the entity what the data set size would be at runtime.
-      It reflects the set of data which has to be searched through to compute for example a count(*) of the data. 
+      It reflects the set of data which has to be searched through to compute for example a count(*) of the data.
 
       The labels correspond to the following size categories (expected number of rows at production customers):
       - S: less than 1000
       - M: less than 100.000
       - L: less than 10.000.000
-      - XL: less than 100.000.000  
+      - XL: less than 100.000.000
       - XXL: more than 100.000.000
     properties:
       "#":
