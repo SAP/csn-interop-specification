@@ -10,6 +10,10 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+### Added
+
+- Added missing property `$id` to annotation extension schemas
+
 ## [1.0.3]
 
 ### Fixed
