@@ -41,7 +41,7 @@ definitions:
       If the annotation is not present, the owner is identical to the owner of the overall CSN model.
 
       For elements owned by the customer, use the reserved namespace `customer`.
-      For extensions created by partners, use a [vendor namespace](https://open-resource-discovery.github.io/specification/spec-v1#vendor-namespace), representing the partner.
+      For extensions created by partners, use [vendor namespaces](https://open-resource-discovery.github.io/specification/spec-v1#vendor-namespace).
       For industry extensions, use an [authority namespace](https://open-resource-discovery.github.io/specification/spec-v1#authority-namespace) if the industry is independent from a particular application or [sub-context namespace](https://open-resource-discovery.github.io/specification/spec-v1#sub-context-namespace) if it is owned by a sub-team / sub-domain of the application.
     pattern: ^[a-z0-9]+(?:[.][a-z0-9]+)*$
     x-extension-targets:
