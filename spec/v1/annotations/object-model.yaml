@@ -40,7 +40,7 @@ definitions:
       The value MUST be a valid [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1#namespaces).
       If the annotation is not present, the owner is identical to the owner of the overall CSN model.
 
-      For extensions created by the customer / owner of the system instance, use the reserved `customer` namespace.
+      For elements owned by the customer, use the reserved namespace `customer`.
       For extensions created by partners, use a [vendor namespace](https://open-resource-discovery.github.io/specification/spec-v1#vendor-namespace), representing the partner.
       For industry extensions, use an [authority namespace](https://open-resource-discovery.github.io/specification/spec-v1#authority-namespace) if the industry is independent from a particular application or [sub-context namespace](https://open-resource-discovery.github.io/specification/spec-v1#sub-context-namespace) if it is owned by a sub-team / sub-domain of the application.
     pattern: ^[a-z0-9]+(?:[.][a-z0-9]+)*$
