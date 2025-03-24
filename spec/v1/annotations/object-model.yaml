@@ -34,7 +34,7 @@ definitions:
   "@ObjectModel.owner":
     type: string
     description: |-
-      State the owner of the CSN model part, where it differs from the main ownership of the CSN document.
+      Annotates the owner of the element.
       This can happen with model extensions, created by customers, partners or by industry extensions.
 
       The value MUST be a valid [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1#namespaces).
