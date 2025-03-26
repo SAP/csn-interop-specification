@@ -1,10 +1,8 @@
 // Compile this to CDS:
 // Closest to CSN Interop Effective (but not fully there yet)
-// cdsc forEffective --beta effectiveCsn .\examples\TestEntity.cds -o tmp/test.cds.json
+// cdsc forEffective --beta effectiveCsn .\spec\v1\examples\TestEntity.cds -o tmp/TestEntity.cds.json
 // Regular CAP CSN with inferred (effective) flavor
 // cds c -f inferred .\examples\TestEntity.cds -o tmp/test.cds.json
-
-context foo.bar;
 
 /**
  * Code comment description
