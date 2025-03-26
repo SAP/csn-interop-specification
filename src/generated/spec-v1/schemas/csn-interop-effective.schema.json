@@ -1,8 +1,76 @@
 {
-  "description": "Root of the CSN Interop Effective JSON document.\n\nSee [Primer: Root Level Structure](../primer.md#root-level-structure).",
+  "description": "This is the interface description of CSN Interop Effective v1.\nIts purpose is to be an aligned import / export format for CSN that works across tech-stacks in a wider SAP ecosystem.\n\nFor a more extensive documentation on CSN in general, consider the [CAP CSN](https://cap.cloud.sap/docs/cds/csn) documentation.",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#",
-  "title": "CSN Interop Root",
+  "title": "CSN Interop Effective Root",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri-reference",
+      "description": "Link to JSON Schema for this CSN Interop Effective document.\nAdding this helps with automatic validation and code intelligence in some editors / IDEs.\n\nSee https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema\n",
+      "anyOf": [
+        {
+          "const": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#"
+        },
+        {
+          "type": "string",
+          "format": "uri-reference"
+        }
+      ]
+    },
+    "$id": {
+      "type": "string",
+      "format": "uri-reference",
+      "description": "Optional URI for this document, that can acts as an ID or as location to retrieve the document.\n\nSee https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema\n"
+    },
+    "csnInteropEffective": {
+      "type": "string",
+      "description": "Existence of this property indicated that the file is a CSN Interop Effective document.\nThe value states the specification version it has been created against.",
+      "enum": [
+        "1.0"
+      ]
+    },
+    "$version": {
+      "type": "string",
+      "description": "The version of the CDS CSN. For this version of CSN Interop it is fixed to `2.0`.\n\nThis MUST be provided to ensure that CSN Interop is a valid subset of CDS CSN in general.",
+      "enum": [
+        "2.0"
+      ]
+    },
+    "meta": {
+      "type": "object",
+      "description": "Meta information that apply to the CSN document as a whole.",
+      "$ref": "#/definitions/Meta"
+    },
+    "definitions": {
+      "$ref": "#/definitions/Definitions",
+      "description": "Dictionary of CSN modeling artifacts.\n"
+    },
+    "i18n": {
+      "$ref": "#/definitions/i18n",
+      "description": "Dictionary of translated texts.\n"
+    }
+  },
+  "patternProperties": {
+    "^__.+$": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ],
+      "description": "Private properties, starting with `__`.\n\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.\n",
+      "tsType": "unknown // replaceKeyType_{PrivatePropertyKey}"
+    }
+  },
+  "required": [
+    "csnInteropEffective",
+    "$version",
+    "definitions"
+  ],
+  "additionalProperties": false,
   "definitions": {
     "Meta": {
       "title": "Meta",
@@ -8999,73 +9067,5 @@
         "Type"
       ]
     }
-  },
-  "type": "object",
-  "properties": {
-    "$schema": {
-      "type": "string",
-      "format": "uri-reference",
-      "description": "Link to JSON Schema for this CSN Interop Effective document.\nAdding this helps with automatic validation and code intelligence in some editors / IDEs.\n\nSee https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema\n",
-      "anyOf": [
-        {
-          "const": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#"
-        },
-        {
-          "type": "string",
-          "format": "uri-reference"
-        }
-      ]
-    },
-    "$id": {
-      "type": "string",
-      "format": "uri-reference",
-      "description": "Optional URI for this document, that can acts as an ID or as location to retrieve the document.\n\nSee https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema\n"
-    },
-    "csnInteropEffective": {
-      "type": "string",
-      "description": "Existence of this property indicated that the file is a CSN Interop Effective document.\nThe value states the specification version it has been created against.",
-      "enum": [
-        "1.0"
-      ]
-    },
-    "$version": {
-      "type": "string",
-      "description": "The version of the CDS CSN. For this version of CSN Interop it is fixed to `2.0`.\n\nThis MUST be provided to ensure that CSN Interop is a valid subset of CDS CSN in general.",
-      "enum": [
-        "2.0"
-      ]
-    },
-    "meta": {
-      "type": "object",
-      "description": "Meta information that apply to the CSN document as a whole.",
-      "$ref": "#/definitions/Meta"
-    },
-    "definitions": {
-      "$ref": "#/definitions/Definitions",
-      "description": "Dictionary of CSN modeling artifacts.\n"
-    },
-    "i18n": {
-      "$ref": "#/definitions/i18n",
-      "description": "Dictionary of translated texts.\n"
-    }
-  },
-  "patternProperties": {
-    "^__.+$": {
-      "type": [
-        "string",
-        "number",
-        "boolean",
-        "array",
-        "object"
-      ],
-      "description": "Private properties, starting with `__`.\n\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.\n",
-      "tsType": "unknown // replaceKeyType_{PrivatePropertyKey}"
-    }
-  },
-  "required": [
-    "csnInteropEffective",
-    "$version",
-    "definitions"
-  ],
-  "additionalProperties": false
+  }
 }

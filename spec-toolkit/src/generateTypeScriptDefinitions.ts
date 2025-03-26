@@ -2,7 +2,6 @@ import {
   convertAllOfWithIfThenDiscriminatorToOneOf,
   convertAnyOfEnum,
   convertOneOfEnum,
-  ensureRootLevelSchema,
   convertRefToDocToStandardRef,
   removeDescriptionsFromRefPointers,
   removeAllExtensionProperties,
@@ -38,7 +37,6 @@ export async function generateTypeScriptDefinitions(configData: ConfigFile): Pro
       schema = removeDescriptionsFromRefPointers(schema);
       const allCustomPropertiesTypescriptTypes = schema["x-custom-typescript-types"];
       schema = removeAllExtensionProperties(schema);
-      schema = ensureRootLevelSchema(schema);
       const convertedDocumentSchema = schema as JSONSchema4;
 
       let definitions = await jsonSchemaToTypeScript(convertedDocumentSchema, `${docConfig.id}`, {

@@ -361,11 +361,12 @@ export type TypeDefinition =
   | CompositionTypeDefinition;
 
 /**
- * Root of the CSN Interop Effective JSON document.
+ * This is the interface description of CSN Interop Effective v1.
+ * Its purpose is to be an aligned import / export format for CSN that works across tech-stacks in a wider SAP ecosystem.
  *
- * See [Primer: Root Level Structure](../primer.md#root-level-structure).
+ * For a more extensive documentation on CSN in general, consider the [CAP CSN](https://cap.cloud.sap/docs/cds/csn) documentation.
  */
-export interface CSNInteropRoot {
+export interface CSNInteropEffectiveRoot {
   /**
    * Link to JSON Schema for this CSN Interop Effective document.
    * Adding this helps with automatic validation and code intelligence in some editors / IDEs.
