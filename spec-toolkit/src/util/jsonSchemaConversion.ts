@@ -202,37 +202,6 @@ export function convertAllOfWithIfThenDiscriminatorToOneOf(documentSchema: SpecJ
 }
 
 /**
- * Removes the top level $ref and instead puts in the correct
- * interface that is the root object.
- *
- * This is necessary for some libraries like the JSON Schema dereferencer to work.
- *
- * In case of ORD Documents this is "Document"
- * In case of ORD Config interface, this is "Configuration"
- */
-export function ensureRootLevelSchema(jsonSchema: SpecJsonSchemaRoot): SpecJsonSchemaRoot {
-  if (!jsonSchema.$ref) {
-    if (jsonSchema.type) {
-      return jsonSchema;
-    } else {
-      throw new Error(`No root level $ref nor root level "type" detected! ${jsonSchema.$id}`);
-    }
-  }
-  const rootLevelDefinition = jsonSchema.$ref?.split("#/definitions/")[1];
-  delete jsonSchema.$ref;
-  if (!jsonSchema.definitions) {
-    throw new Error("Input JSON Schema is missing a definitions section!");
-  }
-  if (jsonSchema.definitions && jsonSchema.definitions[rootLevelDefinition]) {
-    jsonSchema = { ...jsonSchema, ...jsonSchema.definitions[rootLevelDefinition] };
-    delete jsonSchema.definitions[rootLevelDefinition];
-  } else {
-    throw new Error(`Could not find ${rootLevelDefinition} in definitions!`);
-  }
-  return jsonSchema;
-}
-
-/**
  * Will remove descriptions from objects which should only carry a `$ref` pointer
  * The description is used by the human readable interface documentation,
  * but it causes problems (e.g. duplicates) for the TypeScript definition generation

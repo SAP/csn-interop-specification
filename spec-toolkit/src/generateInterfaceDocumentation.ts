@@ -31,7 +31,6 @@ import {
 } from "./util/validation.js";
 import {
   preprocessSpecJsonSchema,
-  ensureRootLevelSchema,
   removeDescriptionsFromRefPointers,
   removeSomeExtensionProperties,
   convertRefToDocToStandardRef,
@@ -92,7 +91,7 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
     const jsonSchemaFileParsed = yaml.load(jsonSchemaFile) as SpecJsonSchemaRoot;
 
     /** The Spec JSON Schema based Specification */
-    let jsonSchemaRoot = preprocessSpecJsonSchema(jsonSchemaFileParsed, docConfig.sourceFilePath);
+    const jsonSchemaRoot = preprocessSpecJsonSchema(jsonSchemaFileParsed, docConfig.sourceFilePath);
     log.info(`${getContextText(jsonSchemaRoot)} loaded and prepared.`);
 
     // Read extension target file if given
@@ -120,14 +119,13 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
 
     if (docConfig.type === "specExtension") {
       text += `* This is an extension vocabulary for [${extensionTarget?.title}](${docConfig.targetLink}).\n`;
-    } else if (jsonSchemaRoot.$ref) {
-      const referencedSchema = getReferencedSchema(jsonSchemaRoot.$ref, jsonSchemaRoot, docConfig.id);
-      if (referencedSchema.title) {
-        const link = getAnchorLinkFromTitle(referencedSchema.title);
-        text += `* The root schema of the document is [${referencedSchema.title}](${link})\n`;
+    } else if (docConfig.type === "spec") {
+      if (jsonSchemaRoot.title) {
+        const link = getAnchorLinkFromTitle(jsonSchemaRoot.title);
+        text += `* The root schema of the document is [${jsonSchemaRoot.title}](${link})\n`;
       } else {
         throw new Error(
-          `Every JSON Schema object need to have a title. Problem: ${JSON.stringify(referencedSchema, null, 2)}`,
+          `Every JSON Schema object need to have a title. Problem: ${JSON.stringify(jsonSchemaRoot, null, 2)}`,
         );
       }
     }
@@ -140,8 +138,14 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
       // text += `* A high-level overview can also be exported as [Excel](/spec-v1/interfaces/${docConfig.title}.xlsx) and [CSV](/spec-v1/interfaces/${docConfig.title}.csv) file.\n`
     }
 
+    // If main spec: Create root document entry point
+    if (docConfig.type === "spec") {
+      text += `\n\n### ${jsonSchemaRoot.title}\n\n`;
+      const link = getAnchorLinkFromTitle(jsonSchemaRoot.title);
+      text += getObjectDescriptionTable(jsonSchemaRoot, jsonSchemaRoot, configData, link, link, docConfig);
+    }
     // If extension: Create extension property overview table
-    if (docConfig.type === "specExtension") {
+    else if (docConfig.type === "specExtension") {
       text += getExtensionOverviewTable(jsonSchemaRoot);
     }
 
@@ -175,10 +179,6 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
     }
     fs.outputFileSync(filePath, text);
     log.info(`Written: ${filePath}`);
-
-    if (!jsonSchemaRoot.type && docConfig.type === "spec") {
-      jsonSchemaRoot = ensureRootLevelSchema(jsonSchemaRoot);
-    }
 
     writeSpecJsonSchemaFiles(
       `${configData.outputPath}/${schemasOutputFolderName}/${docConfig.id}.schema.json`,
