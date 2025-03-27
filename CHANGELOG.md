@@ -10,6 +10,10 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+### Changed
+
+- BREAKING: TypeScript interface `CSNInteropRoot` renamed to `CSNInteropEffectiveDocument`
+
 ### Added
 
 - Added missing property `$id` to annotation extension schemas
