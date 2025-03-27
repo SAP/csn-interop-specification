@@ -1,6 +1,6 @@
 $schema: "http://json-schema.org/draft-07/schema#"
 $id: "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#"
-title: CSN Interop Effective Root
+title: CSN Interop Effective Document
 description: |-
   This is the interface description of CSN Interop Effective v1.
   Its purpose is to be an aligned import / export format for CSN that works across tech-stacks in a wider SAP ecosystem.

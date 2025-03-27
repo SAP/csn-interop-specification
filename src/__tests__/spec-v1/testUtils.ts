@@ -17,7 +17,7 @@ import {
   TimeType,
   CdsType,
   UUIDType,
-  CSNInteropEffectiveRoot,
+  CSNInteropEffectiveDocument,
   Definitions,
 } from "../../generated/spec-v1/types";
 
@@ -56,7 +56,7 @@ export function getElementTestDataByElementType(elementType: CdsTypeValue | Cust
   }
 }
 
-export function getCsnDocumentTestData(definitions?: Definitions): CSNInteropEffectiveRoot {
+export function getCsnDocumentTestData(definitions?: Definitions): CSNInteropEffectiveDocument {
   return {
     csnInteropEffective: "1.0",
     $version: "2.0",

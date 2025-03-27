@@ -366,7 +366,7 @@ export type TypeDefinition =
  *
  * For a more extensive documentation on CSN in general, consider the [CAP CSN](https://cap.cloud.sap/docs/cds/csn) documentation.
  */
-export interface CSNInteropEffectiveRoot {
+export interface CSNInteropEffectiveDocument {
   /**
    * Link to JSON Schema for this CSN Interop Effective document.
    * Adding this helps with automatic validation and code intelligence in some editors / IDEs.
