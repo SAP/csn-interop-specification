@@ -23,16 +23,36 @@
         "Entity",
         "Service"
       ],
-      "x-ref-to-doc": {
-        "title": "Element Reference",
-        "ref": "#/definitions/ElementReference"
-      },
       "title": "@ObjectModel.representativeKey",
       "x-context": [
         "./spec/v1/annotations/object-model.yaml",
         "@ObjectModel.representativeKey"
       ],
-      "$ref": "#/definitions/ElementReference"
+      "oneOf": [
+        {
+          "title": "Element Reference String",
+          "type": "string",
+          "description": "Element reference to an element within the current entity, using string notation.\n\nThe referenced element MUST exist locally in the same entity.\n\n```js\n\"<definition name>\": {\n  \"<annotation key of type ElementReference>\": \"<element name>\"\n```"
+        },
+        {
+          "title": "Element Reference Object",
+          "type": "object",
+          "description": "Element reference to an element within the current entity, using RECOMMENDED object notation.\n\nThe referenced element MUST exist locally in the same entity.\n\n```js\n\"<definition name>\": {\n  \"<annotation key of type ElementReference>\": {\"=\": \"<element name>\"}\n```",
+          "properties": {
+            "=": {
+              "type": "string",
+              "description": "This is the references elements name.",
+              "x-association-target": [
+                "#/definitions/CdsType"
+              ]
+            }
+          },
+          "required": [
+            "="
+          ],
+          "additionalProperties": false
+        }
+      ]
     },
     "@ObjectModel.semanticKey": {
       "type": "array",
@@ -41,10 +61,33 @@
         "Type"
       ],
       "items": {
-        "x-ref-to-doc": {
-          "title": "Element Reference",
-          "ref": "#/definitions/ElementReference"
-        }
+        "title": "Element Reference",
+        "description": "Element reference to an element within the current entity.\n\nIt is RECOMMENDED to use the [ElementReferenceObject](#element-reference-object) notation.\n\nSee [Primer: Literals for Enum and ElementRef values](../primer.md#literals-for-enum-and-elementref-values).",
+        "oneOf": [
+          {
+            "title": "Element Reference String",
+            "type": "string",
+            "description": "Element reference to an element within the current entity, using string notation.\n\nThe referenced element MUST exist locally in the same entity.\n\n```js\n\"<definition name>\": {\n  \"<annotation key of type ElementReference>\": \"<element name>\"\n```"
+          },
+          {
+            "title": "Element Reference Object",
+            "type": "object",
+            "description": "Element reference to an element within the current entity, using RECOMMENDED object notation.\n\nThe referenced element MUST exist locally in the same entity.\n\n```js\n\"<definition name>\": {\n  \"<annotation key of type ElementReference>\": {\"=\": \"<element name>\"}\n```",
+            "properties": {
+              "=": {
+                "type": "string",
+                "description": "This is the references elements name.",
+                "x-association-target": [
+                  "#/definitions/CdsType"
+                ]
+              }
+            },
+            "required": [
+              "="
+            ],
+            "additionalProperties": false
+          }
+        ]
       },
       "title": "@ObjectModel.semanticKey",
       "x-context": [
@@ -120,7 +163,59 @@
         "Service"
       ],
       "items": {
-        "$ref": "#/definitions/@ObjectModel.SupportedCapabilities_EnumValue"
+        "title": "Supported Capabilities Enum Value",
+        "type": "object",
+        "properties": {
+          "#": {
+            "type": "string",
+            "description": "The entry declares one supported usage type.",
+            "enum": [
+              "SQL_DATA_SOURCE",
+              "CDS_MODELING_DATA_SOURCE",
+              "CDS_MODELING_ASSOCIATION_TARGET",
+              "DATA_STRUCTURE",
+              "LANGUAGE_DEPENDENT_TEXT",
+              "UNIT_CONVERSION_RATE",
+              "VALUE_HELP_PROVIDER",
+              "COLLECTIVE_VALUE_HELP",
+              "EXTRACTION_DATA_SOURCE",
+              "DERIVATION_FUNCTION",
+              "PARENT_CHILD_HIERARCHY_NODE_PROVIDER",
+              "SEARCHABLE_ENTITY",
+              "ENTERPRISE_SEARCH_PROVIDER",
+              "TRANSACTIONAL_PROVIDER",
+              "ANALYTICAL_QUERY",
+              "ANALYTICAL_DOCUMENT_STORE",
+              "ANALYTICAL_DIMENSION",
+              "ANALYTICAL_PROVIDER",
+              "ANALYTICAL_PARENT_CHILD_HIERARCHY_NODE",
+              "ANALYTICAL_KPI",
+              "OUTPUT_FORM_DATA_PROVIDER",
+              "OUTPUT_EMAIL_DATA_PROVIDER",
+              "OUTPUT_PARAMETER_DETERMINATION_DATA_SOURCE",
+              "SITUATION_ANCHOR",
+              "SITUATION_TRIGGER",
+              "SITUATION_DATACONTEXT",
+              "KEY_USER_COPYING_TEMPLATE",
+              "EXTERNAL_DATA_PROVIDER",
+              "ODM_COMPLIANT_PROVIDER",
+              "UI_PROVIDER_PROJECTION_SOURCE"
+            ],
+            "x-context": [
+              "./spec/v1/annotations/object-model.yaml",
+              "@ObjectModel.SupportedCapabilities_EnumValue",
+              "#"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "#"
+        ],
+        "x-context": [
+          "./spec/v1/annotations/object-model.yaml",
+          "@ObjectModel.SupportedCapabilities_EnumValue"
+        ]
       },
       "title": "@ObjectModel.supportedCapabilities",
       "x-context": [
@@ -129,20 +224,40 @@
       ]
     },
     "@ObjectModel.foreignKey.association": {
-      "description": "The element is of type `cds.Association` which points to the list of values.\n\nUse only for service internal associations. For cross service associations, use the [@EntityRelationship Vocabulary](./entity-relationship) instead.",
+      "title": "Element Reference",
+      "description": "Element reference to an element within the current entity.\n\nIt is RECOMMENDED to use the [ElementReferenceObject](#element-reference-object) notation.\n\nSee [Primer: Literals for Enum and ElementRef values](../primer.md#literals-for-enum-and-elementref-values).",
+      "oneOf": [
+        {
+          "title": "Element Reference String",
+          "type": "string",
+          "description": "Element reference to an element within the current entity, using string notation.\n\nThe referenced element MUST exist locally in the same entity.\n\n```js\n\"<definition name>\": {\n  \"<annotation key of type ElementReference>\": \"<element name>\"\n```"
+        },
+        {
+          "title": "Element Reference Object",
+          "type": "object",
+          "description": "Element reference to an element within the current entity, using RECOMMENDED object notation.\n\nThe referenced element MUST exist locally in the same entity.\n\n```js\n\"<definition name>\": {\n  \"<annotation key of type ElementReference>\": {\"=\": \"<element name>\"}\n```",
+          "properties": {
+            "=": {
+              "type": "string",
+              "description": "This is the references elements name.",
+              "x-association-target": [
+                "#/definitions/CdsType"
+              ]
+            }
+          },
+          "required": [
+            "="
+          ],
+          "additionalProperties": false
+        }
+      ],
       "x-extension-targets": [
         "Type"
       ],
-      "x-ref-to-doc": {
-        "title": "Element Reference",
-        "ref": "#/definitions/ElementReference"
-      },
-      "title": "@ObjectModel.foreignKey.association",
       "x-context": [
         "./spec/v1/annotations/object-model.yaml",
         "@ObjectModel.foreignKey.association"
-      ],
-      "$ref": "#/definitions/ElementReference"
+      ]
     },
     "@ObjectModel.text.element": {
       "type": "array",
@@ -151,10 +266,33 @@
         "Type"
       ],
       "items": {
-        "x-ref-to-doc": {
-          "title": "Element Reference",
-          "ref": "#/definitions/ElementReference"
-        }
+        "title": "Element Reference",
+        "description": "Element reference to an element within the current entity.\n\nIt is RECOMMENDED to use the [ElementReferenceObject](#element-reference-object) notation.\n\nSee [Primer: Literals for Enum and ElementRef values](../primer.md#literals-for-enum-and-elementref-values).",
+        "oneOf": [
+          {
+            "title": "Element Reference String",
+            "type": "string",
+            "description": "Element reference to an element within the current entity, using string notation.\n\nThe referenced element MUST exist locally in the same entity.\n\n```js\n\"<definition name>\": {\n  \"<annotation key of type ElementReference>\": \"<element name>\"\n```"
+          },
+          {
+            "title": "Element Reference Object",
+            "type": "object",
+            "description": "Element reference to an element within the current entity, using RECOMMENDED object notation.\n\nThe referenced element MUST exist locally in the same entity.\n\n```js\n\"<definition name>\": {\n  \"<annotation key of type ElementReference>\": {\"=\": \"<element name>\"}\n```",
+            "properties": {
+              "=": {
+                "type": "string",
+                "description": "This is the references elements name.",
+                "x-association-target": [
+                  "#/definitions/CdsType"
+                ]
+              }
+            },
+            "required": [
+              "="
+            ],
+            "additionalProperties": false
+          }
+        ]
       },
       "examples": [
         [
@@ -168,20 +306,40 @@
       ]
     },
     "@ObjectModel.text.association": {
-      "description": "The element is of type cds.association, which points to an entity containing (language-dependent) texts for the annotated (id) element",
+      "title": "Element Reference",
+      "description": "Element reference to an element within the current entity.\n\nIt is RECOMMENDED to use the [ElementReferenceObject](#element-reference-object) notation.\n\nSee [Primer: Literals for Enum and ElementRef values](../primer.md#literals-for-enum-and-elementref-values).",
+      "oneOf": [
+        {
+          "title": "Element Reference String",
+          "type": "string",
+          "description": "Element reference to an element within the current entity, using string notation.\n\nThe referenced element MUST exist locally in the same entity.\n\n```js\n\"<definition name>\": {\n  \"<annotation key of type ElementReference>\": \"<element name>\"\n```"
+        },
+        {
+          "title": "Element Reference Object",
+          "type": "object",
+          "description": "Element reference to an element within the current entity, using RECOMMENDED object notation.\n\nThe referenced element MUST exist locally in the same entity.\n\n```js\n\"<definition name>\": {\n  \"<annotation key of type ElementReference>\": {\"=\": \"<element name>\"}\n```",
+          "properties": {
+            "=": {
+              "type": "string",
+              "description": "This is the references elements name.",
+              "x-association-target": [
+                "#/definitions/CdsType"
+              ]
+            }
+          },
+          "required": [
+            "="
+          ],
+          "additionalProperties": false
+        }
+      ],
       "x-extension-targets": [
         "Type"
       ],
-      "x-ref-to-doc": {
-        "title": "Element Reference",
-        "ref": "#/definitions/ElementReference"
-      },
-      "title": "@ObjectModel.text.association",
       "x-context": [
         "./spec/v1/annotations/object-model.yaml",
         "@ObjectModel.text.association"
-      ],
-      "$ref": "#/definitions/ElementReference"
+      ]
     },
     "@ObjectModel.tenantWideUniqueName": {
       "type": "string",

@@ -2,7 +2,6 @@ import {
   convertAllOfWithIfThenDiscriminatorToOneOf,
   convertAnyOfEnum,
   convertOneOfEnum,
-  convertRefToDocToStandardRef,
   removeDescriptionsFromRefPointers,
   removeAllExtensionProperties,
 } from "./util/jsonSchemaConversion.js";
@@ -28,7 +27,6 @@ export async function generateTypeScriptDefinitions(configData: ConfigFile): Pro
       const xSchemaFilePath = `${configData.outputPath}/${schemasOutputFolderName}/${xSchemaFileName}`;
       let schema = yaml.load(fs.readFileSync(`${xSchemaFilePath}`).toString()) as SpecJsonSchemaRoot;
 
-      schema = convertRefToDocToStandardRef(schema);
       schema = convertOneOfEnum(schema);
       schema = convertAnyOfEnum(schema);
       schema = convertAllOfWithIfThenDiscriminatorToOneOf(schema);

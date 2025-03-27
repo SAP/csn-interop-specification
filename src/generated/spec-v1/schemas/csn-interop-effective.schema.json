@@ -8510,7 +8510,9 @@
       "x-extension-targets": [
         "Type"
       ],
-      "items": {}
+      "items": {
+        "$ref": "#/definitions/ElementReference"
+      }
     },
     "@ObjectModel.modelingPattern": {
       "type": "object",
@@ -8585,7 +8587,9 @@
       "x-extension-targets": [
         "Type"
       ],
-      "items": {},
+      "items": {
+        "$ref": "#/definitions/ElementReference"
+      },
       "examples": [
         [
           "BillingDocumentTypeName"
@@ -8689,10 +8693,10 @@
       ]
     },
     "@ODM.oid": {
+      "$ref": "#/definitions/ElementReference",
       "x-extension-targets": [
         "Entity"
-      ],
-      "$ref": "#/definitions/ElementReference"
+      ]
     },
     "@ODM.oidReference.entityName": {
       "type": "string",
@@ -8840,10 +8844,10 @@
       ]
     },
     "@Semantics.amount.currencyCode": {
+      "$ref": "#/definitions/ElementReference",
       "x-extension-targets": [
         "Type"
-      ],
-      "$ref": "#/definitions/ElementReference"
+      ]
     },
     "@Semantics.unitOfMeasure": {
       "type": "boolean",
@@ -8854,10 +8858,10 @@
       ]
     },
     "@Semantics.quantity.unitOfMeasure": {
+      "$ref": "#/definitions/ElementReference",
       "x-extension-targets": [
         "Type"
-      ],
-      "$ref": "#/definitions/ElementReference"
+      ]
     },
     "@Semantics.calendar.dayOfMonth": {
       "type": "boolean",

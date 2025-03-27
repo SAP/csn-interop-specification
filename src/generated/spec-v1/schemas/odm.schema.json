@@ -18,10 +18,6 @@
     },
     "@ODM.oid": {
       "description": "The annotation references the element which contains the oid.",
-      "x-ref-to-doc": {
-        "title": "Element Reference",
-        "ref": "#/definitions/ElementReference"
-      },
       "x-extension-targets": [
         "Entity"
       ],
@@ -30,7 +26,31 @@
         "./spec/v1/annotations/odm.yaml",
         "@ODM.oid"
       ],
-      "$ref": "#/definitions/ElementReference"
+      "oneOf": [
+        {
+          "title": "Element Reference String",
+          "type": "string",
+          "description": "Element reference to an element within the current entity, using string notation.\n\nThe referenced element MUST exist locally in the same entity.\n\n```js\n\"<definition name>\": {\n  \"<annotation key of type ElementReference>\": \"<element name>\"\n```"
+        },
+        {
+          "title": "Element Reference Object",
+          "type": "object",
+          "description": "Element reference to an element within the current entity, using RECOMMENDED object notation.\n\nThe referenced element MUST exist locally in the same entity.\n\n```js\n\"<definition name>\": {\n  \"<annotation key of type ElementReference>\": {\"=\": \"<element name>\"}\n```",
+          "properties": {
+            "=": {
+              "type": "string",
+              "description": "This is the references elements name.",
+              "x-association-target": [
+                "#/definitions/CdsType"
+              ]
+            }
+          },
+          "required": [
+            "="
+          ],
+          "additionalProperties": false
+        }
+      ]
     },
     "@ODM.oidReference.entityName": {
       "type": "string",

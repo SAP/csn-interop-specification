@@ -17,9 +17,7 @@ definitions:
     x-extension-targets:
       - "Entity"
       - "Service"
-    x-ref-to-doc:
-      title: Element Reference
-      ref: "#/definitions/ElementReference"
+    $ref: "file:///spec/v1/CSN-Interop-Effective.schema.yaml/#/definitions/ElementReference"
 
   "@ObjectModel.semanticKey":
     type: array
@@ -28,9 +26,7 @@ definitions:
     x-extension-targets:
       - "Type"
     items:
-      x-ref-to-doc:
-        title: Element Reference
-        ref: "#/definitions/ElementReference"
+      $ref: "file:///spec/v1/CSN-Interop-Effective.schema.yaml/#/definitions/ElementReference"
 
   "@ObjectModel.modelingPattern":
     type: object
@@ -93,9 +89,7 @@ definitions:
       Use only for service internal associations. For cross service associations, use the [@EntityRelationship Vocabulary](./entity-relationship) instead.
     x-extension-targets:
       - "Type"
-    x-ref-to-doc:
-      title: Element Reference
-      ref: "#/definitions/ElementReference"
+    $ref: "file:///spec/v1/CSN-Interop-Effective.schema.yaml/#/definitions/ElementReference"
 
   "@ObjectModel.text.element":
     type: array
@@ -104,9 +98,7 @@ definitions:
     x-extension-targets:
       - "Type"
     items:
-      x-ref-to-doc:
-        title: Element Reference
-        ref: "#/definitions/ElementReference"
+      $ref: "file:///spec/v1/CSN-Interop-Effective.schema.yaml/#/definitions/ElementReference"
     examples:
       - ["BillingDocumentTypeName"]
 
@@ -115,9 +107,7 @@ definitions:
       The element is of type cds.association, which points to an entity containing (language-dependent) texts for the annotated (id) element
     x-extension-targets:
       - "Type"
-    x-ref-to-doc:
-      title: Element Reference
-      ref: "#/definitions/ElementReference"
+    $ref: "file:///spec/v1/CSN-Interop-Effective.schema.yaml/#/definitions/ElementReference"
 
   "@ObjectModel.tenantWideUniqueName":
     type: string

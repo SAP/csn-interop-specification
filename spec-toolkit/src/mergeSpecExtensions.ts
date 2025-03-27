@@ -50,14 +50,6 @@ export function mergeSpecExtensions(configData: ConfigFile): void {
         const fileText = fs.readFileSync(specExtensionFile).toString();
         const specExtension = yaml.load(fileText) as SpecJsonSchemaRoot;
 
-        // Replace x-ref-to-doc with real $ref links
-        for (const definitionName in specExtension.definitions) {
-          const definition = specExtension.definitions[definitionName];
-          if (definition["x-ref-to-doc"]) {
-            definition.$ref = definition["x-ref-to-doc"].ref;
-          }
-        }
-
         // Now merge the JSON Schema definitions
         for (const definitionName in specExtension.definitions) {
           const definition = specExtension.definitions[definitionName];
@@ -65,6 +57,28 @@ export function mergeSpecExtensions(configData: ConfigFile): void {
           if (targetDocument.definitions[definitionName]) {
             throw new Error(`Cannot merge spec extension definition ${definitionName} as the name is already taken.`);
           }
+
+          // start here
+          // Replace https:// file:/// $refs from specExtensions with core spec $ref #/definitions/ links
+          if (definition.$ref && (definition.$ref.startsWith("https://") || definition.$ref.startsWith("file:///"))) {
+            definition.$ref = `#` + definition.$ref.split("#")[1];
+          }
+          if (definition.properties) {
+            for (const propertyName in definition.properties) {
+              const property = definition.properties[propertyName];
+              if (property.$ref && (property.$ref.startsWith("https://") || property.$ref.startsWith("file:///"))) {
+                property.$ref = `#` + property.$ref.split("#")[1];
+              }
+            }
+          }
+          if (
+            definition.items &&
+            definition.items.$ref &&
+            (definition.items.$ref.startsWith("https://") || definition.items.$ref.startsWith("file:///"))
+          ) {
+            definition.items.$ref = `#` + definition.items.$ref.split("#")[1];
+          }
+          // end here
 
           targetDocument.definitions[definitionName] = definition;
         }

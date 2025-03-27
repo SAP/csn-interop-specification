@@ -99,11 +99,11 @@ export type EntityRelationship = ReferenceTarget[];
 /**
  * The property contains element(s) which shall be used to display the key in UIs (instead of the technical key).
  */
-export type ObjectModel = unknown[];
+export type ObjectModel = ElementReference[];
 /**
  * The property contains element(s) containing a text for the annotated (id)element
  */
-export type ObjectModelText = unknown[];
+export type ObjectModelText = ElementReference[];
 /**
  * The property contains an OID for the ODM Entity with this official name
  */

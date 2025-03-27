@@ -28,7 +28,7 @@ export async function generate(configData: ConfigFile): Promise<void> {
   log.info("--------------------------------------------------------------------------");
   log.info("GENERATE INTERFACE DOCUMENTATION (JSON-SCHEMA -> MD)");
   log.info("--------------------------------------------------------------------------");
-  jsonSchemaToDocumentation(configData);
+  await jsonSchemaToDocumentation(configData);
 
   log.info(" ");
   log.info("--------------------------------------------------------------------------");

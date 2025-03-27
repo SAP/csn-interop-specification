@@ -189,13 +189,6 @@ export interface SpecJsonSchema {
    * Define the MD heading level in the target document. Default value: 3
    */
   "x-header-level"?: number;
-  /**
-   * Reference from a spec extension back to an interface in the core spec
-   */
-  "x-ref-to-doc"?: {
-    title: string;
-    ref: string;
-  };
 
   /**
    * Overwrite TypeScript Type

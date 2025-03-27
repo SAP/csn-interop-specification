@@ -33,7 +33,6 @@ import {
   preprocessSpecJsonSchema,
   removeDescriptionsFromRefPointers,
   removeSomeExtensionProperties,
-  convertRefToDocToStandardRef,
 } from "./util/jsonSchemaConversion.js";
 
 import _ from "lodash";
@@ -51,6 +50,7 @@ import {
   documentationOutputFolderName,
   schemasOutputFolderName,
 } from "./generate.js";
+import $RefParser from "@apidevtools/json-schema-ref-parser";
 
 ////////////////////////////////////////////////////////////
 // JSON SCHEMA TO MARKDOWN                                //
@@ -83,7 +83,7 @@ export interface DocumentationResult {
  * * The JSON Schema root schema object is a "Object"
  *
  */
-export function jsonSchemaToDocumentation(configData: ConfigFile): void {
+export async function jsonSchemaToDocumentation(configData: ConfigFile): Promise<void> {
   // Iterate the files and generate the documentation
   for (const docConfig of configData.docsConfig) {
     // Read JSON File
@@ -93,6 +93,16 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
     /** The Spec JSON Schema based Specification */
     const jsonSchemaRoot = preprocessSpecJsonSchema(jsonSchemaFileParsed, docConfig.sourceFilePath);
     log.info(`${getContextText(jsonSchemaRoot)} loaded and prepared.`);
+
+    let refResolvedSchema = _.cloneDeep(jsonSchemaRoot);
+
+    if (docConfig.type === "specExtension") {
+      try {
+        refResolvedSchema = await $RefParser.dereference(refResolvedSchema);
+      } catch (err) {
+        log.error(err);
+      }
+    }
 
     // Read extension target file if given
     let extensionTarget: SpecJsonSchemaRoot | undefined;
@@ -109,7 +119,7 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
     }
 
     // Validate JSON Schema to be a valid JSON Schema document
-    validateSpecJsonSchema(jsonSchemaRoot, true);
+    validateSpecJsonSchema(refResolvedSchema, true);
 
     // Write Header Information and Introduction Text
     let text = getMarkdownFrontMatter(docConfig.mdFrontmatter);
@@ -120,52 +130,52 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
     if (docConfig.type === "specExtension") {
       text += `* This is an extension vocabulary for [${extensionTarget?.title}](${docConfig.targetLink}).\n`;
     } else if (docConfig.type === "spec") {
-      if (jsonSchemaRoot.title) {
-        const link = getAnchorLinkFromTitle(jsonSchemaRoot.title);
-        text += `* The root schema of the document is [${jsonSchemaRoot.title}](${link})\n`;
+      if (refResolvedSchema.title) {
+        const link = getAnchorLinkFromTitle(refResolvedSchema.title);
+        text += `* The root schema of the document is [${refResolvedSchema.title}](${link})\n`;
       } else {
         throw new Error(
-          `Every JSON Schema object need to have a title. Problem: ${JSON.stringify(jsonSchemaRoot, null, 2)}`,
+          `Every JSON Schema object need to have a title. Problem: ${JSON.stringify(refResolvedSchema, null, 2)}`,
         );
       }
     }
 
-    if (jsonSchemaRoot.$id) {
+    if (refResolvedSchema.$id) {
       // TODO: Add those links depending on config
       // text += `* Example files can be found [here](/spec-v1/examples/${title.toLocaleLowerCase()}).\n`
       // text += `* Visual diagrams can be found here: [ORD ${title} Class Diagram](/spec-v1/diagrams/${title}.md).\n`
-      text += `* The interface is available as JSON Schema: [${docConfig.id}.schema.json](${jsonSchemaRoot.$id}).\n`;
+      text += `* The interface is available as JSON Schema: [${docConfig.id}.schema.json](${refResolvedSchema.$id}).\n`;
       // text += `* A high-level overview can also be exported as [Excel](/spec-v1/interfaces/${docConfig.title}.xlsx) and [CSV](/spec-v1/interfaces/${docConfig.title}.csv) file.\n`
     }
 
     // If main spec: Create root document entry point
     if (docConfig.type === "spec") {
-      text += `\n\n### ${jsonSchemaRoot.title}\n\n`;
-      const link = getAnchorLinkFromTitle(jsonSchemaRoot.title);
-      text += getObjectDescriptionTable(jsonSchemaRoot, jsonSchemaRoot, configData, link, link, docConfig);
+      text += `\n\n### ${refResolvedSchema.title}\n\n`;
+      const link = getAnchorLinkFromTitle(refResolvedSchema.title);
+      text += getObjectDescriptionTable(refResolvedSchema, refResolvedSchema, configData, link, link, docConfig);
     }
     // If extension: Create extension property overview table
     else if (docConfig.type === "specExtension") {
-      text += getExtensionOverviewTable(jsonSchemaRoot);
+      text += getExtensionOverviewTable(refResolvedSchema);
     }
 
     // Document definitions block
-    if (jsonSchemaRoot.definitions) {
-      const definitionEntries = Object.keys(jsonSchemaRoot.definitions);
-      const propertyOrder = jsonSchemaRoot["x-property-order"] || [];
+    if (refResolvedSchema.definitions) {
+      const definitionEntries = Object.keys(refResolvedSchema.definitions);
+      const propertyOrder = refResolvedSchema["x-property-order"] || [];
 
       const finalPropertyOrder = _.union(propertyOrder, definitionEntries);
 
       // Refactor: Loop within jsonSchemaToMd, then we don't have to pass definition name
       for (const definitionName of finalPropertyOrder) {
-        const definition = jsonSchemaRoot.definitions[definitionName];
-        text += jsonSchemaToMd(definition, jsonSchemaRoot, configData, docConfig, definitionName, extensionTarget);
+        const definition = refResolvedSchema.definitions[definitionName];
+        text += jsonSchemaToMd(definition, refResolvedSchema, configData, docConfig, definitionName, extensionTarget);
       }
     }
 
-    if (jsonSchemaRoot.examples) {
+    if (refResolvedSchema.examples) {
       text += "\n## Complete Examples\n";
-      text += getObjectExampleText(jsonSchemaRoot, jsonSchemaRoot, true);
+      text += getObjectExampleText(refResolvedSchema, refResolvedSchema, true);
     }
 
     text += getOutroText(docConfig).trimEnd();
@@ -182,7 +192,7 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
 
     writeSpecJsonSchemaFiles(
       `${configData.outputPath}/${schemasOutputFolderName}/${docConfig.id}.schema.json`,
-      jsonSchemaRoot,
+      refResolvedSchema, //jsonSchemaRoot,
     );
 
     log.info("--------------------------------------------------------------------------");
@@ -229,12 +239,7 @@ function jsonSchemaToMd(
   }
 
   //Distinction if this is an object or a simple type
-  if (
-    !jsonSchemaObject.type &&
-    !jsonSchemaObject.oneOf &&
-    !jsonSchemaObject.anyOf &&
-    !jsonSchemaObject["x-ref-to-doc"]
-  ) {
+  if (!jsonSchemaObject.type && !jsonSchemaObject.oneOf && !jsonSchemaObject.anyOf) {
     throw new Error(`Schema Object must have a "type" keyword! ${JSON.stringify(jsonSchemaObject, null, 2)}`);
   }
 
@@ -261,35 +266,38 @@ function jsonSchemaToMd(
 // ------------ Functions to Calculate certain Texts for MD ------------------------------------
 //----------------------------------------------------------------------------------------------
 
-function handleRefToCore(jsonSchemaObject: SpecJsonSchema, outputPath: string): string {
-  //Resolve RefToCores
-  const refToDoc =
-    typeof jsonSchemaObject === "object" && "x-ref-to-doc" in jsonSchemaObject ? jsonSchemaObject["x-ref-to-doc"] : "";
-  if (refToDoc) {
-    let refToDocTitle = "";
-    let refToDocDocId = "";
-    let refToDocDoc = "";
-    if (typeof refToDoc === "object" && refToDoc !== undefined) {
-      refToDocTitle = "title" in refToDoc ? refToDoc.title + "" : ""; // TODO: Simplify this
-      refToDocDocId = "$refDoc" in refToDoc ? refToDoc.$refDoc + "" : ""; // TODO: Simplify this
-      refToDocDoc = `${outputPath}/${documentationOutputFolderName}/${refToDocDocId}.md`;
-    }
-    //TODO: Calculate RefToCore from Document Title?
-    //TODO: remove calculation, use general function
-    return `[${refToDocTitle}](${refToDocDoc}#${refToDocTitle.toLowerCase().replace(/ /g, "-").replace("#/definitions/", "")})`;
-  } else return "";
+function handleRefToCore(jsonSchemaObject: SpecJsonSchema, _outputPath: string): string {
+  // //Resolve RefToCores
+  // const refToDoc =
+  //   typeof jsonSchemaObject === "object" && "x-ref-to-doc" in jsonSchemaObject ? jsonSchemaObject["x-ref-to-doc"] : "";
+  // if (refToDoc) {
+  //   let refToDocTitle = "";
+  //   let refToDocDocId = "";
+  //   let refToDocDoc = "";
+  //   if (typeof refToDoc === "object" && refToDoc !== undefined) {
+  //     refToDocTitle = "title" in refToDoc ? refToDoc.title + "" : ""; // TODO: Simplify this
+  //     refToDocDocId = "$refDoc" in refToDoc ? refToDoc.$refDoc + "" : ""; // TODO: Simplify this
+  //     refToDocDoc = `${outputPath}/${documentationOutputFolderName}/${refToDocDocId}.md`;
+  //   }
+  //   //TODO: Calculate RefToCore from Document Title?
+  //   //TODO: remove calculation, use general function
+  //   return `[${refToDocTitle}](${refToDocDoc}#${refToDocTitle.toLowerCase().replace(/ /g, "-").replace("#/definitions/", "")})`;
+  // } else return "";
+  if (jsonSchemaObject.type === "object") {
+    return `[${jsonSchemaObject.title}](${getAnchorLinkFromTitle(jsonSchemaObject.title)})`;
+  }
+  return "TODOHERE"; //+ `[${jsonSchemaObject.title}](${getAnchorLinkFromTitle(jsonSchemaObject.title)})`;
 }
 //Calculates the Text for the "Type Column Entry"
 function getTypeColumnText(
   jsonSchemaObject: SpecJsonSchema,
   jsonSchemaRoot: SpecJsonSchemaRoot,
   configFile: ConfigFile,
-  specConfig: SpecConfig,
 ): string {
   //in case of an Array: Array< Type of ArrayItems>
   if (jsonSchemaObject && jsonSchemaObject.type === "array") {
     return escapeHtmlChars(
-      `Array<${getTypeColumnText(jsonSchemaObject.items as SpecJsonSchema, jsonSchemaRoot, configFile, specConfig)}>`,
+      `Array<${getTypeColumnText(jsonSchemaObject.items as SpecJsonSchema, jsonSchemaRoot, configFile)}>`,
     );
   }
   // in case of a reference link to the reference object
@@ -313,10 +321,6 @@ function getTypeColumnText(
     }
   }
   //in case it is a primitive type just return it
-  else if (jsonSchemaObject["x-ref-to-doc"] && specConfig.type === "specExtension") {
-    return `[${jsonSchemaObject["x-ref-to-doc"].title}](${specConfig.targetLink}${getAnchorLinkFromTitle(jsonSchemaObject["x-ref-to-doc"].title)})`;
-  }
-  // if its referencing to an interface in another document, create a cross-page link:
   else if (jsonSchemaObject && jsonSchemaObject.type) {
     return jsonSchemaObject.type as string;
   }
@@ -354,9 +358,12 @@ function oneOfReferenceHandling(jsonSchemaObject: SpecJsonSchema, jsonSchemaRoot
   if (jsonSchemaObject.oneOf) {
     for (const oneOf of jsonSchemaObject.oneOf) {
       if (!oneOf.$ref) {
-        throw new Error("oneOf needs to use $refs");
+        // throw new Error("oneOf needs to use $refs");
+        oneOfReferences.push(`${jsonSchemaObject.title}](${getAnchorLinkFromTitle(jsonSchemaObject.title)})]`);
+        //(getMdLinkFromRef(oneOf.$ref, jsonSchemaObject, jsonSchemaRoot));
+      } else {
+        oneOfReferences.push(getMdLinkFromRef(oneOf.$ref, jsonSchemaObject, jsonSchemaRoot));
       }
-      oneOfReferences.push(getMdLinkFromRef(oneOf.$ref, jsonSchemaObject, jsonSchemaRoot));
     }
     return oneOfReferences.join(" \\| ");
   }
@@ -446,7 +453,7 @@ function getPropertiesTableEntryText(
       }
 
       // Get Information of the Properties
-      const type = getTypeColumnText(property, jsonSchemaRoot, configFile, specConfig);
+      const type = getTypeColumnText(property, jsonSchemaRoot, configFile);
       let description = getDescriptionWithinTable(property, jsonSchemaRoot);
 
       if (!description) {
@@ -625,7 +632,6 @@ function getObjectDescriptionTable(
   specConfig: SpecConfig,
 ): string {
   let text = "";
-
   if (jsonSchemaObject.allOf) {
     // we write "One of the following" in the generated UI because we use allOf with discriminator "kind"
     // and don't want to confuse the end users with terms like "All of the following"
@@ -732,7 +738,7 @@ function generatePrimitiveTypeDescription(
 ): string {
   let text = "";
 
-  const type = getTypeColumnText(jsonSchemaObject, jsonSchemaRoot, configFile, specConfig);
+  const type = getTypeColumnText(jsonSchemaObject, jsonSchemaRoot, configFile);
 
   if (jsonSchemaObject.type !== undefined) {
     text += `**Type:** ${type}<br/>\n`;
@@ -821,9 +827,11 @@ function generatePrimitiveTypeDescription(
     text += `<strong className="introduced-version">Introduced in Version</strong>: ${jsonSchemaObject["x-introduced-in-version"]}<br/>\n`;
   }
 
-  if (jsonSchemaObject["x-ref-to-doc"] && specConfig.type === "specExtension") {
-    text += `**External Type**: [${jsonSchemaObject["x-ref-to-doc"].title}](${specConfig.targetLink}${getAnchorLinkFromTitle(jsonSchemaObject["x-ref-to-doc"].title)}) <br/>\n`;
-  }
+  // if (specConfig.type === "specExtension") {
+  //   // text += `**External Type**: [${jsonSchemaObject["x-ref-to-doc"].title}](${specConfig.targetLink}${getAnchorLinkFromTitle(jsonSchemaObject["x-ref-to-doc"].title)}) <br/>\n`;
+  //   //text += `**External Type**: [${jsonSchemaObject.type ? jsonSchemaObject.type : jsonSchemaObject.title}](aa) <br/>\n`;
+  //   text += `**External Type**: [TODO](TODO) <br/>\n`;
+  // }
 
   // Document extensions towards other target documents
   if (jsonSchemaObject["x-extension-targets"]) {
@@ -1305,14 +1313,12 @@ export function writeSpecJsonSchemaFiles(
   jsonSchema: SpecJsonSchemaRoot,
   isMainSchema?: boolean,
 ): void {
-  const refConvertedJsonSchema = convertRefToDocToStandardRef(jsonSchema);
-
   // NOTE: only for "main" schemas we remove the spec-toolkit specific x- properties and write the cleaned-up version to file system
   // all other auto-generated "extensions" schemas will keep all the x- properties
   // as they cannot be understood by readers without them
   if (isMainSchema) {
     // Clean up the JSON Schema from everything spec specific
-    const jsonSchema1 = removeDescriptionsFromRefPointers(refConvertedJsonSchema);
+    const jsonSchema1 = removeDescriptionsFromRefPointers(jsonSchema);
     const jsonSchema2 = removeSomeExtensionProperties(jsonSchema1);
 
     // write it as schema file that does not include all the x- extensions
@@ -1326,7 +1332,7 @@ export function writeSpecJsonSchemaFiles(
       JSON.stringify(
         {
           description: "JSON Schema with custom (x-) properties",
-          ...refConvertedJsonSchema,
+          ...jsonSchema,
         },
         null,
         2,
@@ -1340,7 +1346,7 @@ export function writeSpecJsonSchemaFiles(
       JSON.stringify(
         {
           description: "JSON Schema with custom (x-) properties",
-          ...refConvertedJsonSchema,
+          ...jsonSchema,
         },
         null,
         2,
