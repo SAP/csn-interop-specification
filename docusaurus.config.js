@@ -44,6 +44,20 @@ const config = {
 
   scripts: ["/csn-interop-specification/js/custom.js"],
 
+  plugins: [
+    [
+      "@docusaurus/plugin-client-redirects",
+      {
+        redirects: [
+          {
+            from: "/csn-interop-specification/annotations",
+            to: "/csn-interop-specification/spec-v1/extensions",
+          },
+        ],
+      },
+    ],
+  ],
+
   themes: [
     "@docusaurus/theme-mermaid",
     [

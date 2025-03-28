@@ -367,7 +367,7 @@ definitions:
 
           SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
 
-          If a human readable title is needed, use the [@EndUserText.label](./annotations/enduser-text#endusertextlabel) annotation.
+          If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
       #-------------------------------------------------------------
       #--Hidden Properties (added to ignore them in the validation)
       #-------------------------------------------------------------
@@ -1992,7 +1992,7 @@ definitions:
 
       A consumer MAY decide to shorten the names by only considering the Entities assigned to a particular Service and then removing the Service prefixes again.
 
-      To indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](./annotations/object-model#objectmodelcompositionroot) annotation.
+      To indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](./extensions/object-model#objectmodelcompositionroot) annotation.
 
       See [Primer: Service Definitions](../primer.md#service-definitions).
     x-extension-points:
@@ -2043,7 +2043,7 @@ definitions:
     type: object
     description: |-
       i18n contains translated texts for one or more languages.
-      They are usually used in annotations like [`@EnduserText`](./annotations/enduser-text).
+      They are usually used in annotations like [`@EnduserText`](./extensions/enduser-text).
 
       Key is the language key, value is a dictionary of language text translations.
 
