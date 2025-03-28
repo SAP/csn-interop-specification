@@ -50,8 +50,8 @@ const config = {
       {
         redirects: [
           {
-            from: "/csn-interop-specification/annotations",
-            to: "/csn-interop-specification/spec-v1/extensions",
+            from: "/annotations",
+            to: "/spec-v1/extensions",
           },
         ],
       },
