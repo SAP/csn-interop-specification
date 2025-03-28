@@ -72,7 +72,7 @@ This specification aims to specify an _interoperable_ flavor of CSN with the fol
 This includes:
 
 - The [core specification](./spec-v1/csn-interop-effective.md), which is a subset of regular CSN.
-- Interoperable [annotation vocabularies](./annotations/index.mdx), only describe what is relevant for the wider ecosystem.
+- Interoperable [annotation vocabularies](./spec-v1/annotations/index.mdx), only describe what is relevant for the wider ecosystem.
 - Defined [mappings](./mappings/index.mdx), how CSN maps to other data type systems and can be serialized in APIs and data formats.
 
 ### Effective
