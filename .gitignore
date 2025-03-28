@@ -23,7 +23,6 @@ build/
 
 # Generated
 src/generated/spec-v1/docs/**/*.md
-docs/spec-v1/*.md
-docs/spec-v1/examples/*.md
-docs/annotations/*.md
+docs/spec-v1/**/*.md
+!docs/spec-v1/consumption.md
 static/spec-v1/*

@@ -23,7 +23,7 @@ function execCli(): void {
 }
 
 function clean(): void {
-  const folders = ["./build", "./dist", "./docs/annotations", "./docs/spec-v1/", "./static/spec-v1"];
+  const folders = ["./build", "./dist", "./docs/spec-v1/", "./static/spec-v1"];
   for (const folder of folders) {
     console.info("Cleaning up: " + folder);
     const files = fg.sync("**/*", {

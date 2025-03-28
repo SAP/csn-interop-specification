@@ -15,6 +15,7 @@ export const documentationExtensionsOutputFolderName = "docs/extensions";
 export const documentationExamplesOutputFolderName = "docs/examples";
 export const typesOutputFolderName = "types";
 export const schemasOutputFolderName = "schemas";
+export const extensionFolderDiffToOutputFolderName = `../`; // to get from "docs/extensions" to "docs" folder, step one folder path out
 
 export async function generate(configData: ConfigFile): Promise<void> {
   log.info(" ");
