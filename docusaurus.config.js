@@ -53,6 +53,46 @@ const config = {
             from: "/annotations",
             to: "/spec-v1/extensions",
           },
+          {
+            from: "/annotations/aggregation",
+            to: "/spec-v1/extensions/aggregation",
+          },
+          {
+            from: "/annotations/analytics-details",
+            to: "/spec-v1/extensions/analytics-details",
+          },
+          {
+            from: "/annotations/consumption",
+            to: "/spec-v1/extensions/consumption",
+          },
+          {
+            from: "/annotations/enduser-text",
+            to: "/spec-v1/extensions/enduser-text",
+          },
+          {
+            from: "/annotations/entity-relationship",
+            to: "/spec-v1/extensions/entity-relationship",
+          },
+          {
+            from: "/annotations/object-model",
+            to: "/spec-v1/extensions/object-model",
+          },
+          {
+            from: "/annotations/objectmodel",
+            to: "/spec-v1/extensions/object-model",
+          },
+          {
+            from: "/annotations/odm",
+            to: "/spec-v1/extensions/odm",
+          },
+          {
+            from: "/annotations/personal-data",
+            to: "/spec-v1/extensions/personal-data",
+          },
+          {
+            from: "/annotations/semantics",
+            to: "/spec-v1/extensions/semantics",
+          },
         ],
       },
     ],
