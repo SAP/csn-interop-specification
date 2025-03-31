@@ -36,7 +36,7 @@ export interface ExtensionSpecConfig {
   sourceIntroFilePath?: string;
   sourceOutroFilePath?: string;
   targetDocumentId: string;
-  targetLink: string;
+
   /**
    * Custom markdown frontmatter "key": "value" pairs that should be added to the generated markdown file.
    * By this spec-toolkit offers support for different markdown browser rendering tools.

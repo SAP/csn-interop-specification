@@ -49,6 +49,7 @@ import {
 import {
   documentationExtensionsOutputFolderName,
   documentationOutputFolderName,
+  extensionFolderDiffToOutputFolderName,
   schemasOutputFolderName,
 } from "./generate.js";
 
@@ -118,7 +119,7 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
     text += "\n\n## Schema Definitions\n\n";
 
     if (docConfig.type === "specExtension") {
-      text += `* This is an extension vocabulary for [${extensionTarget?.title}](${docConfig.targetLink}).\n`;
+      text += `* This is an extension vocabulary for [${extensionTarget?.title}](${extensionFolderDiffToOutputFolderName + docConfig.targetDocumentId}).\n`;
     } else if (docConfig.type === "spec") {
       if (jsonSchemaRoot.title) {
         const link = getAnchorLinkFromTitle(jsonSchemaRoot.title);
@@ -314,7 +315,7 @@ function getTypeColumnText(
   }
   //in case it is a primitive type just return it
   else if (jsonSchemaObject["x-ref-to-doc"] && specConfig.type === "specExtension") {
-    return `[${jsonSchemaObject["x-ref-to-doc"].title}](${specConfig.targetLink}${getAnchorLinkFromTitle(jsonSchemaObject["x-ref-to-doc"].title)})`;
+    return `[${jsonSchemaObject["x-ref-to-doc"].title}](${extensionFolderDiffToOutputFolderName + specConfig.targetDocumentId}${getAnchorLinkFromTitle(jsonSchemaObject["x-ref-to-doc"].title)})`;
   }
   // if its referencing to an interface in another document, create a cross-page link:
   else if (jsonSchemaObject && jsonSchemaObject.type) {
@@ -822,7 +823,7 @@ function generatePrimitiveTypeDescription(
   }
 
   if (jsonSchemaObject["x-ref-to-doc"] && specConfig.type === "specExtension") {
-    text += `**External Type**: [${jsonSchemaObject["x-ref-to-doc"].title}](${specConfig.targetLink}${getAnchorLinkFromTitle(jsonSchemaObject["x-ref-to-doc"].title)}) <br/>\n`;
+    text += `**External Type**: [${jsonSchemaObject["x-ref-to-doc"].title}](${extensionFolderDiffToOutputFolderName + specConfig.targetDocumentId}${getAnchorLinkFromTitle(jsonSchemaObject["x-ref-to-doc"].title)}) <br/>\n`;
   }
 
   // Document extensions towards other target documents
@@ -840,7 +841,7 @@ function generatePrimitiveTypeDescription(
           definition["x-extension-points"].includes(extensionPoint) &&
           specConfig.type === "specExtension"
         ) {
-          text += `[${definitionName}](${specConfig.targetLink}${getAnchorLinkFromTitle(definition.title)}), `;
+          text += `[${definitionName}](${extensionFolderDiffToOutputFolderName + specConfig.targetDocumentId}${getAnchorLinkFromTitle(definition.title)}), `;
           found++;
         }
       }
