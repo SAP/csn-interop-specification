@@ -24,11 +24,6 @@
               "const": "CALCULATION",
               "description": "Calculated measure (formula)."
             }
-          ],
-          "x-context": [
-            "./spec/v1/annotations/analytics-details.yaml",
-            "@AnalyticsDetails.measureType",
-            "#"
           ]
         }
       },
@@ -44,14 +39,7 @@
           "#": "BASE"
         }
       ],
-      "title": "@AnalyticsDetails.measureType",
-      "x-context": [
-        "./spec/v1/annotations/analytics-details.yaml",
-        "@AnalyticsDetails.measureType"
-      ]
+      "title": "@AnalyticsDetails.measureType"
     }
-  },
-  "x-context": [
-    "./spec/v1/annotations/analytics-details.yaml"
-  ]
+  }
 }

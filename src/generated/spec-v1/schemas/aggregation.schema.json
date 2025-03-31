@@ -44,11 +44,6 @@
               "const": "FORMULA",
               "description": "The element is a formula which has to be calculated after the operands have been determined by aggregation or calculation. It should never be aggregated. If the element is not a formula, then this value must not be used. It is only supported in analytical queries. Example: Margin : = Revenue / Cost. If in a report Margin should be shown per OrgUnit, then first the aggregates of Revenue and Cost have to be de-termined per OrgUnit and then the Margin has to be calculated per OrgUn-it. The Margin for the company is not the aggregate of the Margin per Or-gUnit but has to be calculated separately by Revenue for all OrgUnits divided by the Costs for all OrgUnits."
             }
-          ],
-          "x-context": [
-            "./spec/v1/annotations/aggregation.yaml",
-            "@Aggregation.default",
-            "#"
           ]
         }
       },
@@ -64,14 +59,7 @@
           "#": "SUM"
         }
       ],
-      "title": "@Aggregation.default",
-      "x-context": [
-        "./spec/v1/annotations/aggregation.yaml",
-        "@Aggregation.default"
-      ]
+      "title": "@Aggregation.default"
     }
-  },
-  "x-context": [
-    "./spec/v1/annotations/aggregation.yaml"
-  ]
+  }
 }
