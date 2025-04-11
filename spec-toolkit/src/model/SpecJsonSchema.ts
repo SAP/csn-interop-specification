@@ -149,12 +149,6 @@ export interface SpecJsonSchema {
   // Spec JSON Schema extensions          //
   //////////////////////////////////////////
 
-  /**
-   * Read only context for validation / error / debugging
-   * Will be added by the tooling automatically.
-   * Array: ["<file name>", "<definition name>", "<property name>"]
-   */
-  "x-context"?: string[];
   /** Mark properties as recommended (use like required) */
   "x-recommended"?: string[];
   /** Version of spec when this entity or property was introduced */

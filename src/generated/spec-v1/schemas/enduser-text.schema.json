@@ -18,11 +18,7 @@
         "Context",
         "EnumDictionaryEntry"
       ],
-      "title": "@EndUserText.label",
-      "x-context": [
-        "./spec/v1/annotations/enduser-text.yaml",
-        "@EndUserText.label"
-      ]
+      "title": "@EndUserText.label"
     },
     "@EndUserText.heading": {
       "type": "string",
@@ -30,11 +26,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@EndUserText.heading",
-      "x-context": [
-        "./spec/v1/annotations/enduser-text.yaml",
-        "@EndUserText.heading"
-      ]
+      "title": "@EndUserText.heading"
     },
     "@EndUserText.quickInfo": {
       "type": "string",
@@ -49,11 +41,7 @@
         "Context",
         "EnumDictionaryEntry"
       ],
-      "title": "@EndUserText.quickInfo",
-      "x-context": [
-        "./spec/v1/annotations/enduser-text.yaml",
-        "@EndUserText.quickInfo"
-      ]
+      "title": "@EndUserText.quickInfo"
     }
   },
   "examples": [
@@ -83,8 +71,5 @@
         }
       }
     }
-  ],
-  "x-context": [
-    "./spec/v1/annotations/enduser-text.yaml"
   ]
 }

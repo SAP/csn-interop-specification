@@ -10,11 +10,7 @@
       "x-extension-targets": [
         "Entity"
       ],
-      "title": "@ODM.entityName",
-      "x-context": [
-        "./spec/v1/annotations/odm.yaml",
-        "@ODM.entityName"
-      ]
+      "title": "@ODM.entityName"
     },
     "@ODM.oid": {
       "description": "The annotation references the element which contains the oid.",
@@ -26,10 +22,6 @@
         "Entity"
       ],
       "title": "@ODM.oid",
-      "x-context": [
-        "./spec/v1/annotations/odm.yaml",
-        "@ODM.oid"
-      ],
       "$ref": "#/definitions/ElementReference"
     },
     "@ODM.oidReference.entityName": {
@@ -38,14 +30,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@ODM.oidReference.entityName",
-      "x-context": [
-        "./spec/v1/annotations/odm.yaml",
-        "@ODM.oidReference.entityName"
-      ]
+      "title": "@ODM.oidReference.entityName"
     }
-  },
-  "x-context": [
-    "./spec/v1/annotations/odm.yaml"
-  ]
+  }
 }

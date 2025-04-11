@@ -8,43 +8,20 @@ import { detectAnyOfEnum, detectOneOfEnum } from "../generateInterfaceDocumentat
  * Prepare a Spec JSON Schema file, so it is easier to work with.
  *
  * This will do some pre-processing and enrichment:
- * * Adding `x-context` for easier debugging and further use
  * * Adding missing `title` properties
  */
-export function preprocessSpecJsonSchema(
-  jsonSchema: SpecJsonSchemaRoot,
-  jsonSchemaFileName: string,
-): SpecJsonSchemaRoot {
+export function preprocessSpecJsonSchema(jsonSchema: SpecJsonSchemaRoot): SpecJsonSchemaRoot {
   // Deep clone, just to avoid accidental mutations of input
   let result = JSON.parse(JSON.stringify(jsonSchema));
 
   result = removeNullProperties(result);
 
-  // Enrich x-context and titles
-  result["x-context"] = [jsonSchemaFileName];
   result.definitions = result.definitions || {};
   for (const definitionName in result.definitions) {
     const definition = result.definitions[definitionName];
 
     if (!definition.title) {
       definition.title = definitionName;
-    }
-
-    definition["x-context"] = [jsonSchemaFileName, definitionName];
-    if (!definition.title) {
-      definition.title = definitionName;
-    }
-
-    if (definition.properties) {
-      for (const propertyName in definition.properties) {
-        const property = definition.properties[propertyName] as SpecJsonSchemaRoot;
-        try {
-          property["x-context"] = [jsonSchemaFileName, definitionName, propertyName];
-        } catch (err) {
-          log.error(`Could not add x-context to ${[jsonSchemaFileName, definitionName, propertyName]}`);
-          log.error(err);
-        }
-      }
     }
   }
 
