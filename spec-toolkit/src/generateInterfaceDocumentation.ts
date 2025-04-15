@@ -5,7 +5,6 @@
 
 /**
  * Refactoring Ideas / TODOs:
- * * Use new `x-context` attribute to do better and consistent error / warning / info logging
  * * Share same code to generate descriptions for schemas inside AND outside of an object table
  * * Add **Type**: consistently for non-object Definition entries
  */
@@ -24,7 +23,6 @@ import {
 } from "./util/markdownTextHelper.js";
 import {
   checkRequiredPropertiesExist,
-  getContextText,
   getJsonSchemaValidator,
   validatePropertyName,
   validateSpecJsonSchema,
@@ -92,8 +90,8 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
     const jsonSchemaFileParsed = yaml.load(jsonSchemaFile) as SpecJsonSchemaRoot;
 
     /** The Spec JSON Schema based Specification */
-    const jsonSchemaRoot = preprocessSpecJsonSchema(jsonSchemaFileParsed, docConfig.sourceFilePath);
-    log.info(`${getContextText(jsonSchemaRoot)} loaded and prepared.`);
+    const jsonSchemaRoot = preprocessSpecJsonSchema(jsonSchemaFileParsed);
+    log.info(`${docConfig.sourceFilePath} loaded and prepared.`);
 
     // Read extension target file if given
     const extensionTargets: { documentId: string; schemaRoot: SpecJsonSchemaRoot }[] = [];
@@ -112,7 +110,7 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
     }
 
     // Validate JSON Schema to be a valid JSON Schema document
-    validateSpecJsonSchema(jsonSchemaRoot, true);
+    validateSpecJsonSchema(jsonSchemaRoot, docConfig.sourceFilePath);
 
     // Write Header Information and Introduction Text
     let text = getMarkdownFrontMatter(docConfig.mdFrontmatter);
@@ -589,30 +587,31 @@ function getObjectExampleText(
     }
 
     try {
-      //Validate Examples
+      // Validate Examples
       const validate = getJsonSchemaValidator({
         ...jsonSchemaObject,
         definitions: jsonSchemaRoot.definitions,
       });
 
-      //Add all Examples to Text
+      // Add all Examples to Text
       for (const example of jsonSchemaObject.examples as unknown[]) {
         text += "\n\n```js\n";
         text += JSON.stringify(example, null, 2);
         text += "\n```\n";
 
         // Validate example if it complies to the JSON Schema
+        // TODO: refactor duplicated code section for validating examples
         const valid = validate(example);
 
         if (!valid) {
-          log.info("--------------------------------------------------------------------------");
+          log.error("--------------------------------------------------------------------------");
           log.error(
             `Invalid example for ${
               jsonSchemaObject.title || jsonSchemaObject.description || JSON.stringify(jsonSchemaObject)
             }`,
           );
-          log.info(validate.errors);
-          log.info("--------------------------------------------------------------------------");
+          log.error(validate.errors);
+          log.error("--------------------------------------------------------------------------");
           process.exit(1);
         }
       }
@@ -1075,16 +1074,17 @@ function getDescriptionWithinTable(jsonSchemaObject: SpecJsonSchema, jsonSchemaR
 
       // Validate example if it complies to the JSON Schema
       try {
+        // TODO: refactor duplicated code section for validating examples
         const valid = validate(example);
         if (!valid) {
-          log.info("--------------------------------------------------------------------------");
+          log.error("--------------------------------------------------------------------------");
           log.error(
             `Invalid example for "${
               jsonSchemaObject.title || jsonSchemaObject.description || JSON.stringify(jsonSchemaObject)
             }"`,
           );
-          log.info(validate.errors);
-          log.info("--------------------------------------------------------------------------");
+          log.error(validate.errors);
+          log.error("--------------------------------------------------------------------------");
           process.exit(1);
         }
       } catch (err) {
