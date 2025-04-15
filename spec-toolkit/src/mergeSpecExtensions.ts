@@ -17,8 +17,12 @@ export function mergeSpecExtensions(configData: ConfigFile): void {
 
       const specExtensions: string[] = [];
       for (const docConfig2 of configData.docsConfig) {
-        if (docConfig2.type === "specExtension" && docConfig2.targetDocumentId === docConfig1.id) {
-          specExtensions.push(docConfig2.sourceFilePath);
+        if (docConfig2.type === "specExtension") {
+          docConfig2.targetDocumentIds.forEach((id) => {
+            if (id === docConfig1.id) {
+              specExtensions.push(docConfig2.sourceFilePath);
+            }
+          });
         }
       }
 

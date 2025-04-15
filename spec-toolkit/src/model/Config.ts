@@ -35,7 +35,7 @@ export interface ExtensionSpecConfig {
   sourceFilePath: string;
   sourceIntroFilePath?: string;
   sourceOutroFilePath?: string;
-  targetDocumentId: string;
+  targetDocumentIds: string[];
 
   /**
    * Custom markdown frontmatter "key": "value" pairs that should be added to the generated markdown file.

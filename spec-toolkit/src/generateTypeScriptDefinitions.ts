@@ -15,6 +15,7 @@ import { log } from "./util/log.js";
 import yaml from "js-yaml";
 import { ConfigFile } from "./model/Config.js";
 import { schemasOutputFolderName, typesOutputFolderName } from "./generate.js";
+import _ from "lodash";
 
 export async function generateTypeScriptDefinitions(configData: ConfigFile): Promise<void> {
   let indexExportStatements = "";
@@ -82,7 +83,21 @@ export async function generateTypeScriptDefinitions(configData: ConfigFile): Pro
       const typesFile = `${process.cwd()}/${configData.outputPath}/${typesOutputFolderName}/${docConfig.id}.ts`;
       await fs.outputFile(typesFile, definitions);
       log.info(`Result: ${typesFile}`);
-      indexExportStatements += `export * from "./${docConfig.id}";\n`;
+
+      let mainSpecsCounter = 0;
+      configData.docsConfig.forEach((docConfig) => {
+        if (docConfig.type === "spec") {
+          mainSpecsCounter++;
+        }
+      });
+      if (mainSpecsCounter > 1) {
+        const camelCased = _.camelCase(docConfig.id);
+        const firstLetterUpper = camelCased.charAt(0).toUpperCase();
+        const alias = firstLetterUpper + camelCased.slice(1);
+        indexExportStatements += `export * as ${alias} from "./${docConfig.id}";\n`;
+      } else {
+        indexExportStatements += `export * from "./${docConfig.id}";\n`;
+      }
     }
   }
 

@@ -96,17 +96,19 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
     log.info(`${getContextText(jsonSchemaRoot)} loaded and prepared.`);
 
     // Read extension target file if given
-    let extensionTarget: SpecJsonSchemaRoot | undefined;
+    const extensionTargets: { documentId: string; schemaRoot: SpecJsonSchemaRoot }[] = [];
     if (docConfig.type === "specExtension") {
-      const target = configData.docsConfig.find((config) => config.id === docConfig.targetDocumentId);
-      if (target) {
-        const file = fs.readFileSync(target.sourceFilePath).toString();
-        extensionTarget = yaml.load(file) as SpecJsonSchemaRoot;
-      } else {
-        log.error(
-          `Spec extensions are merged into main specs, but there was no valid "targetDocumentId" defined for specExtension with "id": ${docConfig.id}`,
-        );
-      }
+      docConfig.targetDocumentIds.forEach((targetDocumentId) => {
+        const target = configData.docsConfig.find((config) => config.id === targetDocumentId);
+        if (target) {
+          const file = fs.readFileSync(target.sourceFilePath).toString();
+          extensionTargets.push({ documentId: targetDocumentId, schemaRoot: yaml.load(file) as SpecJsonSchemaRoot });
+        } else {
+          log.error(
+            `Spec extensions are merged into main specs, but there was no valid main spec targetDocumentId "${targetDocumentId}" defined for specExtension with "id": "${docConfig.id}"`,
+          );
+        }
+      });
     }
 
     // Validate JSON Schema to be a valid JSON Schema document
@@ -119,7 +121,13 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
     text += "\n\n## Schema Definitions\n\n";
 
     if (docConfig.type === "specExtension") {
-      text += `* This is an extension vocabulary for [${extensionTarget?.title}](${extensionFolderDiffToOutputFolderName + docConfig.targetDocumentId}).\n`;
+      const extensionTargetLinks: string[] = [];
+      extensionTargets.forEach((extensionTarget) => {
+        extensionTargetLinks.push(
+          `[${extensionTarget.schemaRoot?.title}](${extensionFolderDiffToOutputFolderName + extensionTarget.documentId})`,
+        );
+      });
+      text += `* This is an extension vocabulary for ${extensionTargetLinks.join(", ").replace(/,(?!.*,)/gim, " and")}.\n`;
     } else if (docConfig.type === "spec") {
       if (jsonSchemaRoot.title) {
         const link = getAnchorLinkFromTitle(jsonSchemaRoot.title);
@@ -160,7 +168,7 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
       // Refactor: Loop within jsonSchemaToMd, then we don't have to pass definition name
       for (const definitionName of finalPropertyOrder) {
         const definition = jsonSchemaRoot.definitions[definitionName];
-        text += jsonSchemaToMd(definition, jsonSchemaRoot, configData, docConfig, definitionName, extensionTarget);
+        text += jsonSchemaToMd(definition, jsonSchemaRoot, configData, docConfig, definitionName, extensionTargets);
       }
     }
 
@@ -200,7 +208,7 @@ function jsonSchemaToMd(
   configFile: ConfigFile,
   specConfig: SpecConfig,
   definitionName?: string,
-  extensionTarget?: SpecJsonSchemaRoot,
+  extensionTargets?: { documentId: string; schemaRoot: SpecJsonSchemaRoot }[],
 ): string {
   let text = "";
 
@@ -253,7 +261,13 @@ function jsonSchemaToMd(
       specConfig,
     );
   } else {
-    text += generatePrimitiveTypeDescription(jsonSchemaObject, jsonSchemaRoot, configFile, specConfig, extensionTarget);
+    text += generatePrimitiveTypeDescription(
+      jsonSchemaObject,
+      jsonSchemaRoot,
+      configFile,
+      specConfig,
+      extensionTargets,
+    );
   }
   return text;
 }
@@ -315,7 +329,8 @@ function getTypeColumnText(
   }
   //in case it is a primitive type just return it
   else if (jsonSchemaObject["x-ref-to-doc"] && specConfig.type === "specExtension") {
-    return `[${jsonSchemaObject["x-ref-to-doc"].title}](${extensionFolderDiffToOutputFolderName + specConfig.targetDocumentId}${getAnchorLinkFromTitle(jsonSchemaObject["x-ref-to-doc"].title)})`;
+    //return `[${jsonSchemaObject["x-ref-to-doc"].title}](${extensionFolderDiffToOutputFolderName + specConfig.targetDocumentId}${getAnchorLinkFromTitle(jsonSchemaObject["x-ref-to-doc"].title)})`;
+    return "TODO: here 1";
   }
   // if its referencing to an interface in another document, create a cross-page link:
   else if (jsonSchemaObject && jsonSchemaObject.type) {
@@ -729,7 +744,7 @@ function generatePrimitiveTypeDescription(
   jsonSchemaRoot: SpecJsonSchemaRoot,
   configFile: ConfigFile,
   specConfig: SpecConfig,
-  extensionTarget?: SpecJsonSchemaRoot,
+  extensionTargets?: { documentId: string; schemaRoot: SpecJsonSchemaRoot }[],
 ): string {
   let text = "";
 
@@ -823,7 +838,8 @@ function generatePrimitiveTypeDescription(
   }
 
   if (jsonSchemaObject["x-ref-to-doc"] && specConfig.type === "specExtension") {
-    text += `**External Type**: [${jsonSchemaObject["x-ref-to-doc"].title}](${extensionFolderDiffToOutputFolderName + specConfig.targetDocumentId}${getAnchorLinkFromTitle(jsonSchemaObject["x-ref-to-doc"].title)}) <br/>\n`;
+    // text += `**External Type**: [${jsonSchemaObject["x-ref-to-doc"].title}](${extensionFolderDiffToOutputFolderName + specConfig.targetDocumentId}${getAnchorLinkFromTitle(jsonSchemaObject["x-ref-to-doc"].title)}) <br/>\n`;
+    text += "TODO: here 2";
   }
 
   // Document extensions towards other target documents
@@ -833,20 +849,22 @@ function generatePrimitiveTypeDescription(
 
     for (const extensionPoint of jsonSchemaObject["x-extension-targets"]) {
       let found = 0;
+
       // Find extension point
-      for (const definitionName in extensionTarget!.definitions) {
-        const definition = extensionTarget!.definitions[definitionName];
-        if (
-          definition["x-extension-points"] &&
-          definition["x-extension-points"].includes(extensionPoint) &&
-          specConfig.type === "specExtension"
-        ) {
-          text += `[${definitionName}](${extensionFolderDiffToOutputFolderName + specConfig.targetDocumentId}${getAnchorLinkFromTitle(definition.title)}), `;
-          found++;
+      for (const extensionTarget of extensionTargets || []) {
+        for (const definitionName in extensionTarget.schemaRoot.definitions) {
+          const definition = extensionTarget.schemaRoot.definitions[definitionName];
+          if (definition["x-extension-points"] && definition["x-extension-points"].includes(extensionPoint)) {
+            text += `[${definitionName}](${extensionFolderDiffToOutputFolderName + extensionTarget.documentId}${getAnchorLinkFromTitle(definition.title)}), `;
+            found++;
+          }
         }
       }
+
       if (!found) {
-        throw new Error(`Could not find extension point "${extensionPoint}" in extension target file.`);
+        throw new Error(
+          `Could not find extension point "${extensionPoint}" in extension target files ${JSON.stringify(extensionTargets?.map((extTarget) => extTarget.documentId))}.`,
+        );
       }
     }
     text = text.substring(0, text.length - 2);
