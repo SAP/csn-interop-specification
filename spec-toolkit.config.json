@@ -55,9 +55,9 @@
     },
     {
       "type": "specExtension",
-      "id": "enduser-text",
-      "sourceFilePath": "./spec/v1/annotations/enduser-text.yaml",
-      "sourceIntroFilePath": "./spec/v1/annotations/enduser-text.md",
+      "id": "end-user-text",
+      "sourceFilePath": "./spec/v1/annotations/end-user-text.yaml",
+      "sourceIntroFilePath": "./spec/v1/annotations/end-user-text.md",
       "targetDocumentId": "csn-interop-effective",
       "mdFrontmatter": {
         "title": "@EndUserText",

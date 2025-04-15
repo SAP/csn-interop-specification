@@ -1,8 +1,9 @@
 {
-  "description": "JSON Schema with custom (x-) properties",
+  "description": "This is the interface description of @Annotation.",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://sap.github.io/csn-interop-specification/spec-v1/aggregation.schema.json#",
-  "title": "@Aggregation",
+  "title": "Aggregation Document",
+  "type": "object",
   "definitions": {
     "@Aggregation.default": {
       "description": "The element shall per default be aggregated using the annotated SQL aggregate function.\n\nThe chosen value defines which aggregation semantics should be applied.\nThe aggregation types SUM, MAX, MIN, NOP are only allowed for elements with numeric type\n\n> ℹ️ Note: There is an semantically equivalent annotation `@DefaultAggregation`, which is now obsolete.\n> As consumers are not expected to interpret `@DefaultAggregation`, providers shall consistently adopt `@Aggregation.default` for interoperability.",
