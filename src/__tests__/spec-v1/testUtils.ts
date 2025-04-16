@@ -1,27 +1,8 @@
-import {
-  AssociationType,
-  BooleanType,
-  CdsTypeValue,
-  CompositionType,
-  DateTimeType,
-  DateType,
-  DecimalType,
-  CustomType,
-  CustomTypeValue,
-  DoubleType,
-  Integer64Type,
-  IntegerType,
-  LargeStringType,
-  StringType,
-  TimestampType,
-  TimeType,
-  CdsType,
-  UUIDType,
-  CSNInteropEffectiveDocument,
-  Definitions,
-} from "../../generated/spec-v1/types";
+import { CsnInteropEffective } from "../../generated/spec-v1/types";
 
-export function getElementTestDataByElementType(elementType: CdsTypeValue | CustomTypeValue): CdsType | CustomType {
+export function getElementTestDataByElementType(
+  elementType: CsnInteropEffective.CdsTypeValue | CsnInteropEffective.CustomTypeValue,
+): CsnInteropEffective.CdsType | CsnInteropEffective.CustomType {
   switch (elementType) {
     case "cds.Boolean":
       return getBooleanTypeTestData();
@@ -56,7 +37,9 @@ export function getElementTestDataByElementType(elementType: CdsTypeValue | Cust
   }
 }
 
-export function getCsnDocumentTestData(definitions?: Definitions): CSNInteropEffectiveDocument {
+export function getCsnDocumentTestData(
+  definitions?: CsnInteropEffective.Definitions,
+): CsnInteropEffective.CSNInteropEffectiveDocument {
   return {
     csnInteropEffective: "1.0",
     $version: "2.0",
@@ -68,7 +51,7 @@ export function getCsnDocumentTestData(definitions?: Definitions): CSNInteropEff
  * Returns a basic object of type BooleanType with only the relevant properties
  *  that discriminate an boolean from any other type
  **/
-function getBooleanTypeTestData(): BooleanType {
+function getBooleanTypeTestData(): CsnInteropEffective.BooleanType {
   return {
     type: "cds.Boolean",
     default: { val: true },
@@ -81,7 +64,7 @@ function getBooleanTypeTestData(): BooleanType {
  * Returns a basic object of type StringType with only the relevant properties
  *  that discriminate an string from any other type
  **/
-function getStringTypeTestData(): StringType {
+function getStringTypeTestData(): CsnInteropEffective.StringType {
   return {
     type: "cds.String",
     default: { val: "hello world" },
@@ -102,7 +85,7 @@ function getStringTypeTestData(): StringType {
  * Returns a basic object of type LargeStringType with only the relevant properties
  *  that discriminate an large string from any other type
  **/
-function getLargeStringTypeTestData(): LargeStringType {
+function getLargeStringTypeTestData(): CsnInteropEffective.LargeStringType {
   return {
     type: "cds.LargeString",
     default: { val: "hello world large" },
@@ -115,7 +98,7 @@ function getLargeStringTypeTestData(): LargeStringType {
  * Returns a basic object of type IntegerType with only the relevant properties
  *  that discriminate an integer from any other type
  **/
-function getIntegerTypeTestData(): IntegerType {
+function getIntegerTypeTestData(): CsnInteropEffective.IntegerType {
   return {
     type: "cds.Integer",
     default: { val: 1337 },
@@ -129,7 +112,7 @@ function getIntegerTypeTestData(): IntegerType {
  * Returns a basic object of type Integer64Type with only the relevant properties
  *  that discriminate an integer64 from any other type
  **/
-function getInteger64TypeTestData(): Integer64Type {
+function getInteger64TypeTestData(): CsnInteropEffective.Integer64Type {
   return {
     type: "cds.Integer64",
     default: { val: 1337 },
@@ -143,7 +126,7 @@ function getInteger64TypeTestData(): Integer64Type {
  * Returns a basic object of type DecimalType with only the relevant properties
  *  that discriminate an decimal from any other type
  **/
-function getDecimalTypeTestData(): DecimalType {
+function getDecimalTypeTestData(): CsnInteropEffective.DecimalType {
   return {
     type: "cds.Decimal",
     default: { val: 15.2 },
@@ -156,7 +139,7 @@ function getDecimalTypeTestData(): DecimalType {
  * Returns a basic object of type DoubleType with only the relevant properties
  *  that discriminate an double from any other type
  **/
-function getDoubleTypeTestData(): DoubleType {
+function getDoubleTypeTestData(): CsnInteropEffective.DoubleType {
   return {
     type: "cds.Double",
     default: { val: 15.2 },
@@ -169,7 +152,7 @@ function getDoubleTypeTestData(): DoubleType {
  * Returns a basic object of type DateType with only the relevant properties
  *  that discriminate an date from any other type
  **/
-function getDateTypeTestData(): DateType {
+function getDateTypeTestData(): CsnInteropEffective.DateType {
   return {
     type: "cds.Date",
     default: { val: "2021-06-27" },
@@ -183,7 +166,7 @@ function getDateTypeTestData(): DateType {
  * Returns a basic object of type TimeType with only the relevant properties
  *  that discriminate a time from any other type
  **/
-function getTimeTypeTestData(): TimeType {
+function getTimeTypeTestData(): CsnInteropEffective.TimeType {
   return {
     type: "cds.Time",
     default: { val: "07:59:59" },
@@ -197,7 +180,7 @@ function getTimeTypeTestData(): TimeType {
  * Returns a basic object of type DateTimeType with only the relevant properties
  *  that discriminate a dateTime from any other type
  **/
-function getDateTimeTypeTestData(): DateTimeType {
+function getDateTimeTypeTestData(): CsnInteropEffective.DateTimeType {
   return {
     type: "cds.DateTime",
     default: { val: "2021-06-27T14:52:23Z" },
@@ -211,7 +194,7 @@ function getDateTimeTypeTestData(): DateTimeType {
  * Returns a basic object of type TimestampType with only the relevant properties
  *  that discriminate a timestamp from any other type
  **/
-function getTimestampTypeTestData(): TimestampType {
+function getTimestampTypeTestData(): CsnInteropEffective.TimestampType {
   return {
     type: "cds.Timestamp",
     default: { val: "2021-06-27T14:52:23.123Z" },
@@ -225,7 +208,7 @@ function getTimestampTypeTestData(): TimestampType {
  * Returns a basic object of type UUIDType with only the relevant properties
  *  that discriminate a uuid from any other type
  **/
-function getUuidTypeTestData(): UUIDType {
+function getUuidTypeTestData(): CsnInteropEffective.UUIDType {
   return {
     type: "cds.UUID",
     default: { val: "3c2e503f-1e76-435f-abc8-df53467d3639" },
@@ -238,7 +221,7 @@ function getUuidTypeTestData(): UUIDType {
  * Returns a basic object of type AssociationType with only the relevant properties
  *  that discriminate an association from any other type
  **/
-function getAssociationTypeTestData(): AssociationType {
+function getAssociationTypeTestData(): CsnInteropEffective.AssociationType {
   return {
     type: "cds.Association",
     target: "cds.MyTargetAssociationEntity",
@@ -251,7 +234,7 @@ function getAssociationTypeTestData(): AssociationType {
  * Returns a basic object of type CompositionType with only the relevant properties
  *  that discriminate a composition from any other type
  **/
-function getCompositionTypeTestData(): CompositionType {
+function getCompositionTypeTestData(): CsnInteropEffective.CompositionType {
   return {
     type: "cds.Composition",
     target: "cds.MyTargetCompositionEntity",
@@ -264,7 +247,7 @@ function getCompositionTypeTestData(): CompositionType {
  * Returns a basic object of type CustomType with only the relevant properties
  *  that discriminate an derived type from any other type
  **/
-function gerDerivedTypeTestData(): CustomType {
+function gerDerivedTypeTestData(): CsnInteropEffective.CustomType {
   return {
     type: "cds.MyCustomType",
     default: { val: "myDefaultValueHere" },

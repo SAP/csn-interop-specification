@@ -18,11 +18,24 @@
       }
     },
     {
+      "type": "spec",
+      "id": "csn-interop-effective2",
+      "sourceFilePath": "./spec/v1/CSN-Interop-Effective2.schema.yaml",
+      "sourceIntroFilePath": "./spec/v1/CSN-Interop-Effective2.schema.md",
+      "examplesFolderPath": "./spec/v1/examples2",
+      "mdFrontmatter": {
+        "title": "Interface Documentation2",
+        "sidebar_position": 1,
+        "description": "Describes the technical interface / schema for CSN Interop Effective2.",
+        "toc_max_heading_level": 4
+      }
+    },
+    {
       "type": "specExtension",
       "id": "aggregation",
       "sourceFilePath": "./spec/v1/annotations/aggregation.yaml",
       "sourceIntroFilePath": "./spec/v1/annotations/aggregation.md",
-      "targetDocumentIds": ["csn-interop-effective"],
+      "targetDocumentIds": ["csn-interop-effective", "csn-interop-effective2"],
       "mdFrontmatter": {
         "title": "@Aggregation",
         "sidebar_position": 2,
