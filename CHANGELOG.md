@@ -17,6 +17,7 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 ### Added
 
 - Added missing property `$id` to annotation extension schemas
+- Added clarification that `key: true` also implies `notNull: true`
 
 ## [1.0.3]
 
