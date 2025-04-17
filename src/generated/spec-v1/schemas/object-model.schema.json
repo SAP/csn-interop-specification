@@ -19,12 +19,8 @@
         "Entity",
         "Service"
       ],
-      "x-ref-to-doc": {
-        "title": "Element Reference",
-        "ref": "#/definitions/ElementReference"
-      },
-      "title": "@ObjectModel.representativeKey",
-      "$ref": "#/definitions/ElementReference"
+      "$ref": "file:///spec/v1/CSN-Interop-Effective.schema.yaml/#/definitions/ElementReference",
+      "title": "@ObjectModel.representativeKey"
     },
     "@ObjectModel.semanticKey": {
       "type": "array",
@@ -33,10 +29,7 @@
         "Type"
       ],
       "items": {
-        "x-ref-to-doc": {
-          "title": "Element Reference",
-          "ref": "#/definitions/ElementReference"
-        }
+        "$ref": "file:///spec/v1/CSN-Interop-Effective.schema.yaml/#/definitions/ElementReference"
       },
       "title": "@ObjectModel.semanticKey"
     },
@@ -108,12 +101,8 @@
       "x-extension-targets": [
         "Type"
       ],
-      "x-ref-to-doc": {
-        "title": "Element Reference",
-        "ref": "#/definitions/ElementReference"
-      },
-      "title": "@ObjectModel.foreignKey.association",
-      "$ref": "#/definitions/ElementReference"
+      "$ref": "file:///spec/v1/CSN-Interop-Effective.schema.yaml/#/definitions/ElementReference",
+      "title": "@ObjectModel.foreignKey.association"
     },
     "@ObjectModel.text.element": {
       "type": "array",
@@ -122,10 +111,7 @@
         "Type"
       ],
       "items": {
-        "x-ref-to-doc": {
-          "title": "Element Reference",
-          "ref": "#/definitions/ElementReference"
-        }
+        "$ref": "file:///spec/v1/CSN-Interop-Effective.schema.yaml/#/definitions/ElementReference"
       },
       "examples": [
         [
@@ -139,12 +125,8 @@
       "x-extension-targets": [
         "Type"
       ],
-      "x-ref-to-doc": {
-        "title": "Element Reference",
-        "ref": "#/definitions/ElementReference"
-      },
-      "title": "@ObjectModel.text.association",
-      "$ref": "#/definitions/ElementReference"
+      "$ref": "file:///spec/v1/CSN-Interop-Effective.schema.yaml/#/definitions/ElementReference",
+      "title": "@ObjectModel.text.association"
     },
     "@ObjectModel.tenantWideUniqueName": {
       "type": "string",

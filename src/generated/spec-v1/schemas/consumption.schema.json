@@ -31,12 +31,8 @@
           "description": "Additional bindings for filtering the value help result list."
         },
         "association": {
-          "x-ref-to-doc": {
-            "title": "Element Reference",
-            "ref": "#/definitions/ElementReference"
-          },
-          "description": "Reference to the modelled association (in local entity) for which the target view represents the value help providing view or entity for the annotated local field. The on-condition of the association may only contain bindings of the source and target fields that use an equal operator. All these bindings are automatically considered by the value help for both filter and result mappings.\nMutually exclusive to the usage of `valueHelpDefinition.entity`.",
-          "$ref": "#/definitions/ElementReference"
+          "$ref": "file:///spec/v1/CSN-Interop-Effective.schema.yaml/#/definitions/ElementReference",
+          "description": "Reference to the modelled association (in local entity) for which the target view represents the value help providing view or entity for the annotated local field. The on-condition of the association may only contain bindings of the source and target fields that use an equal operator. All these bindings are automatically considered by the value help for both filter and result mappings.\nMutually exclusive to the usage of `valueHelpDefinition.entity`."
         },
         "distinctValues": {
           "type": "boolean",

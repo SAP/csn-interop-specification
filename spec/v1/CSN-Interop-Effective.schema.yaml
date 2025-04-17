@@ -1456,9 +1456,6 @@ definitions:
       Element reference to an element within the current entity.
 
       It is RECOMMENDED to use the [ElementReferenceObject](#element-reference-object) notation.
-
-      See [Primer: Literals for Enum and ElementRef values](../primer.md#literals-for-enum-and-elementref-values).
-
     oneOf:
       - $ref: "#/definitions/ElementReferenceString"
       - $ref: "#/definitions/ElementReferenceObject"
@@ -1473,7 +1470,7 @@ definitions:
 
       ```js
       "<definition name>": {
-        "<annotation key of type ElementReference>": "<element name>"
+        "<annotation key of type ElementReferenceString>": "<element name>"
       ```
 
   ElementReferenceObject:
@@ -1486,7 +1483,7 @@ definitions:
 
       ```js
       "<definition name>": {
-        "<annotation key of type ElementReference>": {"=": "<element name>"}
+        "<annotation key of type ElementReferenceObject>": {"=": "<element name>"}
       ```
     properties:
       "=":

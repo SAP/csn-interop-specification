@@ -4,6 +4,96 @@
   "$id": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#",
   "title": "CSN Interop Effective Document",
   "type": "object",
+  "x-custom-typescript-types": [
+    {
+      "typeName": "PrivatePropertyKey",
+      "typeValue": "`__${string}`"
+    },
+    {
+      "typeName": "AnnotationPropertyKey",
+      "typeValue": "`@${string}`"
+    },
+    {
+      "typeName": "EntityKind",
+      "typeValue": "\"entity\""
+    },
+    {
+      "typeName": "ContextKind",
+      "typeValue": "\"context\""
+    },
+    {
+      "typeName": "ServiceKind",
+      "typeValue": "\"service\""
+    },
+    {
+      "typeName": "TypeKind",
+      "typeValue": "\"type\""
+    },
+    {
+      "typeName": "BooleanCdsType",
+      "typeValue": "\"cds.Boolean\""
+    },
+    {
+      "typeName": "StringCdsType",
+      "typeValue": "\"cds.String\""
+    },
+    {
+      "typeName": "LargeStringCdsType",
+      "typeValue": "\"cds.LargeString\""
+    },
+    {
+      "typeName": "IntegerCdsType",
+      "typeValue": "\"cds.Integer\""
+    },
+    {
+      "typeName": "Integer64CdsType",
+      "typeValue": "\"cds.Integer64\""
+    },
+    {
+      "typeName": "DecimalCdsType",
+      "typeValue": "\"cds.Decimal\""
+    },
+    {
+      "typeName": "DoubleCdsType",
+      "typeValue": "\"cds.Double\""
+    },
+    {
+      "typeName": "DateCdsType",
+      "typeValue": "\"cds.Date\""
+    },
+    {
+      "typeName": "TimeCdsType",
+      "typeValue": "\"cds.Time\""
+    },
+    {
+      "typeName": "DateTimeCdsType",
+      "typeValue": "\"cds.DateTime\""
+    },
+    {
+      "typeName": "TimestampCdsType",
+      "typeValue": "\"cds.Timestamp\""
+    },
+    {
+      "typeName": "UUIDCdsType",
+      "typeValue": "\"cds.UUID\""
+    },
+    {
+      "typeName": "AssociationCdsType",
+      "typeValue": "\"cds.Association\""
+    },
+    {
+      "typeName": "CompositionCdsType",
+      "typeValue": "\"cds.Composition\""
+    },
+    {
+      "typeName": "CustomTypeValue",
+      "typeValue": "string // MUST not start with `cds.`"
+    },
+    {
+      "typeName": "CdsTypeValue",
+      "typeValue": "BooleanCdsType | StringCdsType | LargeStringCdsType | IntegerCdsType | Integer64CdsType | DecimalCdsType | DoubleCdsType | DateCdsType | TimeCdsType | DateTimeCdsType | TimestampCdsType | UUIDCdsType | AssociationCdsType | CompositionCdsType"
+    }
+  ],
   "properties": {
     "$schema": {
       "type": "string",
@@ -276,6 +366,7 @@
           }
         }
       ],
+      "x-hide-properties": true,
       "title": "DefinitionEntry"
     },
     "EntityDefinition": {
@@ -307,6 +398,7 @@
             "array",
             "object"
           ],
+          "x-hide-property": true,
           "description": "Proper syntax element in ABAP CDS producing Abstract CDS Entities"
         },
         "customEntity": {
@@ -317,6 +409,7 @@
             "array",
             "object"
           ],
+          "x-hide-property": true,
           "description": "Proper syntax element in ABAP CDS producing Custom CDS Entities"
         },
         "tableFunction": {
@@ -327,6 +420,7 @@
             "array",
             "object"
           ],
+          "x-hide-property": true,
           "description": "Proper syntax element in ABAP CDS producing CDS Table Functions."
         },
         "externalEntity": {
@@ -337,6 +431,7 @@
             "array",
             "object"
           ],
+          "x-hide-property": true,
           "description": "Proper syntax element in ABAP CDS producing CDS  External Entities"
         },
         "providerContract": {
@@ -347,6 +442,7 @@
             "array",
             "object"
           ],
+          "x-hide-property": true,
           "description": "ABAP CDS Projection have the additional information of a provider contract"
         },
         "rootEntity": {
@@ -357,6 +453,7 @@
             "array",
             "object"
           ],
+          "x-hide-property": true,
           "description": "ABAP CDS Root View Entities define a RAP Business Object."
         },
         "transient": {
@@ -367,6 +464,7 @@
             "array",
             "object"
           ],
+          "x-hide-property": true,
           "description": "Special kind of analytical ABAP CDS Projection view."
         },
         "literal": {
@@ -377,6 +475,7 @@
             "array",
             "object"
           ],
+          "x-hide-property": true,
           "description": "In the selection element list of a CDS view."
         },
         "toCompositionChild": {
@@ -387,6 +486,7 @@
             "array",
             "object"
           ],
+          "x-hide-property": true,
           "description": "When redirecting associations in ABAP CDS Projections with the additional keywords \"to composition child\", this indicates a Parent-Child-Composition an requires the redirection target to have a matching \"to parent\" association redefinition."
         },
         "toParent": {
@@ -397,6 +497,7 @@
             "array",
             "object"
           ],
+          "x-hide-property": true,
           "description": "When redirecting associations in ABAP CDS Projections with the additional keywords \"to composition child\", this indicates a Parent-Child-Composition an requires the redirection target to have a matching \"to parent\" association redefinition."
         },
         "hana_on_asString": {
@@ -407,6 +508,8 @@
             "array",
             "object"
           ],
+          "x-hide-property": true,
+          "x-ignore-conventions": true,
           "description": "Contains the SQL on condition as string"
         },
         "@Consumption.valueHelpDefinition": {
@@ -546,6 +649,7 @@
       "required": [
         "type"
       ],
+      "x-hide-properties": true,
       "title": "ElementEntry"
     },
     "CdsType": {
@@ -802,7 +906,8 @@
       ],
       "required": [
         "type"
-      ]
+      ],
+      "x-hide-properties": true
     },
     "BooleanType": {
       "title": "Boolean Type",
@@ -990,6 +1095,7 @@
         "Type",
         "BooleanType"
       ],
+      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.Boolean",
@@ -1193,6 +1299,7 @@
         "Type",
         "StringType"
       ],
+      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.String",
@@ -1394,6 +1501,7 @@
         "Type",
         "LargeStringType"
       ],
+      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.LargeString",
@@ -1597,6 +1705,7 @@
         "Type",
         "IntegerType"
       ],
+      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.Integer",
@@ -1798,6 +1907,7 @@
         "Type",
         "Integer64Type"
       ],
+      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.Integer64",
@@ -2013,6 +2123,7 @@
         "Type",
         "DecimalType"
       ],
+      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.Decimal",
@@ -2212,6 +2323,7 @@
         "Type",
         "DoubleType"
       ],
+      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.Double",
@@ -2410,6 +2522,7 @@
         "Type",
         "DateType"
       ],
+      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.Date",
@@ -2606,6 +2719,7 @@
         "Type",
         "TimeType"
       ],
+      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.Time",
@@ -2802,6 +2916,7 @@
         "Type",
         "DateTimeType"
       ],
+      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.DateTime",
@@ -2998,6 +3113,7 @@
         "Type",
         "TimestampType"
       ],
+      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.Timestamp",
@@ -3191,6 +3307,7 @@
         "Type",
         "UUIDType"
       ],
+      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.UUID",
@@ -3477,6 +3594,7 @@
         "Type",
         "AssociationType"
       ],
+      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.Association",
@@ -3780,6 +3898,7 @@
         "Type",
         "CompositionType"
       ],
+      "x-header-level": 4,
       "examples": [
         {
           "type": "cds.Composition",
@@ -4756,7 +4875,8 @@
       "required": [
         "kind",
         "type"
-      ]
+      ],
+      "x-hide-properties": true
     },
     "BooleanTypeDefinition": {
       "title": "Boolean Type Definition",
@@ -4946,6 +5066,7 @@
         "Type",
         "BooleanType"
       ],
+      "x-header-level": 4,
       "examples": [
         {
           "kind": "type",
@@ -5152,6 +5273,7 @@
         "Type",
         "StringType"
       ],
+      "x-header-level": 4,
       "examples": [
         {
           "kind": "type",
@@ -5358,7 +5480,8 @@
       "x-extension-points": [
         "Type",
         "LargeStringType"
-      ]
+      ],
+      "x-header-level": 4
     },
     "IntegerTypeDefinition": {
       "title": "Integer Type Definition",
@@ -5554,6 +5677,7 @@
         "Type",
         "IntegerType"
       ],
+      "x-header-level": 4,
       "examples": [
         {
           "kind": "type",
@@ -5757,7 +5881,8 @@
       "x-extension-points": [
         "Type",
         "Integer64Type"
-      ]
+      ],
+      "x-header-level": 4
     },
     "DecimalTypeDefinition": {
       "title": "Decimal Type Definition",
@@ -5971,6 +6096,7 @@
         "Type",
         "DecimalType"
       ],
+      "x-header-level": 4,
       "examples": [
         {
           "kind": "type",
@@ -6176,7 +6302,8 @@
       "x-extension-points": [
         "Type",
         "DoubleType"
-      ]
+      ],
+      "x-header-level": 4
     },
     "DateTypeDefinition": {
       "title": "Date Type Definition",
@@ -6369,6 +6496,7 @@
         "Type",
         "DateType"
       ],
+      "x-header-level": 4,
       "examples": [
         {
           "kind": "type",
@@ -6566,7 +6694,8 @@
       "x-extension-points": [
         "Type",
         "TimeType"
-      ]
+      ],
+      "x-header-level": 4
     },
     "DateTimeTypeDefinition": {
       "title": "DateTime Type Definition",
@@ -6758,7 +6887,8 @@
       "x-extension-points": [
         "Type",
         "DateTimeType"
-      ]
+      ],
+      "x-header-level": 4
     },
     "TimestampTypeDefinition": {
       "title": "Timestamp Type Definition",
@@ -6950,7 +7080,8 @@
       "x-extension-points": [
         "Type",
         "TimestampType"
-      ]
+      ],
+      "x-header-level": 4
     },
     "UUIDTypeDefinition": {
       "title": "UUID Type Definition",
@@ -7139,7 +7270,8 @@
       "x-extension-points": [
         "Type",
         "UUIDType"
-      ]
+      ],
+      "x-header-level": 4
     },
     "AssociationTypeDefinition": {
       "title": "Association Type Definition",
@@ -7424,6 +7556,7 @@
         "Type",
         "AssociationType"
       ],
+      "x-header-level": 4,
       "examples": [
         {
           "kind": "type",
@@ -7732,6 +7865,7 @@
         "Type",
         "CompositionType"
       ],
+      "x-header-level": 4,
       "examples": [
         {
           "kind": "type",

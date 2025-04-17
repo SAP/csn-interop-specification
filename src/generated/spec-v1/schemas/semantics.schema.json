@@ -46,15 +46,11 @@
     },
     "@Semantics.amount.currencyCode": {
       "description": "The element contains an amount.\nThe annotation points to an element containing the currency code.",
-      "x-ref-to-doc": {
-        "title": "Element Reference",
-        "ref": "#/definitions/ElementReference"
-      },
+      "$ref": "file:///spec/v1/CSN-Interop-Effective.schema.yaml/#/definitions/ElementReference",
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.amount.currencyCode",
-      "$ref": "#/definitions/ElementReference"
+      "title": "@Semantics.amount.currencyCode"
     },
     "@Semantics.unitOfMeasure": {
       "type": "boolean",
@@ -67,15 +63,11 @@
     },
     "@Semantics.quantity.unitOfMeasure": {
       "description": "The element contains a quantity.\nThe annotation points to an element containing the unit of measure.",
-      "x-ref-to-doc": {
-        "title": "Element Reference",
-        "ref": "#/definitions/ElementReference"
-      },
+      "$ref": "file:///spec/v1/CSN-Interop-Effective.schema.yaml/#/definitions/ElementReference",
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.quantity.unitOfMeasure",
-      "$ref": "#/definitions/ElementReference"
+      "title": "@Semantics.quantity.unitOfMeasure"
     },
     "@Semantics.calendar.dayOfMonth": {
       "type": "boolean",

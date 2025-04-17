@@ -29,9 +29,7 @@ definitions:
         description: |-
           Additional bindings for filtering the value help result list.
       association:
-        x-ref-to-doc:
-          title: Element Reference
-          ref: "#/definitions/ElementReference"
+        $ref: "file:///spec/v1/CSN-Interop-Effective.schema.yaml/#/definitions/ElementReference"
         description:
           Reference to the modelled association (in local entity) for which the target view represents the value help providing view or entity for the annotated local field.
           The on-condition of the association may only contain bindings of the source and target fields that use an equal operator.

@@ -47,9 +47,7 @@ definitions:
     description: |-
       The element contains an amount.
       The annotation points to an element containing the currency code.
-    x-ref-to-doc:
-      title: Element Reference
-      ref: "#/definitions/ElementReference"
+    $ref: "file:///spec/v1/CSN-Interop-Effective.schema.yaml/#/definitions/ElementReference"
     x-extension-targets:
       - Type
 

@@ -22,7 +22,6 @@ preparedAjv.addKeyword("x-ignore-conventions");
 preparedAjv.addKeyword("x-extension-targets");
 preparedAjv.addKeyword("x-extension-points");
 preparedAjv.addKeyword("x-header-level");
-preparedAjv.addKeyword("x-ref-to-doc");
 
 // JSON Schema -> TypeScript conversion
 preparedAjv.addKeyword("tsType");
@@ -121,14 +120,14 @@ export function validateRefLinks(jsonSchema: SpecJsonSchemaRoot, jsonSchemaFileP
       const $ref = value.$ref as string;
       const refArr = $ref.split("/");
 
-      if (!$ref.startsWith("#/definitions/")) {
+      if (!($ref.startsWith("#/definitions/") || $ref.startsWith("https://") || $ref.startsWith("file:///"))) {
         errors.push({
-          message: `Invalid $ref "${$ref}", in Spec JSON Schema. MUST start with "#/definitions/" (only relative $refs to)`,
+          message: `$refs in Spec JSON Schema MUST start with "#/definitions/" (only relative $refs to ), "https://" or "file:///".`,
           context: `${jsonSchemaFilePath}`,
         });
       }
 
-      if (refArr.length === 3) {
+      if (refArr.length === 3 && $ref.startsWith("#/definitions/")) {
         // $ref to a definition
 
         if (!this.definitions[refArr[2]]) {
@@ -137,11 +136,6 @@ export function validateRefLinks(jsonSchema: SpecJsonSchemaRoot, jsonSchemaFileP
             context: `${jsonSchemaFilePath}`,
           });
         }
-      } else {
-        errors.push({
-          message: `Invalid $ref "${$ref}" in Spec JSON Schema. MUST only point to definition name, not deeper inside it.`,
-          context: `${jsonSchemaFilePath}`,
-        });
       }
     }
   }

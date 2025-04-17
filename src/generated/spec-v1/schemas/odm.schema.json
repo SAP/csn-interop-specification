@@ -14,15 +14,11 @@
     },
     "@ODM.oid": {
       "description": "The annotation references the element which contains the oid.",
-      "x-ref-to-doc": {
-        "title": "Element Reference",
-        "ref": "#/definitions/ElementReference"
-      },
+      "$ref": "file:///spec/v1/CSN-Interop-Effective.schema.yaml/#/definitions/ElementReference",
       "x-extension-targets": [
         "Entity"
       ],
-      "title": "@ODM.oid",
-      "$ref": "#/definitions/ElementReference"
+      "title": "@ODM.oid"
     },
     "@ODM.oidReference.entityName": {
       "type": "string",
