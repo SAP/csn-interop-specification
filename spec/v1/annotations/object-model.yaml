@@ -1,7 +1,8 @@
 $schema: "http://json-schema.org/draft-07/schema#"
 $id: "https://sap.github.io/csn-interop-specification/spec-v1/object-model.schema.json#"
-title: "@ObjectModel"
-
+title: ObjectModel Document
+description: This is the interface description of @ObjectModel.
+type: object
 definitions:
   "@ObjectModel.compositionRoot":
     type: boolean

@@ -1,7 +1,8 @@
 $schema: "http://json-schema.org/draft-07/schema#"
 $id: "https://sap.github.io/csn-interop-specification/spec-v1/entity-relationship.schema.json#"
-title: "@EntityRelationship"
-
+title: EntityRelationship Document
+description: This is the interface description of @EntityRelationship.
+type: object
 definitions:
   "@EntityRelationship.entityType":
     type: string

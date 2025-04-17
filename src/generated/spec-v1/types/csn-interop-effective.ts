@@ -496,7 +496,7 @@ export interface ContextDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -542,7 +542,7 @@ export interface EntityDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -751,7 +751,7 @@ export interface BooleanType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueBoolean;
@@ -962,7 +962,7 @@ export interface StringType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1108,7 +1108,7 @@ export interface LargeStringType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1214,7 +1214,7 @@ export interface IntegerType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -1347,7 +1347,7 @@ export interface Integer64Type {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -1442,7 +1442,7 @@ export interface DecimalType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -1554,7 +1554,7 @@ export interface DoubleType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -1656,7 +1656,7 @@ export interface DateType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1757,7 +1757,7 @@ export interface TimeType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1858,7 +1858,7 @@ export interface DateTimeType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1959,7 +1959,7 @@ export interface TimestampType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -2060,7 +2060,7 @@ export interface UUIDType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -2150,7 +2150,7 @@ export interface AssociationType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -2318,7 +2318,7 @@ export interface CompositionType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -2466,7 +2466,7 @@ export interface CustomType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueCustomType;
@@ -2803,7 +2803,7 @@ export interface ServiceDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2855,7 +2855,7 @@ export interface BooleanTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueBoolean;
@@ -2952,7 +2952,7 @@ export interface StringTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3055,7 +3055,7 @@ export interface LargeStringTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3158,7 +3158,7 @@ export interface IntegerTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -3257,7 +3257,7 @@ export interface Integer64TypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -3356,7 +3356,7 @@ export interface DecimalTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -3466,7 +3466,7 @@ export interface DoubleTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -3565,7 +3565,7 @@ export interface DateTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3663,7 +3663,7 @@ export interface TimeTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3761,7 +3761,7 @@ export interface DateTimeTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3859,7 +3859,7 @@ export interface TimestampTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3957,7 +3957,7 @@ export interface UUIDTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -4048,7 +4048,7 @@ export interface AssociationTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -4167,7 +4167,7 @@ export interface CompositionTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**

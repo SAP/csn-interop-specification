@@ -336,7 +336,7 @@ or as a string
 
 ### Language-dependent annotation values
 
-Some annotations have language-dependent values, e.g. [`@EnduserText`](./spec-v1/extensions/enduser-text).
+Some annotations have language-dependent values, e.g. [`@EnduserText`](./spec-v1/extensions/end-user-text).
 If in such cases a plain string is provided, the language is unspecified. Consumers will typically default English in this case, e.g.
 
 ```js

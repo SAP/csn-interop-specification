@@ -67,7 +67,11 @@ const config = {
           },
           {
             from: "/annotations/enduser-text",
-            to: "/spec-v1/extensions/enduser-text",
+            to: "/spec-v1/extensions/end-user-text",
+          },
+          {
+            from: "/spec-v1/extensions/enduser-text",
+            to: "/spec-v1/extensions/end-user-text",
           },
           {
             from: "/annotations/entity-relationship",
