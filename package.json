@@ -27,7 +27,7 @@
     "clear": "docusaurus clear",
     "build": "npm run build:ts && npm run generate && npm run build:docu && touch ./build/.nojekyll",
     "build:ts": "tsc -p ./tsconfig.json",
-    "build:docu": "rm -rf \"static/spec-v1/\" && mkdir \"static/spec-v1/\" && cp -r src/generated/spec-v1/schemas/*.schema.json -t \"static/spec-v1/\" && cp -r src/generated/spec-v1/docs/extensions/* -t \"docs/annotations/\" && cp -r src/generated/spec-v1/docs/examples/* -t \"docs/spec-v1/examples/\" && cp src/generated/spec-v1/docs/csn-interop-effective.md -t \"docs/spec-v1/\" && docusaurus build",
+    "build:docu": "rm -rf \"static/spec-v1/\" && mkdir \"static/spec-v1/\" && cp -r src/generated/spec-v1/schemas/*.schema.json -t \"static/spec-v1/\" && cp -r src/generated/spec-v1/docs/extensions/* -t \"docs/spec-v1/extensions/\" && cp -r src/generated/spec-v1/docs/examples/* -t \"docs/spec-v1/examples/\" && cp src/generated/spec-v1/docs/csn-interop-effective.md -t \"docs/spec-v1/\" && docusaurus build",
     "generate": "cd ./spec-toolkit && npm ci && npm run build && cd .. && node ./spec-toolkit/dist/src/cli.js",
     "lint:staged": "lint-staged",
     "eslint": "eslint . --fix",
@@ -46,17 +46,18 @@
   "devDependencies": {
     "@docusaurus/core": "3.7.0",
     "@docusaurus/module-type-aliases": "3.7.0",
+    "@docusaurus/plugin-client-redirects": "3.7.0",
     "@docusaurus/preset-classic": "3.7.0",
     "@docusaurus/theme-mermaid": "3.7.0",
-    "@easyops-cn/docusaurus-search-local": "0.49.1",
+    "@easyops-cn/docusaurus-search-local": "0.49.2",
     "@sap/eslint-config": "0.4.0",
-    "@tsconfig/node20": "20.1.4",
+    "@tsconfig/node20": "20.1.5",
     "@types/fs-extra": "11.0.4",
     "@types/jest": "29.5.14",
     "@types/js-yaml": "4.0.9",
     "@types/lodash": "4.17.16",
     "@types/minimist": "1.2.5",
-    "@types/node": "22.13.10",
+    "@types/node": "22.14.0",
     "fast-glob": "3.3.3",
     "fs-extra": "11.3.0",
     "gfm-escape": "0.2.0",
@@ -72,9 +73,9 @@
     "prism-react-renderer": "2.4.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "ts-jest": "29.2.6",
+    "ts-jest": "29.3.1",
     "tsx": "4.19.3",
-    "typescript": "5.8.2"
+    "typescript": "5.8.3"
   },
   "lint-staged": {
     "./spec/*/*.yaml": [

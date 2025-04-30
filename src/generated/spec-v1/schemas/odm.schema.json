@@ -1,8 +1,9 @@
 {
-  "description": "JSON Schema with custom (x-) properties",
+  "description": "This is the interface description of @ODM.",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://sap.github.io/csn-interop-specification/spec-v1/odm.schema.json#",
-  "title": "@ODM",
+  "title": "ODM Document",
+  "type": "object",
   "definitions": {
     "@ODM.entityName": {
       "type": "string",
@@ -10,11 +11,7 @@
       "x-extension-targets": [
         "Entity"
       ],
-      "title": "@ODM.entityName",
-      "x-context": [
-        "./spec/v1/annotations/odm.yaml",
-        "@ODM.entityName"
-      ]
+      "title": "@ODM.entityName"
     },
     "@ODM.oid": {
       "description": "The annotation references the element which contains the oid.",
@@ -26,10 +23,6 @@
         "Entity"
       ],
       "title": "@ODM.oid",
-      "x-context": [
-        "./spec/v1/annotations/odm.yaml",
-        "@ODM.oid"
-      ],
       "$ref": "#/definitions/ElementReference"
     },
     "@ODM.oidReference.entityName": {
@@ -38,14 +31,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@ODM.oidReference.entityName",
-      "x-context": [
-        "./spec/v1/annotations/odm.yaml",
-        "@ODM.oidReference.entityName"
-      ]
+      "title": "@ODM.oidReference.entityName"
     }
-  },
-  "x-context": [
-    "./spec/v1/annotations/odm.yaml"
-  ]
+  }
 }

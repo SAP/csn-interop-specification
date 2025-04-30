@@ -367,7 +367,7 @@ definitions:
 
           SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
 
-          If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+          If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
       #-------------------------------------------------------------
       #--Hidden Properties (added to ignore them in the validation)
       #-------------------------------------------------------------
@@ -688,10 +688,14 @@ definitions:
         description: |-
           Indicates that this element is used as a primary key.
           Multiple primary keys MAY be used in case of a composite ID.
+
+          Elements marked as `key` also imply `notNull: true`.
       notNull: &elementNotNull
         type: boolean
         description: |-
           Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+
+          Elements marked as `key: true` also imply `notNull: true`.
       doc: *doc
       default:
         $ref: "#/definitions/DefaultValueBoolean"
@@ -1992,7 +1996,7 @@ definitions:
 
       A consumer MAY decide to shorten the names by only considering the Entities assigned to a particular Service and then removing the Service prefixes again.
 
-      To indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](../annotations/object-model#objectmodelcompositionroot) annotation.
+      To indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](./extensions/object-model#objectmodelcompositionroot) annotation.
 
       See [Primer: Service Definitions](../primer.md#service-definitions).
     x-extension-points:
@@ -2043,7 +2047,7 @@ definitions:
     type: object
     description: |-
       i18n contains translated texts for one or more languages.
-      They are usually used in annotations like [`@EnduserText`](../annotations/enduser-text).
+      They are usually used in annotations like [`@EnduserText`](./extensions/end-user-text).
 
       Key is the language key, value is a dictionary of language text translations.
 

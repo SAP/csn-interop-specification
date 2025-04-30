@@ -19,6 +19,7 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 - Added missing property `$id` to annotation extension schemas
 - ADDED: Added `@ORD` annotation vocabulary
   - Added `@ORD.ordIds` to correlate CSN Service and Entity to its ORD API Resource, Event Resource and Entity Type equivalents.
+- Added clarification that `key: true` also implies `notNull: true`
 
 ## [1.0.3]
 

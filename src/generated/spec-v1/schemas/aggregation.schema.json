@@ -1,8 +1,9 @@
 {
-  "description": "JSON Schema with custom (x-) properties",
+  "description": "This is the interface description of @Annotation.",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://sap.github.io/csn-interop-specification/spec-v1/aggregation.schema.json#",
-  "title": "@Aggregation",
+  "title": "Aggregation Document",
+  "type": "object",
   "definitions": {
     "@Aggregation.default": {
       "description": "The element shall per default be aggregated using the annotated SQL aggregate function.\n\nThe chosen value defines which aggregation semantics should be applied.\nThe aggregation types SUM, MAX, MIN, NOP are only allowed for elements with numeric type\n\n> ℹ️ Note: There is an semantically equivalent annotation `@DefaultAggregation`, which is now obsolete.\n> As consumers are not expected to interpret `@DefaultAggregation`, providers shall consistently adopt `@Aggregation.default` for interoperability.",
@@ -44,11 +45,6 @@
               "const": "FORMULA",
               "description": "The element is a formula which has to be calculated after the operands have been determined by aggregation or calculation. It should never be aggregated. If the element is not a formula, then this value must not be used. It is only supported in analytical queries. Example: Margin : = Revenue / Cost. If in a report Margin should be shown per OrgUnit, then first the aggregates of Revenue and Cost have to be de-termined per OrgUnit and then the Margin has to be calculated per OrgUn-it. The Margin for the company is not the aggregate of the Margin per Or-gUnit but has to be calculated separately by Revenue for all OrgUnits divided by the Costs for all OrgUnits."
             }
-          ],
-          "x-context": [
-            "./spec/v1/annotations/aggregation.yaml",
-            "@Aggregation.default",
-            "#"
           ]
         }
       },
@@ -64,14 +60,7 @@
           "#": "SUM"
         }
       ],
-      "title": "@Aggregation.default",
-      "x-context": [
-        "./spec/v1/annotations/aggregation.yaml",
-        "@Aggregation.default"
-      ]
+      "title": "@Aggregation.default"
     }
-  },
-  "x-context": [
-    "./spec/v1/annotations/aggregation.yaml"
-  ]
+  }
 }

@@ -300,11 +300,11 @@ This yields the following pattern for top-level and for element annotations:
 }
 ```
 
-The CSN Interop spec also defines a set of [aligned, interoperable annotations](./annotations).
+The CSN Interop spec also defines a set of [aligned, interoperable annotations](./spec-v1/extensions).
 
 ### Standard Annotations
 
-Formally any annotation following the syntax pattern prefixed with **@** is allowed. However, annotations can only be interpreted safely by consumers if they follow a common specification. For SAP-internal interoperability, a standard process is in place on how to contribute standard annotations. It is especially applied by S/4HANA and also by Datasphere. Producers are encouraged to reuse existing standard [annotations](./annotations) and publish their specialized semantics also in this way.
+Formally any annotation following the syntax pattern prefixed with **@** is allowed. However, annotations can only be interpreted safely by consumers if they follow a common specification. For SAP-internal interoperability, a standard process is in place on how to contribute standard annotations. It is especially applied by S/4HANA and also by Datasphere. Producers are encouraged to reuse existing standard [annotations](./spec-v1/extensions) and publish their specialized semantics also in this way.
 
 ### Literals for Enum and ElementRef values
 
@@ -336,7 +336,7 @@ or as a string
 
 ### Language-dependent annotation values
 
-Some annotations have language-dependent values, e.g. [`@EnduserText`](./annotations/enduser-text).
+Some annotations have language-dependent values, e.g. [`@EnduserText`](./spec-v1/extensions/end-user-text).
 If in such cases a plain string is provided, the language is unspecified. Consumers will typically default English in this case, e.g.
 
 ```js

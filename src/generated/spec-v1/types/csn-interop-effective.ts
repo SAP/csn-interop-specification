@@ -496,7 +496,7 @@ export interface ContextDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -542,7 +542,7 @@ export interface EntityDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -736,10 +736,14 @@ export interface BooleanType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -747,7 +751,7 @@ export interface BooleanType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueBoolean;
@@ -943,10 +947,14 @@ export interface StringType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -954,7 +962,7 @@ export interface StringType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1091,6 +1099,8 @@ export interface LargeStringType {
   type: LargeStringCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1098,7 +1108,7 @@ export interface LargeStringType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1189,10 +1199,14 @@ export interface IntegerType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1200,7 +1214,7 @@ export interface IntegerType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -1318,10 +1332,14 @@ export interface Integer64Type {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1329,7 +1347,7 @@ export interface Integer64Type {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -1415,6 +1433,8 @@ export interface DecimalType {
   type: DecimalCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1422,7 +1442,7 @@ export interface DecimalType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -1525,6 +1545,8 @@ export interface DoubleType {
   type: DoubleCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1532,7 +1554,7 @@ export interface DoubleType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -1619,10 +1641,14 @@ export interface DateType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1630,7 +1656,7 @@ export interface DateType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1716,10 +1742,14 @@ export interface TimeType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1727,7 +1757,7 @@ export interface TimeType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1813,10 +1843,14 @@ export interface DateTimeType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1824,7 +1858,7 @@ export interface DateTimeType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1910,10 +1944,14 @@ export interface TimestampType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1921,7 +1959,7 @@ export interface TimestampType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -2007,10 +2045,14 @@ export interface UUIDType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -2018,7 +2060,7 @@ export interface UUIDType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -2108,7 +2150,7 @@ export interface AssociationType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -2276,7 +2318,7 @@ export interface CompositionType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -2409,10 +2451,14 @@ export interface CustomType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -2420,7 +2466,7 @@ export interface CustomType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueCustomType;
@@ -2743,7 +2789,7 @@ export interface ObjectModelUsageType {
  *
  * A consumer MAY decide to shorten the names by only considering the Entities assigned to a particular Service and then removing the Service prefixes again.
  *
- * To indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](../annotations/object-model#objectmodelcompositionroot) annotation.
+ * To indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](./extensions/object-model#objectmodelcompositionroot) annotation.
  *
  * See [Primer: Service Definitions](../primer.md#service-definitions).
  */
@@ -2757,7 +2803,7 @@ export interface ServiceDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2800,6 +2846,8 @@ export interface BooleanTypeDefinition {
   type: BooleanCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -2807,7 +2855,7 @@ export interface BooleanTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueBoolean;
@@ -2895,6 +2943,8 @@ export interface StringTypeDefinition {
   type: StringCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -2902,7 +2952,7 @@ export interface StringTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -2996,6 +3046,8 @@ export interface LargeStringTypeDefinition {
   type: LargeStringCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3003,7 +3055,7 @@ export interface LargeStringTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3097,6 +3149,8 @@ export interface IntegerTypeDefinition {
   type: IntegerCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3104,7 +3158,7 @@ export interface IntegerTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -3194,6 +3248,8 @@ export interface Integer64TypeDefinition {
   type: Integer64CdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3201,7 +3257,7 @@ export interface Integer64TypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -3291,6 +3347,8 @@ export interface DecimalTypeDefinition {
   type: DecimalCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3298,7 +3356,7 @@ export interface DecimalTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -3399,6 +3457,8 @@ export interface DoubleTypeDefinition {
   type: DoubleCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3406,7 +3466,7 @@ export interface DoubleTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -3496,6 +3556,8 @@ export interface DateTypeDefinition {
   type: DateCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3503,7 +3565,7 @@ export interface DateTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3592,6 +3654,8 @@ export interface TimeTypeDefinition {
   type: TimeCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3599,7 +3663,7 @@ export interface TimeTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3688,6 +3752,8 @@ export interface DateTimeTypeDefinition {
   type: DateTimeCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3695,7 +3761,7 @@ export interface DateTimeTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3784,6 +3850,8 @@ export interface TimestampTypeDefinition {
   type: TimestampCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3791,7 +3859,7 @@ export interface TimestampTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3880,6 +3948,8 @@ export interface UUIDTypeDefinition {
   type: UUIDCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3887,7 +3957,7 @@ export interface UUIDTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3978,7 +4048,7 @@ export interface AssociationTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -4097,7 +4167,7 @@ export interface CompositionTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**

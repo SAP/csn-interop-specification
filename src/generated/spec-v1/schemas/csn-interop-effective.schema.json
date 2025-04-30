@@ -297,7 +297,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "abstract": {
           "type": [
@@ -817,15 +817,15 @@
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.\n\nElements marked as `key` also imply `notNull: true`."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueBoolean"
@@ -1012,15 +1012,15 @@
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.\n\nElements marked as `key` also imply `notNull: true`."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -1217,11 +1217,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -1418,15 +1418,15 @@
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.\n\nElements marked as `key` also imply `notNull: true`."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueInteger"
@@ -1619,15 +1619,15 @@
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.\n\nElements marked as `key` also imply `notNull: true`."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueInteger"
@@ -1820,11 +1820,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueNumber"
@@ -2037,11 +2037,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueNumber"
@@ -2234,15 +2234,15 @@
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.\n\nElements marked as `key` also imply `notNull: true`."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -2430,15 +2430,15 @@
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.\n\nElements marked as `key` also imply `notNull: true`."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -2626,15 +2626,15 @@
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.\n\nElements marked as `key` also imply `notNull: true`."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -2822,15 +2822,15 @@
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.\n\nElements marked as `key` also imply `notNull: true`."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -3018,15 +3018,15 @@
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.\n\nElements marked as `key` also imply `notNull: true`."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -3211,7 +3211,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "target": {
           "type": "string",
@@ -3514,7 +3514,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "target": {
           "type": "string",
@@ -3817,15 +3817,15 @@
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.\n\nElements marked as `key` also imply `notNull: true`."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueCustomDerived"
@@ -4776,11 +4776,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueBoolean"
@@ -4974,11 +4974,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -5181,11 +5181,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -5378,11 +5378,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueInteger"
@@ -5582,11 +5582,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueInteger"
@@ -5777,11 +5777,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueNumber"
@@ -6001,11 +6001,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueNumber"
@@ -6196,11 +6196,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -6394,11 +6394,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -6586,11 +6586,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -6778,11 +6778,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -6970,11 +6970,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -7159,7 +7159,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "target": {
           "type": "string",
@@ -7467,7 +7467,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "target": {
           "type": "string",
@@ -7760,7 +7760,7 @@
     "ServiceDefinition": {
       "title": "Service Definition",
       "type": "object",
-      "description": "A CDS Service indicates that [Entities](#entity-definition) are exposed to outside consumers via an API.\n\nTo assign Entities or Custom Types to a Service, their name MUST be prefixed with the service name, separated by a `.`.\nPlease be aware that this will also change the `target` values of `cds.Association` and `cds.Composition`.\nFor an example, see [airline-service.json](./examples/airline.md).\n\nA consumer MAY decide to shorten the names by only considering the Entities assigned to a particular Service and then removing the Service prefixes again.\n\nTo indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](../annotations/object-model#objectmodelcompositionroot) annotation.\n\nSee [Primer: Service Definitions](../primer.md#service-definitions).",
+      "description": "A CDS Service indicates that [Entities](#entity-definition) are exposed to outside consumers via an API.\n\nTo assign Entities or Custom Types to a Service, their name MUST be prefixed with the service name, separated by a `.`.\nPlease be aware that this will also change the `target` values of `cds.Association` and `cds.Composition`.\nFor an example, see [airline-service.json](./examples/airline.md).\n\nA consumer MAY decide to shorten the names by only considering the Entities assigned to a particular Service and then removing the Service prefixes again.\n\nTo indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](./extensions/object-model#objectmodelcompositionroot) annotation.\n\nSee [Primer: Service Definitions](../primer.md#service-definitions).",
       "x-extension-points": [
         "Service"
       ],
@@ -7773,7 +7773,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -7825,7 +7825,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -7855,7 +7855,7 @@
     "i18n": {
       "title": "i18n",
       "type": "object",
-      "description": "i18n contains translated texts for one or more languages.\nThey are usually used in annotations like [`@EnduserText`](../annotations/enduser-text).\n\nKey is the language key, value is a dictionary of language text translations.\n\nThe language key MUST follow the standard of [RFC 1766](https://datatracker.ietf.org/doc/rfc1766/) (or IETF's [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)).\n\nSee [Primer: Language-dependent annotation values](../primer.md#language-dependent-annotation-values).",
+      "description": "i18n contains translated texts for one or more languages.\nThey are usually used in annotations like [`@EnduserText`](./extensions/end-user-text).\n\nKey is the language key, value is a dictionary of language text translations.\n\nThe language key MUST follow the standard of [RFC 1766](https://datatracker.ietf.org/doc/rfc1766/) (or IETF's [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)).\n\nSee [Primer: Language-dependent annotation values](../primer.md#language-dependent-annotation-values).",
       "patternProperties": {
         "^[a-zA-Z]{2,8}(-[a-zA-Z0-9]{1,8}){0,2}$": {
           "$ref": "#/definitions/LanguageText"
