@@ -2009,10 +2009,6 @@
         "type"
       ],
       "additionalProperties": false,
-      "x-recommended": [
-        "precision",
-        "scale"
-      ],
       "x-extension-points": [
         "Type",
         "DecimalType"

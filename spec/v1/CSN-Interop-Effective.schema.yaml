@@ -868,9 +868,10 @@ definitions:
     required:
       - type
     additionalProperties: false
-    x-recommended:
-      - precision
-      - scale
+    # Debatable if we want to create validation warnings by default.
+    # x-recommended:
+    #   - precision
+    #   - scale
     x-extension-points:
       - Type
       - DecimalType
