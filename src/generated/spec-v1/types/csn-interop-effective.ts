@@ -1451,11 +1451,15 @@ export interface DecimalType {
    * Total number of digits in a number.
    * This includes both the digits before and after the decimal point.
    *
+   * SHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `34`.
+   *
    * The semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.
    */
   precision?: number;
   /**
    * Describes the number of digits to the right of the decimal point in a number.
+   *
+   * SHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `floating`.
    */
   scale?: DecimalScaleNumber | DecimalScaleType;
   "@Aggregation.default"?: Aggregation;
@@ -2478,11 +2482,15 @@ export interface CustomType {
   length?: number;
   /**
    * Describes the number of digits to the right of the decimal point in a number.
+   *
+   * SHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `floating`.
    */
   scale?: DecimalScaleNumber | DecimalScaleType;
   /**
    * Total number of digits in a number.
    * This includes both the digits before and after the decimal point.
+   *
+   * SHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `34`.
    *
    * The semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.
    */
@@ -3365,11 +3373,15 @@ export interface DecimalTypeDefinition {
    * Total number of digits in a number.
    * This includes both the digits before and after the decimal point.
    *
+   * SHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `34`.
+   *
    * The semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.
    */
   precision?: number;
   /**
    * Describes the number of digits to the right of the decimal point in a number.
+   *
+   * SHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `floating`.
    */
   scale?: DecimalScaleNumber | DecimalScaleType;
   "@Aggregation.default"?: Aggregation;
