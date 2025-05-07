@@ -1835,7 +1835,7 @@
         "precision": {
           "type": "number",
           "minimum": 1,
-          "description": "Total number of digits in a number.\nThis includes both the digits before and after the decimal point.\n\nThe semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.",
+          "description": "Total number of digits in a number.\nThis includes both the digits before and after the decimal point.\n\nSHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `34`.\n\nThe semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.",
           "default": 34
         },
         "scale": {
@@ -1847,7 +1847,7 @@
               "$ref": "#/definitions/DecimalScaleType"
             }
           ],
-          "description": "Describes the number of digits to the right of the decimal point in a number.",
+          "description": "Describes the number of digits to the right of the decimal point in a number.\n\nSHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `floating`.",
           "default": "floating"
         },
         "@Aggregation.default": {
@@ -3847,13 +3847,13 @@
               "$ref": "#/definitions/DecimalScaleType"
             }
           ],
-          "description": "Describes the number of digits to the right of the decimal point in a number.",
+          "description": "Describes the number of digits to the right of the decimal point in a number.\n\nSHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `floating`.",
           "default": "floating"
         },
         "precision": {
           "type": "number",
           "minimum": 1,
-          "description": "Total number of digits in a number.\nThis includes both the digits before and after the decimal point.\n\nThe semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.",
+          "description": "Total number of digits in a number.\nThis includes both the digits before and after the decimal point.\n\nSHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `34`.\n\nThe semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.",
           "default": 34
         },
         "@Aggregation.default": {
@@ -5792,7 +5792,7 @@
         "precision": {
           "type": "number",
           "minimum": 1,
-          "description": "Total number of digits in a number.\nThis includes both the digits before and after the decimal point.\n\nThe semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.",
+          "description": "Total number of digits in a number.\nThis includes both the digits before and after the decimal point.\n\nSHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `34`.\n\nThe semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.",
           "default": 34
         },
         "scale": {
@@ -5804,7 +5804,7 @@
               "$ref": "#/definitions/DecimalScaleType"
             }
           ],
-          "description": "Describes the number of digits to the right of the decimal point in a number.",
+          "description": "Describes the number of digits to the right of the decimal point in a number.\n\nSHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `floating`.",
           "default": "floating"
         },
         "@Aggregation.default": {
