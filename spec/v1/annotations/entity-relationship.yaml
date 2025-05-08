@@ -375,6 +375,7 @@ examples:
                 [
                   {
                     "name": "Main Supplier",
+                    "referencedEntityType": "sap.vdm.sont:BusinessPartner",
                     "referencedPropertyTypes":
                       [
                         {
