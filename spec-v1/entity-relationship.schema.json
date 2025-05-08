@@ -419,6 +419,7 @@
           "@EntityRelationship.compositeReferences": [
             {
               "name": "Main Supplier",
+              "referencedEntityType": "sap.vdm.sont:BusinessPartner",
               "referencedPropertyTypes": [
                 {
                   "referencedPropertyType": "sap.vdm.gfn:BusinessPartnerNumber",
