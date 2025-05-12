@@ -47,13 +47,15 @@ The ID scheme for an Entity Type ID is as following:
 <entityTypeId> := <namespace>:<entityTypeLocalId>[:v<majorVersion>]
 ```
 
-The `<namespace>` MUST be a valid [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1/#namespaces).
+- The `<namespace>` MUST be a valid [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1/#namespaces).
 
-The `<entityTypeLocalId>` follows the ORD ID `<resourceName>` constraints:
+- The `<entityTypeLocalId>` follows the ORD ID `<resourceName>` constraints:
 
   - MUST only contain ASCII letters (`a-z`, `A-Z`), digits (`0-9`) and the special characters `-`, `_` and `.`.
   - MUST be unique within the `<namespace>`.
   - SHOULD be a (somewhat) human readable and SEO/URL friendly string (avoid UUIDs).
+
+- The `<majorVersion>` is optional. If provided MUST be a positive integer (prefixed with `v`)
 
 In many cases Entity Types are not versioned. To ease handling and avoiding ambiguity, we forbid adding `v1` and therefore made `v1` the default.
 If for the case of having a `v2` or higher of an Entity Type, the version must be added.
@@ -82,13 +84,15 @@ A [Property Type ID](#property-type-id) follows the same format and consideratio
 <PropertyTypeId> := <namespace>:<propertyTypeLocalId>[:v<majorVersion>]
 ```
 
-The `<namespace>` MUST be a valid [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1/#namespaces).
+- The `<namespace>` MUST be a valid [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1/#namespaces).
 
-The `<propertyTypeLocalId>` follows the ORD ID `<resourceName>` constraints:
+- The `<propertyTypeLocalId>` follows the ORD ID `<resourceName>` constraints:
 
   - MUST only contain ASCII letters (`a-z`, `A-Z`), digits (`0-9`) and the special characters `-`, `_` and `.`.
   - MUST be unique within the `<namespace>`.
   - SHOULD be a (somewhat) human readable and SEO/URL friendly string (avoid UUIDs).
+
+- The `<majorVersion>` is optional. If provided MUST be a positive integer (prefixed with `v`)
 
 The same Property Type MUST NOT be defined more than once in the same Entity Type.
 However, the same Property Type MAY be part of multiple references within the same Entity Type.
