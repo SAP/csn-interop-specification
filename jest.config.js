@@ -1,7 +1,17 @@
-module.exports = {
+import fs from "fs";
+import { pathsToModuleNameMapper } from "ts-jest";
+
+const { compilerOptions } = JSON.parse(fs.readFileSync("./tsconfig.json"));
+
+export default {
   // General Setup
-  preset: "ts-jest/presets/default",
+  preset: "ts-jest/presets/default-esm",
+  modulePaths: [compilerOptions.baseUrl],
+  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { useESM: true }),
   testEnvironment: "node",
+  testEnvironmentOptions: {
+    NODE_OPTIONS: "--experimental-vm-modules",
+  },
   testMatch: ["<rootDir>/src/**/*.test.ts"],
   testPathIgnorePatterns: ["/node_modules/"],
   moduleFileExtensions: ["js", "json", "ts", "d.ts"],
