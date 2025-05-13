@@ -1,6 +1,6 @@
 import * as fs from "fs-extra";
 import * as yaml from "js-yaml";
-import jsonSchemaLib, { JsonSchema } from "json-schema-library";
+import { Draft07, JsonSchema } from "json-schema-library";
 import { getCsnDocumentTestData } from "./testUtils";
 
 describe("Tests for all type definitions", (): void => {
@@ -8,7 +8,7 @@ describe("Tests for all type definitions", (): void => {
     fs.readFileSync(`./spec/v1/CSN-Interop-Effective.schema.yaml`).toString(),
   ) as JsonSchema;
 
-  const effectiveCsnSchemaValidator = jsonSchemaLib.compileSchema(effectiveCsnSchema);
+  const effectiveCsnSchemaValidator = new Draft07(effectiveCsnSchema);
 
   const typeDefinitions = [
     { name: "BooleanTypeDefinition", type: "cds.Boolean" },
@@ -42,7 +42,7 @@ describe("Tests for all type definitions", (): void => {
         },
       });
 
-      const errors = effectiveCsnSchemaValidator.validate(data).errors;
+      const errors = effectiveCsnSchemaValidator.validate(data);
       expect(errors.length).toEqual(1);
       expect(errors[0].message).toContain("The required property `kind` is missing");
     });
@@ -61,7 +61,7 @@ describe("Tests for all type definitions", (): void => {
         },
       });
 
-      const errors = effectiveCsnSchemaValidator.validate(data).errors;
+      const errors = effectiveCsnSchemaValidator.validate(data);
       expect(errors.length).toEqual(1);
       expect(errors[0].message).toContain("The required property `type` is missing");
     });
@@ -81,7 +81,7 @@ describe("Tests for all type definitions", (): void => {
         },
       });
 
-      const errors = effectiveCsnSchemaValidator.validate(data).errors;
+      const errors = effectiveCsnSchemaValidator.validate(data);
       expect(errors.length).toEqual(1);
       expect(errors[0].message).toContain("Expected given value `typeDoesNotExist`");
       expect(errors[0].message).toContain('be one of `["context","entity","service","type"]');
@@ -102,7 +102,7 @@ describe("Tests for all type definitions", (): void => {
         },
       });
 
-      const errors = effectiveCsnSchemaValidator.validate(data).errors;
+      const errors = effectiveCsnSchemaValidator.validate(data);
       expect(errors.length).toEqual(1);
       expect(errors[0].message).toContain("Expected given value `cds.TypeDoesNotExist`");
       expect(errors[0].message).toContain(
@@ -123,7 +123,7 @@ describe("Tests for all type definitions", (): void => {
           "type": type,
         },
       });
-      const errors = effectiveCsnSchemaValidator.validate(data).errors;
+      const errors = effectiveCsnSchemaValidator.validate(data);
       expect(errors.length).toEqual(1);
       expect(errors[0].message).toContain("The required property `kind` is missing");
     });
