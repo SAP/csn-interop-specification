@@ -10,6 +10,8 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+## [1.0.4]
+
 ### Changed
 
 - BREAKING: TypeScript interface `CSNInteropRoot` renamed to `CSNInteropEffectiveDocument`
