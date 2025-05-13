@@ -25,9 +25,9 @@ definitions:
   "@ObjectModel.semanticKey":
     type: array
     description: |-
-      The property contains element(s) which shall be used to display the key in UIs (instead of the technical key).
+      The listed properties contains element(s) which shall be used to display the key in UIs (instead of the technical key).
     x-extension-targets:
-      - "Type"
+      - "Entity"
     items:
       x-ref-to-doc:
         title: Element Reference
