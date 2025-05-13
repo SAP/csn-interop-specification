@@ -304,7 +304,7 @@ export type EntityRelationship5 = ReferenceWithConstantID[];
  */
 export type ObjectModelCompositionRoot = boolean;
 /**
- * The listed properties contains element(s) which shall be used to display the key in UIs (instead of the technical key).
+ * The entity contains element(s) which shall be used to display the key in UIs (instead of the technical key).
  */
 export type ObjectModel = unknown[];
 /**
