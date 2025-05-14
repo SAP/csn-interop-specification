@@ -8,6 +8,7 @@
     "@EntityRelationship.entityType": {
       "type": "string",
       "description": "Defines which [Entity Type](#entity-type) the current data object represents.\n\nThere could be several data objects that are assigned to the same Entity Type.\nOne data object can only have one Entity Type assigned, which corresponds to the applications own Entity Type definition.",
+      "pattern": "^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\\-]+)(:(v0|v[1-9][0-9]*|))?$",
       "examples": [
         "sap.vdm.sont:BillOfMaterial"
       ],
@@ -19,6 +20,7 @@
     "@EntityRelationship.propertyType": {
       "type": "string",
       "description": "Defines the logical [Property Type](#property-type) of a property.\nThe reason is to have an ID to relate to the property, especially to state that it can be used as an ID or is part of a composite ID.",
+      "pattern": "^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\\-]+)(:(v0|v[1-9][0-9]*|))?$",
       "examples": [
         "sap.vdm.gfn:BillOfMaterialUUID"
       ],
@@ -155,7 +157,7 @@
           "type": "array",
           "description": "List of properties, the composite ID consists of.",
           "items": {
-            "$ref": "#/definitions/@EntityRelationship.ReferenceTargetdPropertyType"
+            "$ref": "#/definitions/@EntityRelationship.ReferenceTargetPropertyType"
           }
         }
       },
@@ -164,7 +166,7 @@
         "referencedPropertyTypes"
       ]
     },
-    "@EntityRelationship.ReferenceTargetdPropertyType": {
+    "@EntityRelationship.ReferenceTargetPropertyType": {
       "title": "Referenced Property Type",
       "type": "object",
       "description": "Grouping of the ID in the referenced entity, by its property type ID and the local name in this entity.",
@@ -270,7 +272,7 @@
           "type": "array",
           "description": "List of non-temporal properties the composite temporal ID consists of.",
           "items": {
-            "$ref": "#/definitions/@EntityRelationship.ReferenceTargetdPropertyType"
+            "$ref": "#/definitions/@EntityRelationship.ReferenceTargetPropertyType"
           }
         },
         "category": {

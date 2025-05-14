@@ -8,6 +8,7 @@
     "@ODM.entityName": {
       "type": "string",
       "description": "The entity represents an ODM Entity with this official name.",
+      "pattern": "^[a-zA-Z0-9._\\-]+$",
       "x-extension-targets": [
         "Entity"
       ],
