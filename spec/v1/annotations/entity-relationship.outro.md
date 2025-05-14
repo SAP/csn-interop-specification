@@ -47,7 +47,7 @@ The ID scheme for an Entity Type ID is as following:
 <entityTypeId> := <namespace>:<entityTypeLocalId>[:v<majorVersion>]
 ```
 
-- Complete `<entityTypeId>` MUST match the regexp `^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\-]+)(:(v[2-9][0-9]*|))?$`
+- Complete `<entityTypeId>` MUST match the regexp `^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\-]+)(:v[2-9][0-9]*|)?$`
 
 - The `<namespace>` part MUST be a valid [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1/#namespaces).
 
@@ -85,7 +85,7 @@ A [Property Type ID](#property-type-id) follows the same format and consideratio
 <PropertyTypeId> := <namespace>:<propertyTypeLocalId>[:v<majorVersion>]
 ```
 
-- Complete `<PropertyTypeId>` MUST match the regexp `^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\-]+)(:(v[2-9][0-9]*|))?$`
+- Complete `<PropertyTypeId>` MUST match the regexp `^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\-]+)(:v[2-9][0-9]*|)?$`
 - The `<namespace>` part MUST be a valid [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1/#namespaces).
 
 - The `<propertyTypeLocalId>` part MUST match the regexp `^[a-zA-Z0-9._\-]+$` and follows the ORD ID `<resourceName>` constraints:
