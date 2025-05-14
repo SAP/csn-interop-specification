@@ -47,7 +47,7 @@ The ID scheme for an Entity Type ID is as following:
 <entityTypeId> := <namespace>:<entityTypeLocalId>[:v<majorVersion>]
 ```
 
-- Complete `<entityTypeId>` MUST match the regexp `^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\-]+)(:(v0|v[1-9][0-9]*|))?$`
+- Complete `<entityTypeId>` MUST match the regexp `^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\-]+)(:v[1-9][0-9]*)?$`
 
 - The `<namespace>` part MUST be a valid [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1/#namespaces).
 
@@ -56,7 +56,7 @@ The ID scheme for an Entity Type ID is as following:
   - MUST be unique within the `<namespace>`.
   - SHOULD be a (somewhat) human readable and SEO/URL friendly string (avoid UUIDs).
 
-- The `<majorVersion>` is optional. If provided MUST be a positive integer (prefixed with `v`)
+- The `<majorVersion>` MUST only be provided if the major version is above v1. For v1 it MUST be omitted.
 
 In many cases Entity Types are not versioned. To ease handling and avoiding ambiguity, we forbid adding `v1` and therefore made `v1` the default.
 If for the case of having a `v2` or higher of an Entity Type, the version must be added.
@@ -85,7 +85,7 @@ A [Property Type ID](#property-type-id) follows the same format and consideratio
 <PropertyTypeId> := <namespace>:<propertyTypeLocalId>[:v<majorVersion>]
 ```
 
-- Complete `<PropertyTypeId>` MUST match the regexp `^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\-]+)(:(v0|v[1-9][0-9]*|))?$`
+- Complete `<PropertyTypeId>` MUST match the regexp `^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\-]+)(:v[1-9][0-9]*)?$`
 - The `<namespace>` part MUST be a valid [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1/#namespaces).
 
 - The `<propertyTypeLocalId>` part MUST match the regexp `^[a-zA-Z0-9._\-]+$` and follows the ORD ID `<resourceName>` constraints:
@@ -93,7 +93,7 @@ A [Property Type ID](#property-type-id) follows the same format and consideratio
   - MUST be unique within the `<namespace>`.
   - SHOULD be a (somewhat) human readable and SEO/URL friendly string (avoid UUIDs).
 
-- The `<majorVersion>` is optional. If provided MUST be a positive integer (prefixed with `v`)
+- The `<majorVersion>` MUST only be provided if the major version is above v1. For v1 it MUST be omitted.
 
 The same Property Type MUST NOT be defined more than once in the same Entity Type.
 However, the same Property Type MAY be part of multiple references within the same Entity Type.

@@ -8,7 +8,7 @@
     "@EntityRelationship.entityType": {
       "type": "string",
       "description": "Defines which [Entity Type](#entity-type) the current data object represents.\n\nThere could be several data objects that are assigned to the same Entity Type.\nOne data object can only have one Entity Type assigned, which corresponds to the applications own Entity Type definition.",
-      "pattern": "^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\\-]+)(:(v0|v[1-9][0-9]*|))?$",
+      "pattern": "^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\\-]+)(:v[2-9][0-9]*|)?$",
       "examples": [
         "sap.vdm.sont:BillOfMaterial"
       ],
@@ -20,7 +20,7 @@
     "@EntityRelationship.propertyType": {
       "type": "string",
       "description": "Defines the logical [Property Type](#property-type) of a property.\nThe reason is to have an ID to relate to the property, especially to state that it can be used as an ID or is part of a composite ID.",
-      "pattern": "^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\\-]+)(:(v0|v[1-9][0-9]*|))?$",
+      "pattern": "^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\\-]+)(:v[2-9][0-9]*|)?$",
       "examples": [
         "sap.vdm.gfn:BillOfMaterialUUID"
       ],
@@ -351,7 +351,7 @@
     "@EntityRelationship.PropertyTypeID": {
       "title": "Property Type ID",
       "type": "string",
-      "pattern": "^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\\-]+)(:(v0|v[1-9][0-9]*|))?$",
+      "pattern": "^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\\-]+)(:v[2-9][0-9]*|)?$",
       "description": "ID of the [Property Type](#property-type). The reason is to have an ID to relate to the property, especially to state that it can be used as an ID or is part of a composite ID.",
       "examples": [
         "sap.vdm.gfn:BillOfMaterialUUID"
@@ -361,7 +361,7 @@
       "title": "Entity Type ID",
       "type": "string",
       "description": "ID of the [Entity Type](#entity-type).",
-      "pattern": "^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\\-]+)(:(v0|v[1-9][0-9]*|))?$",
+      "pattern": "^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\\-]+)(:v[2-9][0-9]*|)?$",
       "examples": [
         "sap.vdm.sont:BillOfMaterial"
       ]
