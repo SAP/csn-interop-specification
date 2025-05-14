@@ -1,18 +1,18 @@
 import * as fg from "fast-glob";
 import * as fs from "fs-extra";
 import * as yaml from "js-yaml";
-import { Draft07, JsonError, JsonSchema } from "json-schema-library";
+import jsonSchemaLib from "json-schema-library";
 
 const effectiveCsnSchema = yaml.load(
   fs.readFileSync(`./spec/v1/CSN-Interop-Effective.schema.yaml`).toString(),
-) as JsonSchema;
+) as jsonSchemaLib.JsonSchema;
 
 const effectiveCsnSchemaExtended = fs.readJSONSync(
   "./src/generated/spec-v1/schemas/csn-interop-effective.schema.json",
-) as JsonSchema;
+) as jsonSchemaLib.JsonSchema;
 
-const effectiveCsnSchemaValidator = new Draft07(effectiveCsnSchema);
-const effectiveCsnSchemaExtendedValidator = new Draft07(effectiveCsnSchemaExtended);
+const effectiveCsnSchemaValidator = jsonSchemaLib.compileSchema(effectiveCsnSchema);
+const effectiveCsnSchemaExtendedValidator = jsonSchemaLib.compileSchema(effectiveCsnSchemaExtended);
 
 const documentFilePaths = fg.sync("./spec/v1/examples/*.json", {});
 
@@ -25,8 +25,8 @@ describe("Valid Example Files", (): void => {
           const data = JSON.parse(fileContent);
           expect(fileContent).toBeDefined();
           expect(data).toBeDefined();
-          const errors: JsonError[] = effectiveCsnSchemaValidator.validate(data);
-          expect(simplifyValidationErrors(errors)).toEqual([]);
+          const validateResult = effectiveCsnSchemaValidator.validate(data);
+          expect(simplifyValidationErrors(validateResult.errors)).toEqual([]);
         });
       });
     }
@@ -40,8 +40,8 @@ describe("Valid Example Files", (): void => {
           const data = JSON.parse(fileContent);
           expect(fileContent).toBeDefined();
           expect(data).toBeDefined();
-          const errors: JsonError[] = effectiveCsnSchemaExtendedValidator.validate(data);
-          expect(simplifyValidationErrors(errors)).toEqual([]);
+          const validateResult = effectiveCsnSchemaExtendedValidator.validate(data);
+          expect(simplifyValidationErrors(validateResult.errors)).toEqual([]);
         });
       });
     }
@@ -49,11 +49,11 @@ describe("Valid Example Files", (): void => {
 });
 
 export type JsonSchemaValidationError = {
-  code: string;
+  code: jsonSchemaLib.ErrorConfig | string;
   pointer: string;
   message: string;
 };
-export function simplifyValidationErrors(errors: JsonError[]): JsonSchemaValidationError[] {
+export function simplifyValidationErrors(errors: jsonSchemaLib.JsonError[]): JsonSchemaValidationError[] {
   return errors.map((el) => {
     return {
       code: el.code,
