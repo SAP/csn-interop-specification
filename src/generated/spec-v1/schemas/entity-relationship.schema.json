@@ -349,6 +349,7 @@
     "@EntityRelationship.PropertyTypeID": {
       "title": "Property Type ID",
       "type": "string",
+      "pattern": "^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\\-]+)(:(v0|v[1-9][0-9]*|))?$",
       "description": "ID of the [Property Type](#property-type). The reason is to have an ID to relate to the property, especially to state that it can be used as an ID or is part of a composite ID.",
       "examples": [
         "sap.vdm.gfn:BillOfMaterialUUID"
@@ -358,6 +359,7 @@
       "title": "Entity Type ID",
       "type": "string",
       "description": "ID of the [Entity Type](#entity-type).",
+      "pattern": "^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\\-]+)(:(v0|v[1-9][0-9]*|))?$",
       "examples": [
         "sap.vdm.sont:BillOfMaterial"
       ]
@@ -419,6 +421,7 @@
           "@EntityRelationship.compositeReferences": [
             {
               "name": "Main Supplier",
+              "referencedEntityType": "sap.vdm.sont:BusinessPartner",
               "referencedPropertyTypes": [
                 {
                   "referencedPropertyType": "sap.vdm.gfn:BusinessPartnerNumber",
