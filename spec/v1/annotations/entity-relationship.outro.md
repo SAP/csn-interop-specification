@@ -90,7 +90,6 @@ A [Property Type ID](#property-type-id) follows the same format and consideratio
 
 - The `<propertyTypeLocalId>` part MUST match the regexp `^[a-zA-Z0-9._\-]+$` and follows the ORD ID `<resourceName>` constraints:
 
-  - MUST only contain ASCII letters (`a-z`, `A-Z`), digits (`0-9`) and the special characters `-`, `_` and `.`.
   - MUST be unique within the `<namespace>`.
   - SHOULD be a (somewhat) human readable and SEO/URL friendly string (avoid UUIDs).
 
