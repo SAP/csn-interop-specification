@@ -227,7 +227,7 @@ function jsonSchemaToMd(
     text += `${jsonSchemaObject.description.trim()}\n\n`;
   }
 
-  //Distinction if this is an object or a simple type
+  // Distinction if this is an object or a simple type
   if (
     !jsonSchemaObject.type &&
     !jsonSchemaObject.oneOf &&
@@ -237,7 +237,33 @@ function jsonSchemaToMd(
     throw new Error(`Schema Object must have a "type" keyword! ${JSON.stringify(jsonSchemaObject, null, 2)}`);
   }
 
-  //is this an object with a reference to core?
+  // Document extensions towards other target documents
+  if (jsonSchemaObject["x-extension-targets"]) {
+    text += `**Scope:** ${jsonSchemaObject["x-extension-targets"].join(", ")}<br/>\n`;
+    text += `**Extending:** `;
+
+    for (const extensionPoint of jsonSchemaObject["x-extension-targets"]) {
+      let found = 0;
+      // Find extension point
+      for (const definitionName in extensionTarget!.definitions) {
+        const definition = extensionTarget!.definitions[definitionName];
+        if (
+          definition["x-extension-points"] &&
+          definition["x-extension-points"].includes(extensionPoint) &&
+          specConfig.type === "specExtension"
+        ) {
+          text += `[${definitionName}](${extensionFolderDiffToOutputFolderName + specConfig.targetDocumentId}${getAnchorLinkFromTitle(definition.title)}), `;
+          found++;
+        }
+      }
+      if (!found) {
+        throw new Error(`Could not find extension point "${extensionPoint}" in extension target file.`);
+      }
+    }
+    text = text.substring(0, text.length - 2) + "<br/>\n";
+  }
+
+  // is this an object with a reference to core?
   // TODO: not sure if I understand this code. Consider refactoring here
   const refToDoc =
     typeof jsonSchemaObject === "object" && "x-ref-to-doc" in jsonSchemaObject ? jsonSchemaObject["x-ref-to-doc"] : "";
@@ -251,7 +277,7 @@ function jsonSchemaToMd(
       specConfig,
     );
   } else {
-    text += generatePrimitiveTypeDescription(jsonSchemaObject, jsonSchemaRoot, configFile, specConfig, extensionTarget);
+    text += generatePrimitiveTypeDescription(jsonSchemaObject, jsonSchemaRoot, configFile, specConfig);
   }
   return text;
 }
@@ -728,7 +754,6 @@ function generatePrimitiveTypeDescription(
   jsonSchemaRoot: SpecJsonSchemaRoot,
   configFile: ConfigFile,
   specConfig: SpecConfig,
-  extensionTarget?: SpecJsonSchemaRoot,
 ): string {
   let text = "";
 
@@ -823,32 +848,6 @@ function generatePrimitiveTypeDescription(
 
   if (jsonSchemaObject["x-ref-to-doc"] && specConfig.type === "specExtension") {
     text += `**External Type**: [${jsonSchemaObject["x-ref-to-doc"].title}](${extensionFolderDiffToOutputFolderName + specConfig.targetDocumentId}${getAnchorLinkFromTitle(jsonSchemaObject["x-ref-to-doc"].title)}) <br/>\n`;
-  }
-
-  // Document extensions towards other target documents
-  if (jsonSchemaObject["x-extension-targets"]) {
-    text += `**Scope:** ${jsonSchemaObject["x-extension-targets"].join(", ")}<br/>\n`;
-    text += `**Extending:** `;
-
-    for (const extensionPoint of jsonSchemaObject["x-extension-targets"]) {
-      let found = 0;
-      // Find extension point
-      for (const definitionName in extensionTarget!.definitions) {
-        const definition = extensionTarget!.definitions[definitionName];
-        if (
-          definition["x-extension-points"] &&
-          definition["x-extension-points"].includes(extensionPoint) &&
-          specConfig.type === "specExtension"
-        ) {
-          text += `[${definitionName}](${extensionFolderDiffToOutputFolderName + specConfig.targetDocumentId}${getAnchorLinkFromTitle(definition.title)}), `;
-          found++;
-        }
-      }
-      if (!found) {
-        throw new Error(`Could not find extension point "${extensionPoint}" in extension target file.`);
-      }
-    }
-    text = text.substring(0, text.length - 2);
   }
 
   if (text.endsWith("<br/>\n")) {
