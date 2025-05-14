@@ -85,7 +85,7 @@ A [Property Type ID](#property-type-id) follows the same format and consideratio
 <PropertyTypeId> := <namespace>:<propertyTypeLocalId>[:v<majorVersion>]
 ```
 
-- MUST match the regexp `^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\-]+)(:(v0|v[1-9][0-9]*|))?$`
+- Complete <PropertyTypeId> MUST match the regexp `^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\-]+)(:(v0|v[1-9][0-9]*|))?$`
 - The `<namespace>` MUST be a valid [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1/#namespaces).
 
 - The `<propertyTypeLocalId>` follows the ORD ID `<resourceName>` constraints:
