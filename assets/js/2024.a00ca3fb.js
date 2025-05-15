@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_sap_csn_interop_specification=self.webpackChunk_sap_csn_interop_specification||[]).push([[2024],{2024:(e,c,s)=>{s.d(c,{createArchitectureServices:()=>i.S});var i=s(8815);s(3579)}}]);
