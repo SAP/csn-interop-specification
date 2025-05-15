@@ -442,6 +442,9 @@
         "@ObjectModel.representativeKey": {
           "$ref": "#/definitions/@ObjectModel.representativeKey"
         },
+        "@ObjectModel.semanticKey": {
+          "$ref": "#/definitions/@ObjectModel.semanticKey"
+        },
         "@ObjectModel.modelingPattern": {
           "$ref": "#/definitions/@ObjectModel.modelingPattern"
         },
@@ -854,9 +857,6 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
-        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -1057,9 +1057,6 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
-        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -1258,9 +1255,6 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
-        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -1457,9 +1451,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -1658,9 +1649,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -1874,9 +1862,6 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
-        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -2072,9 +2057,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -2274,9 +2256,6 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
-        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -2469,9 +2448,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -2666,9 +2642,6 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
-        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -2862,9 +2835,6 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
-        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -3054,9 +3024,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -3335,9 +3302,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -3639,9 +3603,6 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
-        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -3879,9 +3840,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -4398,9 +4356,6 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
-        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -4809,9 +4764,6 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
-        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -5014,9 +4966,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -5222,9 +5171,6 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
-        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -5413,9 +5359,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -5617,9 +5560,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -5831,9 +5771,6 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
-        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -6037,9 +5974,6 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
-        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -6231,9 +6165,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -6430,9 +6361,6 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
-        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -6621,9 +6549,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -6814,9 +6739,6 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
-        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -7002,9 +6924,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -7283,9 +7202,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -7591,9 +7507,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -8510,9 +8423,9 @@
     },
     "@ObjectModel.semanticKey": {
       "type": "array",
-      "description": "The property contains element(s) which shall be used to display the key in UIs (instead of the technical key).",
+      "description": "The entity contains element(s) which shall be used to display the key in UIs (instead of the technical key).",
       "x-extension-targets": [
-        "Type"
+        "Entity"
       ],
       "items": {}
     },
