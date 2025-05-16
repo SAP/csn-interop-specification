@@ -10,6 +10,12 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+## [1.0.5]
+
+### Fixed
+
+- typescript type `SpecJsonSchemaRoot` is missing in the packed NpmJS artefact
+
 ## [1.0.4]
 
 ### Changed
