@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/package",
   "name": "@sap/csn-interop-specification",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "CSN Interop Specification.",
   "author": "SAP SE",
   "license": "Apache-2.0",
@@ -20,7 +20,8 @@
     "README.md",
     "dist/src/index.js",
     "dist/src/index.d.ts",
-    "dist/src/generated/spec-v1"
+    "dist/src/generated/spec-v1",
+    "dist/spec-toolkit/*"
   ],
   "scripts": {
     "clean": "tsx src/clean.ts",
