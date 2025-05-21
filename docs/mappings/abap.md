@@ -19,12 +19,12 @@ description: "ABAP Type System"
 | abap.clnt (len=3) | cds.String | length = 3 | STRING(3) | | | | - |
 | abap.lang (len=2) | cds.String | length = 2 | STRING(2) | | | | - |
 | abap.accp (len=6) | cds.String | length = 6 | STRING(6) | | | | - |
-| special logic (mainly char(1)) use *"@semantic.boolean: true"* as indicator | cds.Boolean | | BOOLEAN | | | | "castToBoolean": [{ "sourceColumnName": "boolean_field", "trueValue": ["X"], "falseValue": ["", " "]}] |
-| abap.utclong | cds.Timestamp | | TIMESTAMP | | | | "castToTimestamp": [{ "sourceColumnName": "abap_tstmpl", "sourceFormat": ["yyyy-MM-dd'T'HH:mm:ss.SSSSSSS"], "valueReplacements": [{"sourceValues": [ "" ], "targetValue": "NULL_VALUE" }]}] |
+| special logic (mainly char(1)) use *"@semantic.boolean: true"* as indicator | cds.Boolean | | BOOLEAN | | | | "castToBoolean": \[\{ "sourceColumnName": "boolean_field", "trueValue": \["X"\], "falseValue": \["", " "\]\}\] |
+| abap.utclong | cds.Timestamp | | TIMESTAMP | | | | "castToTimestamp": \[\{ "sourceColumnName": "abap_tstmpl", "sourceFormat": \["yyyy-MM-dd'T'HH:mm:ss.SSSSSSS"\], "valueReplacements": \[\{"sourceValues": \[ "" \], "targetValue": "NULL_VALUE" \}\]\}\] |
 | abap.tims | cds.Time | | STRING(6) | | | - |
 | abap.timn | cds.Time | | STRING(6) | | | - |
-| abap.dats | cds.Date | | DATE | "yyyyMMdd" | | | "castToDate": [{ "sourceColumnName": "abap_dats", "sourceFormat": ["yyyyMMdd"], "valueReplacements": [{"sourceValues": [ "00000000", "" ], "targetValue": "NULL_VALUE" }]}] |
-| abap.datn | cds.Date | | DATE | "yyyy-MM-dd" | | |  "castToDate": [{ "sourceColumnName": "abap_dats", "sourceFormat": ["yyyy-MM-dd"], "valueReplacements": [{"sourceValues": [ "0000-00-00", "" ], "targetValue": "NULL_VALUE" }]}]  |
+| abap.dats | cds.Date | | DATE | "yyyyMMdd" | | | "castToDate": \[\{ "sourceColumnName": "abap_dats", "sourceFormat": \["yyyyMMdd"\], "valueReplacements": \[\{"sourceValues": \[ "00000000", "" \], "targetValue": "NULL_VALUE" \}\]\}\] |
+| abap.datn | cds.Date | | DATE | "yyyy-MM-dd" | | |  "castToDate": \[\{ "sourceColumnName": "abap_dats", "sourceFormat": \["yyyy-MM-dd"\], "valueReplacements": \[\{"sourceValues": \[ "0000-00-00", "" \], "targetValue": "NULL_VALUE" \}\]\}\]  |
 | abap.dec(precision = p, scale = s) | cds.Decimal | precision = p, scale = s | DECIMAL(p,s) | | | | - |
 | abap.quan(precision = p, scale = s) | cds.Decimal | precision = p, scale = s | DECIMAL(p,s) | | | | - |
 | abap.decfloat16(precision = 16, scale = floating) | cds.Decimal | precision = 16, scale = floating | *not supported* | | | | - |
