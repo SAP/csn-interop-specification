@@ -46,6 +46,6 @@ description: "ABAP Type System"
 | abap.int4 | cds.Integer | | INT | | | | - |
 | abap.prec | cds.Integer | | INT | | | | - |
 | abap.fltp | cds.Double | | DOUBLE | | | | - |
-| abap.raw | *not supported* | | | | | *not supported* | - |
-| abap.lraw | *not supported* | | | | | *not supported* | - |
+| abap.raw | *not supported* | | | *not supported* | | | - |
+| abap.lraw | *not supported* | | | *not supported* | | | - |
 
