@@ -14,12 +14,16 @@ description: "ABAP Type System"
 | abap.unit (len=3) | cds.String | length = 3 | STRING(3) | | | | - |
 | abap.char (len=x) | cds.String | length = x | STRING(x) | | | | - |
 | abap.varc (len=x) | cds.String | length = x | STRING(x) | | | | - |
+| abap.string | cds.LargeString | length = x | STRING(x) | | | | - |
+| abap.lchr | cds.LargeString | length = x | STRING(x) | | | | - |
 | abap.sstring (len=x) | cds.String | length = x | STRING(x) | | | | - |
+| abap.rawstring | cds.LargeString | length = x | STRING(x) | | | | - |
+| abap.geom_ewkb | cds.LargeString | length = x | STRING(x) | | | | - |
 | abap.numc (len=x) | cds.String | length = x | STRING(x) | | | | - |
 | abap.clnt (len=3) | cds.String | length = 3 | STRING(3) | | | | - |
 | abap.lang (len=2) | cds.String | length = 2 | STRING(2) | | | | - |
 | abap.accp (len=6) | cds.String | length = 6 | STRING(6) | | | | - |
-| abap.char(1) (*"@semantic.boolean: true"*) | cds.String | length = 1 | STRING(1) | | We cant enforce the right values - therefore we must use string | | - |
+| abap.char(1) (*"@Semantic.booleanIndicator: true"*) | cds.String | length = 1 | STRING(1) | | We can't enforce the right values - therefore we must use string | | - |
 | abap.utclong | cds.Timestamp | | TIMESTAMP | | | | "castToTimestamp": \[\{ "sourceColumnName": "abap_tstmpl", "sourceFormat": \["yyyy-MM-dd'T'HH:mm:ss.SSSSSSS"\], "valueReplacements": \[\{"sourceValues": \[ "" \], "targetValue": "NULL_VALUE" \}\]\}\] |
 | abap.tims | cds.Time | | STRING(6) | HHmmss | | - |
 | abap.timn | cds.Time | | STRING(12) | HH:mm:ss.SSS | | - |
@@ -27,7 +31,7 @@ description: "ABAP Type System"
 | abap.datn | cds.Date | | DATE | "yyyy-MM-dd" | | |  "castToDate": \[\{ "sourceColumnName": "abap_dats", "sourceFormat": \["yyyy-MM-dd"\], "valueReplacements": \[\{"sourceValues": \[ "0000-00-00", "" \], "targetValue": "NULL_VALUE" \}\]\}\]  |
 | abap.dec(precision = p, scale = s) | cds.Decimal | precision = p, scale = s | DECIMAL(p,s) | | | | - |
 | abap.quan(precision = p, scale = s) | cds.Decimal | precision = p, scale = s | DECIMAL(p,s) | | | | - |
-| abap.decfloat16(precision = 16, scale = floating) | cds.Decimal | precision = 16, scale = floating | *not supported* | | question to HDLFS | | - |
+| abap.decfloat16(precision = 16, scale = floating) | cds.Decimal | precision = 16, scale = floating | *not supported* | | | | - |
 | abap.df16_dec(precision = 16, scale = floating) | cds.Decimal | precision = 16, scale = floating | *not supported* | | | | - |
 | abap.df16_raw(precision = 16, scale = floating) | cds.Decimal | precision = 16, scale = floating | *not supported* | | | | - |
 | abap.df16_scl(precision = 16, scale = floating) | cds.Decimal | precision = 16, scale = floating | *not supported* | | | | - |
@@ -35,16 +39,13 @@ description: "ABAP Type System"
 | abap.df34_dec(precision = 34, scale = floating) | cds.Decimal | precision = 34, scale = floating | *not supported* | | | | - |
 | abap.df34_raw(precision = 34, scale = floating) | cds.Decimal | precision = 34, scale = floating | *not supported* | | | | - |
 | abap.df34_scl(precision = 34, scale = floating) | cds.Decimal | precision = 34, scale = floating | *not supported* | | | | - |
-| abap.curr(precision = 34, scale = floating) | cds.Decimal | precision = 34, scale = 4 | DECIMAL(34, 4) | | default values to 100% correct | | - |
+| abap.curr(precision = 34, scale = floating) | cds.Decimal | precision = 34, scale = 4 | DECIMAL(34, 4) | | | | - |
 | abap.int8 | cds.Integer64 | | BIGINT | | | | - |
 | abap.int1 | cds.Integer | | INT | | | | - |
 | abap.int2 | cds.Integer | | INT | | | | - |
 | abap.int4 | cds.Integer | | INT | | | | - |
 | abap.prec | cds.Integer | | INT | | | | - |
-| abap.fltp | cds.Double | precision = 16, scale = s | DECIMAL(p,s) | | Double check in CSN mapper | | - |
-| abap.raw | *not supported* | | | | | default: cds.String(2 \* raw-length) - later we have to discuss how to encode e.g. images or for which data types we use cds.UUID (max 36) (for a dedicated list of abap data types) - for cds.UUID use rules from OData Data Types | - |
-| abap.string | cds.LargeString | | | | | cds.String length is either given or blank | - |
-| abap.lchr | cds.LargeString | | | | | cds.String length is either given or blank | - |
-| abap.lraw | *not supported* | | | | | *not supported*  | - |
-| abap.rawstring | cds.LargeBinary | | | | | *not supported* | - |
-| abap.geom_ewkb | cds.LargeBinary | | | | | *not supported* | - |
+| abap.fltp | cds.Double | | DOUBLE | | | | - |
+| abap.raw | *not supported* | | | | | *not supported* | - |
+| abap.lraw | *not supported* | | | | | *not supported* | - |
+
