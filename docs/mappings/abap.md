@@ -5,7 +5,7 @@ description: "ABAP Type System"
 
 # ABAP to CSN Interop
 
-> <span className="feature-status-draft">DRAFT</span> This mapping definition is work in progress and may be subject to further change.
+<span className="feature-status-draft">DRAFT</span> This mapping definition is work in progress and may be subject to further change.
 
 <!-- prettier-ignore -->
 | ABAP DataType | CDS Datatype | Properties | Spark Type | ABAP Format | Comment | - | Transformer |
@@ -14,11 +14,11 @@ description: "ABAP Type System"
 | abap.unit (len=3) | cds.String | length = 3 | STRING(3) | | | | - |
 | abap.char (len=x) | cds.String | length = x | STRING(x) | | | | - |
 | abap.varc (len=x) | cds.String | length = x | STRING(x) | | | | - |
-| abap.string | cds.LargeString | length = x | STRING(x) | | | | - |
-| abap.lchr | cds.LargeString | length = x | STRING(x) | | | | - |
 | abap.sstring (len=x) | cds.String | length = x | STRING(x) | | | | - |
-| abap.rawstring | cds.LargeString | length = x | STRING(x) | | | | - |
-| abap.geom_ewkb | cds.LargeString | length = x | STRING(x) | | | | - |
+| abap.string | cds.LargeString | | STRING | | | | - |
+| abap.lchr | cds.LargeString | | STRING | | | | - |
+| abap.rawstring | cds.LargeString | | STRING | | | | - |
+| abap.geom_ewkb | cds.LargeString | | STRING | | | | - |
 | abap.numc (len=x) | cds.String | length = x | STRING(x) | | | | - |
 | abap.clnt (len=3) | cds.String | length = 3 | STRING(3) | | | | - |
 | abap.lang (len=2) | cds.String | length = 2 | STRING(2) | | | | - |
