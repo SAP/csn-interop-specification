@@ -13,12 +13,12 @@ description: "CSN Interop types to Apache Spark types."
 |CDS | Spark / Delta Lake | Datasphere | Comment | CDS format | Spark format |
 |--- |------------------- |----------- |-------- |------------|--------------|
 |`cds.Boolean`| BOOLEAN | `cds.Boolean`| | | |
-|`cds.String` (length ) | STRING | `cds.String` | | | |
+|`cds.String` (length ) | STRING | `cds.String` | Datasphere Logic: IF `cds.String(length = undefined)` THEN `cds.String(length = 5000)` | | |
 |`cds.LargeString` (length ) | STRING | `cds.LargeString` | | | |
 |`cds.Integer`| INT | `cds.Integer` | | | |
 |`cds.Integer64`| BIGINT | `cds.Integer64` | | | |
-|`cds.Decimal` (precision, scale)| DECIMAL(p,s) | `cds.Decimal` | | | |
-|`cds.Decimal` (precision = 34, scale = floating) | ***not supported*** | `cds.DecimalFloat` | Decimal with scale = floating is not supported in spark | | |
+|`cds.Decimal` (precision = p, scale = s)| DECIMAL(p,s) | `cds.Decimal` | Datasphere Logic: IF `cds.Decimal(p < 17)` THEN `cds.Decimal(p = 17)` | | |
+|`cds.Decimal` (precision = p, scale = floating) | ***not supported*** | `cds.Decimal` | Decimal with scale = floating is not supported in spark | | |
 |Amounts with Currencies `cds.Decimal` (precision = 34, scale = 4) | `cds.Decimal(34, 4)` | `cds.Decimal(34, 4)` | Since spark does not support `cds.DecimalFloat` we use cds.Decimal(34,4) as compromise for now | | |
 |`cds.Double`| DOUBLE | `cds.Double` | | | |
 |`cds.Date`| DATE | `cds.Date` | | "yyyyMMdd" | "yyyyMMdd" |
