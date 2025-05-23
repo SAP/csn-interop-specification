@@ -8,8 +8,8 @@ description: "ABAP Type System"
 <span className="feature-status-draft">DRAFT</span> This mapping definition is work in progress and may be subject to further change.
 
 <!-- prettier-ignore -->
-| ABAP DataType | CDS Datatype | Properties | Spark Type | ABAP Format | Comment | - | Transformer |
-|-------------- | ------------ | ---------- | ---------- | ------ | ------- | - | ----------- |
+| ABAP DataType | CDS Datatype | Properties | Spark Type | ABAP Format | Comment |   | Transformer |
+|-------------- | ------------ | ---------- | ---------- | ----------- | ------- | - | ----------- |
 | abap.cuky (len=5) | cds.String | length = 5 | STRING(5) | | | | - |
 | abap.unit (len=3) | cds.String | length = 3 | STRING(3) | | | | - |
 | abap.char (len=x) | cds.String | length = x | STRING(x) | | | | - |
@@ -25,8 +25,8 @@ description: "ABAP Type System"
 | abap.accp (len=6) | cds.String | length = 6 | STRING(6) | | | | - |
 | abap.char(1) (*"@Semantic.booleanIndicator: true"*) | cds.String | length = 1 | STRING(1) | | We can't enforce the right values - therefore we must use string | | - |
 | abap.utclong | cds.Timestamp | "yyyy-MM-dd'T'HH:mm:ss.SSSSSSS" | TIMESTAMP | | | | "castToTimestamp": \[\{ "sourceColumnName": "abap_tstmpl", "sourceFormat": \["yyyy-MM-dd'T'HH:mm:ss.SSSSSSS"\], "valueReplacements": \[\{"sourceValues": \[ "" \], "targetValue": "NULL_VALUE" \}\]\}\] |
-| abap.tims | cds.Time | | STRING(6) | "HHmmss" | type time not available in spark | - |
-| abap.timn | cds.Time | | STRING(12) | "HH:mm:ss.SSS" | type time not available in spark | - |
+| abap.tims | cds.Time | | STRING(6) | "HHmmss" | type time not available in spark | | - |
+| abap.timn | cds.Time | | STRING(12) | "HH:mm:ss.SSS" | type time not available in spark | | - |
 | abap.dats | cds.Date | | DATE | "yyyyMMdd" | | | "castToDate": \[\{ "sourceColumnName": "abap_dats", "sourceFormat": \["yyyyMMdd"\], "valueReplacements": \[\{"sourceValues": \[ "00000000", "" \], "targetValue": "NULL_VALUE" \}\]\}\] |
 | abap.datn | cds.Date | | DATE | "yyyy-MM-dd" | | |  "castToDate": \[\{ "sourceColumnName": "abap_dats", "sourceFormat": \["yyyy-MM-dd"\], "valueReplacements": \[\{"sourceValues": \[ "0000-00-00", "" \], "targetValue": "NULL_VALUE" \}\]\}\]  |
 | abap.dec(precision = p, scale = s) | cds.Decimal | precision = p, scale = s | DECIMAL(p,s) | | | | - |
@@ -48,4 +48,3 @@ description: "ABAP Type System"
 | abap.fltp | cds.Double | | DOUBLE | | | | - |
 | abap.raw | *not supported* | | | *not supported* | | | - |
 | abap.lraw | *not supported* | | | *not supported* | | | - |
-
