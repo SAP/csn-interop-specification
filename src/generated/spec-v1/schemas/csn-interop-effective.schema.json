@@ -445,6 +445,9 @@
         "@ObjectModel.semanticKey": {
           "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
+        },
         "@ObjectModel.modelingPattern": {
           "$ref": "#/definitions/@ObjectModel.modelingPattern"
         },
@@ -857,6 +860,9 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -1057,6 +1063,9 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -1255,6 +1264,9 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -1451,6 +1463,9 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
+        },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -1649,6 +1664,9 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
+        },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -1862,6 +1880,9 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -2057,6 +2078,9 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
+        },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -2256,6 +2280,9 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -2448,6 +2475,9 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
+        },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -2642,6 +2672,9 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -2835,6 +2868,9 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -3024,6 +3060,9 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
+        },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -3302,6 +3341,9 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
+        },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -3603,6 +3645,9 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -3840,6 +3885,9 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
+        },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -4356,6 +4404,9 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -4764,6 +4815,9 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -4966,6 +5020,9 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
+        },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -5171,6 +5228,9 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -5359,6 +5419,9 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
+        },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -5560,6 +5623,9 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
+        },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -5771,6 +5837,9 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -5974,6 +6043,9 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -6165,6 +6237,9 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
+        },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -6361,6 +6436,9 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -6549,6 +6627,9 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
+        },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -6739,6 +6820,9 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -6924,6 +7008,9 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
+        },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -7202,6 +7289,9 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
+        },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -7508,6 +7598,9 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
+        },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
         },
@@ -7696,6 +7789,9 @@
         },
         "@ObjectModel.representativeKey": {
           "$ref": "#/definitions/@ObjectModel.representativeKey"
+        },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.modelingPattern": {
           "$ref": "#/definitions/@ObjectModel.modelingPattern"
@@ -8428,6 +8524,15 @@
         "Entity"
       ],
       "items": {}
+    },
+    "@ObjectModel.custom": {
+      "type": "boolean",
+      "description": "Indicates whether the annotated element or entity is a custom element.\nIf set to true, it is a custom element (field, entity, service, etc.).\nIf undefined or set to false, it is not defined whether it is a custom element.\n\nIf applied to an entity or service, everything that it contains is also considered custom.",
+      "x-extension-targets": [
+        "Type",
+        "Entity",
+        "Service"
+      ]
     },
     "@ObjectModel.modelingPattern": {
       "type": "object",
