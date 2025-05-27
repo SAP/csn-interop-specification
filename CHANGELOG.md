@@ -18,10 +18,6 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [1.0.5]
 
-### Added
-
-- Added `@ObjectModel.tenantWideUniqueName` annotation
-
 ### Fixed
 
 - typescript type `SpecJsonSchemaRoot` is missing in the packed NpmJS artefact
@@ -46,6 +42,11 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 - Fixed scope of `@ObjectModel.semanticKey` to be valid on Entity, not Type level.
 
 ## [1.0.3]
+
+### Added
+
+- Added `@ObjectModel.tenantWideUniqueName` annotation
+
 
 ### Fixed
 
