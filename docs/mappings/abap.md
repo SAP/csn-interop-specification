@@ -5,46 +5,46 @@ description: "ABAP Type System"
 
 # ABAP to CSN Interop
 
-> <span className="feature-status-draft">DRAFT</span> This mapping definition is work in progress and may be subject to further change.
+<span className="feature-status-draft">DRAFT</span> This mapping definition is work in progress and may be subject to further change.
 
 <!-- prettier-ignore -->
-| ABAP DataType | CDS Datatype | Properties | Comment | New CDS Datatype  |
-|-------------- | ------------ | ---------- | ------- | ----------------- |
-| abap.cuky (len=5) | cds.String | length = 5 | | no change  |
-| abap.unit (len=3) | cds.String | length = 3 | | no change  |
-| abap.char (len=x) | cds.String | length = x | | no change  |
-| abap.varc (len=x) | cds.String | length = x | | no change  |
-| abap.sstring (len=x) | cds.String | length = x | | no change  |
-| abap.numc (len=x) | cds.String | length = x | | no change  |
-| abap.clnt (len=3) | cds.String | length = 2 | | no change  |
-| abap.lang (len=2) | cds.String | length = 2 | | no change  |
-| abap.accp (len=6) | cds.String | length = 6 | | no change  |
-| special logic | cds.Boolean | | decision is taken based on certain domains | no change  |
-| abap.utclong | cds.Timestamp | | | no change  |
-| abap.tims | cds.Time | | | no change  |
-| abap.timn | cds.Time | | | no change  |
-| abap.dats | cds.Date | | | no change  |
-| abap.datn | cds.Date | | | no change  |
-| abap.dec(precision = x, scale = y) | cds.Decimal | precision = x, scale = y | | no change  |
-| abap.quan(precision = x, scale = y) | cds.Decimal | precision = x, scale = y | | no change  |
-| abap.decfloat16(precision = 16, scale = floating) | cds.Decimal | precision = 16, scale = floating | | cds.decimal(16,?)  |
-| abap.df16_dec(precision = 16, scale = floating) | cds.Decimal | precision = 16, scale = floating | | cds.decimal(16,?)  |
-| abap.df16_raw(precision = 16, scale = floating) | cds.Decimal | precision = 16, scale = floating | | cds.decimal(16,?)  |
-| abap.df16_scl(precision = 16, scale = floating) | cds.Decimal | precision = 16, scale = floating | | cds.decimal(16,?)  |
-| abap.decfloat34(precision = 34, scale = floating) | cds.Decimal | precision = 34, scale = floating | | cds.decimal(34,?)  |
-| abap.df34_dec(precision = 34, scale = floating) | cds.Decimal | precision = 34, scale = floating | | cds.decimal(34,?)  |
-| abap.df34_raw(precision = 34, scale = floating) | cds.Decimal | precision = 34, scale = floating | | cds.decimal(34,?)  |
-| abap.df34_scl(precision = 34, scale = floating) | cds.Decimal | precision = 34, scale = floating | | cds.decimal(34,?)  |
-| abap.curr(precision = 34, scale = floating) | cds.Decimal | precision = 34, scale = floating | | cds.decimal(34,?)  |
-| abap.int8 | cds.Integer64 | | | no change  |
-| abap.int1 | cds.Integer | | | no change  |
-| abap.int2 | cds.Integer | | | no change  |
-| abap.int4 | cds.Integer | | | no change  |
-| abap.prec | cds.Integer | | | no change  |
-| abap.raw | cds.binary | | | default: cds.String(2 \* raw-length) - later we have to discuss how to encode e.g. images or for which data types we use cds.UUID (max 36) (for a dedicated list of abap data types) - for cds.UUID use rules from OData Data Types |
-| abap.fltp | cds.double | | | cds.Double |
-| abap.string | cds.largestring | | | cds.String length is either given or blank |
-| abap.lchr | cds.largestring | | | cds.String length is either given or blank |
-| abap.lraw | cds.largebinary | | | not supported  |
-| abap.rawstring | cds.largebinary | | | not supported  |
-| abap.geom_ewkb | cds.largebinary | | | not supported  |
+| ABAP DataType | CDS Datatype | Properties | Spark Type | ABAP Format | Comment |   | Transformer |
+|-------------- | ------------ | ---------- | ---------- | ----------- | ------- | - | ----------- |
+| abap.cuky (len=5) | cds.String | length = 5 | STRING(5) | | | | - |
+| abap.unit (len=3) | cds.String | length = 3 | STRING(3) | | | | - |
+| abap.char (len=x) | cds.String | length = x | STRING(x) | | | | - |
+| abap.varc (len=x) | cds.String | length = x | STRING(x) | | | | - |
+| abap.sstring (len=x) | cds.String | length = x | STRING(x) | | | | - |
+| abap.string | cds.LargeString | | STRING | | | | - |
+| abap.lchr | cds.LargeString | | STRING | | | | - |
+| abap.rawstring | cds.LargeString | | STRING | | | | - |
+| abap.geom_ewkb | cds.LargeString | | STRING | | | | - |
+| abap.numc (len=x) | cds.String | length = x | STRING(x) | | | | - |
+| abap.clnt (len=3) | cds.String | length = 3 | STRING(3) | | | | - |
+| abap.lang (len=2) | cds.String | length = 2 | STRING(2) | | | | - |
+| abap.accp (len=6) | cds.String | length = 6 | STRING(6) | | | | - |
+| abap.char(1) (*"@Semantic.booleanIndicator: true"*) | cds.String | length = 1 | STRING(1) | | We can't enforce the right values - therefore we must use string | | - |
+| abap.utclong | cds.Timestamp | "yyyy-MM-dd'T'HH:mm:ss.SSSSSSS" | TIMESTAMP | | | | "castToTimestamp": \[\{ "sourceColumnName": "abap_tstmpl", "sourceFormat": \["yyyy-MM-dd'T'HH:mm:ss.SSSSSSS"\], "valueReplacements": \[\{"sourceValues": \[ "" \], "targetValue": "NULL_VALUE" \}\]\}\] |
+| abap.tims | cds.Time | | STRING(6) | "HHmmss" | type time not available in spark | | - |
+| abap.timn | cds.Time | | STRING(12) | "HH:mm:ss.SSS" | type time not available in spark | | - |
+| abap.dats | cds.Date | | DATE | "yyyyMMdd" | | | "castToDate": \[\{ "sourceColumnName": "abap_dats", "sourceFormat": \["yyyyMMdd"\], "valueReplacements": \[\{"sourceValues": \[ "00000000", "" \], "targetValue": "NULL_VALUE" \}\]\}\] |
+| abap.datn | cds.Date | | DATE | "yyyy-MM-dd" | | |  "castToDate": \[\{ "sourceColumnName": "abap_dats", "sourceFormat": \["yyyy-MM-dd"\], "valueReplacements": \[\{"sourceValues": \[ "0000-00-00", "" \], "targetValue": "NULL_VALUE" \}\]\}\]  |
+| abap.dec(precision = p, scale = s) | cds.Decimal | precision = p, scale = s | DECIMAL(p,s) | | | | - |
+| abap.quan(precision = p, scale = s) | cds.Decimal | precision = p, scale = s | DECIMAL(p,s) | | | | - |
+| abap.decfloat16(precision = 16, scale = floating) | cds.Decimal | precision = 16, scale = floating | *not supported* | | | | - |
+| abap.df16_dec(precision = 16, scale = floating) | cds.Decimal | precision = 16, scale = floating | *not supported* | | | | - |
+| abap.df16_raw(precision = 16, scale = floating) | cds.Decimal | precision = 16, scale = floating | *not supported* | | | | - |
+| abap.df16_scl(precision = 16, scale = floating) | cds.Decimal | precision = 16, scale = floating | *not supported* | | | | - |
+| abap.decfloat34(precision = 34, scale = floating) | cds.Decimal | precision = 34, scale = floating | *not supported* | | | | - |
+| abap.df34_dec(precision = 34, scale = floating) | cds.Decimal | precision = 34, scale = floating | *not supported* | | | | - |
+| abap.df34_raw(precision = 34, scale = floating) | cds.Decimal | precision = 34, scale = floating | *not supported* | | | | - |
+| abap.df34_scl(precision = 34, scale = floating) | cds.Decimal | precision = 34, scale = floating | *not supported* | | | | - |
+| abap.curr(precision = 34, scale = floating) | cds.Decimal | precision = 34, scale = 4 | DECIMAL(34, 4) | | | | - |
+| abap.int8 | cds.Integer64 | | BIGINT | | | | - |
+| abap.int1 | cds.Integer | | INT | | | | - |
+| abap.int2 | cds.Integer | | INT | | | | - |
+| abap.int4 | cds.Integer | | INT | | | | - |
+| abap.prec | cds.Integer | | INT | | | | - |
+| abap.fltp | cds.Double | | DOUBLE | | | | - |
+| abap.raw | *not supported* | | | *not supported* | | | - |
+| abap.lraw | *not supported* | | | *not supported* | | | - |
