@@ -15,9 +15,12 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 ### Added
 
 - Added `@ObjectModel.custom` annotation
-- Added `@ObjectModel.tenantWideUniqueName` annotation
 
 ## [1.0.5]
+
+### Added
+
+- Added `@ObjectModel.tenantWideUniqueName` annotation
 
 ### Fixed
 
