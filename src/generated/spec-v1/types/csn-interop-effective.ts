@@ -97,14 +97,9 @@ export type PropertyTypeID = string;
  */
 export type EntityRelationship = ReferenceTarget[];
 /**
- * The property contains element(s) which shall be used to display the key in UIs (instead of the technical key).
- */
-export type ObjectModel = unknown[];
-/**
+ * Indicates whether the annotated element or entity is a custom element.
  * If set to true, it is a custom element (field, entity, service, etc.).
- * If set to false, it is not a custom element.
- * If annotation not present, then it is not defined whether it is a custom element.
- * Note that `@ObjectModel.customer: false` is not the same as if the annotation is not present at all.
+ * If undefined or set to false, it is not defined whether it is a custom element.
  *
  * If applied to an entity or service, everything that it contains is also considered custom.
  */
@@ -317,6 +312,10 @@ export type EntityRelationship5 = ReferenceWithConstantID[];
  */
 export type ObjectModelCompositionRoot = boolean;
 /**
+ * The entity contains element(s) which shall be used to display the key in UIs (instead of the technical key).
+ */
+export type ObjectModel = unknown[];
+/**
  * The property declares the supported usage type for this entity in the context of consuming data models.
  */
 export type ObjectModel2 = SupportedCapabilitiesEnumValue[];
@@ -370,11 +369,12 @@ export type TypeDefinition =
   | CompositionTypeDefinition;
 
 /**
- * Root of the CSN Interop Effective JSON document.
+ * This is the interface description of CSN Interop Effective v1.
+ * Its purpose is to be an aligned import / export format for CSN that works across tech-stacks in a wider SAP ecosystem.
  *
- * See [Primer: Root Level Structure](../primer.md#root-level-structure).
+ * For a more extensive documentation on CSN in general, consider the [CAP CSN](https://cap.cloud.sap/docs/cds/csn) documentation.
  */
-export interface CSNInteropRoot {
+export interface CSNInteropEffectiveDocument {
   /**
    * Link to JSON Schema for this CSN Interop Effective document.
    * Adding this helps with automatic validation and code intelligence in some editors / IDEs.
@@ -504,7 +504,7 @@ export interface ContextDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -550,7 +550,7 @@ export interface EntityDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -685,6 +685,7 @@ export interface EntityDefinition {
   "@EntityRelationship.referencesWithConstantIds"?: EntityRelationship5;
   "@ObjectModel.compositionRoot"?: ObjectModelCompositionRoot;
   "@ObjectModel.representativeKey"?: ElementReference;
+  "@ObjectModel.semanticKey"?: ObjectModel;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.modelingPattern"?: ObjectModel1;
   "@ObjectModel.supportedCapabilities"?: ObjectModel2;
@@ -745,10 +746,14 @@ export interface BooleanType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -756,7 +761,7 @@ export interface BooleanType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueBoolean;
@@ -768,7 +773,6 @@ export interface BooleanType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
@@ -953,10 +957,14 @@ export interface StringType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -964,7 +972,7 @@ export interface StringType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -982,7 +990,6 @@ export interface StringType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
@@ -1102,6 +1109,8 @@ export interface LargeStringType {
   type: LargeStringCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1109,7 +1118,7 @@ export interface LargeStringType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1127,7 +1136,6 @@ export interface LargeStringType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
@@ -1201,10 +1209,14 @@ export interface IntegerType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1212,7 +1224,7 @@ export interface IntegerType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -1225,7 +1237,6 @@ export interface IntegerType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
@@ -1331,10 +1342,14 @@ export interface Integer64Type {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1342,7 +1357,7 @@ export interface Integer64Type {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -1355,7 +1370,6 @@ export interface Integer64Type {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
@@ -1429,6 +1443,8 @@ export interface DecimalType {
   type: DecimalCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1436,7 +1452,7 @@ export interface DecimalType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -1445,11 +1461,15 @@ export interface DecimalType {
    * Total number of digits in a number.
    * This includes both the digits before and after the decimal point.
    *
+   * SHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `34`.
+   *
    * The semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.
    */
   precision?: number;
   /**
    * Describes the number of digits to the right of the decimal point in a number.
+   *
+   * SHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `floating`.
    */
   scale?: DecimalScaleNumber | DecimalScaleType;
   "@Aggregation.default"?: Aggregation;
@@ -1460,7 +1480,6 @@ export interface DecimalType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
@@ -1540,6 +1559,8 @@ export interface DoubleType {
   type: DoubleCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1547,7 +1568,7 @@ export interface DoubleType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -1560,7 +1581,6 @@ export interface DoubleType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
@@ -1635,10 +1655,14 @@ export interface DateType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1646,7 +1670,7 @@ export interface DateType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1659,7 +1683,6 @@ export interface DateType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
@@ -1733,10 +1756,14 @@ export interface TimeType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1744,7 +1771,7 @@ export interface TimeType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1757,7 +1784,6 @@ export interface TimeType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
@@ -1831,10 +1857,14 @@ export interface DateTimeType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1842,7 +1872,7 @@ export interface DateTimeType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1855,7 +1885,6 @@ export interface DateTimeType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
@@ -1929,10 +1958,14 @@ export interface TimestampType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1940,7 +1973,7 @@ export interface TimestampType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1953,7 +1986,6 @@ export interface TimestampType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
@@ -2027,10 +2059,14 @@ export interface UUIDType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -2038,7 +2074,7 @@ export interface UUIDType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -2050,7 +2086,6 @@ export interface UUIDType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
@@ -2129,7 +2164,7 @@ export interface AssociationType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -2169,7 +2204,6 @@ export interface AssociationType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
@@ -2298,7 +2332,7 @@ export interface CompositionType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -2338,7 +2372,6 @@ export interface CompositionType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
@@ -2432,10 +2465,14 @@ export interface CustomType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -2443,7 +2480,7 @@ export interface CustomType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueCustomType;
@@ -2455,11 +2492,15 @@ export interface CustomType {
   length?: number;
   /**
    * Describes the number of digits to the right of the decimal point in a number.
+   *
+   * SHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `floating`.
    */
   scale?: DecimalScaleNumber | DecimalScaleType;
   /**
    * Total number of digits in a number.
    * This includes both the digits before and after the decimal point.
+   *
+   * SHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `34`.
    *
    * The semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.
    */
@@ -2472,7 +2513,6 @@ export interface CustomType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
@@ -2767,7 +2807,7 @@ export interface ObjectModelUsageType {
  *
  * A consumer MAY decide to shorten the names by only considering the Entities assigned to a particular Service and then removing the Service prefixes again.
  *
- * To indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](../annotations/object-model#objectmodelcompositionroot) annotation.
+ * To indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](./extensions/object-model#objectmodelcompositionroot) annotation.
  *
  * See [Primer: Service Definitions](../primer.md#service-definitions).
  */
@@ -2781,7 +2821,7 @@ export interface ServiceDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2825,6 +2865,8 @@ export interface BooleanTypeDefinition {
   type: BooleanCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -2832,7 +2874,7 @@ export interface BooleanTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueBoolean;
@@ -2844,7 +2886,7 @@ export interface BooleanTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -2920,6 +2962,8 @@ export interface StringTypeDefinition {
   type: StringCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -2927,7 +2971,7 @@ export interface StringTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -2945,7 +2989,7 @@ export interface StringTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3021,6 +3065,8 @@ export interface LargeStringTypeDefinition {
   type: LargeStringCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3028,7 +3074,7 @@ export interface LargeStringTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3046,7 +3092,7 @@ export interface LargeStringTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3122,6 +3168,8 @@ export interface IntegerTypeDefinition {
   type: IntegerCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3129,7 +3177,7 @@ export interface IntegerTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -3142,7 +3190,7 @@ export interface IntegerTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3219,6 +3267,8 @@ export interface Integer64TypeDefinition {
   type: Integer64CdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3226,7 +3276,7 @@ export interface Integer64TypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -3239,7 +3289,7 @@ export interface Integer64TypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3316,6 +3366,8 @@ export interface DecimalTypeDefinition {
   type: DecimalCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3323,7 +3375,7 @@ export interface DecimalTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -3332,11 +3384,15 @@ export interface DecimalTypeDefinition {
    * Total number of digits in a number.
    * This includes both the digits before and after the decimal point.
    *
+   * SHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `34`.
+   *
    * The semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.
    */
   precision?: number;
   /**
    * Describes the number of digits to the right of the decimal point in a number.
+   *
+   * SHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `floating`.
    */
   scale?: DecimalScaleNumber | DecimalScaleType;
   "@Aggregation.default"?: Aggregation;
@@ -3347,7 +3403,7 @@ export interface DecimalTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3424,6 +3480,8 @@ export interface DoubleTypeDefinition {
   type: DoubleCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3431,7 +3489,7 @@ export interface DoubleTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -3444,7 +3502,7 @@ export interface DoubleTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3521,6 +3579,8 @@ export interface DateTypeDefinition {
   type: DateCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3528,7 +3588,7 @@ export interface DateTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3541,7 +3601,7 @@ export interface DateTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3617,6 +3677,8 @@ export interface TimeTypeDefinition {
   type: TimeCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3624,7 +3686,7 @@ export interface TimeTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3637,7 +3699,7 @@ export interface TimeTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3713,6 +3775,8 @@ export interface DateTimeTypeDefinition {
   type: DateTimeCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3720,7 +3784,7 @@ export interface DateTimeTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3733,7 +3797,7 @@ export interface DateTimeTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3809,6 +3873,8 @@ export interface TimestampTypeDefinition {
   type: TimestampCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3816,7 +3882,7 @@ export interface TimestampTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3829,7 +3895,7 @@ export interface TimestampTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3905,6 +3971,8 @@ export interface UUIDTypeDefinition {
   type: UUIDCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key: true` also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3912,7 +3980,7 @@ export interface UUIDTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3924,7 +3992,7 @@ export interface UUIDTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -4003,7 +4071,7 @@ export interface AssociationTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -4043,7 +4111,7 @@ export interface AssociationTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -4122,7 +4190,7 @@ export interface CompositionTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -4162,7 +4230,7 @@ export interface CompositionTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;

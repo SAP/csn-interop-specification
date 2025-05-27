@@ -1,7 +1,9 @@
 {
-  "description": "JSON Schema with custom (x-) properties",
+  "description": "This is the interface description of @PersonalData.",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "@PersonalData",
+  "$id": "https://sap.github.io/csn-interop-specification/spec-v1/personal-data.schema.json#",
+  "title": "PersonalData Document",
+  "type": "object",
   "definitions": {
     "@PersonalData.entitySemantics": {
       "type": "string",
@@ -23,11 +25,7 @@
       "x-extension-targets": [
         "Entity"
       ],
-      "title": "@PersonalData.entitySemantics",
-      "x-context": [
-        "./spec/v1/annotations/personal-data.yaml",
-        "@PersonalData.entitySemantics"
-      ]
+      "title": "@PersonalData.entitySemantics"
     },
     "@PersonalData.dataSubjectRole": {
       "type": "string",
@@ -35,11 +33,7 @@
       "x-extension-targets": [
         "Entity"
       ],
-      "title": "@PersonalData.dataSubjectRole",
-      "x-context": [
-        "./spec/v1/annotations/personal-data.yaml",
-        "@PersonalData.dataSubjectRole"
-      ]
+      "title": "@PersonalData.dataSubjectRole"
     },
     "@PersonalData.dataSubjectRoleDescription": {
       "type": "string",
@@ -47,11 +41,7 @@
       "x-extension-targets": [
         "Entity"
       ],
-      "title": "@PersonalData.dataSubjectRoleDescription",
-      "x-context": [
-        "./spec/v1/annotations/personal-data.yaml",
-        "@PersonalData.dataSubjectRoleDescription"
-      ]
+      "title": "@PersonalData.dataSubjectRoleDescription"
     },
     "@PersonalData.fieldSemantics": {
       "type": "string",
@@ -101,11 +91,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@PersonalData.fieldSemantics",
-      "x-context": [
-        "./spec/v1/annotations/personal-data.yaml",
-        "@PersonalData.fieldSemantics"
-      ]
+      "title": "@PersonalData.fieldSemantics"
     },
     "@PersonalData.isPotentiallyPersonal": {
       "type": "boolean",
@@ -114,11 +100,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@PersonalData.isPotentiallyPersonal",
-      "x-context": [
-        "./spec/v1/annotations/personal-data.yaml",
-        "@PersonalData.isPotentiallyPersonal"
-      ]
+      "title": "@PersonalData.isPotentiallyPersonal"
     },
     "@PersonalData.isPotentiallySensitive": {
       "type": "boolean",
@@ -127,14 +109,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@PersonalData.isPotentiallySensitive",
-      "x-context": [
-        "./spec/v1/annotations/personal-data.yaml",
-        "@PersonalData.isPotentiallySensitive"
-      ]
+      "title": "@PersonalData.isPotentiallySensitive"
     }
-  },
-  "x-context": [
-    "./spec/v1/annotations/personal-data.yaml"
-  ]
+  }
 }

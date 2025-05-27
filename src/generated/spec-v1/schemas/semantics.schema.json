@@ -1,7 +1,9 @@
 {
-  "description": "JSON Schema with custom (x-) properties",
+  "description": "This is the interface description of @Semantics.",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "@Semantics",
+  "$id": "https://sap.github.io/csn-interop-specification/spec-v1/semantics.schema.json#",
+  "title": "Semantics Document",
+  "type": "object",
   "definitions": {
     "@Semantics.valueRange": {
       "type": "object",
@@ -9,41 +11,21 @@
       "properties": {
         "minimum": {
           "type": "string",
-          "description": "Specifies the minimum value.",
-          "x-context": [
-            "./spec/v1/annotations/semantics.yaml",
-            "@Semantics.valueRange",
-            "minimum"
-          ]
+          "description": "Specifies the minimum value."
         },
         "exclusiveMinimum": {
           "type": "boolean",
           "description": "Specifies if the lower boundary should be excluded.\nNot specifying this annotation means that the lower boundary is included.",
-          "default": false,
-          "x-context": [
-            "./spec/v1/annotations/semantics.yaml",
-            "@Semantics.valueRange",
-            "exclusiveMinimum"
-          ]
+          "default": false
         },
         "maximum": {
           "type": "string",
-          "description": "Specifies the maximum value.",
-          "x-context": [
-            "./spec/v1/annotations/semantics.yaml",
-            "@Semantics.valueRange",
-            "maximum"
-          ]
+          "description": "Specifies the maximum value."
         },
         "exclusiveMaximum": {
           "type": "boolean",
           "description": "Specifies if the upper boundary should be excluded.\nNot specifying this annotation means that the upper boundary is included.",
-          "default": false,
-          "x-context": [
-            "./spec/v1/annotations/semantics.yaml",
-            "@Semantics.valueRange",
-            "exclusiveMaximum"
-          ]
+          "default": false
         }
       },
       "x-extension-targets": [
@@ -52,11 +34,7 @@
         "DecimalType",
         "DoubleType"
       ],
-      "title": "@Semantics.valueRange",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.valueRange"
-      ]
+      "title": "@Semantics.valueRange"
     },
     "@Semantics.currencyCode": {
       "type": "boolean",
@@ -65,11 +43,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.currencyCode",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.currencyCode"
-      ]
+      "title": "@Semantics.currencyCode"
     },
     "@Semantics.amount.currencyCode": {
       "description": "The element contains an amount.\nThe annotation points to an element containing the currency code.",
@@ -81,10 +55,6 @@
         "Type"
       ],
       "title": "@Semantics.amount.currencyCode",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.amount.currencyCode"
-      ],
       "$ref": "#/definitions/ElementReference"
     },
     "@Semantics.unitOfMeasure": {
@@ -94,11 +64,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.unitOfMeasure",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.unitOfMeasure"
-      ]
+      "title": "@Semantics.unitOfMeasure"
     },
     "@Semantics.quantity.unitOfMeasure": {
       "description": "The element contains a quantity.\nThe annotation points to an element containing the unit of measure.",
@@ -110,10 +76,6 @@
         "Type"
       ],
       "title": "@Semantics.quantity.unitOfMeasure",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.quantity.unitOfMeasure"
-      ],
       "$ref": "#/definitions/ElementReference"
     },
     "@Semantics.calendar.dayOfMonth": {
@@ -123,11 +85,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.calendar.dayOfMonth",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.calendar.dayOfMonth"
-      ]
+      "title": "@Semantics.calendar.dayOfMonth"
     },
     "@Semantics.calendar.dayOfYear": {
       "type": "boolean",
@@ -136,11 +94,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.calendar.dayOfYear",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.calendar.dayOfYear"
-      ]
+      "title": "@Semantics.calendar.dayOfYear"
     },
     "@Semantics.calendar.week": {
       "type": "boolean",
@@ -149,11 +103,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.calendar.week",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.calendar.week"
-      ]
+      "title": "@Semantics.calendar.week"
     },
     "@Semantics.calendar.month": {
       "type": "boolean",
@@ -162,11 +112,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.calendar.month",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.calendar.month"
-      ]
+      "title": "@Semantics.calendar.month"
     },
     "@Semantics.calendar.quarter": {
       "type": "boolean",
@@ -175,11 +121,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.calendar.quarter",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.calendar.quarter"
-      ]
+      "title": "@Semantics.calendar.quarter"
     },
     "@Semantics.calendar.halfyear": {
       "type": "boolean",
@@ -188,11 +130,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.calendar.halfyear",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.calendar.halfyear"
-      ]
+      "title": "@Semantics.calendar.halfyear"
     },
     "@Semantics.calendar.year": {
       "type": "boolean",
@@ -201,11 +139,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.calendar.year",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.calendar.year"
-      ]
+      "title": "@Semantics.calendar.year"
     },
     "@Semantics.calendar.yearWeek": {
       "type": "boolean",
@@ -214,11 +148,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.calendar.yearWeek",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.calendar.yearWeek"
-      ]
+      "title": "@Semantics.calendar.yearWeek"
     },
     "@Semantics.calendar.yearMonth": {
       "type": "boolean",
@@ -227,11 +157,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.calendar.yearMonth",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.calendar.yearMonth"
-      ]
+      "title": "@Semantics.calendar.yearMonth"
     },
     "@Semantics.calendar.yearQuarter": {
       "type": "boolean",
@@ -240,11 +166,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.calendar.yearQuarter",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.calendar.yearQuarter"
-      ]
+      "title": "@Semantics.calendar.yearQuarter"
     },
     "@Semantics.calendar.yearHalfyear": {
       "type": "boolean",
@@ -253,11 +175,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.calendar.yearHalfyear",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.calendar.yearHalfyear"
-      ]
+      "title": "@Semantics.calendar.yearHalfyear"
     },
     "@Semantics.fiscal.yearVariant": {
       "type": "boolean",
@@ -266,11 +184,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.fiscal.yearVariant",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.fiscal.yearVariant"
-      ]
+      "title": "@Semantics.fiscal.yearVariant"
     },
     "@Semantics.fiscal.period": {
       "type": "boolean",
@@ -279,11 +193,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.fiscal.period",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.fiscal.period"
-      ]
+      "title": "@Semantics.fiscal.period"
     },
     "@Semantics.fiscal.year": {
       "type": "boolean",
@@ -292,11 +202,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.fiscal.year",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.fiscal.year"
-      ]
+      "title": "@Semantics.fiscal.year"
     },
     "@Semantics.fiscal.yearPeriod": {
       "type": "boolean",
@@ -305,11 +211,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.fiscal.yearPeriod",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.fiscal.yearPeriod"
-      ]
+      "title": "@Semantics.fiscal.yearPeriod"
     },
     "@Semantics.fiscal.quarter": {
       "type": "boolean",
@@ -318,11 +220,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.fiscal.quarter",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.fiscal.quarter"
-      ]
+      "title": "@Semantics.fiscal.quarter"
     },
     "@Semantics.fiscal.yearQuarter": {
       "type": "boolean",
@@ -331,11 +229,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.fiscal.yearQuarter",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.fiscal.yearQuarter"
-      ]
+      "title": "@Semantics.fiscal.yearQuarter"
     },
     "@Semantics.fiscal.week": {
       "type": "boolean",
@@ -344,11 +238,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.fiscal.week",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.fiscal.week"
-      ]
+      "title": "@Semantics.fiscal.week"
     },
     "@Semantics.fiscal.yearWeek": {
       "type": "boolean",
@@ -357,11 +247,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.fiscal.yearWeek",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.fiscal.yearWeek"
-      ]
+      "title": "@Semantics.fiscal.yearWeek"
     },
     "@Semantics.fiscal.dayOfYear": {
       "type": "boolean",
@@ -370,11 +256,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.fiscal.dayOfYear",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.fiscal.dayOfYear"
-      ]
+      "title": "@Semantics.fiscal.dayOfYear"
     },
     "@Semantics.language": {
       "type": "boolean",
@@ -383,11 +265,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.language",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.language"
-      ]
+      "title": "@Semantics.language"
     },
     "@Semantics.time": {
       "type": "boolean",
@@ -396,11 +274,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.time",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.time"
-      ]
+      "title": "@Semantics.time"
     },
     "@Semantics.text": {
       "type": "boolean",
@@ -409,11 +283,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.text",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.text"
-      ]
+      "title": "@Semantics.text"
     },
     "@Semantics.uuid": {
       "type": "boolean",
@@ -422,11 +292,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.uuid",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.uuid"
-      ]
+      "title": "@Semantics.uuid"
     },
     "@Semantics.businessDate.from": {
       "type": "boolean",
@@ -435,11 +301,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.businessDate.from",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.businessDate.from"
-      ]
+      "title": "@Semantics.businessDate.from"
     },
     "@Semantics.businessDate.to": {
       "type": "boolean",
@@ -448,14 +310,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@Semantics.businessDate.to",
-      "x-context": [
-        "./spec/v1/annotations/semantics.yaml",
-        "@Semantics.businessDate.to"
-      ]
+      "title": "@Semantics.businessDate.to"
     }
-  },
-  "x-context": [
-    "./spec/v1/annotations/semantics.yaml"
-  ]
+  }
 }

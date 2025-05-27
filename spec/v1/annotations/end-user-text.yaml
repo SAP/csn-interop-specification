@@ -1,6 +1,8 @@
 $schema: "http://json-schema.org/draft-07/schema#"
-title: "@EndUserText"
-
+$id: "https://sap.github.io/csn-interop-specification/spec-v1/end-user-text.schema.json#"
+title: EndUserText Document
+description: This is the interface description of @EndUserText.
+type: object
 definitions:
   "@EndUserText.label":
     type: string

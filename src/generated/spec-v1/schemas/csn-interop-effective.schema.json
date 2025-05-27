@@ -1,8 +1,76 @@
 {
-  "description": "Root of the CSN Interop Effective JSON document.\n\nSee [Primer: Root Level Structure](../primer.md#root-level-structure).",
+  "description": "This is the interface description of CSN Interop Effective v1.\nIts purpose is to be an aligned import / export format for CSN that works across tech-stacks in a wider SAP ecosystem.\n\nFor a more extensive documentation on CSN in general, consider the [CAP CSN](https://cap.cloud.sap/docs/cds/csn) documentation.",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#",
-  "title": "CSN Interop Root",
+  "title": "CSN Interop Effective Document",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri-reference",
+      "description": "Link to JSON Schema for this CSN Interop Effective document.\nAdding this helps with automatic validation and code intelligence in some editors / IDEs.\n\nSee https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema\n",
+      "anyOf": [
+        {
+          "const": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#"
+        },
+        {
+          "type": "string",
+          "format": "uri-reference"
+        }
+      ]
+    },
+    "$id": {
+      "type": "string",
+      "format": "uri-reference",
+      "description": "Optional URI for this document, that can acts as an ID or as location to retrieve the document.\n\nSee https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema\n"
+    },
+    "csnInteropEffective": {
+      "type": "string",
+      "description": "Existence of this property indicated that the file is a CSN Interop Effective document.\nThe value states the specification version it has been created against.",
+      "enum": [
+        "1.0"
+      ]
+    },
+    "$version": {
+      "type": "string",
+      "description": "The version of the CDS CSN. For this version of CSN Interop it is fixed to `2.0`.\n\nThis MUST be provided to ensure that CSN Interop is a valid subset of CDS CSN in general.",
+      "enum": [
+        "2.0"
+      ]
+    },
+    "meta": {
+      "type": "object",
+      "description": "Meta information that apply to the CSN document as a whole.",
+      "$ref": "#/definitions/Meta"
+    },
+    "definitions": {
+      "$ref": "#/definitions/Definitions",
+      "description": "Dictionary of CSN modeling artifacts.\n"
+    },
+    "i18n": {
+      "$ref": "#/definitions/i18n",
+      "description": "Dictionary of translated texts.\n"
+    }
+  },
+  "patternProperties": {
+    "^__.+$": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "array",
+        "object"
+      ],
+      "description": "Private properties, starting with `__`.\n\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.\n",
+      "tsType": "unknown // replaceKeyType_{PrivatePropertyKey}"
+    }
+  },
+  "required": [
+    "csnInteropEffective",
+    "$version",
+    "definitions"
+  ],
+  "additionalProperties": false,
   "definitions": {
     "Meta": {
       "title": "Meta",
@@ -229,7 +297,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "abstract": {
           "type": [
@@ -373,6 +441,9 @@
         },
         "@ObjectModel.representativeKey": {
           "$ref": "#/definitions/@ObjectModel.representativeKey"
+        },
+        "@ObjectModel.semanticKey": {
+          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.custom": {
           "$ref": "#/definitions/@ObjectModel.custom"
@@ -752,15 +823,15 @@
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.\n\nElements marked as `key` also imply `notNull: true`."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueBoolean"
@@ -788,9 +859,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.custom": {
           "$ref": "#/definitions/@ObjectModel.custom"
@@ -950,15 +1018,15 @@
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.\n\nElements marked as `key` also imply `notNull: true`."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -994,9 +1062,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.custom": {
           "$ref": "#/definitions/@ObjectModel.custom"
@@ -1158,11 +1223,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -1198,9 +1263,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.custom": {
           "$ref": "#/definitions/@ObjectModel.custom"
@@ -1362,15 +1424,15 @@
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.\n\nElements marked as `key` also imply `notNull: true`."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueInteger"
@@ -1401,9 +1463,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.custom": {
           "$ref": "#/definitions/@ObjectModel.custom"
@@ -1566,15 +1625,15 @@
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.\n\nElements marked as `key` also imply `notNull: true`."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueInteger"
@@ -1605,9 +1664,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.custom": {
           "$ref": "#/definitions/@ObjectModel.custom"
@@ -1770,11 +1826,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueNumber"
@@ -1785,7 +1841,7 @@
         "precision": {
           "type": "number",
           "minimum": 1,
-          "description": "Total number of digits in a number.\nThis includes both the digits before and after the decimal point.\n\nThe semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.",
+          "description": "Total number of digits in a number.\nThis includes both the digits before and after the decimal point.\n\nSHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `34`.\n\nThe semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.",
           "default": 34
         },
         "scale": {
@@ -1797,7 +1853,7 @@
               "$ref": "#/definitions/DecimalScaleType"
             }
           ],
-          "description": "Describes the number of digits to the right of the decimal point in a number.",
+          "description": "Describes the number of digits to the right of the decimal point in a number.\n\nSHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `floating`.",
           "default": "floating"
         },
         "@Aggregation.default": {
@@ -1823,9 +1879,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.custom": {
           "$ref": "#/definitions/@ObjectModel.custom"
@@ -1990,11 +2043,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueNumber"
@@ -2025,9 +2078,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.custom": {
           "$ref": "#/definitions/@ObjectModel.custom"
@@ -2190,15 +2240,15 @@
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.\n\nElements marked as `key` also imply `notNull: true`."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -2229,9 +2279,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.custom": {
           "$ref": "#/definitions/@ObjectModel.custom"
@@ -2389,15 +2436,15 @@
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.\n\nElements marked as `key` also imply `notNull: true`."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -2428,9 +2475,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.custom": {
           "$ref": "#/definitions/@ObjectModel.custom"
@@ -2588,15 +2632,15 @@
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.\n\nElements marked as `key` also imply `notNull: true`."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -2627,9 +2671,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.custom": {
           "$ref": "#/definitions/@ObjectModel.custom"
@@ -2787,15 +2828,15 @@
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.\n\nElements marked as `key` also imply `notNull: true`."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -2826,9 +2867,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.custom": {
           "$ref": "#/definitions/@ObjectModel.custom"
@@ -2986,15 +3024,15 @@
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.\n\nElements marked as `key` also imply `notNull: true`."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -3022,9 +3060,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.custom": {
           "$ref": "#/definitions/@ObjectModel.custom"
@@ -3182,7 +3217,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "target": {
           "type": "string",
@@ -3306,9 +3341,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.custom": {
           "$ref": "#/definitions/@ObjectModel.custom"
@@ -3488,7 +3520,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "target": {
           "type": "string",
@@ -3612,9 +3644,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.custom": {
           "$ref": "#/definitions/@ObjectModel.custom"
@@ -3794,15 +3823,15 @@
         },
         "key": {
           "type": "boolean",
-          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID."
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.\n\nElements marked as `key` also imply `notNull: true`."
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueCustomDerived"
@@ -3824,13 +3853,13 @@
               "$ref": "#/definitions/DecimalScaleType"
             }
           ],
-          "description": "Describes the number of digits to the right of the decimal point in a number.",
+          "description": "Describes the number of digits to the right of the decimal point in a number.\n\nSHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `floating`.",
           "default": "floating"
         },
         "precision": {
           "type": "number",
           "minimum": 1,
-          "description": "Total number of digits in a number.\nThis includes both the digits before and after the decimal point.\n\nThe semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.",
+          "description": "Total number of digits in a number.\nThis includes both the digits before and after the decimal point.\n\nSHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `34`.\n\nThe semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.",
           "default": 34
         },
         "@Aggregation.default": {
@@ -3856,9 +3885,6 @@
         },
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
-        },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
         },
         "@ObjectModel.custom": {
           "$ref": "#/definitions/@ObjectModel.custom"
@@ -4378,9 +4404,6 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
-        },
         "@ObjectModel.custom": {
           "$ref": "#/definitions/@ObjectModel.custom"
         },
@@ -4759,11 +4782,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueBoolean"
@@ -4792,8 +4815,8 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -4957,11 +4980,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -4998,8 +5021,8 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -5164,11 +5187,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -5205,8 +5228,8 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -5361,11 +5384,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueInteger"
@@ -5397,8 +5420,8 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -5565,11 +5588,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueInteger"
@@ -5601,8 +5624,8 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -5760,11 +5783,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueNumber"
@@ -5775,7 +5798,7 @@
         "precision": {
           "type": "number",
           "minimum": 1,
-          "description": "Total number of digits in a number.\nThis includes both the digits before and after the decimal point.\n\nThe semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.",
+          "description": "Total number of digits in a number.\nThis includes both the digits before and after the decimal point.\n\nSHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `34`.\n\nThe semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.",
           "default": 34
         },
         "scale": {
@@ -5787,7 +5810,7 @@
               "$ref": "#/definitions/DecimalScaleType"
             }
           ],
-          "description": "Describes the number of digits to the right of the decimal point in a number.",
+          "description": "Describes the number of digits to the right of the decimal point in a number.\n\nSHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `floating`.",
           "default": "floating"
         },
         "@Aggregation.default": {
@@ -5814,8 +5837,8 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -5984,11 +6007,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueNumber"
@@ -6020,8 +6043,8 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -6179,11 +6202,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -6215,8 +6238,8 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -6377,11 +6400,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -6413,8 +6436,8 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -6569,11 +6592,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -6605,8 +6628,8 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -6761,11 +6784,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -6797,8 +6820,8 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -6953,11 +6976,11 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -6986,8 +7009,8 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -7142,7 +7165,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "target": {
           "type": "string",
@@ -7267,8 +7290,8 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -7450,7 +7473,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "target": {
           "type": "string",
@@ -7575,8 +7598,8 @@
         "@EntityRelationship.reference": {
           "$ref": "#/definitions/@EntityRelationship.reference"
         },
-        "@ObjectModel.semanticKey": {
-          "$ref": "#/definitions/@ObjectModel.semanticKey"
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
         },
         "@ObjectModel.foreignKey.association": {
           "$ref": "#/definitions/@ObjectModel.foreignKey.association"
@@ -7743,7 +7766,7 @@
     "ServiceDefinition": {
       "title": "Service Definition",
       "type": "object",
-      "description": "A CDS Service indicates that [Entities](#entity-definition) are exposed to outside consumers via an API.\n\nTo assign Entities or Custom Types to a Service, their name MUST be prefixed with the service name, separated by a `.`.\nPlease be aware that this will also change the `target` values of `cds.Association` and `cds.Composition`.\nFor an example, see [airline-service.json](./examples/airline.md).\n\nA consumer MAY decide to shorten the names by only considering the Entities assigned to a particular Service and then removing the Service prefixes again.\n\nTo indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](../annotations/object-model#objectmodelcompositionroot) annotation.\n\nSee [Primer: Service Definitions](../primer.md#service-definitions).",
+      "description": "A CDS Service indicates that [Entities](#entity-definition) are exposed to outside consumers via an API.\n\nTo assign Entities or Custom Types to a Service, their name MUST be prefixed with the service name, separated by a `.`.\nPlease be aware that this will also change the `target` values of `cds.Association` and `cds.Composition`.\nFor an example, see [airline-service.json](./examples/airline.md).\n\nA consumer MAY decide to shorten the names by only considering the Entities assigned to a particular Service and then removing the Service prefixes again.\n\nTo indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](./extensions/object-model#objectmodelcompositionroot) annotation.\n\nSee [Primer: Service Definitions](../primer.md#service-definitions).",
       "x-extension-points": [
         "Service"
       ],
@@ -7756,7 +7779,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -7811,7 +7834,7 @@
         },
         "doc": {
           "type": "string",
-          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation."
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -7841,7 +7864,7 @@
     "i18n": {
       "title": "i18n",
       "type": "object",
-      "description": "i18n contains translated texts for one or more languages.\nThey are usually used in annotations like [`@EnduserText`](../annotations/enduser-text).\n\nKey is the language key, value is a dictionary of language text translations.\n\nThe language key MUST follow the standard of [RFC 1766](https://datatracker.ietf.org/doc/rfc1766/) (or IETF's [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)).\n\nSee [Primer: Language-dependent annotation values](../primer.md#language-dependent-annotation-values).",
+      "description": "i18n contains translated texts for one or more languages.\nThey are usually used in annotations like [`@EnduserText`](./extensions/end-user-text).\n\nKey is the language key, value is a dictionary of language text translations.\n\nThe language key MUST follow the standard of [RFC 1766](https://datatracker.ietf.org/doc/rfc1766/) (or IETF's [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)).\n\nSee [Primer: Language-dependent annotation values](../primer.md#language-dependent-annotation-values).",
       "patternProperties": {
         "^[a-zA-Z]{2,8}(-[a-zA-Z0-9]{1,8}){0,2}$": {
           "$ref": "#/definitions/LanguageText"
@@ -8127,6 +8150,7 @@
     "@EntityRelationship.entityType": {
       "type": "string",
       "description": "Defines which [Entity Type](#entity-type) the current data object represents.\n\nThere could be several data objects that are assigned to the same Entity Type.\nOne data object can only have one Entity Type assigned, which corresponds to the applications own Entity Type definition.",
+      "pattern": "^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\\-]+)(:v[1-9][0-9]*)?$",
       "examples": [
         "sap.vdm.sont:BillOfMaterial"
       ],
@@ -8137,6 +8161,7 @@
     "@EntityRelationship.propertyType": {
       "type": "string",
       "description": "Defines the logical [Property Type](#property-type) of a property.\nThe reason is to have an ID to relate to the property, especially to state that it can be used as an ID or is part of a composite ID.",
+      "pattern": "^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\\-]+)(:v[1-9][0-9]*)?$",
       "examples": [
         "sap.vdm.gfn:BillOfMaterialUUID"
       ],
@@ -8266,7 +8291,7 @@
           "type": "array",
           "description": "List of properties, the composite ID consists of.",
           "items": {
-            "$ref": "#/definitions/@EntityRelationship.ReferenceTargetdPropertyType"
+            "$ref": "#/definitions/@EntityRelationship.ReferenceTargetPropertyType"
           }
         }
       },
@@ -8275,7 +8300,7 @@
         "referencedPropertyTypes"
       ]
     },
-    "@EntityRelationship.ReferenceTargetdPropertyType": {
+    "@EntityRelationship.ReferenceTargetPropertyType": {
       "title": "Referenced Property Type",
       "type": "object",
       "description": "Grouping of the ID in the referenced entity, by its property type ID and the local name in this entity.",
@@ -8379,7 +8404,7 @@
           "type": "array",
           "description": "List of non-temporal properties the composite temporal ID consists of.",
           "items": {
-            "$ref": "#/definitions/@EntityRelationship.ReferenceTargetdPropertyType"
+            "$ref": "#/definitions/@EntityRelationship.ReferenceTargetPropertyType"
           }
         },
         "category": {
@@ -8457,6 +8482,7 @@
     "@EntityRelationship.PropertyTypeID": {
       "title": "Property Type ID",
       "type": "string",
+      "pattern": "^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\\-]+)(:v[1-9][0-9]*)?$",
       "description": "ID of the [Property Type](#property-type). The reason is to have an ID to relate to the property, especially to state that it can be used as an ID or is part of a composite ID.",
       "examples": [
         "sap.vdm.gfn:BillOfMaterialUUID"
@@ -8466,6 +8492,7 @@
       "title": "Entity Type ID",
       "type": "string",
       "description": "ID of the [Entity Type](#entity-type).",
+      "pattern": "^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\\-]+)(:v[1-9][0-9]*)?$",
       "examples": [
         "sap.vdm.sont:BillOfMaterial"
       ]
@@ -8492,16 +8519,15 @@
     },
     "@ObjectModel.semanticKey": {
       "type": "array",
-      "description": "The property contains element(s) which shall be used to display the key in UIs (instead of the technical key).",
+      "description": "The entity contains element(s) which shall be used to display the key in UIs (instead of the technical key).",
       "x-extension-targets": [
-        "Type"
+        "Entity"
       ],
       "items": {}
     },
     "@ObjectModel.custom": {
       "type": "boolean",
-      "description": "If set to true, it is a custom element (field, entity, service, etc.).\nIf set to false, it is not a custom element.\nIf annotation not present, then it is not defined whether it is a custom element.\nNote that `@ObjectModel.customer: false` is not the same as if the annotation is not present at all.\n\nIf applied to an entity or service, everything that it contains is also considered custom.",
-      "default": true,
+      "description": "Indicates whether the annotated element or entity is a custom element.\nIf set to true, it is a custom element (field, entity, service, etc.).\nIf undefined or set to false, it is not defined whether it is a custom element.\n\nIf applied to an entity or service, everything that it contains is also considered custom.",
       "x-extension-targets": [
         "Type",
         "Entity",
@@ -8596,7 +8622,7 @@
     },
     "@ObjectModel.tenantWideUniqueName": {
       "type": "string",
-      "description": "Unique technical name of the entity within the tenant / isolation context it is deployed to. \nThis may be used as a hint for database table names and help to keep them short enough.\n\nOnce chosen the technical name ID MUST be kept stable (immutable).",
+      "description": "Unique technical name of the entity within the tenant / isolation context it is deployed to.\nThis may be used as a hint for database table names and help to keep them short enough.\n\nOnce chosen the technical name ID MUST be kept stable (immutable).",
       "maxLength": 120,
       "x-extension-targets": [
         "Entity"
@@ -8680,6 +8706,7 @@
     "@ODM.entityName": {
       "type": "string",
       "description": "The entity represents an ODM Entity with this official name.",
+      "pattern": "^[a-zA-Z0-9._\\-]+$",
       "x-extension-targets": [
         "Entity"
       ]
@@ -8693,6 +8720,7 @@
     "@ODM.oidReference.entityName": {
       "type": "string",
       "description": "The property contains an OID for the ODM Entity with this official name",
+      "pattern": "^[a-zA-Z0-9._\\-]+$",
       "x-extension-targets": [
         "Type"
       ]
@@ -9063,73 +9091,5 @@
         "Type"
       ]
     }
-  },
-  "type": "object",
-  "properties": {
-    "$schema": {
-      "type": "string",
-      "format": "uri-reference",
-      "description": "Link to JSON Schema for this CSN Interop Effective document.\nAdding this helps with automatic validation and code intelligence in some editors / IDEs.\n\nSee https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema\n",
-      "anyOf": [
-        {
-          "const": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#"
-        },
-        {
-          "type": "string",
-          "format": "uri-reference"
-        }
-      ]
-    },
-    "$id": {
-      "type": "string",
-      "format": "uri-reference",
-      "description": "Optional URI for this document, that can acts as an ID or as location to retrieve the document.\n\nSee https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema\n"
-    },
-    "csnInteropEffective": {
-      "type": "string",
-      "description": "Existence of this property indicated that the file is a CSN Interop Effective document.\nThe value states the specification version it has been created against.",
-      "enum": [
-        "1.0"
-      ]
-    },
-    "$version": {
-      "type": "string",
-      "description": "The version of the CDS CSN. For this version of CSN Interop it is fixed to `2.0`.\n\nThis MUST be provided to ensure that CSN Interop is a valid subset of CDS CSN in general.",
-      "enum": [
-        "2.0"
-      ]
-    },
-    "meta": {
-      "type": "object",
-      "description": "Meta information that apply to the CSN document as a whole.",
-      "$ref": "#/definitions/Meta"
-    },
-    "definitions": {
-      "$ref": "#/definitions/Definitions",
-      "description": "Dictionary of CSN modeling artifacts.\n"
-    },
-    "i18n": {
-      "$ref": "#/definitions/i18n",
-      "description": "Dictionary of translated texts.\n"
-    }
-  },
-  "patternProperties": {
-    "^__.+$": {
-      "type": [
-        "string",
-        "number",
-        "boolean",
-        "array",
-        "object"
-      ],
-      "description": "Private properties, starting with `__`.\n\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.\n",
-      "tsType": "unknown // replaceKeyType_{PrivatePropertyKey}"
-    }
-  },
-  "required": [
-    "csnInteropEffective",
-    "$version",
-    "definitions"
-  ],
-  "additionalProperties": false
+  }
 }

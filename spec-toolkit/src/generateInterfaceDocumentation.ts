@@ -5,7 +5,6 @@
 
 /**
  * Refactoring Ideas / TODOs:
- * * Use new `x-context` attribute to do better and consistent error / warning / info logging
  * * Share same code to generate descriptions for schemas inside AND outside of an object table
  * * Add **Type**: consistently for non-object Definition entries
  */
@@ -24,14 +23,12 @@ import {
 } from "./util/markdownTextHelper.js";
 import {
   checkRequiredPropertiesExist,
-  getContextText,
   getJsonSchemaValidator,
   validatePropertyName,
   validateSpecJsonSchema,
 } from "./util/validation.js";
 import {
   preprocessSpecJsonSchema,
-  ensureRootLevelSchema,
   removeDescriptionsFromRefPointers,
   removeSomeExtensionProperties,
   convertRefToDocToStandardRef,
@@ -50,6 +47,7 @@ import {
 import {
   documentationExtensionsOutputFolderName,
   documentationOutputFolderName,
+  extensionFolderDiffToOutputFolderName,
   schemasOutputFolderName,
 } from "./generate.js";
 
@@ -92,8 +90,8 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
     const jsonSchemaFileParsed = yaml.load(jsonSchemaFile) as SpecJsonSchemaRoot;
 
     /** The Spec JSON Schema based Specification */
-    let jsonSchemaRoot = preprocessSpecJsonSchema(jsonSchemaFileParsed, docConfig.sourceFilePath);
-    log.info(`${getContextText(jsonSchemaRoot)} loaded and prepared.`);
+    const jsonSchemaRoot = preprocessSpecJsonSchema(jsonSchemaFileParsed);
+    log.info(`${docConfig.sourceFilePath} loaded and prepared.`);
 
     // Read extension target file if given
     let extensionTarget: SpecJsonSchemaRoot | undefined;
@@ -110,7 +108,7 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
     }
 
     // Validate JSON Schema to be a valid JSON Schema document
-    validateSpecJsonSchema(jsonSchemaRoot, true);
+    validateSpecJsonSchema(jsonSchemaRoot, docConfig.sourceFilePath);
 
     // Write Header Information and Introduction Text
     let text = getMarkdownFrontMatter(docConfig.mdFrontmatter);
@@ -119,15 +117,14 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
     text += "\n\n## Schema Definitions\n\n";
 
     if (docConfig.type === "specExtension") {
-      text += `* This is an extension vocabulary for [${extensionTarget?.title}](${docConfig.targetLink}).\n`;
-    } else if (jsonSchemaRoot.$ref) {
-      const referencedSchema = getReferencedSchema(jsonSchemaRoot.$ref, jsonSchemaRoot, docConfig.id);
-      if (referencedSchema.title) {
-        const link = getAnchorLinkFromTitle(referencedSchema.title);
-        text += `* The root schema of the document is [${referencedSchema.title}](${link})\n`;
+      text += `* This is an extension vocabulary for [${extensionTarget?.title}](${extensionFolderDiffToOutputFolderName + docConfig.targetDocumentId}).\n`;
+    } else if (docConfig.type === "spec") {
+      if (jsonSchemaRoot.title) {
+        const link = getAnchorLinkFromTitle(jsonSchemaRoot.title);
+        text += `* The root schema of the document is [${jsonSchemaRoot.title}](${link})\n`;
       } else {
         throw new Error(
-          `Every JSON Schema object need to have a title. Problem: ${JSON.stringify(referencedSchema, null, 2)}`,
+          `Every JSON Schema object need to have a title. Problem: ${JSON.stringify(jsonSchemaRoot, null, 2)}`,
         );
       }
     }
@@ -140,8 +137,14 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
       // text += `* A high-level overview can also be exported as [Excel](/spec-v1/interfaces/${docConfig.title}.xlsx) and [CSV](/spec-v1/interfaces/${docConfig.title}.csv) file.\n`
     }
 
+    // If main spec: Create root document entry point
+    if (docConfig.type === "spec") {
+      text += `\n\n### ${jsonSchemaRoot.title}\n\n`;
+      const link = getAnchorLinkFromTitle(jsonSchemaRoot.title);
+      text += getObjectDescriptionTable(jsonSchemaRoot, jsonSchemaRoot, configData, link, link, docConfig);
+    }
     // If extension: Create extension property overview table
-    if (docConfig.type === "specExtension") {
+    else if (docConfig.type === "specExtension") {
       text += getExtensionOverviewTable(jsonSchemaRoot);
     }
 
@@ -175,10 +178,6 @@ export function jsonSchemaToDocumentation(configData: ConfigFile): void {
     }
     fs.outputFileSync(filePath, text);
     log.info(`Written: ${filePath}`);
-
-    if (!jsonSchemaRoot.type && docConfig.type === "spec") {
-      jsonSchemaRoot = ensureRootLevelSchema(jsonSchemaRoot);
-    }
 
     writeSpecJsonSchemaFiles(
       `${configData.outputPath}/${schemasOutputFolderName}/${docConfig.id}.schema.json`,
@@ -228,7 +227,7 @@ function jsonSchemaToMd(
     text += `${jsonSchemaObject.description.trim()}\n\n`;
   }
 
-  //Distinction if this is an object or a simple type
+  // Distinction if this is an object or a simple type
   if (
     !jsonSchemaObject.type &&
     !jsonSchemaObject.oneOf &&
@@ -238,7 +237,33 @@ function jsonSchemaToMd(
     throw new Error(`Schema Object must have a "type" keyword! ${JSON.stringify(jsonSchemaObject, null, 2)}`);
   }
 
-  //is this an object with a reference to core?
+  // Document extensions towards other target documents
+  if (jsonSchemaObject["x-extension-targets"]) {
+    text += `**Scope:** ${jsonSchemaObject["x-extension-targets"].join(", ")}<br/>\n`;
+    text += `**Extending:** `;
+
+    for (const extensionPoint of jsonSchemaObject["x-extension-targets"]) {
+      let found = 0;
+      // Find extension point
+      for (const definitionName in extensionTarget!.definitions) {
+        const definition = extensionTarget!.definitions[definitionName];
+        if (
+          definition["x-extension-points"] &&
+          definition["x-extension-points"].includes(extensionPoint) &&
+          specConfig.type === "specExtension"
+        ) {
+          text += `[${definitionName}](${extensionFolderDiffToOutputFolderName + specConfig.targetDocumentId}${getAnchorLinkFromTitle(definition.title)}), `;
+          found++;
+        }
+      }
+      if (!found) {
+        throw new Error(`Could not find extension point "${extensionPoint}" in extension target file.`);
+      }
+    }
+    text = text.substring(0, text.length - 2) + "<br/>\n";
+  }
+
+  // is this an object with a reference to core?
   // TODO: not sure if I understand this code. Consider refactoring here
   const refToDoc =
     typeof jsonSchemaObject === "object" && "x-ref-to-doc" in jsonSchemaObject ? jsonSchemaObject["x-ref-to-doc"] : "";
@@ -252,7 +277,7 @@ function jsonSchemaToMd(
       specConfig,
     );
   } else {
-    text += generatePrimitiveTypeDescription(jsonSchemaObject, jsonSchemaRoot, configFile, specConfig, extensionTarget);
+    text += generatePrimitiveTypeDescription(jsonSchemaObject, jsonSchemaRoot, configFile, specConfig);
   }
   return text;
 }
@@ -314,7 +339,7 @@ function getTypeColumnText(
   }
   //in case it is a primitive type just return it
   else if (jsonSchemaObject["x-ref-to-doc"] && specConfig.type === "specExtension") {
-    return `[${jsonSchemaObject["x-ref-to-doc"].title}](${specConfig.targetLink}${getAnchorLinkFromTitle(jsonSchemaObject["x-ref-to-doc"].title)})`;
+    return `[${jsonSchemaObject["x-ref-to-doc"].title}](${extensionFolderDiffToOutputFolderName + specConfig.targetDocumentId}${getAnchorLinkFromTitle(jsonSchemaObject["x-ref-to-doc"].title)})`;
   }
   // if its referencing to an interface in another document, create a cross-page link:
   else if (jsonSchemaObject && jsonSchemaObject.type) {
@@ -573,30 +598,31 @@ function getObjectExampleText(
     }
 
     try {
-      //Validate Examples
+      // Validate Examples
       const validate = getJsonSchemaValidator({
         ...jsonSchemaObject,
         definitions: jsonSchemaRoot.definitions,
       });
 
-      //Add all Examples to Text
+      // Add all Examples to Text
       for (const example of jsonSchemaObject.examples as unknown[]) {
         text += "\n\n```js\n";
         text += JSON.stringify(example, null, 2);
         text += "\n```\n";
 
         // Validate example if it complies to the JSON Schema
+        // TODO: refactor duplicated code section for validating examples
         const valid = validate(example);
 
         if (!valid) {
-          log.info("--------------------------------------------------------------------------");
+          log.error("--------------------------------------------------------------------------");
           log.error(
             `Invalid example for ${
               jsonSchemaObject.title || jsonSchemaObject.description || JSON.stringify(jsonSchemaObject)
             }`,
           );
-          log.info(validate.errors);
-          log.info("--------------------------------------------------------------------------");
+          log.error(validate.errors);
+          log.error("--------------------------------------------------------------------------");
           process.exit(1);
         }
       }
@@ -728,7 +754,6 @@ function generatePrimitiveTypeDescription(
   jsonSchemaRoot: SpecJsonSchemaRoot,
   configFile: ConfigFile,
   specConfig: SpecConfig,
-  extensionTarget?: SpecJsonSchemaRoot,
 ): string {
   let text = "";
 
@@ -822,33 +847,7 @@ function generatePrimitiveTypeDescription(
   }
 
   if (jsonSchemaObject["x-ref-to-doc"] && specConfig.type === "specExtension") {
-    text += `**External Type**: [${jsonSchemaObject["x-ref-to-doc"].title}](${specConfig.targetLink}${getAnchorLinkFromTitle(jsonSchemaObject["x-ref-to-doc"].title)}) <br/>\n`;
-  }
-
-  // Document extensions towards other target documents
-  if (jsonSchemaObject["x-extension-targets"]) {
-    text += `**Scope:** ${jsonSchemaObject["x-extension-targets"].join(", ")}<br/>\n`;
-    text += `**Extending:** `;
-
-    for (const extensionPoint of jsonSchemaObject["x-extension-targets"]) {
-      let found = 0;
-      // Find extension point
-      for (const definitionName in extensionTarget!.definitions) {
-        const definition = extensionTarget!.definitions[definitionName];
-        if (
-          definition["x-extension-points"] &&
-          definition["x-extension-points"].includes(extensionPoint) &&
-          specConfig.type === "specExtension"
-        ) {
-          text += `[${definitionName}](${specConfig.targetLink}${getAnchorLinkFromTitle(definition.title)}), `;
-          found++;
-        }
-      }
-      if (!found) {
-        throw new Error(`Could not find extension point "${extensionPoint}" in extension target file.`);
-      }
-    }
-    text = text.substring(0, text.length - 2);
+    text += `**External Type**: [${jsonSchemaObject["x-ref-to-doc"].title}](${extensionFolderDiffToOutputFolderName + specConfig.targetDocumentId}${getAnchorLinkFromTitle(jsonSchemaObject["x-ref-to-doc"].title)}) <br/>\n`;
   }
 
   if (text.endsWith("<br/>\n")) {
@@ -1056,16 +1055,17 @@ function getDescriptionWithinTable(jsonSchemaObject: SpecJsonSchema, jsonSchemaR
 
       // Validate example if it complies to the JSON Schema
       try {
+        // TODO: refactor duplicated code section for validating examples
         const valid = validate(example);
         if (!valid) {
-          log.info("--------------------------------------------------------------------------");
+          log.error("--------------------------------------------------------------------------");
           log.error(
             `Invalid example for "${
               jsonSchemaObject.title || jsonSchemaObject.description || JSON.stringify(jsonSchemaObject)
             }"`,
           );
-          log.info(validate.errors);
-          log.info("--------------------------------------------------------------------------");
+          log.error(validate.errors);
+          log.error("--------------------------------------------------------------------------");
           process.exit(1);
         }
       } catch (err) {

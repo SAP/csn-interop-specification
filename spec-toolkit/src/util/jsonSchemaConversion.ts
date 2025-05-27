@@ -8,43 +8,20 @@ import { detectAnyOfEnum, detectOneOfEnum } from "../generateInterfaceDocumentat
  * Prepare a Spec JSON Schema file, so it is easier to work with.
  *
  * This will do some pre-processing and enrichment:
- * * Adding `x-context` for easier debugging and further use
  * * Adding missing `title` properties
  */
-export function preprocessSpecJsonSchema(
-  jsonSchema: SpecJsonSchemaRoot,
-  jsonSchemaFileName: string,
-): SpecJsonSchemaRoot {
+export function preprocessSpecJsonSchema(jsonSchema: SpecJsonSchemaRoot): SpecJsonSchemaRoot {
   // Deep clone, just to avoid accidental mutations of input
   let result = JSON.parse(JSON.stringify(jsonSchema));
 
   result = removeNullProperties(result);
 
-  // Enrich x-context and titles
-  result["x-context"] = [jsonSchemaFileName];
   result.definitions = result.definitions || {};
   for (const definitionName in result.definitions) {
     const definition = result.definitions[definitionName];
 
     if (!definition.title) {
       definition.title = definitionName;
-    }
-
-    definition["x-context"] = [jsonSchemaFileName, definitionName];
-    if (!definition.title) {
-      definition.title = definitionName;
-    }
-
-    if (definition.properties) {
-      for (const propertyName in definition.properties) {
-        const property = definition.properties[propertyName] as SpecJsonSchemaRoot;
-        try {
-          property["x-context"] = [jsonSchemaFileName, definitionName, propertyName];
-        } catch (err) {
-          log.error(`Could not add x-context to ${[jsonSchemaFileName, definitionName, propertyName]}`);
-          log.error(err);
-        }
-      }
     }
   }
 
@@ -199,37 +176,6 @@ export function convertAllOfWithIfThenDiscriminatorToOneOf(documentSchema: SpecJ
     }
   }
   return documentSchema;
-}
-
-/**
- * Removes the top level $ref and instead puts in the correct
- * interface that is the root object.
- *
- * This is necessary for some libraries like the JSON Schema dereferencer to work.
- *
- * In case of ORD Documents this is "Document"
- * In case of ORD Config interface, this is "Configuration"
- */
-export function ensureRootLevelSchema(jsonSchema: SpecJsonSchemaRoot): SpecJsonSchemaRoot {
-  if (!jsonSchema.$ref) {
-    if (jsonSchema.type) {
-      return jsonSchema;
-    } else {
-      throw new Error(`No root level $ref nor root level "type" detected! ${jsonSchema.$id}`);
-    }
-  }
-  const rootLevelDefinition = jsonSchema.$ref?.split("#/definitions/")[1];
-  delete jsonSchema.$ref;
-  if (!jsonSchema.definitions) {
-    throw new Error("Input JSON Schema is missing a definitions section!");
-  }
-  if (jsonSchema.definitions && jsonSchema.definitions[rootLevelDefinition]) {
-    jsonSchema = { ...jsonSchema, ...jsonSchema.definitions[rootLevelDefinition] };
-    delete jsonSchema.definitions[rootLevelDefinition];
-  } else {
-    throw new Error(`Could not find ${rootLevelDefinition} in definitions!`);
-  }
-  return jsonSchema;
 }
 
 /**

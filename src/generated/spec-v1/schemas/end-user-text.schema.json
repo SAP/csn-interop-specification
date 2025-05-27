@@ -1,7 +1,9 @@
 {
-  "description": "JSON Schema with custom (x-) properties",
+  "description": "This is the interface description of @EndUserText.",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "@EndUserText",
+  "$id": "https://sap.github.io/csn-interop-specification/spec-v1/end-user-text.schema.json#",
+  "title": "EndUserText Document",
+  "type": "object",
   "definitions": {
     "@EndUserText.label": {
       "type": "string",
@@ -17,11 +19,7 @@
         "Context",
         "EnumDictionaryEntry"
       ],
-      "title": "@EndUserText.label",
-      "x-context": [
-        "./spec/v1/annotations/enduser-text.yaml",
-        "@EndUserText.label"
-      ]
+      "title": "@EndUserText.label"
     },
     "@EndUserText.heading": {
       "type": "string",
@@ -29,11 +27,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "title": "@EndUserText.heading",
-      "x-context": [
-        "./spec/v1/annotations/enduser-text.yaml",
-        "@EndUserText.heading"
-      ]
+      "title": "@EndUserText.heading"
     },
     "@EndUserText.quickInfo": {
       "type": "string",
@@ -48,11 +42,7 @@
         "Context",
         "EnumDictionaryEntry"
       ],
-      "title": "@EndUserText.quickInfo",
-      "x-context": [
-        "./spec/v1/annotations/enduser-text.yaml",
-        "@EndUserText.quickInfo"
-      ]
+      "title": "@EndUserText.quickInfo"
     }
   },
   "examples": [
@@ -82,8 +72,5 @@
         }
       }
     }
-  ],
-  "x-context": [
-    "./spec/v1/annotations/enduser-text.yaml"
   ]
 }

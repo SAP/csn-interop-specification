@@ -38,8 +38,8 @@ As a consequence, the Entity Relationship annotation concept is built on the fol
 
 #### Entity Type
 
-Entity Types represent "conceptual models" that underlie the often very denormalized, concrete API Models.
-For a full description, see [ORD Entity Type](https://sap.github.io/open-resource-discovery/details/articles/grouping-and-bundling#entity-type).
+Entity Types represent "conceptual models" that underlie the (often denormalized) concrete API Models.
+For a full description, see [ORD Entity Type](https://open-resource-discovery.github.io/specification/spec-v1/concepts/grouping-and-bundling#entity-type).
 
 The ID scheme for an Entity Type ID is as following:
 
@@ -47,7 +47,17 @@ The ID scheme for an Entity Type ID is as following:
 <entityTypeId> := <namespace>:<entityTypeLocalId>[:v<majorVersion>]
 ```
 
-For the mandatory namespaces we use the [Namespace Concept](https://sap.github.io/open-resource-discovery/spec-v1/#namespaces) of ORD.
+- Complete `<entityTypeId>` MUST match the regexp `^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\-]+)(:v[1-9][0-9]*)?$`
+
+- The `<namespace>` part MUST be a valid [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1/#namespaces).
+
+- The `<entityTypeLocalId>` part MUST match the regexp `^[a-zA-Z0-9._\-]+$` and follows the ORD ID `<resourceName>` constraints:
+
+  - MUST be unique within the `<namespace>`.
+  - SHOULD be a (somewhat) human readable and SEO/URL friendly string (avoid UUIDs).
+
+- The `<majorVersion>` MUST only be provided if the major version is above v1. For v1 it MUST be omitted.
+
 In many cases Entity Types are not versioned. To ease handling and avoiding ambiguity, we forbid adding `v1` and therefore made `v1` the default.
 If for the case of having a `v2` or higher of an Entity Type, the version must be added.
 
@@ -74,6 +84,16 @@ A [Property Type ID](#property-type-id) follows the same format and consideratio
 ```xml
 <PropertyTypeId> := <namespace>:<propertyTypeLocalId>[:v<majorVersion>]
 ```
+
+- Complete `<PropertyTypeId>` MUST match the regexp `^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\-]+)(:v[1-9][0-9]*)?$`
+- The `<namespace>` part MUST be a valid [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1/#namespaces).
+
+- The `<propertyTypeLocalId>` part MUST match the regexp `^[a-zA-Z0-9._\-]+$` and follows the ORD ID `<resourceName>` constraints:
+
+  - MUST be unique within the `<namespace>`.
+  - SHOULD be a (somewhat) human readable and SEO/URL friendly string (avoid UUIDs).
+
+- The `<majorVersion>` MUST only be provided if the major version is above v1. For v1 it MUST be omitted.
 
 The same Property Type MUST NOT be defined more than once in the same Entity Type.
 However, the same Property Type MAY be part of multiple references within the same Entity Type.

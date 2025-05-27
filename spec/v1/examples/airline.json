@@ -30,6 +30,7 @@
           "@ObjectModel.text.element": ["Name"],
           "doc": "Human readable description of the element, in **markdown**.",
           "key": true,
+          "notNull": true,
           "type": "AirlineUuid",
           "length": 3
         },
@@ -37,7 +38,8 @@
           "@EndUserText.label": "Name",
           "@Semantics.text": true,
           "type": "cds.String",
-          "length": 40
+          "length": 40,
+          "notNull": true
         },
         "CurrencyCode_code": {
           "@EndUserText.label": "Currency Code",
@@ -66,18 +68,21 @@
           "@EndUserText.label": "Airport",
           "@ObjectModel.text.element": ["Name"],
           "key": true,
+          "notNull": true,
           "type": "cds.String",
           "length": 3
         },
         "Name": {
           "@EndUserText.label": "Name",
           "@Semantics.text": true,
+          "notNull": true,
           "type": "cds.String",
           "length": 40
         },
         "City": {
           "@EndUserText.label": "City",
           "type": "cds.String",
+          "notNull": true,
           "length": 40
         },
         "CountryCode_code": {
@@ -119,6 +124,7 @@
             "=": "texts"
           },
           "key": true,
+          "notNull": true,
           "type": "cds.String",
           "length": 3
         },

@@ -23,7 +23,6 @@ preparedAjv.addKeyword("x-extension-targets");
 preparedAjv.addKeyword("x-extension-points");
 preparedAjv.addKeyword("x-header-level");
 preparedAjv.addKeyword("x-ref-to-doc");
-preparedAjv.addKeyword("x-context");
 
 // JSON Schema -> TypeScript conversion
 preparedAjv.addKeyword("tsType");
@@ -36,7 +35,7 @@ export interface ValidationResult {
 export interface ValidationResultEntry {
   message: string;
   details?: string;
-  context?: string[];
+  context: string;
 }
 
 /**
@@ -44,42 +43,31 @@ export interface ValidationResultEntry {
  *
  * TODO: Add more validations here and improve feedback to end-user
  *
- * This will also do some pre-processing:
- * * Adding `x-context` for easier debugging and further use
- * * Adding missing `title` properties
  */
-export function validateSpecJsonSchema(jsonSchema: SpecJsonSchemaRoot, exception: boolean = false): ValidationResult {
+export function validateSpecJsonSchema(jsonSchema: SpecJsonSchemaRoot, jsonSchemaFilePath: string): void {
   const result: ValidationResult = {
     errors: [],
     warnings: [],
   };
 
-  validateJsonSchema(jsonSchema);
+  result.errors.push(...validateJsonSchema(jsonSchema, jsonSchemaFilePath));
 
-  result.errors.push(...validateRefLinks(jsonSchema));
+  result.errors.push(...validateRefLinks(jsonSchema, jsonSchemaFilePath));
 
   for (const error of result.errors) {
-    log.error(`${getContextTextFromArray(error.context)} ${error.message}`);
-    if (error.details) {
-      log.error(error.details);
-    }
+    log.error(`[${error.context}] ${error.message}`);
   }
   for (const warning of result.warnings) {
-    log.warn(`${getContextTextFromArray(warning.context)} ${warning.message}`);
-    if (warning.details) {
-      log.error(warning.details);
-    }
+    log.warn(`[${warning.context}] ${warning.message}`);
   }
 
-  if (exception && result.errors.length) {
+  if (result.errors.length > 0) {
     throw new Error(`Validation of Spec JSON Schema failed with errors.`);
   }
 
   log.info(
-    `${getContextText(jsonSchema)} is valid Spec JSON document with ${result.errors.length} errors and ${result.warnings.length} warnings.`,
+    `${jsonSchemaFilePath} is valid Spec JSON document with ${result.errors.length} errors and ${result.warnings.length} warnings.`,
   );
-
-  return result;
 }
 
 /**
@@ -99,7 +87,10 @@ export function getJsonSchemaValidator(jsonSchema: SpecJsonSchemaRoot): Validate
 /**
  * Validate JSON Schema to be a valid JSON Schema document
  */
-export function validateJsonSchema(jsonSchema: SpecJsonSchemaRoot | SpecJsonSchema): ValidationResultEntry[] {
+export function validateJsonSchema(
+  jsonSchema: SpecJsonSchemaRoot,
+  jsonSchemaFilePath: string,
+): ValidationResultEntry[] {
   const errors: ValidationResultEntry[] = [];
 
   const jsonSchemaMeta = fs.readJSONSync("./node_modules/ajv/lib/refs/json-schema-draft-07.json") as SpecJsonSchemaRoot;
@@ -113,7 +104,7 @@ export function validateJsonSchema(jsonSchema: SpecJsonSchemaRoot | SpecJsonSche
       errors.push({
         message: error.message || "JSON Schema validation issue",
         details: JSON.stringify(error, null, 2),
-        context: jsonSchema["x-context"],
+        context: `${jsonSchemaFilePath}#${error.instancePath}`,
       });
     }
   }
@@ -121,25 +112,19 @@ export function validateJsonSchema(jsonSchema: SpecJsonSchemaRoot | SpecJsonSche
   return errors;
 }
 
-export function validateRefLinks(jsonSchema: SpecJsonSchemaRoot): ValidationResultEntry[] {
+export function validateRefLinks(jsonSchema: SpecJsonSchemaRoot, jsonSchemaFilePath: string): ValidationResultEntry[] {
   const errors: ValidationResultEntry[] = [];
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function cloneFn(this: SpecJsonSchemaRoot, value: any, _index: any, object: any, _stack: any): any {
-    let lastKnownContext = this["x-context"];
-
-    if (value && value["x-context"]) {
-      lastKnownContext = value["x-context"] || object["x-context"] || this["x-context"];
-    }
-
+  function cloneFn(this: SpecJsonSchemaRoot, value: any, _key: any, _object: any, _stack: any): any {
     if (value && value.$ref) {
       const $ref = value.$ref as string;
       const refArr = $ref.split("/");
 
       if (!$ref.startsWith("#/definitions/")) {
         errors.push({
-          message: `$refs in Spec JSON Schema MUST start with "#/definitions/" (only relative $refs to ) `,
-          context: lastKnownContext,
+          message: `Invalid $ref "${$ref}", in Spec JSON Schema. MUST start with "#/definitions/" (only relative $refs to)`,
+          context: `${jsonSchemaFilePath}`,
         });
       }
 
@@ -149,13 +134,13 @@ export function validateRefLinks(jsonSchema: SpecJsonSchemaRoot): ValidationResu
         if (!this.definitions[refArr[2]]) {
           errors.push({
             message: `Invalid $ref "${$ref}", pointing to unknown definition.`,
-            context: lastKnownContext,
+            context: `${jsonSchemaFilePath}`,
           });
         }
       } else {
         errors.push({
-          message: `$refs in Spec JSON Schema MUST only point to definitions, not deeper inside it.`,
-          context: lastKnownContext,
+          message: `Invalid $ref "${$ref}" in Spec JSON Schema. MUST only point to definition name, not deeper inside it.`,
+          context: `${jsonSchemaFilePath}`,
         });
       }
     }
@@ -191,21 +176,4 @@ export function validatePropertyName(propertyName: string): void {
   if (propertyName.includes("-") || propertyName.includes("_")) {
     throw new Error(`PropertyName "${propertyName}" MUST not use dash or lodash notation.`);
   }
-}
-
-export function getContextText(jsonSchema: SpecJsonSchema): string {
-  if (!jsonSchema["x-context"]) {
-    return "[unknown]";
-  } else if (!jsonSchema["x-context"].length) {
-    return "[unknown]";
-  } else {
-    return `[${jsonSchema["x-context"].join(" | ")}]`;
-  }
-}
-
-export function getContextTextFromArray(context: string[] = []): string {
-  if (!context.length) {
-    return "[unknown]";
-  }
-  return `[${context.join(" | ")}]`;
 }

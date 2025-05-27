@@ -32,7 +32,6 @@ const config = {
           // sidebarPath: require.resolve('./sidebars.js'),
           sidebarCollapsible: true,
           routeBasePath: "/",
-          editUrl: "https://github.com/SAP/csn-interop-specification/tree/main/",
         },
         blog: false, // disable the blog plugin
         theme: {
@@ -43,6 +42,64 @@ const config = {
   ],
 
   scripts: ["/csn-interop-specification/js/custom.js"],
+
+  plugins: [
+    [
+      "@docusaurus/plugin-client-redirects",
+      {
+        redirects: [
+          {
+            from: "/annotations",
+            to: "/spec-v1/extensions",
+          },
+          {
+            from: "/annotations/aggregation",
+            to: "/spec-v1/extensions/aggregation",
+          },
+          {
+            from: "/annotations/analytics-details",
+            to: "/spec-v1/extensions/analytics-details",
+          },
+          {
+            from: "/annotations/consumption",
+            to: "/spec-v1/extensions/consumption",
+          },
+          {
+            from: "/annotations/enduser-text",
+            to: "/spec-v1/extensions/end-user-text",
+          },
+          {
+            from: "/spec-v1/extensions/enduser-text",
+            to: "/spec-v1/extensions/end-user-text",
+          },
+          {
+            from: "/annotations/entity-relationship",
+            to: "/spec-v1/extensions/entity-relationship",
+          },
+          {
+            from: "/annotations/object-model",
+            to: "/spec-v1/extensions/object-model",
+          },
+          {
+            from: "/annotations/objectmodel",
+            to: "/spec-v1/extensions/object-model",
+          },
+          {
+            from: "/annotations/odm",
+            to: "/spec-v1/extensions/odm",
+          },
+          {
+            from: "/annotations/personal-data",
+            to: "/spec-v1/extensions/personal-data",
+          },
+          {
+            from: "/annotations/semantics",
+            to: "/spec-v1/extensions/semantics",
+          },
+        ],
+      },
+    ],
+  ],
 
   themes: [
     "@docusaurus/theme-mermaid",

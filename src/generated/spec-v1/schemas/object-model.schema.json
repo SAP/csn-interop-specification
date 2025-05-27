@@ -1,7 +1,9 @@
 {
-  "description": "JSON Schema with custom (x-) properties",
+  "description": "This is the interface description of @ObjectModel.",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "ObjectModel",
+  "$id": "https://sap.github.io/csn-interop-specification/spec-v1/object-model.schema.json#",
+  "title": "ObjectModel Document",
+  "type": "object",
   "definitions": {
     "@ObjectModel.compositionRoot": {
       "type": "boolean",
@@ -10,11 +12,7 @@
       "x-extension-targets": [
         "Entity"
       ],
-      "title": "@ObjectModel.compositionRoot",
-      "x-context": [
-        "./spec/v1/annotations/object-model.yaml",
-        "@ObjectModel.compositionRoot"
-      ]
+      "title": "@ObjectModel.compositionRoot"
     },
     "@ObjectModel.representativeKey": {
       "description": "In case of multiple key elements: key element which represents the entity (in the sense that the entity itself is the list of values for this key element)",
@@ -27,17 +25,13 @@
         "ref": "#/definitions/ElementReference"
       },
       "title": "@ObjectModel.representativeKey",
-      "x-context": [
-        "./spec/v1/annotations/object-model.yaml",
-        "@ObjectModel.representativeKey"
-      ],
       "$ref": "#/definitions/ElementReference"
     },
     "@ObjectModel.semanticKey": {
       "type": "array",
-      "description": "The property contains element(s) which shall be used to display the key in UIs (instead of the technical key).",
+      "description": "The entity contains element(s) which shall be used to display the key in UIs (instead of the technical key).",
       "x-extension-targets": [
-        "Type"
+        "Entity"
       ],
       "items": {
         "x-ref-to-doc": {
@@ -45,26 +39,17 @@
           "ref": "#/definitions/ElementReference"
         }
       },
-      "title": "@ObjectModel.semanticKey",
-      "x-context": [
-        "./spec/v1/annotations/object-model.yaml",
-        "@ObjectModel.semanticKey"
-      ]
+      "title": "@ObjectModel.semanticKey"
     },
     "@ObjectModel.custom": {
       "type": "boolean",
-      "description": "If set to true, it is a custom element (field, entity, service, etc.).\nIf set to false, it is not a custom element.\nIf annotation not present, then it is not defined whether it is a custom element.\nNote that `@ObjectModel.customer: false` is not the same as if the annotation is not present at all.\n\nIf applied to an entity or service, everything that it contains is also considered custom.",
-      "default": true,
+      "description": "Indicates whether the annotated element or entity is a custom element.\nIf set to true, it is a custom element (field, entity, service, etc.).\nIf undefined or set to false, it is not defined whether it is a custom element.\n\nIf applied to an entity or service, everything that it contains is also considered custom.",
       "x-extension-targets": [
         "Type",
         "Entity",
         "Service"
       ],
-      "title": "@ObjectModel.custom",
-      "x-context": [
-        "./spec/v1/annotations/object-model.yaml",
-        "@ObjectModel.custom"
-      ]
+      "title": "@ObjectModel.custom"
     },
     "@ObjectModel.modelingPattern": {
       "type": "object",
@@ -103,11 +88,6 @@
             "SITUATION_DATACONTEXT",
             "EXTERNAL_DATA_PROVIDER",
             "NONE"
-          ],
-          "x-context": [
-            "./spec/v1/annotations/object-model.yaml",
-            "@ObjectModel.modelingPattern",
-            "#"
           ]
         }
       },
@@ -120,11 +100,7 @@
           "#": "DATA_STRUCTURE"
         }
       ],
-      "title": "@ObjectModel.modelingPattern",
-      "x-context": [
-        "./spec/v1/annotations/object-model.yaml",
-        "@ObjectModel.modelingPattern"
-      ]
+      "title": "@ObjectModel.modelingPattern"
     },
     "@ObjectModel.supportedCapabilities": {
       "type": "array",
@@ -136,11 +112,7 @@
       "items": {
         "$ref": "#/definitions/@ObjectModel.SupportedCapabilities_EnumValue"
       },
-      "title": "@ObjectModel.supportedCapabilities",
-      "x-context": [
-        "./spec/v1/annotations/object-model.yaml",
-        "@ObjectModel.supportedCapabilities"
-      ]
+      "title": "@ObjectModel.supportedCapabilities"
     },
     "@ObjectModel.foreignKey.association": {
       "description": "The element is of type `cds.Association` which points to the list of values.\n\nUse only for service internal associations. For cross service associations, use the [@EntityRelationship Vocabulary](./entity-relationship) instead.",
@@ -152,10 +124,6 @@
         "ref": "#/definitions/ElementReference"
       },
       "title": "@ObjectModel.foreignKey.association",
-      "x-context": [
-        "./spec/v1/annotations/object-model.yaml",
-        "@ObjectModel.foreignKey.association"
-      ],
       "$ref": "#/definitions/ElementReference"
     },
     "@ObjectModel.text.element": {
@@ -175,11 +143,7 @@
           "BillingDocumentTypeName"
         ]
       ],
-      "title": "@ObjectModel.text.element",
-      "x-context": [
-        "./spec/v1/annotations/object-model.yaml",
-        "@ObjectModel.text.element"
-      ]
+      "title": "@ObjectModel.text.element"
     },
     "@ObjectModel.text.association": {
       "description": "The element is of type cds.association, which points to an entity containing (language-dependent) texts for the annotated (id) element",
@@ -191,24 +155,16 @@
         "ref": "#/definitions/ElementReference"
       },
       "title": "@ObjectModel.text.association",
-      "x-context": [
-        "./spec/v1/annotations/object-model.yaml",
-        "@ObjectModel.text.association"
-      ],
       "$ref": "#/definitions/ElementReference"
     },
     "@ObjectModel.tenantWideUniqueName": {
       "type": "string",
-      "description": "Unique technical name of the entity within the tenant / isolation context it is deployed to. \nThis may be used as a hint for database table names and help to keep them short enough.\n\nOnce chosen the technical name ID MUST be kept stable (immutable).",
+      "description": "Unique technical name of the entity within the tenant / isolation context it is deployed to.\nThis may be used as a hint for database table names and help to keep them short enough.\n\nOnce chosen the technical name ID MUST be kept stable (immutable).",
       "maxLength": 120,
       "x-extension-targets": [
         "Entity"
       ],
-      "title": "@ObjectModel.tenantWideUniqueName",
-      "x-context": [
-        "./spec/v1/annotations/object-model.yaml",
-        "@ObjectModel.tenantWideUniqueName"
-      ]
+      "title": "@ObjectModel.tenantWideUniqueName"
     },
     "@ObjectModel.usageType.sizeCategory": {
       "type": "object",
@@ -223,11 +179,6 @@
             "L",
             "XL",
             "XXL"
-          ],
-          "x-context": [
-            "./spec/v1/annotations/object-model.yaml",
-            "@ObjectModel.usageType.sizeCategory",
-            "#"
           ]
         }
       },
@@ -243,11 +194,7 @@
           "#": "XL"
         }
       ],
-      "title": "@ObjectModel.usageType.sizeCategory",
-      "x-context": [
-        "./spec/v1/annotations/object-model.yaml",
-        "@ObjectModel.usageType.sizeCategory"
-      ]
+      "title": "@ObjectModel.usageType.sizeCategory"
     },
     "@ObjectModel.SupportedCapabilities_EnumValue": {
       "title": "Supported Capabilities Enum Value",
@@ -287,25 +234,13 @@
             "EXTERNAL_DATA_PROVIDER",
             "ODM_COMPLIANT_PROVIDER",
             "UI_PROVIDER_PROJECTION_SOURCE"
-          ],
-          "x-context": [
-            "./spec/v1/annotations/object-model.yaml",
-            "@ObjectModel.SupportedCapabilities_EnumValue",
-            "#"
           ]
         }
       },
       "additionalProperties": false,
       "required": [
         "#"
-      ],
-      "x-context": [
-        "./spec/v1/annotations/object-model.yaml",
-        "@ObjectModel.SupportedCapabilities_EnumValue"
       ]
     }
-  },
-  "x-context": [
-    "./spec/v1/annotations/object-model.yaml"
-  ]
+  }
 }

@@ -1,11 +1,13 @@
 $schema: "http://json-schema.org/draft-07/schema#"
 $id: "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#"
-title: CSN Interop Effective
+title: CSN Interop Effective Document
 description: |-
   This is the interface description of CSN Interop Effective v1.
   Its purpose is to be an aligned import / export format for CSN that works across tech-stacks in a wider SAP ecosystem.
 
   For a more extensive documentation on CSN in general, consider the [CAP CSN](https://cap.cloud.sap/docs/cds/csn) documentation.
+
+type: "object"
 
 x-custom-typescript-types:
   - typeName: "PrivatePropertyKey"
@@ -53,81 +55,72 @@ x-custom-typescript-types:
   - typeName: "CdsTypeValue"
     typeValue: "BooleanCdsType | StringCdsType | LargeStringCdsType | IntegerCdsType | Integer64CdsType | DecimalCdsType | DoubleCdsType | DateCdsType | TimeCdsType | DateTimeCdsType | TimestampCdsType | UUIDCdsType | AssociationCdsType | CompositionCdsType"
 
-$ref: "#/definitions/CsnInteropEffectiveRoot"
+properties:
+  $schema:
+    type: string
+    format: uri-reference
+    description: |
+      Link to JSON Schema for this CSN Interop Effective document.
+      Adding this helps with automatic validation and code intelligence in some editors / IDEs.
+
+      See https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema
+    anyOf:
+      - const: https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#
+      - type: string
+        format: uri-reference
+  $id:
+    type: string
+    format: uri-reference
+    description: |
+      Optional URI for this document, that can acts as an ID or as location to retrieve the document.
+
+      See https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema
+  csnInteropEffective:
+    type: string
+    description: |-
+      Existence of this property indicated that the file is a CSN Interop Effective document.
+      The value states the specification version it has been created against.
+    enum:
+      - "1.0"
+  $version:
+    type: string
+    description: |-
+      The version of the CDS CSN. For this version of CSN Interop it is fixed to `2.0`.
+
+      This MUST be provided to ensure that CSN Interop is a valid subset of CDS CSN in general.
+    enum:
+      - "2.0"
+  meta:
+    type: object
+    description: |-
+      Meta information that apply to the CSN document as a whole.
+    $ref: "#/definitions/Meta"
+  definitions:
+    $ref: "#/definitions/Definitions"
+    description: |
+      Dictionary of CSN modeling artifacts.
+  i18n:
+    $ref: "#/definitions/i18n"
+    description: |
+      Dictionary of translated texts.
+
+patternProperties: &patternPropertiesPrivateOnly
+  "^__.+$":
+    type: ["string", "number", "boolean", "array", "object"]
+    description: |
+      Private properties, starting with `__`.
+
+      MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
+    tsType: "unknown // replaceKeyType_{PrivatePropertyKey}"
+
+required:
+  - "csnInteropEffective"
+  - "$version"
+  - "definitions"
+
+additionalProperties: false
 
 definitions:
-  CsnInteropEffectiveRoot:
-    title: "CSN Interop Root"
-    type: "object"
-    description: |-
-      Root of the CSN Interop Effective JSON document.
-
-      See [Primer: Root Level Structure](../primer.md#root-level-structure).
-    properties:
-      $schema:
-        type: string
-        format: uri-reference
-        description: |
-          Link to JSON Schema for this CSN Interop Effective document.
-          Adding this helps with automatic validation and code intelligence in some editors / IDEs.
-
-          See https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema
-        anyOf:
-          - const: https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json#
-          - type: string
-            format: uri-reference
-      $id:
-        type: string
-        format: uri-reference
-        description: |
-          Optional URI for this document, that can acts as an ID or as location to retrieve the document.
-
-          See https://tour.json-schema.org/content/06-Combining-Subschemas/02-id-and-schema
-      csnInteropEffective:
-        type: string
-        description: |-
-          Existence of this property indicated that the file is a CSN Interop Effective document.
-          The value states the specification version it has been created against.
-        enum:
-          - "1.0"
-      $version:
-        type: string
-        description: |-
-          The version of the CDS CSN. For this version of CSN Interop it is fixed to `2.0`.
-
-          This MUST be provided to ensure that CSN Interop is a valid subset of CDS CSN in general.
-        enum:
-          - "2.0"
-      meta:
-        type: object
-        description: |-
-          Meta information that apply to the CSN document as a whole.
-        $ref: "#/definitions/Meta"
-
-      definitions:
-        $ref: "#/definitions/Definitions"
-        description: |
-          Dictionary of CSN modeling artifacts.
-
-      i18n:
-        $ref: "#/definitions/i18n"
-        description: |
-          Dictionary of translated texts.
-
-    patternProperties: &patternPropertiesPrivateOnly
-      "^__.+$":
-        type: ["string", "number", "boolean", "array", "object"]
-        description: |
-          Private properties, starting with `__`.
-
-          MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
-        tsType: "unknown // replaceKeyType_{PrivatePropertyKey}"
-    required:
-      - "csnInteropEffective"
-      - "$version"
-      - "definitions"
-    additionalProperties: false
-
   Meta:
     title: "Meta"
     type: object
@@ -374,7 +367,7 @@ definitions:
 
           SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
 
-          If a human readable title is needed, use the [@EndUserText.label](../annotations/enduser-text#endusertextlabel) annotation.
+          If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
       #-------------------------------------------------------------
       #--Hidden Properties (added to ignore them in the validation)
       #-------------------------------------------------------------
@@ -695,10 +688,14 @@ definitions:
         description: |-
           Indicates that this element is used as a primary key.
           Multiple primary keys MAY be used in case of a composite ID.
+
+          Elements marked as `key` also imply `notNull: true`.
       notNull: &elementNotNull
         type: boolean
         description: |-
           Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+
+          Elements marked as `key: true` also imply `notNull: true`.
       doc: *doc
       default:
         $ref: "#/definitions/DefaultValueBoolean"
@@ -854,6 +851,8 @@ definitions:
           Total number of digits in a number.
           This includes both the digits before and after the decimal point.
 
+          SHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `34`.
+
           The semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.
         default: 34
       scale: &scale
@@ -862,11 +861,17 @@ definitions:
           - $ref: "#/definitions/DecimalScaleType"
         description: |-
           Describes the number of digits to the right of the decimal point in a number.
+
+          SHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `floating`.
         default: "floating"
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
       - type
     additionalProperties: false
+    # Debatable if we want to create validation warnings by default.
+    # x-recommended:
+    #   - precision
+    #   - scale
     x-extension-points:
       - Type
       - DecimalType
@@ -1999,7 +2004,7 @@ definitions:
 
       A consumer MAY decide to shorten the names by only considering the Entities assigned to a particular Service and then removing the Service prefixes again.
 
-      To indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](../annotations/object-model#objectmodelcompositionroot) annotation.
+      To indicate which assigned Entities are root in a composition hierarchy, use the [`@ObjectModel.compositionRoot`](./extensions/object-model#objectmodelcompositionroot) annotation.
 
       See [Primer: Service Definitions](../primer.md#service-definitions).
     x-extension-points:
@@ -2050,7 +2055,7 @@ definitions:
     type: object
     description: |-
       i18n contains translated texts for one or more languages.
-      They are usually used in annotations like [`@EnduserText`](../annotations/enduser-text).
+      They are usually used in annotations like [`@EnduserText`](./extensions/end-user-text).
 
       Key is the language key, value is a dictionary of language text translations.
 
