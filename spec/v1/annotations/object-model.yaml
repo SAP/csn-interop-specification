@@ -33,6 +33,19 @@ definitions:
         title: Element Reference
         ref: "#/definitions/ElementReference"
 
+  "@ObjectModel.custom":
+    type: boolean
+    description: |-
+      Indicates whether the annotated element or entity is a custom element.
+      If set to true, it is a custom element (field, entity, service, etc.).
+      If undefined or set to false, it is not defined whether it is a custom element.
+
+      If applied to an entity or service, everything that it contains is also considered custom.
+    x-extension-targets:
+      - "Type"
+      - "Entity"
+      - "Service"
+
   "@ObjectModel.modelingPattern":
     type: object
     description: |-

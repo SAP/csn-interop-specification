@@ -41,6 +41,16 @@
       },
       "title": "@ObjectModel.semanticKey"
     },
+    "@ObjectModel.custom": {
+      "type": "boolean",
+      "description": "Indicates whether the annotated element or entity is a custom element.\nIf set to true, it is a custom element (field, entity, service, etc.).\nIf undefined or set to false, it is not defined whether it is a custom element.\n\nIf applied to an entity or service, everything that it contains is also considered custom.",
+      "x-extension-targets": [
+        "Type",
+        "Entity",
+        "Service"
+      ],
+      "title": "@ObjectModel.custom"
+    },
     "@ObjectModel.modelingPattern": {
       "type": "object",
       "description": "The property declares the modeling pattern applied in this entity definition.",

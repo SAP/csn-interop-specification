@@ -10,6 +10,12 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+## [1.0.6]
+
+### Added
+
+- Added `@ObjectModel.custom` annotation
+
 ## [1.0.5]
 
 ### Fixed
@@ -37,13 +43,13 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [1.0.3]
 
-### Fixed
-
-- Fixed the "scope" of annotations that belong to type, that they also apply to type definitions
-
 ### Added
 
 - Added `@ObjectModel.tenantWideUniqueName` annotation
+
+### Fixed
+
+- Fixed the "scope" of annotations that belong to type, that they also apply to type definitions
 
 ## [1.0.2]
 

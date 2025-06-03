@@ -32,7 +32,6 @@ const config = {
           // sidebarPath: require.resolve('./sidebars.js'),
           sidebarCollapsible: true,
           routeBasePath: "/",
-          editUrl: "https://github.com/SAP/csn-interop-specification/tree/main/",
         },
         blog: false, // disable the blog plugin
         theme: {
