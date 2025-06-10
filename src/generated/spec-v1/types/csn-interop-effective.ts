@@ -269,6 +269,14 @@ export type DecimalScaleType2 = string;
  */
 export type EqualsOperator = "=";
 /**
+ * The operator "<="
+ */
+export type SmallerEqualsOperator = "<=";
+/**
+ * The operator ">="
+ */
+export type BiggerEqualsOperator = ">=";
+/**
  * The operator "and"
  */
 export type ANDOperator = "and";
@@ -2177,10 +2185,10 @@ export interface AssociationType {
    *
    * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Equals Operator "="
+   * - Equals Operator "=" or Smaller Equals Operator "<=" or Bigger Equals Operator ">="
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * The first and third entry MAY be reversed but the `=` operator MUST be in the middle.
+   * The first and third entry MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
@@ -2191,10 +2199,17 @@ export interface AssociationType {
    * @minItems 3
    */
   on: [
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    ...(StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[]
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
+    ...(
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerEqualsOperator
+      | BiggerEqualsOperator
+      | ANDOperator
+      | OnValue
+    )[]
   ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
@@ -2345,10 +2360,10 @@ export interface CompositionType {
    *
    * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Equals Operator "="
+   * - Equals Operator "=" or Smaller Equals Operator "<=" or Bigger Equals Operator ">="
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * The first and third entry MAY be reversed but the `=` operator MUST be in the middle.
+   * The first and third entry MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
@@ -2359,10 +2374,17 @@ export interface CompositionType {
    * @minItems 3
    */
   on: [
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    ...(StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[]
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
+    ...(
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerEqualsOperator
+      | BiggerEqualsOperator
+      | ANDOperator
+      | OnValue
+    )[]
   ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
@@ -4084,10 +4106,10 @@ export interface AssociationTypeDefinition {
    *
    * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Equals Operator "="
+   * - Equals Operator "=" or Smaller Equals Operator "<=" or Bigger Equals Operator ">="
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * The first and third entry MAY be reversed but the `=` operator MUST be in the middle.
+   * The first and third entry MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
@@ -4098,10 +4120,17 @@ export interface AssociationTypeDefinition {
    * @minItems 3
    */
   on: [
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    ...(StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[]
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
+    ...(
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerEqualsOperator
+      | BiggerEqualsOperator
+      | ANDOperator
+      | OnValue
+    )[]
   ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
@@ -4203,10 +4232,10 @@ export interface CompositionTypeDefinition {
    *
    * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Equals Operator "="
+   * - Equals Operator "=" or Smaller Equals Operator "<=" or Bigger Equals Operator ">="
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * The first and third entry MAY be reversed but the `=` operator MUST be in the middle.
+   * The first and third entry MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
@@ -4217,10 +4246,17 @@ export interface CompositionTypeDefinition {
    * @minItems 3
    */
   on: [
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    ...(StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[]
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
+    ...(
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerEqualsOperator
+      | BiggerEqualsOperator
+      | ANDOperator
+      | OnValue
+    )[]
   ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;

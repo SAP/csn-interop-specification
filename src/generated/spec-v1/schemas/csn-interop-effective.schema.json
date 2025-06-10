@@ -3231,7 +3231,7 @@
         },
         "on": {
           "type": "array",
-          "description": "The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.\n\nThe `on` condition is constructed by triples of:\n- Reference to the target element (ID) as array with 2 items\n- Equals Operator \"=\"\n- Reference to the local element (ID) as array with 1 item OR a constant value (`val`)\n\nThe first and third entry MAY be reversed but the `=` operator MUST be in the middle.\nThe target element reference MUST have two array items. The first item is the association name and the second item is the target element name.\nThe local element reference MUST have one array item, which is the local element name.\n\nIn case of composite references / IDs, any number of \"triples\" can be combined with the `and` operator in between.\n\nSee also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
+          "description": "The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.\n\nThe `on` condition is constructed by triples of:\n- Reference to the target element (ID) as array with 2 items\n- Equals Operator \"=\" or Smaller Equals Operator \"<=\" or Bigger Equals Operator \">=\"\n- Reference to the local element (ID) as array with 1 item OR a constant value (`val`)\n\nThe first and third entry MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.\nThe target element reference MUST have two array items. The first item is the association name and the second item is the target element name.\nThe local element reference MUST have one array item, which is the local element name.\n\nIn case of composite references / IDs, any number of \"triples\" can be combined with the `and` operator in between.\n\nSee also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
           "items": {
             "oneOf": [
               {
@@ -3239,6 +3239,12 @@
               },
               {
                 "$ref": "#/definitions/EqualsOperator"
+              },
+              {
+                "$ref": "#/definitions/SmallerEqualsOperator"
+              },
+              {
+                "$ref": "#/definitions/BiggerEqualsOperator"
               },
               {
                 "$ref": "#/definitions/AndOperator"
@@ -3261,6 +3267,34 @@
               {
                 "ref": [
                   "AirlineID"
+                ]
+              }
+            ],
+            [
+              {
+                "ref": [
+                  "to_Connection",
+                  "FlightDate"
+                ]
+              },
+              "<=",
+              {
+                "ref": [
+                  "FlightDate"
+                ]
+              }
+            ],
+            [
+              {
+                "ref": [
+                  "to_Connection",
+                  "FlightDate"
+                ]
+              },
+              ">=",
+              {
+                "ref": [
+                  "FlightDate"
                 ]
               }
             ],
@@ -3534,7 +3568,7 @@
         },
         "on": {
           "type": "array",
-          "description": "The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.\n\nThe `on` condition is constructed by triples of:\n- Reference to the target element (ID) as array with 2 items\n- Equals Operator \"=\"\n- Reference to the local element (ID) as array with 1 item OR a constant value (`val`)\n\nThe first and third entry MAY be reversed but the `=` operator MUST be in the middle.\nThe target element reference MUST have two array items. The first item is the association name and the second item is the target element name.\nThe local element reference MUST have one array item, which is the local element name.\n\nIn case of composite references / IDs, any number of \"triples\" can be combined with the `and` operator in between.\n\nSee also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
+          "description": "The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.\n\nThe `on` condition is constructed by triples of:\n- Reference to the target element (ID) as array with 2 items\n- Equals Operator \"=\" or Smaller Equals Operator \"<=\" or Bigger Equals Operator \">=\"\n- Reference to the local element (ID) as array with 1 item OR a constant value (`val`)\n\nThe first and third entry MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.\nThe target element reference MUST have two array items. The first item is the association name and the second item is the target element name.\nThe local element reference MUST have one array item, which is the local element name.\n\nIn case of composite references / IDs, any number of \"triples\" can be combined with the `and` operator in between.\n\nSee also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
           "items": {
             "oneOf": [
               {
@@ -3542,6 +3576,12 @@
               },
               {
                 "$ref": "#/definitions/EqualsOperator"
+              },
+              {
+                "$ref": "#/definitions/SmallerEqualsOperator"
+              },
+              {
+                "$ref": "#/definitions/BiggerEqualsOperator"
               },
               {
                 "$ref": "#/definitions/AndOperator"
@@ -3564,6 +3604,34 @@
               {
                 "ref": [
                   "AirlineID"
+                ]
+              }
+            ],
+            [
+              {
+                "ref": [
+                  "to_Connection",
+                  "FlightDate"
+                ]
+              },
+              "<=",
+              {
+                "ref": [
+                  "FlightDate"
+                ]
+              }
+            ],
+            [
+              {
+                "ref": [
+                  "to_Connection",
+                  "FlightDate"
+                ]
+              },
+              ">=",
+              {
+                "ref": [
+                  "FlightDate"
                 ]
               }
             ],
@@ -4258,6 +4326,18 @@
       "type": "string",
       "description": "The operator \"=\"",
       "const": "="
+    },
+    "SmallerEqualsOperator": {
+      "title": "Smaller Equals Operator",
+      "type": "string",
+      "description": "The operator \"<=\"",
+      "const": "<="
+    },
+    "BiggerEqualsOperator": {
+      "title": "Bigger Equals Operator",
+      "type": "string",
+      "description": "The operator \">=\"",
+      "const": ">="
     },
     "AndOperator": {
       "title": "AND Operator",
@@ -7179,7 +7259,7 @@
         },
         "on": {
           "type": "array",
-          "description": "The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.\n\nThe `on` condition is constructed by triples of:\n- Reference to the target element (ID) as array with 2 items\n- Equals Operator \"=\"\n- Reference to the local element (ID) as array with 1 item OR a constant value (`val`)\n\nThe first and third entry MAY be reversed but the `=` operator MUST be in the middle.\nThe target element reference MUST have two array items. The first item is the association name and the second item is the target element name.\nThe local element reference MUST have one array item, which is the local element name.\n\nIn case of composite references / IDs, any number of \"triples\" can be combined with the `and` operator in between.\n\nSee also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
+          "description": "The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.\n\nThe `on` condition is constructed by triples of:\n- Reference to the target element (ID) as array with 2 items\n- Equals Operator \"=\" or Smaller Equals Operator \"<=\" or Bigger Equals Operator \">=\"\n- Reference to the local element (ID) as array with 1 item OR a constant value (`val`)\n\nThe first and third entry MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.\nThe target element reference MUST have two array items. The first item is the association name and the second item is the target element name.\nThe local element reference MUST have one array item, which is the local element name.\n\nIn case of composite references / IDs, any number of \"triples\" can be combined with the `and` operator in between.\n\nSee also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
           "items": {
             "oneOf": [
               {
@@ -7187,6 +7267,12 @@
               },
               {
                 "$ref": "#/definitions/EqualsOperator"
+              },
+              {
+                "$ref": "#/definitions/SmallerEqualsOperator"
+              },
+              {
+                "$ref": "#/definitions/BiggerEqualsOperator"
               },
               {
                 "$ref": "#/definitions/AndOperator"
@@ -7209,6 +7295,34 @@
               {
                 "ref": [
                   "AirlineID"
+                ]
+              }
+            ],
+            [
+              {
+                "ref": [
+                  "to_Connection",
+                  "FlightDate"
+                ]
+              },
+              "<=",
+              {
+                "ref": [
+                  "FlightDate"
+                ]
+              }
+            ],
+            [
+              {
+                "ref": [
+                  "to_Connection",
+                  "FlightDate"
+                ]
+              },
+              ">=",
+              {
+                "ref": [
+                  "FlightDate"
                 ]
               }
             ],
@@ -7487,7 +7601,7 @@
         },
         "on": {
           "type": "array",
-          "description": "The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.\n\nThe `on` condition is constructed by triples of:\n- Reference to the target element (ID) as array with 2 items\n- Equals Operator \"=\"\n- Reference to the local element (ID) as array with 1 item OR a constant value (`val`)\n\nThe first and third entry MAY be reversed but the `=` operator MUST be in the middle.\nThe target element reference MUST have two array items. The first item is the association name and the second item is the target element name.\nThe local element reference MUST have one array item, which is the local element name.\n\nIn case of composite references / IDs, any number of \"triples\" can be combined with the `and` operator in between.\n\nSee also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
+          "description": "The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.\n\nThe `on` condition is constructed by triples of:\n- Reference to the target element (ID) as array with 2 items\n- Equals Operator \"=\" or Smaller Equals Operator \"<=\" or Bigger Equals Operator \">=\"\n- Reference to the local element (ID) as array with 1 item OR a constant value (`val`)\n\nThe first and third entry MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.\nThe target element reference MUST have two array items. The first item is the association name and the second item is the target element name.\nThe local element reference MUST have one array item, which is the local element name.\n\nIn case of composite references / IDs, any number of \"triples\" can be combined with the `and` operator in between.\n\nSee also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).",
           "items": {
             "oneOf": [
               {
@@ -7495,6 +7609,12 @@
               },
               {
                 "$ref": "#/definitions/EqualsOperator"
+              },
+              {
+                "$ref": "#/definitions/SmallerEqualsOperator"
+              },
+              {
+                "$ref": "#/definitions/BiggerEqualsOperator"
               },
               {
                 "$ref": "#/definitions/AndOperator"
@@ -7517,6 +7637,34 @@
               {
                 "ref": [
                   "AirlineID"
+                ]
+              }
+            ],
+            [
+              {
+                "ref": [
+                  "to_Connection",
+                  "FlightDate"
+                ]
+              },
+              "<=",
+              {
+                "ref": [
+                  "FlightDate"
+                ]
+              }
+            ],
+            [
+              {
+                "ref": [
+                  "to_Connection",
+                  "FlightDate"
+                ]
+              },
+              ">=",
+              {
+                "ref": [
+                  "FlightDate"
                 ]
               }
             ],
