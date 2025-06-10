@@ -265,19 +265,19 @@ export type DecimalScaleType = DecimalScaleType1 & DecimalScaleType2;
 export type DecimalScaleType1 = "floating";
 export type DecimalScaleType2 = string;
 /**
- * The operator "="
+ * The operator `=`
  */
 export type EqualsOperator = "=";
 /**
- * The operator "<="
+ * The operator `<=`
  */
 export type SmallerEqualsOperator = "<=";
 /**
- * The operator ">="
+ * The operator `>=`
  */
 export type BiggerEqualsOperator = ">=";
 /**
- * The operator "and"
+ * The operator `and`
  */
 export type ANDOperator = "and";
 /**
@@ -2185,7 +2185,7 @@ export interface AssociationType {
    *
    * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Equals Operator "=" or Smaller Equals Operator "<=" or Bigger Equals Operator ">="
+   * - Equals Operator `=` or Smaller Equals Operator `<=` or Bigger Equals Operator `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
    * The first and third entry MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
@@ -2360,7 +2360,7 @@ export interface CompositionType {
    *
    * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Equals Operator "=" or Smaller Equals Operator "<=" or Bigger Equals Operator ">="
+   * - Equals Operator `=` or Smaller Equals Operator `<=` or Bigger Equals Operator `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
    * The first and third entry MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
@@ -4106,7 +4106,7 @@ export interface AssociationTypeDefinition {
    *
    * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Equals Operator "=" or Smaller Equals Operator "<=" or Bigger Equals Operator ">="
+   * - Equals Operator `=` or Smaller Equals Operator `<=` or Bigger Equals Operator `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
    * The first and third entry MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
@@ -4232,7 +4232,7 @@ export interface CompositionTypeDefinition {
    *
    * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Equals Operator "=" or Smaller Equals Operator "<=" or Bigger Equals Operator ">="
+   * - Equals Operator `=` or Smaller Equals Operator `<=` or Bigger Equals Operator `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
    * The first and third entry MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
