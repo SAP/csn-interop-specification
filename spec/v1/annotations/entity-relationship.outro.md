@@ -186,8 +186,7 @@ The annotation is an array because there could be multiple Entity Types that are
 If an array is given, all of the reference targets MUST be valid places where the ID can be resolved, at least in a certain implementation or version of the target entity.
 This also allows for references to polymorphic targets that share the same Property Type as an ID (e.g. a reference to either Cat or Dog, sharing the same Pet ID).
 
-> 🚧 Consideration: Provide optional attribute to state that a reference has a "composition" quality, in case that the API Model itself doesn't imply that already.
-> This would help to know which entity type instances should be deleted if their parent is deleted and is usually also an indicator for transactional integrity.
+> Since CSN Interop does not support arrays of primitive types, which hold the reference ID, it is only possible to declare "to one" cardinality relationships. If you need "to many" references, they need to be moved out to its own entity, which is then locally referenced via a `cds.Association` or `cds.Composition` of "to many" cardinality.
 
 #### Referencing Composite IDs
 
