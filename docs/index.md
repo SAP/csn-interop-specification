@@ -10,7 +10,8 @@ title: "Overview"
 
 ## Summary
 
-Core Schema Notation Interoperability (short: CSN Interop) is a powerful and flexible format used to describe entity and service models in the wider SAP and BTP ecosystem. CSN files are JSON-based and provide comprehensive metadata about entities and their structure, relationships, and other aspects of the model.
+Core Schema Notation Interoperability (short: CSN Interop) is a modeling format to describe entity and service models in the wider SAP and BTP ecosystem.
+CSN files serialized as JSON and provide comprehensive metadata about entities and their structure, relationships, and other aspects of the model.
 
 A CSN Interop file can look like this (extracted from [./examples/airline.json](./spec-v1/examples/airline.md)):
 
@@ -49,8 +50,6 @@ The actual specification is described mostly in the [formal interface documentat
 
 ## What is CSN Interop Effective?
 
-For now, we describe the [CSN](#csn) [Interoperability](#interoperability) [Effective](#effective) exchange format.
-
 ### CSN
 
 Core Schema Notation (CSN, pronounced as "Season") is a JSON based serialization format for Core Data Services (CDS) models that can be used to describe domain, data and service models (and more) on a _conceptual_ level, with rich semantics and annotations.
@@ -79,9 +78,15 @@ This includes:
 
 Right now, this spec describes only the [effective](./spec-v1/csn-interop-effective) feature dimension.
 
-Effective means that the format is "[denormalized](https://en.wikipedia.org/wiki/Denormalization)", and optimized towards easy consumption by machines, with the tradeoff of more verbosity and duplicated information.
+Effective means that the format is [denormalized](https://en.wikipedia.org/wiki/Denormalization), and optimized towards easy consumption by machines, with the tradeoff of more verbosity and duplicated information.
 
 Information reuse concepts like aspects have already been resolved, applied and cleaned up. What the consumer gets, is a document that does not require further post-processing / logic to be interpreted correctly. This is a tradeoff, prioritizing easy consumption over convenient creation.
+
+### Serialization
+
+A CSN Interop file is serialized as [JSON](https://www.json.org/json-en.html).
+
+The correct media type for CSN Interop files is either `application/json` (because it is a valid JSON file) or `application/csn-interop+json` if you want to be more specific about the content type.
 
 ## Intended Audience
 
