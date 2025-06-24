@@ -186,8 +186,7 @@ The annotation is an array because there could be multiple Entity Types that are
 If an array is given, all of the reference targets MUST be valid places where the ID can be resolved, at least in a certain implementation or version of the target entity.
 This also allows for references to polymorphic targets that share the same Property Type as an ID (e.g. a reference to either Cat or Dog, sharing the same Pet ID).
 
-> 🚧 Consideration: Provide optional attribute to state that a reference has a "composition" quality, in case that the API Model itself doesn't imply that already.
-> This would help to know which entity type instances should be deleted if their parent is deleted and is usually also an indicator for transactional integrity.
+**Cardinality**: For references with "to many" cardinality, the property holding the referenced ID must be moved to a separate entity, which is then included as a `cds.Composition` with the desired cardinality. See [cardinality of primitive types](../../primer.md#cardinality).
 
 #### Referencing Composite IDs
 
@@ -243,6 +242,8 @@ entity PurchaseOrder {
   alternativeSupplierType : String;
 }
 ```
+
+**Cardinality**: For references with "to many" cardinality, the properties that together form a composite reference must be moved to a separate entity, which is then included as a `cds.Composition` with the desired cardinality. E.g. `mainSupplier: SupplierReference` where the new SupplierReference entity contains the `number` and the `type`. See [cardinality of primitive types](../../primer.md#cardinality).
 
 ### Advanced Cases
 

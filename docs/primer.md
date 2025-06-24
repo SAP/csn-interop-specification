@@ -264,15 +264,16 @@ Note: As a general convention we recommend to omit optional boolean properties, 
 
 ### Cardinality
 
-Please note that CSN Interop does not support arrays of scalar types and arrays of arrays.
-There is [cds.Association](./spec-v1/csn-interop-effective#association-type) (array of pointers) and [cds.Composition](./spec-v1/csn-interop-effective#composition-type) (array of entities), which can express "to many" relationship via the [cardinality](./spec-v1/csn-interop-effective#cardinality-object) object.
+CSN Interop does not support arrays of scalar types and arrays of arrays.
 
-The reason for not supporting arrays of scalar types is that this is not supported in all tech-stacks and would require a more complex mapping.
+There are [cds.Association](./spec-v1/csn-interop-effective#association-type) and [cds.Composition](./spec-v1/csn-interop-effective#composition-type), which can express "to many" relationship via the [cardinality](./spec-v1/csn-interop-effective#cardinality-object) object.
+
+Not supporting arrays of scalar types is a design choice, due to the interoperability quality. Arrays of primitive types are not supported in all tech-stacks (notably relational schemas) and would require a more complex mapping.
 By not supporting this in CSN Interop, the model needs to make the decision how multi-value scalar types are to be mapped.
 
 This can be done, e.g. by:
 
-- converting the scalar type to an Entity and use `cds.Association` or `cds.Composition` with the appropriate cardinality (RECOMMENDED).
+- converting the scalar type to an Entity and use `cds.Composition` (or `cds.Association`) with the appropriate cardinality (RECOMMENDED).
 - converting the array of values into a single string, e.g. by using a delimiter or parsing it to a JSON string.
 
 ## Annotations
