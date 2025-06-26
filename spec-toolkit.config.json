@@ -104,13 +104,26 @@
     },
     {
       "type": "specExtension",
+      "id": "ord",
+      "sourceFilePath": "./spec/v1/annotations/ord.yaml",
+      "sourceIntroFilePath": "./spec/v1/annotations/ord.md",
+      "targetDocumentId": "csn-interop-effective",
+      "targetLink": "../spec-v1/csn-interop-effective",
+      "mdFrontmatter": {
+        "title": "@ORD",
+        "sidebar_position": 9,
+        "description": "@ORD for Open Resource Discovery related annotations."
+      }
+    },
+    {
+      "type": "specExtension",
       "id": "personal-data",
       "sourceFilePath": "./spec/v1/annotations/personal-data.yaml",
       "sourceIntroFilePath": "./spec/v1/annotations/personal-data.md",
       "targetDocumentId": "csn-interop-effective",
       "mdFrontmatter": {
         "title": "@PersonalData",
-        "sidebar_position": 9,
+        "sidebar_position": 10,
         "description": "@PersonalData to annotate DPP relevant information."
       }
     },
@@ -122,7 +135,7 @@
       "targetDocumentId": "csn-interop-effective",
       "mdFrontmatter": {
         "title": "@Semantics",
-        "sidebar_position": 10,
+        "sidebar_position": 11,
         "description": "@Semantics annotations."
       }
     }
