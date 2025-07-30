@@ -443,7 +443,7 @@ export interface Meta {
  */
 export interface DocumentMetadata {
   /**
-   * Machine readable name / local ID of the CSN document.
+   * Machine readable technical name / local ID of the CSN document.
    * Together with `meta.document.namespace` and `meta.document.version` it uniquely identifies the CSN document at a given version.
    *
    * MUST NOT contain linebreaks.
@@ -454,7 +454,7 @@ export interface DocumentMetadata {
    * Globally unique namespace of the CSN document.
    * Together with `meta.document.name` and `meta.document.version` it uniquely identifies the CSN document at a given version.
    *
-   * MUST be a valid, registered [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1#namespaces)
+   * MUST be a valid, registered [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1#namespaces) with at least two fragments.
    */
   namespace?: string;
   /**

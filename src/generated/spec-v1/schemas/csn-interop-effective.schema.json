@@ -131,13 +131,13 @@
         "name": {
           "type": "string",
           "maxLength": 255,
-          "description": "Machine readable name / local ID of the CSN document.\nTogether with `meta.document.namespace` and `meta.document.version` it uniquely identifies the CSN document at a given version.\n\nMUST NOT contain linebreaks.\nMUST be unique across all CSN documents in the same `meta.document.namespace`.",
+          "description": "Machine readable technical name / local ID of the CSN document.\nTogether with `meta.document.namespace` and `meta.document.version` it uniquely identifies the CSN document at a given version.\n\nMUST NOT contain linebreaks.\nMUST be unique across all CSN documents in the same `meta.document.namespace`.",
           "pattern": "^([a-zA-Z0-9._\\-]+)$"
         },
         "namespace": {
           "type": "string",
           "maxLength": 36,
-          "description": "Globally unique namespace of the CSN document.\nTogether with `meta.document.name` and `meta.document.version` it uniquely identifies the CSN document at a given version.\n\nMUST be a valid, registered [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1#namespaces)",
+          "description": "Globally unique namespace of the CSN document.\nTogether with `meta.document.name` and `meta.document.version` it uniquely identifies the CSN document at a given version.\n\nMUST be a valid, registered [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1#namespaces) with at least two fragments.",
           "pattern": "^[a-z0-9]+(?:[.][a-z0-9]+){1,}$"
         },
         "version": {
