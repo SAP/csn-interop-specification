@@ -131,7 +131,8 @@
         "name": {
           "type": "string",
           "maxLength": 255,
-          "description": "Machine readable name / local ID of the CSN document.\nTogether with `meta.document.namespace` and `meta.document.version` it uniquely identifies the CSN document at a given version.\n\nMUST NOT contain linebreaks.\nMUST be unique across all CSN documents in the same `meta.document.namespace`."
+          "description": "Machine readable name / local ID of the CSN document.\nTogether with `meta.document.namespace` and `meta.document.version` it uniquely identifies the CSN document at a given version.\n\nMUST NOT contain linebreaks.\nMUST be unique across all CSN documents in the same `meta.document.namespace`.",
+          "pattern": "^([a-zA-Z0-9._\\-]+)$"
         },
         "namespace": {
           "type": "string",
