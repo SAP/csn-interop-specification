@@ -10,6 +10,10 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+### Added
+
+- Allow `cds.Decimal` to be used as a key, indicated via `key` boolean
+
 ## [1.0.6]
 
 ### Added
