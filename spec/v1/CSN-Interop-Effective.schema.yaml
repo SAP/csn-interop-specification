@@ -167,6 +167,26 @@ definitions:
     description: |-
       Metadata that describes the document (and what it represents) itself.
     properties:
+      name:
+        type: string
+        maxLength: 255
+        description: |-
+          Machine readable technical name / local ID of the CSN document.
+          Together with `meta.document.namespace` and `meta.document.version` it uniquely identifies the CSN document at a given version.
+
+          MUST NOT contain linebreaks.
+          MUST be unique across all CSN documents in the same `meta.document.namespace`.
+        pattern: '^([a-zA-Z0-9._\-]+)$'
+
+      namespace:
+        type: string
+        maxLength: 36
+        description: |-
+          Globally unique namespace of the CSN document.
+          Together with `meta.document.name` and `meta.document.version` it uniquely identifies the CSN document at a given version.
+
+          MUST be a valid, registered [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1#namespaces) with at least two fragments.
+        pattern: "^[a-z0-9]+(?:[.][a-z0-9]+){1,}$"
       version:
         type: string
         description: |-
@@ -188,6 +208,7 @@ definitions:
           Human readable documentation that describes the overall CSN document.
 
           SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+
     additionalProperties: false
 
   MetaFeatures:

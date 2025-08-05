@@ -128,6 +128,18 @@
       "type": "object",
       "description": "Metadata that describes the document (and what it represents) itself.",
       "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 255,
+          "description": "Machine readable technical name / local ID of the CSN document.\nTogether with `meta.document.namespace` and `meta.document.version` it uniquely identifies the CSN document at a given version.\n\nMUST NOT contain linebreaks.\nMUST be unique across all CSN documents in the same `meta.document.namespace`.",
+          "pattern": "^([a-zA-Z0-9._\\-]+)$"
+        },
+        "namespace": {
+          "type": "string",
+          "maxLength": 36,
+          "description": "Globally unique namespace of the CSN document.\nTogether with `meta.document.name` and `meta.document.version` it uniquely identifies the CSN document at a given version.\n\nMUST be a valid, registered [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1#namespaces) with at least two fragments.",
+          "pattern": "^[a-z0-9]+(?:[.][a-z0-9]+){1,}$"
+        },
         "version": {
           "type": "string",
           "description": "The version of the CSN document / the described model itself (not the specification).\n\nWe RECOMMEND to use the [SemVer](https://semver.org/) standard.",

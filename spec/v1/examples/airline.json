@@ -6,6 +6,8 @@
     "document": {
       "version": "1.2.3",
       "title": "Airline (Example)",
+      "name": "Airline",
+      "namespace": "sap.xref",
       "doc": "This CSN example document shows how the airline example is expressed with a CDS **Service** exposing the entities through an API."
     },
     "features": {

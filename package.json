@@ -34,6 +34,7 @@
     "lint:staged": "lint-staged",
     "eslint": "eslint . --fix",
     "eslint:ci": "eslint .",
+    "format": "npm run prettier",
     "prettier": "prettier --write \"**/*.{json,yml,yaml,md}\"",
     "prettier:ci": "prettier --check \"**/*.{json,yml,yaml,md}\"",
     "test": "npm run build && npm run test:unit",
