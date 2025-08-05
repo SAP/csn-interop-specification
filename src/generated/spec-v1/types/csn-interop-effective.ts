@@ -1442,6 +1442,13 @@ export interface DecimalType {
    */
   type: DecimalCdsType;
   /**
+   * Indicates that this element is used as a primary key.
+   * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
+   */
+  key?: boolean;
+  /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
    * Elements marked as `key: true` also imply `notNull: true`.
