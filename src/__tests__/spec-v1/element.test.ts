@@ -1,6 +1,6 @@
 import * as fs from "fs-extra";
 import * as yaml from "js-yaml";
-import { compileSchema, JsonSchema } from "json-schema-library";
+import { Draft07, JsonSchema } from "json-schema-library";
 import { getCsnDocumentTestData, getElementTestDataByElementType } from "./testUtils";
 
 describe("Tests for all elements", (): void => {
@@ -8,7 +8,7 @@ describe("Tests for all elements", (): void => {
     fs.readFileSync(`./spec/v1/CSN-Interop-Effective.schema.yaml`).toString(),
   ) as JsonSchema;
 
-  const effectiveCsnSchemaValidator = compileSchema(effectiveCsnSchema);
+  const effectiveCsnSchemaValidator = new Draft07(effectiveCsnSchema);
 
   const elementDefinitions = [
     { name: "BooleanType", type: "cds.Boolean" },
@@ -44,7 +44,7 @@ describe("Tests for all elements", (): void => {
         },
       });
 
-      const errors = effectiveCsnSchemaValidator.validate(data).errors;
+      const errors = effectiveCsnSchemaValidator.validate(data);
       expect(errors.length).toEqual(1);
       expect(errors).toContainValidationMessage(
         "The required property `type` is missing at `#/definitions/ABTEI/elements/MyElement`",
@@ -79,10 +79,10 @@ describe("Tests for all elements", (): void => {
         },
       });
 
-      const errorsForGoodData = effectiveCsnSchemaValidator.validate(goodData).errors;
+      const errorsForGoodData = effectiveCsnSchemaValidator.validate(goodData);
       expect(errorsForGoodData.length).toEqual(0);
 
-      const errorsForErrorData = effectiveCsnSchemaValidator.validate(errorData).errors;
+      const errorsForErrorData = effectiveCsnSchemaValidator.validate(errorData);
       expect(errorsForErrorData.length).toEqual(2); // TODO: why is the error duplicated? probably there is still improvement potential with the spec syntax?
       expect(errorsForErrorData[0].message).toContain("Expected given value `cds.MyType`");
       expect(errorsForErrorData[0].message).toContain(
@@ -117,7 +117,7 @@ describe("Tests for all elements", (): void => {
         },
       });
 
-      const errors = effectiveCsnSchemaValidator.validate(data).errors;
+      const errors = effectiveCsnSchemaValidator.validate(data);
       expect(errors.length).toEqual(3);
       expect(errors).toContainValidationMessage("Property `EndUserText.heading` does not match any patterns");
       expect(errors).toContainValidationMessage("Property `_@EndUserText.label` does not match any patterns");
