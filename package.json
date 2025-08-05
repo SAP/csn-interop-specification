@@ -47,6 +47,7 @@
     "prepare": "is-ci || husky"
   },
   "devDependencies": {
+    "@babel/runtime": "7.28.2",
     "@docusaurus/core": "3.8.1",
     "@docusaurus/module-type-aliases": "3.8.1",
     "@docusaurus/plugin-client-redirects": "3.8.1",
@@ -90,5 +91,6 @@
     "**/*.{md,json,yaml}": [
       "npm run prettier"
     ]
-  }
+  },
+  "dependencies": {}
 }
