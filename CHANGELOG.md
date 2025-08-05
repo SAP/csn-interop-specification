@@ -10,6 +10,8 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+## [1.0.7]
+
 ### Added
 
 - Added `meta.document.name` to give the overall document a machine-readable name

@@ -1,15 +1,16 @@
 import * as fg from "fast-glob";
 import * as fs from "fs-extra";
 import * as yaml from "js-yaml";
-import { Draft07, JsonError, JsonSchema } from "json-schema-library";
+import { Draft07, JsonError } from "json-schema-library";
+import { CSNInteropEffectiveDocument } from "../../generated/spec-v1/types";
 
 const effectiveCsnSchema = yaml.load(
   fs.readFileSync(`./spec/v1/CSN-Interop-Effective.schema.yaml`).toString(),
-) as JsonSchema;
+) as CSNInteropEffectiveDocument;
 
 const effectiveCsnSchemaExtended = fs.readJSONSync(
   "./src/generated/spec-v1/schemas/csn-interop-effective.schema.json",
-) as JsonSchema;
+) as CSNInteropEffectiveDocument;
 
 const effectiveCsnSchemaValidator = new Draft07(effectiveCsnSchema);
 const effectiveCsnSchemaExtendedValidator = new Draft07(effectiveCsnSchemaExtended);
@@ -56,7 +57,7 @@ export type JsonSchemaValidationError = {
 export function simplifyValidationErrors(errors: JsonError[]): JsonSchemaValidationError[] {
   return errors.map((el) => {
     return {
-      code: el.code,
+      code: String(el.code),
       pointer: el.data.pointer,
       message: el.message,
     };
