@@ -1836,6 +1836,10 @@
           "description": "The modeling artefact is a `cds.Decimal` type.",
           "tsType": "DecimalCdsType"
         },
+        "key": {
+          "type": "boolean",
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.\n\nElements marked as `key` also imply `notNull: true`."
+        },
         "notNull": {
           "type": "boolean",
           "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."

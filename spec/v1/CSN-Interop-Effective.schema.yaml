@@ -859,7 +859,7 @@ definitions:
         const: cds.Decimal
         description: The modeling artefact is a `cds.Decimal` type.
         tsType: DecimalCdsType
-      # key: *elementKey
+      key: *elementKey
       notNull: *elementNotNull
       doc: *doc
       default:
