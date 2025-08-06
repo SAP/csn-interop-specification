@@ -17,7 +17,8 @@
   "definitions": {
     "AirlineService": {
       "kind": "service",
-      "doc": "This is describing the service that exposes the CDS entities through an API."
+      "doc": "This is describing the service that exposes the CDS entities through an API.",
+      "@ORD.ordIds": ["sap.foo:apiResource:AirlineDeltaShare:v1"]
     },
     "AirlineService.Airline": {
       "kind": "entity",
@@ -26,6 +27,7 @@
       "@ObjectModel.modelingPattern": {
         "#": "ANALYTICAL_DIMENSION"
       },
+      "@ORD.ordIds": ["sap.foo:entityType:Airline:v1"],
       "elements": {
         "AirlineID": {
           "@EndUserText.label": "Airline",
