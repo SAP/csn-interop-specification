@@ -19,6 +19,7 @@ definitions:
       - Service
       - Context
       - EnumDictionaryEntry
+    x-override-allowed: true # by default overriding annotations is not allowed
 
   "@EndUserText.heading":
     type: string
