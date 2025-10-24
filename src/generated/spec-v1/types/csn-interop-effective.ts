@@ -254,6 +254,14 @@ export type SemanticsBusinessDateFrom = true;
  */
 export type SemanticsBusinessDateTo = true;
 /**
+ * The property value is a MIME Type / Media Type, following [RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838).
+ */
+export type SemanticsMimeType = true;
+/**
+ * The property value contains a document / file that uses one of the stated MIME Types / Media Types ([RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838)).
+ */
+export type SemanticsLargeObject = string[];
+/**
  * Total number of digits that are present after the decimal point in a number.
  * The scale can hold from zero up to the total numeric precision
  */
@@ -1050,6 +1058,7 @@ export interface StringType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.mimeType"?: SemanticsMimeType;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -1196,6 +1205,9 @@ export interface LargeStringType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObject;
+  "@Semantics.largeObject.mimeType"?: ElementReference;
+  "@Semantics.largeObject.fileName"?: ElementReference;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -2356,6 +2368,9 @@ export interface LargeBinaryType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObject;
+  "@Semantics.largeObject.mimeType"?: ElementReference;
+  "@Semantics.largeObject.fileName"?: ElementReference;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3259,6 +3274,7 @@ export interface StringTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.mimeType"?: SemanticsMimeType;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3362,6 +3378,9 @@ export interface LargeStringTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObject;
+  "@Semantics.largeObject.mimeType"?: ElementReference;
+  "@Semantics.largeObject.fileName"?: ElementReference;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -4466,6 +4485,9 @@ export interface LargeBinaryTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObject;
+  "@Semantics.largeObject.mimeType"?: ElementReference;
+  "@Semantics.largeObject.fileName"?: ElementReference;
   /**
    * Annotations or private properties MAY be added.
    *

@@ -253,8 +253,41 @@ definitions:
       - Type
       # - DateType
 
-  # "@Semantics.FieldWithBoolean": # Maybe we can define a reuse type here?
-  #   type: boolean
-  #   const: true
-  #   x-extension-targets:
-  #     - Type
+  "@Semantics.mimeType":
+    <<: *semanticsFieldBoolean
+    description: |-
+      The property value is a MIME Type / Media Type, following [RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838).
+    x-extension-targets:
+      - StringType
+
+  "@Semantics.largeObject.acceptableMimeTypes":
+    description: |-
+      The property value contains a document / file that uses one of the stated MIME Types / Media Types ([RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838)).
+    type: array
+    items:
+      type: string
+    x-extension-targets:
+      - LargeStringType
+      - LargeBinaryType
+
+  "@Semantics.largeObject.mimeType":
+    description: |-
+      The property value contains a document / file that has a defined MIME Type / Media Type ([RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838)).
+      The MIME Type / Media Type is indicated in the element value that the Element Reference points to.
+    x-ref-to-doc:
+      title: Element Reference
+      ref: "#/definitions/ElementReference"
+    x-extension-targets:
+      - LargeStringType
+      - LargeBinaryType
+
+  "@Semantics.largeObject.fileName":
+    description: |-
+      The property value contains a document / file that has a defined file name.
+      The file name is indicated in the element value that the Element Reference points to.
+    x-ref-to-doc:
+      title: Element Reference
+      ref: "#/definitions/ElementReference"
+    x-extension-targets:
+      - LargeStringType
+      - LargeBinaryType

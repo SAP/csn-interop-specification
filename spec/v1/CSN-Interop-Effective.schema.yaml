@@ -1096,7 +1096,7 @@ definitions:
         const: cds.Binary
         description: The modeling artefact is a `cds.Binary` type.
         tsType: BinaryCdsType
-      key: *elementKey
+      key: *elementKey # TODO: Should we allow key for binary?
       notNull: *elementNotNull
       doc: *doc
       length: *length
