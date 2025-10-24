@@ -85,7 +85,7 @@
   "lint-staged": {
     "./spec/*/*.yaml": [
       "npm run generate",
-      "git add ./src/generated/spec-v1/types/v1/csn-interop-effective.ts",
+      "git add ./src/generated/spec-v1/types/csn-interop-effective.ts",
       "git add ./src/generated/spec-v1/schemas/*"
     ],
     "**/*.{md,json,yaml}": [
