@@ -10,6 +10,15 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+### Added
+
+- Added `cds.Binary` and `cds.LargeBinary` types
+- Added new `@Semantics` annotations:
+  - `@Semantics.mimeType`
+  - `@Semantics.largeObject.acceptableMimeTypes`
+  - `@Semantics.largeObject.mimeType`
+  - `@Semantics.largeObject.fileName`
+
 ## [1.0.7]
 
 ### Added

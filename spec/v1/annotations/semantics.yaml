@@ -263,6 +263,8 @@ definitions:
   "@Semantics.largeObject.acceptableMimeTypes":
     description: |-
       The property value contains a document / file that uses one of the stated MIME Types / Media Types ([RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838)).
+      This annotation can be used if the Media Type is already known at design time and can be described in the metadata model itself.
+      If the Media Type is only known at runtime, the "@Semantics.largeObject.mimeType" annotation has to be used instead.
     type: array
     items:
       type: string
@@ -274,6 +276,7 @@ definitions:
     description: |-
       The property value contains a document / file that has a defined MIME Type / Media Type ([RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838)).
       The MIME Type / Media Type is indicated in the element value that the Element Reference points to.
+      The element referenced MUST be of type `cds.String` and SHOULD be annotated with `@Semantics.mimeType: true`.
     x-ref-to-doc:
       title: Element Reference
       ref: "#/definitions/ElementReference"
@@ -285,6 +288,7 @@ definitions:
     description: |-
       The property value contains a document / file that has a defined file name.
       The file name is indicated in the element value that the Element Reference points to.
+      The element referenced MUST be of type `cds.String`.
     x-ref-to-doc:
       title: Element Reference
       ref: "#/definitions/ElementReference"
