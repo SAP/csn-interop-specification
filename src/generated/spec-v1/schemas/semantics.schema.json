@@ -322,7 +322,7 @@
       "title": "@Semantics.mimeType"
     },
     "@Semantics.largeObject.acceptableMimeTypes": {
-      "description": "The property value contains a document / file that uses one of the stated MIME Types / Media Types ([RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838)).",
+      "description": "The property value contains a document / file that uses one of the stated MIME Types / Media Types ([RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838)).\nThis annotation can be used if the Media Type is already known at design time and can be described in the metadata model itself.\nIf the Media Type is only known at runtime, the \"@Semantics.largeObject.mimeType\" annotation has to be used instead.",
       "type": "array",
       "items": {
         "type": "string"
@@ -334,7 +334,7 @@
       "title": "@Semantics.largeObject.acceptableMimeTypes"
     },
     "@Semantics.largeObject.mimeType": {
-      "description": "The property value contains a document / file that has a defined MIME Type / Media Type ([RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838)).\nThe MIME Type / Media Type is indicated in the element value that the Element Reference points to.",
+      "description": "The property value contains a document / file that has a defined MIME Type / Media Type ([RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838)).\nThe MIME Type / Media Type is indicated in the element value that the Element Reference points to.\nThe element referenced MUST be of type `cds.String` and SHOULD be annotated with `@Semantics.mimeType: true`.",
       "x-ref-to-doc": {
         "title": "Element Reference",
         "ref": "#/definitions/ElementReference"
@@ -347,7 +347,7 @@
       "$ref": "#/definitions/ElementReference"
     },
     "@Semantics.largeObject.fileName": {
-      "description": "The property value contains a document / file that has a defined file name.\nThe file name is indicated in the element value that the Element Reference points to.",
+      "description": "The property value contains a document / file that has a defined file name.\nThe file name is indicated in the element value that the Element Reference points to.\nThe element referenced MUST be of type `cds.String`.",
       "x-ref-to-doc": {
         "title": "Element Reference",
         "ref": "#/definitions/ElementReference"

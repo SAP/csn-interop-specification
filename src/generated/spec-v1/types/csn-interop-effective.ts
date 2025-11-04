@@ -259,6 +259,8 @@ export type SemanticsBusinessDateTo = true;
 export type SemanticsMimeType = true;
 /**
  * The property value contains a document / file that uses one of the stated MIME Types / Media Types ([RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838)).
+ * This annotation can be used if the Media Type is already known at design time and can be described in the metadata model itself.
+ * If the Media Type is only known at runtime, the "@Semantics.largeObject.mimeType" annotation has to be used instead.
  */
 export type SemanticsLargeObject = string[];
 /**

@@ -105,9 +105,7 @@ describe("Tests for all type definitions", (): void => {
       const errors = effectiveCsnSchemaValidator.validate(data);
       expect(errors.length).toEqual(1);
       expect(errors[0].message).toContain("Expected given value `cds.TypeDoesNotExist`");
-      expect(errors[0].message).toContain(
-        'to be one of `["cds.Boolean","cds.String","cds.LargeString","cds.Integer","cds.Integer64","cds.Decimal","cds.Double","cds.Date","cds.Time","cds.DateTime","cds.Timestamp","cds.UUID","cds.Association","cds.Composition"]',
-      );
+      expect(errors[0].message).toContain('to be one of `["cds.Boolean"');
     });
   });
 

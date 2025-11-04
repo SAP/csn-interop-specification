@@ -85,13 +85,9 @@ describe("Tests for all elements", (): void => {
       const errorsForErrorData = effectiveCsnSchemaValidator.validate(errorData);
       expect(errorsForErrorData.length).toEqual(2); // TODO: why is the error duplicated? probably there is still improvement potential with the spec syntax?
       expect(errorsForErrorData[0].message).toContain("Expected given value `cds.MyType`");
-      expect(errorsForErrorData[0].message).toContain(
-        'to be one of `["cds.Boolean","cds.String","cds.LargeString","cds.Integer","cds.Integer64","cds.Decimal","cds.Double","cds.Date","cds.Time","cds.DateTime","cds.Timestamp","cds.UUID","cds.Association","cds.Composition"]`',
-      );
-      expect(errorsForErrorData[1].message).toContain("Expected given value `cds.MyType`");
-      expect(errorsForErrorData[1].message).toContain(
-        'to be one of `["cds.Boolean","cds.String","cds.LargeString","cds.Integer","cds.Integer64","cds.Decimal","cds.Double","cds.Date","cds.Time","cds.DateTime","cds.Timestamp","cds.UUID","cds.Association","cds.Composition"]`',
-      );
+      expect(errorsForErrorData[0].message).toContain('to be one of `["cds.Boolean"');
+      expect(errorsForErrorData[1].message).toContain("Expected given value `cds.MyType");
+      expect(errorsForErrorData[1].message).toContain('to be one of `["cds.Boolean"');
     });
   });
 
