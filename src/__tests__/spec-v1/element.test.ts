@@ -1,14 +1,13 @@
 import * as fs from "fs-extra";
-import * as yaml from "js-yaml";
-import { Draft07, JsonSchema } from "json-schema-library";
+import { compileSchema, JsonSchema } from "json-schema-library";
 import { getCsnDocumentTestData, getElementTestDataByElementType } from "./testUtils";
 
 describe("Tests for all elements", (): void => {
-  const effectiveCsnSchema = yaml.load(
-    fs.readFileSync(`./spec/v1/CSN-Interop-Effective.schema.yaml`).toString(),
+  const effectiveCsnSchema = fs.readJSONSync(
+    "./src/generated/spec-v1/schemas/csn-interop-effective.schema.json",
   ) as JsonSchema;
 
-  const effectiveCsnSchemaValidator = new Draft07(effectiveCsnSchema);
+  const effectiveCsnSchemaValidator = compileSchema(effectiveCsnSchema);
 
   const elementDefinitions = [
     { name: "BooleanType", type: "cds.Boolean" },
@@ -45,8 +44,8 @@ describe("Tests for all elements", (): void => {
       });
 
       const errors = effectiveCsnSchemaValidator.validate(data);
-      expect(errors.length).toEqual(1);
-      expect(errors).toContainValidationMessage(
+      expect(errors.errors.length).toEqual(1);
+      expect(errors.errors).toContainValidationMessage(
         "The required property `type` is missing at `#/definitions/ABTEI/elements/MyElement`",
       );
     });
@@ -80,14 +79,12 @@ describe("Tests for all elements", (): void => {
       });
 
       const errorsForGoodData = effectiveCsnSchemaValidator.validate(goodData);
-      expect(errorsForGoodData.length).toEqual(0);
+      expect(errorsForGoodData.errors.length).toEqual(0);
 
       const errorsForErrorData = effectiveCsnSchemaValidator.validate(errorData);
-      expect(errorsForErrorData.length).toEqual(2); // TODO: why is the error duplicated? probably there is still improvement potential with the spec syntax?
-      expect(errorsForErrorData[0].message).toContain("Expected given value `cds.MyType`");
-      expect(errorsForErrorData[0].message).toContain('to be one of `["cds.Boolean"');
-      expect(errorsForErrorData[1].message).toContain("Expected given value `cds.MyType");
-      expect(errorsForErrorData[1].message).toContain('to be one of `["cds.Boolean"');
+      expect(errorsForErrorData.errors.length).toEqual(1); // v10 fixed the duplication issue that existed in v9
+      expect(errorsForErrorData.errors[0].message).toContain("Expected given value `cds.MyType`");
+      expect(errorsForErrorData.errors[0].message).toContain("to be one of");
     });
   });
 
@@ -114,10 +111,16 @@ describe("Tests for all elements", (): void => {
       });
 
       const errors = effectiveCsnSchemaValidator.validate(data);
-      expect(errors.length).toEqual(3);
-      expect(errors).toContainValidationMessage("Property `EndUserText.heading` does not match any patterns");
-      expect(errors).toContainValidationMessage("Property `_@EndUserText.label` does not match any patterns");
-      expect(errors).toContainValidationMessage("Property `thisIsNotAllowed` does not match any patterns");
+      expect(errors.errors.length).toEqual(3);
+      expect(errors.errors).toContainValidationMessage(
+        "Additional property `` in `#/definitions/ABTEI/elements/MyElement/EndUserText.heading` is not allowed",
+      );
+      expect(errors.errors).toContainValidationMessage(
+        "Additional property `` in `#/definitions/ABTEI/elements/MyElement/_@EndUserText.label` is not allowed",
+      );
+      expect(errors.errors).toContainValidationMessage(
+        "Additional property `` in `#/definitions/ABTEI/elements/MyElement/thisIsNotAllowed` is not allowed",
+      );
     });
 
     test(`succeeds with allowed additional property for element of type ${type}`, (): void => {
@@ -140,13 +143,11 @@ describe("Tests for all elements", (): void => {
               "@EndUserText.heading": "",
               "@EndUserText.quickInfo": "{i18n>ABTEI@ENDUSERTEXT.QUICKINFO}",
               "@EndUserText.label": "{i18n>ABTEI@ENDUSERTEXT.LABEL}",
-              "@EntityRelationship.propertyType": "",
               "@EntityRelationship.reference": [],
               "@ObjectModel.foreignKey.association": "",
               "@ObjectModel.semanticKey": [],
               "@ObjectModel.text.association": "",
               "@ObjectModel.text.element": [],
-              "@ODM.oidReference.entityName": "",
               "@PersonalData.fieldSemantics": "UserID",
               "@PersonalData.isPotentiallyPersonal": true,
               "@PersonalData.isPotentiallySensitive": true,
@@ -186,7 +187,7 @@ describe("Tests for all elements", (): void => {
       });
 
       const errors = effectiveCsnSchemaValidator.validate(data);
-      expect(errors).toEqual([]);
+      expect(errors.errors).toEqual([]);
     });
   });
 });

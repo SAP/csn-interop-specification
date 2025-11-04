@@ -1,14 +1,13 @@
 import * as fs from "fs-extra";
-import * as yaml from "js-yaml";
-import { Draft07, JsonSchema } from "json-schema-library";
+import { compileSchema, JsonSchema } from "json-schema-library";
 import { getCsnDocumentTestData } from "./testUtils";
 
 describe("Tests for all type definitions", (): void => {
-  const effectiveCsnSchema = yaml.load(
-    fs.readFileSync(`./spec/v1/CSN-Interop-Effective.schema.yaml`).toString(),
+  const effectiveCsnSchema = fs.readJSONSync(
+    "./src/generated/spec-v1/schemas/csn-interop-effective.schema.json",
   ) as JsonSchema;
 
-  const effectiveCsnSchemaValidator = new Draft07(effectiveCsnSchema);
+  const effectiveCsnSchemaValidator = compileSchema(effectiveCsnSchema);
 
   const typeDefinitions = [
     { name: "BooleanTypeDefinition", type: "cds.Boolean" },
@@ -43,8 +42,8 @@ describe("Tests for all type definitions", (): void => {
       });
 
       const errors = effectiveCsnSchemaValidator.validate(data);
-      expect(errors.length).toEqual(1);
-      expect(errors[0].message).toContain("The required property `kind` is missing");
+      expect(errors.errors.length).toEqual(1);
+      expect(errors.errors[0].message).toContain("The required property `kind` is missing");
     });
 
     test("fails with missing 'type' property for TypeDefinition", (): void => {
@@ -62,8 +61,8 @@ describe("Tests for all type definitions", (): void => {
       });
 
       const errors = effectiveCsnSchemaValidator.validate(data);
-      expect(errors.length).toEqual(1);
-      expect(errors[0].message).toContain("The required property `type` is missing");
+      expect(errors.errors.length).toEqual(1);
+      expect(errors.errors[0].message).toContain("The required property `type` is missing");
     });
 
     test("fails with invalid 'kind' property for a TypeDefinition", (): void => {
@@ -82,9 +81,9 @@ describe("Tests for all type definitions", (): void => {
       });
 
       const errors = effectiveCsnSchemaValidator.validate(data);
-      expect(errors.length).toEqual(1);
-      expect(errors[0].message).toContain("Expected given value `typeDoesNotExist`");
-      expect(errors[0].message).toContain('be one of `["context","entity","service","type"]');
+      expect(errors.errors.length).toEqual(1);
+      expect(errors.errors[0].message).toContain("Expected given value `typeDoesNotExist`");
+      expect(errors.errors[0].message).toContain("in `#/definitions/ABTEI/kind` to be one of");
     });
 
     test("fails with invalid 'type' property for a TypeDefinition", (): void => {
@@ -103,9 +102,9 @@ describe("Tests for all type definitions", (): void => {
       });
 
       const errors = effectiveCsnSchemaValidator.validate(data);
-      expect(errors.length).toEqual(1);
-      expect(errors[0].message).toContain("Expected given value `cds.TypeDoesNotExist`");
-      expect(errors[0].message).toContain('to be one of `["cds.Boolean"');
+      expect(errors.errors.length).toEqual(1);
+      expect(errors.errors[0].message).toContain("Expected given value `cds.TypeDoesNotExist`");
+      expect(errors.errors[0].message).toContain("in `#/definitions/ABTEI/type` to be one of");
     });
   });
 
@@ -122,8 +121,8 @@ describe("Tests for all type definitions", (): void => {
         },
       });
       const errors = effectiveCsnSchemaValidator.validate(data);
-      expect(errors.length).toEqual(1);
-      expect(errors[0].message).toContain("The required property `kind` is missing");
+      expect(errors.errors.length).toEqual(1);
+      expect(errors.errors[0].message).toContain("The required property `kind` is missing");
     });
 
     test(`fails with not allowed additional property for TypeDefinition of type ${type}`, (): void => {
@@ -148,9 +147,15 @@ describe("Tests for all type definitions", (): void => {
       });
 
       const errors = effectiveCsnSchemaValidator.validate(data);
-      expect(errors).toContainValidationMessage("Property `EndUserText.heading` does not match any patterns", 1);
-      expect(errors).toContainValidationMessage("Property `_@EndUserText.label` does not match any patterns", 1);
-      expect(errors).toContainValidationMessage("Property `thisIsNotAllowed` does not match any patterns", 1);
+      expect(errors.errors).toContainValidationMessage(
+        "Additional property `` in `#/definitions/ABTEI/EndUserText.heading` is not allowed",
+      );
+      expect(errors.errors).toContainValidationMessage(
+        "Additional property `` in `#/definitions/ABTEI/_@EndUserText.label` is not allowed",
+      );
+      expect(errors.errors).toContainValidationMessage(
+        "Additional property `` in `#/definitions/ABTEI/thisIsNotAllowed` is not allowed",
+      );
     });
   });
 });
