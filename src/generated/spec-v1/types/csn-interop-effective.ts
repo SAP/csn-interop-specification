@@ -782,7 +782,7 @@ export interface BooleanType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -993,7 +993,7 @@ export interface StringType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1140,7 +1140,7 @@ export interface LargeStringType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1249,7 +1249,7 @@ export interface IntegerType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1382,7 +1382,7 @@ export interface Integer64Type {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1484,7 +1484,7 @@ export interface DecimalType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1600,7 +1600,7 @@ export interface DoubleType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1702,7 +1702,7 @@ export interface DateType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1803,7 +1803,7 @@ export interface TimeType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1904,7 +1904,7 @@ export interface DateTimeType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -2005,7 +2005,7 @@ export interface TimestampType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -2106,7 +2106,7 @@ export interface UUIDType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -2206,7 +2206,7 @@ export interface BinaryType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -2304,7 +2304,7 @@ export interface LargeBinaryType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -2718,7 +2718,7 @@ export interface CustomType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3112,7 +3112,7 @@ export interface BooleanTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3209,7 +3209,7 @@ export interface StringTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3313,7 +3313,7 @@ export interface LargeStringTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3419,7 +3419,7 @@ export interface IntegerTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3518,7 +3518,7 @@ export interface Integer64TypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3617,7 +3617,7 @@ export interface DecimalTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3731,7 +3731,7 @@ export interface DoubleTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3830,7 +3830,7 @@ export interface DateTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3928,7 +3928,7 @@ export interface TimeTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -4026,7 +4026,7 @@ export interface DateTimeTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -4124,7 +4124,7 @@ export interface TimestampTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -4222,7 +4222,7 @@ export interface UUIDTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -4319,7 +4319,7 @@ export interface BinaryTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -4421,7 +4421,7 @@ export interface LargeBinaryTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**

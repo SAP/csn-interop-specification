@@ -740,7 +740,7 @@ definitions:
         description: |-
           Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
 
-          Elements marked as `key: true` also imply `notNull: true`.
+          Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
       doc: *doc
       default:
         $ref: "#/definitions/DefaultValueBoolean"
@@ -1090,6 +1090,7 @@ definitions:
     type: object
     description: |-
       An element of type `cds.Binary`.
+    x-introduced-in-version: "1.1.0"
     properties: &BinaryTypeProperties
       type:
         type: string
@@ -1118,6 +1119,7 @@ definitions:
     type: object
     description: |-
       An element of type `cds.LargeBinary`.
+    x-introduced-in-version: "1.1.0"
     properties: &LargeBinaryTypeProperties
       type:
         type: string
@@ -2060,6 +2062,7 @@ definitions:
     title: Binary Type Definition
     type: object
     description: A type definition of type `cds.Binary`.
+    x-introduced-in-version: "1.1.0"
     properties:
       kind: *kindPropertyForTypeDefinition
       key: null # null because "key" should only be defined on element level, not in a custom type
@@ -2078,6 +2081,7 @@ definitions:
     title: LargeBinary Type Definition
     type: object
     description: A type definition of type `cds.LargeBinary`.
+    x-introduced-in-version: "1.1.0"
     properties:
       kind: *kindPropertyForTypeDefinition
       <<: *LargeBinaryTypeProperties

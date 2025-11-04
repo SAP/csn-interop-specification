@@ -10,6 +10,8 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+## [1.1.0]
+
 ### Added
 
 - Added `cds.Binary` and `cds.LargeBinary` types
