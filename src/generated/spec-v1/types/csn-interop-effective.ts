@@ -109,6 +109,13 @@ export type ObjectModelCustom = boolean;
  */
 export type ObjectModelText = unknown[];
 /**
+ * The annotation should be used to mark the fields and entities which are specific to some industries,
+ * localizations, partners or customers. This information can be evaluated by the clients reading CDS
+ * metadata from an ABAP Cloud system using CSN exposure API. The clients (like Business Data Cloud)
+ * can implement special handling of such fields and entities depending on their requirements.
+ */
+export type ObjectModel = ObjectModelOriginObjectValue[];
+/**
  * The property contains an OID for the ODM Entity with this official name
  */
 export type ODMOidReferenceEntityName = string;
@@ -314,11 +321,11 @@ export type ObjectModelCompositionRoot = boolean;
 /**
  * The entity contains element(s) which shall be used to display the key in UIs (instead of the technical key).
  */
-export type ObjectModel = unknown[];
+export type ObjectModel1 = unknown[];
 /**
  * The property declares the supported usage type for this entity in the context of consuming data models.
  */
-export type ObjectModel2 = SupportedCapabilitiesEnumValue[];
+export type ObjectModel3 = SupportedCapabilitiesEnumValue[];
 /**
  * Unique technical name of the entity within the tenant / isolation context it is deployed to.
  * This may be used as a hint for database table names and help to keep them short enough.
@@ -700,12 +707,13 @@ export interface EntityDefinition {
   "@EntityRelationship.referencesWithConstantIds"?: EntityRelationship5;
   "@ObjectModel.compositionRoot"?: ObjectModelCompositionRoot;
   "@ObjectModel.representativeKey"?: ElementReference;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.semanticKey"?: ObjectModel1;
   "@ObjectModel.custom"?: ObjectModelCustom;
-  "@ObjectModel.modelingPattern"?: ObjectModel1;
-  "@ObjectModel.supportedCapabilities"?: ObjectModel2;
+  "@ObjectModel.modelingPattern"?: ObjectModel2;
+  "@ObjectModel.supportedCapabilities"?: ObjectModel3;
   "@ObjectModel.tenantWideUniqueName"?: ObjectModelTenantWideUniqueName;
   "@ObjectModel.usageType.sizeCategory"?: ObjectModelUsageType;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.entityName"?: ODMEntityName;
   "@ODM.oid"?: ElementReference;
   /**
@@ -792,6 +800,7 @@ export interface BooleanType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -961,6 +970,18 @@ export interface ReferenceTarget {
   referencedPropertyType: PropertyTypeID;
   [k: string]: unknown | undefined;
 }
+export interface ObjectModelOriginObjectValue {
+  /**
+   * The layer from which the annotated element or entity originates.
+   * Examples are "INDUSTRY", "LOCALIZATION", "PARTNER", "CUSTOMER".
+   */
+  layer?: "LOCALIZATION" | "INDUSTRY" | "PARTNER" | "CUSTOMER";
+  /**
+   * The codes specifying the origin within the given layer.
+   * For example, for layer "LOCALIZATION" this could be a list of country codes like ["DE", "AT"].
+   */
+  codes?: string[];
+}
 /**
  * An element of type `cds.String`.
  */
@@ -1009,6 +1030,7 @@ export interface StringType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -1155,6 +1177,7 @@ export interface LargeStringType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -1256,6 +1279,7 @@ export interface IntegerType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -1389,6 +1413,7 @@ export interface Integer64Type {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -1506,6 +1531,7 @@ export interface DecimalType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -1607,6 +1633,7 @@ export interface DoubleType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -1709,6 +1736,7 @@ export interface DateType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -1810,6 +1838,7 @@ export interface TimeType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -1911,6 +1940,7 @@ export interface DateTimeType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -2012,6 +2042,7 @@ export interface TimestampType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -2112,6 +2143,7 @@ export interface UUIDType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -2230,6 +2262,7 @@ export interface AssociationType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -2398,6 +2431,7 @@ export interface CompositionType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -2539,6 +2573,7 @@ export interface CustomType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -2735,7 +2770,7 @@ export interface ReferencedPropertyTypeWithConstantID {
 /**
  * The property declares the modeling pattern applied in this entity definition.
  */
-export interface ObjectModel1 {
+export interface ObjectModel2 {
   /**
    * Provide the value in `{ "#": "<value>" }` enum notation.
    */
@@ -2850,8 +2885,8 @@ export interface ServiceDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@ObjectModel.representativeKey"?: ElementReference;
   "@ObjectModel.custom"?: ObjectModelCustom;
-  "@ObjectModel.modelingPattern"?: ObjectModel1;
-  "@ObjectModel.supportedCapabilities"?: ObjectModel2;
+  "@ObjectModel.modelingPattern"?: ObjectModel2;
+  "@ObjectModel.supportedCapabilities"?: ObjectModel3;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -2912,6 +2947,7 @@ export interface BooleanTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -3015,6 +3051,7 @@ export interface StringTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -3118,6 +3155,7 @@ export interface LargeStringTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -3216,6 +3254,7 @@ export interface IntegerTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -3315,6 +3354,7 @@ export interface Integer64TypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -3429,6 +3469,7 @@ export interface DecimalTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -3528,6 +3569,7 @@ export interface DoubleTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -3627,6 +3669,7 @@ export interface DateTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -3725,6 +3768,7 @@ export interface TimeTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -3823,6 +3867,7 @@ export interface DateTimeTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -3921,6 +3966,7 @@ export interface TimestampTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -4018,6 +4064,7 @@ export interface UUIDTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -4137,6 +4184,7 @@ export interface AssociationTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
@@ -4256,6 +4304,7 @@ export interface CompositionTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   /**
    * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
