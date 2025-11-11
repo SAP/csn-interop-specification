@@ -109,10 +109,8 @@ export type ObjectModelCustom = boolean;
  */
 export type ObjectModelText = unknown[];
 /**
- * The annotation should be used to mark the fields and entities which are specific to some industries,
- * localizations, partners or customers. This information can be evaluated by the clients reading CDS
- * metadata from an ABAP Cloud system using CSN exposure API. The clients (like Business Data Cloud)
- * can implement special handling of such fields and entities depending on their requirements.
+ * The origin specifies the source layer(s) and codes where the element or entity is defined.
+ * Clients reading CDS metadata can use this information to implement special handling for such fields and entities depending on their requirements.
  */
 export type ObjectModel = ObjectModelOriginObjectValue[];
 /**
@@ -973,12 +971,12 @@ export interface ReferenceTarget {
 export interface ObjectModelOriginObjectValue {
   /**
    * The layer from which the annotated element or entity originates.
-   * Examples are "INDUSTRY", "LOCALIZATION", "PARTNER", "CUSTOMER".
+   * Examples are "LOCALIZATION", "INDUSTRY", "PARTNER", "CUSTOMER".
    */
   layer?: "LOCALIZATION" | "INDUSTRY" | "PARTNER" | "CUSTOMER";
   /**
-   * The codes specifying the origin within the given layer.
-   * For example, for layer "LOCALIZATION" this could be a list of country codes like ["DE", "AT"].
+   * The codes specifying the origin within the given layer (e.g. country codes, industry sectors).
+   * For example, the LOCALIZATION layer typically uses country codes such as ["DE", "AT"], while the INDUSTRY layer uses industry sector codes such as ["OIL"].
    */
   codes?: string[];
 }

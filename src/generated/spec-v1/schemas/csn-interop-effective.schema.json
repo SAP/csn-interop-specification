@@ -8768,7 +8768,7 @@
     },
     "@ObjectModel.origin": {
       "type": "array",
-      "description": "The annotation should be used to mark the fields and entities which are specific to some industries, \nlocalizations, partners or customers. This information can be evaluated by the clients reading CDS \nmetadata from an ABAP Cloud system using CSN exposure API. The clients (like Business Data Cloud) \ncan implement special handling of such fields and entities depending on their requirements. ",
+      "description": "The origin specifies the source layer(s) and codes where the element or entity is defined.\nClients reading CDS metadata can use this information to implement special handling for such fields and entities depending on their requirements.",
       "x-extension-targets": [
         "Entity",
         "Type"
@@ -8783,7 +8783,7 @@
       "properties": {
         "layer": {
           "type": "string",
-          "description": "The layer from which the annotated element or entity originates.\nExamples are \"INDUSTRY\", \"LOCALIZATION\", \"PARTNER\", \"CUSTOMER\".",
+          "description": "The layer from which the annotated element or entity originates.\nExamples are \"LOCALIZATION\", \"INDUSTRY\", \"PARTNER\", \"CUSTOMER\".",
           "enum": [
             "LOCALIZATION",
             "INDUSTRY",
@@ -8793,7 +8793,7 @@
         },
         "codes": {
           "type": "array",
-          "description": "The codes specifying the origin within the given layer.\nFor example, for layer \"LOCALIZATION\" this could be a list of country codes like [\"DE\", \"AT\"].",
+          "description": "The codes specifying the origin within the given layer (e.g. country codes, industry sectors).\nFor example, the LOCALIZATION layer typically uses country codes such as [\"DE\", \"AT\"], while the INDUSTRY layer uses industry sector codes such as [\"OIL\"].",
           "items": {
             "type": "string"
           }
