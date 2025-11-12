@@ -1,19 +1,18 @@
 import * as fg from "fast-glob";
 import * as fs from "fs-extra";
-import * as yaml from "js-yaml";
-import { Draft07, JsonError } from "json-schema-library";
+import { compileSchema, JsonError } from "json-schema-library";
 import { CSNInteropEffectiveDocument } from "../../generated/spec-v1/types";
 
-const effectiveCsnSchema = yaml.load(
-  fs.readFileSync(`./spec/v1/CSN-Interop-Effective.schema.yaml`).toString(),
+const effectiveCsnSchema = fs.readJSONSync(
+  "./src/generated/spec-v1/schemas/csn-interop-effective.schema.json",
 ) as CSNInteropEffectiveDocument;
 
 const effectiveCsnSchemaExtended = fs.readJSONSync(
   "./src/generated/spec-v1/schemas/csn-interop-effective.schema.json",
 ) as CSNInteropEffectiveDocument;
 
-const effectiveCsnSchemaValidator = new Draft07(effectiveCsnSchema);
-const effectiveCsnSchemaExtendedValidator = new Draft07(effectiveCsnSchemaExtended);
+const effectiveCsnSchemaValidator = compileSchema(effectiveCsnSchema);
+const effectiveCsnSchemaExtendedValidator = compileSchema(effectiveCsnSchemaExtended);
 
 const documentFilePaths = fg.sync("./spec/v1/examples/*.json", {});
 
@@ -26,8 +25,8 @@ describe("Valid Example Files", (): void => {
           const data = JSON.parse(fileContent);
           expect(fileContent).toBeDefined();
           expect(data).toBeDefined();
-          const errors: JsonError[] = effectiveCsnSchemaValidator.validate(data);
-          expect(simplifyValidationErrors(errors)).toEqual([]);
+          const result = effectiveCsnSchemaValidator.validate(data);
+          expect(simplifyValidationErrors(result.errors)).toEqual([]);
         });
       });
     }
@@ -41,8 +40,8 @@ describe("Valid Example Files", (): void => {
           const data = JSON.parse(fileContent);
           expect(fileContent).toBeDefined();
           expect(data).toBeDefined();
-          const errors: JsonError[] = effectiveCsnSchemaExtendedValidator.validate(data);
-          expect(simplifyValidationErrors(errors)).toEqual([]);
+          const result = effectiveCsnSchemaExtendedValidator.validate(data);
+          expect(simplifyValidationErrors(result.errors)).toEqual([]);
         });
       });
     }

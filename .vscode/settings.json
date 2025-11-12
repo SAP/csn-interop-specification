@@ -59,5 +59,6 @@
       "fileMatch": ["/examples/**/*.json"],
       "url": "./src/spec-v1/csn-interop-effective.schema.json"
     }
-  ]
+  ],
+  "jest.runMode": "on-demand"
 }
