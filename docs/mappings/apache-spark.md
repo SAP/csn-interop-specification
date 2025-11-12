@@ -21,7 +21,7 @@ description: "CSN Interop types to Apache Spark types."
 |`cds.Decimal` (precision = p, scale = s) | DECIMAL(p,s) | `cds.Decimal` | DECIMAL(p,s) | Datasphere Logic: IF `cds.Decimal(p < 17)` THEN `cds.Decimal(p = 17)` | |
 |`cds.Decimal` (precision = p, scale = floating) | ***not supported*** | `cds.Decimal` | DECIMAL | Decimal with scale = floating is not supported in spark | |
 |Amounts with Currencies `cds.Decimal` (precision = 34, scale = 4) | `cds.Decimal(34, 4)` | `cds.Decimal(34, 4)` | DECIMAL(34,4) | Since spark does not support `cds.DecimalFloat` we use cds.Decimal(34,4) as compromise for now |
-`cds.Decimal` (no arguments) | | | DECIMAL | | | |
+`cds.Decimal` (no arguments) | ***not supported*** | DecimalFloat | DECIMAL | | | |
 |`cds.Double` | DOUBLE | `cds.Double` | DOUBLE | | |
 |`cds.Date` | DATE | `cds.Date` | DATE | | "yyyyMMdd" |
 |`cds.Time` must be expressed as `cds.String(6)` or `cds.String(12)` depending on the source representation for now + the annotation `@Semantics.time: true` | STRING | `cds.String(6)` or `cds.String(12)` | TIME | Data is in format `HHmmss` or `HH:mm:ss.SSS` - consumer must use the function to_time() to convert to `cds.Time`| |
