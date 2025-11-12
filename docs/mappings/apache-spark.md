@@ -30,5 +30,5 @@ description: "CSN Interop types to Apache Spark types."
 |`cds.UUID` + the annotation `@Semantics.uuid: true` | STRING (36) | `cds.UUID` | NVARCHAR(36) | | | |
 | | | hana.ST_GEOMETRY | ST_GEOMETRY | | | |
 | | | hana.ST_POINT | ST_POINT | | |
-`cds.vector` | | | | REAL_VECTOR | | | |
+`cds.vector` | | | REAL_VECTOR | | | |
 | | | | HALF_VECTOR | | | |
