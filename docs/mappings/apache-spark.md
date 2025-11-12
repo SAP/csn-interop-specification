@@ -7,7 +7,7 @@ description: "CSN Interop types to Apache Spark types."
 > <span className="feature-status-draft">DRAFT</span> This mapping definition is work in progress and may be subject to further change.
 
 - Spark Data Types coming from here: [Link](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/data_types.html)
-- DataSphere Data Types coming from here: [Link](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/7b1dc6e0fad147de8e50aa8dc4744aa3.html?locale=en-US)
+- Datasphere Data Types coming from here: [Link](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/2f39104e5bd847919b8daee1580c4f68.html)
 - HANA data types coming from here: [Link](https://help.sap.com/docs/SAP_HANA_PLATFORM/4fe29514fd584807ac9f2a04f6754767/20a1569875191014b507cf392724b7eb.html?locale=en-US) and in context with CAP / OData here: [Link](https://cap.cloud.sap/docs/advanced/hana#hana-types)
 
 <!-- prettier-ignore -->
