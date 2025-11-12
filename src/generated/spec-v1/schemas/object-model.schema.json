@@ -197,7 +197,9 @@
       "title": "@ObjectModel.usageType.sizeCategory"
     },
     "@ObjectModel.origin": {
+      "title": "Object Model Origin",
       "type": "array",
+      "minItems": 1,
       "description": "The origin specifies the source layer(s) and codes where the element or entity is defined.\nClients reading CDS metadata can use this information to implement special handling for such fields and entities depending on their requirements.",
       "x-extension-targets": [
         "Entity",
@@ -205,8 +207,7 @@
       ],
       "items": {
         "$ref": "#/definitions/@ObjectModel.origin_ObjectValue"
-      },
-      "title": "@ObjectModel.origin"
+      }
     },
     "@ObjectModel.origin_ObjectValue": {
       "title": "Object Model Origin Object Value",
@@ -224,12 +225,16 @@
         },
         "codes": {
           "type": "array",
+          "minItems": 1,
           "description": "The codes specifying the origin within the given layer (e.g. country codes, industry sectors).\nFor example, the LOCALIZATION layer typically uses country codes such as [\"DE\", \"AT\"], while the INDUSTRY layer uses industry sector codes such as [\"OIL\"].",
           "items": {
             "type": "string"
           }
         }
       },
+      "required": [
+        "layer"
+      ],
       "additionalProperties": false
     },
     "@ObjectModel.SupportedCapabilities_EnumValue": {
