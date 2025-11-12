@@ -587,6 +587,8 @@
             "cds.DateTime",
             "cds.Timestamp",
             "cds.UUID",
+            "cds.Binary",
+            "cds.LargeBinary",
             "cds.Association",
             "cds.Composition"
           ]
@@ -790,6 +792,38 @@
             "properties": {
               "type": {
                 "type": "string",
+                "const": "cds.Binary"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "$ref": "#/definitions/BinaryType"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "cds.LargeBinary"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "$ref": "#/definitions/LargeBinaryType"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "type": "string",
                 "const": "cds.Association"
               }
             },
@@ -839,7 +873,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -1034,7 +1068,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -1188,6 +1222,9 @@
         },
         "@Semantics.businessDate.to": {
           "$ref": "#/definitions/@Semantics.businessDate.to"
+        },
+        "@Semantics.mimeType": {
+          "$ref": "#/definitions/@Semantics.mimeType"
         }
       },
       "patternProperties": {
@@ -1235,7 +1272,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -1389,6 +1426,15 @@
         },
         "@Semantics.businessDate.to": {
           "$ref": "#/definitions/@Semantics.businessDate.to"
+        },
+        "@Semantics.largeObject.acceptableMimeTypes": {
+          "$ref": "#/definitions/@Semantics.largeObject.acceptableMimeTypes"
+        },
+        "@Semantics.largeObject.mimeType": {
+          "$ref": "#/definitions/@Semantics.largeObject.mimeType"
+        },
+        "@Semantics.largeObject.fileName": {
+          "$ref": "#/definitions/@Semantics.largeObject.fileName"
         }
       },
       "patternProperties": {
@@ -1440,7 +1486,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -1641,7 +1687,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -1842,7 +1888,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -2059,7 +2105,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -2260,7 +2306,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -2456,7 +2502,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -2652,7 +2698,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -2848,7 +2894,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -3044,7 +3090,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -3217,6 +3263,408 @@
         {
           "type": "cds.UUID",
           "key": true
+        }
+      ]
+    },
+    "BinaryType": {
+      "title": "Binary Type",
+      "type": "object",
+      "description": "An element of type `cds.Binary`.",
+      "x-introduced-in-version": "1.1.0",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "cds.Binary",
+          "description": "The modeling artefact is a `cds.Binary` type.",
+          "tsType": "BinaryCdsType"
+        },
+        "key": {
+          "type": "boolean",
+          "description": "Indicates that this element is used as a primary key.\nMultiple primary keys MAY be used in case of a composite ID.\n\nElements marked as `key` also imply `notNull: true`."
+        },
+        "notNull": {
+          "type": "boolean",
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
+        },
+        "doc": {
+          "type": "string",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
+        },
+        "length": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed."
+        },
+        "default": {
+          "$ref": "#/definitions/DefaultValueString"
+        },
+        "@Aggregation.default": {
+          "$ref": "#/definitions/@Aggregation.default"
+        },
+        "@AnalyticsDetails.measureType": {
+          "$ref": "#/definitions/@AnalyticsDetails.measureType"
+        },
+        "@Consumption.valueHelpDefinition": {
+          "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@EndUserText.label": {
+          "$ref": "#/definitions/@EndUserText.label"
+        },
+        "@EndUserText.heading": {
+          "$ref": "#/definitions/@EndUserText.heading"
+        },
+        "@EndUserText.quickInfo": {
+          "$ref": "#/definitions/@EndUserText.quickInfo"
+        },
+        "@EntityRelationship.propertyType": {
+          "$ref": "#/definitions/@EntityRelationship.propertyType"
+        },
+        "@EntityRelationship.reference": {
+          "$ref": "#/definitions/@EntityRelationship.reference"
+        },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
+        },
+        "@ObjectModel.foreignKey.association": {
+          "$ref": "#/definitions/@ObjectModel.foreignKey.association"
+        },
+        "@ObjectModel.text.element": {
+          "$ref": "#/definitions/@ObjectModel.text.element"
+        },
+        "@ObjectModel.text.association": {
+          "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ODM.oidReference.entityName": {
+          "$ref": "#/definitions/@ODM.oidReference.entityName"
+        },
+        "@PersonalData.fieldSemantics": {
+          "$ref": "#/definitions/@PersonalData.fieldSemantics"
+        },
+        "@PersonalData.isPotentiallyPersonal": {
+          "$ref": "#/definitions/@PersonalData.isPotentiallyPersonal"
+        },
+        "@PersonalData.isPotentiallySensitive": {
+          "$ref": "#/definitions/@PersonalData.isPotentiallySensitive"
+        },
+        "@Semantics.currencyCode": {
+          "$ref": "#/definitions/@Semantics.currencyCode"
+        },
+        "@Semantics.amount.currencyCode": {
+          "$ref": "#/definitions/@Semantics.amount.currencyCode"
+        },
+        "@Semantics.unitOfMeasure": {
+          "$ref": "#/definitions/@Semantics.unitOfMeasure"
+        },
+        "@Semantics.quantity.unitOfMeasure": {
+          "$ref": "#/definitions/@Semantics.quantity.unitOfMeasure"
+        },
+        "@Semantics.calendar.dayOfMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfMonth"
+        },
+        "@Semantics.calendar.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfYear"
+        },
+        "@Semantics.calendar.week": {
+          "$ref": "#/definitions/@Semantics.calendar.week"
+        },
+        "@Semantics.calendar.month": {
+          "$ref": "#/definitions/@Semantics.calendar.month"
+        },
+        "@Semantics.calendar.quarter": {
+          "$ref": "#/definitions/@Semantics.calendar.quarter"
+        },
+        "@Semantics.calendar.halfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.halfyear"
+        },
+        "@Semantics.calendar.year": {
+          "$ref": "#/definitions/@Semantics.calendar.year"
+        },
+        "@Semantics.calendar.yearWeek": {
+          "$ref": "#/definitions/@Semantics.calendar.yearWeek"
+        },
+        "@Semantics.calendar.yearMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.yearMonth"
+        },
+        "@Semantics.calendar.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.calendar.yearQuarter"
+        },
+        "@Semantics.calendar.yearHalfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.yearHalfyear"
+        },
+        "@Semantics.fiscal.yearVariant": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearVariant"
+        },
+        "@Semantics.fiscal.period": {
+          "$ref": "#/definitions/@Semantics.fiscal.period"
+        },
+        "@Semantics.fiscal.year": {
+          "$ref": "#/definitions/@Semantics.fiscal.year"
+        },
+        "@Semantics.fiscal.yearPeriod": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearPeriod"
+        },
+        "@Semantics.fiscal.quarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.quarter"
+        },
+        "@Semantics.fiscal.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearQuarter"
+        },
+        "@Semantics.fiscal.week": {
+          "$ref": "#/definitions/@Semantics.fiscal.week"
+        },
+        "@Semantics.fiscal.yearWeek": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearWeek"
+        },
+        "@Semantics.fiscal.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.fiscal.dayOfYear"
+        },
+        "@Semantics.language": {
+          "$ref": "#/definitions/@Semantics.language"
+        },
+        "@Semantics.time": {
+          "$ref": "#/definitions/@Semantics.time"
+        },
+        "@Semantics.text": {
+          "$ref": "#/definitions/@Semantics.text"
+        },
+        "@Semantics.uuid": {
+          "$ref": "#/definitions/@Semantics.uuid"
+        },
+        "@Semantics.businessDate.from": {
+          "$ref": "#/definitions/@Semantics.businessDate.from"
+        },
+        "@Semantics.businessDate.to": {
+          "$ref": "#/definitions/@Semantics.businessDate.to"
+        }
+      },
+      "patternProperties": {
+        "^(@|__).+$": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "array",
+            "object"
+          ],
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false,
+      "x-extension-points": [
+        "Type",
+        "BinaryType"
+      ],
+      "examples": [
+        {
+          "type": "cds.Binary",
+          "key": true
+        }
+      ]
+    },
+    "LargeBinaryType": {
+      "title": "Large Binary Type",
+      "type": "object",
+      "description": "An element of type `cds.LargeBinary`.",
+      "x-introduced-in-version": "1.1.0",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "cds.LargeBinary",
+          "description": "The modeling artefact is a `cds.LargeBinary` type.",
+          "tsType": "LargeBinaryCdsType"
+        },
+        "notNull": {
+          "type": "boolean",
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
+        },
+        "doc": {
+          "type": "string",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
+        },
+        "length": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed."
+        },
+        "default": {
+          "$ref": "#/definitions/DefaultValueString"
+        },
+        "@Aggregation.default": {
+          "$ref": "#/definitions/@Aggregation.default"
+        },
+        "@AnalyticsDetails.measureType": {
+          "$ref": "#/definitions/@AnalyticsDetails.measureType"
+        },
+        "@Consumption.valueHelpDefinition": {
+          "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@EndUserText.label": {
+          "$ref": "#/definitions/@EndUserText.label"
+        },
+        "@EndUserText.heading": {
+          "$ref": "#/definitions/@EndUserText.heading"
+        },
+        "@EndUserText.quickInfo": {
+          "$ref": "#/definitions/@EndUserText.quickInfo"
+        },
+        "@EntityRelationship.propertyType": {
+          "$ref": "#/definitions/@EntityRelationship.propertyType"
+        },
+        "@EntityRelationship.reference": {
+          "$ref": "#/definitions/@EntityRelationship.reference"
+        },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
+        },
+        "@ObjectModel.foreignKey.association": {
+          "$ref": "#/definitions/@ObjectModel.foreignKey.association"
+        },
+        "@ObjectModel.text.element": {
+          "$ref": "#/definitions/@ObjectModel.text.element"
+        },
+        "@ObjectModel.text.association": {
+          "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ODM.oidReference.entityName": {
+          "$ref": "#/definitions/@ODM.oidReference.entityName"
+        },
+        "@PersonalData.fieldSemantics": {
+          "$ref": "#/definitions/@PersonalData.fieldSemantics"
+        },
+        "@PersonalData.isPotentiallyPersonal": {
+          "$ref": "#/definitions/@PersonalData.isPotentiallyPersonal"
+        },
+        "@PersonalData.isPotentiallySensitive": {
+          "$ref": "#/definitions/@PersonalData.isPotentiallySensitive"
+        },
+        "@Semantics.currencyCode": {
+          "$ref": "#/definitions/@Semantics.currencyCode"
+        },
+        "@Semantics.amount.currencyCode": {
+          "$ref": "#/definitions/@Semantics.amount.currencyCode"
+        },
+        "@Semantics.unitOfMeasure": {
+          "$ref": "#/definitions/@Semantics.unitOfMeasure"
+        },
+        "@Semantics.quantity.unitOfMeasure": {
+          "$ref": "#/definitions/@Semantics.quantity.unitOfMeasure"
+        },
+        "@Semantics.calendar.dayOfMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfMonth"
+        },
+        "@Semantics.calendar.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfYear"
+        },
+        "@Semantics.calendar.week": {
+          "$ref": "#/definitions/@Semantics.calendar.week"
+        },
+        "@Semantics.calendar.month": {
+          "$ref": "#/definitions/@Semantics.calendar.month"
+        },
+        "@Semantics.calendar.quarter": {
+          "$ref": "#/definitions/@Semantics.calendar.quarter"
+        },
+        "@Semantics.calendar.halfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.halfyear"
+        },
+        "@Semantics.calendar.year": {
+          "$ref": "#/definitions/@Semantics.calendar.year"
+        },
+        "@Semantics.calendar.yearWeek": {
+          "$ref": "#/definitions/@Semantics.calendar.yearWeek"
+        },
+        "@Semantics.calendar.yearMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.yearMonth"
+        },
+        "@Semantics.calendar.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.calendar.yearQuarter"
+        },
+        "@Semantics.calendar.yearHalfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.yearHalfyear"
+        },
+        "@Semantics.fiscal.yearVariant": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearVariant"
+        },
+        "@Semantics.fiscal.period": {
+          "$ref": "#/definitions/@Semantics.fiscal.period"
+        },
+        "@Semantics.fiscal.year": {
+          "$ref": "#/definitions/@Semantics.fiscal.year"
+        },
+        "@Semantics.fiscal.yearPeriod": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearPeriod"
+        },
+        "@Semantics.fiscal.quarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.quarter"
+        },
+        "@Semantics.fiscal.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearQuarter"
+        },
+        "@Semantics.fiscal.week": {
+          "$ref": "#/definitions/@Semantics.fiscal.week"
+        },
+        "@Semantics.fiscal.yearWeek": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearWeek"
+        },
+        "@Semantics.fiscal.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.fiscal.dayOfYear"
+        },
+        "@Semantics.language": {
+          "$ref": "#/definitions/@Semantics.language"
+        },
+        "@Semantics.time": {
+          "$ref": "#/definitions/@Semantics.time"
+        },
+        "@Semantics.text": {
+          "$ref": "#/definitions/@Semantics.text"
+        },
+        "@Semantics.uuid": {
+          "$ref": "#/definitions/@Semantics.uuid"
+        },
+        "@Semantics.businessDate.from": {
+          "$ref": "#/definitions/@Semantics.businessDate.from"
+        },
+        "@Semantics.businessDate.to": {
+          "$ref": "#/definitions/@Semantics.businessDate.to"
+        },
+        "@Semantics.largeObject.acceptableMimeTypes": {
+          "$ref": "#/definitions/@Semantics.largeObject.acceptableMimeTypes"
+        },
+        "@Semantics.largeObject.mimeType": {
+          "$ref": "#/definitions/@Semantics.largeObject.mimeType"
+        },
+        "@Semantics.largeObject.fileName": {
+          "$ref": "#/definitions/@Semantics.largeObject.fileName"
+        }
+      },
+      "patternProperties": {
+        "^(@|__).+$": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "array",
+            "object"
+          ],
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false,
+      "x-extension-points": [
+        "Type",
+        "LargeBinaryType"
+      ],
+      "examples": [
+        {
+          "type": "cds.LargeBinary"
         }
       ]
     },
@@ -3843,7 +4291,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -4392,6 +4840,8 @@
             "cds.DateTime",
             "cds.Timestamp",
             "cds.UUID",
+            "cds.Binary",
+            "cds.LargeBinary",
             "cds.Association",
             "cds.Composition"
           ]
@@ -4745,6 +5195,40 @@
             "properties": {
               "type": {
                 "type": "string",
+                "const": "cds.Binary"
+              }
+            },
+            "required": [
+              "kind",
+              "type"
+            ]
+          },
+          "then": {
+            "$ref": "#/definitions/BinaryTypeDefinition"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "cds.LargeBinary"
+              }
+            },
+            "required": [
+              "kind",
+              "type"
+            ]
+          },
+          "then": {
+            "$ref": "#/definitions/LargeBinaryTypeDefinition"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "type": "string",
                 "const": "cds.Association"
               }
             },
@@ -4798,7 +5282,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -4996,7 +5480,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -5150,6 +5634,9 @@
         },
         "@Semantics.businessDate.to": {
           "$ref": "#/definitions/@Semantics.businessDate.to"
+        },
+        "@Semantics.mimeType": {
+          "$ref": "#/definitions/@Semantics.mimeType"
         }
       },
       "patternProperties": {
@@ -5203,7 +5690,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -5357,6 +5844,15 @@
         },
         "@Semantics.businessDate.to": {
           "$ref": "#/definitions/@Semantics.businessDate.to"
+        },
+        "@Semantics.largeObject.acceptableMimeTypes": {
+          "$ref": "#/definitions/@Semantics.largeObject.acceptableMimeTypes"
+        },
+        "@Semantics.largeObject.mimeType": {
+          "$ref": "#/definitions/@Semantics.largeObject.mimeType"
+        },
+        "@Semantics.largeObject.fileName": {
+          "$ref": "#/definitions/@Semantics.largeObject.fileName"
         }
       },
       "patternProperties": {
@@ -5400,7 +5896,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -5604,7 +6100,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -5799,7 +6295,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -6023,7 +6519,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -6218,7 +6714,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -6416,7 +6912,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -6608,7 +7104,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -6800,7 +7296,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -6992,7 +7488,7 @@
         },
         "notNull": {
           "type": "boolean",
-          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key: true` also imply `notNull: true`."
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
         },
         "doc": {
           "type": "string",
@@ -7161,6 +7657,405 @@
       "x-extension-points": [
         "Type",
         "UUIDType"
+      ]
+    },
+    "BinaryTypeDefinition": {
+      "title": "Binary Type Definition",
+      "type": "object",
+      "description": "A type definition of type `cds.Binary`.",
+      "x-introduced-in-version": "1.1.0",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "type",
+          "description": "The kind property is used when defining derived types. In this case Kind = \"type\"."
+        },
+        "type": {
+          "type": "string",
+          "const": "cds.Binary",
+          "description": "The modeling artefact is a `cds.Binary` type.",
+          "tsType": "BinaryCdsType"
+        },
+        "notNull": {
+          "type": "boolean",
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
+        },
+        "doc": {
+          "type": "string",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
+        },
+        "length": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed."
+        },
+        "default": {
+          "$ref": "#/definitions/DefaultValueString"
+        },
+        "@Aggregation.default": {
+          "$ref": "#/definitions/@Aggregation.default"
+        },
+        "@AnalyticsDetails.measureType": {
+          "$ref": "#/definitions/@AnalyticsDetails.measureType"
+        },
+        "@Consumption.valueHelpDefinition": {
+          "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@EndUserText.label": {
+          "$ref": "#/definitions/@EndUserText.label"
+        },
+        "@EndUserText.heading": {
+          "$ref": "#/definitions/@EndUserText.heading"
+        },
+        "@EndUserText.quickInfo": {
+          "$ref": "#/definitions/@EndUserText.quickInfo"
+        },
+        "@EntityRelationship.propertyType": {
+          "$ref": "#/definitions/@EntityRelationship.propertyType"
+        },
+        "@EntityRelationship.reference": {
+          "$ref": "#/definitions/@EntityRelationship.reference"
+        },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
+        },
+        "@ObjectModel.foreignKey.association": {
+          "$ref": "#/definitions/@ObjectModel.foreignKey.association"
+        },
+        "@ObjectModel.text.element": {
+          "$ref": "#/definitions/@ObjectModel.text.element"
+        },
+        "@ObjectModel.text.association": {
+          "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ODM.oidReference.entityName": {
+          "$ref": "#/definitions/@ODM.oidReference.entityName"
+        },
+        "@PersonalData.fieldSemantics": {
+          "$ref": "#/definitions/@PersonalData.fieldSemantics"
+        },
+        "@PersonalData.isPotentiallyPersonal": {
+          "$ref": "#/definitions/@PersonalData.isPotentiallyPersonal"
+        },
+        "@PersonalData.isPotentiallySensitive": {
+          "$ref": "#/definitions/@PersonalData.isPotentiallySensitive"
+        },
+        "@Semantics.currencyCode": {
+          "$ref": "#/definitions/@Semantics.currencyCode"
+        },
+        "@Semantics.amount.currencyCode": {
+          "$ref": "#/definitions/@Semantics.amount.currencyCode"
+        },
+        "@Semantics.unitOfMeasure": {
+          "$ref": "#/definitions/@Semantics.unitOfMeasure"
+        },
+        "@Semantics.quantity.unitOfMeasure": {
+          "$ref": "#/definitions/@Semantics.quantity.unitOfMeasure"
+        },
+        "@Semantics.calendar.dayOfMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfMonth"
+        },
+        "@Semantics.calendar.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfYear"
+        },
+        "@Semantics.calendar.week": {
+          "$ref": "#/definitions/@Semantics.calendar.week"
+        },
+        "@Semantics.calendar.month": {
+          "$ref": "#/definitions/@Semantics.calendar.month"
+        },
+        "@Semantics.calendar.quarter": {
+          "$ref": "#/definitions/@Semantics.calendar.quarter"
+        },
+        "@Semantics.calendar.halfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.halfyear"
+        },
+        "@Semantics.calendar.year": {
+          "$ref": "#/definitions/@Semantics.calendar.year"
+        },
+        "@Semantics.calendar.yearWeek": {
+          "$ref": "#/definitions/@Semantics.calendar.yearWeek"
+        },
+        "@Semantics.calendar.yearMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.yearMonth"
+        },
+        "@Semantics.calendar.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.calendar.yearQuarter"
+        },
+        "@Semantics.calendar.yearHalfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.yearHalfyear"
+        },
+        "@Semantics.fiscal.yearVariant": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearVariant"
+        },
+        "@Semantics.fiscal.period": {
+          "$ref": "#/definitions/@Semantics.fiscal.period"
+        },
+        "@Semantics.fiscal.year": {
+          "$ref": "#/definitions/@Semantics.fiscal.year"
+        },
+        "@Semantics.fiscal.yearPeriod": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearPeriod"
+        },
+        "@Semantics.fiscal.quarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.quarter"
+        },
+        "@Semantics.fiscal.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearQuarter"
+        },
+        "@Semantics.fiscal.week": {
+          "$ref": "#/definitions/@Semantics.fiscal.week"
+        },
+        "@Semantics.fiscal.yearWeek": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearWeek"
+        },
+        "@Semantics.fiscal.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.fiscal.dayOfYear"
+        },
+        "@Semantics.language": {
+          "$ref": "#/definitions/@Semantics.language"
+        },
+        "@Semantics.time": {
+          "$ref": "#/definitions/@Semantics.time"
+        },
+        "@Semantics.text": {
+          "$ref": "#/definitions/@Semantics.text"
+        },
+        "@Semantics.uuid": {
+          "$ref": "#/definitions/@Semantics.uuid"
+        },
+        "@Semantics.businessDate.from": {
+          "$ref": "#/definitions/@Semantics.businessDate.from"
+        },
+        "@Semantics.businessDate.to": {
+          "$ref": "#/definitions/@Semantics.businessDate.to"
+        }
+      },
+      "patternProperties": {
+        "^(@|__).+$": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "array",
+            "object"
+          ],
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
+        }
+      },
+      "required": [
+        "kind",
+        "type"
+      ],
+      "additionalProperties": false,
+      "x-extension-points": [
+        "Type",
+        "BinaryType"
+      ]
+    },
+    "LargeBinaryTypeDefinition": {
+      "title": "LargeBinary Type Definition",
+      "type": "object",
+      "description": "A type definition of type `cds.LargeBinary`.",
+      "x-introduced-in-version": "1.1.0",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "type",
+          "description": "The kind property is used when defining derived types. In this case Kind = \"type\"."
+        },
+        "type": {
+          "type": "string",
+          "const": "cds.LargeBinary",
+          "description": "The modeling artefact is a `cds.LargeBinary` type.",
+          "tsType": "LargeBinaryCdsType"
+        },
+        "notNull": {
+          "type": "boolean",
+          "description": "Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.\n\nElements marked as `key` (if applicable to the CDS type) also imply `notNull: true`."
+        },
+        "doc": {
+          "type": "string",
+          "description": "Human readable documentation, usually for developer documentation.\n\nSHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).\n\nIf a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation."
+        },
+        "length": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed."
+        },
+        "default": {
+          "$ref": "#/definitions/DefaultValueString"
+        },
+        "@Aggregation.default": {
+          "$ref": "#/definitions/@Aggregation.default"
+        },
+        "@AnalyticsDetails.measureType": {
+          "$ref": "#/definitions/@AnalyticsDetails.measureType"
+        },
+        "@Consumption.valueHelpDefinition": {
+          "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@EndUserText.label": {
+          "$ref": "#/definitions/@EndUserText.label"
+        },
+        "@EndUserText.heading": {
+          "$ref": "#/definitions/@EndUserText.heading"
+        },
+        "@EndUserText.quickInfo": {
+          "$ref": "#/definitions/@EndUserText.quickInfo"
+        },
+        "@EntityRelationship.propertyType": {
+          "$ref": "#/definitions/@EntityRelationship.propertyType"
+        },
+        "@EntityRelationship.reference": {
+          "$ref": "#/definitions/@EntityRelationship.reference"
+        },
+        "@ObjectModel.custom": {
+          "$ref": "#/definitions/@ObjectModel.custom"
+        },
+        "@ObjectModel.foreignKey.association": {
+          "$ref": "#/definitions/@ObjectModel.foreignKey.association"
+        },
+        "@ObjectModel.text.element": {
+          "$ref": "#/definitions/@ObjectModel.text.element"
+        },
+        "@ObjectModel.text.association": {
+          "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ODM.oidReference.entityName": {
+          "$ref": "#/definitions/@ODM.oidReference.entityName"
+        },
+        "@PersonalData.fieldSemantics": {
+          "$ref": "#/definitions/@PersonalData.fieldSemantics"
+        },
+        "@PersonalData.isPotentiallyPersonal": {
+          "$ref": "#/definitions/@PersonalData.isPotentiallyPersonal"
+        },
+        "@PersonalData.isPotentiallySensitive": {
+          "$ref": "#/definitions/@PersonalData.isPotentiallySensitive"
+        },
+        "@Semantics.currencyCode": {
+          "$ref": "#/definitions/@Semantics.currencyCode"
+        },
+        "@Semantics.amount.currencyCode": {
+          "$ref": "#/definitions/@Semantics.amount.currencyCode"
+        },
+        "@Semantics.unitOfMeasure": {
+          "$ref": "#/definitions/@Semantics.unitOfMeasure"
+        },
+        "@Semantics.quantity.unitOfMeasure": {
+          "$ref": "#/definitions/@Semantics.quantity.unitOfMeasure"
+        },
+        "@Semantics.calendar.dayOfMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfMonth"
+        },
+        "@Semantics.calendar.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.calendar.dayOfYear"
+        },
+        "@Semantics.calendar.week": {
+          "$ref": "#/definitions/@Semantics.calendar.week"
+        },
+        "@Semantics.calendar.month": {
+          "$ref": "#/definitions/@Semantics.calendar.month"
+        },
+        "@Semantics.calendar.quarter": {
+          "$ref": "#/definitions/@Semantics.calendar.quarter"
+        },
+        "@Semantics.calendar.halfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.halfyear"
+        },
+        "@Semantics.calendar.year": {
+          "$ref": "#/definitions/@Semantics.calendar.year"
+        },
+        "@Semantics.calendar.yearWeek": {
+          "$ref": "#/definitions/@Semantics.calendar.yearWeek"
+        },
+        "@Semantics.calendar.yearMonth": {
+          "$ref": "#/definitions/@Semantics.calendar.yearMonth"
+        },
+        "@Semantics.calendar.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.calendar.yearQuarter"
+        },
+        "@Semantics.calendar.yearHalfyear": {
+          "$ref": "#/definitions/@Semantics.calendar.yearHalfyear"
+        },
+        "@Semantics.fiscal.yearVariant": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearVariant"
+        },
+        "@Semantics.fiscal.period": {
+          "$ref": "#/definitions/@Semantics.fiscal.period"
+        },
+        "@Semantics.fiscal.year": {
+          "$ref": "#/definitions/@Semantics.fiscal.year"
+        },
+        "@Semantics.fiscal.yearPeriod": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearPeriod"
+        },
+        "@Semantics.fiscal.quarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.quarter"
+        },
+        "@Semantics.fiscal.yearQuarter": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearQuarter"
+        },
+        "@Semantics.fiscal.week": {
+          "$ref": "#/definitions/@Semantics.fiscal.week"
+        },
+        "@Semantics.fiscal.yearWeek": {
+          "$ref": "#/definitions/@Semantics.fiscal.yearWeek"
+        },
+        "@Semantics.fiscal.dayOfYear": {
+          "$ref": "#/definitions/@Semantics.fiscal.dayOfYear"
+        },
+        "@Semantics.language": {
+          "$ref": "#/definitions/@Semantics.language"
+        },
+        "@Semantics.time": {
+          "$ref": "#/definitions/@Semantics.time"
+        },
+        "@Semantics.text": {
+          "$ref": "#/definitions/@Semantics.text"
+        },
+        "@Semantics.uuid": {
+          "$ref": "#/definitions/@Semantics.uuid"
+        },
+        "@Semantics.businessDate.from": {
+          "$ref": "#/definitions/@Semantics.businessDate.from"
+        },
+        "@Semantics.businessDate.to": {
+          "$ref": "#/definitions/@Semantics.businessDate.to"
+        },
+        "@Semantics.largeObject.acceptableMimeTypes": {
+          "$ref": "#/definitions/@Semantics.largeObject.acceptableMimeTypes"
+        },
+        "@Semantics.largeObject.mimeType": {
+          "$ref": "#/definitions/@Semantics.largeObject.mimeType"
+        },
+        "@Semantics.largeObject.fileName": {
+          "$ref": "#/definitions/@Semantics.largeObject.fileName"
+        }
+      },
+      "patternProperties": {
+        "^(@|__).+$": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "array",
+            "object"
+          ],
+          "description": "Annotations or private properties MAY be added.\n\n**Annotations** MUST start with `@`.\n\nIn CSN Interop Effective the annotations MUST follow the \"flattened\" form:\nEvery record / object in an annotation will be flattened into a `.` (dot).\nException: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are (\"structured\").\n\nCorrect annotations examples:\n- `\"@Common.bar\": \"foo\"`\n- `\"@Common.foo.bar\": true`\n- `\"@Common.array\": [{ \"foo\": true }]`\n\nOr\n\n**Private properties**, starting with `__`.\nMAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.",
+          "tsType": "unknown // replaceKeyType_{PrivatePropertyKey|AnnotationPropertyKey}"
+        }
+      },
+      "required": [
+        "kind",
+        "type"
+      ],
+      "additionalProperties": false,
+      "x-extension-points": [
+        "Type",
+        "LargeBinaryType"
       ]
     },
     "AssociationTypeDefinition": {
@@ -9106,6 +10001,39 @@
       "x-extension-targets": [
         "Type"
       ]
+    },
+    "@Semantics.mimeType": {
+      "type": "boolean",
+      "const": true,
+      "description": "The property value is a MIME Type / Media Type, following [RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838).",
+      "x-extension-targets": [
+        "StringType"
+      ]
+    },
+    "@Semantics.largeObject.acceptableMimeTypes": {
+      "description": "The property value contains a document / file that uses one of the stated MIME Types / Media Types ([RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838)).\nThis annotation can be used if the Media Type is already known at design time and can be described in the metadata model itself.\nIf the Media Type is only known at runtime, the \"@Semantics.largeObject.mimeType\" annotation has to be used instead.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "x-extension-targets": [
+        "LargeStringType",
+        "LargeBinaryType"
+      ]
+    },
+    "@Semantics.largeObject.mimeType": {
+      "x-extension-targets": [
+        "LargeStringType",
+        "LargeBinaryType"
+      ],
+      "$ref": "#/definitions/ElementReference"
+    },
+    "@Semantics.largeObject.fileName": {
+      "x-extension-targets": [
+        "LargeStringType",
+        "LargeBinaryType"
+      ],
+      "$ref": "#/definitions/ElementReference"
     }
   }
 }
