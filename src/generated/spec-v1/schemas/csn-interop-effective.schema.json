@@ -472,6 +472,9 @@
         "@ObjectModel.usageType.sizeCategory": {
           "$ref": "#/definitions/@ObjectModel.usageType.sizeCategory"
         },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
+        },
         "@ODM.entityName": {
           "$ref": "#/definitions/@ODM.entityName"
         },
@@ -918,6 +921,9 @@
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
         },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
+        },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
         },
@@ -1120,6 +1126,9 @@
         },
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
         },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
@@ -1324,6 +1333,9 @@
         },
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
         },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
@@ -1534,6 +1546,9 @@
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
         },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
+        },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
         },
@@ -1734,6 +1749,9 @@
         },
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
         },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
@@ -1954,6 +1972,9 @@
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
         },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
+        },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
         },
@@ -2152,6 +2173,9 @@
         },
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
         },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
@@ -2354,6 +2378,9 @@
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
         },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
+        },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
         },
@@ -2549,6 +2576,9 @@
         },
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
         },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
@@ -2746,6 +2776,9 @@
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
         },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
+        },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
         },
@@ -2942,6 +2975,9 @@
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
         },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
+        },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
         },
@@ -3134,6 +3170,9 @@
         },
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
         },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
@@ -3334,6 +3373,9 @@
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
         },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
+        },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
         },
@@ -3528,6 +3570,9 @@
         },
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
         },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
@@ -3817,6 +3862,9 @@
         },
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
         },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
@@ -4121,6 +4169,9 @@
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
         },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
+        },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
         },
@@ -4361,6 +4412,9 @@
         },
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
         },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
@@ -4882,6 +4936,9 @@
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
         },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
+        },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
         },
@@ -5327,6 +5384,9 @@
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
         },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
+        },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
         },
@@ -5532,6 +5592,9 @@
         },
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
         },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
@@ -5743,6 +5806,9 @@
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
         },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
+        },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
         },
@@ -5943,6 +6009,9 @@
         },
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
         },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
@@ -6147,6 +6216,9 @@
         },
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
         },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
@@ -6361,6 +6433,9 @@
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
         },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
+        },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
         },
@@ -6567,6 +6642,9 @@
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
         },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
+        },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
         },
@@ -6761,6 +6839,9 @@
         },
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
         },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
@@ -6960,6 +7041,9 @@
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
         },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
+        },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
         },
@@ -7151,6 +7235,9 @@
         },
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
         },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
@@ -7344,6 +7431,9 @@
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
         },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
+        },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
         },
@@ -7532,6 +7622,9 @@
         },
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
         },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
@@ -7728,6 +7821,9 @@
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
         },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
+        },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
         },
@@ -7922,6 +8018,9 @@
         },
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
         },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
@@ -8212,6 +8311,9 @@
         },
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
         },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
@@ -8520,6 +8622,9 @@
         },
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
         },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
@@ -9567,6 +9672,46 @@
           "#": "XL"
         }
       ]
+    },
+    "@ObjectModel.origin": {
+      "description": "The origin specifies the source layer(s) and codes where the element or entity is defined.\nClients reading CDS metadata can use this information to implement special handling for such fields and entities depending on their requirements.",
+      "type": "array",
+      "minItems": 1,
+      "x-extension-targets": [
+        "Entity",
+        "Type"
+      ],
+      "items": {
+        "$ref": "#/definitions/@ObjectModel.origin_ObjectValue"
+      }
+    },
+    "@ObjectModel.origin_ObjectValue": {
+      "title": "Object Model Origin Object Value",
+      "type": "object",
+      "properties": {
+        "layer": {
+          "type": "string",
+          "description": "The layer from which the annotated element or entity originates.\nExamples are \"LOCALIZATION\", \"INDUSTRY\", \"PARTNER\", \"CUSTOMER\".",
+          "enum": [
+            "LOCALIZATION",
+            "INDUSTRY",
+            "PARTNER",
+            "CUSTOMER"
+          ]
+        },
+        "codes": {
+          "type": "array",
+          "minItems": 1,
+          "description": "The codes specifying the origin within the given layer (e.g. country codes, industry sectors).\nFor example, the LOCALIZATION layer typically uses country codes such as [\"DE\", \"AT\"], while the INDUSTRY layer uses industry sector codes such as [\"OIL\"].",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "layer"
+      ],
+      "additionalProperties": false
     },
     "@ObjectModel.SupportedCapabilities_EnumValue": {
       "title": "Supported Capabilities Enum Value",
