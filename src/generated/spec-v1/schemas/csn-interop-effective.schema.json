@@ -3373,6 +3373,9 @@
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
         },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
+        },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
         },
@@ -3567,6 +3570,9 @@
         },
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
         },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
@@ -7815,6 +7821,9 @@
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
         },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
+        },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
         },
@@ -8009,6 +8018,9 @@
         },
         "@ObjectModel.text.association": {
           "$ref": "#/definitions/@ObjectModel.text.association"
+        },
+        "@ObjectModel.origin": {
+          "$ref": "#/definitions/@ObjectModel.origin"
         },
         "@ODM.oidReference.entityName": {
           "$ref": "#/definitions/@ODM.oidReference.entityName"
