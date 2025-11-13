@@ -3,6 +3,9 @@ module.exports = {
   // General Setup
   preset: "ts-jest",
   testEnvironment: "node",
+  testEnvironmentOptions: {
+    NODE_OPTIONS: "--experimental-vm-modules",
+  },
   testMatch: ["<rootDir>/src/**/*.test.ts"],
   testPathIgnorePatterns: ["/node_modules/"],
   moduleFileExtensions: ["ts", "js", "json", "d.ts"],
