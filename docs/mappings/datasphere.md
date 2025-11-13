@@ -26,5 +26,5 @@ description: "CSN Interop types to SAP Datasphere types."
 |`cds.DateTime` sec precision | `cds.Timestamp` | |
 |`cds.Timestamp` µs precision | `cds.Timestamp` | |
 |`cds.UUID` + the annotation `@Semantics.uuid: true` | `cds.UUID` | |
-| | hana.ST_GEOMETRY |  |
-| | hana.ST_POINT |  |
+|- | hana.ST_GEOMETRY | |
+|- | hana.ST_POINT | |

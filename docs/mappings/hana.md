@@ -26,7 +26,7 @@ description: "CSN Interop types to SAP HANA types."
 |`cds.DateTime` sec precision | TIMESTAMP | |
 |`cds.Timestamp` µs precision | TIMESTAMP | HANA with ns precision (precision loss) |
 |`cds.UUID` + the annotation `@Semantics.uuid: true` | NVARCHAR(36) | |
-|hana.ST_GEOMETRY (in DSP, not in CDS) | ST_GEOMETRY | CSN with type info |
-|hana.ST_POINT | ST_POINT | CSN with type info |
+|- | ST_GEOMETRY | |
+|- | ST_POINT | |
 |`cds.vector` | REAL_VECTOR | |
-| | HALF_VECTOR | |
+|- | HALF_VECTOR | HANA half-precision vector type |
