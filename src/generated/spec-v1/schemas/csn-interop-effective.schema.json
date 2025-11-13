@@ -9674,10 +9674,9 @@
       ]
     },
     "@ObjectModel.origin": {
-      "title": "Object Model Origin",
+      "description": "The origin specifies the source layer(s) and codes where the element or entity is defined.\nClients reading CDS metadata can use this information to implement special handling for such fields and entities depending on their requirements.",
       "type": "array",
       "minItems": 1,
-      "description": "The origin specifies the source layer(s) and codes where the element or entity is defined.\nClients reading CDS metadata can use this information to implement special handling for such fields and entities depending on their requirements.",
       "x-extension-targets": [
         "Entity",
         "Type"
