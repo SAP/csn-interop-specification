@@ -52,9 +52,18 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 - Added missing property `$id` to annotation extension schemas
 - Added clarification that `key: true` also implies `notNull: true`
 - Added clarification that `precision` and `scale` are RECOMMENDED to be added and MUST be added if own default assumptions diverge from the specified default.
+  <<<<<<< HEAD
 - Added explicit regexp pattern to `@EntityRelationship` Entity Type and Property Type IDs
   - Added the ID constraints from ORD page more explicitly back to CSN Interop page and fixed links
-- Added explicit regexp pattern to `@ODM` Entity IDs
+- # Added explicit regexp pattern to `@ODM` Entity IDs
+
+### Fixed
+
+- Fixed scope of `@ObjectModel.semanticKey` to be valid on Entity, not Type level.
+
+## [1.0.3]
+
+> > > > > > > e51a8a9d933873be8f1269f90fdfedfe18dba9fa
 
 ### Fixed
 
