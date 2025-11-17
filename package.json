@@ -29,8 +29,8 @@
     "build": "npm run build:ts && npm run generate && npm run build:docu && touch ./build/.nojekyll",
     "build:ts": "tsc -p ./tsconfig.json",
     "build:docu": "docusaurus build",
-    "generate": "cd ./spec-toolkit && npm ci && npm run build && cd .. && node ./spec-toolkit/dist/src/cli.js && npm run copy",
-    "copy": "rimraf \"static/spec-v1/\" && mkdir \"static/spec-v1/\" && cp -r src/generated/spec-v1/schemas/*.schema.json -t \"static/spec-v1/\" && cp -r src/generated/spec-v1/docs/extensions/* -t \"docs/spec-v1/extensions/\" && cp -r src/generated/spec-v1/docs/examples/* -t \"docs/spec-v1/examples/\" && cp src/generated/spec-v1/docs/csn-interop-effective.md -t \"docs/spec-v1/\"",
+    "generate": "npx @open-resource-discovery/spec-toolkit -c ./spec-toolkit.config.json",
+    "postgenerate": "ts-node ./scripts/copyGeneratedToDestination.js",
     "eslint": "eslint . --fix",
     "eslint:ci": "eslint .",
     "format": "npm run prettier",
@@ -53,6 +53,7 @@
     "@docusaurus/preset-classic": "3.9.2",
     "@docusaurus/theme-mermaid": "3.9.2",
     "@easyops-cn/docusaurus-search-local": "0.52.1",
+    "@open-resource-discovery/spec-toolkit": "0.4.0",
     "@sap/eslint-config": "0.4.0",
     "@tsconfig/node20": "20.1.7",
     "@types/fs-extra": "11.0.4",
@@ -77,6 +78,7 @@
     "react-dom": "18.3.1",
     "rimraf": "6.1.0",
     "ts-jest": "29.4.5",
+    "ts-node": "10.9.2",
     "tsx": "4.20.6",
     "typescript": "5.9.3"
   }

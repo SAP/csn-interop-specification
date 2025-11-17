@@ -4779,50 +4779,50 @@ export interface LanguageTexts {
   [k: string]: string;
 }
 
- export type PrivatePropertyKey = `__${string}`;
+export type PrivatePropertyKey = `__${string}`;
 
- export type AnnotationPropertyKey = `@${string}`;
+export type AnnotationPropertyKey = `@${string}`;
 
- export type EntityKind = "entity";
+export type EntityKind = "entity";
 
- export type ContextKind = "context";
+export type ContextKind = "context";
 
- export type ServiceKind = "service";
+export type ServiceKind = "service";
 
- export type TypeKind = "type";
+export type TypeKind = "type";
 
- export type BooleanCdsType = "cds.Boolean";
+export type BooleanCdsType = "cds.Boolean";
 
- export type StringCdsType = "cds.String";
+export type StringCdsType = "cds.String";
 
- export type LargeStringCdsType = "cds.LargeString";
+export type LargeStringCdsType = "cds.LargeString";
 
- export type IntegerCdsType = "cds.Integer";
+export type IntegerCdsType = "cds.Integer";
 
- export type Integer64CdsType = "cds.Integer64";
+export type Integer64CdsType = "cds.Integer64";
 
- export type DecimalCdsType = "cds.Decimal";
+export type DecimalCdsType = "cds.Decimal";
 
- export type DoubleCdsType = "cds.Double";
+export type DoubleCdsType = "cds.Double";
 
- export type DateCdsType = "cds.Date";
+export type DateCdsType = "cds.Date";
 
- export type TimeCdsType = "cds.Time";
+export type TimeCdsType = "cds.Time";
 
- export type DateTimeCdsType = "cds.DateTime";
+export type DateTimeCdsType = "cds.DateTime";
 
- export type TimestampCdsType = "cds.Timestamp";
+export type TimestampCdsType = "cds.Timestamp";
 
- export type UUIDCdsType = "cds.UUID";
+export type UUIDCdsType = "cds.UUID";
 
- export type AssociationCdsType = "cds.Association";
+export type AssociationCdsType = "cds.Association";
 
- export type CompositionCdsType = "cds.Composition";
+export type CompositionCdsType = "cds.Composition";
 
- export type CustomTypeValue = string // MUST not start with `cds.`;
+export type CustomTypeValue = string // MUST not start with `cds.`;
 
- export type BinaryCdsType = "cds.Binary";
+export type BinaryCdsType = "cds.Binary";
 
- export type LargeBinaryCdsType = "cds.LargeBinary";
+export type LargeBinaryCdsType = "cds.LargeBinary";
 
- export type CdsTypeValue = BooleanCdsType | StringCdsType | LargeStringCdsType | IntegerCdsType | Integer64CdsType | DecimalCdsType | DoubleCdsType | DateCdsType | TimeCdsType | DateTimeCdsType | TimestampCdsType | UUIDCdsType | BinaryCdsType | LargeBinaryCdsType | AssociationCdsType | CompositionCdsType;
+export type CdsTypeValue = BooleanCdsType | StringCdsType | LargeStringCdsType | IntegerCdsType | Integer64CdsType | DecimalCdsType | DoubleCdsType | DateCdsType | TimeCdsType | DateTimeCdsType | TimestampCdsType | UUIDCdsType | BinaryCdsType | LargeBinaryCdsType | AssociationCdsType | CompositionCdsType;

@@ -1,7 +1,7 @@
 import * as fg from "fast-glob";
 import * as fs from "fs-extra";
 import { compileSchema, JsonError } from "json-schema-library";
-import { CSNInteropEffectiveDocument } from "../../generated/spec-v1/types";
+import { CSNInteropEffectiveDocument } from "../../generated/spec/v1/types";
 
 const effectiveCsnSchema = fs.readJSONSync(
   "./src/generated/spec-v1/schemas/csn-interop-effective.schema.json",
