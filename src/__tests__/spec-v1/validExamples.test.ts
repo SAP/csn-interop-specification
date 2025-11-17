@@ -4,11 +4,11 @@ import { compileSchema, JsonError } from "json-schema-library";
 import { CSNInteropEffectiveDocument } from "../../generated/spec/v1/types";
 
 const effectiveCsnSchema = fs.readJSONSync(
-  "./src/generated/spec-v1/schemas/csn-interop-effective.schema.json",
+  "./src/generated/spec/v1/schemas/csn-interop-effective.schema.json",
 ) as CSNInteropEffectiveDocument;
 
 const effectiveCsnSchemaExtended = fs.readJSONSync(
-  "./src/generated/spec-v1/schemas/csn-interop-effective.schema.json",
+  "./src/generated/spec/v1/schemas/csn-interop-effective.schema.json",
 ) as CSNInteropEffectiveDocument;
 
 const effectiveCsnSchemaValidator = compileSchema(effectiveCsnSchema);
