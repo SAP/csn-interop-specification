@@ -29,3 +29,6 @@ src/generated/**/*.schema.json
 docs/spec-v1/**/*.md
 !docs/spec-v1/consumption.md
 static/spec-v1/*
+
+# packed artefact
+sap-csn-interop-specification-*
