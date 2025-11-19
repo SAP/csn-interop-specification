@@ -19,7 +19,7 @@ import {
   UUIDType,
   CSNInteropEffectiveDocument,
   Definitions,
-} from "../../generated/spec-v1/types";
+} from "../../generated/spec/v1/types";
 
 export function getElementTestDataByElementType(elementType: CdsTypeValue | CustomTypeValue): CdsType | CustomType {
   switch (elementType) {

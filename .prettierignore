@@ -5,6 +5,3 @@ reports/
 node_modules/
 package-lock.json
 docs/spec-v1/
-src/generated/spec-v1/types/csn-interop-effective.ts
-src/generated/spec-v1/
-spec-toolkit/
