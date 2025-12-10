@@ -996,7 +996,7 @@ export interface ObjectModelOriginObjectValue {
    *
    * @minItems 1
    */
-  codes?: [string, ...string[]];
+  codes: [string, ...string[]];
 }
 /**
  * An element of type `cds.String`.

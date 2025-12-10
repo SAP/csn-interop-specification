@@ -216,6 +216,7 @@ definitions:
           type: string
     required:
       - "layer"
+      - "codes"
     additionalProperties: false
 
   "@ObjectModel.SupportedCapabilities_EnumValue":
