@@ -873,6 +873,62 @@ definitions:
     examples:
       - { "type": "cds.Integer64", "default": { "val": 123 } }
 
+  Integer16Type:
+    title: Integer16 Type
+    type: object
+    description: |-
+      Signed integer with 64 bit.
+    properties: &Integer16TypeProperties
+      type:
+        type: string
+        const: cds.Integer16
+        description: The modeling artefact is a `cds.Integer16` type.
+        tsType: Integer16CdsType
+      key: *elementKey
+      notNull: *elementNotNull
+      doc: *doc
+      default:
+        $ref: "#/definitions/DefaultValueInteger"
+      enum: *elementEnum
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - Integer16Type
+    x-header-level: 4
+    examples:
+      - { "type": "cds.Integer16", "default": { "val": 123 } }
+
+  UInt8Type:
+    title: UInt8 Type
+    type: object
+    description: |-
+      Unsigned Interger with 8 bits
+    properties: &UInt8TypeProperties
+      type:
+        type: string
+        const: cds.UInt8
+        description: The modeling artefact is a `cds.Integer64` type.
+        tsType: UInt8CdsType
+      key: *elementKey
+      notNull: *elementNotNull
+      doc: *doc
+      default:
+        $ref: "#/definitions/DefaultValueInteger"
+      enum: *elementEnum
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - Integer64Type
+    x-header-level: 4
+    examples:
+      - { "type": "cds.UInt8", "default": { "val": 64 } }
+
   DecimalType:
     title: Decimal Type
     type: object
