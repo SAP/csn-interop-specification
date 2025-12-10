@@ -10,6 +10,11 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+### Added
+
+- Added `cds.Integer16` type (signed integer with 16 bit)
+- Added `cds.UInt8` type (unsigned integer with 8 bit)
+
 ## [1.1.0]
 
 ### Added
