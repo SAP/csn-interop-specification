@@ -4,7 +4,7 @@ import { getCsnDocumentTestData, getElementTestDataByElementType } from "./testU
 
 describe("Tests for all elements", (): void => {
   const effectiveCsnSchema = fs.readJSONSync(
-    "./src/generated/spec-v1/schemas/csn-interop-effective.schema.json",
+    "./src/generated/spec/v1/schemas/csn-interop-effective.schema.json",
   ) as JsonSchema;
 
   const effectiveCsnSchemaValidator = compileSchema(effectiveCsnSchema);

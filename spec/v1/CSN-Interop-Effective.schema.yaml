@@ -449,7 +449,6 @@ definitions:
       hana_on_asString:
         type: ["string", "number", "boolean", "array", "object"]
         x-hide-property: true
-        x-ignore-conventions: true
         description: |-
           Contains the SQL on condition as string
       #-----------------------
