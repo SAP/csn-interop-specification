@@ -4,7 +4,7 @@ title: DataIntegration Document
 description: This is the interface description of @DataIntegration.
 type: object
 definitions:
-  "@DataIntegration.dataUnavailable": &semanticsFieldBoolean
+  "@DataIntegration.dataUnavailable":
     type: boolean
     description: |-
       Specifies that the data of the element or entity is unavailable although it is part of the output structure.
