@@ -254,6 +254,18 @@ definitions:
           It is RECOMMENDED to have complete CSN documents and set this to `true`.
 
           If true references to other CDS elements (e.g. `cds.Association`) MUST be resolvable within the same document.
+        x-stability:
+          # This calculation is only run, if newValue != oldValue
+          # will be run for changed, added or removed          
+          # in latter two cases, new value or old value could be `null` if not existing
+          conditional:
+            # Simple case, for enum like situations
+            - impact: major
+              newValue:
+                equals: false
+              oldValue:
+                equals: [true, null]
+          
       # TODO: i18n references feature is not yet stable in overall CSN Spec. Add it once it is.
       # i18nReferences:
       #   type: string
@@ -384,6 +396,11 @@ definitions:
           The dictionary key is the element `name`, the value the element itself.
 
           MUST have at least one element.
+
+        # This calculation is only run, if newValue != oldValue
+        x-stability:
+          add: minor
+          remove: major
 
       doc: &doc
         type: string
