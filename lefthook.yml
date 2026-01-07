@@ -1,0 +1,12 @@
+pre-commit:
+  commands:
+    spec-generate:
+      glob: "./spec/*/*.yaml"
+      run: |
+        npm run generate
+        git add ./src/generated/spec/v1/types/csn-interop-effective.ts
+        git add ./src/generated/spec/v1/schemas/*
+    prettier:
+      glob: "**/*.{md,json,yaml}"
+      run: npm run prettier
+      stage_fixed: true

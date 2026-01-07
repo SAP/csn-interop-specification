@@ -47,6 +47,8 @@ export type CdsType =
   | DateTimeType
   | TimestampType
   | UUIDType
+  | BinaryType
+  | LargeBinaryType
   | AssociationType
   | CompositionType;
 /**
@@ -252,6 +254,16 @@ export type SemanticsBusinessDateFrom = true;
  */
 export type SemanticsBusinessDateTo = true;
 /**
+ * The property value is a MIME Type / Media Type, following [RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838).
+ */
+export type SemanticsMimeType = true;
+/**
+ * The property value contains a document / file that uses one of the stated MIME Types / Media Types ([RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838)).
+ * This annotation can be used if the Media Type is already known at design time and can be described in the metadata model itself.
+ * If the Media Type is only known at runtime, the "@Semantics.largeObject.mimeType" annotation has to be used instead.
+ */
+export type SemanticsLargeObject = string[];
+/**
  * Total number of digits that are present after the decimal point in a number.
  * The scale can hold from zero up to the total numeric precision
  */
@@ -365,6 +377,8 @@ export type TypeDefinition =
   | DateTimeTypeDefinition
   | TimestampTypeDefinition
   | UUIDTypeDefinition
+  | BinaryTypeDefinition
+  | LargeBinaryTypeDefinition
   | AssociationTypeDefinition
   | CompositionTypeDefinition;
 
@@ -768,7 +782,7 @@ export interface BooleanType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -979,7 +993,7 @@ export interface StringType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1046,6 +1060,7 @@ export interface StringType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.mimeType"?: SemanticsMimeType;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -1125,7 +1140,7 @@ export interface LargeStringType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1192,6 +1207,9 @@ export interface LargeStringType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObject;
+  "@Semantics.largeObject.mimeType"?: ElementReference;
+  "@Semantics.largeObject.fileName"?: ElementReference;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -1231,7 +1249,7 @@ export interface IntegerType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1364,7 +1382,7 @@ export interface Integer64Type {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1466,7 +1484,7 @@ export interface DecimalType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1582,7 +1600,7 @@ export interface DoubleType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1684,7 +1702,7 @@ export interface DateType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1785,7 +1803,7 @@ export interface TimeType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1886,7 +1904,7 @@ export interface DateTimeType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1987,7 +2005,7 @@ export interface TimestampType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -2088,7 +2106,7 @@ export interface UUIDType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -2149,6 +2167,212 @@ export interface UUIDType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  /**
+   * Annotations or private properties MAY be added.
+   *
+   * **Annotations** MUST start with `@`.
+   *
+   * In CSN Interop Effective the annotations MUST follow the "flattened" form:
+   * Every record / object in an annotation will be flattened into a `.` (dot).
+   * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
+   *
+   * Correct annotations examples:
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
+   *
+   * Or
+   *
+   * **Private properties**, starting with `__`.
+   * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
+   */
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+}
+/**
+ * An element of type `cds.Binary`.
+ */
+export interface BinaryType {
+  /**
+   * The modeling artefact is a `cds.Binary` type.
+   */
+  type: BinaryCdsType;
+  /**
+   * Indicates that this element is used as a primary key.
+   * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
+   */
+  key?: boolean;
+  /**
+   * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
+   */
+  notNull?: boolean;
+  /**
+   * Human readable documentation, usually for developer documentation.
+   *
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
+   */
+  doc?: string;
+  /**
+   * Describes the maximum number of characters of the value.
+   * If not provided, **unlimited** length is assumed.
+   */
+  length?: number;
+  default?: DefaultValueString;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.custom"?: ObjectModelCustom;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  /**
+   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   */
+  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  /**
+   * Annotations or private properties MAY be added.
+   *
+   * **Annotations** MUST start with `@`.
+   *
+   * In CSN Interop Effective the annotations MUST follow the "flattened" form:
+   * Every record / object in an annotation will be flattened into a `.` (dot).
+   * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
+   *
+   * Correct annotations examples:
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
+   *
+   * Or
+   *
+   * **Private properties**, starting with `__`.
+   * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
+   */
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+}
+/**
+ * An element of type `cds.LargeBinary`.
+ */
+export interface LargeBinaryType {
+  /**
+   * The modeling artefact is a `cds.LargeBinary` type.
+   */
+  type: LargeBinaryCdsType;
+  /**
+   * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
+   */
+  notNull?: boolean;
+  /**
+   * Human readable documentation, usually for developer documentation.
+   *
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
+   */
+  doc?: string;
+  /**
+   * Describes the maximum number of characters of the value.
+   * If not provided, **unlimited** length is assumed.
+   */
+  length?: number;
+  default?: DefaultValueString;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.custom"?: ObjectModelCustom;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  /**
+   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   */
+  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObject;
+  "@Semantics.largeObject.mimeType"?: ElementReference;
+  "@Semantics.largeObject.fileName"?: ElementReference;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -2494,7 +2718,7 @@ export interface CustomType {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -2888,7 +3112,7 @@ export interface BooleanTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -2985,7 +3209,7 @@ export interface StringTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3052,6 +3276,7 @@ export interface StringTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.mimeType"?: SemanticsMimeType;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3088,7 +3313,7 @@ export interface LargeStringTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3155,6 +3380,9 @@ export interface LargeStringTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObject;
+  "@Semantics.largeObject.mimeType"?: ElementReference;
+  "@Semantics.largeObject.fileName"?: ElementReference;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3191,7 +3419,7 @@ export interface IntegerTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3290,7 +3518,7 @@ export interface Integer64TypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3389,7 +3617,7 @@ export interface DecimalTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3503,7 +3731,7 @@ export interface DoubleTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3602,7 +3830,7 @@ export interface DateTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3700,7 +3928,7 @@ export interface TimeTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3798,7 +4026,7 @@ export interface DateTimeTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3896,7 +4124,7 @@ export interface TimestampTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3994,7 +4222,7 @@ export interface UUIDTypeDefinition {
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
    *
-   * Elements marked as `key: true` also imply `notNull: true`.
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -4055,6 +4283,213 @@ export interface UUIDTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  /**
+   * Annotations or private properties MAY be added.
+   *
+   * **Annotations** MUST start with `@`.
+   *
+   * In CSN Interop Effective the annotations MUST follow the "flattened" form:
+   * Every record / object in an annotation will be flattened into a `.` (dot).
+   * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
+   *
+   * Correct annotations examples:
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
+   *
+   * Or
+   *
+   * **Private properties**, starting with `__`.
+   * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
+   */
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+}
+/**
+ * A type definition of type `cds.Binary`.
+ */
+export interface BinaryTypeDefinition {
+  /**
+   * The kind property is used when defining derived types. In this case Kind = "type".
+   */
+  kind: "type";
+  /**
+   * The modeling artefact is a `cds.Binary` type.
+   */
+  type: BinaryCdsType;
+  /**
+   * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
+   */
+  notNull?: boolean;
+  /**
+   * Human readable documentation, usually for developer documentation.
+   *
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
+   */
+  doc?: string;
+  /**
+   * Describes the maximum number of characters of the value.
+   * If not provided, **unlimited** length is assumed.
+   */
+  length?: number;
+  default?: DefaultValueString;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.custom"?: ObjectModelCustom;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  /**
+   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   */
+  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  /**
+   * Annotations or private properties MAY be added.
+   *
+   * **Annotations** MUST start with `@`.
+   *
+   * In CSN Interop Effective the annotations MUST follow the "flattened" form:
+   * Every record / object in an annotation will be flattened into a `.` (dot).
+   * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
+   *
+   * Correct annotations examples:
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
+   *
+   * Or
+   *
+   * **Private properties**, starting with `__`.
+   * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
+   */
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+}
+/**
+ * A type definition of type `cds.LargeBinary`.
+ */
+export interface LargeBinaryTypeDefinition {
+  /**
+   * The kind property is used when defining derived types. In this case Kind = "type".
+   */
+  kind: "type";
+  /**
+   * The modeling artefact is a `cds.LargeBinary` type.
+   */
+  type: LargeBinaryCdsType;
+  /**
+   * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
+   */
+  notNull?: boolean;
+  /**
+   * Human readable documentation, usually for developer documentation.
+   *
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
+   */
+  doc?: string;
+  /**
+   * Describes the maximum number of characters of the value.
+   * If not provided, **unlimited** length is assumed.
+   */
+  length?: number;
+  default?: DefaultValueString;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.custom"?: ObjectModelCustom;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  /**
+   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   */
+  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObject;
+  "@Semantics.largeObject.mimeType"?: ElementReference;
+  "@Semantics.largeObject.fileName"?: ElementReference;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -4344,46 +4779,50 @@ export interface LanguageTexts {
   [k: string]: string;
 }
 
- export type PrivatePropertyKey = `__${string}`;
+export type PrivatePropertyKey = `__${string}`;
 
- export type AnnotationPropertyKey = `@${string}`;
+export type AnnotationPropertyKey = `@${string}`;
 
- export type EntityKind = "entity";
+export type EntityKind = "entity";
 
- export type ContextKind = "context";
+export type ContextKind = "context";
 
- export type ServiceKind = "service";
+export type ServiceKind = "service";
 
- export type TypeKind = "type";
+export type TypeKind = "type";
 
- export type BooleanCdsType = "cds.Boolean";
+export type BooleanCdsType = "cds.Boolean";
 
- export type StringCdsType = "cds.String";
+export type StringCdsType = "cds.String";
 
- export type LargeStringCdsType = "cds.LargeString";
+export type LargeStringCdsType = "cds.LargeString";
 
- export type IntegerCdsType = "cds.Integer";
+export type IntegerCdsType = "cds.Integer";
 
- export type Integer64CdsType = "cds.Integer64";
+export type Integer64CdsType = "cds.Integer64";
 
- export type DecimalCdsType = "cds.Decimal";
+export type DecimalCdsType = "cds.Decimal";
 
- export type DoubleCdsType = "cds.Double";
+export type DoubleCdsType = "cds.Double";
 
- export type DateCdsType = "cds.Date";
+export type DateCdsType = "cds.Date";
 
- export type TimeCdsType = "cds.Time";
+export type TimeCdsType = "cds.Time";
 
- export type DateTimeCdsType = "cds.DateTime";
+export type DateTimeCdsType = "cds.DateTime";
 
- export type TimestampCdsType = "cds.Timestamp";
+export type TimestampCdsType = "cds.Timestamp";
 
- export type UUIDCdsType = "cds.UUID";
+export type UUIDCdsType = "cds.UUID";
 
- export type AssociationCdsType = "cds.Association";
+export type AssociationCdsType = "cds.Association";
 
- export type CompositionCdsType = "cds.Composition";
+export type CompositionCdsType = "cds.Composition";
 
- export type CustomTypeValue = string // MUST not start with `cds.`;
+export type CustomTypeValue = string // MUST not start with `cds.`;
 
- export type CdsTypeValue = BooleanCdsType | StringCdsType | LargeStringCdsType | IntegerCdsType | Integer64CdsType | DecimalCdsType | DoubleCdsType | DateCdsType | TimeCdsType | DateTimeCdsType | TimestampCdsType | UUIDCdsType | AssociationCdsType | CompositionCdsType;
+export type BinaryCdsType = "cds.Binary";
+
+export type LargeBinaryCdsType = "cds.LargeBinary";
+
+export type CdsTypeValue = BooleanCdsType | StringCdsType | LargeStringCdsType | IntegerCdsType | Integer64CdsType | DecimalCdsType | DoubleCdsType | DateCdsType | TimeCdsType | DateTimeCdsType | TimestampCdsType | UUIDCdsType | BinaryCdsType | LargeBinaryCdsType | AssociationCdsType | CompositionCdsType;
