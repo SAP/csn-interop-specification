@@ -1,0 +1,16 @@
+<svg width="600" height="120" viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="600" height="120" fill="#0f2942"/>
+
+  <!-- Centered text with tspans for natural spacing
+       Changes:
+       - font-size increased from 60 to 72 to fill more space
+       - font-weight changed from 500 to 400 (normal) to look lighter
+       - ViewBox width increased to 600 to accommodate larger text
+  -->
+  <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
+        font-family="'Roboto Mono', 'Fira Code', 'Courier New', monospace"
+        font-size="72" font-weight="400">
+    <tspan fill="#c77dff">{</tspan><tspan fill="#7fb3d5">CSN</tspan><tspan fill="#90ee90">:</tspan><tspan fill="#ffffff">interop</tspan><tspan fill="#c77dff">}</tspan>
+  </text>
+</svg>
