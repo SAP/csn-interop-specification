@@ -11,7 +11,7 @@ title: "Overview"
 Core Schema Notation Interoperability (short: CSN Interop) is a modeling format to describe entity and service models within the SAP and Business Technology Platform (BTP) ecosystem.
 CSN Interop files are serialized as JSON and provide comprehensive metadata about entities and their structure, relationships, and other aspects of the model.
 
-A CSN Interop file can look like this (extract from [./examples/airline.json](./spec-v1/examples/airline.md)):
+A CSN Interop file can look like this (extracted from [./examples/airline.json](./spec-v1/examples/airline.md)):
 
 ```js
 {

@@ -40,8 +40,6 @@ In order to create a valid Effective CSN document it is only necessary to apply 
 
 > **Note**: The document quotes frequently from the [CAP CSN documentation](https://cap.cloud.sap/docs/cds/csn) without explicit citations. This is done intentionally to increase the consistency between these two sources of information. In case of differences, consider that the purpose of this document is not to explain how CSN is derived from CDL, but how Effective CSN is constructed from scratch.
 
-For a quick overview of CSN Interop and when to use it, see the [Overview](./).
-
 ## Structure
 
 A CSN document starts with the [root-level structure](#root-level-structure) of some header properties (describing which version of CSN Interop is used) and the meta section for metadata that applies to the document as a whole.
@@ -687,9 +685,9 @@ There are however known scenarios, where a systematic usage of own type definiti
 If the provider stack has an own built-in type system, it may be more efficient and also safer (from a quality perspective) to define the data models in terms of the local built-in types and add a mapping to the CDS built-in types.
 For example, RAP uses the ABAP built-in types, where e.g. the date is represented as an 8-digit string following the pattern ‘YYYYMMDD’. There are three alternative ways to deal with this situation in Effective CSN:
 
-1)Replace all date type usages by cds.Date (challenge: This effects the data exchange format.)
-2)Replace all date type usages by cds.String(8) (challenge: loss of semantics)
-3)Define a type abap.dats based on cds.String and keep using the ABAP type (challenge: shall consumers understand/leverage this type system? Or will they resolve to 2) anyway?)
+1. Replace all date type usages by cds.Date (challenge: This affects the data exchange format.)
+2. Replace all date type usages by cds.String(8) (challenge: loss of semantics)
+3. Define a type abap.dats based on cds.String and keep using the ABAP type (challenge: shall consumers understand/leverage this type system? Or will they resolve to 2) anyway?)
 
 Example for 3):
 
@@ -775,7 +773,7 @@ Property query defines how signature is bound to underlying entities / i.o.w. ho
 
 ## Service Definitions
 
-CDS allows to define service interfaces as collections of exposed entities enclosed in a `service` section, which is essentially a `context`.(Especially the service acts as a name prefix for the exposed entities.)
+CDS allows to define service interfaces as collections of exposed entities enclosed in a `service` section, which is essentially a `context`. (Especially the service acts as a name prefix for the exposed entities.)
 The exposed entities are typically projections on entities from underlying data models, defined via standard view definitions.
 
 ```js
