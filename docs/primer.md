@@ -7,7 +7,7 @@ title: "Primer"
 
 ## Purpose and Target Group
 
-This document shall mainly serve as a reference for development teams who want to produce interoperable data definitions in a development environment w/o native CDS support. (CAP and RAP developers create data models in CDS according to their local development guidelines, and the framework will take care of the interoperability. Datasphere content developers use the modeling tools.)
+This document shall mainly serve as a reference for development teams who want to produce interoperable data definitions in a development environment without native CDS support. (CAP and RAP developers create data models in CDS according to their local development guidelines, and the framework will take care of the interoperability. Datasphere content developers use the modeling tools.)
 
 This document shall also serve as a basic reference for consumers of interoperable data definitions who need to parse, validate and interpret externally provided data documents.
 
@@ -27,7 +27,7 @@ Depending on the intended usage we distinguish three CSN flavors:
 - **Effective** for the data exchange perspective
 - **Persistency** for the persistency flavor
 
-The **Parsed** flavor could e.g. represent a CAP CDS data model 1:1, the **Persistency** flavor could e.g. express HANA SQL tables and views.
+For example, the **Parsed** flavor could represent a CAP CDS data model 1:1, while the **Persistency** flavor could express HANA SQL tables and views.
 
 This document describes the **Effective** flavor, characterized as being optimized for data exchange purposes. All content that can be standardized (currency keys, language codes, country codes, …) must be presented in standardized form, hence original data definitions must be adapted accordingly if necessary. Technology-specific aspects of the data model shall be left out as far as possible.
 This standardization includes the basic data types, and annotation (e.g. labels, …).
@@ -38,7 +38,7 @@ In order to create a valid Effective CSN document it is only necessary to apply 
 
 > **Note**: According to the purpose the document will evolve. While it is not intended to change any already published content in an incompatible way, new content will be added over time. This implies that early versions of the document will not cover the complete scope of Effective CSN.
 
-> **Note**: The document quotes frequently from the [CAP CSN documentation](https://cap.cloud.sap/docs/cds/csn) w/o explicit citations. This is done intentionally to increase the consistency between these two sources of information. In case of differences consider that the purpose of this document is not to explain how CSN is derived from CDL, but how Effective CSN is constructed from scratch.
+> **Note**: The document quotes frequently from the [CAP CSN documentation](https://cap.cloud.sap/docs/cds/csn) without explicit citations. This is done intentionally to increase the consistency between these two sources of information. In case of differences, consider that the purpose of this document is not to explain how CSN is derived from CDL, but how Effective CSN is constructed from scratch.
 
 ## Structure
 
@@ -68,7 +68,7 @@ There are three mandatory root level properties that need to be added to get a m
 
 - `csnInteropEffective` states that this JSON document is a CSN Interop document and the value states the version of the spec that was used.
 - `$version` is a mandatory property that defines the version of the general CSN syntax version.
-- `definitions` at least one element of a definition modelling artefact
+- `definitions` must contain at least one modeling artifact (entity, type, service, or context)
 - See [Root Interface documentation](./spec-v1/csn-interop-effective#csn-interop-effective-document) for a complete overview.
 
 Optionally, metadata about the document as a whole can be added in [meta](./spec-v1/csn-interop-effective.md#meta).
@@ -184,7 +184,7 @@ Each entry in the [elements object](./spec-v1/csn-interop-effective#elemententry
 
 #### Type-specific Properties
 
-If the built-in [CDS Types](./spec-v1/csn-interop-effective#cds-type) have arguments of type integer (`length`, `precision`, `scale`). These arguments are expressed via additional properties with the (fix) name of the argument. Especially a String has a length, and a Decimal has a precision and a scale. This yields the following specialized patterns:
+Some built-in [CDS Types](./spec-v1/csn-interop-effective#cds-type) accept arguments of type integer (`length`, `precision`, `scale`). These arguments are expressed via additional properties with the fixed name of the argument. For example, a String has a length, and a Decimal has a precision and a scale. This yields the following specialized patterns:
 
 ```js
 { //..
@@ -614,15 +614,15 @@ Sometimes contexts have specific semantics which shall be expressed (e.g. by a l
     "<context name level 1>": {
       "kind": "context",
       "@<annotation name>": <annotation value>
-    };
+    },
     "<context name level 1>.<context name level 2>": {
       "kind": "context",
       "@<annotation name>": <annotation value>
-    };
+    },
     "<context name level 1>.<context name level 2>.<local entity name>": {
       "kind": "entity",
       "elements": { … }
-    };
+    }
   }
 }
 ```
@@ -800,7 +800,7 @@ A CSN document may optionally contain a top-level i18n property, which can conta
 ```js
 {
   "i18n": {
-    "<language key": {
+    "<language key>": {
       "<text key>": "<text>"
     }
   }
@@ -831,7 +831,7 @@ In the context of Effective CSN it is especially relevant to expose language-dep
       "ConnectionID": "Flugnummer"
     }
   }
-} 
+}
 ```
 
 ## Examples
