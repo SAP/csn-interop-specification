@@ -11,7 +11,7 @@ title: "Overview"
 Core Schema Notation Interoperability (short: CSN Interop) is a modeling format to describe entity and service models within the SAP and Business Technology Platform (BTP) ecosystem.
 CSN Interop files are serialized as JSON and provide comprehensive metadata about entities and their structure, relationships, and other aspects of the model.
 
-A CSN Interop file can look like this (extracted from [./examples/airline.json](./spec-v1/examples/airline.md)):
+A CSN Interop file can look like this (extract from [./examples/airline.json](./spec-v1/examples/airline.md)):
 
 ```js
 {
@@ -43,16 +43,49 @@ A CSN Interop file can look like this (extracted from [./examples/airline.json](
 } } } } }
 ```
 
-To get a first overview, read the [informal Primer](./primer.md).
-The actual specification is described mostly in the [formal interface documentation](./spec-v1/csn-interop-effective.md), also described in [JSON Schema](/spec-v1/csn-interop-effective.schema.json).
+## Quick Start
+
+**What**: CSN Interop is a JSON format for describing data models (entities, types, services) with rich metadata and annotations.
+
+**When to use**:
+
+- Exchanging metadata between SAP technology stacks (CAP, ABAP, Datasphere, etc.)
+- Describing APIs and events with standardized, machine-readable metadata
+- Integrating data models across different platforms
+
+**Key characteristics**:
+
+- 📄 **JSON-based** – Easy to parse and generate in any programming language
+- 🔗 **Interoperable** – Standardized subset of CSN that works across tech stacks
+- ✨ **Effective** – Denormalized format optimized for consumption (no post-processing needed)
+- 📝 **Annotated** – Rich semantic annotations for labels, data privacy, analytics, and more
+
+**Next steps**:
+
+1. Read the [Primer](./primer.md) for an informal introduction
+2. Explore [examples](./spec-v1/examples/index.mdx) to see CSN Interop in action
+3. Review the [formal specification](./spec-v1/csn-interop-effective.md) and [JSON Schema](/spec-v1/csn-interop-effective.schema.json) for complete details
 
 ## What is CSN Interop Effective?
 
 ### CSN
 
-Core Schema Notation (CSN, pronounced as "Season") is a JSON based serialization format for Core Data Services (CDS) models that can be used to describe domain, data and service models (and more) on a _conceptual_ level, with rich semantics and annotations.
+Core Schema Notation (CSN, pronounced as "Season") is a JSON-based serialization format for Core Data Services (CDS) models that can be used to describe domain, data and service models (and more) on a _conceptual_ level, with rich semantics and annotations.
 
-The [Cloud Application Programming Model (CAP)](https://cap.cloud.sap/docs/cds/) is one platform to create CDS models and it is the first to productize CSN and provide a good [documentation](https://cap.cloud.sap/docs/cds/csn) on CSN.
+The [Cloud Application Programming Model (CAP)](https://cap.cloud.sap/docs/cds/) can be used to create CDS models. The CAP documentation provides a comprehensive reference for [CSN](https://cap.cloud.sap/docs/cds/csn) and [CDL (CDS Definition Language)](https://cap.cloud.sap/docs/cds/cdl). Please note that CAP CSN is not identical to CSN Interop, as the latter is a well-defined subset of the first, with a focus on interoperability.
+
+#### Relationship to CAP CSN
+
+CSN Interop is closely related to CAP CSN, but with important differences:
+
+| Aspect              | CAP CSN                                     | CSN Interop                                                                                   |
+| ------------------- | ------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| **Scope**           | Full CSN syntax with all features           | Interoperable subset focused on data exchange                                                 |
+| **Flavor**          | Supports parsed, effective, and persistence | Currently only the _effective_ (denormalized) flavor                                          |
+| **Annotations**     | Technology-specific annotations allowed     | Standardized [annotation vocabularies](./spec-v1/extensions/index.mdx) for cross-platform use |
+| **Target audience** | CAP developers                              | Cross-technology integration (CAP, ABAP, Datasphere, etc.)                                    |
+
+If you are coming from CAP: CSN Interop documents are valid CSN, but not all CSN documents are valid CSN Interop. Think of CSN Interop as a **well-specified, portable subset** designed for metadata exchange between different SAP technologies.
 
 ### Interoperability
 

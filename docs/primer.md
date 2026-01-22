@@ -40,6 +40,8 @@ In order to create a valid Effective CSN document it is only necessary to apply 
 
 > **Note**: The document quotes frequently from the [CAP CSN documentation](https://cap.cloud.sap/docs/cds/csn) without explicit citations. This is done intentionally to increase the consistency between these two sources of information. In case of differences, consider that the purpose of this document is not to explain how CSN is derived from CDL, but how Effective CSN is constructed from scratch.
 
+For a quick overview of CSN Interop and when to use it, see the [Overview](./).
+
 ## Structure
 
 A CSN document starts with the [root-level structure](#root-level-structure) of some header properties (describing which version of CSN Interop is used) and the meta section for metadata that applies to the document as a whole.
@@ -86,6 +88,8 @@ It is also recommended to add `$schema` for JSON Schema based validation / code 
   // ...
 }
 ```
+
+For a complete reference of root-level properties, see the [formal specification](./spec-v1/csn-interop-effective.md#csn-interop-effective-document).
 
 ## Definitions
 
@@ -162,6 +166,8 @@ The fully qualified name of the entity is defined as the key in the definition J
   }
 }
 ```
+
+See also: [Entity Definition Schema](./spec-v1/csn-interop-effective.md#entity-definition)
 
 ### Elements
 
@@ -306,6 +312,8 @@ The CSN Interop spec also defines a set of [aligned, interoperable annotations](
 ### Standard Annotations
 
 Formally any annotation following the syntax pattern prefixed with **@** is allowed. However, annotations can only be interpreted safely by consumers if they follow a common specification. For SAP-internal interoperability, a standard process is in place on how to contribute standard annotations. It is especially applied by S/4HANA and also by Datasphere. Producers are encouraged to reuse existing standard [annotations](./spec-v1/extensions) and publish their specialized semantics also in this way.
+
+For the complete list of interoperable annotations, see [Annotation Vocabularies](./spec-v1/extensions/index.mdx).
 
 ### Literals for Enum and ElementRef values
 
@@ -588,6 +596,8 @@ The definition pattern in CSN is very similar to foreign key associations:
 
 We recommend to add text associations wherever this relation applies.
 
+For more examples of associations, see the [airline example](./spec-v1/examples/airline.md).
+
 ## Context Definitions
 
 All definitions names must be unique within the CSN document. However, sometimes the data models to be defined do not share the same namespace on the provider side. A typical example in the context of deployment is that a single CSN document may contain table definitions for several schemas. In this case the table names are unique within the schema. Another example is that a CSN document spans across several, separate application areas. In this case the names may only be unique per application area.
@@ -727,6 +737,8 @@ Note: This version of the doc does not provide a reference for inline structured
 #### Flattening
 
 If the structured type does not serve any particular purpose at deployment or for consumers, structured types can also be flattened in a way that the nested elements section after inlining are replaced by concatenated element names (e.g. separated by `_`; example: "Price_Currency", "Price_Amount").
+
+For type mappings to other systems (ABAP, Spark, etc.), see [Mappings](./mappings/index.mdx).
 
 <!--
 ## View Definitions
