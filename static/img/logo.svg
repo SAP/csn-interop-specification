@@ -1,16 +1,16 @@
 <svg width="600" height="120" viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background -->
-  <rect width="600" height="120" fill="#0f2942"/>
+  <!-- Background: Night Owl Background #011627 -->
+  <rect width="600" height="120" fill="#011627"/>
 
-  <!-- Centered text with tspans for natural spacing
-       Changes:
-       - font-size increased from 60 to 72 to fill more space
-       - font-weight changed from 500 to 400 (normal) to look lighter
-       - ViewBox width increased to 600 to accommodate larger text
+  <!-- Centered text
+       Font Family: Roboto Mono, Fira Code, monospace
+       Font Weight: 400 (Normal)
+       Font Size: 66px (Balanced between previous 60px and 72px)
+       Colors: Night Owl Palette
   -->
   <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
         font-family="'Roboto Mono', 'Fira Code', 'Courier New', monospace"
-        font-size="72" font-weight="400">
-    <tspan fill="#c77dff">{</tspan><tspan fill="#7fb3d5">CSN</tspan><tspan fill="#90ee90">:</tspan><tspan fill="#ffffff">interop</tspan><tspan fill="#c77dff">}</tspan>
+        font-size="66" font-weight="400">
+    <tspan fill="#c792ea">{</tspan><tspan fill="#82aaff">CSN</tspan><tspan fill="#addb67">:</tspan><tspan fill="#d6deeb">interop</tspan><tspan fill="#c792ea">}</tspan>
   </text>
 </svg>
