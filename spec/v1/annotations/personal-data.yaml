@@ -5,7 +5,7 @@ description: This is the interface description of @PersonalData.
 type: object
 definitions:
   "@PersonalData.entitySemantics":
-    type: string
+    type: object
     description: |-
       Primary meaning of the entities in the annotated entity set. Entities annotated with @PersonalData.entitySemantics are synonymous to @PersonalData.isPotentiallyPersonal.
     properties:
