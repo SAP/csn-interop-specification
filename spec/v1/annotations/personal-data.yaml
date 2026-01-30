@@ -46,7 +46,7 @@ definitions:
       - Entity
 
   "@PersonalData.fieldSemantics":
-    type: string
+    type: object
     description: |-
       Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
     properties:
