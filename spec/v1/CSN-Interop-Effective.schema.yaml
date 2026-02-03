@@ -1080,7 +1080,7 @@ definitions:
 
           The `on` condition is constructed by triples of:
           - Reference to the target element (ID) as array with 2 items
-          - Equals Operator `=` or Smaller Equals Operator `<=` or Bigger Equals Operator `>=`
+          - Operator: Equals `=`, Smaller Equals`<=` or Bigger Equals `>=`
           - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
 
           The first and third entry MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
