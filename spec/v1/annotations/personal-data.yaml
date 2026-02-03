@@ -20,7 +20,7 @@ definitions:
           - const: "DATA_SUBJECT_DETAILS"
             description: |-
               Describes entities that contain details for a data subject, for example an address.
-          - const: "OTHER "
+          - const: "OTHER"
             description: |-
               Entities that contain personal data or references to data subjects but do not represent data subjects or details itself. For example: customer quote, customer order, or purchase order.
     additionalProperties: false
