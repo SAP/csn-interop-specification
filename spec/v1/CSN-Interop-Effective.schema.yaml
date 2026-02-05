@@ -803,13 +803,18 @@ definitions:
         const: cds.LargeString
         description: The modeling artefact is a `cds.LargeString` type.
         tsType: LargeStringCdsType
-      # key: *elementKey # Now allowed for large strings
+      # key: *elementKey # Not allowed for large strings
       notNull: *elementNotNull
       doc: *doc
       default:
         $ref: "#/definitions/DefaultValueString"
       enum: *elementEnum
-      length: *length
+      length:
+        type: number
+        minimum: 1
+        description: |-
+          Describes the maximum number of characters of the value.
+          If not provided, unlimited length is assumed.
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
       - type
@@ -1132,7 +1137,12 @@ definitions:
         tsType: LargeBinaryCdsType
       notNull: *elementNotNull
       doc: *doc
-      length: *length
+      length:
+        type: number
+        minimum: 1
+        description: |-
+          Describes the maximum number of bytes of the value.
+          If not provided, unlimited length is assumed.
       default:
         $ref: "#/definitions/DefaultValueString"
       # enum: *elementEnum
