@@ -307,6 +307,7 @@ definitions:
     properties:
       kind:
         type: string
+        x-hide: true
         enum:
           - "context"
           - "entity"
@@ -354,7 +355,6 @@ definitions:
             - kind
         then:
           $ref: "#/definitions/TypeDefinition"
-    x-hide-properties: true
 
   EntityDefinition:
     title: Entity Definition
@@ -398,57 +398,57 @@ definitions:
       #-------------------------------------------------------------
       abstract:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           Proper syntax element in ABAP CDS producing Abstract CDS Entities
       customEntity:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           Proper syntax element in ABAP CDS producing Custom CDS Entities
       tableFunction:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           Proper syntax element in ABAP CDS producing CDS Table Functions.
       externalEntity:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           Proper syntax element in ABAP CDS producing CDS  External Entities
       providerContract:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           ABAP CDS Projection have the additional information of a provider contract
       rootEntity:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           ABAP CDS Root View Entities define a RAP Business Object.
       transient:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           Special kind of analytical ABAP CDS Projection view.
       literal:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           In the selection element list of a CDS view.
       toCompositionChild:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           When redirecting associations in ABAP CDS Projections with the additional keywords "to composition child", this indicates a Parent-Child-Composition an requires the redirection target to have a matching "to parent" association redefinition.
       toParent:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           When redirecting associations in ABAP CDS Projections with the additional keywords "to composition child", this indicates a Parent-Child-Composition an requires the redirection target to have a matching "to parent" association redefinition.
       hana_on_asString:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           Contains the SQL on condition as string
       #-----------------------
@@ -514,6 +514,7 @@ definitions:
     properties:
       type:
         type: string
+        x-hide: true
     allOf:
       - if:
           properties:
@@ -535,7 +536,6 @@ definitions:
           $ref: "#/definitions/CustomType"
     required:
       - type
-    x-hide-properties: true
 
   CdsType:
     title: Cds Type
@@ -547,6 +547,7 @@ definitions:
         type: string
         description: |-
           The CDS type (`cds.*`), as defined by the CSN specification.
+        x-hide: true
         enum:
           # Primitive standard types
           - "cds.Boolean"
@@ -715,7 +716,6 @@ definitions:
           $ref: "#/definitions/CompositionType"
     required:
       - type
-    x-hide-properties: true
 
   BooleanType:
     title: Boolean Type
@@ -1649,6 +1649,7 @@ definitions:
         description: |-
           The kind property is used when defining derived types.
           In this case `Kind = "type"` MUST be provided.
+        x-hide: true
         tsType: TypeKind
       type:
         type: string
@@ -1656,6 +1657,7 @@ definitions:
           The CDS data type of the derived type.
 
           Custom types in CSN Interop Effective MUST always point to a `cds.*` type.
+        x-hide: true
         enum:
           # Primitive standard types
           - "cds.Boolean"
@@ -1841,7 +1843,6 @@ definitions:
     required:
       - kind
       - type
-    x-hide-properties: true
 
   BooleanTypeDefinition:
     title: Boolean Type Definition
