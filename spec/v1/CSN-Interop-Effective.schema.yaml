@@ -757,7 +757,9 @@ definitions:
   StringType:
     title: String Type
     type: object
-    description: An element of type `cds.String`.
+    description: |-
+      An element of type `cds.String`, which is length limited.
+      For unlimited / large strings, use `cds.LargeString` instead.
     properties: &StringTypeProperties
       type:
         type: string
@@ -774,9 +776,12 @@ definitions:
       length: &length
         type: number
         minimum: 1
+        maximum: 5000
+        default: 5000
         description: |-
-          Describes the maximum number of characters of the value.
-          If not provided, **unlimited** length is assumed.
+          Describes the maximum number of characters of the value, up to 5000.
+          If not provided, 5000 length is assumed.
+          For longer length strings, use `cds.LargeString` instead.
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
       - type
