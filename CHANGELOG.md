@@ -13,9 +13,10 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 ### Changed
 
 - BREAKING: Changed string enum notation to object notation `{ "#": "value" }` for consistency across all vocabularies
-  - `@PersonalData.entitySemantics` now uses object notation (e.g., `{ "#": "DataSubject" }`)
-  - `@PersonalData.fieldSemantics` now uses object notation (e.g., `{ "#": "DataSubjectID" }`)
-  - **Note:** We are not aware of consumers already using these features.
+  - `@EntityRelationship.temporalIntervalType` now uses object notation (e.g., `{ "#": "CLOSED_CLOSED" }`)
+  - `@EntityRelationship.temporalType` now uses object notation (e.g., `{ "#": "DATE" }`)
+  - `@EntityRelationship.category` now uses object notation (e.g., `{ "#": "TEMPORAL_DATE" }`)
+  - **Note:** We are not aware of consumers already using these features. These annotations may also rely on another missing feature: supporting range comparisons in join conditions.
 
 ## [1.1.0]
 

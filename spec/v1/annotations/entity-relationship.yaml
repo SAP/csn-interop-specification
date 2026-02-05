@@ -189,25 +189,41 @@ definitions:
         items:
           $ref: "#/definitions/@EntityRelationship.PropertyTypeID"
       temporalIntervalType:
-        type: string
+        type: object
         description: |-
           Interval which includes the boundaries.
-        oneOf:
-          - const: "CLOSED_CLOSED"
-          - const: "OPEN_OPEN"
-          - const: "OPEN_CLOSED"
-          - const: "CLOSED_OPEN"
+        properties:
+          "#":
+            type: string
+            description: |-
+              Provide the value in `{ "#": "<value>" }` enum notation.
+            oneOf:
+              - const: "CLOSED_CLOSED"
+              - const: "OPEN_OPEN"
+              - const: "OPEN_CLOSED"
+              - const: "CLOSED_OPEN"
+        additionalProperties: false
+        required:
+          - "#"
         examples:
-          - "CLOSED_CLOSED"
+          - { "#": "CLOSED_CLOSED" }
       temporalType:
-        type: string
+        type: object
         description: |-
           Temporal type.
-        oneOf:
-          - const: "DATE"
-          - const: "DATETIME"
+        properties:
+          "#":
+            type: string
+            description: |-
+              Provide the value in `{ "#": "<value>" }` enum notation.
+            oneOf:
+              - const: "DATE"
+              - const: "DATETIME"
+        additionalProperties: false
+        required:
+          - "#"
         examples:
-          - "DATE"
+          - { "#": "DATE" }
       temporalIntervalStartProperty:
         $ref: "#/definitions/@EntityRelationship.LocalPropertyName"
         description: |-
@@ -242,13 +258,21 @@ definitions:
         items:
           $ref: "#/definitions/@EntityRelationship.ReferenceTargetPropertyType"
       category:
-        type: string
+        type: object
         description: |-
           Category of the temporal reference.
-        oneOf:
-          - const: "TEMPORAL_DATE"
+        properties:
+          "#":
+            type: string
+            description: |-
+              Provide the value in `{ "#": "<value>" }` enum notation.
+            oneOf:
+              - const: "TEMPORAL_DATE"
+        additionalProperties: false
+        required:
+          - "#"
         examples:
-          - "TEMPORAL_DATE"
+          - { "#": "TEMPORAL_DATE" }
       selectionDateProperty:
         $ref: "#/definitions/@EntityRelationship.LocalPropertyName"
         description: |-
