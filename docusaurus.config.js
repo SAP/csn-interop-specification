@@ -11,7 +11,6 @@ const config = {
   onBrokenLinks: "throw",
   onBrokenAnchors: "throw",
   onDuplicateRoutes: "throw",
-  onBrokenMarkdownLinks: "throw",
   staticDirectories: ["static"],
   favicon: "img/favicon.ico",
   organizationName: "SAP", // Usually your GitHub org/user name.
@@ -22,6 +21,10 @@ const config = {
   },
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: "throw",
+      onBrokenMarkdownImages: "throw",
+    },
   },
   presets: [
     [

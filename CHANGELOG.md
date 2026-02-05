@@ -10,6 +10,25 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+## [1.1.0]
+
+### Added
+
+- Added `cds.Binary` and `cds.LargeBinary` types
+- Added new `@Semantics` annotations:
+  - `@Semantics.mimeType`
+  - `@Semantics.largeObject.acceptableMimeTypes`
+  - `@Semantics.largeObject.mimeType`
+  - `@Semantics.largeObject.fileName`
+
+## [1.0.7]
+
+### Added
+
+- Added `meta.document.name` to give the overall document a machine-readable name
+- Added `meta.document.namespace` to give the overall document a globally unique namespace
+- Allow `cds.Decimal` to be used as a key, indicated via `key` boolean
+
 ## [1.0.6]
 
 ### Added
