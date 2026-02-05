@@ -91,6 +91,24 @@ definitions:
   # // Referenced JSON Schema Objects       //
   # //////////////////////////////////////////
 
+  "@EntityRelationship.ReferenceTarget":
+    title: "Reference Target"
+    type: object
+    description: |-
+      Defines a reference to another Entity Type based on a single ID.
+    properties:
+      name:
+        type: string
+        description: |-
+          Optional name to describe the semantics of the reference.
+      referencedEntityType:
+        $ref: "#/definitions/@EntityRelationship.EntityTypeID"
+      referencedPropertyType:
+        $ref: "#/definitions/@EntityRelationship.PropertyTypeID"
+    required:
+      - referencedEntityType
+      - referencedPropertyType
+
   "@EntityRelationship.EntityId":
     title: Entity ID
     type: object
@@ -343,24 +361,6 @@ definitions:
       - "#"
     examples:
       - { "#": "TEMPORAL_DATE" }
-
-  "@EntityRelationship.ReferenceTarget":
-    title: "Reference Target"
-    type: object
-    description: |-
-      Defines a reference to another Entity Type based on a single ID.
-    properties:
-      name:
-        type: string
-        description: |-
-          Optional name to describe the semantics of the reference.
-      referencedEntityType:
-        $ref: "#/definitions/@EntityRelationship.EntityTypeID"
-      referencedPropertyType:
-        $ref: "#/definitions/@EntityRelationship.PropertyTypeID"
-    required:
-      - referencedEntityType
-      - referencedPropertyType
 
 # //////////////////////////////////////////
 # // Examples                             //
