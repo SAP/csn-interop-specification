@@ -1054,7 +1054,7 @@
     "StringType": {
       "title": "String Type",
       "type": "object",
-      "description": "An element of type `cds.String`.",
+      "description": "An element of type `cds.String`, which is length limited.\nFor unlimited / large strings, use `cds.LargeString` instead.",
       "properties": {
         "type": {
           "type": "string",
@@ -1083,7 +1083,9 @@
         "length": {
           "type": "number",
           "minimum": 1,
-          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed."
+          "maximum": 5000,
+          "default": 5000,
+          "description": "Describes the maximum number of characters of the value, up to 5000.\nIf not provided, 5000 length is assumed.\nFor longer length strings, use `cds.LargeString` instead."
         },
         "@Aggregation.default": {
           "$ref": "#/definitions/@Aggregation.default"
@@ -1287,7 +1289,7 @@
         "length": {
           "type": "number",
           "minimum": 1,
-          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed."
+          "description": "Describes the maximum number of characters of the value.\nIf not provided, unlimited length is assumed."
         },
         "@Aggregation.default": {
           "$ref": "#/definitions/@Aggregation.default"
@@ -3293,7 +3295,9 @@
         "length": {
           "type": "number",
           "minimum": 1,
-          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed."
+          "maximum": 5000,
+          "default": 5000,
+          "description": "Describes the maximum number of characters of the value, up to 5000.\nIf not provided, 5000 length is assumed.\nFor longer length strings, use `cds.LargeString` instead."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -3488,7 +3492,7 @@
         "length": {
           "type": "number",
           "minimum": 1,
-          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed."
+          "description": "Describes the maximum number of bytes of the value.\nIf not provided, unlimited length is assumed."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -4306,7 +4310,9 @@
         "length": {
           "type": "number",
           "minimum": 1,
-          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed."
+          "maximum": 5000,
+          "default": 5000,
+          "description": "Describes the maximum number of characters of the value, up to 5000.\nIf not provided, 5000 length is assumed.\nFor longer length strings, use `cds.LargeString` instead."
         },
         "scale": {
           "oneOf": [
@@ -5495,7 +5501,9 @@
         "length": {
           "type": "number",
           "minimum": 1,
-          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed."
+          "maximum": 5000,
+          "default": 5000,
+          "description": "Describes the maximum number of characters of the value, up to 5000.\nIf not provided, 5000 length is assumed.\nFor longer length strings, use `cds.LargeString` instead."
         },
         "@Aggregation.default": {
           "$ref": "#/definitions/@Aggregation.default"
@@ -5705,7 +5713,7 @@
         "length": {
           "type": "number",
           "minimum": 1,
-          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed."
+          "description": "Describes the maximum number of characters of the value.\nIf not provided, unlimited length is assumed."
         },
         "@Aggregation.default": {
           "$ref": "#/definitions/@Aggregation.default"
@@ -7687,7 +7695,9 @@
         "length": {
           "type": "number",
           "minimum": 1,
-          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed."
+          "maximum": 5000,
+          "default": 5000,
+          "description": "Describes the maximum number of characters of the value, up to 5000.\nIf not provided, 5000 length is assumed.\nFor longer length strings, use `cds.LargeString` instead."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
@@ -7882,7 +7892,7 @@
         "length": {
           "type": "number",
           "minimum": 1,
-          "description": "Describes the maximum number of characters of the value.\nIf not provided, **unlimited** length is assumed."
+          "description": "Describes the maximum number of bytes of the value.\nIf not provided, unlimited length is assumed."
         },
         "default": {
           "$ref": "#/definitions/DefaultValueString"
