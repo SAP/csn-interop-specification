@@ -314,11 +314,11 @@ definitions:
         type: string
         description: |-
           Provide the value in `{ "#": "<value>" }` enum notation.
-        oneOf:
-          - const: "CLOSED_CLOSED"
-          - const: "OPEN_OPEN"
-          - const: "OPEN_CLOSED"
-          - const: "CLOSED_OPEN"
+        enum:
+          - "CLOSED_CLOSED"
+          - "OPEN_OPEN"
+          - "OPEN_CLOSED"
+          - "CLOSED_OPEN"
     additionalProperties: false
     required:
       - "#"
@@ -335,9 +335,9 @@ definitions:
         type: string
         description: |-
           Provide the value in `{ "#": "<value>" }` enum notation.
-        oneOf:
-          - const: "DATE"
-          - const: "DATETIME"
+        enum:
+          - "DATE"
+          - "DATETIME"
     additionalProperties: false
     required:
       - "#"
@@ -354,8 +354,8 @@ definitions:
         type: string
         description: |-
           Provide the value in `{ "#": "<value>" }` enum notation.
-        oneOf:
-          - const: "TEMPORAL_DATE"
+        enum:
+          - "TEMPORAL_DATE"
     additionalProperties: false
     required:
       - "#"
