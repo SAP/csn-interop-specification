@@ -3002,7 +3002,7 @@ export interface PersonalData1 {
   /**
    * Provide the value in `{ "#": "<value>" }` enum notation.
    */
-  "#": "DATA_SUBJECT" | "DATA_SUBJECT_DETAILS" | "OTHER ";
+  "#": "DATA_SUBJECT" | "DATA_SUBJECT_DETAILS" | "OTHER";
 }
 /**
  * A CDS Service indicates that [Entities](#entity-definition) are exposed to outside consumers via an API.

@@ -10,6 +10,15 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+### Changed
+
+- BREAKING: Changed string enum notation to object notation `{ "#": "value" }` for consistency across all vocabularies
+  - `@PersonalData.entitySemantics` now uses object notation (e.g., `{ "#": "DATA_SUBJECT" }`)
+  - `@PersonalData.entitySemantics` now uses object notation (e.g., `{ "#": "DATA_SUBJECT" }`)
+  - `@personaldata.fieldSemanticsnow` uses object notation (e.g., `{ "#": "PURPOSE_ID" }`)
+
+- BREAKING: enum values in the object notation change from `CapitalCamelCase` to `UPPER_CASE_SNAKE_CASE`.
+
 ## [1.1.0]
 
 ### Added
