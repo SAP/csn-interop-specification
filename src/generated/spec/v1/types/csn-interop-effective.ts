@@ -287,7 +287,7 @@ export type SmallerEqualsOperator = "<=";
 /**
  * The operator `>=`
  */
-export type BiggerEqualsOperator = ">=";
+export type GreaterEqualsOperator = ">=";
 /**
  * The operator `and`
  */
@@ -2429,9 +2429,9 @@ export interface AssociationType {
   /**
    * The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.
    *
-   * The `on` condition is constructed by triples of:
+   * The `on` condition is constructed by "triples" of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Equals Operator `=` or Smaller Equals Operator `<=` or Bigger Equals Operator `>=`
+   * - Operator: Equals `=`, Smaller Equals`<=` or Greater Equals `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
    * The first and third entry MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
@@ -2445,14 +2445,14 @@ export interface AssociationType {
    * @minItems 3
    */
   on: [
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
     ...(
       | StructuredElementReference
       | EqualsOperator
       | SmallerEqualsOperator
-      | BiggerEqualsOperator
+      | GreaterEqualsOperator
       | ANDOperator
       | OnValue
     )[]
@@ -2604,9 +2604,9 @@ export interface CompositionType {
   /**
    * The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.
    *
-   * The `on` condition is constructed by triples of:
+   * The `on` condition is constructed by "triples" of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Equals Operator `=` or Smaller Equals Operator `<=` or Bigger Equals Operator `>=`
+   * - Operator: Equals `=`, Smaller Equals`<=` or Greater Equals `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
    * The first and third entry MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
@@ -2620,14 +2620,14 @@ export interface CompositionType {
    * @minItems 3
    */
   on: [
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
     ...(
       | StructuredElementReference
       | EqualsOperator
       | SmallerEqualsOperator
-      | BiggerEqualsOperator
+      | GreaterEqualsOperator
       | ANDOperator
       | OnValue
     )[]
@@ -4561,9 +4561,9 @@ export interface AssociationTypeDefinition {
   /**
    * The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.
    *
-   * The `on` condition is constructed by triples of:
+   * The `on` condition is constructed by "triples" of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Equals Operator `=` or Smaller Equals Operator `<=` or Bigger Equals Operator `>=`
+   * - Operator: Equals `=`, Smaller Equals`<=` or Greater Equals `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
    * The first and third entry MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
@@ -4577,14 +4577,14 @@ export interface AssociationTypeDefinition {
    * @minItems 3
    */
   on: [
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
     ...(
       | StructuredElementReference
       | EqualsOperator
       | SmallerEqualsOperator
-      | BiggerEqualsOperator
+      | GreaterEqualsOperator
       | ANDOperator
       | OnValue
     )[]
@@ -4687,9 +4687,9 @@ export interface CompositionTypeDefinition {
   /**
    * The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.
    *
-   * The `on` condition is constructed by triples of:
+   * The `on` condition is constructed by "triples" of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Equals Operator `=` or Smaller Equals Operator `<=` or Bigger Equals Operator `>=`
+   * - Operator: Equals `=`, Smaller Equals`<=` or Greater Equals `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
    * The first and third entry MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
@@ -4703,14 +4703,14 @@ export interface CompositionTypeDefinition {
    * @minItems 3
    */
   on: [
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | BiggerEqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
+    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
     ...(
       | StructuredElementReference
       | EqualsOperator
       | SmallerEqualsOperator
-      | BiggerEqualsOperator
+      | GreaterEqualsOperator
       | ANDOperator
       | OnValue
     )[]

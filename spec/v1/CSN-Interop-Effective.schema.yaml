@@ -1179,9 +1179,9 @@ definitions:
         description: |-
           The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.
 
-          The `on` condition is constructed by triples of:
+          The `on` condition is constructed by "triples" of:
           - Reference to the target element (ID) as array with 2 items
-          - Operator: Equals `=`, Smaller Equals`<=` or Bigger Equals `>=`
+          - Operator: Equals `=`, Smaller Equals`<=` or Greater Equals `>=`
           - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
 
           The first and third entry MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
@@ -1197,7 +1197,7 @@ definitions:
             - $ref: "#/definitions/StructuredElementReference"
             - $ref: "#/definitions/EqualsOperator"
             - $ref: "#/definitions/SmallerEqualsOperator"
-            - $ref: "#/definitions/BiggerEqualsOperator"
+            - $ref: "#/definitions/GreaterEqualsOperator"
             - $ref: "#/definitions/AndOperator"
             - $ref: "#/definitions/OnValue"
         minItems: 3
@@ -1541,8 +1541,8 @@ definitions:
       The operator `<=`
     const: "<="
 
-  BiggerEqualsOperator:
-    title: Bigger Equals Operator
+  GreaterEqualsOperator:
+    title: Greater Equals Operator
     type: string
     description: |-
       The operator `>=`
