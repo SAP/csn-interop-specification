@@ -2429,16 +2429,21 @@ export interface AssociationType {
   /**
    * The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.
    *
-   * The `on` condition is constructed by "triples" of:
+   * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
    * - Operator: Equals `=`, Smaller Equals`<=` or Greater Equals `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * The first and third entry MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
+   * The first and third entry of the triple MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
-   * In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
+   * If the operator Equals `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+   *
+   * If the operator Smaller Equals `<=` or Greater Equals `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
+   * Smaller Equals `<=` or Greater Equals `>=` operators SHOULD be used only for `cds.Date` type operands.
+   *
+   * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
    * See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
    *
@@ -2604,16 +2609,21 @@ export interface CompositionType {
   /**
    * The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.
    *
-   * The `on` condition is constructed by "triples" of:
+   * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
    * - Operator: Equals `=`, Smaller Equals`<=` or Greater Equals `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * The first and third entry MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
+   * The first and third entry of the triple MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
-   * In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
+   * If the operator Equals `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+   *
+   * If the operator Smaller Equals `<=` or Greater Equals `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
+   * Smaller Equals `<=` or Greater Equals `>=` operators SHOULD be used only for `cds.Date` type operands.
+   *
+   * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
    * See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
    *
@@ -4561,16 +4571,21 @@ export interface AssociationTypeDefinition {
   /**
    * The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.
    *
-   * The `on` condition is constructed by "triples" of:
+   * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
    * - Operator: Equals `=`, Smaller Equals`<=` or Greater Equals `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * The first and third entry MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
+   * The first and third entry of the triple MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
-   * In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
+   * If the operator Equals `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+   *
+   * If the operator Smaller Equals `<=` or Greater Equals `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
+   * Smaller Equals `<=` or Greater Equals `>=` operators SHOULD be used only for `cds.Date` type operands.
+   *
+   * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
    * See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
    *
@@ -4687,16 +4702,21 @@ export interface CompositionTypeDefinition {
   /**
    * The property `on` holds a sequence of operators and operands to describe the join condition, similar to an SQL expression.
    *
-   * The `on` condition is constructed by "triples" of:
+   * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
    * - Operator: Equals `=`, Smaller Equals`<=` or Greater Equals `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * The first and third entry MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
+   * The first and third entry of the triple MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
-   * In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
+   * If the operator Equals `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+   *
+   * If the operator Smaller Equals `<=` or Greater Equals `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
+   * Smaller Equals `<=` or Greater Equals `>=` operators SHOULD be used only for `cds.Date` type operands.
+   *
+   * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
    * See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
    *
