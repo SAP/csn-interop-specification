@@ -10,6 +10,39 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+## [1.1.0]
+
+### Added
+
+- Added `cds.Binary` and `cds.LargeBinary` types
+- Added new `@Semantics` annotations:
+  - `@Semantics.mimeType`
+  - `@Semantics.largeObject.acceptableMimeTypes`
+  - `@Semantics.largeObject.mimeType`
+  - `@Semantics.largeObject.fileName`
+
+## [1.0.7]
+
+### Added
+
+- Added `meta.document.name` to give the overall document a machine-readable name
+- Added `meta.document.namespace` to give the overall document a globally unique namespace
+- Allow `cds.Decimal` to be used as a key, indicated via `key` boolean
+
+## [1.0.6]
+
+### Added
+
+- Added `@ObjectModel.custom` annotation
+
+## [1.0.5]
+
+### Fixed
+
+- typescript type `SpecJsonSchemaRoot` is missing in the packed NpmJS artefact
+
+## [1.0.4]
+
 ### Changed
 
 - BREAKING: TypeScript interface `CSNInteropRoot` renamed to `CSNInteropEffectiveDocument`
@@ -17,16 +50,25 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 ### Added
 
 - Added missing property `$id` to annotation extension schemas
-
-## [1.0.3]
+- Added clarification that `key: true` also implies `notNull: true`
+- Added clarification that `precision` and `scale` are RECOMMENDED to be added and MUST be added if own default assumptions diverge from the specified default.
+- Added explicit regexp pattern to `@EntityRelationship` Entity Type and Property Type IDs
+  - Added the ID constraints from ORD page more explicitly back to CSN Interop page and fixed links
+- Added explicit regexp pattern to `@ODM` Entity IDs
 
 ### Fixed
 
-- Fixed the "scope" of annotations that belong to type, that they also apply to type definitions
+- Fixed scope of `@ObjectModel.semanticKey` to be valid on Entity, not Type level.
+
+## [1.0.3]
 
 ### Added
 
 - Added `@ObjectModel.tenantWideUniqueName` annotation
+
+### Fixed
+
+- Fixed the "scope" of annotations that belong to type, that they also apply to type definitions
 
 ## [1.0.2]
 

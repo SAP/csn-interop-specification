@@ -42,7 +42,8 @@
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "files.insertFinalNewline": true
   },
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -59,5 +60,6 @@
       "fileMatch": ["/examples/**/*.json"],
       "url": "./src/spec-v1/csn-interop-effective.schema.json"
     }
-  ]
+  ],
+  "jest.runMode": "on-demand"
 }

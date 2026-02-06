@@ -47,6 +47,8 @@ export type CdsType =
   | DateTimeType
   | TimestampType
   | UUIDType
+  | BinaryType
+  | LargeBinaryType
   | AssociationType
   | CompositionType;
 /**
@@ -97,9 +99,13 @@ export type PropertyTypeID = string;
  */
 export type EntityRelationship = ReferenceTarget[];
 /**
- * The property contains element(s) which shall be used to display the key in UIs (instead of the technical key).
+ * Indicates whether the annotated element or entity is a custom element.
+ * If set to true, it is a custom element (field, entity, service, etc.).
+ * If undefined or set to false, it is not defined whether it is a custom element.
+ *
+ * If applied to an entity or service, everything that it contains is also considered custom.
  */
-export type ObjectModel = unknown[];
+export type ObjectModelCustom = boolean;
 /**
  * The property contains element(s) containing a text for the annotated (id)element
  */
@@ -248,6 +254,16 @@ export type SemanticsBusinessDateFrom = true;
  */
 export type SemanticsBusinessDateTo = true;
 /**
+ * The property value is a MIME Type / Media Type, following [RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838).
+ */
+export type SemanticsMimeType = true;
+/**
+ * The property value contains a document / file that uses one of the stated MIME Types / Media Types ([RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838)).
+ * This annotation can be used if the Media Type is already known at design time and can be described in the metadata model itself.
+ * If the Media Type is only known at runtime, the "@Semantics.largeObject.mimeType" annotation has to be used instead.
+ */
+export type SemanticsLargeObject = string[];
+/**
  * Total number of digits that are present after the decimal point in a number.
  * The scale can hold from zero up to the total numeric precision
  */
@@ -308,6 +324,10 @@ export type EntityRelationship5 = ReferenceWithConstantID[];
  */
 export type ObjectModelCompositionRoot = boolean;
 /**
+ * The entity contains element(s) which shall be used to display the key in UIs (instead of the technical key).
+ */
+export type ObjectModel = unknown[];
+/**
  * The property declares the supported usage type for this entity in the context of consuming data models.
  */
 export type ObjectModel2 = SupportedCapabilitiesEnumValue[];
@@ -357,6 +377,8 @@ export type TypeDefinition =
   | DateTimeTypeDefinition
   | TimestampTypeDefinition
   | UUIDTypeDefinition
+  | BinaryTypeDefinition
+  | LargeBinaryTypeDefinition
   | AssociationTypeDefinition
   | CompositionTypeDefinition;
 
@@ -435,6 +457,21 @@ export interface Meta {
  */
 export interface DocumentMetadata {
   /**
+   * Machine readable technical name / local ID of the CSN document.
+   * Together with `meta.document.namespace` and `meta.document.version` it uniquely identifies the CSN document at a given version.
+   *
+   * MUST NOT contain linebreaks.
+   * MUST be unique across all CSN documents in the same `meta.document.namespace`.
+   */
+  name?: string;
+  /**
+   * Globally unique namespace of the CSN document.
+   * Together with `meta.document.name` and `meta.document.version` it uniquely identifies the CSN document at a given version.
+   *
+   * MUST be a valid, registered [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1#namespaces) with at least two fragments.
+   */
+  namespace?: string;
+  /**
    * The version of the CSN document / the described model itself (not the specification).
    *
    * We RECOMMEND to use the [SemVer](https://semver.org/) standard.
@@ -496,7 +533,7 @@ export interface ContextDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -542,7 +579,7 @@ export interface EntityDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -677,6 +714,8 @@ export interface EntityDefinition {
   "@EntityRelationship.referencesWithConstantIds"?: EntityRelationship5;
   "@ObjectModel.compositionRoot"?: ObjectModelCompositionRoot;
   "@ObjectModel.representativeKey"?: ElementReference;
+  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.modelingPattern"?: ObjectModel1;
   "@ObjectModel.supportedCapabilities"?: ObjectModel2;
   "@ObjectModel.tenantWideUniqueName"?: ObjectModelTenantWideUniqueName;
@@ -736,10 +775,14 @@ export interface BooleanType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -747,7 +790,7 @@ export interface BooleanType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueBoolean;
@@ -759,7 +802,7 @@ export interface BooleanType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -933,7 +976,8 @@ export interface ReferenceTarget {
   [k: string]: unknown | undefined;
 }
 /**
- * An element of type `cds.String`.
+ * An element of type `cds.String`, which is length limited.
+ * For unlimited / large strings, use `cds.LargeString` instead.
  */
 export interface StringType {
   /**
@@ -943,10 +987,14 @@ export interface StringType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -954,14 +1002,15 @@ export interface StringType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
   enum?: EnumDictionary;
   /**
-   * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * Describes the maximum number of characters of the value, up to 5000.
+   * If not provided, 5000 length is assumed.
+   * For longer length strings, use `cds.LargeString` instead.
    */
   length?: number;
   "@Aggregation.default"?: Aggregation;
@@ -972,7 +1021,7 @@ export interface StringType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1013,6 +1062,7 @@ export interface StringType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.mimeType"?: SemanticsMimeType;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -1091,6 +1141,8 @@ export interface LargeStringType {
   type: LargeStringCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1098,14 +1150,14 @@ export interface LargeStringType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
   enum?: EnumDictionary;
   /**
    * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * If not provided, unlimited length is assumed.
    */
   length?: number;
   "@Aggregation.default"?: Aggregation;
@@ -1116,7 +1168,7 @@ export interface LargeStringType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1157,6 +1209,9 @@ export interface LargeStringType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObject;
+  "@Semantics.largeObject.mimeType"?: ElementReference;
+  "@Semantics.largeObject.fileName"?: ElementReference;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -1189,10 +1244,14 @@ export interface IntegerType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1200,7 +1259,7 @@ export interface IntegerType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -1213,7 +1272,7 @@ export interface IntegerType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1318,10 +1377,14 @@ export interface Integer64Type {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1329,7 +1392,7 @@ export interface Integer64Type {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -1342,7 +1405,7 @@ export interface Integer64Type {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1414,7 +1477,16 @@ export interface DecimalType {
    */
   type: DecimalCdsType;
   /**
+   * Indicates that this element is used as a primary key.
+   * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
+   */
+  key?: boolean;
+  /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1422,7 +1494,7 @@ export interface DecimalType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -1431,11 +1503,15 @@ export interface DecimalType {
    * Total number of digits in a number.
    * This includes both the digits before and after the decimal point.
    *
+   * SHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `34`.
+   *
    * The semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.
    */
   precision?: number;
   /**
    * Describes the number of digits to the right of the decimal point in a number.
+   *
+   * SHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `floating`.
    */
   scale?: DecimalScaleNumber | DecimalScaleType;
   "@Aggregation.default"?: Aggregation;
@@ -1446,7 +1522,7 @@ export interface DecimalType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1525,6 +1601,8 @@ export interface DoubleType {
   type: DoubleCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1532,7 +1610,7 @@ export interface DoubleType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -1545,7 +1623,7 @@ export interface DoubleType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1619,10 +1697,14 @@ export interface DateType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1630,7 +1712,7 @@ export interface DateType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1643,7 +1725,7 @@ export interface DateType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1716,10 +1798,14 @@ export interface TimeType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1727,7 +1813,7 @@ export interface TimeType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1740,7 +1826,7 @@ export interface TimeType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1813,10 +1899,14 @@ export interface DateTimeType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1824,7 +1914,7 @@ export interface DateTimeType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1837,7 +1927,7 @@ export interface DateTimeType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -1910,10 +2000,14 @@ export interface TimestampType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -1921,7 +2015,7 @@ export interface TimestampType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -1934,7 +2028,7 @@ export interface TimestampType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -2007,10 +2101,14 @@ export interface UUIDType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -2018,7 +2116,7 @@ export interface UUIDType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -2030,7 +2128,7 @@ export interface UUIDType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -2093,6 +2191,213 @@ export interface UUIDType {
   [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
+ * An element of type `cds.Binary`.
+ */
+export interface BinaryType {
+  /**
+   * The modeling artefact is a `cds.Binary` type.
+   */
+  type: BinaryCdsType;
+  /**
+   * Indicates that this element is used as a primary key.
+   * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
+   */
+  key?: boolean;
+  /**
+   * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
+   */
+  notNull?: boolean;
+  /**
+   * Human readable documentation, usually for developer documentation.
+   *
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
+   */
+  doc?: string;
+  /**
+   * Describes the maximum number of characters of the value, up to 5000.
+   * If not provided, 5000 length is assumed.
+   * For longer length strings, use `cds.LargeString` instead.
+   */
+  length?: number;
+  default?: DefaultValueString;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.custom"?: ObjectModelCustom;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  /**
+   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   */
+  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  /**
+   * Annotations or private properties MAY be added.
+   *
+   * **Annotations** MUST start with `@`.
+   *
+   * In CSN Interop Effective the annotations MUST follow the "flattened" form:
+   * Every record / object in an annotation will be flattened into a `.` (dot).
+   * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
+   *
+   * Correct annotations examples:
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
+   *
+   * Or
+   *
+   * **Private properties**, starting with `__`.
+   * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
+   */
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+}
+/**
+ * An element of type `cds.LargeBinary`.
+ */
+export interface LargeBinaryType {
+  /**
+   * The modeling artefact is a `cds.LargeBinary` type.
+   */
+  type: LargeBinaryCdsType;
+  /**
+   * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
+   */
+  notNull?: boolean;
+  /**
+   * Human readable documentation, usually for developer documentation.
+   *
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
+   */
+  doc?: string;
+  /**
+   * Describes the maximum number of bytes of the value.
+   * If not provided, unlimited length is assumed.
+   */
+  length?: number;
+  default?: DefaultValueString;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.custom"?: ObjectModelCustom;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  /**
+   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   */
+  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObject;
+  "@Semantics.largeObject.mimeType"?: ElementReference;
+  "@Semantics.largeObject.fileName"?: ElementReference;
+  /**
+   * Annotations or private properties MAY be added.
+   *
+   * **Annotations** MUST start with `@`.
+   *
+   * In CSN Interop Effective the annotations MUST follow the "flattened" form:
+   * Every record / object in an annotation will be flattened into a `.` (dot).
+   * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
+   *
+   * Correct annotations examples:
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
+   *
+   * Or
+   *
+   * **Private properties**, starting with `__`.
+   * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
+   */
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+}
+/**
  * An element of type `cds.Association`, to express a "reference" relation across Entities.
  * It works the same way as a [`cds.Composition`](#composition-type), with the difference that the latter assumes a composite relationship.
  *
@@ -2108,7 +2413,7 @@ export interface AssociationType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -2148,7 +2453,7 @@ export interface AssociationType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -2276,7 +2581,7 @@ export interface CompositionType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -2316,7 +2621,7 @@ export interface CompositionType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -2409,10 +2714,14 @@ export interface CustomType {
   /**
    * Indicates that this element is used as a primary key.
    * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
    */
   key?: boolean;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -2420,23 +2729,28 @@ export interface CustomType {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueCustomType;
   enum?: EnumDictionary;
   /**
-   * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * Describes the maximum number of characters of the value, up to 5000.
+   * If not provided, 5000 length is assumed.
+   * For longer length strings, use `cds.LargeString` instead.
    */
   length?: number;
   /**
    * Describes the number of digits to the right of the decimal point in a number.
+   *
+   * SHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `floating`.
    */
   scale?: DecimalScaleNumber | DecimalScaleType;
   /**
    * Total number of digits in a number.
    * This includes both the digits before and after the decimal point.
+   *
+   * SHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `34`.
    *
    * The semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.
    */
@@ -2449,7 +2763,7 @@ export interface CustomType {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -2757,12 +3071,13 @@ export interface ServiceDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@ObjectModel.representativeKey"?: ElementReference;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.modelingPattern"?: ObjectModel1;
   "@ObjectModel.supportedCapabilities"?: ObjectModel2;
   /**
@@ -2800,6 +3115,8 @@ export interface BooleanTypeDefinition {
   type: BooleanCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -2807,7 +3124,7 @@ export interface BooleanTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueBoolean;
@@ -2819,7 +3136,7 @@ export interface BooleanTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -2895,6 +3212,8 @@ export interface StringTypeDefinition {
   type: StringCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -2902,14 +3221,15 @@ export interface StringTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
   enum?: EnumDictionary;
   /**
-   * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * Describes the maximum number of characters of the value, up to 5000.
+   * If not provided, 5000 length is assumed.
+   * For longer length strings, use `cds.LargeString` instead.
    */
   length?: number;
   "@Aggregation.default"?: Aggregation;
@@ -2920,7 +3240,7 @@ export interface StringTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -2961,6 +3281,7 @@ export interface StringTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.mimeType"?: SemanticsMimeType;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -2996,6 +3317,8 @@ export interface LargeStringTypeDefinition {
   type: LargeStringCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3003,14 +3326,14 @@ export interface LargeStringTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
   enum?: EnumDictionary;
   /**
    * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * If not provided, unlimited length is assumed.
    */
   length?: number;
   "@Aggregation.default"?: Aggregation;
@@ -3021,7 +3344,7 @@ export interface LargeStringTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3062,6 +3385,9 @@ export interface LargeStringTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObject;
+  "@Semantics.largeObject.mimeType"?: ElementReference;
+  "@Semantics.largeObject.fileName"?: ElementReference;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3097,6 +3423,8 @@ export interface IntegerTypeDefinition {
   type: IntegerCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3104,7 +3432,7 @@ export interface IntegerTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -3117,7 +3445,7 @@ export interface IntegerTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3194,6 +3522,8 @@ export interface Integer64TypeDefinition {
   type: Integer64CdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3201,7 +3531,7 @@ export interface Integer64TypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueInteger;
@@ -3214,7 +3544,7 @@ export interface Integer64TypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3291,6 +3621,8 @@ export interface DecimalTypeDefinition {
   type: DecimalCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3298,7 +3630,7 @@ export interface DecimalTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -3307,11 +3639,15 @@ export interface DecimalTypeDefinition {
    * Total number of digits in a number.
    * This includes both the digits before and after the decimal point.
    *
+   * SHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `34`.
+   *
    * The semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.
    */
   precision?: number;
   /**
    * Describes the number of digits to the right of the decimal point in a number.
+   *
+   * SHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `floating`.
    */
   scale?: DecimalScaleNumber | DecimalScaleType;
   "@Aggregation.default"?: Aggregation;
@@ -3322,7 +3658,7 @@ export interface DecimalTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3399,6 +3735,8 @@ export interface DoubleTypeDefinition {
   type: DoubleCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3406,7 +3744,7 @@ export interface DoubleTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueNumber;
@@ -3419,7 +3757,7 @@ export interface DoubleTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3496,6 +3834,8 @@ export interface DateTypeDefinition {
   type: DateCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3503,7 +3843,7 @@ export interface DateTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3516,7 +3856,7 @@ export interface DateTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3592,6 +3932,8 @@ export interface TimeTypeDefinition {
   type: TimeCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3599,7 +3941,7 @@ export interface TimeTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3612,7 +3954,7 @@ export interface TimeTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3688,6 +4030,8 @@ export interface DateTimeTypeDefinition {
   type: DateTimeCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3695,7 +4039,7 @@ export interface DateTimeTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3708,7 +4052,7 @@ export interface DateTimeTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3784,6 +4128,8 @@ export interface TimestampTypeDefinition {
   type: TimestampCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3791,7 +4137,7 @@ export interface TimestampTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3804,7 +4150,7 @@ export interface TimestampTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3880,6 +4226,8 @@ export interface UUIDTypeDefinition {
   type: UUIDCdsType;
   /**
    * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
    */
   notNull?: boolean;
   /**
@@ -3887,7 +4235,7 @@ export interface UUIDTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   default?: DefaultValueString;
@@ -3899,7 +4247,7 @@ export interface UUIDTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -3962,6 +4310,214 @@ export interface UUIDTypeDefinition {
   [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
+ * A type definition of type `cds.Binary`.
+ */
+export interface BinaryTypeDefinition {
+  /**
+   * The kind property is used when defining derived types. In this case Kind = "type".
+   */
+  kind: "type";
+  /**
+   * The modeling artefact is a `cds.Binary` type.
+   */
+  type: BinaryCdsType;
+  /**
+   * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
+   */
+  notNull?: boolean;
+  /**
+   * Human readable documentation, usually for developer documentation.
+   *
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
+   */
+  doc?: string;
+  /**
+   * Describes the maximum number of characters of the value, up to 5000.
+   * If not provided, 5000 length is assumed.
+   * For longer length strings, use `cds.LargeString` instead.
+   */
+  length?: number;
+  default?: DefaultValueString;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.custom"?: ObjectModelCustom;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  /**
+   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   */
+  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  /**
+   * Annotations or private properties MAY be added.
+   *
+   * **Annotations** MUST start with `@`.
+   *
+   * In CSN Interop Effective the annotations MUST follow the "flattened" form:
+   * Every record / object in an annotation will be flattened into a `.` (dot).
+   * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
+   *
+   * Correct annotations examples:
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
+   *
+   * Or
+   *
+   * **Private properties**, starting with `__`.
+   * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
+   */
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+}
+/**
+ * A type definition of type `cds.LargeBinary`.
+ */
+export interface LargeBinaryTypeDefinition {
+  /**
+   * The kind property is used when defining derived types. In this case Kind = "type".
+   */
+  kind: "type";
+  /**
+   * The modeling artefact is a `cds.LargeBinary` type.
+   */
+  type: LargeBinaryCdsType;
+  /**
+   * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
+   */
+  notNull?: boolean;
+  /**
+   * Human readable documentation, usually for developer documentation.
+   *
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
+   */
+  doc?: string;
+  /**
+   * Describes the maximum number of bytes of the value.
+   * If not provided, unlimited length is assumed.
+   */
+  length?: number;
+  default?: DefaultValueString;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.custom"?: ObjectModelCustom;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  /**
+   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   */
+  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObject;
+  "@Semantics.largeObject.mimeType"?: ElementReference;
+  "@Semantics.largeObject.fileName"?: ElementReference;
+  /**
+   * Annotations or private properties MAY be added.
+   *
+   * **Annotations** MUST start with `@`.
+   *
+   * In CSN Interop Effective the annotations MUST follow the "flattened" form:
+   * Every record / object in an annotation will be flattened into a `.` (dot).
+   * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
+   *
+   * Correct annotations examples:
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
+   *
+   * Or
+   *
+   * **Private properties**, starting with `__`.
+   * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
+   */
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+}
+/**
  * A type definition of type `cds.Association`.
  */
 export interface AssociationTypeDefinition {
@@ -3978,7 +4534,7 @@ export interface AssociationTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -4018,7 +4574,7 @@ export interface AssociationTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -4097,7 +4653,7 @@ export interface CompositionTypeDefinition {
    *
    * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
    *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/enduser-text#endusertextlabel) annotation.
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
   /**
@@ -4137,7 +4693,7 @@ export interface CompositionTypeDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
   "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
@@ -4229,46 +4785,50 @@ export interface LanguageTexts {
   [k: string]: string;
 }
 
- export type PrivatePropertyKey = `__${string}`;
+export type PrivatePropertyKey = `__${string}`;
 
- export type AnnotationPropertyKey = `@${string}`;
+export type AnnotationPropertyKey = `@${string}`;
 
- export type EntityKind = "entity";
+export type EntityKind = "entity";
 
- export type ContextKind = "context";
+export type ContextKind = "context";
 
- export type ServiceKind = "service";
+export type ServiceKind = "service";
 
- export type TypeKind = "type";
+export type TypeKind = "type";
 
- export type BooleanCdsType = "cds.Boolean";
+export type BooleanCdsType = "cds.Boolean";
 
- export type StringCdsType = "cds.String";
+export type StringCdsType = "cds.String";
 
- export type LargeStringCdsType = "cds.LargeString";
+export type LargeStringCdsType = "cds.LargeString";
 
- export type IntegerCdsType = "cds.Integer";
+export type IntegerCdsType = "cds.Integer";
 
- export type Integer64CdsType = "cds.Integer64";
+export type Integer64CdsType = "cds.Integer64";
 
- export type DecimalCdsType = "cds.Decimal";
+export type DecimalCdsType = "cds.Decimal";
 
- export type DoubleCdsType = "cds.Double";
+export type DoubleCdsType = "cds.Double";
 
- export type DateCdsType = "cds.Date";
+export type DateCdsType = "cds.Date";
 
- export type TimeCdsType = "cds.Time";
+export type TimeCdsType = "cds.Time";
 
- export type DateTimeCdsType = "cds.DateTime";
+export type DateTimeCdsType = "cds.DateTime";
 
- export type TimestampCdsType = "cds.Timestamp";
+export type TimestampCdsType = "cds.Timestamp";
 
- export type UUIDCdsType = "cds.UUID";
+export type UUIDCdsType = "cds.UUID";
 
- export type AssociationCdsType = "cds.Association";
+export type AssociationCdsType = "cds.Association";
 
- export type CompositionCdsType = "cds.Composition";
+export type CompositionCdsType = "cds.Composition";
 
- export type CustomTypeValue = string // MUST not start with `cds.`;
+export type CustomTypeValue = string // MUST not start with `cds.`;
 
- export type CdsTypeValue = BooleanCdsType | StringCdsType | LargeStringCdsType | IntegerCdsType | Integer64CdsType | DecimalCdsType | DoubleCdsType | DateCdsType | TimeCdsType | DateTimeCdsType | TimestampCdsType | UUIDCdsType | AssociationCdsType | CompositionCdsType;
+export type BinaryCdsType = "cds.Binary";
+
+export type LargeBinaryCdsType = "cds.LargeBinary";
+
+export type CdsTypeValue = BooleanCdsType | StringCdsType | LargeStringCdsType | IntegerCdsType | Integer64CdsType | DecimalCdsType | DoubleCdsType | DateCdsType | TimeCdsType | DateTimeCdsType | TimestampCdsType | UUIDCdsType | BinaryCdsType | LargeBinaryCdsType | AssociationCdsType | CompositionCdsType;

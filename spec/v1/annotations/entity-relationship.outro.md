@@ -38,8 +38,8 @@ As a consequence, the Entity Relationship annotation concept is built on the fol
 
 #### Entity Type
 
-Entity Types represent "conceptual models" that underlie the often very denormalized, concrete API Models.
-For a full description, see [ORD Entity Type](https://sap.github.io/open-resource-discovery/details/articles/grouping-and-bundling#entity-type).
+Entity Types represent "conceptual models" that underlie the (often denormalized) concrete API Models.
+For a full description, see [ORD Entity Type](https://open-resource-discovery.github.io/specification/spec-v1/concepts/grouping-and-bundling#entity-type).
 
 The ID scheme for an Entity Type ID is as following:
 
@@ -47,7 +47,16 @@ The ID scheme for an Entity Type ID is as following:
 <entityTypeId> := <namespace>:<entityTypeLocalId>[:v<majorVersion>]
 ```
 
-For the mandatory namespaces we use the [Namespace Concept](https://sap.github.io/open-resource-discovery/spec-v1/#namespaces) of ORD.
+- Complete `<entityTypeId>` MUST match the regexp `^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\-]+)(:v[1-9][0-9]*)?$`
+
+- The `<namespace>` part MUST be a valid [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1/#namespaces).
+
+- The `<entityTypeLocalId>` part MUST match the regexp `^[a-zA-Z0-9._\-]+$` and follows the ORD ID `<resourceName>` constraints:
+  - MUST be unique within the `<namespace>`.
+  - SHOULD be a (somewhat) human readable and SEO/URL friendly string (avoid UUIDs).
+
+- The `<majorVersion>` MUST only be provided if the major version is above v1. For v1 it MUST be omitted.
+
 In many cases Entity Types are not versioned. To ease handling and avoiding ambiguity, we forbid adding `v1` and therefore made `v1` the default.
 If for the case of having a `v2` or higher of an Entity Type, the version must be added.
 
@@ -74,6 +83,15 @@ A [Property Type ID](#property-type-id) follows the same format and consideratio
 ```xml
 <PropertyTypeId> := <namespace>:<propertyTypeLocalId>[:v<majorVersion>]
 ```
+
+- Complete `<PropertyTypeId>` MUST match the regexp `^([a-z0-9-]+(?:[.][a-z0-9-]+)*):([a-zA-Z0-9._\-]+)(:v[1-9][0-9]*)?$`
+- The `<namespace>` part MUST be a valid [ORD namespace](https://open-resource-discovery.github.io/specification/spec-v1/#namespaces).
+
+- The `<propertyTypeLocalId>` part MUST match the regexp `^[a-zA-Z0-9._\-]+$` and follows the ORD ID `<resourceName>` constraints:
+  - MUST be unique within the `<namespace>`.
+  - SHOULD be a (somewhat) human readable and SEO/URL friendly string (avoid UUIDs).
+
+- The `<majorVersion>` MUST only be provided if the major version is above v1. For v1 it MUST be omitted.
 
 The same Property Type MUST NOT be defined more than once in the same Entity Type.
 However, the same Property Type MAY be part of multiple references within the same Entity Type.
@@ -166,8 +184,7 @@ The annotation is an array because there could be multiple Entity Types that are
 If an array is given, all of the reference targets MUST be valid places where the ID can be resolved, at least in a certain implementation or version of the target entity.
 This also allows for references to polymorphic targets that share the same Property Type as an ID (e.g. a reference to either Cat or Dog, sharing the same Pet ID).
 
-> 🚧 Consideration: Provide optional attribute to state that a reference has a "composition" quality, in case that the API Model itself doesn't imply that already.
-> This would help to know which entity type instances should be deleted if their parent is deleted and is usually also an indicator for transactional integrity.
+**Cardinality**: For references with "to many" cardinality, the property holding the referenced ID must be moved to a separate entity, which is then included as a `cds.Composition` with the desired cardinality. See [cardinality of primitive types](../../primer.md#cardinality).
 
 #### Referencing Composite IDs
 
@@ -223,6 +240,8 @@ entity PurchaseOrder {
   alternativeSupplierType : String;
 }
 ```
+
+**Cardinality**: For references with "to many" cardinality, the properties that together form a composite reference must be moved to a separate entity, which is then included as a `cds.Composition` with the desired cardinality. E.g. `mainSupplier: SupplierReference` where the new SupplierReference entity contains the `number` and the `type`. See [cardinality of primitive types](../../primer.md#cardinality).
 
 ### Advanced Cases
 

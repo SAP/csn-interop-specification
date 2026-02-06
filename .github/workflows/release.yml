@@ -17,6 +17,9 @@ jobs:
           # registry-url is required for releasing packages
           registry-url: "https://registry.npmjs.org"
 
+      - name: Install latest npm cli
+        run: npm install -g npm@latest
+
       - name: npm install
         run: npm ci
 
@@ -24,8 +27,7 @@ jobs:
         run: npm run build
 
       - name: Publish package
-        # --provenance enables the automatic generation of provenance statements
+        # --provenance enables the automatic generation of provenance statements (when using trusted publisher, this is automatically enabled and therefore optional)
         # --access public is only hard required for the initial release, but it doesn't hurt having it setup
+        # npm version >=11.5.1 required for trusted publisher
         run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

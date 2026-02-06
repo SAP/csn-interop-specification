@@ -1,8 +1,9 @@
 {
+  "$schema": "https://open-resource-discovery.github.io/spec-toolkit/spec-v1/spec-toolkit-config.schema.json#",
   "generalConfig": {
-    "sortProperties": false
+    "tsTypeExportExcludeJsFileExtension": true
   },
-  "outputPath": "src/generated/spec-v1",
+  "outputPath": "src/generated/spec/v1",
   "docsConfig": [
     {
       "type": "spec",
@@ -12,9 +13,9 @@
       "examplesFolderPath": "./spec/v1/examples",
       "mdFrontmatter": {
         "title": "Interface Documentation",
-        "sidebar_position": 1,
+        "sidebar_position": "1",
         "description": "Describes the technical interface / schema for CSN Interop Effective.",
-        "toc_max_heading_level": 4
+        "toc_max_heading_level": "4"
       }
     },
     {
@@ -25,7 +26,7 @@
       "targetDocumentId": "csn-interop-effective",
       "mdFrontmatter": {
         "title": "@Aggregation",
-        "sidebar_position": 2,
+        "sidebar_position": "2",
         "description": "@Aggregation annotations."
       }
     },
@@ -37,7 +38,7 @@
       "targetDocumentId": "csn-interop-effective",
       "mdFrontmatter": {
         "title": "@AnalyticsDetails",
-        "sidebar_position": 3,
+        "sidebar_position": "3",
         "description": "@AnalyticsDetails for data analytics use cases."
       }
     },
@@ -49,19 +50,19 @@
       "targetDocumentId": "csn-interop-effective",
       "mdFrontmatter": {
         "title": "@Consumption",
-        "sidebar_position": 4,
+        "sidebar_position": "4",
         "description": "@Consumption annotations."
       }
     },
     {
       "type": "specExtension",
-      "id": "enduser-text",
-      "sourceFilePath": "./spec/v1/annotations/enduser-text.yaml",
-      "sourceIntroFilePath": "./spec/v1/annotations/enduser-text.md",
+      "id": "end-user-text",
+      "sourceFilePath": "./spec/v1/annotations/end-user-text.yaml",
+      "sourceIntroFilePath": "./spec/v1/annotations/end-user-text.md",
       "targetDocumentId": "csn-interop-effective",
       "mdFrontmatter": {
         "title": "@EndUserText",
-        "sidebar_position": 5,
+        "sidebar_position": "5",
         "description": "@EndUserText annotations for end user UIs."
       }
     },
@@ -74,7 +75,7 @@
       "targetDocumentId": "csn-interop-effective",
       "mdFrontmatter": {
         "title": "@EntityRelationship",
-        "sidebar_position": 6,
+        "sidebar_position": "6",
         "description": "@EntityRelationship annotations for cross boundary Entity-Relationship IDs and associations."
       }
     },
@@ -86,7 +87,7 @@
       "targetDocumentId": "csn-interop-effective",
       "mdFrontmatter": {
         "title": "@ObjectModel",
-        "sidebar_position": 7,
+        "sidebar_position": "7",
         "description": "@ObjectModel annotations."
       }
     },
@@ -98,7 +99,7 @@
       "targetDocumentId": "csn-interop-effective",
       "mdFrontmatter": {
         "title": "@ODM",
-        "sidebar_position": 8,
+        "sidebar_position": "8",
         "description": "@ODM for One Domain Model (ODM) related annotations."
       }
     },
@@ -110,7 +111,7 @@
       "targetDocumentId": "csn-interop-effective",
       "mdFrontmatter": {
         "title": "@PersonalData",
-        "sidebar_position": 9,
+        "sidebar_position": "9",
         "description": "@PersonalData to annotate DPP relevant information."
       }
     },
@@ -122,7 +123,7 @@
       "targetDocumentId": "csn-interop-effective",
       "mdFrontmatter": {
         "title": "@Semantics",
-        "sidebar_position": 10,
+        "sidebar_position": "10",
         "description": "@Semantics annotations."
       }
     }

@@ -11,7 +11,6 @@ const config = {
   onBrokenLinks: "throw",
   onBrokenAnchors: "throw",
   onDuplicateRoutes: "throw",
-  onBrokenMarkdownLinks: "throw",
   staticDirectories: ["static"],
   favicon: "img/favicon.ico",
   organizationName: "SAP", // Usually your GitHub org/user name.
@@ -22,6 +21,10 @@ const config = {
   },
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: "throw",
+      onBrokenMarkdownImages: "throw",
+    },
   },
   presets: [
     [
@@ -32,7 +35,6 @@ const config = {
           // sidebarPath: require.resolve('./sidebars.js'),
           sidebarCollapsible: true,
           routeBasePath: "/",
-          editUrl: "https://github.com/SAP/csn-interop-specification/tree/main/",
         },
         blog: false, // disable the blog plugin
         theme: {
@@ -67,7 +69,11 @@ const config = {
           },
           {
             from: "/annotations/enduser-text",
-            to: "/spec-v1/extensions/enduser-text",
+            to: "/spec-v1/extensions/end-user-text",
+          },
+          {
+            from: "/spec-v1/extensions/enduser-text",
+            to: "/spec-v1/extensions/end-user-text",
           },
           {
             from: "/annotations/entity-relationship",
@@ -132,7 +138,7 @@ const config = {
         title: "",
         logo: {
           alt: "CSN Interop Specification",
-          src: "img/logo.png#1",
+          src: "img/logo.svg",
         },
         items: [
           {

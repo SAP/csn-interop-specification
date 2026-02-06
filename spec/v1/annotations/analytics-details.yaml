@@ -1,7 +1,8 @@
 $schema: "http://json-schema.org/draft-07/schema#"
 $id: "https://sap.github.io/csn-interop-specification/spec-v1/analytics-details.schema.json#"
-title: "@AnalyticsDetails"
-
+title: AnalyticsDetails Document
+description: This is the interface description of @AnalyticsDetails.
+type: object
 definitions:
   "@AnalyticsDetails.measureType":
     description: |-
