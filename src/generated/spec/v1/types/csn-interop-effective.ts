@@ -1006,8 +1006,9 @@ export interface StringType {
   default?: DefaultValueString;
   enum?: EnumDictionary;
   /**
-   * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * Describes the maximum number of characters of the value, up to 5000.
+   * If not provided, 5000 length is assumed.
+   * For longer length strings, use `cds.LargeString` instead.
    */
   length?: number;
   "@Aggregation.default"?: Aggregation;
@@ -1151,7 +1152,7 @@ export interface LargeStringType {
   enum?: EnumDictionary;
   /**
    * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * If not provided, unlimited length is assumed.
    */
   length?: number;
   "@Aggregation.default"?: Aggregation;
@@ -2184,8 +2185,9 @@ export interface BinaryType {
    */
   doc?: string;
   /**
-   * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * Describes the maximum number of characters of the value, up to 5000.
+   * If not provided, 5000 length is assumed.
+   * For longer length strings, use `cds.LargeString` instead.
    */
   length?: number;
   default?: DefaultValueString;
@@ -2279,8 +2281,8 @@ export interface LargeBinaryType {
    */
   doc?: string;
   /**
-   * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * Describes the maximum number of bytes of the value.
+   * If not provided, unlimited length is assumed.
    */
   length?: number;
   default?: DefaultValueString;
@@ -2686,8 +2688,9 @@ export interface CustomType {
   default?: DefaultValueCustomType;
   enum?: EnumDictionary;
   /**
-   * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * Describes the maximum number of characters of the value, up to 5000.
+   * If not provided, 5000 length is assumed.
+   * For longer length strings, use `cds.LargeString` instead.
    */
   length?: number;
   /**
@@ -3180,8 +3183,9 @@ export interface StringTypeDefinition {
   default?: DefaultValueString;
   enum?: EnumDictionary;
   /**
-   * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * Describes the maximum number of characters of the value, up to 5000.
+   * If not provided, 5000 length is assumed.
+   * For longer length strings, use `cds.LargeString` instead.
    */
   length?: number;
   "@Aggregation.default"?: Aggregation;
@@ -3282,7 +3286,7 @@ export interface LargeStringTypeDefinition {
   enum?: EnumDictionary;
   /**
    * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * If not provided, unlimited length is assumed.
    */
   length?: number;
   "@Aggregation.default"?: Aggregation;
@@ -4255,8 +4259,9 @@ export interface BinaryTypeDefinition {
    */
   doc?: string;
   /**
-   * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * Describes the maximum number of characters of the value, up to 5000.
+   * If not provided, 5000 length is assumed.
+   * For longer length strings, use `cds.LargeString` instead.
    */
   length?: number;
   default?: DefaultValueString;
@@ -4354,8 +4359,8 @@ export interface LargeBinaryTypeDefinition {
    */
   doc?: string;
   /**
-   * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * Describes the maximum number of bytes of the value.
+   * If not provided, unlimited length is assumed.
    */
   length?: number;
   default?: DefaultValueString;
