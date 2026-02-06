@@ -52,8 +52,12 @@ x-custom-typescript-types:
     typeValue: '"cds.Composition"'
   - typeName: "CustomTypeValue"
     typeValue: "string // MUST not start with `cds.`"
+  - typeName: "BinaryCdsType"
+    typeValue: '"cds.Binary"'
+  - typeName: "LargeBinaryCdsType"
+    typeValue: '"cds.LargeBinary"'
   - typeName: "CdsTypeValue"
-    typeValue: "BooleanCdsType | StringCdsType | LargeStringCdsType | IntegerCdsType | Integer64CdsType | DecimalCdsType | DoubleCdsType | DateCdsType | TimeCdsType | DateTimeCdsType | TimestampCdsType | UUIDCdsType | AssociationCdsType | CompositionCdsType"
+    typeValue: "BooleanCdsType | StringCdsType | LargeStringCdsType | IntegerCdsType | Integer64CdsType | DecimalCdsType | DoubleCdsType | DateCdsType | TimeCdsType | DateTimeCdsType | TimestampCdsType | UUIDCdsType | BinaryCdsType | LargeBinaryCdsType | AssociationCdsType | CompositionCdsType"
 
 properties:
   $schema:
@@ -303,6 +307,7 @@ definitions:
     properties:
       kind:
         type: string
+        x-hide: true
         enum:
           - "context"
           - "entity"
@@ -350,7 +355,6 @@ definitions:
             - kind
         then:
           $ref: "#/definitions/TypeDefinition"
-    x-hide-properties: true
 
   EntityDefinition:
     title: Entity Definition
@@ -394,58 +398,57 @@ definitions:
       #-------------------------------------------------------------
       abstract:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           Proper syntax element in ABAP CDS producing Abstract CDS Entities
       customEntity:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           Proper syntax element in ABAP CDS producing Custom CDS Entities
       tableFunction:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           Proper syntax element in ABAP CDS producing CDS Table Functions.
       externalEntity:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           Proper syntax element in ABAP CDS producing CDS  External Entities
       providerContract:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           ABAP CDS Projection have the additional information of a provider contract
       rootEntity:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           ABAP CDS Root View Entities define a RAP Business Object.
       transient:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           Special kind of analytical ABAP CDS Projection view.
       literal:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           In the selection element list of a CDS view.
       toCompositionChild:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           When redirecting associations in ABAP CDS Projections with the additional keywords "to composition child", this indicates a Parent-Child-Composition an requires the redirection target to have a matching "to parent" association redefinition.
       toParent:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           When redirecting associations in ABAP CDS Projections with the additional keywords "to composition child", this indicates a Parent-Child-Composition an requires the redirection target to have a matching "to parent" association redefinition.
       hana_on_asString:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
-        x-ignore-conventions: true
+        x-hide: true
         description: |-
           Contains the SQL on condition as string
       #-----------------------
@@ -511,6 +514,7 @@ definitions:
     properties:
       type:
         type: string
+        x-hide: true
     allOf:
       - if:
           properties:
@@ -532,7 +536,6 @@ definitions:
           $ref: "#/definitions/CustomType"
     required:
       - type
-    x-hide-properties: true
 
   CdsType:
     title: Cds Type
@@ -544,6 +547,7 @@ definitions:
         type: string
         description: |-
           The CDS type (`cds.*`), as defined by the CSN specification.
+        x-hide: true
         enum:
           # Primitive standard types
           - "cds.Boolean"
@@ -558,6 +562,8 @@ definitions:
           - "cds.DateTime"
           - "cds.Timestamp"
           - "cds.UUID"
+          - "cds.Binary"
+          - "cds.LargeBinary"
 
           # Complex standard types
           - "cds.Association"
@@ -676,6 +682,24 @@ definitions:
           properties:
             type:
               type: string
+              const: "cds.Binary"
+          required:
+            - type
+        then:
+          $ref: "#/definitions/BinaryType"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.LargeBinary"
+          required:
+            - type
+        then:
+          $ref: "#/definitions/LargeBinaryType"
+      - if:
+          properties:
+            type:
+              type: string
               const: "cds.Association"
           required:
             - type
@@ -692,7 +716,6 @@ definitions:
           $ref: "#/definitions/CompositionType"
     required:
       - type
-    x-hide-properties: true
 
   BooleanType:
     title: Boolean Type
@@ -716,7 +739,7 @@ definitions:
         description: |-
           Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
 
-          Elements marked as `key: true` also imply `notNull: true`.
+          Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
       doc: *doc
       default:
         $ref: "#/definitions/DefaultValueBoolean"
@@ -734,7 +757,9 @@ definitions:
   StringType:
     title: String Type
     type: object
-    description: An element of type `cds.String`.
+    description: |-
+      An element of type `cds.String`, which is length limited.
+      For unlimited / large strings, use `cds.LargeString` instead.
     properties: &StringTypeProperties
       type:
         type: string
@@ -751,9 +776,12 @@ definitions:
       length: &length
         type: number
         minimum: 1
+        maximum: 5000
+        default: 5000
         description: |-
-          Describes the maximum number of characters of the value.
-          If not provided, **unlimited** length is assumed.
+          Describes the maximum number of characters of the value, up to 5000.
+          If not provided, 5000 length is assumed.
+          For longer length strings, use `cds.LargeString` instead.
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
       - type
@@ -775,13 +803,18 @@ definitions:
         const: cds.LargeString
         description: The modeling artefact is a `cds.LargeString` type.
         tsType: LargeStringCdsType
-      # key: *elementKey # Now allowed for large strings
+      # key: *elementKey # Not allowed for large strings
       notNull: *elementNotNull
       doc: *doc
       default:
         $ref: "#/definitions/DefaultValueString"
       enum: *elementEnum
-      length: *length
+      length:
+        type: number
+        minimum: 1
+        description: |-
+          Describes the maximum number of characters of the value.
+          If not provided, unlimited length is assumed.
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
       - type
@@ -1061,6 +1094,68 @@ definitions:
     x-header-level: 4
     examples:
       - { "type": "cds.UUID", "key": true }
+  BinaryType:
+    title: Binary Type
+    type: object
+    description: |-
+      An element of type `cds.Binary`.
+    x-introduced-in-version: "1.1.0"
+    properties: &BinaryTypeProperties
+      type:
+        type: string
+        const: cds.Binary
+        description: The modeling artefact is a `cds.Binary` type.
+        tsType: BinaryCdsType
+      key: *elementKey # TODO: Should we allow key for binary?
+      notNull: *elementNotNull
+      doc: *doc
+      length: *length
+      default:
+        $ref: "#/definitions/DefaultValueString"
+      # enum: *elementEnum
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - BinaryType
+    x-header-level: 4
+    examples:
+      - { "type": "cds.Binary", "key": true }
+  LargeBinaryType:
+    title: Large Binary Type
+    type: object
+    description: |-
+      An element of type `cds.LargeBinary`.
+    x-introduced-in-version: "1.1.0"
+    properties: &LargeBinaryTypeProperties
+      type:
+        type: string
+        const: cds.LargeBinary
+        description: The modeling artefact is a `cds.LargeBinary` type.
+        tsType: LargeBinaryCdsType
+      notNull: *elementNotNull
+      doc: *doc
+      length:
+        type: number
+        minimum: 1
+        description: |-
+          Describes the maximum number of bytes of the value.
+          If not provided, unlimited length is assumed.
+      default:
+        $ref: "#/definitions/DefaultValueString"
+      # enum: *elementEnum
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - LargeBinaryType
+    x-header-level: 4
+    examples:
+      - { "type": "cds.LargeBinary" }
 
   AssociationType:
     title: Association Type
@@ -1554,6 +1649,7 @@ definitions:
         description: |-
           The kind property is used when defining derived types.
           In this case `Kind = "type"` MUST be provided.
+        x-hide: true
         tsType: TypeKind
       type:
         type: string
@@ -1561,6 +1657,7 @@ definitions:
           The CDS data type of the derived type.
 
           Custom types in CSN Interop Effective MUST always point to a `cds.*` type.
+        x-hide: true
         enum:
           # Primitive standard types
           - "cds.Boolean"
@@ -1575,6 +1672,8 @@ definitions:
           - "cds.DateTime"
           - "cds.Timestamp"
           - "cds.UUID"
+          - "cds.Binary"
+          - "cds.LargeBinary"
 
           # Complex standard types
           - "cds.Association"
@@ -1705,6 +1804,26 @@ definitions:
           properties:
             type:
               type: string
+              const: "cds.Binary"
+          required:
+            - kind
+            - type
+        then:
+          $ref: "#/definitions/BinaryTypeDefinition"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.LargeBinary"
+          required:
+            - kind
+            - type
+        then:
+          $ref: "#/definitions/LargeBinaryTypeDefinition"
+      - if:
+          properties:
+            type:
+              type: string
               const: "cds.Association"
           required:
             - kind
@@ -1724,7 +1843,6 @@ definitions:
     required:
       - kind
       - type
-    x-hide-properties: true
 
   BooleanTypeDefinition:
     title: Boolean Type Definition
@@ -1953,6 +2071,43 @@ definitions:
     x-extension-points:
       - Type
       - UUIDType
+    x-header-level: 4
+
+  BinaryTypeDefinition:
+    title: Binary Type Definition
+    type: object
+    description: A type definition of type `cds.Binary`.
+    x-introduced-in-version: "1.1.0"
+    properties:
+      kind: *kindPropertyForTypeDefinition
+      key: null # null because "key" should only be defined on element level, not in a custom type
+      <<: *BinaryTypeProperties
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - kind
+      - type
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - BinaryType
+    x-header-level: 4
+
+  LargeBinaryTypeDefinition:
+    title: LargeBinary Type Definition
+    type: object
+    description: A type definition of type `cds.LargeBinary`.
+    x-introduced-in-version: "1.1.0"
+    properties:
+      kind: *kindPropertyForTypeDefinition
+      <<: *LargeBinaryTypeProperties
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - kind
+      - type
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - LargeBinaryType
     x-header-level: 4
 
   AssociationTypeDefinition:
