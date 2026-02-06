@@ -148,7 +148,7 @@ describe("Tests for all elements", (): void => {
               "@ObjectModel.semanticKey": [],
               "@ObjectModel.text.association": "",
               "@ObjectModel.text.element": [],
-              "@PersonalData.fieldSemantics": "UserID",
+              "@PersonalData.fieldSemantics": {"#":"USER_ID"},
               "@PersonalData.isPotentiallyPersonal": true,
               "@PersonalData.isPotentiallySensitive": true,
               "@Semantics.amount.currencyCode": "",
