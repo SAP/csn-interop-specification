@@ -1196,17 +1196,17 @@ definitions:
 
           The `on` condition is constructed by triples of:
           - Reference to the target element (ID) as array with 2 items
-          - Operator: Equals `=`, Smaller Equals`<=` or Greater Equals `>=`
+          - Operator: Equals `=`, Smaller `<`, Smaller Equals `<=`, Greater `>` or Greater Equals `>=`
           - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
 
-          The first and third entry of the triple MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
+          The first and third entry of the triple MAY be reversed but the `=`, `<`, `<=`, `>` or `>=` operator MUST be in the middle.
           The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
           The local element reference MUST have one array item, which is the local element name.
 
-          If the operator Equals `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+          If the operator `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
 
-          If the operator Smaller Equals `<=` or Greater Equals `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
-          Smaller Equals `<=` or Greater Equals `>=` operators SHOULD be used only for `cds.Date` type operands.
+          If the operator `<`, `<=`, `>` or `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
+          Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Date` type operands.
 
           In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
 
@@ -1216,7 +1216,9 @@ definitions:
           oneOf:
             - $ref: "#/definitions/StructuredElementReference"
             - $ref: "#/definitions/EqualsOperator"
+            - $ref: "#/definitions/SmallerOperator"
             - $ref: "#/definitions/SmallerEqualsOperator"
+            - $ref: "#/definitions/GreaterOperator"
             - $ref: "#/definitions/GreaterEqualsOperator"
             - $ref: "#/definitions/AndOperator"
             - $ref: "#/definitions/OnValue"
@@ -1554,12 +1556,26 @@ definitions:
       The operator `=`
     const: "="
 
+  SmallerOperator:
+    title: Smaller Operator
+    type: string
+    description: |-
+      The operator `<`
+    const: "<"
+
   SmallerEqualsOperator:
     title: Smaller Equals Operator
     type: string
     description: |-
       The operator `<=`
     const: "<="
+
+  GreaterOperator:
+    title: Greater Operator
+    type: string
+    description: |-
+      The operator `>`
+    const: ">"
 
   GreaterEqualsOperator:
     title: Greater Equals Operator

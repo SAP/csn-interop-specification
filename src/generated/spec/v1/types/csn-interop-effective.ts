@@ -281,9 +281,17 @@ export type DecimalScaleType2 = string;
  */
 export type EqualsOperator = "=";
 /**
+ * The operator `<`
+ */
+export type SmallerOperator = "<";
+/**
  * The operator `<=`
  */
 export type SmallerEqualsOperator = "<=";
+/**
+ * The operator `>`
+ */
+export type GreaterOperator = ">";
 /**
  * The operator `>=`
  */
@@ -2434,17 +2442,17 @@ export interface AssociationType {
    *
    * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Operator: Equals `=`, Smaller Equals`<=` or Greater Equals `>=`
+   * - Operator: Equals `=`, Smaller `<`, Smaller Equals `<=`, Greater `>` or Greater Equals `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * The first and third entry of the triple MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
+   * The first and third entry of the triple MAY be reversed but the `=`, `<`, `<=`, `>` or `>=` operator MUST be in the middle.
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
-   * If the operator Equals `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+   * If the operator `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
    *
-   * If the operator Smaller Equals `<=` or Greater Equals `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
-   * Smaller Equals `<=` or Greater Equals `>=` operators SHOULD be used only for `cds.Date` type operands.
+   * If the operator `<`, `<=`, `>` or `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
+   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Date` type operands.
    *
    * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
@@ -2453,13 +2461,42 @@ export interface AssociationType {
    * @minItems 3
    */
   on: [
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
     ...(
       | StructuredElementReference
       | EqualsOperator
+      | SmallerOperator
       | SmallerEqualsOperator
+      | GreaterOperator
       | GreaterEqualsOperator
       | ANDOperator
       | OnValue
@@ -2614,17 +2651,17 @@ export interface CompositionType {
    *
    * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Operator: Equals `=`, Smaller Equals`<=` or Greater Equals `>=`
+   * - Operator: Equals `=`, Smaller `<`, Smaller Equals `<=`, Greater `>` or Greater Equals `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * The first and third entry of the triple MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
+   * The first and third entry of the triple MAY be reversed but the `=`, `<`, `<=`, `>` or `>=` operator MUST be in the middle.
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
-   * If the operator Equals `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+   * If the operator `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
    *
-   * If the operator Smaller Equals `<=` or Greater Equals `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
-   * Smaller Equals `<=` or Greater Equals `>=` operators SHOULD be used only for `cds.Date` type operands.
+   * If the operator `<`, `<=`, `>` or `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
+   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Date` type operands.
    *
    * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
@@ -2633,13 +2670,42 @@ export interface CompositionType {
    * @minItems 3
    */
   on: [
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
     ...(
       | StructuredElementReference
       | EqualsOperator
+      | SmallerOperator
       | SmallerEqualsOperator
+      | GreaterOperator
       | GreaterEqualsOperator
       | ANDOperator
       | OnValue
@@ -4579,17 +4645,17 @@ export interface AssociationTypeDefinition {
    *
    * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Operator: Equals `=`, Smaller Equals`<=` or Greater Equals `>=`
+   * - Operator: Equals `=`, Smaller `<`, Smaller Equals `<=`, Greater `>` or Greater Equals `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * The first and third entry of the triple MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
+   * The first and third entry of the triple MAY be reversed but the `=`, `<`, `<=`, `>` or `>=` operator MUST be in the middle.
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
-   * If the operator Equals `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+   * If the operator `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
    *
-   * If the operator Smaller Equals `<=` or Greater Equals `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
-   * Smaller Equals `<=` or Greater Equals `>=` operators SHOULD be used only for `cds.Date` type operands.
+   * If the operator `<`, `<=`, `>` or `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
+   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Date` type operands.
    *
    * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
@@ -4598,13 +4664,42 @@ export interface AssociationTypeDefinition {
    * @minItems 3
    */
   on: [
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
     ...(
       | StructuredElementReference
       | EqualsOperator
+      | SmallerOperator
       | SmallerEqualsOperator
+      | GreaterOperator
       | GreaterEqualsOperator
       | ANDOperator
       | OnValue
@@ -4710,17 +4805,17 @@ export interface CompositionTypeDefinition {
    *
    * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Operator: Equals `=`, Smaller Equals`<=` or Greater Equals `>=`
+   * - Operator: Equals `=`, Smaller `<`, Smaller Equals `<=`, Greater `>` or Greater Equals `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * The first and third entry of the triple MAY be reversed but the `=`, `<=` or `>=` operator MUST be in the middle.
+   * The first and third entry of the triple MAY be reversed but the `=`, `<`, `<=`, `>` or `>=` operator MUST be in the middle.
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
-   * If the operator Equals `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+   * If the operator `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
    *
-   * If the operator Smaller Equals `<=` or Greater Equals `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
-   * Smaller Equals `<=` or Greater Equals `>=` operators SHOULD be used only for `cds.Date` type operands.
+   * If the operator `<`, `<=`, `>` or `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
+   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Date` type operands.
    *
    * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
@@ -4729,13 +4824,42 @@ export interface CompositionTypeDefinition {
    * @minItems 3
    */
   on: [
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | SmallerEqualsOperator | GreaterEqualsOperator | ANDOperator | OnValue,
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
     ...(
       | StructuredElementReference
       | EqualsOperator
+      | SmallerOperator
       | SmallerEqualsOperator
+      | GreaterOperator
       | GreaterEqualsOperator
       | ANDOperator
       | OnValue

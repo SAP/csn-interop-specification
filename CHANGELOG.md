@@ -10,7 +10,7 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
-- feat: extended the `on` condition for association and composition types to support operators `>=` and `<=`
+- feat: extended the `on` condition for association and composition types to support operators `>`, `>=`, `<`, and `<=`
 
 ## [1.1.0]
 
