@@ -2449,9 +2449,8 @@ export interface AssociationType {
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
-   * If the operator `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+   * The first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
    *
-   * If the operator `<`, `<=`, `>` or `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
    * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Integer64`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
    *
    * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
@@ -2658,9 +2657,8 @@ export interface CompositionType {
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
-   * If the operator `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+   * The first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
    *
-   * If the operator `<`, `<=`, `>` or `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
    * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Integer64`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
    *
    * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
@@ -4652,9 +4650,8 @@ export interface AssociationTypeDefinition {
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
-   * If the operator `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+   * The first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
    *
-   * If the operator `<`, `<=`, `>` or `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
    * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Integer64`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
    *
    * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
@@ -4812,9 +4809,8 @@ export interface CompositionTypeDefinition {
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
-   * If the operator `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+   * The first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
    *
-   * If the operator `<`, `<=`, `>` or `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
    * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Integer64`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
    *
    * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
