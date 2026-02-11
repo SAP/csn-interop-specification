@@ -2452,7 +2452,7 @@ export interface AssociationType {
    * If the operator `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
    *
    * If the operator `<`, `<=`, `>` or `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
-   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Date` type operands.
+   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Integer64`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
    *
    * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
@@ -2661,7 +2661,7 @@ export interface CompositionType {
    * If the operator `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
    *
    * If the operator `<`, `<=`, `>` or `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
-   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Date` type operands.
+   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Integer64`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
    *
    * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
@@ -4655,7 +4655,7 @@ export interface AssociationTypeDefinition {
    * If the operator `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
    *
    * If the operator `<`, `<=`, `>` or `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
-   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Date` type operands.
+   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Integer64`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
    *
    * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
@@ -4815,7 +4815,7 @@ export interface CompositionTypeDefinition {
    * If the operator `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
    *
    * If the operator `<`, `<=`, `>` or `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
-   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Date` type operands.
+   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Integer64`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
    *
    * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *

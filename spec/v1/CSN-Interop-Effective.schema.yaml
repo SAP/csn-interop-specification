@@ -1185,7 +1185,7 @@ definitions:
         x-association-target:
           - "#/definitions/EntityDefinition"
 
-      cardinality: # TODO: clarify does cardinality need adjustments?
+      cardinality:
         $ref: "#/definitions/CardinalityObject"
         description: |-
           Cardinality of the association. If omitted, `{ "min": 0, "max": 1}` is assumed.
@@ -1206,7 +1206,7 @@ definitions:
           If the operator `=` is used then the first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
 
           If the operator `<`, `<=`, `>` or `>=` is used the first and the third entry of the triple MUST be of the same CDS type (`cds.*`), as defined by the CSN specification.
-          Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Integer64`, `cds.Decimal`, `cds.Double`, `cds.Date`,`cds.Time`,`cds.DateTime`, `cds.Timestamp` type operands.
+          Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Integer64`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
 
           In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
 
@@ -1292,7 +1292,7 @@ definitions:
         x-association-target:
           - "#/definitions/EntityDefinition"
 
-      cardinality: # TODO: clarify does cardinality need adjustments?
+      cardinality:
         $ref: "#/definitions/CardinalityObject"
         description: |-
           Cardinality of the composition. If omitted, `{ "min": 0, "max": 1}` is assumed.
