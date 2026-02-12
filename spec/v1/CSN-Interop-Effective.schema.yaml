@@ -1196,14 +1196,18 @@ definitions:
 
           The `on` condition is constructed by triples of:
           - Reference to the target element (ID) as array with 2 items
-          - Equals Operator "="
+          - Operator: Equals `=`, Smaller `<`, Smaller Equals `<=`, Greater `>` or Greater Equals `>=`
           - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
 
-          The first and third entry MAY be reversed but the `=` operator MUST be in the middle.
+          The first and third entry of the triple MAY be reversed but the `=`, `<`, `<=`, `>` or `>=` operator MUST be in the middle.
           The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
           The local element reference MUST have one array item, which is the local element name.
 
-          In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
+          The first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+
+          Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Integer64`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
+
+          In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
 
           See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
 
@@ -1211,11 +1215,17 @@ definitions:
           oneOf:
             - $ref: "#/definitions/StructuredElementReference"
             - $ref: "#/definitions/EqualsOperator"
+            - $ref: "#/definitions/SmallerOperator"
+            - $ref: "#/definitions/SmallerEqualsOperator"
+            - $ref: "#/definitions/GreaterOperator"
+            - $ref: "#/definitions/GreaterEqualsOperator"
             - $ref: "#/definitions/AndOperator"
             - $ref: "#/definitions/OnValue"
         minItems: 3
         examples:
           - [{ "ref": ["to_Connection", "AirlineID"] }, "=", { "ref": ["AirlineID"] }]
+          - [{ "ref": ["to_Connection", "FlightDate"] }, "<=", { "ref": ["FlightDate"] }]
+          - [{ "ref": ["to_Connection", "FlightDate"] }, ">=", { "ref": ["FlightDate"] }]
           - [
               { "ref": ["to_Connection", "AirlineID"] },
               "=",
@@ -1542,14 +1552,42 @@ definitions:
     title: Equals Operator
     type: string
     description: |-
-      The operator "="
+      The operator `=`
     const: "="
+
+  SmallerOperator:
+    title: Smaller Operator
+    type: string
+    description: |-
+      The operator `<`
+    const: "<"
+
+  SmallerEqualsOperator:
+    title: Smaller Equals Operator
+    type: string
+    description: |-
+      The operator `<=`
+    const: "<="
+
+  GreaterOperator:
+    title: Greater Operator
+    type: string
+    description: |-
+      The operator `>`
+    const: ">"
+
+  GreaterEqualsOperator:
+    title: Greater Equals Operator
+    type: string
+    description: |-
+      The operator `>=`
+    const: ">="
 
   AndOperator:
     title: AND Operator
     type: string
     description: |-
-      The operator "and"
+      The operator `and`
     const: "and"
 
   OnValue:

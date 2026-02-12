@@ -18,6 +18,22 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
   - `@EntityRelationship.category` now uses object notation (e.g., `{ "#": "TEMPORAL_DATE" }`)
   - **Note:** We are not aware of consumers already using these features. These annotations may also rely on another missing feature: supporting range comparisons in join conditions.
 
+- BREAKING: Changed string enum notation to object notation `{ "#": "value" }` for consistency across all vocabularies
+  - `@PersonalData.entitySemantics` now uses object notation (e.g., `{ "#": "DATA_SUBJECT" }`)
+  - `@PersonalData.fieldSemantics` now uses object notation (e.g., `{ "#": "PURPOSE_ID" }`)
+  - enum values in the object notation change from `CapitalCamelCase` to `UPPER_CASE_SNAKE_CASE`.
+  - **Note:** We are not aware of consumers already using these features.
+
+- BREAKING: `cds.String` type now has an explicit maximum length constraint of 5000 characters (default: 5000)
+  - Previously, the length constraint was not enforced in the schema
+  - In practice, `cds.String` was always length-limited, which is why `cds.LargeString` exists for unlimited/large strings
+  - `cds.LargeString` and `cds.LargeBinary` remain unlimited (no maximum constraint)
+  - This change makes the schema consistent with actual CDS semantics
+
+### Added
+
+- feat: extended the `on` condition for association and composition types to support operators `>`, `>=`, `<`, and `<=`
+
 ## [1.1.0]
 
 ### Added
