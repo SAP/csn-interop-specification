@@ -29,12 +29,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: "22"
+          node-version: "24"
           # registry-url is required for releasing packages
           registry-url: ${{ vars.NPM_REGISTRY }}
-
-      - name: Install latest npm cli # TODO: can be removed when updating to node 24, npm v.11 is needed for npm trusted publishing
-        run: npm install -g npm@latest
 
       - name: Install dependencies
         run: npm ci
