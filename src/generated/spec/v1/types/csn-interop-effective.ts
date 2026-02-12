@@ -39,8 +39,8 @@ export type CdsType =
   | StringType
   | LargeStringType
   | IntegerType
+  | Int16Type
   | Integer64Type
-  | Integer16Type
   | UInt8Type
   | DecimalType
   | DoubleType
@@ -373,8 +373,8 @@ export type TypeDefinition =
   | StringTypeDefinition
   | LargeStringTypeDefinition
   | IntegerTypeDefinition
+  | Int16TypeDefinition
   | Integer64TypeDefinition
-  | Integer16TypeDefinition
   | UInt8TypeDefinition
   | DecimalTypeDefinition
   | DoubleTypeDefinition
@@ -1377,6 +1377,105 @@ export interface Semantics {
   [k: string]: unknown | undefined;
 }
 /**
+ * Signed integer with 16 bit.
+ */
+export interface Int16Type {
+  /**
+   * The modeling artefact is a `cds.Int16` type.
+   */
+  type: Int16CdsType;
+  /**
+   * Indicates that this element is used as a primary key.
+   * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
+   */
+  key?: boolean;
+  /**
+   * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
+   */
+  notNull?: boolean;
+  /**
+   * Human readable documentation, usually for developer documentation.
+   *
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
+   */
+  doc?: string;
+  default?: DefaultValueInteger;
+  enum?: EnumDictionary;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.custom"?: ObjectModelCustom;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  "@PersonalData.fieldSemantics"?: PersonalData;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.valueRange"?: Semantics;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  /**
+   * Annotations or private properties MAY be added.
+   *
+   * **Annotations** MUST start with `@`.
+   *
+   * In CSN Interop Effective the annotations MUST follow the "flattened" form:
+   * Every record / object in an annotation will be flattened into a `.` (dot).
+   * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
+   *
+   * Correct annotations examples:
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
+   *
+   * Or
+   *
+   * **Private properties**, starting with `__`.
+   * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
+   */
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+}
+/**
  * Signed integer with 64 bit.
  */
 export interface Integer64Type {
@@ -1476,107 +1575,6 @@ export interface Integer64Type {
   [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
- * Signed integer with 16 bit.
- */
-export interface Integer16Type {
-  /**
-   * The modeling artefact is a `cds.Integer16` type.
-   */
-  type: Integer16CdsType;
-  /**
-   * Indicates that this element is used as a primary key.
-   * Multiple primary keys MAY be used in case of a composite ID.
-   *
-   * Elements marked as `key` also imply `notNull: true`.
-   */
-  key?: boolean;
-  /**
-   * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
-   *
-   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
-   */
-  notNull?: boolean;
-  /**
-   * Human readable documentation, usually for developer documentation.
-   *
-   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
-   *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
-   */
-  doc?: string;
-  default?: DefaultValueInteger;
-  enum?: EnumDictionary;
-  "@Aggregation.default"?: Aggregation;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
-  "@Consumption.valueHelpDefinition"?: Consumption;
-  "@EndUserText.label"?: EndUserTextLabel;
-  "@EndUserText.heading"?: EndUserTextHeading;
-  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
-  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.custom"?: ObjectModelCustom;
-  "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelText;
-  "@ObjectModel.text.association"?: ElementReference;
-  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
-  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
-  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
-  "@Semantics.amount.currencyCode"?: ElementReference;
-  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
-  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
-  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
-  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
-  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
-  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
-  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
-  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
-  "@Semantics.calendar.year"?: SemanticsCalendarYear;
-  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
-  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
-  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
-  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
-  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
-  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
-  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
-  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
-  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
-  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
-  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
-  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
-  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
-  "@Semantics.language"?: SemanticsLanguage;
-  "@Semantics.time"?: SemanticsTime;
-  "@Semantics.text"?: SemanticsText;
-  "@Semantics.uuid"?: SemanticsUuid;
-  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
-  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
-  /**
-   * Annotations or private properties MAY be added.
-   *
-   * **Annotations** MUST start with `@`.
-   *
-   * In CSN Interop Effective the annotations MUST follow the "flattened" form:
-   * Every record / object in an annotation will be flattened into a `.` (dot).
-   * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
-   *
-   * Correct annotations examples:
-   * - `"@Common.bar": "foo"`
-   * - `"@Common.foo.bar": true`
-   * - `"@Common.array": [{ "foo": true }]`
-   *
-   * Or
-   *
-   * **Private properties**, starting with `__`.
-   * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
-   */
-  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
-}
-/**
  * Unsigned integer with 8 bit.
  */
 export interface UInt8Type {
@@ -1620,12 +1618,10 @@ export interface UInt8Type {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2617,7 +2613,7 @@ export interface AssociationType {
    *
    * The first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
    *
-   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Integer64`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
+   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Int16`, `cds.Integer64`, `cds.UInt8`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
    *
    * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
@@ -2822,7 +2818,7 @@ export interface CompositionType {
    *
    * The first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
    *
-   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Integer64`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
+   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Int16`, `cds.Integer64`, `cds.UInt8`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
    *
    * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
@@ -3777,6 +3773,102 @@ export interface IntegerTypeDefinition {
   [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
+ * A type definition of type `cds.Int16`.
+ */
+export interface Int16TypeDefinition {
+  /**
+   * The kind property is used when defining derived types. In this case Kind = "type".
+   */
+  kind: "type";
+  /**
+   * The modeling artefact is a `cds.Int16` type.
+   */
+  type: Int16CdsType;
+  /**
+   * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
+   */
+  notNull?: boolean;
+  /**
+   * Human readable documentation, usually for developer documentation.
+   *
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
+   */
+  doc?: string;
+  default?: DefaultValueInteger;
+  enum?: EnumDictionary;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.custom"?: ObjectModelCustom;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  "@PersonalData.fieldSemantics"?: PersonalData;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.valueRange"?: Semantics;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  /**
+   * Annotations or private properties MAY be added.
+   *
+   * **Annotations** MUST start with `@`.
+   *
+   * In CSN Interop Effective the annotations MUST follow the "flattened" form:
+   * Every record / object in an annotation will be flattened into a `.` (dot).
+   * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
+   *
+   * Correct annotations examples:
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
+   *
+   * Or
+   *
+   * **Private properties**, starting with `__`.
+   * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
+   */
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+}
+/**
  * A type definition of type `cds.Integer64`.
  */
 export interface Integer64TypeDefinition {
@@ -3873,104 +3965,6 @@ export interface Integer64TypeDefinition {
   [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
- * A type definition of type `cds.Integer16`.
- */
-export interface Integer16TypeDefinition {
-  /**
-   * The kind property is used when defining derived types. In this case Kind = "type".
-   */
-  kind: "type";
-  /**
-   * The modeling artefact is a `cds.Integer16` type.
-   */
-  type: Integer16CdsType;
-  /**
-   * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
-   *
-   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
-   */
-  notNull?: boolean;
-  /**
-   * Human readable documentation, usually for developer documentation.
-   *
-   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
-   *
-   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
-   */
-  doc?: string;
-  default?: DefaultValueInteger;
-  enum?: EnumDictionary;
-  "@Aggregation.default"?: Aggregation;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
-  "@Consumption.valueHelpDefinition"?: Consumption;
-  "@EndUserText.label"?: EndUserTextLabel;
-  "@EndUserText.heading"?: EndUserTextHeading;
-  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
-  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationship;
-  "@ObjectModel.custom"?: ObjectModelCustom;
-  "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelText;
-  "@ObjectModel.text.association"?: ElementReference;
-  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
-  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
-  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
-  "@Semantics.amount.currencyCode"?: ElementReference;
-  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
-  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
-  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
-  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
-  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
-  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
-  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
-  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
-  "@Semantics.calendar.year"?: SemanticsCalendarYear;
-  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
-  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
-  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
-  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
-  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
-  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
-  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
-  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
-  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
-  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
-  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
-  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
-  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
-  "@Semantics.language"?: SemanticsLanguage;
-  "@Semantics.time"?: SemanticsTime;
-  "@Semantics.text"?: SemanticsText;
-  "@Semantics.uuid"?: SemanticsUuid;
-  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
-  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
-  /**
-   * Annotations or private properties MAY be added.
-   *
-   * **Annotations** MUST start with `@`.
-   *
-   * In CSN Interop Effective the annotations MUST follow the "flattened" form:
-   * Every record / object in an annotation will be flattened into a `.` (dot).
-   * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
-   *
-   * Correct annotations examples:
-   * - `"@Common.bar": "foo"`
-   * - `"@Common.foo.bar": true`
-   * - `"@Common.array": [{ "foo": true }]`
-   *
-   * Or
-   *
-   * **Private properties**, starting with `__`.
-   * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
-   */
-  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
-}
-/**
  * A type definition of type `cds.UInt8`.
  */
 export interface UInt8TypeDefinition {
@@ -4011,12 +4005,10 @@ export interface UInt8TypeDefinition {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -4990,7 +4982,7 @@ export interface AssociationTypeDefinition {
    *
    * The first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
    *
-   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Integer64`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
+   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Int16`, `cds.Integer64`, `cds.UInt8`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
    *
    * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
@@ -5146,7 +5138,7 @@ export interface CompositionTypeDefinition {
    *
    * The first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
    *
-   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Integer64`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
+   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Int16`, `cds.Integer64`, `cds.UInt8`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
    *
    * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
@@ -5313,7 +5305,11 @@ export type LargeStringCdsType = "cds.LargeString";
 
 export type IntegerCdsType = "cds.Integer";
 
+export type Int16CdsType = "cds.Int16";
+
 export type Integer64CdsType = "cds.Integer64";
+
+export type UInt8CdsType = "cds.UInt8";
 
 export type DecimalCdsType = "cds.Decimal";
 
@@ -5339,4 +5335,4 @@ export type BinaryCdsType = "cds.Binary";
 
 export type LargeBinaryCdsType = "cds.LargeBinary";
 
-export type CdsTypeValue = BooleanCdsType | StringCdsType | LargeStringCdsType | IntegerCdsType | Integer64CdsType | DecimalCdsType | DoubleCdsType | DateCdsType | TimeCdsType | DateTimeCdsType | TimestampCdsType | UUIDCdsType | BinaryCdsType | LargeBinaryCdsType | AssociationCdsType | CompositionCdsType;
+export type CdsTypeValue = BooleanCdsType | StringCdsType | LargeStringCdsType | IntegerCdsType | Int16CdsType | Integer64CdsType | UInt8CdsType | DecimalCdsType | DoubleCdsType | DateCdsType | TimeCdsType | DateTimeCdsType | TimestampCdsType | UUIDCdsType | BinaryCdsType | LargeBinaryCdsType | AssociationCdsType | CompositionCdsType;

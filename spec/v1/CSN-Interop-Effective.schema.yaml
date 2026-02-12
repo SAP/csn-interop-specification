@@ -30,8 +30,12 @@ x-custom-typescript-types:
     typeValue: '"cds.LargeString"'
   - typeName: "IntegerCdsType"
     typeValue: '"cds.Integer"'
+  - typeName: "Int16CdsType"
+    typeValue: '"cds.Int16"'
   - typeName: "Integer64CdsType"
     typeValue: '"cds.Integer64"'
+  - typeName: "UInt8CdsType"
+    typeValue: '"cds.UInt8"'
   - typeName: "DecimalCdsType"
     typeValue: '"cds.Decimal"'
   - typeName: "DoubleCdsType"
@@ -57,7 +61,7 @@ x-custom-typescript-types:
   - typeName: "LargeBinaryCdsType"
     typeValue: '"cds.LargeBinary"'
   - typeName: "CdsTypeValue"
-    typeValue: "BooleanCdsType | StringCdsType | LargeStringCdsType | IntegerCdsType | Integer64CdsType | DecimalCdsType | DoubleCdsType | DateCdsType | TimeCdsType | DateTimeCdsType | TimestampCdsType | UUIDCdsType | BinaryCdsType | LargeBinaryCdsType | AssociationCdsType | CompositionCdsType"
+    typeValue: "BooleanCdsType | StringCdsType | LargeStringCdsType | IntegerCdsType | Int16CdsType | Integer64CdsType | UInt8CdsType | DecimalCdsType | DoubleCdsType | DateCdsType | TimeCdsType | DateTimeCdsType | TimestampCdsType | UUIDCdsType | BinaryCdsType | LargeBinaryCdsType | AssociationCdsType | CompositionCdsType"
 
 properties:
   $schema:
@@ -554,8 +558,8 @@ definitions:
           - "cds.String"
           - "cds.LargeString"
           - "cds.Integer"
-          - "cds.Integer64"
-          - "cds.Integer16"
+          - "cds.Int16"
+          - "cds.Integer64" # inconsistent naming, bug accepted for now by the CSN WG
           - "cds.UInt8"
           - "cds.Decimal"
           - "cds.Double"
@@ -612,20 +616,20 @@ definitions:
           properties:
             type:
               type: string
+              const: "cds.Int16"
+          required:
+            - type
+        then:
+          $ref: "#/definitions/Int16Type"
+      - if:
+          properties:
+            type:
+              type: string
               const: "cds.Integer64"
           required:
             - type
         then:
           $ref: "#/definitions/Integer64Type"
-      - if:
-          properties:
-            type:
-              type: string
-              const: "cds.Integer16"
-          required:
-            - type
-        then:
-          $ref: "#/definitions/Integer16Type"
       - if:
           properties:
             type:
@@ -874,6 +878,34 @@ definitions:
     examples:
       - { "type": "cds.Integer", "default": { "val": 123 } }
 
+  Int16Type:
+    title: Int16 Type
+    type: object
+    description: |-
+      Signed integer with 16 bit.
+    properties: &Int16TypeProperties
+      type:
+        type: string
+        const: cds.Int16
+        description: The modeling artefact is a `cds.Int16` type.
+        tsType: Int16CdsType
+      key: *elementKey
+      notNull: *elementNotNull
+      doc: *doc
+      default:
+        $ref: "#/definitions/DefaultValueInteger"
+      enum: *elementEnum
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - Int16Type
+    x-header-level: 4
+    examples:
+      - { "type": "cds.Int16", "default": { "val": 123 } }
+
   Integer64Type:
     title: Integer64 Type
     type: object
@@ -901,34 +933,6 @@ definitions:
     x-header-level: 4
     examples:
       - { "type": "cds.Integer64", "default": { "val": 123 } }
-
-  Integer16Type:
-    title: Integer16 Type
-    type: object
-    description: |-
-      Signed integer with 16 bit.
-    properties: &Integer16TypeProperties
-      type:
-        type: string
-        const: cds.Integer16
-        description: The modeling artefact is a `cds.Integer16` type.
-        tsType: Integer16CdsType
-      key: *elementKey
-      notNull: *elementNotNull
-      doc: *doc
-      default:
-        $ref: "#/definitions/DefaultValueInteger"
-      enum: *elementEnum
-    patternProperties: *patternPropertiesAnnotationsAndPrivate
-    required:
-      - type
-    additionalProperties: false
-    x-extension-points:
-      - Type
-      - Integer16Type
-    x-header-level: 4
-    examples:
-      - { "type": "cds.Integer16", "default": { "val": 123 } }
 
   UInt8Type:
     title: UInt8 Type
@@ -1281,7 +1285,7 @@ definitions:
 
           The first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
 
-          Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Integer64`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
+          Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Int16`, `cds.Integer64`, `cds.UInt8`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
 
           In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
 
@@ -1778,8 +1782,8 @@ definitions:
           - "cds.String"
           - "cds.LargeString"
           - "cds.Integer"
-          - "cds.Integer64"
-          - "cds.Integer16"
+          - "cds.Int16"
+          - "cds.Integer64" # inconsistent naming, bug accepted for now by the CSN WG
           - "cds.UInt8"
           - "cds.Decimal"
           - "cds.Double"
@@ -1840,22 +1844,22 @@ definitions:
           properties:
             type:
               type: string
+              const: "cds.Int16"
+          required:
+            - kind
+            - type
+        then:
+          $ref: "#/definitions/Int16TypeDefinition"
+      - if:
+          properties:
+            type:
+              type: string
               const: "cds.Integer64"
           required:
             - kind
             - type
         then:
           $ref: "#/definitions/Integer64TypeDefinition"
-      - if:
-          properties:
-            type:
-              type: string
-              const: "cds.Integer16"
-          required:
-            - kind
-            - type
-        then:
-          $ref: "#/definitions/Integer16TypeDefinition"
       - if:
           properties:
             type:
@@ -2061,6 +2065,24 @@ definitions:
     examples:
       - { "kind": "type", "type": "cds.Integer", "default": { "val": 123 } }
 
+  Int16TypeDefinition:
+    title: Int16 Type Definition
+    type: object
+    description: A type definition of type `cds.Int16`.
+    properties:
+      kind: *kindPropertyForTypeDefinition
+      key: null # null because "key" should only be defined on element level, not in a custom type
+      <<: *Int16TypeProperties
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+      - kind
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - Int16Type
+    x-header-level: 4
+
   Integer64TypeDefinition:
     title: Integer64 Type Definition
     type: object
@@ -2077,24 +2099,6 @@ definitions:
     x-extension-points:
       - Type
       - Integer64Type
-    x-header-level: 4
-
-  Integer16TypeDefinition:
-    title: Integer16 Type Definition
-    type: object
-    description: A type definition of type `cds.Integer16`.
-    properties:
-      kind: *kindPropertyForTypeDefinition
-      key: null # null because "key" should only be defined on element level, not in a custom type
-      <<: *Integer16TypeProperties
-    patternProperties: *patternPropertiesAnnotationsAndPrivate
-    required:
-      - type
-      - kind
-    additionalProperties: false
-    x-extension-points:
-      - Type
-      - Integer16Type
     x-header-level: 4
 
   UInt8TypeDefinition:

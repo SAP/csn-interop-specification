@@ -9,8 +9,10 @@ import {
   CustomType,
   CustomTypeValue,
   DoubleType,
-  Integer64Type,
   IntegerType,
+  Int16Type,
+  Integer64Type,
+  UInt8Type,
   LargeStringType,
   StringType,
   TimestampType,
@@ -31,8 +33,12 @@ export function getElementTestDataByElementType(elementType: CdsTypeValue | Cust
       return getLargeStringTypeTestData();
     case "cds.Integer":
       return getIntegerTypeTestData();
+    case "cds.Int16":
+      return getInt16TypeTestData();
     case "cds.Integer64":
       return getInteger64TypeTestData();
+    case "cds.UInt8":
+      return getUInt8TypeTestData();
     case "cds.Decimal":
       return getDecimalTypeTestData();
     case "cds.Double":
@@ -126,12 +132,41 @@ function getIntegerTypeTestData(): IntegerType {
 }
 
 /**
+ * Returns a basic object of type Int16Type with only the relevant properties
+ *  that discriminate an int16 from any other type
+ **/
+function getInt16TypeTestData(): Int16Type {
+  return {
+    type: "cds.Int16",
+    default: { val: 1337 },
+    notNull: true,
+    key: false,
+    enum: {},
+  };
+}
+
+/**
  * Returns a basic object of type Integer64Type with only the relevant properties
  *  that discriminate an integer64 from any other type
  **/
 function getInteger64TypeTestData(): Integer64Type {
   return {
     type: "cds.Integer64",
+    default: { val: 1337 },
+    notNull: true,
+    key: false,
+    enum: {},
+  };
+}
+
+/**
+ * Returns a basic object of type UInt8Type with only the relevant properties
+ *  that discriminate an uint8 from any other type
+ **/
+// eslint-disable-next-line @typescript-eslint/naming-convention
+function getUInt8TypeTestData(): UInt8Type {
+  return {
+    type: "cds.UInt8",
     default: { val: 1337 },
     notNull: true,
     key: false,
