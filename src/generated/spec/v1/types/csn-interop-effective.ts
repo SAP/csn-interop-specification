@@ -277,11 +277,27 @@ export type DecimalScaleType = DecimalScaleType1 & DecimalScaleType2;
 export type DecimalScaleType1 = "floating";
 export type DecimalScaleType2 = string;
 /**
- * The operator "="
+ * The operator `=`
  */
 export type EqualsOperator = "=";
 /**
- * The operator "and"
+ * The operator `<`
+ */
+export type SmallerOperator = "<";
+/**
+ * The operator `<=`
+ */
+export type SmallerEqualsOperator = "<=";
+/**
+ * The operator `>`
+ */
+export type GreaterOperator = ">";
+/**
+ * The operator `>=`
+ */
+export type GreaterEqualsOperator = ">=";
+/**
+ * The operator `and`
  */
 export type ANDOperator = "and";
 /**
@@ -2426,24 +2442,64 @@ export interface AssociationType {
    *
    * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Equals Operator "="
+   * - Operator: Equals `=`, Smaller `<`, Smaller Equals `<=`, Greater `>` or Greater Equals `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * The first and third entry MAY be reversed but the `=` operator MUST be in the middle.
+   * The first and third entry of the triple MAY be reversed but the `=`, `<`, `<=`, `>` or `>=` operator MUST be in the middle.
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
-   * In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
+   * The first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+   *
+   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Integer64`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
+   *
+   * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
    * See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
    *
    * @minItems 3
    */
   on: [
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    ...(StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[]
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    ...(
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    )[]
   ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
@@ -2594,24 +2650,64 @@ export interface CompositionType {
    *
    * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Equals Operator "="
+   * - Operator: Equals `=`, Smaller `<`, Smaller Equals `<=`, Greater `>` or Greater Equals `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * The first and third entry MAY be reversed but the `=` operator MUST be in the middle.
+   * The first and third entry of the triple MAY be reversed but the `=`, `<`, `<=`, `>` or `>=` operator MUST be in the middle.
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
-   * In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
+   * The first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+   *
+   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Integer64`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
+   *
+   * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
    * See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
    *
    * @minItems 3
    */
   on: [
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    ...(StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[]
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    ...(
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    )[]
   ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
@@ -4547,24 +4643,64 @@ export interface AssociationTypeDefinition {
    *
    * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Equals Operator "="
+   * - Operator: Equals `=`, Smaller `<`, Smaller Equals `<=`, Greater `>` or Greater Equals `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * The first and third entry MAY be reversed but the `=` operator MUST be in the middle.
+   * The first and third entry of the triple MAY be reversed but the `=`, `<`, `<=`, `>` or `>=` operator MUST be in the middle.
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
-   * In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
+   * The first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+   *
+   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Integer64`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
+   *
+   * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
    * See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
    *
    * @minItems 3
    */
   on: [
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    ...(StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[]
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    ...(
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    )[]
   ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
@@ -4666,24 +4802,64 @@ export interface CompositionTypeDefinition {
    *
    * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Equals Operator "="
+   * - Operator: Equals `=`, Smaller `<`, Smaller Equals `<=`, Greater `>` or Greater Equals `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * The first and third entry MAY be reversed but the `=` operator MUST be in the middle.
+   * The first and third entry of the triple MAY be reversed but the `=`, `<`, `<=`, `>` or `>=` operator MUST be in the middle.
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
-   * In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
+   * The first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+   *
+   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Integer64`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
+   *
+   * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
    * See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
    *
    * @minItems 3
    */
   on: [
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    ...(StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[]
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    ...(
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    )[]
   ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
