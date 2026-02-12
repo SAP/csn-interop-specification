@@ -1,33 +1,64 @@
-name: Publish Package to NPMJS.org
+name: Release
 on:
   workflow_dispatch:
+    inputs:
+      npm:
+        description: "NPMJS Package"
+        required: false
+        type: boolean
+        default: true
+      githubRelease:
+        description: "GitHub Release"
+        required: false
+        type: boolean
+        default: true
 jobs:
-  publish-to-npmjs:
+  npm:
+    if: inputs.npm
+    runs-on: ubuntu-latest
+    environment: npmjs-registry
     permissions:
       contents: read
       id-token: write
-    runs-on: ubuntu-latest
-    environment: npmjs:@sap/csn-interop-specification
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v6
         with:
-          node-version: "20"
-          # registry-url is required for releasing packages
-          registry-url: "https://registry.npmjs.org"
+          fetch-depth: 0
 
-      - name: Install latest npm cli
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          # registry-url is required for releasing packages
+          registry-url: ${{ vars.NPM_REGISTRY }}
+
+      - name: Install latest npm cli # TODO: can be removed when updating to node 24, npm v.11 is needed for npm trusted publishing
         run: npm install -g npm@latest
 
-      - name: npm install
+      - name: Install dependencies
         run: npm ci
 
-      - name: build
+      - name: Build
         run: npm run build
 
-      - name: Publish package
-        # --provenance enables the automatic generation of provenance statements (when using trusted publisher, this is automatically enabled and therefore optional)
+      - name: Publish to NPM
         # --access public is only hard required for the initial release, but it doesn't hurt having it setup
-        # npm version >=11.5.1 required for trusted publisher
-        run: npm publish --provenance --access public
+        run: npm publish --access public
+
+  githubRelease:
+    needs: [npm]
+    if: |
+      always() &&
+      !contains(needs.*.result, 'cancelled') &&
+      !contains(needs.*.result, 'failure') &&
+      inputs.githubRelease
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Create GitHub Release
+        uses: open-resource-discovery/github-release@main
