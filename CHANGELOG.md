@@ -32,6 +32,8 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ### Added
 
+- Added new `cds.Int16` type (signed integer with 16 bit)
+- Added new `cds.UInt8` type (unsigned integer with 8 bit)
 - feat: extended the `on` condition for association and composition types to support operators `>`, `>=`, `<`, and `<=`
 
 ## [1.1.0]
