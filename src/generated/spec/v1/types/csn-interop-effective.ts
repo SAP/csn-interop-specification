@@ -991,7 +991,8 @@ export interface PersonalData {
     | "END_OF_RETENTION_DATE";
 }
 /**
- * An element of type `cds.String`.
+ * An element of type `cds.String`, which is length limited.
+ * For unlimited / large strings, use `cds.LargeString` instead.
  */
 export interface StringType {
   /**
@@ -2943,17 +2944,29 @@ export interface TemporalID {
    * List of [Property Type](#property-type) IDs that are non-temporal.
    */
   propertyTypes: PropertyTypeID[];
-  /**
-   * Interval which includes the boundaries.
-   */
-  temporalIntervalType: "CLOSED_CLOSED" | "OPEN_OPEN" | "OPEN_CLOSED" | "CLOSED_OPEN";
-  /**
-   * Temporal type.
-   */
-  temporalType: "DATE" | "DATETIME";
+  temporalIntervalType: TemporalIntervalType;
+  temporalType: TemporalType;
   temporalIntervalStartProperty: LocalPropertyName;
   temporalIntervalEndProperty: LocalPropertyName;
   [k: string]: unknown | undefined;
+}
+/**
+ * Interval which includes the boundaries.
+ */
+export interface TemporalIntervalType {
+  /**
+   * Provide the value in `{ "#": "<value>" }` enum notation.
+   */
+  "#": "CLOSED_CLOSED" | "OPEN_OPEN" | "OPEN_CLOSED" | "CLOSED_OPEN";
+}
+/**
+ * Temporal type.
+ */
+export interface TemporalType {
+  /**
+   * Provide the value in `{ "#": "<value>" }` enum notation.
+   */
+  "#": "DATE" | "DATETIME";
 }
 /**
  * Defines single temporal reference to another Entity Type.
@@ -2968,12 +2981,18 @@ export interface TemporalReference {
    * List of non-temporal properties the composite temporal ID consists of.
    */
   referencedPropertyTypes: ReferencedPropertyType[];
-  /**
-   * Category of the temporal reference.
-   */
-  category: "TEMPORAL_DATE";
+  category: Category;
   selectionDateProperty: LocalPropertyName;
   [k: string]: unknown | undefined;
+}
+/**
+ * Category of the temporal reference.
+ */
+export interface Category {
+  /**
+   * Provide the value in `{ "#": "<value>" }` enum notation.
+   */
+  "#": "TEMPORAL_DATE";
 }
 /**
  * Defines single a reference to another Entity Type based on a composite ID.
