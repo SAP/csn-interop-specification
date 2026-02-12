@@ -204,40 +204,10 @@
           }
         },
         "temporalIntervalType": {
-          "type": "string",
-          "description": "Interval which includes the boundaries.",
-          "oneOf": [
-            {
-              "const": "CLOSED_CLOSED"
-            },
-            {
-              "const": "OPEN_OPEN"
-            },
-            {
-              "const": "OPEN_CLOSED"
-            },
-            {
-              "const": "CLOSED_OPEN"
-            }
-          ],
-          "examples": [
-            "CLOSED_CLOSED"
-          ]
+          "$ref": "#/definitions/@EntityRelationship.TemporalIntervalType"
         },
         "temporalType": {
-          "type": "string",
-          "description": "Temporal type.",
-          "oneOf": [
-            {
-              "const": "DATE"
-            },
-            {
-              "const": "DATETIME"
-            }
-          ],
-          "examples": [
-            "DATE"
-          ]
+          "$ref": "#/definitions/@EntityRelationship.TemporalType"
         },
         "temporalIntervalStartProperty": {
           "$ref": "#/definitions/@EntityRelationship.LocalPropertyName",
@@ -276,16 +246,7 @@
           }
         },
         "category": {
-          "type": "string",
-          "description": "Category of the temporal reference.",
-          "oneOf": [
-            {
-              "const": "TEMPORAL_DATE"
-            }
-          ],
-          "examples": [
-            "TEMPORAL_DATE"
-          ]
+          "$ref": "#/definitions/@EntityRelationship.Category"
         },
         "selectionDateProperty": {
           "$ref": "#/definitions/@EntityRelationship.LocalPropertyName",
@@ -370,6 +331,79 @@
       "title": "Local Property Name",
       "type": "string",
       "description": "Name of the property in the local Entity Type"
+    },
+    "@EntityRelationship.TemporalIntervalType": {
+      "title": "Temporal Interval Type",
+      "type": "object",
+      "description": "Interval which includes the boundaries.",
+      "properties": {
+        "#": {
+          "type": "string",
+          "description": "Provide the value in `{ \"#\": \"<value>\" }` enum notation.",
+          "enum": [
+            "CLOSED_CLOSED",
+            "OPEN_OPEN",
+            "OPEN_CLOSED",
+            "CLOSED_OPEN"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "#"
+      ],
+      "examples": [
+        {
+          "#": "CLOSED_CLOSED"
+        }
+      ]
+    },
+    "@EntityRelationship.TemporalType": {
+      "title": "Temporal Type",
+      "type": "object",
+      "description": "Temporal type.",
+      "properties": {
+        "#": {
+          "type": "string",
+          "description": "Provide the value in `{ \"#\": \"<value>\" }` enum notation.",
+          "enum": [
+            "DATE",
+            "DATETIME"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "#"
+      ],
+      "examples": [
+        {
+          "#": "DATE"
+        }
+      ]
+    },
+    "@EntityRelationship.Category": {
+      "title": "Category",
+      "type": "object",
+      "description": "Category of the temporal reference.",
+      "properties": {
+        "#": {
+          "type": "string",
+          "description": "Provide the value in `{ \"#\": \"<value>\" }` enum notation.",
+          "enum": [
+            "TEMPORAL_DATE"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "#"
+      ],
+      "examples": [
+        {
+          "#": "TEMPORAL_DATE"
+        }
+      ]
     }
   },
   "examples": [
