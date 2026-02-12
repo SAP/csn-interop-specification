@@ -10,6 +10,8 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+## [1.2.0]
+
 ### Changed
 
 - BREAKING: Changed string enum notation to object notation `{ "#": "value" }` for consistency across all vocabularies
