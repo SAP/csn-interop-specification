@@ -16,7 +16,7 @@ jobs:
   npm:
     if: inputs.npm
     runs-on: ubuntu-latest
-    environment: npmjs-registry
+    environment: npmjs:@sap/csn-interop-specification
     permissions:
       contents: read
       id-token: write
