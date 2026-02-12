@@ -991,7 +991,8 @@ export interface PersonalData {
     | "END_OF_RETENTION_DATE";
 }
 /**
- * An element of type `cds.String`.
+ * An element of type `cds.String`, which is length limited.
+ * For unlimited / large strings, use `cds.LargeString` instead.
  */
 export interface StringType {
   /**
