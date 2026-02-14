@@ -90,6 +90,8 @@ properties:
       The value states the specification version it has been created against.
     enum:
       - "1.0"
+      - "1.1"
+      - "1.2"
   $version:
     type: string
     description: |-

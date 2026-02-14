@@ -60,7 +60,7 @@ There are three mandatory root level properties that need to be added to get a m
 
 ```js
 {
-  "csnInteropEffective": "1.0",
+  "csnInteropEffective": "1.2",
   "$version": "2.0",
   "definitions": { }, // MUST have at least one entry
 }
