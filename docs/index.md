@@ -4,7 +4,7 @@ sidebar_position: 0
 title: "Overview"
 ---
 
-# CSN Interop v1.1
+# CSN Interop v1.2
 
 ## Summary
 
@@ -15,7 +15,7 @@ A CSN Interop file can look like this (extracted from [./examples/airline.json](
 
 ```js
 {
-  "csnInteropEffective": "1.1",
+  "csnInteropEffective": "1.2",
   "$version": "2.0",
   "meta": {
     "document": {

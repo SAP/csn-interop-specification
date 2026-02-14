@@ -1,5 +1,5 @@
 {
-  "csnInteropEffective": "1.0",
+  "csnInteropEffective": "1.2",
   "$version": "2.0",
   "meta": {
     "creator": "CDS Compiler v5.4.2"
