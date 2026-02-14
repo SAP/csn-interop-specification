@@ -10,6 +10,13 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+## [1.2.1]
+
+### Fixed
+
+- Fixed `csnInteropEffective` enum to include `"1.1"` and `"1.2"` as valid values (previously only `"1.0"` was allowed)
+- Updated all examples and documentation to use `csnInteropEffective: "1.2"`
+
 ## [1.2.0]
 
 ### Changed
