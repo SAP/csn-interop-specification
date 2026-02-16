@@ -64,7 +64,7 @@ export function getElementTestDataByElementType(elementType: CdsTypeValue | Cust
 
 export function getCsnDocumentTestData(definitions?: Definitions): CSNInteropEffectiveDocument {
   return {
-    csnInteropEffective: "1.0",
+    csnInteropEffective: "1.2",
     $version: "2.0",
     definitions: definitions || {},
   };

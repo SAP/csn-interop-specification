@@ -415,7 +415,7 @@ export interface CSNInteropEffectiveDocument {
    * Existence of this property indicated that the file is a CSN Interop Effective document.
    * The value states the specification version it has been created against.
    */
-  csnInteropEffective: "1.0";
+  csnInteropEffective: "1.0" | "1.1" | "1.2";
   /**
    * The version of the CDS CSN. For this version of CSN Interop it is fixed to `2.0`.
    *
