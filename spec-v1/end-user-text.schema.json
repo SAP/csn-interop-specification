@@ -47,7 +47,7 @@
   },
   "examples": [
     {
-      "csnInteropEffective": "1.0",
+      "csnInteropEffective": "1.2",
       "$version": "2.0",
       "definitions": {
         "SalesOrderHeader": {
@@ -59,7 +59,7 @@
       }
     },
     {
-      "csnInteropEffective": "1.0",
+      "csnInteropEffective": "1.2",
       "$version": "2.0",
       "definitions": {
         "AD01PROFNR": {
