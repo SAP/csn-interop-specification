@@ -2,38 +2,15 @@
 
 ## Introduction
 
-Modern business application suites handle thousands of different types of business data and consist of many applications or services.
-Business data is heavily interconnected and dynamically evolves over time.
+The `@EntityRelationship` vocabulary lets you:
 
-### The Problem
+1. **Link data objects to domain concepts**: Annotate your API entities with their corresponding Entity Type and Property Type IDs, so consumers know what business concept the data represents.
+2. **Declare IDs**: Specify which properties (single or composite) uniquely identify an entity.
+3. **Define cross-boundary references**: Create associations that work across different APIs, products, or systems - without relying on physical property names or API structure.
 
-In enterprise landscapes, we typically deal with two distinct levels of models:
+### Why This Matters
 
-- **Domain Models (Conceptual)**: Abstract representations of business concepts like "Customer", "Product", or "Order". These are conceptual entities that exist independently of how they are technically exposed.
-- **Data Models (Physical)**: Concrete API or database representations that expose domain concepts. The same domain model concept can have multiple data model representations across different APIs, versions, protocols, or even products.
-
-Data models are usually exposed through APIs and data products. While CSN can express associations within the same document, we need additional capabilities to describe relationships that span across different APIs, products, tenants, and technology stacks.
-
-### What EntityRelationship Addresses
-
-The `@EntityRelationship` vocabulary addresses two key concerns:
-
-**1. Associating Data Models with Domain Models**
-
-By annotating data objects with their corresponding [Entity Types](#entity-type) and [Property Types](#property-type), we establish a link between the physical API/data model and the underlying conceptual domain model. This provides:
-
-- Semantic context and meaning to API structures
-- Understanding that multiple data models can expose the same domain concept
-- A stable reference point independent of API structure changes
-
-**2. Defining IDs and Cross-Boundary References**
-
-Building on the domain model association, we can define:
-
-- **IDs for data objects**: Which can be simple (single property) or composite (multiple properties together)
-- **References across boundaries**: Associations that work across different data models, APIs, and even products - by stating how references tie to their target entities and IDs
-
-This enables "dangling references" - associations to entities outside the current API context, including those provided by different products and technology stacks.
+CSN can express associations within a single document, but cannot describe references that span across different APIs, versions, or products. The `@EntityRelationship` annotations solve this by using abstract identifiers (Entity Types, Property Types) instead of physical property names - making references stable across API changes and technology boundaries.
 
 ### Quick Start Examples
 
