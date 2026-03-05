@@ -35,6 +35,67 @@ Building on the domain model association, we can define:
 
 This enables "dangling references" - associations to entities outside the current API context, including those provided by different products and technology stacks.
 
+### Quick Start Examples
+
+#### Example 1: Defining an Entity Type with its ID
+
+A `Product` entity is annotated to declare which domain concept it represents and which property can be used as its unique identifier:
+
+```json
+{
+  "definitions": {
+    "Product": {
+      "kind": "entity",
+      "@EntityRelationship.entityType": "sap.example:Product",
+      "@EntityRelationship.entityIds": [{ "propertyTypes": ["sap.example:ProductID"] }],
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID",
+          "@EntityRelationship.propertyType": "sap.example:ProductID"
+        },
+        "name": { "type": "cds.String" }
+      }
+    }
+  }
+}
+```
+
+- `@EntityRelationship.entityType`: Links this data object to the conceptual `Product` entity type
+- `@EntityRelationship.entityIds`: Declares that `ProductID` can be used to uniquely identify this entity
+- `@EntityRelationship.propertyType`: Marks the `ID` element as holding the `ProductID` value
+
+#### Example 2: Referencing Another Entity
+
+An `Order` entity references the `Product` entity defined above. The reference works across API boundaries because it uses the abstract Property Type, not the concrete property name:
+
+```json
+{
+  "definitions": {
+    "Order": {
+      "kind": "entity",
+      "@EntityRelationship.entityType": "sap.example:Order",
+      "elements": {
+        "orderNumber": { "key": true, "type": "cds.Integer" },
+        "productID": {
+          "type": "cds.UUID",
+          "@EntityRelationship.reference": [
+            {
+              "referencedEntityType": "sap.example:Product",
+              "referencedPropertyType": "sap.example:ProductID"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+```
+
+- `@EntityRelationship.reference`: Declares that `productID` holds a reference to a `Product` entity, using its `ProductID` as the lookup key
+
+This reference works even if the `Product` entity is exposed by a different API or product, as long as it uses the same Entity Type and Property Type identifiers.
+
 ### Overview Diagram
 
 The following diagram illustrates the abstract concepts and how they map to the concrete data model:
