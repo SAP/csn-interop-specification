@@ -77,7 +77,9 @@ This reference works even if the `Product` entity is exposed by a different API 
 
 The following diagram illustrates the abstract concepts and how they map to the concrete data model:
 
+<div style={{"textAlign": "center"}}>
 <img src="/img/er-abstract-concepts.drawio.svg" alt="Entity Relationship Abstract Concepts" />
+</div>
 
 - **Domain Model (Conceptual)**: Describes the business domain with Entity Types, Property Types, and Value Types.
 - **Data Model (Physical)**: The actual API/database representation with Data Objects, Data Properties, and Data Values.
@@ -88,6 +90,8 @@ The Entity Relationship annotations bridge these two levels by annotating the ph
 
 The following diagram shows how the abstract concepts are applied to a concrete example:
 
+<div style={{"textAlign": "center"}}>
 <img src="/img/er-concrete-example.drawio.svg" alt="Entity Relationship Concrete Example" />
+</div>
 
 Jump to [Concept Explanation](#concept-explanation) for more detailed explanations.
