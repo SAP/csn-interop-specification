@@ -2,4 +2,4 @@
 
 ## Introduction
 
-The DataIntegration annotation is used in the context of service definitions, service bindings and data products. It is used to give further context on element or entity level that is relevant for the data integration.
+The DataIntegration annotations are used in the context of data integration scenarios to inform downstram consumers on specific behavior of elements and entities.
