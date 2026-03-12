@@ -3184,7 +3184,7 @@ export interface TemporalReference {
    */
   referencedPropertyTypes: ReferencedPropertyType[];
   category: Category;
-  selectionDateProperty: LocalPropertyName;
+  selectionDateProperty?: LocalPropertyName;
   [k: string]: unknown | undefined;
 }
 /**

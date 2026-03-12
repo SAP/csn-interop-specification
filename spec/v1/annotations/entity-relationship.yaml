@@ -231,11 +231,13 @@ definitions:
         $ref: "#/definitions/@EntityRelationship.LocalPropertyName"
         description: |-
           Property in the local entity that is used to select the right date interval.
+          If omitted, the consumer determines the selection date/time based on context.
+          Common examples include the current date/time, the start of a fiscal quarter,
+          or another use-case-specific point in time.
     required:
       - referencedEntityType
       - referencedPropertyTypes
       - category
-      - selectionDateProperty
 
   "@EntityRelationship.ReferenceTargetWithConstantId":
     title: Reference with Constant ID
