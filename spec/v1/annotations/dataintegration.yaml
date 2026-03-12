@@ -10,3 +10,4 @@ definitions:
       Specifies that the data of the element or entity is unavailable although it is part of the output structure.
     x-extension-targets:
       - Type
+      - Entity 
