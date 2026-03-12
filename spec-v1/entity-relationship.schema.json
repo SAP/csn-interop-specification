@@ -250,14 +250,13 @@
         },
         "selectionDateProperty": {
           "$ref": "#/definitions/@EntityRelationship.LocalPropertyName",
-          "description": "Property in the local entity that is used to select the right date interval."
+          "description": "Property in the local entity that is used to select the right date interval.\nIf omitted, the consumer determines the selection date/time based on context.\nCommon examples include the current date/time, the start of a fiscal quarter,\nor another use-case-specific point in time."
         }
       },
       "required": [
         "referencedEntityType",
         "referencedPropertyTypes",
-        "category",
-        "selectionDateProperty"
+        "category"
       ]
     },
     "@EntityRelationship.ReferenceTargetWithConstantId": {
