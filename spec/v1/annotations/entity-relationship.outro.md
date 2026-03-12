@@ -377,6 +377,42 @@ entity SalesOrder {
 //      AND CostCenter.ValidityEndDate   >= SalesOrder.SalesOrderDate
 ```
 
+##### Omitting `selectionDateProperty`
+
+The `selectionDateProperty` is **optional**. If omitted, there is no specific property in the local entity that determines the selection date. Instead, the consumer determines the appropriate date/time based on the use case context. Common examples include:
+
+- **Current date/time**: The reference always targets the currently valid state of the referenced entity (most common case).
+- **Start of fiscal quarter or period**: The reference targets the state valid at the beginning of a business period.
+- **A fixed date in the past or future**: The reference targets a specific point in time defined by business logic outside the data model.
+
+As a consequence, there is consumer input needed to resolve the reference.
+
+```javascript
+@EntityRelationship.entityType : 'sap.vdm.sont:SalesOrder'
+@EntityRelationship.temporalReferences : [{
+  name: 'Reference to Current CostCenter State',
+  referencedEntityType: 'sap.vdm.sont:CostCenter'
+  referencedPropertyTypes: [{
+    referencedPropertyType: 'sap.vdm.gfn:ControllingArea',
+    localPropertyName: 'ControllingArea'
+  },{
+    referencedPropertyType: 'sap.vdm.gfn:CostCenter',
+    localPropertyName: 'CostCenter'
+  }],
+  category: "temporal-date"
+  // selectionDateProperty omitted: consumer determines the selection date based on context
+}]
+entity SalesOrder {
+  //...
+  ControllingArea : String;
+  CostCenter : String;
+}
+// A join or select condition derived from this temporal reference would use a context-determined date,
+// for example using the current date:
+//      AND CostCenter.ValidityStartDate <= <context-determined date>
+//      AND CostCenter.ValidityEndDate   >= <context-determined date>
+```
+
 #### References with Constant ID Values
 
 In this special case we have references where some additional IDs need to be set to a constant value to get to a unique ID reference.

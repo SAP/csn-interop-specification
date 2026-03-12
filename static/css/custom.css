@@ -1,4 +1,14 @@
 :root {
+  /* Night Owl Colors - Muted Blue */
+  --ifm-color-primary: #5e89d6;
+  --ifm-color-primary-dark: #4b7bc9;
+  --ifm-color-primary-darker: #4273c5;
+  --ifm-color-primary-darkest: #3668b8;
+  --ifm-color-primary-light: #7ba0e4;
+  --ifm-color-primary-lighter: #8cafea;
+  --ifm-color-primary-lightest: #a8c1f0;
+  --docusaurus-highlighted-code-line-bg: rgba(199, 146, 234, 0.1);
+
   --ifm-table-cell-padding: 0.5rem;
   --ifm-hr-margin-vertical: 0.5rem;
   --ifm-list-margin: 0.5rem;
@@ -8,7 +18,7 @@
   --doc-sidebar-width: 265px !important;
   --ifm-spacing-horizontal: 8px;
   --ifm-list-left-padding: 1.5rem;
-  --prism-background-color: #222222;
+  --prism-background-color: #011627;
   --ifm-h1-font-size: 2.5rem;
   --ifm-h2-font-size: 1.8rem;
   --ifm-h4-font-size: 1.2rem;
@@ -28,8 +38,8 @@
 
 .navbar__logo img {
   margin-left: -4px;
-  margin-top: -8px;
-  height: 48px;
+  margin-top: -9px;
+  height: 49px;
 }
 
 .navbar__search {
@@ -70,7 +80,7 @@ article .card {
 .markdown blockquote {
   margin: 16px 0;
   padding: 4px 8px;
-  background: #eee;
+  background: rgba(130, 170, 255, 0.1); /* Night Owl Blue tint */
 }
 
 .markdown table {
@@ -90,8 +100,8 @@ article .card {
 }
 
 .markdown .highlight {
-  background: #f3f38d !important;
-  color: #000 !important;
+  background: rgba(236, 196, 141, 0.5) !important; /* Night Owl Gold tint */
+  color: #011627 !important; /* Night Owl Background text */
   border-radius: 3px;
   padding: 0 5px;
 }
@@ -103,7 +113,6 @@ article .card {
 }
 
 .markdown li p {
-  margin-top: 0;
   margin: 0 0 4px 0;
 }
 
@@ -187,8 +196,8 @@ iframe {
 }
 
 .footer--dark {
-  --ifm-footer-background-color: #212121;
-  border-top: 6px solid #949494;
+  --ifm-footer-background-color: #011627;
+  border-top: 6px solid #82aaff;
   padding: 16px;
 }
 .footer--dark .footer__copyright {
@@ -220,4 +229,54 @@ iframe {
   scroll-margin-top: 80px;
   min-width: 120px;
   max-width: 120px;
+}
+
+/* --- Modern Enhancements --- */
+
+/* 1. Custom Night Owl Scrollbars */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+:root[data-theme='dark'] ::-webkit-scrollbar-track {
+    background: #011627;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c3c8cf;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+:root[data-theme='dark'] ::-webkit-scrollbar-thumb {
+    background: #5f7e97;
+    border: 2px solid #011627;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #82aaff; /* Night Owl Blue */
+}
+
+/* 2. Signature Selection Color */
+::selection {
+  background: rgba(199, 146, 234, 0.3); /* Night Owl Purple weak */
+  color: inherit;
+}
+
+/* 3. Card Hover Effects - Micro-interaction */
+.markdown .card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.markdown .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(1, 22, 39, 0.1);
+  border-color: var(--ifm-color-primary);
+}
+
+/* 4. Smooth Link Transitions */
+a {
+  transition: color 0.2s ease-in-out;
 }

@@ -39,7 +39,9 @@ export type CdsType =
   | StringType
   | LargeStringType
   | IntegerType
+  | Int16Type
   | Integer64Type
+  | UInt8Type
   | DecimalType
   | DoubleType
   | DateType
@@ -114,18 +116,6 @@ export type ObjectModelText = unknown[];
  * The property contains an OID for the ODM Entity with this official name
  */
 export type ODMOidReferenceEntityName = string;
-export type PersonalDataFieldSemantics =
-  | "DataSubjectID"
-  | "DataSubjectIDType"
-  | "ConsentID"
-  | "PurposeID"
-  | "ContractRelatedID"
-  | "DataControllerID"
-  | "UserID"
-  | "EndOfBusinessDate"
-  | "BlockingDate"
-  | "EndOfRetentionDate";
-export type PersonalDataFieldSemantics1 = string;
 /**
  * Property contains potentially personal data. Properties annotated with `@PersonalData.fieldSemantics` need not be additionally annotated with this annotation. Personal data describes any information which is related to an identified or identifiable natural person (data subject). An identifiable person is one who can be identified, directly or indirectly, in particular by a reference to an identifier such as a name, an identification number, location data, an online identifier, or to one or more factors specific to the physical, physiological, genetic, mental, economic, cultural, or social identity of that natural person.
  */
@@ -277,11 +267,27 @@ export type DecimalScaleType = DecimalScaleType1 & DecimalScaleType2;
 export type DecimalScaleType1 = "floating";
 export type DecimalScaleType2 = string;
 /**
- * The operator "="
+ * The operator `=`
  */
 export type EqualsOperator = "=";
 /**
- * The operator "and"
+ * The operator `<`
+ */
+export type SmallerOperator = "<";
+/**
+ * The operator `<=`
+ */
+export type SmallerEqualsOperator = "<=";
+/**
+ * The operator `>`
+ */
+export type GreaterOperator = ">";
+/**
+ * The operator `>=`
+ */
+export type GreaterEqualsOperator = ">=";
+/**
+ * The operator `and`
  */
 export type ANDOperator = "and";
 /**
@@ -342,8 +348,6 @@ export type ObjectModelTenantWideUniqueName = string;
  * The entity represents an ODM Entity with this official name.
  */
 export type ODMEntityName = string;
-export type PersonalDataEntitySemantics = "DataSubject" | "DataSubjectDetails" | "Other";
-export type PersonalDataEntitySemantics1 = string;
 /**
  * Role of the data subjects in this set (e.g. employee, customer). Values are application-specific.
  */
@@ -369,7 +373,9 @@ export type TypeDefinition =
   | StringTypeDefinition
   | LargeStringTypeDefinition
   | IntegerTypeDefinition
+  | Int16TypeDefinition
   | Integer64TypeDefinition
+  | UInt8TypeDefinition
   | DecimalTypeDefinition
   | DoubleTypeDefinition
   | DateTypeDefinition
@@ -409,7 +415,7 @@ export interface CSNInteropEffectiveDocument {
    * Existence of this property indicated that the file is a CSN Interop Effective document.
    * The value states the specification version it has been created against.
    */
-  csnInteropEffective: "1.0";
+  csnInteropEffective: "1.0" | "1.1" | "1.2";
   /**
    * The version of the CDS CSN. For this version of CSN Interop it is fixed to `2.0`.
    *
@@ -722,10 +728,7 @@ export interface EntityDefinition {
   "@ObjectModel.usageType.sizeCategory"?: ObjectModelUsageType;
   "@ODM.entityName"?: ODMEntityName;
   "@ODM.oid"?: ElementReference;
-  /**
-   * Primary meaning of the entities in the annotated entity set. Entities annotated with @PersonalData.entitySemantics are synonymous to @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.entitySemantics"?: PersonalDataEntitySemantics & PersonalDataEntitySemantics1;
+  "@PersonalData.entitySemantics"?: PersonalData1;
   "@PersonalData.dataSubjectRole"?: PersonalDataDataSubjectRole;
   "@PersonalData.dataSubjectRoleDescription"?: PersonalDataDataSubjectRoleDescription;
   /**
@@ -807,10 +810,7 @@ export interface BooleanType {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -976,7 +976,27 @@ export interface ReferenceTarget {
   [k: string]: unknown | undefined;
 }
 /**
- * An element of type `cds.String`.
+ * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+ */
+export interface PersonalData {
+  /**
+   * Provide the value in `{ "#": "<value>" }` enum notation.
+   */
+  "#":
+    | "DATA_SUBJECT_ID"
+    | "DATA_SUBJECT_ID_TYPE"
+    | "CONSENT_ID"
+    | "PURPOSE_ID"
+    | "CONTRACT_RELATED_ID"
+    | "DATA_CONTROLLER_ID"
+    | "USER_ID"
+    | "END_OF_BUSINESS_DATE"
+    | "BLOCKING_DATE"
+    | "END_OF_RETENTION_DATE";
+}
+/**
+ * An element of type `cds.String`, which is length limited.
+ * For unlimited / large strings, use `cds.LargeString` instead.
  */
 export interface StringType {
   /**
@@ -1007,8 +1027,9 @@ export interface StringType {
   default?: DefaultValueString;
   enum?: EnumDictionary;
   /**
-   * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * Describes the maximum number of characters of the value, up to 5000.
+   * If not provided, 5000 length is assumed.
+   * For longer length strings, use `cds.LargeString` instead.
    */
   length?: number;
   "@Aggregation.default"?: Aggregation;
@@ -1024,10 +1045,7 @@ export interface StringType {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -1155,7 +1173,7 @@ export interface LargeStringType {
   enum?: EnumDictionary;
   /**
    * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * If not provided, unlimited length is assumed.
    */
   length?: number;
   "@Aggregation.default"?: Aggregation;
@@ -1171,10 +1189,7 @@ export interface LargeStringType {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -1275,10 +1290,7 @@ export interface IntegerType {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.valueRange"?: Semantics;
@@ -1365,6 +1377,105 @@ export interface Semantics {
   [k: string]: unknown | undefined;
 }
 /**
+ * Signed integer with 16 bit.
+ */
+export interface Int16Type {
+  /**
+   * The modeling artefact is a `cds.Int16` type.
+   */
+  type: Int16CdsType;
+  /**
+   * Indicates that this element is used as a primary key.
+   * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
+   */
+  key?: boolean;
+  /**
+   * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
+   */
+  notNull?: boolean;
+  /**
+   * Human readable documentation, usually for developer documentation.
+   *
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
+   */
+  doc?: string;
+  default?: DefaultValueInteger;
+  enum?: EnumDictionary;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.custom"?: ObjectModelCustom;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  "@PersonalData.fieldSemantics"?: PersonalData;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.valueRange"?: Semantics;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  /**
+   * Annotations or private properties MAY be added.
+   *
+   * **Annotations** MUST start with `@`.
+   *
+   * In CSN Interop Effective the annotations MUST follow the "flattened" form:
+   * Every record / object in an annotation will be flattened into a `.` (dot).
+   * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
+   *
+   * Correct annotations examples:
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
+   *
+   * Or
+   *
+   * **Private properties**, starting with `__`.
+   * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
+   */
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+}
+/**
  * Signed integer with 64 bit.
  */
 export interface Integer64Type {
@@ -1408,10 +1519,106 @@ export interface Integer64Type {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  "@PersonalData.fieldSemantics"?: PersonalData;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.valueRange"?: Semantics;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   * Annotations or private properties MAY be added.
+   *
+   * **Annotations** MUST start with `@`.
+   *
+   * In CSN Interop Effective the annotations MUST follow the "flattened" form:
+   * Every record / object in an annotation will be flattened into a `.` (dot).
+   * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
+   *
+   * Correct annotations examples:
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
+   *
+   * Or
+   *
+   * **Private properties**, starting with `__`.
+   * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+}
+/**
+ * Unsigned integer with 8 bit.
+ */
+export interface UInt8Type {
+  /**
+   * The modeling artefact is a `cds.UInt8` type.
+   */
+  type: UInt8CdsType;
+  /**
+   * Indicates that this element is used as a primary key.
+   * Multiple primary keys MAY be used in case of a composite ID.
+   *
+   * Elements marked as `key` also imply `notNull: true`.
+   */
+  key?: boolean;
+  /**
+   * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
+   */
+  notNull?: boolean;
+  /**
+   * Human readable documentation, usually for developer documentation.
+   *
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
+   */
+  doc?: string;
+  default?: DefaultValueInteger;
+  enum?: EnumDictionary;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.custom"?: ObjectModelCustom;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.valueRange"?: Semantics;
@@ -1525,10 +1732,7 @@ export interface DecimalType {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.valueRange"?: Semantics;
@@ -1626,10 +1830,7 @@ export interface DoubleType {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.valueRange"?: Semantics;
@@ -1728,10 +1929,7 @@ export interface DateType {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -1829,10 +2027,7 @@ export interface TimeType {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -1930,10 +2125,7 @@ export interface DateTimeType {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -2031,10 +2223,7 @@ export interface TimestampType {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -2131,10 +2320,7 @@ export interface UUIDType {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -2218,8 +2404,9 @@ export interface BinaryType {
    */
   doc?: string;
   /**
-   * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * Describes the maximum number of characters of the value, up to 5000.
+   * If not provided, 5000 length is assumed.
+   * For longer length strings, use `cds.LargeString` instead.
    */
   length?: number;
   default?: DefaultValueString;
@@ -2236,10 +2423,7 @@ export interface BinaryType {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -2316,8 +2500,8 @@ export interface LargeBinaryType {
    */
   doc?: string;
   /**
-   * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * Describes the maximum number of bytes of the value.
+   * If not provided, unlimited length is assumed.
    */
   length?: number;
   default?: DefaultValueString;
@@ -2334,10 +2518,7 @@ export interface LargeBinaryType {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -2423,24 +2604,64 @@ export interface AssociationType {
    *
    * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Equals Operator "="
+   * - Operator: Equals `=`, Smaller `<`, Smaller Equals `<=`, Greater `>` or Greater Equals `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * The first and third entry MAY be reversed but the `=` operator MUST be in the middle.
+   * The first and third entry of the triple MAY be reversed but the `=`, `<`, `<=`, `>` or `>=` operator MUST be in the middle.
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
-   * In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
+   * The first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+   *
+   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Int16`, `cds.Integer64`, `cds.UInt8`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
+   *
+   * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
    * See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
    *
    * @minItems 3
    */
   on: [
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    ...(StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[]
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    ...(
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    )[]
   ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
@@ -2455,10 +2676,7 @@ export interface AssociationType {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -2591,24 +2809,64 @@ export interface CompositionType {
    *
    * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Equals Operator "="
+   * - Operator: Equals `=`, Smaller `<`, Smaller Equals `<=`, Greater `>` or Greater Equals `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * The first and third entry MAY be reversed but the `=` operator MUST be in the middle.
+   * The first and third entry of the triple MAY be reversed but the `=`, `<`, `<=`, `>` or `>=` operator MUST be in the middle.
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
-   * In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
+   * The first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+   *
+   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Int16`, `cds.Integer64`, `cds.UInt8`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
+   *
+   * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
    * See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
    *
    * @minItems 3
    */
   on: [
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    ...(StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[]
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    ...(
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    )[]
   ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
@@ -2623,10 +2881,7 @@ export interface CompositionType {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -2732,8 +2987,9 @@ export interface CustomType {
   default?: DefaultValueCustomType;
   enum?: EnumDictionary;
   /**
-   * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * Describes the maximum number of characters of the value, up to 5000.
+   * If not provided, 5000 length is assumed.
+   * For longer length strings, use `cds.LargeString` instead.
    */
   length?: number;
   /**
@@ -2764,10 +3020,7 @@ export interface CustomType {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -2893,17 +3146,29 @@ export interface TemporalID {
    * List of [Property Type](#property-type) IDs that are non-temporal.
    */
   propertyTypes: PropertyTypeID[];
-  /**
-   * Interval which includes the boundaries.
-   */
-  temporalIntervalType: "CLOSED_CLOSED" | "OPEN_OPEN" | "OPEN_CLOSED" | "CLOSED_OPEN";
-  /**
-   * Temporal type.
-   */
-  temporalType: "DATE" | "DATETIME";
+  temporalIntervalType: TemporalIntervalType;
+  temporalType: TemporalType;
   temporalIntervalStartProperty: LocalPropertyName;
   temporalIntervalEndProperty: LocalPropertyName;
   [k: string]: unknown | undefined;
+}
+/**
+ * Interval which includes the boundaries.
+ */
+export interface TemporalIntervalType {
+  /**
+   * Provide the value in `{ "#": "<value>" }` enum notation.
+   */
+  "#": "CLOSED_CLOSED" | "OPEN_OPEN" | "OPEN_CLOSED" | "CLOSED_OPEN";
+}
+/**
+ * Temporal type.
+ */
+export interface TemporalType {
+  /**
+   * Provide the value in `{ "#": "<value>" }` enum notation.
+   */
+  "#": "DATE" | "DATETIME";
 }
 /**
  * Defines single temporal reference to another Entity Type.
@@ -2918,12 +3183,18 @@ export interface TemporalReference {
    * List of non-temporal properties the composite temporal ID consists of.
    */
   referencedPropertyTypes: ReferencedPropertyType[];
-  /**
-   * Category of the temporal reference.
-   */
-  category: "TEMPORAL_DATE";
-  selectionDateProperty: LocalPropertyName;
+  category: Category;
+  selectionDateProperty?: LocalPropertyName;
   [k: string]: unknown | undefined;
+}
+/**
+ * Category of the temporal reference.
+ */
+export interface Category {
+  /**
+   * Provide the value in `{ "#": "<value>" }` enum notation.
+   */
+  "#": "TEMPORAL_DATE";
 }
 /**
  * Defines single a reference to another Entity Type based on a composite ID.
@@ -3045,6 +3316,15 @@ export interface ObjectModelUsageType {
   "#": "S" | "M" | "L" | "XL" | "XXL";
 }
 /**
+ * Primary meaning of the entities in the annotated entity set. Entities annotated with @PersonalData.entitySemantics are synonymous to @PersonalData.isPotentiallyPersonal.
+ */
+export interface PersonalData1 {
+  /**
+   * Provide the value in `{ "#": "<value>" }` enum notation.
+   */
+  "#": "DATA_SUBJECT" | "DATA_SUBJECT_DETAILS" | "OTHER";
+}
+/**
  * A CDS Service indicates that [Entities](#entity-definition) are exposed to outside consumers via an API.
  *
  * To assign Entities or Custom Types to a Service, their name MUST be prefixed with the service name, separated by a `.`.
@@ -3137,10 +3417,7 @@ export interface BooleanTypeDefinition {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -3223,8 +3500,9 @@ export interface StringTypeDefinition {
   default?: DefaultValueString;
   enum?: EnumDictionary;
   /**
-   * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * Describes the maximum number of characters of the value, up to 5000.
+   * If not provided, 5000 length is assumed.
+   * For longer length strings, use `cds.LargeString` instead.
    */
   length?: number;
   "@Aggregation.default"?: Aggregation;
@@ -3240,10 +3518,7 @@ export interface StringTypeDefinition {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -3328,7 +3603,7 @@ export interface LargeStringTypeDefinition {
   enum?: EnumDictionary;
   /**
    * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * If not provided, unlimited length is assumed.
    */
   length?: number;
   "@Aggregation.default"?: Aggregation;
@@ -3344,10 +3619,7 @@ export interface LargeStringTypeDefinition {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -3445,10 +3717,103 @@ export interface IntegerTypeDefinition {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  "@PersonalData.fieldSemantics"?: PersonalData;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.valueRange"?: Semantics;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   * Annotations or private properties MAY be added.
+   *
+   * **Annotations** MUST start with `@`.
+   *
+   * In CSN Interop Effective the annotations MUST follow the "flattened" form:
+   * Every record / object in an annotation will be flattened into a `.` (dot).
+   * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
+   *
+   * Correct annotations examples:
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
+   *
+   * Or
+   *
+   * **Private properties**, starting with `__`.
+   * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+}
+/**
+ * A type definition of type `cds.Int16`.
+ */
+export interface Int16TypeDefinition {
+  /**
+   * The kind property is used when defining derived types. In this case Kind = "type".
+   */
+  kind: "type";
+  /**
+   * The modeling artefact is a `cds.Int16` type.
+   */
+  type: Int16CdsType;
+  /**
+   * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
+   */
+  notNull?: boolean;
+  /**
+   * Human readable documentation, usually for developer documentation.
+   *
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
+   */
+  doc?: string;
+  default?: DefaultValueInteger;
+  enum?: EnumDictionary;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.custom"?: ObjectModelCustom;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.valueRange"?: Semantics;
@@ -3544,10 +3909,103 @@ export interface Integer64TypeDefinition {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  "@PersonalData.fieldSemantics"?: PersonalData;
+  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@Semantics.valueRange"?: Semantics;
+  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
+  "@Semantics.amount.currencyCode"?: ElementReference;
+  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
+  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
+  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
+  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
+  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
+  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
+  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
+  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
+  "@Semantics.calendar.year"?: SemanticsCalendarYear;
+  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
+  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
+  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
+  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
+  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
+  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
+  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
+  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
+  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
+  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
+  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
+  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
+  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
+  "@Semantics.language"?: SemanticsLanguage;
+  "@Semantics.time"?: SemanticsTime;
+  "@Semantics.text"?: SemanticsText;
+  "@Semantics.uuid"?: SemanticsUuid;
+  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
+  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
   /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
+   * Annotations or private properties MAY be added.
+   *
+   * **Annotations** MUST start with `@`.
+   *
+   * In CSN Interop Effective the annotations MUST follow the "flattened" form:
+   * Every record / object in an annotation will be flattened into a `.` (dot).
+   * Exception: Once there is an array, the flattening is stopped and the values inside the array are preserved as they are ("structured").
+   *
+   * Correct annotations examples:
+   * - `"@Common.bar": "foo"`
+   * - `"@Common.foo.bar": true`
+   * - `"@Common.array": [{ "foo": true }]`
+   *
+   * Or
+   *
+   * **Private properties**, starting with `__`.
+   * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+}
+/**
+ * A type definition of type `cds.UInt8`.
+ */
+export interface UInt8TypeDefinition {
+  /**
+   * The kind property is used when defining derived types. In this case Kind = "type".
+   */
+  kind: "type";
+  /**
+   * The modeling artefact is a `cds.UInt8` type.
+   */
+  type: UInt8CdsType;
+  /**
+   * Indicates that this element does not accept NULL values, which means that you cannot insert or update a record without adding a value to this field.
+   *
+   * Elements marked as `key` (if applicable to the CDS type) also imply `notNull: true`.
+   */
+  notNull?: boolean;
+  /**
+   * Human readable documentation, usually for developer documentation.
+   *
+   * SHOULD be provided and interpreted as [CommonMark](https://spec.commonmark.org/) (Markdown).
+   *
+   * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
+   */
+  doc?: string;
+  default?: DefaultValueInteger;
+  enum?: EnumDictionary;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@Consumption.valueHelpDefinition"?: Consumption;
+  "@EndUserText.label"?: EndUserTextLabel;
+  "@EndUserText.heading"?: EndUserTextHeading;
+  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
+  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
+  "@EntityRelationship.reference"?: EntityRelationship;
+  "@ObjectModel.custom"?: ObjectModelCustom;
+  "@ObjectModel.foreignKey.association"?: ElementReference;
+  "@ObjectModel.text.element"?: ObjectModelText;
+  "@ObjectModel.text.association"?: ElementReference;
+  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.valueRange"?: Semantics;
@@ -3658,10 +4116,7 @@ export interface DecimalTypeDefinition {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.valueRange"?: Semantics;
@@ -3757,10 +4212,7 @@ export interface DoubleTypeDefinition {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.valueRange"?: Semantics;
@@ -3856,10 +4308,7 @@ export interface DateTypeDefinition {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -3954,10 +4403,7 @@ export interface TimeTypeDefinition {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -4052,10 +4498,7 @@ export interface DateTimeTypeDefinition {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -4150,10 +4593,7 @@ export interface TimestampTypeDefinition {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -4247,10 +4687,7 @@ export interface UUIDTypeDefinition {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -4331,8 +4768,9 @@ export interface BinaryTypeDefinition {
    */
   doc?: string;
   /**
-   * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * Describes the maximum number of characters of the value, up to 5000.
+   * If not provided, 5000 length is assumed.
+   * For longer length strings, use `cds.LargeString` instead.
    */
   length?: number;
   default?: DefaultValueString;
@@ -4349,10 +4787,7 @@ export interface BinaryTypeDefinition {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -4433,8 +4868,8 @@ export interface LargeBinaryTypeDefinition {
    */
   doc?: string;
   /**
-   * Describes the maximum number of characters of the value.
-   * If not provided, **unlimited** length is assumed.
+   * Describes the maximum number of bytes of the value.
+   * If not provided, unlimited length is assumed.
    */
   length?: number;
   default?: DefaultValueString;
@@ -4451,10 +4886,7 @@ export interface LargeBinaryTypeDefinition {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -4541,24 +4973,64 @@ export interface AssociationTypeDefinition {
    *
    * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Equals Operator "="
+   * - Operator: Equals `=`, Smaller `<`, Smaller Equals `<=`, Greater `>` or Greater Equals `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * The first and third entry MAY be reversed but the `=` operator MUST be in the middle.
+   * The first and third entry of the triple MAY be reversed but the `=`, `<`, `<=`, `>` or `>=` operator MUST be in the middle.
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
-   * In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
+   * The first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+   *
+   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Int16`, `cds.Integer64`, `cds.UInt8`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
+   *
+   * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
    * See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
    *
    * @minItems 3
    */
   on: [
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    ...(StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[]
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    ...(
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    )[]
   ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
@@ -4573,10 +5045,7 @@ export interface AssociationTypeDefinition {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -4660,24 +5129,64 @@ export interface CompositionTypeDefinition {
    *
    * The `on` condition is constructed by triples of:
    * - Reference to the target element (ID) as array with 2 items
-   * - Equals Operator "="
+   * - Operator: Equals `=`, Smaller `<`, Smaller Equals `<=`, Greater `>` or Greater Equals `>=`
    * - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
    *
-   * The first and third entry MAY be reversed but the `=` operator MUST be in the middle.
+   * The first and third entry of the triple MAY be reversed but the `=`, `<`, `<=`, `>` or `>=` operator MUST be in the middle.
    * The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
    * The local element reference MUST have one array item, which is the local element name.
    *
-   * In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
+   * The first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+   *
+   * Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Int16`, `cds.Integer64`, `cds.UInt8`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
+   *
+   * In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
    *
    * See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
    *
    * @minItems 3
    */
   on: [
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
-    ...(StructuredElementReference | EqualsOperator | ANDOperator | OnValue)[]
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    (
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    ),
+    ...(
+      | StructuredElementReference
+      | EqualsOperator
+      | SmallerOperator
+      | SmallerEqualsOperator
+      | GreaterOperator
+      | GreaterEqualsOperator
+      | ANDOperator
+      | OnValue
+    )[]
   ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
@@ -4692,10 +5201,7 @@ export interface CompositionTypeDefinition {
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  /**
-   * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
-   */
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics & PersonalDataFieldSemantics1;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
@@ -4799,7 +5305,11 @@ export type LargeStringCdsType = "cds.LargeString";
 
 export type IntegerCdsType = "cds.Integer";
 
+export type Int16CdsType = "cds.Int16";
+
 export type Integer64CdsType = "cds.Integer64";
+
+export type UInt8CdsType = "cds.UInt8";
 
 export type DecimalCdsType = "cds.Decimal";
 
@@ -4825,4 +5335,4 @@ export type BinaryCdsType = "cds.Binary";
 
 export type LargeBinaryCdsType = "cds.LargeBinary";
 
-export type CdsTypeValue = BooleanCdsType | StringCdsType | LargeStringCdsType | IntegerCdsType | Integer64CdsType | DecimalCdsType | DoubleCdsType | DateCdsType | TimeCdsType | DateTimeCdsType | TimestampCdsType | UUIDCdsType | BinaryCdsType | LargeBinaryCdsType | AssociationCdsType | CompositionCdsType;
+export type CdsTypeValue = BooleanCdsType | StringCdsType | LargeStringCdsType | IntegerCdsType | Int16CdsType | Integer64CdsType | UInt8CdsType | DecimalCdsType | DoubleCdsType | DateCdsType | TimeCdsType | DateTimeCdsType | TimestampCdsType | UUIDCdsType | BinaryCdsType | LargeBinaryCdsType | AssociationCdsType | CompositionCdsType;

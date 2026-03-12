@@ -30,8 +30,12 @@ x-custom-typescript-types:
     typeValue: '"cds.LargeString"'
   - typeName: "IntegerCdsType"
     typeValue: '"cds.Integer"'
+  - typeName: "Int16CdsType"
+    typeValue: '"cds.Int16"'
   - typeName: "Integer64CdsType"
     typeValue: '"cds.Integer64"'
+  - typeName: "UInt8CdsType"
+    typeValue: '"cds.UInt8"'
   - typeName: "DecimalCdsType"
     typeValue: '"cds.Decimal"'
   - typeName: "DoubleCdsType"
@@ -57,7 +61,7 @@ x-custom-typescript-types:
   - typeName: "LargeBinaryCdsType"
     typeValue: '"cds.LargeBinary"'
   - typeName: "CdsTypeValue"
-    typeValue: "BooleanCdsType | StringCdsType | LargeStringCdsType | IntegerCdsType | Integer64CdsType | DecimalCdsType | DoubleCdsType | DateCdsType | TimeCdsType | DateTimeCdsType | TimestampCdsType | UUIDCdsType | BinaryCdsType | LargeBinaryCdsType | AssociationCdsType | CompositionCdsType"
+    typeValue: "BooleanCdsType | StringCdsType | LargeStringCdsType | IntegerCdsType | Int16CdsType | Integer64CdsType | UInt8CdsType | DecimalCdsType | DoubleCdsType | DateCdsType | TimeCdsType | DateTimeCdsType | TimestampCdsType | UUIDCdsType | BinaryCdsType | LargeBinaryCdsType | AssociationCdsType | CompositionCdsType"
 
 properties:
   $schema:
@@ -86,6 +90,8 @@ properties:
       The value states the specification version it has been created against.
     enum:
       - "1.0"
+      - "1.1"
+      - "1.2"
   $version:
     type: string
     description: |-
@@ -307,6 +313,7 @@ definitions:
     properties:
       kind:
         type: string
+        x-hide: true
         enum:
           - "context"
           - "entity"
@@ -354,7 +361,6 @@ definitions:
             - kind
         then:
           $ref: "#/definitions/TypeDefinition"
-    x-hide-properties: true
 
   EntityDefinition:
     title: Entity Definition
@@ -398,57 +404,57 @@ definitions:
       #-------------------------------------------------------------
       abstract:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           Proper syntax element in ABAP CDS producing Abstract CDS Entities
       customEntity:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           Proper syntax element in ABAP CDS producing Custom CDS Entities
       tableFunction:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           Proper syntax element in ABAP CDS producing CDS Table Functions.
       externalEntity:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           Proper syntax element in ABAP CDS producing CDS  External Entities
       providerContract:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           ABAP CDS Projection have the additional information of a provider contract
       rootEntity:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           ABAP CDS Root View Entities define a RAP Business Object.
       transient:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           Special kind of analytical ABAP CDS Projection view.
       literal:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           In the selection element list of a CDS view.
       toCompositionChild:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           When redirecting associations in ABAP CDS Projections with the additional keywords "to composition child", this indicates a Parent-Child-Composition an requires the redirection target to have a matching "to parent" association redefinition.
       toParent:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           When redirecting associations in ABAP CDS Projections with the additional keywords "to composition child", this indicates a Parent-Child-Composition an requires the redirection target to have a matching "to parent" association redefinition.
       hana_on_asString:
         type: ["string", "number", "boolean", "array", "object"]
-        x-hide-property: true
+        x-hide: true
         description: |-
           Contains the SQL on condition as string
       #-----------------------
@@ -514,6 +520,7 @@ definitions:
     properties:
       type:
         type: string
+        x-hide: true
     allOf:
       - if:
           properties:
@@ -535,7 +542,6 @@ definitions:
           $ref: "#/definitions/CustomType"
     required:
       - type
-    x-hide-properties: true
 
   CdsType:
     title: Cds Type
@@ -547,13 +553,16 @@ definitions:
         type: string
         description: |-
           The CDS type (`cds.*`), as defined by the CSN specification.
+        x-hide: true
         enum:
           # Primitive standard types
           - "cds.Boolean"
           - "cds.String"
           - "cds.LargeString"
           - "cds.Integer"
-          - "cds.Integer64"
+          - "cds.Int16"
+          - "cds.Integer64" # inconsistent naming, bug accepted for now by the CSN WG
+          - "cds.UInt8"
           - "cds.Decimal"
           - "cds.Double"
           - "cds.Date"
@@ -609,11 +618,29 @@ definitions:
           properties:
             type:
               type: string
+              const: "cds.Int16"
+          required:
+            - type
+        then:
+          $ref: "#/definitions/Int16Type"
+      - if:
+          properties:
+            type:
+              type: string
               const: "cds.Integer64"
           required:
             - type
         then:
           $ref: "#/definitions/Integer64Type"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.UInt8"
+          required:
+            - type
+        then:
+          $ref: "#/definitions/UInt8Type"
       - if:
           properties:
             type:
@@ -715,7 +742,6 @@ definitions:
           $ref: "#/definitions/CompositionType"
     required:
       - type
-    x-hide-properties: true
 
   BooleanType:
     title: Boolean Type
@@ -757,7 +783,9 @@ definitions:
   StringType:
     title: String Type
     type: object
-    description: An element of type `cds.String`.
+    description: |-
+      An element of type `cds.String`, which is length limited.
+      For unlimited / large strings, use `cds.LargeString` instead.
     properties: &StringTypeProperties
       type:
         type: string
@@ -774,9 +802,12 @@ definitions:
       length: &length
         type: number
         minimum: 1
+        maximum: 5000
+        default: 5000
         description: |-
-          Describes the maximum number of characters of the value.
-          If not provided, **unlimited** length is assumed.
+          Describes the maximum number of characters of the value, up to 5000.
+          If not provided, 5000 length is assumed.
+          For longer length strings, use `cds.LargeString` instead.
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
       - type
@@ -798,13 +829,18 @@ definitions:
         const: cds.LargeString
         description: The modeling artefact is a `cds.LargeString` type.
         tsType: LargeStringCdsType
-      # key: *elementKey # Now allowed for large strings
+      # key: *elementKey # Not allowed for large strings
       notNull: *elementNotNull
       doc: *doc
       default:
         $ref: "#/definitions/DefaultValueString"
       enum: *elementEnum
-      length: *length
+      length:
+        type: number
+        minimum: 1
+        description: |-
+          Describes the maximum number of characters of the value.
+          If not provided, unlimited length is assumed.
     patternProperties: *patternPropertiesAnnotationsAndPrivate
     required:
       - type
@@ -844,6 +880,34 @@ definitions:
     examples:
       - { "type": "cds.Integer", "default": { "val": 123 } }
 
+  Int16Type:
+    title: Int16 Type
+    type: object
+    description: |-
+      Signed integer with 16 bit.
+    properties: &Int16TypeProperties
+      type:
+        type: string
+        const: cds.Int16
+        description: The modeling artefact is a `cds.Int16` type.
+        tsType: Int16CdsType
+      key: *elementKey
+      notNull: *elementNotNull
+      doc: *doc
+      default:
+        $ref: "#/definitions/DefaultValueInteger"
+      enum: *elementEnum
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - Int16Type
+    x-header-level: 4
+    examples:
+      - { "type": "cds.Int16", "default": { "val": 123 } }
+
   Integer64Type:
     title: Integer64 Type
     type: object
@@ -871,6 +935,34 @@ definitions:
     x-header-level: 4
     examples:
       - { "type": "cds.Integer64", "default": { "val": 123 } }
+
+  UInt8Type:
+    title: UInt8 Type
+    type: object
+    description: |-
+      Unsigned integer with 8 bit.
+    properties: &UInt8TypeProperties
+      type:
+        type: string
+        const: cds.UInt8
+        description: The modeling artefact is a `cds.UInt8` type.
+        tsType: UInt8CdsType
+      key: *elementKey
+      notNull: *elementNotNull
+      doc: *doc
+      default:
+        $ref: "#/definitions/DefaultValueInteger"
+      enum: *elementEnum
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - UInt8Type
+    x-header-level: 4
+    examples:
+      - { "type": "cds.UInt8", "default": { "val": 64 } }
 
   DecimalType:
     title: Decimal Type
@@ -1127,7 +1219,12 @@ definitions:
         tsType: LargeBinaryCdsType
       notNull: *elementNotNull
       doc: *doc
-      length: *length
+      length:
+        type: number
+        minimum: 1
+        description: |-
+          Describes the maximum number of bytes of the value.
+          If not provided, unlimited length is assumed.
       default:
         $ref: "#/definitions/DefaultValueString"
       # enum: *elementEnum
@@ -1181,14 +1278,18 @@ definitions:
 
           The `on` condition is constructed by triples of:
           - Reference to the target element (ID) as array with 2 items
-          - Equals Operator "="
+          - Operator: Equals `=`, Smaller `<`, Smaller Equals `<=`, Greater `>` or Greater Equals `>=`
           - Reference to the local element (ID) as array with 1 item OR a constant value (`val`)
 
-          The first and third entry MAY be reversed but the `=` operator MUST be in the middle.
+          The first and third entry of the triple MAY be reversed but the `=`, `<`, `<=`, `>` or `>=` operator MUST be in the middle.
           The target element reference MUST have two array items. The first item is the association name and the second item is the target element name.
           The local element reference MUST have one array item, which is the local element name.
 
-          In case of composite references / IDs, any number of "triples" can be combined with the `and` operator in between.
+          The first and the third entry of the triple MUST have the same CDS type (`cds.*`), as defined by the CSN specification.
+
+          Operator `<`, `<=`, `>` or `>=` MUST be used only for `cds.Integer`, `cds.Int16`, `cds.Integer64`, `cds.UInt8`, `cds.Decimal`, `cds.Double`, `cds.Date`, `cds.Time`, `cds.DateTime`, `cds.Timestamp` type operands.
+
+          In case of composite references / IDs, any number of triples can be combined with the `and` operator in between.
 
           See also: (../primer.md#on-condition) and [CAP documentation](https://cap.cloud.sap/docs/cds/csn#assoc-on).
 
@@ -1196,11 +1297,17 @@ definitions:
           oneOf:
             - $ref: "#/definitions/StructuredElementReference"
             - $ref: "#/definitions/EqualsOperator"
+            - $ref: "#/definitions/SmallerOperator"
+            - $ref: "#/definitions/SmallerEqualsOperator"
+            - $ref: "#/definitions/GreaterOperator"
+            - $ref: "#/definitions/GreaterEqualsOperator"
             - $ref: "#/definitions/AndOperator"
             - $ref: "#/definitions/OnValue"
         minItems: 3
         examples:
           - [{ "ref": ["to_Connection", "AirlineID"] }, "=", { "ref": ["AirlineID"] }]
+          - [{ "ref": ["to_Connection", "FlightDate"] }, "<=", { "ref": ["FlightDate"] }]
+          - [{ "ref": ["to_Connection", "FlightDate"] }, ">=", { "ref": ["FlightDate"] }]
           - [
               { "ref": ["to_Connection", "AirlineID"] },
               "=",
@@ -1527,14 +1634,42 @@ definitions:
     title: Equals Operator
     type: string
     description: |-
-      The operator "="
+      The operator `=`
     const: "="
+
+  SmallerOperator:
+    title: Smaller Operator
+    type: string
+    description: |-
+      The operator `<`
+    const: "<"
+
+  SmallerEqualsOperator:
+    title: Smaller Equals Operator
+    type: string
+    description: |-
+      The operator `<=`
+    const: "<="
+
+  GreaterOperator:
+    title: Greater Operator
+    type: string
+    description: |-
+      The operator `>`
+    const: ">"
+
+  GreaterEqualsOperator:
+    title: Greater Equals Operator
+    type: string
+    description: |-
+      The operator `>=`
+    const: ">="
 
   AndOperator:
     title: AND Operator
     type: string
     description: |-
-      The operator "and"
+      The operator `and`
     const: "and"
 
   OnValue:
@@ -1634,6 +1769,7 @@ definitions:
         description: |-
           The kind property is used when defining derived types.
           In this case `Kind = "type"` MUST be provided.
+        x-hide: true
         tsType: TypeKind
       type:
         type: string
@@ -1641,13 +1777,16 @@ definitions:
           The CDS data type of the derived type.
 
           Custom types in CSN Interop Effective MUST always point to a `cds.*` type.
+        x-hide: true
         enum:
           # Primitive standard types
           - "cds.Boolean"
           - "cds.String"
           - "cds.LargeString"
           - "cds.Integer"
-          - "cds.Integer64"
+          - "cds.Int16"
+          - "cds.Integer64" # inconsistent naming, bug accepted for now by the CSN WG
+          - "cds.UInt8"
           - "cds.Decimal"
           - "cds.Double"
           - "cds.Date"
@@ -1707,12 +1846,32 @@ definitions:
           properties:
             type:
               type: string
+              const: "cds.Int16"
+          required:
+            - kind
+            - type
+        then:
+          $ref: "#/definitions/Int16TypeDefinition"
+      - if:
+          properties:
+            type:
+              type: string
               const: "cds.Integer64"
           required:
             - kind
             - type
         then:
           $ref: "#/definitions/Integer64TypeDefinition"
+      - if:
+          properties:
+            type:
+              type: string
+              const: "cds.UInt8"
+          required:
+            - kind
+            - type
+        then:
+          $ref: "#/definitions/UInt8TypeDefinition"
       - if:
           properties:
             type:
@@ -1826,7 +1985,6 @@ definitions:
     required:
       - kind
       - type
-    x-hide-properties: true
 
   BooleanTypeDefinition:
     title: Boolean Type Definition
@@ -1909,6 +2067,24 @@ definitions:
     examples:
       - { "kind": "type", "type": "cds.Integer", "default": { "val": 123 } }
 
+  Int16TypeDefinition:
+    title: Int16 Type Definition
+    type: object
+    description: A type definition of type `cds.Int16`.
+    properties:
+      kind: *kindPropertyForTypeDefinition
+      key: null # null because "key" should only be defined on element level, not in a custom type
+      <<: *Int16TypeProperties
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+      - kind
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - Int16Type
+    x-header-level: 4
+
   Integer64TypeDefinition:
     title: Integer64 Type Definition
     type: object
@@ -1925,6 +2101,24 @@ definitions:
     x-extension-points:
       - Type
       - Integer64Type
+    x-header-level: 4
+
+  UInt8TypeDefinition:
+    title: UInt8 Type Definition
+    type: object
+    description: A type definition of type `cds.UInt8`.
+    properties:
+      kind: *kindPropertyForTypeDefinition
+      key: null # null because "key" should only be defined on element level, not in a custom type
+      <<: *UInt8TypeProperties
+    patternProperties: *patternPropertiesAnnotationsAndPrivate
+    required:
+      - type
+      - kind
+    additionalProperties: false
+    x-extension-points:
+      - Type
+      - UInt8Type
     x-header-level: 4
 
   DecimalTypeDefinition:

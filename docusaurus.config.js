@@ -138,7 +138,7 @@ const config = {
         title: "",
         logo: {
           alt: "CSN Interop Specification",
-          src: "img/logo.png#1",
+          src: "img/logo.svg",
         },
         items: [
           {
