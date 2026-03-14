@@ -32,3 +32,6 @@ static/spec-v1/*
 
 # packed artefact
 sap-csn-interop-specification-*
+
+# Claude Code
+.claude/
