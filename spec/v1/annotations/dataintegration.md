@@ -2,4 +2,4 @@
 
 ## Introduction
 
-The DataIntegration annotations are used in the context of data integration scenarios to inform downstram consumers on specific behavior of elements and entities.
+The DataIntegration annotations are used in the context of data integration scenarios to inform downstream consumers on specific behavior of elements and entities.
