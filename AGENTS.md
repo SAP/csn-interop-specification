@@ -23,6 +23,7 @@ Run this after ANY changes to files in `spec/` directory. This regenerates TypeS
 ### Changelog Entries (Mandatory)
 
 Add entries to `CHANGELOG.md` under `## [unreleased]` for any significant changes:
+
 - New annotations or vocabularies
 - Breaking changes
 - Bug fixes
@@ -47,6 +48,7 @@ When adding a new annotation vocabulary (e.g., `@DataIntegration`):
 ## Pre-commit Hooks
 
 Lefthook automatically runs:
+
 - `npm run generate` on changes to `spec/*/*.yaml`
 - `npm run prettier` on markdown/JSON/YAML files
 

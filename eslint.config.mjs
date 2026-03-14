@@ -2,7 +2,14 @@ import { withCustomConfig } from "@sap/eslint-config";
 
 export default withCustomConfig([
   {
-    ignores: ["dist", "build", ".docusaurus", "tmp", "src/generated/spec/v1/types/csn-interop-effective.ts"],
+    ignores: [
+      "dist",
+      "build",
+      ".docusaurus",
+      "tmp",
+      "spec-toolkit/dist",
+      "src/generated/spec/v1/types/csn-interop-effective.ts",
+    ],
   },
   {
     files: ["**/*.ts"],
