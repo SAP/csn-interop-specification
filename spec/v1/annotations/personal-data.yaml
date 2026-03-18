@@ -81,10 +81,16 @@ definitions:
               Defines the end of active business and the start of residence time and retention period. End of business is the point in time when the processing of a set of personal data is no longer required for the active business, for example, when a contract is fulfilled. After it has been reached and a customer-defined residence period has passed, the data is blocked and can only be accessed by users with special authorizations (for example, tax auditors). All fields of type Edm.Date or Edm.DateTimeOffset on which the end of business determination depends should be annotated.
           - const: "BLOCKING_DATE"
             description: |-
-              Defines a date that marks when the provider of the data will block these. This is the point in time when the processing of a set of personal data is no longer required for the active business, for example, when a contract is fulfilled. After it has been reached, the data is blocked in the source and can only be displayed by users with special authorizations (for example, tax auditors); however, it is not allowed to create/change/copy/follow-up blocked data. Consumers of the data should consider if there is an additional purpose to process the data beyond the defined blocking date
+              Defines a date that marks when the provider of the data will block these. This is the point in time when the processing of a set of personal data is no longer required for the active business, for example, when a contract is fulfilled. After it has been reached, the data is blocked in the source and can only be displayed by users with special authorizations (for example, tax auditors); however, it is not allowed to create/change/copy/follow-up blocked data. Consumers of the data should consider if there is an additional purpose to process the data beyond the defined blocking date.
+          - const: "IS_BLOCKED_INDICATOR"
+            description: |-
+              The indicator shows if the personal data is blocked from further processing by the provider. A value of true means that the provider no longer needs to process this data for active business purposes, such as after a contract has been completed.     Data consumers should evaluate whether there are any additional legitimate reasons to process the data beyond its blocked status. Personal data that is blocked for processing MAY either be indicated by either BLOCKING_DATE or IS_BLOCKED_INDICATOR.
           - const: "END_OF_RETENTION_DATE"
             description: |-
               Defines a date that marks when the provider of the data can destroy these. Consumers of the data should consider if there is an additional purpose (or a legal hold) to process the data beyond the defined destruction date.
+          - const: "DATA_CATEGORY_ID"
+            description: |-
+              Defines a unique identifier for a local data category that is assigned to this instance.
     additionalProperties: false
     required:
       - "#"
@@ -111,5 +117,14 @@ definitions:
       -	Personal data relating to criminal or administrative offenses
       -	Personal data concerning insurances and bank or credit card accounts
     default: true
+    x-extension-targets:
+      - Type
+
+  "@PersonalData.relatedDataCategoryID":
+    type: array
+    description: |-
+      Role of the data subjects in this set (e.g. employee, customer). Values are application-specific.
+    items:
+      type: string
     x-extension-targets:
       - Type

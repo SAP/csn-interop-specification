@@ -10,6 +10,12 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+### Added
+
+- Added `@PersonalData.relatedDataCategoryID` annotation
+- Added `IS_BLOCKED_INDICATOR` as enum value to `@PersonalData.fieldSemantics`
+- Added `DATA_CATEGORY_ID` as enum value to `@PersonalData.fieldSemantics`
+
 ## [1.2.2]
 
 ### Fixed
