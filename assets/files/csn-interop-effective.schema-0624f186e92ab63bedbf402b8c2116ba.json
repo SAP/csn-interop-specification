@@ -426,6 +426,9 @@
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
         },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -927,6 +930,9 @@
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
         },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -1132,6 +1138,9 @@
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
         },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -1335,6 +1344,9 @@
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -1545,6 +1557,9 @@
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
         },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -1745,6 +1760,9 @@
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -1947,6 +1965,9 @@
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
         },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -2147,6 +2168,9 @@
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -2367,6 +2391,9 @@
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
         },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -2565,6 +2592,9 @@
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -2767,6 +2797,9 @@
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
         },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -2962,6 +2995,9 @@
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -3159,6 +3195,9 @@
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
         },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -3355,6 +3394,9 @@
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
         },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -3547,6 +3589,9 @@
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -3749,6 +3794,9 @@
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
         },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -3943,6 +3991,9 @@
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -4272,6 +4323,9 @@
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -4616,6 +4670,9 @@
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
         },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -4858,6 +4915,9 @@
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -5405,6 +5465,9 @@
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
         },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -5884,6 +5947,9 @@
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
         },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -6091,6 +6157,9 @@
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -6302,6 +6371,9 @@
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
         },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -6502,6 +6574,9 @@
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -6707,6 +6782,9 @@
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
         },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -6902,6 +6980,9 @@
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
         },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -7096,6 +7177,9 @@
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -7310,6 +7394,9 @@
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
         },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -7516,6 +7603,9 @@
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
         },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -7710,6 +7800,9 @@
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -7909,6 +8002,9 @@
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
         },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -8100,6 +8196,9 @@
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -8293,6 +8392,9 @@
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
         },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -8481,6 +8583,9 @@
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -8679,6 +8784,9 @@
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
         },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -8873,6 +8981,9 @@
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -9203,6 +9314,9 @@
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -9551,6 +9665,9 @@
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@DataIntegration.dataUnavailable": {
+          "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -10078,6 +10195,14 @@
         {
           "#": "FILTER_AND_RESULT"
         }
+      ]
+    },
+    "@DataIntegration.dataUnavailable": {
+      "type": "boolean",
+      "description": "Specifies that the data of the element or entity is unavailable although it is part of the output structure.",
+      "x-extension-targets": [
+        "Type",
+        "Entity"
       ]
     },
     "@EndUserText.label": {
