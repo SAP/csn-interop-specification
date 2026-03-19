@@ -10,6 +10,8 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+## [1.2.3]
+
 ### Added
 
 - Added new `@DataIntegration` annotation vocabulary for data integration scenarios
