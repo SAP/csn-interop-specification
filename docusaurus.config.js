@@ -6,7 +6,7 @@ const config = {
   title: "CSN Interop Specification",
   tagline: "Specification for interoperable CSN as import / export format.",
   url: "https://sap.github.io",
-  baseUrl: "/csn-interop-specification",
+  baseUrl: process.env.BASE_URL || "/csn-interop-specification",
   trailingSlash: false,
   onBrokenLinks: "throw",
   onBrokenAnchors: "throw",
@@ -44,7 +44,7 @@ const config = {
     ],
   ],
 
-  scripts: ["/csn-interop-specification/js/custom.js"],
+  scripts: [(process.env.BASE_URL || "/csn-interop-specification") + "/js/custom.js"],
 
   plugins: [
     [
@@ -123,6 +123,16 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      ...(process.env.PR_PREVIEW_NUMBER
+        ? {
+            announcementBar: {
+              content: `<b>This is a preview version of the website for <a href="https://github.com/SAP/csn-interop-specification/pull/${process.env.PR_PREVIEW_NUMBER}" target="_blank">PR #${process.env.PR_PREVIEW_NUMBER}</a></b>`,
+              backgroundColor: "#e65050ff",
+              textColor: "#fff",
+              isCloseable: false,
+            },
+          }
+        : {}),
       colorMode: {
         defaultMode: "light",
         disableSwitch: true,
