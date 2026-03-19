@@ -10,7 +10,7 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
-## [v1.2.3]
+## [1.2.3]
 
 ### Added
 
