@@ -130,7 +130,7 @@ export type PersonalDataIsPotentiallyPersonal = boolean;
  */
 export type PersonalDataIsPotentiallySensitive = boolean;
 /**
- * Role of the data subjects in this set (e.g. employee, customer). Values are application-specific.
+ * The annotation value is an array of strings, enabling the assignment of multiple data categories to one entity. The strings must adhere to the format of an ORD ID corresponding to the concept name "dataCategory" introduced herein (refer to ORD Specification | Open Resource Discovery). The value should be constructed as follows: <ordId> := <namespace>.<conceptName>:<resourceName>.
  */
 export type PersonalData1 = string[];
 /**
@@ -735,6 +735,7 @@ export interface EntityDefinition {
   "@PersonalData.entitySemantics"?: PersonalData2;
   "@PersonalData.dataSubjectRole"?: PersonalDataDataSubjectRole;
   "@PersonalData.dataSubjectRoleDescription"?: PersonalDataDataSubjectRoleDescription;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   /**
    * Annotations or private properties MAY be added.
    *
