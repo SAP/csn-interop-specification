@@ -16,6 +16,13 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 - Added `IS_BLOCKED_INDICATOR` as enum value to `@PersonalData.fieldSemantics`
 - Added `DATA_CATEGORY_ID` as enum value to `@PersonalData.fieldSemantics`
 
+## [1.2.3]
+
+### Added
+
+- Added new `@DataIntegration` annotation vocabulary for data integration scenarios
+  - `@DataIntegration.dataUnavailable`: Specifies that the data of the element or entity is unavailable although it is part of the output structure
+
 ## [1.2.2]
 
 ### Fixed
