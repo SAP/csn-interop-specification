@@ -42,7 +42,7 @@ jobs:
         uses: open-resource-discovery/pr-preview-action@main
         with:
           fork: true
-          target-repo: open-resource-discovery/pr-preview
-          pages-base-url: https://open-resource-discovery.github.io/pr-preview
+          target-repo: SAP/csn-interop-specification-pr-preview
+          pages-base-url: https://sap.github.io/csn-interop-specification-pr-preview
           umbrella-dir: csn-interop-specification
           token: ${{ secrets.PR_PREVIEW_TOKEN }}
