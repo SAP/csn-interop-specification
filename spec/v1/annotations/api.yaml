@@ -22,7 +22,7 @@ definitions:
           The annotation describes the planned decommissioning date of the annotated element. Use ISO format for YearMonth: YYYY-MM (e.g. 2024-08)
         type: string
     x-extension-targets:
-      - Entity
+      - Element
 
   # //////////////////////////////////////////
   # // Referenced JSON Schema Objects       //
@@ -48,3 +48,5 @@ definitions:
               Formerly released element/association not to be used anymore.
               At runtime, the element/association returns null values.
               Together with this value a successors of the element/association should be defined using annotation @API.element.successor.
+    x-extension-targets:
+      - Element
