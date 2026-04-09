@@ -24,7 +24,9 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ### Fixed
 
-- Made `selectionDateProperty` in `@EntityRelationship.TemporalReference` optional; when omitted, the consumer determines the selection date/time based on context (e.g., current date/time, start of a fiscal quarter, or another use-case-specific point in time)
+- Made `selectionDateProperty` in `@EntityRelationship.TemporalReference` optional;
+- when omitted, the consumer determines the selection date/time based on context
+- (e.g., current date/time, start of a fiscal quarter, or another use-case-specific point in time)
 
 ## [1.2.1]
 
