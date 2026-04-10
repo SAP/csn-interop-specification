@@ -11,6 +11,7 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 ## [unreleased]
 
 ### Added
+
 - Added new `@API` annotation vocabulary for release state definition of APIs parts (e.g. elements or associations)
 
 ## [1.2.3]
@@ -24,9 +25,7 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ### Fixed
 
-- Made `selectionDateProperty` in `@EntityRelationship.TemporalReference` optional;
-- when omitted, the consumer determines the selection date/time based on context
-- (e.g., current date/time, start of a fiscal quarter, or another use-case-specific point in time)
+- Made `selectionDateProperty` in `@EntityRelationship.TemporalReference` optional; when omitted, the consumer determines the selection date/time based on context (e.g., current date/time, start of a fiscal quarter, or another use-case-specific point in time)
 
 ## [1.2.1]
 
