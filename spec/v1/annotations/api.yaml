@@ -27,7 +27,7 @@ definitions:
   # //////////////////////////////////////////
   # // Referenced JSON Schema Objects       //
   # //////////////////////////////////////////
-  
+
   "@API.element.releaseState":
     type: object
     description: |-
