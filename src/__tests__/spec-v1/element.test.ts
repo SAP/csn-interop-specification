@@ -154,7 +154,7 @@ describe("Tests for all elements", (): void => {
               "@PersonalData.fieldSemantics": { "#": "USER_ID" },
               "@PersonalData.isPotentiallyPersonal": true,
               "@PersonalData.isPotentiallySensitive": true,
-              "@PersonalData.relatedDataCategoryID": ["ID1", "ID2"],
+              "@PersonalData.relatedDataCategoryID": ["foo.bar:dataCategory:example1", "foo.bar:dataCategory:example1"],
               "@Semantics.amount.currencyCode": "",
               "@Semantics.businessDate.from": true,
               "@Semantics.businessDate.to": true,
