@@ -100,7 +100,8 @@ definitions:
       name:
         type: string
         description: |-
-          Optional name to describe the semantics of the reference.
+          Optional technical name (locally unique ID) of the reference.
+          
           If provided, the name MUST be unique across all reference names defined via
           `@EntityRelationship.reference`, `@EntityRelationship.compositeReferences`,
           `@EntityRelationship.temporalReferences`, and `@EntityRelationship.referencesWithConstantIds`
