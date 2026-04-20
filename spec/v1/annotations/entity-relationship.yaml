@@ -100,7 +100,13 @@ definitions:
       name:
         type: string
         description: |-
-          Optional name to describe the semantics of the reference.
+          Optional technical name (locally unique ID) of the reference.
+
+          If provided, the name MUST be unique across all reference names defined via
+          `@EntityRelationship.reference`, `@EntityRelationship.compositeReferences`,
+          `@EntityRelationship.temporalReferences`, and `@EntityRelationship.referencesWithConstantIds`
+          on the same CSN entity, and MUST NOT match the name of any element
+          (property, `cds.Association`, or `cds.Composition`) of that entity.
       referencedEntityType:
         $ref: "#/definitions/@EntityRelationship.EntityTypeID"
       referencedPropertyType:
@@ -141,7 +147,13 @@ definitions:
       name:
         type: string
         description: |-
-          Optional name to describe the semantics of the reference.
+          Optional technical name (locally unique ID) of the reference.
+
+          If provided, the name MUST be unique across all reference names defined via
+          `@EntityRelationship.reference`, `@EntityRelationship.compositeReferences`,
+          `@EntityRelationship.temporalReferences`, and `@EntityRelationship.referencesWithConstantIds`
+          on the same CSN entity, and MUST NOT match the name of any element
+          (property, `cds.Association`, or `cds.Composition`) of that entity.
       referencedEntityType:
         $ref: "#/definitions/@EntityRelationship.EntityTypeID"
       referencedPropertyTypes:
@@ -217,6 +229,11 @@ definitions:
         type: string
         description: |-
           Optional name to describe the semantics of the reference.
+          If provided, the name MUST be unique across all reference names defined via
+          `@EntityRelationship.reference`, `@EntityRelationship.compositeReferences`,
+          `@EntityRelationship.temporalReferences`, and `@EntityRelationship.referencesWithConstantIds`
+          on the same CSN entity, and MUST NOT match the name of any element
+          (property, `cds.Association`, or `cds.Composition`) of that entity.
       referencedEntityType:
         $ref: "#/definitions/@EntityRelationship.EntityTypeID"
       referencedPropertyTypes:
@@ -249,6 +266,11 @@ definitions:
         type: string
         description: |-
           Optional name to describe the semantics of the reference.
+          If provided, the name MUST be unique across all reference names defined via
+          `@EntityRelationship.reference`, `@EntityRelationship.compositeReferences`,
+          `@EntityRelationship.temporalReferences`, and `@EntityRelationship.referencesWithConstantIds`
+          on the same CSN entity, and MUST NOT match the name of any element
+          (property, `cds.Association`, or `cds.Composition`) of that entity.
       description:
         type: string
         description: |-
@@ -381,10 +403,10 @@ examples:
               "@EntityRelationship.entityIds":
                 [
                   {
-                    "name": "Semantic ID (composite ID)",
+                    "name": "SemanticId",
                     "propertyTypes": ["sap.vdm.gfn:BusinessPartnerNumber", "sap.vdm.gfn:BusinessPartnerType"],
                   },
-                  { "name": "UUID (single property ID)", "propertyTypes": ["sap.vdm.gfn:BusinessPartnerUUID"] },
+                  { "name": "UUID", "propertyTypes": ["sap.vdm.gfn:BusinessPartnerUUID"] },
                 ],
               "elements":
                 {
@@ -416,7 +438,7 @@ examples:
               "@EntityRelationship.compositeReferences":
                 [
                   {
-                    "name": "Main Supplier",
+                    "name": "MainSupplier",
                     "referencedEntityType": "sap.vdm.sont:BusinessPartner",
                     "referencedPropertyTypes":
                       [

@@ -980,7 +980,13 @@ export interface ElementReferenceObject {
  */
 export interface ReferenceTarget {
   /**
-   * Optional name to describe the semantics of the reference.
+   * Optional technical name (locally unique ID) of the reference.
+   *
+   * If provided, the name MUST be unique across all reference names defined via
+   * `@EntityRelationship.reference`, `@EntityRelationship.compositeReferences`,
+   * `@EntityRelationship.temporalReferences`, and `@EntityRelationship.referencesWithConstantIds`
+   * on the same CSN entity, and MUST NOT match the name of any element
+   * (property, `cds.Association`, or `cds.Composition`) of that entity.
    */
   name?: string;
   referencedEntityType: EntityTypeID;
@@ -3162,7 +3168,13 @@ export interface EntityID {
  */
 export interface CompositeReference {
   /**
-   * Optional name to describe the semantics of the reference.
+   * Optional technical name (locally unique ID) of the reference.
+   *
+   * If provided, the name MUST be unique across all reference names defined via
+   * `@EntityRelationship.reference`, `@EntityRelationship.compositeReferences`,
+   * `@EntityRelationship.temporalReferences`, and `@EntityRelationship.referencesWithConstantIds`
+   * on the same CSN entity, and MUST NOT match the name of any element
+   * (property, `cds.Association`, or `cds.Composition`) of that entity.
    */
   name?: string;
   referencedEntityType: EntityTypeID;
@@ -3226,6 +3238,11 @@ export interface TemporalType {
 export interface TemporalReference {
   /**
    * Optional name to describe the semantics of the reference.
+   * If provided, the name MUST be unique across all reference names defined via
+   * `@EntityRelationship.reference`, `@EntityRelationship.compositeReferences`,
+   * `@EntityRelationship.temporalReferences`, and `@EntityRelationship.referencesWithConstantIds`
+   * on the same CSN entity, and MUST NOT match the name of any element
+   * (property, `cds.Association`, or `cds.Composition`) of that entity.
    */
   name?: string;
   referencedEntityType: EntityTypeID;
@@ -3252,6 +3269,11 @@ export interface Category {
 export interface ReferenceWithConstantID {
   /**
    * Optional name to describe the semantics of the reference.
+   * If provided, the name MUST be unique across all reference names defined via
+   * `@EntityRelationship.reference`, `@EntityRelationship.compositeReferences`,
+   * `@EntityRelationship.temporalReferences`, and `@EntityRelationship.referencesWithConstantIds`
+   * on the same CSN entity, and MUST NOT match the name of any element
+   * (property, `cds.Association`, or `cds.Composition`) of that entity.
    */
   name?: string;
   /**
