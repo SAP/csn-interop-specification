@@ -123,7 +123,7 @@ definitions:
 
   "@PersonalData.relatedDataCategoryID":
     description: |-
-      The annotation value is an array of strings, enabling the assignment of multiple data categories to one entity or field. The strings must adhere to the format of an Correlation ID corresponding to the concept name "dataCategory" in conjunction with an localIdentifier introduced herein (refer to ORD Specification | Open Resource Discovery).
+      The annotation value is an array of strings, enabling the assignment of multiple data categories to one entity or field. Data categories are entities describing a particular set of personal data with a similar usage, meaning, quality, and risk. The strings must adhere to the format of an Correlation ID corresponding to the concept name "dataCategory" in conjunction with an localIdentifier introduced herein (refer to [ORD Specification | Open Resource Discovery](https://open-resource-discovery.org/spec-v1#correlation-id)).
     type: array
     items:
       type: string
