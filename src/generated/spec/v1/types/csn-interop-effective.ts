@@ -125,7 +125,7 @@ export type ODMOidReferenceEntityName = string;
  */
 export type PersonalDataIsPotentiallyPersonal = boolean;
 /**
- * Property contains potentially sensitive personal data. Sensitive personal data is a category of personal data that needs special handling. The determination which personal data is sensitive may differ for different legal areas or industries.
+ * Property or entity containing potentially sensitive personal data. Sensitive personal data is a category of personal data that needs special handling. The determination which personal data is sensitive may differ for different legal areas or industries.
  * Examples of sensitive personal data:
  * -	Special categories of personal data, such as data revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, trade union membership, genetic data, biometric data, data concerning health or sex life or sexual orientation.
  * -	Personal data subject to professional secrecy
@@ -134,7 +134,7 @@ export type PersonalDataIsPotentiallyPersonal = boolean;
  */
 export type PersonalDataIsPotentiallySensitive = boolean;
 /**
- * The annotation value is an array of strings, enabling the assignment of multiple data categories to one entity or field. The strings must adhere to the format of an Correlation ID corresponding to the concept name "dataCategory" in conjunction with an localIdentifier introduced herein (refer to ORD Specification | Open Resource Discovery).
+ * The annotation value is an array of strings, enabling the assignment of multiple data categories to one entity or field. Data categories are entities describing a particular set of personal data with a similar usage, meaning, quality, and risk. The strings must adhere to the format of an Correlation ID corresponding to the concept name "dataCategory" in conjunction with an localIdentifier introduced herein (refer to [ORD Specification | Open Resource Discovery](https://open-resource-discovery.org/spec-v1#correlation-id)).
  */
 export type PersonalData1 = string[];
 /**
@@ -740,6 +740,7 @@ export interface EntityDefinition {
   "@PersonalData.entitySemantics"?: PersonalData2;
   "@PersonalData.dataSubjectRole"?: PersonalDataDataSubjectRole;
   "@PersonalData.dataSubjectRoleDescription"?: PersonalDataDataSubjectRoleDescription;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
   "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   /**
    * Annotations or private properties MAY be added.
