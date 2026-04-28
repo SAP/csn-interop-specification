@@ -10,6 +10,10 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+### Added
+
+- Added new `@API` annotation vocabulary for release state definition of APIs parts (e.g. elements or associations)
+
 ## [1.2.3]
 
 ### Added
