@@ -25,7 +25,6 @@ definitions:
       - Type
       - Entity
       
-
   # //////////////////////////////////////////
   # // Referenced JSON Schema Objects       //
   # //////////////////////////////////////////
@@ -52,4 +51,4 @@ definitions:
               Together with this value a successors of the element/association should be defined using annotation @API.element.successor.
     x-extension-targets:
       - Type
-      - Entity   
+      - Entity
