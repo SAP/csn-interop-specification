@@ -23,6 +23,8 @@ definitions:
         type: string
     x-extension-targets:
       - Type
+      - Entity
+      
 
   # //////////////////////////////////////////
   # // Referenced JSON Schema Objects       //
