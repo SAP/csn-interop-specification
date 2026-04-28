@@ -24,7 +24,6 @@ definitions:
     x-extension-targets:
       - Type
       - Entity
-      
   # //////////////////////////////////////////
   # // Referenced JSON Schema Objects       //
   # //////////////////////////////////////////
