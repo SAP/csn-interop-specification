@@ -125,7 +125,7 @@ export type ODMOidReferenceEntityName = string;
  */
 export type PersonalDataIsPotentiallyPersonal = boolean;
 /**
- * Property contains potentially sensitive personal data. Sensitive personal data is a category of personal data that needs special handling. The determination which personal data is sensitive may differ for different legal areas or industries.
+ * Property or entity containing potentially sensitive personal data. Sensitive personal data is a category of personal data that needs special handling. The determination which personal data is sensitive may differ for different legal areas or industries.
  * Examples of sensitive personal data:
  * -	Special categories of personal data, such as data revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, trade union membership, genetic data, biometric data, data concerning health or sex life or sexual orientation.
  * -	Personal data subject to professional secrecy
@@ -133,6 +133,10 @@ export type PersonalDataIsPotentiallyPersonal = boolean;
  * -	Personal data concerning insurances and bank or credit card accounts
  */
 export type PersonalDataIsPotentiallySensitive = boolean;
+/**
+ * The annotation value is an array of strings, enabling the assignment of multiple data categories to one entity or field. Data categories are entities describing a particular set of personal data with a similar usage, meaning, quality, and risk. The strings must adhere to the format of an Correlation ID corresponding to the concept name "dataCategory" in conjunction with an localIdentifier introduced herein (refer to [ORD Specification | Open Resource Discovery](https://open-resource-discovery.org/spec-v1#correlation-id)).
+ */
+export type PersonalData1 = string[];
 /**
  * The property contains a currency code.
  */
@@ -733,9 +737,11 @@ export interface EntityDefinition {
   "@ObjectModel.usageType.sizeCategory"?: ObjectModelUsageType;
   "@ODM.entityName"?: ODMEntityName;
   "@ODM.oid"?: ElementReference;
-  "@PersonalData.entitySemantics"?: PersonalData1;
+  "@PersonalData.entitySemantics"?: PersonalData2;
   "@PersonalData.dataSubjectRole"?: PersonalDataDataSubjectRole;
   "@PersonalData.dataSubjectRoleDescription"?: PersonalDataDataSubjectRoleDescription;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -819,6 +825,7 @@ export interface BooleanType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -1004,7 +1011,9 @@ export interface PersonalData {
     | "USER_ID"
     | "END_OF_BUSINESS_DATE"
     | "BLOCKING_DATE"
-    | "END_OF_RETENTION_DATE";
+    | "IS_BLOCKED_INDICATOR"
+    | "END_OF_RETENTION_DATE"
+    | "DATA_CATEGORY_ID";
 }
 /**
  * An element of type `cds.String`, which is length limited.
@@ -1061,6 +1070,7 @@ export interface StringType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -1206,6 +1216,7 @@ export interface LargeStringType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -1308,6 +1319,7 @@ export interface IntegerType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -1439,6 +1451,7 @@ export interface Int16Type {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -1539,6 +1552,7 @@ export interface Integer64Type {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -1639,6 +1653,7 @@ export interface UInt8Type {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -1754,6 +1769,7 @@ export interface DecimalType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -1853,6 +1869,7 @@ export interface DoubleType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -1953,6 +1970,7 @@ export interface DateType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2052,6 +2070,7 @@ export interface TimeType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2151,6 +2170,7 @@ export interface DateTimeType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2250,6 +2270,7 @@ export interface TimestampType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2348,6 +2369,7 @@ export interface UUIDType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2452,6 +2474,7 @@ export interface BinaryType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2548,6 +2571,7 @@ export interface LargeBinaryType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2707,6 +2731,7 @@ export interface AssociationType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2913,6 +2938,7 @@ export interface CompositionType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -3053,6 +3079,7 @@ export interface CustomType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -3364,7 +3391,7 @@ export interface ObjectModelUsageType {
 /**
  * Primary meaning of the entities in the annotated entity set. Entities annotated with @PersonalData.entitySemantics are synonymous to @PersonalData.isPotentiallyPersonal.
  */
-export interface PersonalData1 {
+export interface PersonalData2 {
   /**
    * Provide the value in `{ "#": "<value>" }` enum notation.
    */
@@ -3467,6 +3494,7 @@ export interface BooleanTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -3569,6 +3597,7 @@ export interface StringTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -3671,6 +3700,7 @@ export interface LargeStringTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -3770,6 +3800,7 @@ export interface IntegerTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -3867,6 +3898,7 @@ export interface Int16TypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -3964,6 +3996,7 @@ export interface Integer64TypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -4061,6 +4094,7 @@ export interface UInt8TypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -4173,6 +4207,7 @@ export interface DecimalTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -4270,6 +4305,7 @@ export interface DoubleTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -4367,6 +4403,7 @@ export interface DateTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -4463,6 +4500,7 @@ export interface TimeTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -4559,6 +4597,7 @@ export interface DateTimeTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -4655,6 +4694,7 @@ export interface TimestampTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -4750,6 +4790,7 @@ export interface UUIDTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -4851,6 +4892,7 @@ export interface BinaryTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -4951,6 +4993,7 @@ export interface LargeBinaryTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -5111,6 +5154,7 @@ export interface AssociationTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -5268,6 +5312,7 @@ export interface CompositionTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
