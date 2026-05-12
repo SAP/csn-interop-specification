@@ -1,7 +1,0 @@
-dist/
-build/
-.docusaurus/
-reports/
-node_modules/
-package-lock.json
-docs/spec-v1/
