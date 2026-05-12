@@ -14,12 +14,15 @@ definitions:
       successor:
         description: |-
           Defines the name of a released successor element/association which replaces an element/association with release state #DEPRECATED or #DECOMMISSIONED.
+          Providing a successor is mandatory when deprecating an element/association.
+          If no direct successor exists, this must be explicitly documented and justified (e.g., the business concept has been removed).
         x-ref-to-doc:
           title: Element Reference
           ref: "#/definitions/ElementReference"
       decommissioningPlannedForYearMonth:
         description: |-
-          The annotation describes the planned decommissioning date of the annotated element. Use ISO format for YearMonth: YYYY-MM (e.g. 2024-08)
+          The annotation describes the planned decommissioning date of the annotated element. Use ISO format for YearMonth: YYYY-MM (e.g. 2024-08).
+          The planned decommissioning date must be at least 12 months after the deprecation date, in alignment with SAP lifecycle policies.
         type: string
     x-extension-targets:
       - Type
@@ -40,14 +43,19 @@ definitions:
         oneOf:
           - const: "DEPRECATED"
             description: |-
-              Formerly released element/association is not to be used anymore.
-              At runtime, the element/association must work as before.
-              Together with this value a successors of the element/association should be defined using annotation @API.element.successor.
+              Formerly released element/association is no longer recommended but remains fully functional.
+              At runtime, the element/association must work as before and continues to deliver data.
+              The element/association must not be enhanced further and is not recommended for new consumers.
+              A successor element/association must be defined using the `successor` annotation.
+              If no direct successor exists, this must be explicitly documented and justified.
+              The element/association must remain in the DEPRECATED state for a minimum of 12 months before transitioning to DECOMMISSIONED,
+              in alignment with SAP lifecycle policies.
           - const: "DECOMMISSIONED"
             description: |-
-              Formerly released element/association not to be used anymore.
+              Formerly released element/association is no longer supported for productive use.
               At runtime, the element/association returns null values.
-              Together with this value a successors of the element/association should be defined using annotation @API.element.successor.
+              A successor element/association must be defined using the `successor` annotation.
+              This state may only be applied after the element/association has been in the DEPRECATED state for a minimum of 12 months.
     x-extension-targets:
       - Type
       - Entity
