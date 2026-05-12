@@ -1,29 +1,31 @@
-import {
+import type {
   AssociationType,
   BooleanType,
+  CdsType,
   CdsTypeValue,
   CompositionType,
+  CSNInteropEffectiveDocument,
+  CustomType,
+  CustomTypeValue,
   DateTimeType,
   DateType,
   DecimalType,
-  CustomType,
-  CustomTypeValue,
+  Definitions,
   DoubleType,
-  IntegerType,
   Int16Type,
   Integer64Type,
-  UInt8Type,
+  IntegerType,
   LargeStringType,
   StringType,
   TimestampType,
   TimeType,
-  CdsType,
+  UInt8Type,
   UUIDType,
-  CSNInteropEffectiveDocument,
-  Definitions,
 } from "../../generated/spec/v1/types";
 
-export function getElementTestDataByElementType(elementType: CdsTypeValue | CustomTypeValue): CdsType | CustomType {
+export function getElementTestDataByElementType(
+  elementType: CdsTypeValue | CustomTypeValue,
+): CdsType | CustomType {
   switch (elementType) {
     case "cds.Boolean":
       return getBooleanTypeTestData();
@@ -62,7 +64,9 @@ export function getElementTestDataByElementType(elementType: CdsTypeValue | Cust
   }
 }
 
-export function getCsnDocumentTestData(definitions?: Definitions): CSNInteropEffectiveDocument {
+export function getCsnDocumentTestData(
+  definitions?: Definitions,
+): CSNInteropEffectiveDocument {
   return {
     csnInteropEffective: "1.2",
     $version: "2.0",

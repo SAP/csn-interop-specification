@@ -1,6 +1,9 @@
 import * as fs from "fs-extra";
-import { compileSchema, JsonSchema } from "json-schema-library";
-import { getCsnDocumentTestData, getElementTestDataByElementType } from "./testUtils";
+import { compileSchema, type JsonSchema } from "json-schema-library";
+import {
+  getCsnDocumentTestData,
+  getElementTestDataByElementType,
+} from "./testUtils";
 
 describe("Tests for all elements", (): void => {
   const effectiveCsnSchema = fs.readJSONSync(
@@ -35,11 +38,11 @@ describe("Tests for all elements", (): void => {
           "@EndUserText.heading": "{i18n>ABTEI@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>ABTEI@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>ABTEI@ENDUSERTEXT.QUICKINFO}",
-          "kind": "entity",
-          "elements": {
+          kind: "entity",
+          elements: {
             // intentionally break the type here for the test
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
+            // @ts-expect-error
             MyElement: {},
           },
         },
@@ -58,8 +61,8 @@ describe("Tests for all elements", (): void => {
           "@EndUserText.heading": "{i18n>ABTEI@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>ABTEI@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>ABTEI@ENDUSERTEXT.QUICKINFO}",
-          "kind": "entity",
-          "elements": {
+          kind: "entity",
+          elements: {
             MyElement: {
               type: "cds.MyType", // derived types are not allowed to start with "cds."
             },
@@ -71,8 +74,8 @@ describe("Tests for all elements", (): void => {
           "@EndUserText.heading": "{i18n>ABTEI@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>ABTEI@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>ABTEI@ENDUSERTEXT.QUICKINFO}",
-          "kind": "entity",
-          "elements": {
+          kind: "entity",
+          elements: {
             MyElement: {
               type: "MyType",
             },
@@ -83,9 +86,12 @@ describe("Tests for all elements", (): void => {
       const errorsForGoodData = effectiveCsnSchemaValidator.validate(goodData);
       expect(errorsForGoodData.errors.length).toEqual(0);
 
-      const errorsForErrorData = effectiveCsnSchemaValidator.validate(errorData);
+      const errorsForErrorData =
+        effectiveCsnSchemaValidator.validate(errorData);
       expect(errorsForErrorData.errors.length).toEqual(1); // v10 fixed the duplication issue that existed in v9
-      expect(errorsForErrorData.errors[0].message).toContain("Expected given value `cds.MyType`");
+      expect(errorsForErrorData.errors[0].message).toContain(
+        "Expected given value `cds.MyType`",
+      );
       expect(errorsForErrorData.errors[0].message).toContain("to be one of");
     });
   });
@@ -97,16 +103,16 @@ describe("Tests for all elements", (): void => {
           "@EndUserText.heading": "{i18n>ABTEI@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>ABTEI@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>ABTEI@ENDUSERTEXT.QUICKINFO}",
-          "kind": "entity",
-          "elements": {
+          kind: "entity",
+          elements: {
             MyElement: {
               ...getElementTestDataByElementType(type),
               // intentionally break the type here for the test
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore
+              // @ts-expect-error
               "EndUserText.heading": "{i18n>ABTEI@ENDUSERTEXT.HEADING}", // property key does not start with @
               "_@EndUserText.label": "{i18n>ABTEI@ENDUSERTEXT.LABEL}", // property key does not start with __
-              "thisIsNotAllowed": true, //property key does not start with __
+              thisIsNotAllowed: true, //property key does not start with __
             },
           },
         },
@@ -131,11 +137,11 @@ describe("Tests for all elements", (): void => {
           "@EndUserText.heading": "{i18n>ABTEI@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>ABTEI@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>ABTEI@ENDUSERTEXT.QUICKINFO}",
-          "kind": "entity",
-          "elements": {
+          kind: "entity",
+          elements: {
             MyElement: {
               ...getElementTestDataByElementType(type),
-              "__thisIsAllowed": true,
+              __thisIsAllowed: true,
               "@Aggregation.default": { "#": "NONE" },
               "@AnalyticsDetails.measureType": { "#": "BASE" },
               "@Common.bar": "foo",
@@ -154,7 +160,10 @@ describe("Tests for all elements", (): void => {
               "@PersonalData.fieldSemantics": { "#": "USER_ID" },
               "@PersonalData.isPotentiallyPersonal": true,
               "@PersonalData.isPotentiallySensitive": true,
-              "@PersonalData.relatedDataCategoryID": ["foo.bar:dataCategory:example1", "foo.bar:dataCategory:example1"],
+              "@PersonalData.relatedDataCategoryID": [
+                "foo.bar:dataCategory:example1",
+                "foo.bar:dataCategory:example1",
+              ],
               "@Semantics.amount.currencyCode": "",
               "@Semantics.businessDate.from": true,
               "@Semantics.businessDate.to": true,

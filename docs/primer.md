@@ -738,39 +738,6 @@ If the structured type does not serve any particular purpose at deployment or fo
 
 For type mappings to other systems (ABAP, Spark, etc.), see [Mappings](./mappings/index.mdx).
 
-<!--
-## View Definitions
-
-Note: This version of the doc does not provide a reference for view definitions. This section shall only provide an outlook on how views can be defined enhancing the entity definitions for tables.
-From a CDS perspective both tables and views are entities. Only that views have no data persistence, but a definition of how to select the data from other entities (tables or views).
-In CSN this is reflected in the way that views have a mandatory property `query`.
-
-### Declared Signature
-
-In Effective CSN views shall have a declared signature, i.e. a definition of the result structure. This declaration is done via an `elements` property, exactly like for table definitions.
-So a view definition in Effective CSN is a table definition plus a `query` property describing how the source data is mapped to the signature.
-
-```js
-{
-  "definitions": {
-    "<view name>": {
-      "kind": "entity",
-      "elements": {
-      },
-      "query": {
-      }
-    }
-  }
-}
-```
-
-For data exchange and deployment this means that a view definition in CSN can be directly used as a table definition on the consumer side, by simply ignoring the `query` property.
-
-### Query
-
-Property query defines how signature is bound to underlying entities / i.o.w. how the interface is implemented in terms of a SQL query.
--->
-
 ## Service Definitions
 
 CDS allows to define service interfaces as collections of exposed entities enclosed in a `service` section, which is essentially a `context`. (Especially the service acts as a name prefix for the exposed entities.)
@@ -792,16 +759,6 @@ The exposed entities are typically projections on entities from underlying data 
   }
 }
 ```
-
-<!-- ### Actions
-
-Out of scope.
-Outlook: Signatures for consumers, logic opaque
-
-### Functions
-
-Out of scope.
-Outlook: Signatures for consumers, logic opaque -->
 
 ## Localization (i18n)
 

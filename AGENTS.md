@@ -7,7 +7,7 @@ Quick reference for AI agents working on this project.
 Run this command to check everything is in order for green CI/CD:
 
 ```bash
-npm run prettier && npm run eslint && npm run test
+npm run ci && npm run test
 ```
 
 ## Spec Development
@@ -50,6 +50,6 @@ When adding a new annotation vocabulary (e.g., `@DataIntegration`):
 Lefthook automatically runs:
 
 - `npm run generate` on changes to `spec/*/*.yaml`
-- `npm run prettier` on markdown/JSON/YAML files
+- `npm run format` on JSON/JS/TS files
 
 Changes are auto-staged if hooks succeed.

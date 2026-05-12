@@ -6,7 +6,8 @@ expect.extend({
   toContainValidationMessage(validationResults, message, count = 1) {
     if (!Array.isArray(validationResults)) {
       return {
-        message: () => `expected ${JSON.stringify(validationResults)} to be a valid ValidationResult array`,
+        message: () =>
+          `expected ${JSON.stringify(validationResults)} to be a valid ValidationResult array`,
         pass: false,
       };
     }
@@ -25,7 +26,8 @@ expect.extend({
       };
     } else {
       return {
-        message: () => `found ${count} validation messages, containing "${message}"`,
+        message: () =>
+          `found ${count} validation messages, containing "${message}"`,
         pass: true,
       };
     }
