@@ -1,6 +1,11 @@
+import assert from "node:assert/strict";
+import { describe, test } from "node:test";
 import * as fs from "fs-extra";
 import { compileSchema, type JsonSchema } from "json-schema-library";
-import { getCsnDocumentTestData } from "./testUtils";
+import {
+  assertContainsValidationMessage,
+  getCsnDocumentTestData,
+} from "./testUtils";
 
 describe("Tests for all type definitions", (): void => {
   const effectiveCsnSchema = fs.readJSONSync(
@@ -9,7 +14,7 @@ describe("Tests for all type definitions", (): void => {
 
   const effectiveCsnSchemaValidator = compileSchema(effectiveCsnSchema);
 
-  const typeDefinitions = [
+  const typeDefinitions: Array<{ name: string; type: string }> = [
     { name: "BooleanTypeDefinition", type: "cds.Boolean" },
     { name: "StringTypeDefinition", type: "cds.String" },
     { name: "LargeStringTypeDefinition", type: "cds.LargeString" },
@@ -26,14 +31,12 @@ describe("Tests for all type definitions", (): void => {
     { name: "UUIDTypeDefinition", type: "cds.UUID" },
     { name: "AssociationTypeDefinition", type: "cds.Association" },
     { name: "CompositionTypeDefinition", type: "cds.Composition" },
-  ];
+  ] satisfies Array<{ name: string; type: string }>;
 
   describe("Test TypeDefinition", (): void => {
     test("fails with missing 'kind' property for TypeDefinition", (): void => {
       const data = getCsnDocumentTestData({
-        // intentionally break the type here for the test
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
+        // @ts-expect-error intentional invalid data for test
         ABTEI: {
           "@EndUserText.heading": "{i18n>ABTEI@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>ABTEI@ENDUSERTEXT.LABEL}",
@@ -44,17 +47,17 @@ describe("Tests for all type definitions", (): void => {
       });
 
       const errors = effectiveCsnSchemaValidator.validate(data);
-      expect(errors.errors.length).toEqual(1);
-      expect(errors.errors[0].message).toContain(
-        "The required property `kind` is missing",
+      assert.strictEqual(errors.errors.length, 1);
+      assert.ok(
+        errors.errors[0].message.includes(
+          "The required property `kind` is missing",
+        ),
       );
     });
 
     test("fails with missing 'type' property for TypeDefinition", (): void => {
       const data = getCsnDocumentTestData({
-        // intentionally break the type here for the test
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
+        // @ts-expect-error intentional invalid data for test
         ABTEI: {
           "@EndUserText.heading": "{i18n>ABTEI@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>ABTEI@ENDUSERTEXT.LABEL}",
@@ -65,9 +68,11 @@ describe("Tests for all type definitions", (): void => {
       });
 
       const errors = effectiveCsnSchemaValidator.validate(data);
-      expect(errors.errors.length).toEqual(1);
-      expect(errors.errors[0].message).toContain(
-        "The required property `type` is missing",
+      assert.strictEqual(errors.errors.length, 1);
+      assert.ok(
+        errors.errors[0].message.includes(
+          "The required property `type` is missing",
+        ),
       );
     });
 
@@ -77,9 +82,7 @@ describe("Tests for all type definitions", (): void => {
           "@EndUserText.heading": "{i18n>ABTEI@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>ABTEI@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>ABTEI@ENDUSERTEXT.QUICKINFO}",
-          // intentionally break the type here for the test
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-expect-error
+          // @ts-expect-error intentional invalid data for test
           kind: "typeDoesNotExist",
           type: "cds.String",
           length: 12,
@@ -87,12 +90,16 @@ describe("Tests for all type definitions", (): void => {
       });
 
       const errors = effectiveCsnSchemaValidator.validate(data);
-      expect(errors.errors.length).toEqual(1);
-      expect(errors.errors[0].message).toContain(
-        "Expected given value `typeDoesNotExist`",
+      assert.strictEqual(errors.errors.length, 1);
+      assert.ok(
+        errors.errors[0].message.includes(
+          "Expected given value `typeDoesNotExist`",
+        ),
       );
-      expect(errors.errors[0].message).toContain(
-        "in `#/definitions/ABTEI/kind` to be one of",
+      assert.ok(
+        errors.errors[0].message.includes(
+          "in `#/definitions/ABTEI/kind` to be one of",
+        ),
       );
     });
 
@@ -103,75 +110,82 @@ describe("Tests for all type definitions", (): void => {
           "@EndUserText.label": "{i18n>ABTEI@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>ABTEI@ENDUSERTEXT.QUICKINFO}",
           kind: "type",
-          // intentionally break the type here for the test
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-expect-error
+          // @ts-expect-error intentional invalid data for test
           type: "cds.TypeDoesNotExist",
           length: 12,
         },
       });
 
       const errors = effectiveCsnSchemaValidator.validate(data);
-      expect(errors.errors.length).toEqual(1);
-      expect(errors.errors[0].message).toContain(
-        "Expected given value `cds.TypeDoesNotExist`",
+      assert.strictEqual(errors.errors.length, 1);
+      assert.ok(
+        errors.errors[0].message.includes(
+          "Expected given value `cds.TypeDoesNotExist`",
+        ),
       );
-      expect(errors.errors[0].message).toContain(
-        "in `#/definitions/ABTEI/type` to be one of",
+      assert.ok(
+        errors.errors[0].message.includes(
+          "in `#/definitions/ABTEI/type` to be one of",
+        ),
       );
     });
   });
 
-  describe.each(typeDefinitions)("Test $name", ({ type }): void => {
-    test(`fails with missing 'kind' property for TypeDefinition of type ${type}`, (): void => {
-      const data = getCsnDocumentTestData({
-        ABTEI: {
-          "@EndUserText.heading": "{i18n>ABTEI@ENDUSERTEXT.HEADING}",
-          "@EndUserText.label": "{i18n>ABTEI@ENDUSERTEXT.LABEL}",
-          "@EndUserText.quickInfo": "{i18n>ABTEI@ENDUSERTEXT.QUICKINFO}",
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-expect-error
-          type: type,
-        },
-      });
-      const errors = effectiveCsnSchemaValidator.validate(data);
-      expect(errors.errors.length).toEqual(1);
-      expect(errors.errors[0].message).toContain(
-        "The required property `kind` is missing",
-      );
-    });
-
-    test(`fails with not allowed additional property for TypeDefinition of type ${type}`, (): void => {
-      const data = getCsnDocumentTestData({
-        ABTEI: {
-          "EndUserText.heading": "{i18n>ABTEI@ENDUSERTEXT.HEADING}", // property key does not start with @
-          "_@EndUserText.label": "{i18n>ABTEI@ENDUSERTEXT.LABEL}", // property key does not start with __
-          thisIsNotAllowed: true, // property key does not start with __
-          "@EndUserText.quickInfo": "{i18n>ABTEI@ENDUSERTEXT.QUICKINFO}",
-          __thisIsAllowed: true,
-          kind: "type",
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-expect-error
-          type: type,
-          key: true,
-          notNull: true,
-          enum: {},
-          default: {
-            val: true,
+  for (const { name, type } of typeDefinitions) {
+    describe(`Test ${name}`, (): void => {
+      test(`fails with missing 'kind' property for TypeDefinition of type ${type}`, (): void => {
+        const data = getCsnDocumentTestData({
+          ABTEI: {
+            "@EndUserText.heading": "{i18n>ABTEI@ENDUSERTEXT.HEADING}",
+            "@EndUserText.label": "{i18n>ABTEI@ENDUSERTEXT.LABEL}",
+            "@EndUserText.quickInfo": "{i18n>ABTEI@ENDUSERTEXT.QUICKINFO}",
+            // @ts-expect-error intentional invalid data for test
+            type: type,
           },
-        },
+        });
+        const errors = effectiveCsnSchemaValidator.validate(data);
+        assert.strictEqual(errors.errors.length, 1);
+        assert.ok(
+          errors.errors[0].message.includes(
+            "The required property `kind` is missing",
+          ),
+        );
       });
 
-      const errors = effectiveCsnSchemaValidator.validate(data);
-      expect(errors.errors).toContainValidationMessage(
-        "Additional property `` in `#/definitions/ABTEI/EndUserText.heading` is not allowed",
-      );
-      expect(errors.errors).toContainValidationMessage(
-        "Additional property `` in `#/definitions/ABTEI/_@EndUserText.label` is not allowed",
-      );
-      expect(errors.errors).toContainValidationMessage(
-        "Additional property `` in `#/definitions/ABTEI/thisIsNotAllowed` is not allowed",
-      );
+      test(`fails with not allowed additional property for TypeDefinition of type ${type}`, (): void => {
+        const data = getCsnDocumentTestData({
+          ABTEI: {
+            "EndUserText.heading": "{i18n>ABTEI@ENDUSERTEXT.HEADING}",
+            "_@EndUserText.label": "{i18n>ABTEI@ENDUSERTEXT.LABEL}",
+            thisIsNotAllowed: true,
+            "@EndUserText.quickInfo": "{i18n>ABTEI@ENDUSERTEXT.QUICKINFO}",
+            __thisIsAllowed: true,
+            kind: "type",
+            // @ts-expect-error intentional invalid data for test
+            type: type,
+            key: true,
+            notNull: true,
+            enum: {},
+            default: {
+              val: true,
+            },
+          },
+        });
+
+        const errors = effectiveCsnSchemaValidator.validate(data);
+        assertContainsValidationMessage(
+          errors.errors,
+          "Additional property `` in `#/definitions/ABTEI/EndUserText.heading` is not allowed",
+        );
+        assertContainsValidationMessage(
+          errors.errors,
+          "Additional property `` in `#/definitions/ABTEI/_@EndUserText.label` is not allowed",
+        );
+        assertContainsValidationMessage(
+          errors.errors,
+          "Additional property `` in `#/definitions/ABTEI/thisIsNotAllowed` is not allowed",
+        );
+      });
     });
-  });
+  }
 });

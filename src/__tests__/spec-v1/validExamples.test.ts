@@ -1,3 +1,5 @@
+import assert from "node:assert/strict";
+import { describe, test } from "node:test";
 import * as fg from "fast-glob";
 import * as fs from "fs-extra";
 import { compileSchema, type JsonError } from "json-schema-library";
@@ -18,43 +20,12 @@ const effectiveCsnSchemaExtendedValidator = compileSchema(
 
 const documentFilePaths = fg.sync("./spec/v1/examples/*.json", {});
 
-describe("Valid Example Files", (): void => {
-  describe("CSN Interop Effective (core only)", (): void => {
-    for (const filePath of documentFilePaths) {
-      const fileContent = fs.readFileSync(filePath).toString();
-      describe(filePath, (): void => {
-        test("passes simple JSON Schema based validation", (): void => {
-          const data = JSON.parse(fileContent);
-          expect(fileContent).toBeDefined();
-          expect(data).toBeDefined();
-          const result = effectiveCsnSchemaValidator.validate(data);
-          expect(simplifyValidationErrors(result.errors)).toEqual([]);
-        });
-      });
-    }
-  });
-
-  describe("CSN Interop Effective (incl. annotations)", (): void => {
-    for (const filePath of documentFilePaths) {
-      const fileContent = fs.readFileSync(filePath).toString();
-      describe(filePath, (): void => {
-        test("passes simple JSON Schema based validation", (): void => {
-          const data = JSON.parse(fileContent);
-          expect(fileContent).toBeDefined();
-          expect(data).toBeDefined();
-          const result = effectiveCsnSchemaExtendedValidator.validate(data);
-          expect(simplifyValidationErrors(result.errors)).toEqual([]);
-        });
-      });
-    }
-  });
-});
-
 type JsonSchemaValidationError = {
   code: string;
   pointer: string;
   message: string;
 };
+
 function simplifyValidationErrors(
   errors: JsonError[],
 ): JsonSchemaValidationError[] {
@@ -66,3 +37,35 @@ function simplifyValidationErrors(
     };
   });
 }
+
+describe("Valid Example Files", (): void => {
+  describe("CSN Interop Effective (core only)", (): void => {
+    for (const filePath of documentFilePaths) {
+      const fileContent = fs.readFileSync(filePath).toString();
+      describe(filePath, (): void => {
+        test("passes simple JSON Schema based validation", (): void => {
+          const data = JSON.parse(fileContent);
+          assert.ok(fileContent !== undefined);
+          assert.ok(data !== undefined);
+          const result = effectiveCsnSchemaValidator.validate(data);
+          assert.deepStrictEqual(simplifyValidationErrors(result.errors), []);
+        });
+      });
+    }
+  });
+
+  describe("CSN Interop Effective (incl. annotations)", (): void => {
+    for (const filePath of documentFilePaths) {
+      const fileContent = fs.readFileSync(filePath).toString();
+      describe(filePath, (): void => {
+        test("passes simple JSON Schema based validation", (): void => {
+          const data = JSON.parse(fileContent);
+          assert.ok(fileContent !== undefined);
+          assert.ok(data !== undefined);
+          const result = effectiveCsnSchemaExtendedValidator.validate(data);
+          assert.deepStrictEqual(simplifyValidationErrors(result.errors), []);
+        });
+      });
+    }
+  });
+});

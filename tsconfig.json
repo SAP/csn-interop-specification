@@ -12,7 +12,7 @@
     "outDir": "dist",
     "rootDir": "src",
     "lib": ["ES2021"],
-    "types": ["node", "jest"],
+    "types": ["node"],
     "skipLibCheck": true,
     "strict": true,
     "noUnusedLocals": true,
