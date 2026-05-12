@@ -16,6 +16,7 @@ node_modules/
 .cache
 .docusaurus/
 tmp/
+.DS_Store
 
 # Build
 dist/
