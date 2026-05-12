@@ -117,6 +117,13 @@ export type ObjectModelCustom = boolean;
  */
 export type ObjectModelText = unknown[];
 /**
+ * The origin specifies the source layer(s) and codes where the element or entity is defined.
+ * Clients reading CDS metadata can use this information to implement special handling for such fields and entities depending on their requirements.
+ *
+ * @minItems 1
+ */
+export type ObjectModel = [ObjectModelOriginObjectValue, ...ObjectModelOriginObjectValue[]];
+/**
  * The property contains an OID for the ODM Entity with this official name
  */
 export type ODMOidReferenceEntityName = string;
@@ -340,11 +347,11 @@ export type ObjectModelCompositionRoot = boolean;
 /**
  * The entity contains element(s) which shall be used to display the key in UIs (instead of the technical key).
  */
-export type ObjectModel = unknown[];
+export type ObjectModel1 = unknown[];
 /**
  * The property declares the supported usage type for this entity in the context of consuming data models.
  */
-export type ObjectModel2 = SupportedCapabilitiesEnumValue[];
+export type ObjectModel3 = SupportedCapabilitiesEnumValue[];
 /**
  * Unique technical name of the entity within the tenant / isolation context it is deployed to.
  * This may be used as a hint for database table names and help to keep them short enough.
@@ -731,12 +738,13 @@ export interface EntityDefinition {
   "@EntityRelationship.referencesWithConstantIds"?: EntityRelationship5;
   "@ObjectModel.compositionRoot"?: ObjectModelCompositionRoot;
   "@ObjectModel.representativeKey"?: ElementReference;
-  "@ObjectModel.semanticKey"?: ObjectModel;
+  "@ObjectModel.semanticKey"?: ObjectModel1;
   "@ObjectModel.custom"?: ObjectModelCustom;
-  "@ObjectModel.modelingPattern"?: ObjectModel1;
-  "@ObjectModel.supportedCapabilities"?: ObjectModel2;
+  "@ObjectModel.modelingPattern"?: ObjectModel2;
+  "@ObjectModel.supportedCapabilities"?: ObjectModel3;
   "@ObjectModel.tenantWideUniqueName"?: ObjectModelTenantWideUniqueName;
   "@ObjectModel.usageType.sizeCategory"?: ObjectModelUsageType;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.entityName"?: ODMEntityName;
   "@ODM.oid"?: ElementReference;
   "@PersonalData.entitySemantics"?: PersonalData2;
@@ -825,6 +833,7 @@ export interface BooleanType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -1020,6 +1029,20 @@ export interface ReferenceTarget {
   referencedPropertyType: PropertyTypeID;
   [k: string]: unknown | undefined;
 }
+export interface ObjectModelOriginObjectValue {
+  /**
+   * The layer from which the annotated element or entity originates.
+   * Examples are "LOCALIZATION", "INDUSTRY", "PARTNER", "CUSTOMER".
+   */
+  layer: "LOCALIZATION" | "INDUSTRY" | "PARTNER" | "CUSTOMER";
+  /**
+   * The codes specifying the origin within the given layer (e.g. country codes, industry sectors).
+   * For example, the LOCALIZATION layer typically uses country codes such as ["DE", "AT"], while the INDUSTRY layer uses industry sector codes such as ["OIL"].
+   *
+   * @minItems 1
+   */
+  codes: [string, ...string[]];
+}
 /**
  * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
  */
@@ -1094,6 +1117,7 @@ export interface StringType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -1242,6 +1266,7 @@ export interface LargeStringType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -1347,6 +1372,7 @@ export interface IntegerType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -1584,6 +1610,7 @@ export interface Integer64Type {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -1805,6 +1832,7 @@ export interface DecimalType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -1907,6 +1935,7 @@ export interface DoubleType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -2010,6 +2039,7 @@ export interface DateType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -2112,6 +2142,7 @@ export interface TimeType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -2214,6 +2245,7 @@ export interface DateTimeType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -2316,6 +2348,7 @@ export interface TimestampType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -2417,6 +2450,7 @@ export interface UUIDType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -2524,6 +2558,7 @@ export interface BinaryType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -2623,6 +2658,7 @@ export interface LargeBinaryType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -2785,6 +2821,7 @@ export interface AssociationType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -2994,6 +3031,7 @@ export interface CompositionType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -3137,6 +3175,7 @@ export interface CustomType {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -3365,7 +3404,7 @@ export interface ReferencedPropertyTypeWithConstantID {
 /**
  * The property declares the modeling pattern applied in this entity definition.
  */
-export interface ObjectModel1 {
+export interface ObjectModel2 {
   /**
    * Provide the value in `{ "#": "<value>" }` enum notation.
    */
@@ -3489,8 +3528,8 @@ export interface ServiceDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@ObjectModel.representativeKey"?: ElementReference;
   "@ObjectModel.custom"?: ObjectModelCustom;
-  "@ObjectModel.modelingPattern"?: ObjectModel1;
-  "@ObjectModel.supportedCapabilities"?: ObjectModel2;
+  "@ObjectModel.modelingPattern"?: ObjectModel2;
+  "@ObjectModel.supportedCapabilities"?: ObjectModel3;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3554,6 +3593,7 @@ export interface BooleanTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -3659,6 +3699,7 @@ export interface StringTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -3764,6 +3805,7 @@ export interface LargeStringTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -3866,6 +3908,7 @@ export interface IntegerTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -4066,6 +4109,7 @@ export interface Integer64TypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -4281,6 +4325,7 @@ export interface DecimalTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -4381,6 +4426,7 @@ export interface DoubleTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -4481,6 +4527,7 @@ export interface DateTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -4580,6 +4627,7 @@ export interface TimeTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -4679,6 +4727,7 @@ export interface DateTimeTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -4778,6 +4827,7 @@ export interface TimestampTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -4876,6 +4926,7 @@ export interface UUIDTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -4980,6 +5031,7 @@ export interface BinaryTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -5083,6 +5135,7 @@ export interface LargeBinaryTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -5246,6 +5299,7 @@ export interface AssociationTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
@@ -5406,6 +5460,7 @@ export interface CompositionTypeDefinition {
   "@ObjectModel.foreignKey.association"?: ElementReference;
   "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
+  "@ObjectModel.origin"?: ObjectModel;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
