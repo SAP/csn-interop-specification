@@ -12,6 +12,8 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ### Added
 
+- Added new `@AI` annotation vocabulary for AI consumption hints
+  - `@AI.hint`: Provides a hint for AI consumers (e.g., LLMs) on how to use or interpret an Entity, Type, or Service — kept separate from human-readable `@EndUserText` descriptions
 - Added `@PersonalData.relatedDataCategoryID` annotation
 - Added `IS_BLOCKED_INDICATOR` as enum value to `@PersonalData.fieldSemantics`
 - Added `DATA_CATEGORY_ID` as enum value to `@PersonalData.fieldSemantics`
