@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 // Demo script how we can "fix" / align CSN files that do not fully match the CSN Interop spec
 // We could extend this to convert standard ABAP / CAP Effective CSN to CSN Interop in the future,
 // if we cover all necessary conversion / fixing cases.
