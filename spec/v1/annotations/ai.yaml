@@ -1,0 +1,34 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+$id: "https://sap.github.io/csn-interop-specification/spec-v1/ai.schema.json#"
+title: AI Document
+description: This is the interface description of @AI.
+type: object
+definitions:
+  "@AI.hint":
+    type: string
+    description: |-
+      Provides a hint for AI consumers (e.g., LLMs) on how to use or interpret the annotation target.
+
+      This allows keeping human-readable descriptions (e.g., `@EndUserText`) separate from
+      descriptions and hints targeted specifically for AI consumers.
+    examples:
+      - "Use this entity to look up current inventory levels by product and warehouse."
+      - "This field contains the ISO 4217 currency code, not a currency symbol."
+    x-extension-targets:
+      - Entity
+      - Type
+      - Service
+
+examples:
+  - {
+      "csnInteropEffective": "1.2",
+      "$version": "2.0",
+      "definitions":
+        {
+          "SalesOrder":
+            {
+              "kind": "entity",
+              "@AI.hint": "Use this entity to retrieve sales order header data. Filter by CustomerID and CreatedAt for typical lookups.",
+            },
+        },
+    }
