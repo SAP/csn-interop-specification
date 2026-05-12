@@ -11,6 +11,11 @@
     ]
   },
   "outputPath": "src/generated/spec/v1",
+  "plugins": [
+    {
+      "packageName": "./node_modules/@open-resource-discovery/spec-toolkit/dist/plugin/tabular/index.js"
+    }
+  ],
   "docsConfig": [
     {
       "type": "spec",
