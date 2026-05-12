@@ -24,6 +24,7 @@ build/
 # Generated
 src/generated/**/*.md
 src/generated/**/*.schema.json
+src/generated/**/plugin/
 
 
 docs/spec-v1/**/*.md

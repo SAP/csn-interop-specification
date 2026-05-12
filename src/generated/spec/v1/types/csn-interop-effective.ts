@@ -717,6 +717,8 @@ export interface EntityDefinition {
     | {
         [k: string]: unknown | undefined;
       };
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -810,6 +812,8 @@ export interface BooleanType {
   default?: DefaultValueBoolean;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -907,6 +911,44 @@ export interface AnalyticsDetails {
    */
   "#": "BASE" | "RESTRICTION" | "CALCULATION";
 }
+/**
+ * Specifies the release state of an element which is part of an API.
+ */
+export interface API {
+  releaseState?: APIElement;
+  successor?: ElementReference;
+  /**
+   * The annotation describes the planned decommissioning date of the annotated element. Use ISO format for YearMonth: YYYY-MM (e.g. 2024-08)
+   */
+  decommissioningPlannedForYearMonth?: string;
+  [k: string]: unknown | undefined;
+}
+/**
+ * The annotation describes the release state of the annotated element.
+ */
+export interface APIElement {
+  /**
+   * Provide the value in `{ "#": "<value>" }` enum notation.
+   */
+  "#"?: "DEPRECATED" | "DECOMMISSIONED";
+  [k: string]: unknown | undefined;
+}
+/**
+ * Element reference to an element within the current entity, using RECOMMENDED object notation.
+ *
+ * The referenced element MUST exist locally in the same entity.
+ *
+ * ```js
+ * "<definition name>": {
+ *   "<annotation key of type ElementReference>": {"=": "<element name>"}
+ * ```
+ */
+export interface ElementReferenceObject {
+  /**
+   * This is the references elements name.
+   */
+  "=": string;
+}
 export interface ConsumptionValueHelpDefinition {
   entity?: ConsumptionValueHelpDefinition1;
   /**
@@ -959,22 +1001,6 @@ export interface ConsumptionConsumptionValueHelpDefinitionAdditionalBinding {
    * Provide the value in `{ "#": "<value>" }` enum notation.
    */
   "#": "FILTER" | "RESULT" | "FILTER_AND_RESULT";
-}
-/**
- * Element reference to an element within the current entity, using RECOMMENDED object notation.
- *
- * The referenced element MUST exist locally in the same entity.
- *
- * ```js
- * "<definition name>": {
- *   "<annotation key of type ElementReference>": {"=": "<element name>"}
- * ```
- */
-export interface ElementReferenceObject {
-  /**
-   * This is the references elements name.
-   */
-  "=": string;
 }
 /**
  * Defines a reference to another Entity Type based on a single ID.
@@ -1055,6 +1081,8 @@ export interface StringType {
   length?: number;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1201,6 +1229,8 @@ export interface LargeStringType {
   length?: number;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1304,6 +1334,8 @@ export interface IntegerType {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1436,6 +1468,8 @@ export interface Int16Type {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1537,6 +1571,8 @@ export interface Integer64Type {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1638,6 +1674,8 @@ export interface UInt8Type {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1754,6 +1792,8 @@ export interface DecimalType {
   scale?: DecimalScaleNumber | DecimalScaleType;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1854,6 +1894,8 @@ export interface DoubleType {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1955,6 +1997,8 @@ export interface DateType {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2055,6 +2099,8 @@ export interface TimeType {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2155,6 +2201,8 @@ export interface DateTimeType {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2255,6 +2303,8 @@ export interface TimestampType {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2354,6 +2404,8 @@ export interface UUIDType {
   default?: DefaultValueString;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2459,6 +2511,8 @@ export interface BinaryType {
   default?: DefaultValueString;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2556,6 +2610,8 @@ export interface LargeBinaryType {
   default?: DefaultValueString;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2716,6 +2772,8 @@ export interface AssociationType {
   ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2923,6 +2981,8 @@ export interface CompositionType {
   ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -3064,6 +3124,8 @@ export interface CustomType {
   precision?: number;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -3479,6 +3541,8 @@ export interface BooleanTypeDefinition {
   default?: DefaultValueBoolean;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -3582,6 +3646,8 @@ export interface StringTypeDefinition {
   length?: number;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -3685,6 +3751,8 @@ export interface LargeStringTypeDefinition {
   length?: number;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -3785,6 +3853,8 @@ export interface IntegerTypeDefinition {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -3883,6 +3953,8 @@ export interface Int16TypeDefinition {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -3981,6 +4053,8 @@ export interface Integer64TypeDefinition {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4079,6 +4153,8 @@ export interface UInt8TypeDefinition {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4192,6 +4268,8 @@ export interface DecimalTypeDefinition {
   scale?: DecimalScaleNumber | DecimalScaleType;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4290,6 +4368,8 @@ export interface DoubleTypeDefinition {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4388,6 +4468,8 @@ export interface DateTypeDefinition {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4485,6 +4567,8 @@ export interface TimeTypeDefinition {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4582,6 +4666,8 @@ export interface DateTimeTypeDefinition {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4679,6 +4765,8 @@ export interface TimestampTypeDefinition {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4775,6 +4863,8 @@ export interface UUIDTypeDefinition {
   default?: DefaultValueString;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4877,6 +4967,8 @@ export interface BinaryTypeDefinition {
   default?: DefaultValueString;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4978,6 +5070,8 @@ export interface LargeBinaryTypeDefinition {
   default?: DefaultValueString;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -5139,6 +5233,8 @@ export interface AssociationTypeDefinition {
   ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -5297,6 +5393,8 @@ export interface CompositionTypeDefinition {
   ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
