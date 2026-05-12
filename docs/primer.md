@@ -738,6 +738,10 @@ If the structured type does not serve any particular purpose at deployment or fo
 
 For type mappings to other systems (ABAP, Spark, etc.), see [Mappings](./mappings/index.mdx).
 
+## View Definitions
+
+Out of scope for now. Views have a mandatory `query` property describing how source data is mapped to the result structure (signature). For data exchange and deployment, the `query` can be ignored and the view treated as a table definition.
+
 ## Service Definitions
 
 CDS allows to define service interfaces as collections of exposed entities enclosed in a `service` section, which is essentially a `context`. (Especially the service acts as a name prefix for the exposed entities.)
@@ -759,6 +763,14 @@ The exposed entities are typically projections on entities from underlying data 
   }
 }
 ```
+
+### Actions
+
+Out of scope for now. 
+
+### Functions
+
+Out of scope for now. 
 
 ## Localization (i18n)
 
