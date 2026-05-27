@@ -5,6 +5,8 @@ on:
     workflows: ["PR Preview"]
     types: [completed]
 
+permissions: {}
+
 jobs:
   pr-preview-fork-deploy:
     permissions:

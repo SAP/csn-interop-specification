@@ -4,6 +4,8 @@ on:
   pull_request:
     types: [opened, reopened, synchronize, closed]
 
+permissions: {}
+
 jobs:
   pr-preview:
     permissions:
