@@ -1,7 +1,10 @@
 // @ts-check
 import { themes as prismThemes } from "prism-react-renderer";
 
-const baseUrl = (process.env.BASE_URL || "/csn-interop-specification/").replace(/\/?$/, "/");
+const baseUrl = (process.env.BASE_URL || "/csn-interop-specification/").replace(
+  /\/?$/,
+  "/",
+);
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
