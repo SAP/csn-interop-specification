@@ -36,3 +36,4 @@ sap-csn-interop-specification-*
 
 # Claude Code
 .claude/
+.DS_Store
