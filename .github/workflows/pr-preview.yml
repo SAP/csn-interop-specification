@@ -34,7 +34,7 @@ jobs:
         if: github.event.action != 'closed'
         env:
           PR_PREVIEW_NUMBER: ${{ github.event.pull_request.number }}
-          BASE_URL: /pr-preview/csn-interop-specification/pr-${{ github.event.pull_request.number }}
+          BASE_URL: /csn-interop-pr-preview/csn-interop-specification/pr-${{ github.event.pull_request.number }}/
         run: |
           set -euo pipefail
           npm ci

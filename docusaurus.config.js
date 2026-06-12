@@ -1,12 +1,14 @@
 // @ts-check
 import { themes as prismThemes } from "prism-react-renderer";
 
+const baseUrl = (process.env.BASE_URL || "/csn-interop-specification/").replace(/\/?$/, "/");
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "CSN Interop Specification",
   tagline: "Specification for interoperable CSN as import / export format.",
   url: "https://sap.github.io",
-  baseUrl: process.env.BASE_URL || "/csn-interop-specification",
+  baseUrl,
   trailingSlash: false,
   onBrokenLinks: "throw",
   onBrokenAnchors: "throw",
@@ -53,9 +55,7 @@ const config = {
     ],
   ],
 
-  scripts: [
-    `${process.env.BASE_URL || "/csn-interop-specification"}/js/custom.js`,
-  ],
+  scripts: [`${baseUrl}js/custom.js`],
 
   plugins: [
     [
