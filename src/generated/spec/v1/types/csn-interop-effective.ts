@@ -125,7 +125,7 @@ export type ODMOidReferenceEntityName = string;
  */
 export type PersonalDataIsPotentiallyPersonal = boolean;
 /**
- * Property contains potentially sensitive personal data. Sensitive personal data is a category of personal data that needs special handling. The determination which personal data is sensitive may differ for different legal areas or industries.
+ * Property or entity containing potentially sensitive personal data. Sensitive personal data is a category of personal data that needs special handling. The determination which personal data is sensitive may differ for different legal areas or industries.
  * Examples of sensitive personal data:
  * -	Special categories of personal data, such as data revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, trade union membership, genetic data, biometric data, data concerning health or sex life or sexual orientation.
  * -	Personal data subject to professional secrecy
@@ -133,6 +133,10 @@ export type PersonalDataIsPotentiallyPersonal = boolean;
  * -	Personal data concerning insurances and bank or credit card accounts
  */
 export type PersonalDataIsPotentiallySensitive = boolean;
+/**
+ * The annotation value is an array of strings, enabling the assignment of multiple data categories to one entity or field. Data categories are entities describing a particular set of personal data with a similar usage, meaning, quality, and risk. The strings must adhere to the format of an Correlation ID corresponding to the concept name "dataCategory" in conjunction with an localIdentifier introduced herein (refer to [ORD Specification | Open Resource Discovery](https://open-resource-discovery.org/spec-v1#correlation-id)).
+ */
+export type PersonalData1 = string[];
 /**
  * The property contains a currency code.
  */
@@ -713,6 +717,8 @@ export interface EntityDefinition {
     | {
         [k: string]: unknown | undefined;
       };
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -733,9 +739,11 @@ export interface EntityDefinition {
   "@ObjectModel.usageType.sizeCategory"?: ObjectModelUsageType;
   "@ODM.entityName"?: ODMEntityName;
   "@ODM.oid"?: ElementReference;
-  "@PersonalData.entitySemantics"?: PersonalData1;
+  "@PersonalData.entitySemantics"?: PersonalData2;
   "@PersonalData.dataSubjectRole"?: PersonalDataDataSubjectRole;
   "@PersonalData.dataSubjectRoleDescription"?: PersonalDataDataSubjectRoleDescription;
+  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -804,6 +812,8 @@ export interface BooleanType {
   default?: DefaultValueBoolean;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -819,6 +829,7 @@ export interface BooleanType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -900,6 +911,44 @@ export interface AnalyticsDetails {
    */
   "#": "BASE" | "RESTRICTION" | "CALCULATION";
 }
+/**
+ * Specifies the release state of an element which is part of an API.
+ */
+export interface API {
+  releaseState?: APIElement;
+  successor?: ElementReference;
+  /**
+   * The annotation describes the planned decommissioning date of the annotated element. Use ISO format for YearMonth: YYYY-MM (e.g. 2024-08)
+   */
+  decommissioningPlannedForYearMonth?: string;
+  [k: string]: unknown | undefined;
+}
+/**
+ * The annotation describes the release state of the annotated element.
+ */
+export interface APIElement {
+  /**
+   * Provide the value in `{ "#": "<value>" }` enum notation.
+   */
+  "#"?: "DEPRECATED" | "DECOMMISSIONED";
+  [k: string]: unknown | undefined;
+}
+/**
+ * Element reference to an element within the current entity, using RECOMMENDED object notation.
+ *
+ * The referenced element MUST exist locally in the same entity.
+ *
+ * ```js
+ * "<definition name>": {
+ *   "<annotation key of type ElementReference>": {"=": "<element name>"}
+ * ```
+ */
+export interface ElementReferenceObject {
+  /**
+   * This is the references elements name.
+   */
+  "=": string;
+}
 export interface ConsumptionValueHelpDefinition {
   entity?: ConsumptionValueHelpDefinition1;
   /**
@@ -954,27 +1003,17 @@ export interface ConsumptionConsumptionValueHelpDefinitionAdditionalBinding {
   "#": "FILTER" | "RESULT" | "FILTER_AND_RESULT";
 }
 /**
- * Element reference to an element within the current entity, using RECOMMENDED object notation.
- *
- * The referenced element MUST exist locally in the same entity.
- *
- * ```js
- * "<definition name>": {
- *   "<annotation key of type ElementReference>": {"=": "<element name>"}
- * ```
- */
-export interface ElementReferenceObject {
-  /**
-   * This is the references elements name.
-   */
-  "=": string;
-}
-/**
  * Defines a reference to another Entity Type based on a single ID.
  */
 export interface ReferenceTarget {
   /**
-   * Optional name to describe the semantics of the reference.
+   * Optional technical name (locally unique ID) of the reference.
+   *
+   * If provided, the name MUST be unique across all reference names defined via
+   * `@EntityRelationship.reference`, `@EntityRelationship.compositeReferences`,
+   * `@EntityRelationship.temporalReferences`, and `@EntityRelationship.referencesWithConstantIds`
+   * on the same CSN entity, and MUST NOT match the name of any element
+   * (property, `cds.Association`, or `cds.Composition`) of that entity.
    */
   name?: string;
   referencedEntityType: EntityTypeID;
@@ -998,7 +1037,9 @@ export interface PersonalData {
     | "USER_ID"
     | "END_OF_BUSINESS_DATE"
     | "BLOCKING_DATE"
-    | "END_OF_RETENTION_DATE";
+    | "IS_BLOCKED_INDICATOR"
+    | "END_OF_RETENTION_DATE"
+    | "DATA_CATEGORY_ID";
 }
 /**
  * An element of type `cds.String`, which is length limited.
@@ -1040,6 +1081,8 @@ export interface StringType {
   length?: number;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1055,6 +1098,7 @@ export interface StringType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -1185,6 +1229,8 @@ export interface LargeStringType {
   length?: number;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1200,6 +1246,7 @@ export interface LargeStringType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -1287,6 +1334,8 @@ export interface IntegerType {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1302,6 +1351,7 @@ export interface IntegerType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -1418,6 +1468,8 @@ export interface Int16Type {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1433,6 +1485,7 @@ export interface Int16Type {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -1518,6 +1571,8 @@ export interface Integer64Type {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1533,6 +1588,7 @@ export interface Integer64Type {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -1618,6 +1674,8 @@ export interface UInt8Type {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1633,6 +1691,7 @@ export interface UInt8Type {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -1733,6 +1792,8 @@ export interface DecimalType {
   scale?: DecimalScaleNumber | DecimalScaleType;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1748,6 +1809,7 @@ export interface DecimalType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -1832,6 +1894,8 @@ export interface DoubleType {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1847,6 +1911,7 @@ export interface DoubleType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -1932,6 +1997,8 @@ export interface DateType {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1947,6 +2014,7 @@ export interface DateType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2031,6 +2099,8 @@ export interface TimeType {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2046,6 +2116,7 @@ export interface TimeType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2130,6 +2201,8 @@ export interface DateTimeType {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2145,6 +2218,7 @@ export interface DateTimeType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2229,6 +2303,8 @@ export interface TimestampType {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2244,6 +2320,7 @@ export interface TimestampType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2327,6 +2404,8 @@ export interface UUIDType {
   default?: DefaultValueString;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2342,6 +2421,7 @@ export interface UUIDType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2431,6 +2511,8 @@ export interface BinaryType {
   default?: DefaultValueString;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2446,6 +2528,7 @@ export interface BinaryType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2527,6 +2610,8 @@ export interface LargeBinaryType {
   default?: DefaultValueString;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2542,6 +2627,7 @@ export interface LargeBinaryType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2686,6 +2772,8 @@ export interface AssociationType {
   ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2701,6 +2789,7 @@ export interface AssociationType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2892,6 +2981,8 @@ export interface CompositionType {
   ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2907,6 +2998,7 @@ export interface CompositionType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -3032,6 +3124,8 @@ export interface CustomType {
   precision?: number;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -3047,6 +3141,7 @@ export interface CustomType {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -3136,7 +3231,13 @@ export interface EntityID {
  */
 export interface CompositeReference {
   /**
-   * Optional name to describe the semantics of the reference.
+   * Optional technical name (locally unique ID) of the reference.
+   *
+   * If provided, the name MUST be unique across all reference names defined via
+   * `@EntityRelationship.reference`, `@EntityRelationship.compositeReferences`,
+   * `@EntityRelationship.temporalReferences`, and `@EntityRelationship.referencesWithConstantIds`
+   * on the same CSN entity, and MUST NOT match the name of any element
+   * (property, `cds.Association`, or `cds.Composition`) of that entity.
    */
   name?: string;
   referencedEntityType: EntityTypeID;
@@ -3200,6 +3301,11 @@ export interface TemporalType {
 export interface TemporalReference {
   /**
    * Optional name to describe the semantics of the reference.
+   * If provided, the name MUST be unique across all reference names defined via
+   * `@EntityRelationship.reference`, `@EntityRelationship.compositeReferences`,
+   * `@EntityRelationship.temporalReferences`, and `@EntityRelationship.referencesWithConstantIds`
+   * on the same CSN entity, and MUST NOT match the name of any element
+   * (property, `cds.Association`, or `cds.Composition`) of that entity.
    */
   name?: string;
   referencedEntityType: EntityTypeID;
@@ -3226,6 +3332,11 @@ export interface Category {
 export interface ReferenceWithConstantID {
   /**
    * Optional name to describe the semantics of the reference.
+   * If provided, the name MUST be unique across all reference names defined via
+   * `@EntityRelationship.reference`, `@EntityRelationship.compositeReferences`,
+   * `@EntityRelationship.temporalReferences`, and `@EntityRelationship.referencesWithConstantIds`
+   * on the same CSN entity, and MUST NOT match the name of any element
+   * (property, `cds.Association`, or `cds.Composition`) of that entity.
    */
   name?: string;
   /**
@@ -3342,7 +3453,7 @@ export interface ObjectModelUsageType {
 /**
  * Primary meaning of the entities in the annotated entity set. Entities annotated with @PersonalData.entitySemantics are synonymous to @PersonalData.isPotentiallyPersonal.
  */
-export interface PersonalData1 {
+export interface PersonalData2 {
   /**
    * Provide the value in `{ "#": "<value>" }` enum notation.
    */
@@ -3430,6 +3541,8 @@ export interface BooleanTypeDefinition {
   default?: DefaultValueBoolean;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -3445,6 +3558,7 @@ export interface BooleanTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -3532,6 +3646,8 @@ export interface StringTypeDefinition {
   length?: number;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -3547,6 +3663,7 @@ export interface StringTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -3634,6 +3751,8 @@ export interface LargeStringTypeDefinition {
   length?: number;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -3649,6 +3768,7 @@ export interface LargeStringTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -3733,6 +3853,8 @@ export interface IntegerTypeDefinition {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -3748,6 +3870,7 @@ export interface IntegerTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -3830,6 +3953,8 @@ export interface Int16TypeDefinition {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -3845,6 +3970,7 @@ export interface Int16TypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -3927,6 +4053,8 @@ export interface Integer64TypeDefinition {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -3942,6 +4070,7 @@ export interface Integer64TypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -4024,6 +4153,8 @@ export interface UInt8TypeDefinition {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4039,6 +4170,7 @@ export interface UInt8TypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -4136,6 +4268,8 @@ export interface DecimalTypeDefinition {
   scale?: DecimalScaleNumber | DecimalScaleType;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4151,6 +4285,7 @@ export interface DecimalTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -4233,6 +4368,8 @@ export interface DoubleTypeDefinition {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4248,6 +4385,7 @@ export interface DoubleTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
@@ -4330,6 +4468,8 @@ export interface DateTypeDefinition {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4345,6 +4485,7 @@ export interface DateTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -4426,6 +4567,8 @@ export interface TimeTypeDefinition {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4441,6 +4584,7 @@ export interface TimeTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -4522,6 +4666,8 @@ export interface DateTimeTypeDefinition {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4537,6 +4683,7 @@ export interface DateTimeTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -4618,6 +4765,8 @@ export interface TimestampTypeDefinition {
   enum?: EnumDictionary;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4633,6 +4782,7 @@ export interface TimestampTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -4713,6 +4863,8 @@ export interface UUIDTypeDefinition {
   default?: DefaultValueString;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4728,6 +4880,7 @@ export interface UUIDTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -4814,6 +4967,8 @@ export interface BinaryTypeDefinition {
   default?: DefaultValueString;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4829,6 +4984,7 @@ export interface BinaryTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -4914,6 +5070,8 @@ export interface LargeBinaryTypeDefinition {
   default?: DefaultValueString;
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4929,6 +5087,7 @@ export interface LargeBinaryTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -5074,6 +5233,8 @@ export interface AssociationTypeDefinition {
   ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -5089,6 +5250,7 @@ export interface AssociationTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -5231,6 +5393,8 @@ export interface CompositionTypeDefinition {
   ];
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
+  "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -5246,6 +5410,7 @@ export interface CompositionTypeDefinition {
   "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;

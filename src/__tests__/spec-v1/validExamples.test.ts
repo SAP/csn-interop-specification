@@ -1,7 +1,9 @@
+import assert from "node:assert/strict";
+import { describe, test } from "node:test";
 import * as fg from "fast-glob";
 import * as fs from "fs-extra";
-import { compileSchema, JsonError } from "json-schema-library";
-import { CSNInteropEffectiveDocument } from "../../generated/spec/v1/types";
+import { compileSchema, type JsonError } from "json-schema-library";
+import type { CSNInteropEffectiveDocument } from "../../generated/spec/v1/types";
 
 const effectiveCsnSchema = fs.readJSONSync(
   "./src/generated/spec/v1/schemas/csn-interop-effective.schema.json",
@@ -12,9 +14,29 @@ const effectiveCsnSchemaExtended = fs.readJSONSync(
 ) as CSNInteropEffectiveDocument;
 
 const effectiveCsnSchemaValidator = compileSchema(effectiveCsnSchema);
-const effectiveCsnSchemaExtendedValidator = compileSchema(effectiveCsnSchemaExtended);
+const effectiveCsnSchemaExtendedValidator = compileSchema(
+  effectiveCsnSchemaExtended,
+);
 
 const documentFilePaths = fg.sync("./spec/v1/examples/*.json", {});
+
+type JsonSchemaValidationError = {
+  code: string;
+  pointer: string;
+  message: string;
+};
+
+function simplifyValidationErrors(
+  errors: JsonError[],
+): JsonSchemaValidationError[] {
+  return errors.map((el) => {
+    return {
+      code: String(el.code),
+      pointer: el.data.pointer,
+      message: el.message,
+    };
+  });
+}
 
 describe("Valid Example Files", (): void => {
   describe("CSN Interop Effective (core only)", (): void => {
@@ -23,10 +45,10 @@ describe("Valid Example Files", (): void => {
       describe(filePath, (): void => {
         test("passes simple JSON Schema based validation", (): void => {
           const data = JSON.parse(fileContent);
-          expect(fileContent).toBeDefined();
-          expect(data).toBeDefined();
+          assert.ok(fileContent !== undefined);
+          assert.ok(data !== undefined);
           const result = effectiveCsnSchemaValidator.validate(data);
-          expect(simplifyValidationErrors(result.errors)).toEqual([]);
+          assert.deepStrictEqual(simplifyValidationErrors(result.errors), []);
         });
       });
     }
@@ -38,27 +60,12 @@ describe("Valid Example Files", (): void => {
       describe(filePath, (): void => {
         test("passes simple JSON Schema based validation", (): void => {
           const data = JSON.parse(fileContent);
-          expect(fileContent).toBeDefined();
-          expect(data).toBeDefined();
+          assert.ok(fileContent !== undefined);
+          assert.ok(data !== undefined);
           const result = effectiveCsnSchemaExtendedValidator.validate(data);
-          expect(simplifyValidationErrors(result.errors)).toEqual([]);
+          assert.deepStrictEqual(simplifyValidationErrors(result.errors), []);
         });
       });
     }
   });
 });
-
-export type JsonSchemaValidationError = {
-  code: string;
-  pointer: string;
-  message: string;
-};
-export function simplifyValidationErrors(errors: JsonError[]): JsonSchemaValidationError[] {
-  return errors.map((el) => {
-    return {
-      code: String(el.code),
-      pointer: el.data.pointer,
-      message: el.message,
-    };
-  });
-}

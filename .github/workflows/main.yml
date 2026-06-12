@@ -6,6 +6,8 @@ on:
   pull_request:
     branches: [main]
 
+permissions: {}
+
 jobs:
   build:
     name: Build
@@ -25,11 +27,8 @@ jobs:
       - name: install dependencies
         run: npm ci
 
-      - name: run prettier
-        run: npm run prettier:ci
-
-      - name: run linter
-        run: npm run eslint:ci
+      - name: run biome checks
+        run: npm run ci
 
       - name: build and test
         run: npm run test

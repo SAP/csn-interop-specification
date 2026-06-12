@@ -7,7 +7,6 @@ description: "ABAP Type System"
 
 <span className="feature-status-draft">DRAFT</span> This mapping definition is work in progress and may be subject to further change.
 
-<!-- prettier-ignore -->
 | ABAP DataType | CDS Datatype | Properties | Spark Type | ABAP Format | Comment |   | Transformer |
 |-------------- | ------------ | ---------- | ---------- | ----------- | ------- | - | ----------- |
 | abap.cuky (len=5) | cds.String | length = 5 | STRING(5) | | | | - |

@@ -9,7 +9,6 @@ description: "CSN Interop types to Apache Spark types."
 - Spark Data Types coming from here: [Link](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/data_types.html)
 - DataSphere Data Types coming from here: [Link](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/7b1dc6e0fad147de8e50aa8dc4744aa3.html?locale=en-US)
 
-<!-- prettier-ignore -->
 |CDS | Spark / Delta Lake | Datasphere | Comment | Spark format |
 |--- |------------------- |----------- |-------- |--------------|
 |`cds.Boolean`| BOOLEAN | `cds.Boolean`| | |

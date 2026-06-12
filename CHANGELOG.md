@@ -10,6 +10,22 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+### Added
+
+- Added `@PersonalData.relatedDataCategoryID` annotation
+- Added `IS_BLOCKED_INDICATOR` as enum value to `@PersonalData.fieldSemantics`
+- Added `DATA_CATEGORY_ID` as enum value to `@PersonalData.fieldSemantics`
+
+### Changed
+
+- Extending the x-extension-targets of `@PersonalData.isPotentialSensitive` by `Entity`
+
+## [1.2.4]
+
+### Added
+
+- Added new `@API` annotation vocabulary for release state definition of APIs parts (e.g. elements or associations)
+
 ## [1.2.3]
 
 ### Added

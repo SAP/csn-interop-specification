@@ -13,14 +13,23 @@ const config = {
   onDuplicateRoutes: "throw",
   staticDirectories: ["static"],
   favicon: "img/favicon.ico",
-  organizationName: "SAP", // Usually your GitHub org/user name.
-  projectName: "csn-interop-specification", // Usually your repo name.
+  organizationName: "SAP",
+  projectName: "csn-interop-specification",
+
+  future: {
+    v4: {
+      removeLegacyPostBuildHeadAttribute: true,
+      mdx1CompatDisabledByDefault: true,
+      siteStorageNamespacing: true,
+      fasterByDefault: true,
+    },
+  },
+
   i18n: {
     defaultLocale: "en",
     locales: ["en"],
   },
   markdown: {
-    mermaid: true,
     hooks: {
       onBrokenMarkdownLinks: "throw",
       onBrokenMarkdownImages: "throw",
@@ -44,7 +53,9 @@ const config = {
     ],
   ],
 
-  scripts: [(process.env.BASE_URL || "/csn-interop-specification") + "/js/custom.js"],
+  scripts: [
+    `${process.env.BASE_URL || "/csn-interop-specification"}/js/custom.js`,
+  ],
 
   plugins: [
     [
@@ -105,7 +116,6 @@ const config = {
   ],
 
   themes: [
-    "@docusaurus/theme-mermaid",
     [
       require.resolve("@easyops-cn/docusaurus-search-local"),
       {
@@ -140,9 +150,6 @@ const config = {
       },
       prism: {
         theme: prismThemes.nightOwl,
-      },
-      mermaid: {
-        theme: { light: "neutral", dark: "forest" },
       },
       navbar: {
         title: "",

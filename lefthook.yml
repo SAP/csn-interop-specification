@@ -6,7 +6,7 @@ pre-commit:
         npm run generate
         git add ./src/generated/spec/v1/types/csn-interop-effective.ts
         git add ./src/generated/spec/v1/schemas/*
-    prettier:
-      glob: "**/*.{md,json,yaml}"
-      run: npm run prettier
+    format:
+      glob: "**/*.{md,json,yaml,js,ts}"
+      run: npm run format
       stage_fixed: true

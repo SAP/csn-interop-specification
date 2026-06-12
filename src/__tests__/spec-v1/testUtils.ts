@@ -1,29 +1,51 @@
-import {
+import assert from "node:assert/strict";
+import type { JsonError } from "json-schema-library";
+import type {
   AssociationType,
   BooleanType,
+  CdsType,
   CdsTypeValue,
   CompositionType,
+  CSNInteropEffectiveDocument,
+  CustomType,
+  CustomTypeValue,
   DateTimeType,
   DateType,
   DecimalType,
-  CustomType,
-  CustomTypeValue,
+  Definitions,
   DoubleType,
-  IntegerType,
   Int16Type,
   Integer64Type,
-  UInt8Type,
+  IntegerType,
   LargeStringType,
   StringType,
   TimestampType,
   TimeType,
-  CdsType,
+  UInt8Type,
   UUIDType,
-  CSNInteropEffectiveDocument,
-  Definitions,
 } from "../../generated/spec/v1/types";
 
-export function getElementTestDataByElementType(elementType: CdsTypeValue | CustomTypeValue): CdsType | CustomType {
+export function assertContainsValidationMessage(
+  validationResults: JsonError[],
+  message: string,
+  count = 1,
+): void {
+  let found = 0;
+  for (const result of validationResults) {
+    if (result.message.includes(message)) {
+      found++;
+    }
+  }
+  assert.strictEqual(
+    found,
+    count,
+    `Expected ${count} validation message(s) containing "${message}", got ${found}`,
+  );
+}
+
+export function getElementTestDataByElementType(
+  elementType: CdsTypeValue | CustomTypeValue,
+): CdsType | CustomType {
   switch (elementType) {
     case "cds.Boolean":
       return getBooleanTypeTestData();
@@ -62,7 +84,9 @@ export function getElementTestDataByElementType(elementType: CdsTypeValue | Cust
   }
 }
 
-export function getCsnDocumentTestData(definitions?: Definitions): CSNInteropEffectiveDocument {
+export function getCsnDocumentTestData(
+  definitions?: Definitions,
+): CSNInteropEffectiveDocument {
   return {
     csnInteropEffective: "1.2",
     $version: "2.0",
@@ -70,10 +94,6 @@ export function getCsnDocumentTestData(definitions?: Definitions): CSNInteropEff
   };
 }
 
-/**
- * Returns a basic object of type BooleanType with only the relevant properties
- *  that discriminate an boolean from any other type
- **/
 function getBooleanTypeTestData(): BooleanType {
   return {
     type: "cds.Boolean",
@@ -83,10 +103,6 @@ function getBooleanTypeTestData(): BooleanType {
   };
 }
 
-/**
- * Returns a basic object of type StringType with only the relevant properties
- *  that discriminate an string from any other type
- **/
 function getStringTypeTestData(): StringType {
   return {
     type: "cds.String",
@@ -104,10 +120,6 @@ function getStringTypeTestData(): StringType {
   };
 }
 
-/**
- * Returns a basic object of type LargeStringType with only the relevant properties
- *  that discriminate an large string from any other type
- **/
 function getLargeStringTypeTestData(): LargeStringType {
   return {
     type: "cds.LargeString",
@@ -117,10 +129,6 @@ function getLargeStringTypeTestData(): LargeStringType {
   };
 }
 
-/**
- * Returns a basic object of type IntegerType with only the relevant properties
- *  that discriminate an integer from any other type
- **/
 function getIntegerTypeTestData(): IntegerType {
   return {
     type: "cds.Integer",
@@ -131,10 +139,6 @@ function getIntegerTypeTestData(): IntegerType {
   };
 }
 
-/**
- * Returns a basic object of type Int16Type with only the relevant properties
- *  that discriminate an int16 from any other type
- **/
 function getInt16TypeTestData(): Int16Type {
   return {
     type: "cds.Int16",
@@ -145,10 +149,6 @@ function getInt16TypeTestData(): Int16Type {
   };
 }
 
-/**
- * Returns a basic object of type Integer64Type with only the relevant properties
- *  that discriminate an integer64 from any other type
- **/
 function getInteger64TypeTestData(): Integer64Type {
   return {
     type: "cds.Integer64",
@@ -159,11 +159,6 @@ function getInteger64TypeTestData(): Integer64Type {
   };
 }
 
-/**
- * Returns a basic object of type UInt8Type with only the relevant properties
- *  that discriminate an uint8 from any other type
- **/
-// eslint-disable-next-line @typescript-eslint/naming-convention
 function getUInt8TypeTestData(): UInt8Type {
   return {
     type: "cds.UInt8",
@@ -174,10 +169,6 @@ function getUInt8TypeTestData(): UInt8Type {
   };
 }
 
-/**
- * Returns a basic object of type DecimalType with only the relevant properties
- *  that discriminate an decimal from any other type
- **/
 function getDecimalTypeTestData(): DecimalType {
   return {
     type: "cds.Decimal",
@@ -187,10 +178,6 @@ function getDecimalTypeTestData(): DecimalType {
   };
 }
 
-/**
- * Returns a basic object of type DoubleType with only the relevant properties
- *  that discriminate an double from any other type
- **/
 function getDoubleTypeTestData(): DoubleType {
   return {
     type: "cds.Double",
@@ -200,10 +187,6 @@ function getDoubleTypeTestData(): DoubleType {
   };
 }
 
-/**
- * Returns a basic object of type DateType with only the relevant properties
- *  that discriminate an date from any other type
- **/
 function getDateTypeTestData(): DateType {
   return {
     type: "cds.Date",
@@ -214,10 +197,6 @@ function getDateTypeTestData(): DateType {
   };
 }
 
-/**
- * Returns a basic object of type TimeType with only the relevant properties
- *  that discriminate a time from any other type
- **/
 function getTimeTypeTestData(): TimeType {
   return {
     type: "cds.Time",
@@ -228,10 +207,6 @@ function getTimeTypeTestData(): TimeType {
   };
 }
 
-/**
- * Returns a basic object of type DateTimeType with only the relevant properties
- *  that discriminate a dateTime from any other type
- **/
 function getDateTimeTypeTestData(): DateTimeType {
   return {
     type: "cds.DateTime",
@@ -242,10 +217,6 @@ function getDateTimeTypeTestData(): DateTimeType {
   };
 }
 
-/**
- * Returns a basic object of type TimestampType with only the relevant properties
- *  that discriminate a timestamp from any other type
- **/
 function getTimestampTypeTestData(): TimestampType {
   return {
     type: "cds.Timestamp",
@@ -256,10 +227,6 @@ function getTimestampTypeTestData(): TimestampType {
   };
 }
 
-/**
- * Returns a basic object of type UUIDType with only the relevant properties
- *  that discriminate a uuid from any other type
- **/
 function getUuidTypeTestData(): UUIDType {
   return {
     type: "cds.UUID",
@@ -269,10 +236,6 @@ function getUuidTypeTestData(): UUIDType {
   };
 }
 
-/**
- * Returns a basic object of type AssociationType with only the relevant properties
- *  that discriminate an association from any other type
- **/
 function getAssociationTypeTestData(): AssociationType {
   return {
     type: "cds.Association",
@@ -282,10 +245,6 @@ function getAssociationTypeTestData(): AssociationType {
   };
 }
 
-/**
- * Returns a basic object of type CompositionType with only the relevant properties
- *  that discriminate a composition from any other type
- **/
 function getCompositionTypeTestData(): CompositionType {
   return {
     type: "cds.Composition",
@@ -295,10 +254,6 @@ function getCompositionTypeTestData(): CompositionType {
   };
 }
 
-/**
- * Returns a basic object of type CustomType with only the relevant properties
- *  that discriminate an derived type from any other type
- **/
 function gerDerivedTypeTestData(): CustomType {
   return {
     type: "cds.MyCustomType",
