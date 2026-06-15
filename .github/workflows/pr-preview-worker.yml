@@ -10,7 +10,7 @@ permissions: {}
 jobs:
   pr-preview-fork-deploy:
     permissions:
-      contents: read
+      contents: write
       actions: read
 
     runs-on: ubuntu-latest
