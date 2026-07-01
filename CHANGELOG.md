@@ -15,12 +15,18 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 - Added `@PersonalData.relatedDataCategoryID` annotation
 - Added `IS_BLOCKED_INDICATOR` as enum value to `@PersonalData.fieldSemantics`
 - Added `DATA_CATEGORY_ID` as enum value to `@PersonalData.fieldSemantics`
+- Added `@API.entity.releaseState` annotation for release state of entities (scope: `Entity`)
+- Added `@API.entity.successor` annotation (scope: `Entity`)
+- Added `@API.entity.decommissioningPlannedForYearMonth` annotation (scope: `Entity`)
+- Added `@API.element.successor` as a standalone full-path annotation (scope: `Type`)
+- Added `@API.element.decommissioningPlannedForYearMonth` as a standalone full-path annotation (scope: `Type`)
 
 ### Changed
 
 - Extending the x-extension-targets of `@PersonalData.isPotentialSensitive` by `Entity`
-- BREAKING: Removed the grouped `@API.element` and `@API.entity` annotation objects in favor of individual full-path annotations. Use `@API.element.successor` and `@API.element.decommissioningPlannedForYearMonth` (and their `@API.entity.*` counterparts) directly.
-  - **Note:** The `@API` vocabulary was only introduced in 1.2.4; we are not aware of any consumers using the grouped-object form yet.
+- BREAKING: Removed the grouped `@API.element` annotation object in favor of individual full-path annotations. Its sub-properties (`releaseState`, `successor`, `decommissioningPlannedForYearMonth`) are now exposed directly as `@API.element.releaseState`, `@API.element.successor`, and `@API.element.decommissioningPlannedForYearMonth`.
+- BREAKING: Split the previously combined `Type` + `Entity` scope of `@API.element.*` annotations. `@API.element.*` now applies only to `Type`; use the new `@API.entity.*` annotations for entity-scoped release state, successor, and decommissioning information.
+  - **Note:** The `@API` vocabulary was only introduced in 1.2.4; we are not aware of any consumers using the grouped-object form yet, so we risk the breaking-change in favor of making the consumer experience clear.
 
 ## [1.2.4]
 
