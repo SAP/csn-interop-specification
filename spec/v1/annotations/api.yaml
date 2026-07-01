@@ -23,23 +23,19 @@ definitions:
         type: string
     x-extension-targets:
       - Type
-  "@API.entity":
-    type: object
+  "@API.entity.successor":
     description: |-
-      Specifies the release state of an entity which is part of an API.
-    properties:
-      releaseState:
-        $ref: "#/definitions/@API.entity.releaseState"
-      successor:
-        description: |-
-          Defines the name of a released successor entity which replaces an entity with release state #DEPRECATED or #DECOMMISSIONED.
-        type: string
-      decommissioningPlannedForYearMonth:
-        description: |-
-          The annotation describes the planned decommissioning date of the annotated entity. Use ISO format for YearMonth: YYYY-MM (e.g. 2024-08)
-        type: string
+      Defines the name of a released successor entity which replaces an entity with release state #DEPRECATED or #DECOMMISSIONED.
+    type: string
     x-extension-targets:
       - Entity
+  "@API.entity.decommissioningPlannedForYearMonth":
+    description: |-
+      The annotation describes the planned decommissioning date of the annotated entity. Use ISO format for YearMonth: YYYY-MM (e.g. 2024-08)
+    type: string
+    x-extension-targets:
+      - Entity
+  
   # //////////////////////////////////////////
   # // Referenced JSON Schema Objects       //
   # //////////////////////////////////////////
