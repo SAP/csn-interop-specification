@@ -8,6 +8,8 @@ definitions:
     type: object
     description: |-
       Specifies the release state of an element which is part of an API.
+
+      > ⚠️ **Deprecated since 1.2.5** — prefer `@API.element.releaseState`, `@API.element.successor`, `@API.element.decommissioningPlannedForYearMonth`.
     properties:
       releaseState:
         $ref: "#/definitions/@API.element.releaseState"
@@ -21,6 +23,24 @@ definitions:
         description: |-
           The annotation describes the planned decommissioning date of the annotated element. Use ISO format for YearMonth: YYYY-MM (e.g. 2024-08)
         type: string
+    x-extension-targets:
+      - Type
+      - Entity
+    x-deprecated-in-version: "1.2.5"
+    x-deprecation-text: 'The grouped-object form is retained for backward compatibility. New adopters should prefer the individual full-path annotations `@API.element.releaseState`, `@API.element.successor`, and `@API.element.decommissioningPlannedForYearMonth`.'
+  "@API.element.decommissioningPlannedForYearMonth":
+    description: |-
+      The annotation describes the planned decommissioning date of the annotated element. Use ISO format for YearMonth: YYYY-MM (e.g. 2024-08)
+    type: string
+    x-extension-targets:
+      - Type
+      - Entity
+  "@API.element.successor":
+    description: |-
+      Defines the name of a released successor element/association which replaces an element/association with release state #DEPRECATED or #DECOMMISSIONED.
+    x-ref-to-doc:
+      title: Element Reference
+      ref: "#/definitions/ElementReference"
     x-extension-targets:
       - Type
       - Entity

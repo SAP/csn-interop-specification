@@ -73,6 +73,10 @@ export type ElementReference = ElementReferenceString | ElementReferenceObject;
  */
 export type ElementReferenceString = string;
 /**
+ * The annotation describes the planned decommissioning date of the annotated element. Use ISO format for YearMonth: YYYY-MM (e.g. 2024-08)
+ */
+export type APIElementDecommissioningPlannedForYearMonth = string;
+/**
  * The property defines how value helps for this element shall be constructed.
  *
  * It allows to associate a (set of) View/Entity that provides the "Value Help" for the annotated field or parameter.
@@ -718,6 +722,8 @@ export interface EntityDefinition {
         [k: string]: unknown | undefined;
       };
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -813,6 +819,8 @@ export interface BooleanType {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -913,6 +921,8 @@ export interface AnalyticsDetails {
 }
 /**
  * Specifies the release state of an element which is part of an API.
+ *
+ * > ⚠️ **Deprecated since 1.2.5** — prefer `@API.element.releaseState`, `@API.element.successor`, `@API.element.decommissioningPlannedForYearMonth`.
  */
 export interface API {
   releaseState?: APIElement;
@@ -1082,6 +1092,8 @@ export interface StringType {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -1230,6 +1242,8 @@ export interface LargeStringType {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -1335,6 +1349,8 @@ export interface IntegerType {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -1469,6 +1485,8 @@ export interface Int16Type {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -1572,6 +1590,8 @@ export interface Integer64Type {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -1675,6 +1695,8 @@ export interface UInt8Type {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -1793,6 +1815,8 @@ export interface DecimalType {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -1895,6 +1919,8 @@ export interface DoubleType {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -1998,6 +2024,8 @@ export interface DateType {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -2100,6 +2128,8 @@ export interface TimeType {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -2202,6 +2232,8 @@ export interface DateTimeType {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -2304,6 +2336,8 @@ export interface TimestampType {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -2405,6 +2439,8 @@ export interface UUIDType {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -2512,6 +2548,8 @@ export interface BinaryType {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -2611,6 +2649,8 @@ export interface LargeBinaryType {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -2773,6 +2813,8 @@ export interface AssociationType {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -2982,6 +3024,8 @@ export interface CompositionType {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -3125,6 +3169,8 @@ export interface CustomType {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -3542,6 +3588,8 @@ export interface BooleanTypeDefinition {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -3647,6 +3695,8 @@ export interface StringTypeDefinition {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -3752,6 +3802,8 @@ export interface LargeStringTypeDefinition {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -3854,6 +3906,8 @@ export interface IntegerTypeDefinition {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -3954,6 +4008,8 @@ export interface Int16TypeDefinition {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -4054,6 +4110,8 @@ export interface Integer64TypeDefinition {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -4154,6 +4212,8 @@ export interface UInt8TypeDefinition {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -4269,6 +4329,8 @@ export interface DecimalTypeDefinition {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -4369,6 +4431,8 @@ export interface DoubleTypeDefinition {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -4469,6 +4533,8 @@ export interface DateTypeDefinition {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -4568,6 +4634,8 @@ export interface TimeTypeDefinition {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -4667,6 +4735,8 @@ export interface DateTimeTypeDefinition {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -4766,6 +4836,8 @@ export interface TimestampTypeDefinition {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -4864,6 +4936,8 @@ export interface UUIDTypeDefinition {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -4968,6 +5042,8 @@ export interface BinaryTypeDefinition {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -5071,6 +5147,8 @@ export interface LargeBinaryTypeDefinition {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -5234,6 +5312,8 @@ export interface AssociationTypeDefinition {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -5394,6 +5474,8 @@ export interface CompositionTypeDefinition {
   "@Aggregation.default"?: Aggregation;
   "@AnalyticsDetails.measureType"?: AnalyticsDetails;
   "@API.element"?: API;
+  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
+  "@API.element.successor"?: ElementReference;
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
