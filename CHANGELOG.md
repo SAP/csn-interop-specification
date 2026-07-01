@@ -19,6 +19,8 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 ### Changed
 
 - Extending the x-extension-targets of `@PersonalData.isPotentialSensitive` by `Entity`
+- BREAKING: Removed the grouped `@API.element` and `@API.entity` annotation objects in favor of individual full-path annotations. Use `@API.element.successor` and `@API.element.decommissioningPlannedForYearMonth` (and their `@API.entity.*` counterparts) directly.
+  - **Note:** The `@API` vocabulary was only introduced in 1.2.4; we are not aware of any consumers using the grouped-object form yet.
 
 ## [1.2.4]
 

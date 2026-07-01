@@ -4,23 +4,18 @@ title: API Document
 description: This is the interface description of @API.
 type: object
 definitions:
-  "@API.element":
-    type: object
+  "@API.element.successor":
     description: |-
-      Specifies the release state of an element which is part of an API.
-    properties:
-      releaseState:
-        $ref: "#/definitions/@API.element.releaseState"
-      successor:
-        description: |-
-          Defines the name of a released successor element/association which replaces an element/association with release state #DEPRECATED or #DECOMMISSIONED.
-        x-ref-to-doc:
-          title: Element Reference
-          ref: "#/definitions/ElementReference"
-      decommissioningPlannedForYearMonth:
-        description: |-
-          The annotation describes the planned decommissioning date of the annotated element. Use ISO format for YearMonth: YYYY-MM (e.g. 2024-08)
-        type: string
+      Defines the name of a released successor element/association which replaces an element/association with release state #DEPRECATED or #DECOMMISSIONED.
+    x-ref-to-doc:
+      title: Element Reference
+      ref: "#/definitions/ElementReference"
+    x-extension-targets:
+      - Type
+  "@API.element.decommissioningPlannedForYearMonth":
+    description: |-
+      The annotation describes the planned decommissioning date of the annotated element. Use ISO format for YearMonth: YYYY-MM (e.g. 2024-08)
+    type: string
     x-extension-targets:
       - Type
   "@API.entity.successor":
