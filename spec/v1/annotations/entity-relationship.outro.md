@@ -115,7 +115,7 @@ The following example shows a single ID in '@EntityRelationship.entityIds' that 
 ```javascript
 @EntityRelationship.entityType : 'sap.vdm.sont:BillOfMaterial'
 @EntityRelationship.entityIds : [{
-  name: 'optional name for ID'
+  name: 'BillOfMaterialObjectId'
   propertyTypes: ['sap.vdm.gfn:BillOfMaterialObjectID']
 }]
 entity BillOfMaterial {
@@ -133,7 +133,7 @@ In the following example, the annotation is used to indicate which Property Type
 ```javascript
 @EntityRelationship.entityType : 'sap.vdm.sont:BusinessPartner'
 @EntityRelationship.entityIds : [{
-  name: 'Semantic ID'
+  name: 'SemanticId'
   propertyTypes: ['sap.vdm.gfn:BusinessPartnerNumber', 'sap.vdm.gfn:BusinessPartnerType']
 },{
   name: 'UUID'
@@ -209,7 +209,7 @@ A property can be potentially part of several composite references.
 @EntityRelationship.entityType : 'sap.vdm.sont:PurchaseOrder'
 @EntityRelationship.compositeReferences : [{
   //one composite reference
-  name: 'Main Supplier',
+  name: 'MainSupplier',
   referencedEntityType: 'sap.vdm.sont:BusinessPartner'
   referencedPropertyTypes: [{
     referencedPropertyType: 'sap.vdm.gfn:BusinessPartnerNumber',
@@ -221,7 +221,7 @@ A property can be potentially part of several composite references.
 },{
   // This demonstrates why the composite reference is necessary
   // and is defined with the semantics from the referencing side.
-  name: 'Alternative Supplier',
+  name: 'AlternativeSupplier',
   referencedEntityType: 'sap.vdm.sont:BusinessPartner'
   referencedPropertyTypes: [{
     referencedPropertyType: 'sap.vdm.gfn:BusinessPartnerNumber',
@@ -272,10 +272,10 @@ Those three together can be used to create a unique reference that also states t
 ```javascript
 @EntityRelationship.entityType : 'sap.vdm.sont:CostCenter'
 @EntityRelationship.entityIds : [{
-  name: 'ID for Point in Time'
+  name: 'PointInTimeId'
   propertyTypes: ["sap.vdm.gfn:ControllingArea", "sap.vdm.gfn:CostCenter", "sap.vdm.gfn:KeyDate"]
 },{
-  name: 'Time-independent ID (not unique)'
+  name: 'TimeIndependentId'
   propertyTypes: ["sap.vdm.gfn:ControllingArea", "sap.vdm.gfn:CostCenter"]
 }]
 entity CostCenter {
@@ -297,7 +297,7 @@ Example how this is used in a time dependent reference from `SalesOrder`:
 ```javascript
 @EntityRelationship.entityType : 'sap.vdm.sont:SalesOrder'
 @EntityRelationship.compositeReferences : [{
-  name: 'Time Dependent Reference to CostCenter',
+  name: 'TimeDependentCostCenterReference',
   referencedEntityType: 'sap.vdm.sont:CostCenter'
   referencedPropertyTypes: [{
     referencedPropertyType: 'sap.vdm.gfn:ControllingArea',
@@ -354,7 +354,7 @@ A temporal ID can be referenced via `@EntityRelationship.temporalReferences`:
 ```javascript
 @EntityRelationship.entityType : 'sap.vdm.sont:SalesOrder'
 @EntityRelationship.temporalReferences : [{
-  name: 'Temporal Reference to CostCenter',
+  name: 'TemporalCostCenterReference',
   referencedEntityType: 'sap.vdm.sont:CostCenter'
   referencedPropertyTypes: [{ // reference-specific assignment to property-types, could include constants
     referencedPropertyType: 'sap.vdm.gfn:ControllingArea',
@@ -375,6 +375,42 @@ entity SalesOrder {
 // a join or select condition derived from the temporal reference would use an additional condition:
 //      AND CostCenter.ValidityStartDate <= SalesOrder.SalesOrderDate
 //      AND CostCenter.ValidityEndDate   >= SalesOrder.SalesOrderDate
+```
+
+##### Omitting `selectionDateProperty`
+
+The `selectionDateProperty` is **optional**. If omitted, there is no specific property in the local entity that determines the selection date. Instead, the consumer determines the appropriate date/time based on the use case context. Common examples include:
+
+- **Current date/time**: The reference always targets the currently valid state of the referenced entity (most common case).
+- **Start of fiscal quarter or period**: The reference targets the state valid at the beginning of a business period.
+- **A fixed date in the past or future**: The reference targets a specific point in time defined by business logic outside the data model.
+
+As a consequence, there is consumer input needed to resolve the reference.
+
+```javascript
+@EntityRelationship.entityType : 'sap.vdm.sont:SalesOrder'
+@EntityRelationship.temporalReferences : [{
+  name: 'CurrentCostCenter',
+  referencedEntityType: 'sap.vdm.sont:CostCenter'
+  referencedPropertyTypes: [{
+    referencedPropertyType: 'sap.vdm.gfn:ControllingArea',
+    localPropertyName: 'ControllingArea'
+  },{
+    referencedPropertyType: 'sap.vdm.gfn:CostCenter',
+    localPropertyName: 'CostCenter'
+  }],
+  category: "temporal-date"
+  // selectionDateProperty omitted: consumer determines the selection date based on context
+}]
+entity SalesOrder {
+  //...
+  ControllingArea : String;
+  CostCenter : String;
+}
+// A join or select condition derived from this temporal reference would use a context-determined date,
+// for example using the current date:
+//      AND CostCenter.ValidityStartDate <= <context-determined date>
+//      AND CostCenter.ValidityEndDate   >= <context-determined date>
 ```
 
 #### References with Constant ID Values

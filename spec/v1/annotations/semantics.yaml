@@ -32,7 +32,9 @@ definitions:
         default: false
     x-extension-targets:
       - IntegerType
+      - Int16Type
       - Integer64Type
+      - UInt8Type
       - DecimalType
       - DoubleType
 

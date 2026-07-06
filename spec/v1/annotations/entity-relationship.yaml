@@ -100,7 +100,13 @@ definitions:
       name:
         type: string
         description: |-
-          Optional name to describe the semantics of the reference.
+          Optional technical name (locally unique ID) of the reference.
+
+          If provided, the name MUST be unique across all reference names defined via
+          `@EntityRelationship.reference`, `@EntityRelationship.compositeReferences`,
+          `@EntityRelationship.temporalReferences`, and `@EntityRelationship.referencesWithConstantIds`
+          on the same CSN entity, and MUST NOT match the name of any element
+          (property, `cds.Association`, or `cds.Composition`) of that entity.
       referencedEntityType:
         $ref: "#/definitions/@EntityRelationship.EntityTypeID"
       referencedPropertyType:
@@ -141,7 +147,13 @@ definitions:
       name:
         type: string
         description: |-
-          Optional name to describe the semantics of the reference.
+          Optional technical name (locally unique ID) of the reference.
+
+          If provided, the name MUST be unique across all reference names defined via
+          `@EntityRelationship.reference`, `@EntityRelationship.compositeReferences`,
+          `@EntityRelationship.temporalReferences`, and `@EntityRelationship.referencesWithConstantIds`
+          on the same CSN entity, and MUST NOT match the name of any element
+          (property, `cds.Association`, or `cds.Composition`) of that entity.
       referencedEntityType:
         $ref: "#/definitions/@EntityRelationship.EntityTypeID"
       referencedPropertyTypes:
@@ -189,25 +201,9 @@ definitions:
         items:
           $ref: "#/definitions/@EntityRelationship.PropertyTypeID"
       temporalIntervalType:
-        type: string
-        description: |-
-          Interval which includes the boundaries.
-        oneOf:
-          - const: "CLOSED_CLOSED"
-          - const: "OPEN_OPEN"
-          - const: "OPEN_CLOSED"
-          - const: "CLOSED_OPEN"
-        examples:
-          - "CLOSED_CLOSED"
+        $ref: "#/definitions/@EntityRelationship.TemporalIntervalType"
       temporalType:
-        type: string
-        description: |-
-          Temporal type.
-        oneOf:
-          - const: "DATE"
-          - const: "DATETIME"
-        examples:
-          - "DATE"
+        $ref: "#/definitions/@EntityRelationship.TemporalType"
       temporalIntervalStartProperty:
         $ref: "#/definitions/@EntityRelationship.LocalPropertyName"
         description: |-
@@ -233,6 +229,11 @@ definitions:
         type: string
         description: |-
           Optional name to describe the semantics of the reference.
+          If provided, the name MUST be unique across all reference names defined via
+          `@EntityRelationship.reference`, `@EntityRelationship.compositeReferences`,
+          `@EntityRelationship.temporalReferences`, and `@EntityRelationship.referencesWithConstantIds`
+          on the same CSN entity, and MUST NOT match the name of any element
+          (property, `cds.Association`, or `cds.Composition`) of that entity.
       referencedEntityType:
         $ref: "#/definitions/@EntityRelationship.EntityTypeID"
       referencedPropertyTypes:
@@ -242,22 +243,18 @@ definitions:
         items:
           $ref: "#/definitions/@EntityRelationship.ReferenceTargetPropertyType"
       category:
-        type: string
-        description: |-
-          Category of the temporal reference.
-        oneOf:
-          - const: "TEMPORAL_DATE"
-        examples:
-          - "TEMPORAL_DATE"
+        $ref: "#/definitions/@EntityRelationship.Category"
       selectionDateProperty:
         $ref: "#/definitions/@EntityRelationship.LocalPropertyName"
         description: |-
           Property in the local entity that is used to select the right date interval.
+          If omitted, the consumer determines the selection date/time based on context.
+          Common examples include the current date/time, the start of a fiscal quarter,
+          or another use-case-specific point in time.
     required:
       - referencedEntityType
       - referencedPropertyTypes
       - category
-      - selectionDateProperty
 
   "@EntityRelationship.ReferenceTargetWithConstantId":
     title: Reference with Constant ID
@@ -269,6 +266,11 @@ definitions:
         type: string
         description: |-
           Optional name to describe the semantics of the reference.
+          If provided, the name MUST be unique across all reference names defined via
+          `@EntityRelationship.reference`, `@EntityRelationship.compositeReferences`,
+          `@EntityRelationship.temporalReferences`, and `@EntityRelationship.referencesWithConstantIds`
+          on the same CSN entity, and MUST NOT match the name of any element
+          (property, `cds.Association`, or `cds.Composition`) of that entity.
       description:
         type: string
         description: |-
@@ -326,13 +328,71 @@ definitions:
     description: |-
       Name of the property in the local Entity Type
 
+  "@EntityRelationship.TemporalIntervalType":
+    title: "Temporal Interval Type"
+    type: object
+    description: |-
+      Interval which includes the boundaries.
+    properties:
+      "#":
+        type: string
+        description: |-
+          Provide the value in `{ "#": "<value>" }` enum notation.
+        enum:
+          - "CLOSED_CLOSED"
+          - "OPEN_OPEN"
+          - "OPEN_CLOSED"
+          - "CLOSED_OPEN"
+    additionalProperties: false
+    required:
+      - "#"
+    examples:
+      - { "#": "CLOSED_CLOSED" }
+
+  "@EntityRelationship.TemporalType":
+    title: "Temporal Type"
+    type: object
+    description: |-
+      Temporal type.
+    properties:
+      "#":
+        type: string
+        description: |-
+          Provide the value in `{ "#": "<value>" }` enum notation.
+        enum:
+          - "DATE"
+          - "DATETIME"
+    additionalProperties: false
+    required:
+      - "#"
+    examples:
+      - { "#": "DATE" }
+
+  "@EntityRelationship.Category":
+    title: "Category"
+    type: object
+    description: |-
+      Category of the temporal reference.
+    properties:
+      "#":
+        type: string
+        description: |-
+          Provide the value in `{ "#": "<value>" }` enum notation.
+        enum:
+          - "TEMPORAL_DATE"
+    additionalProperties: false
+    required:
+      - "#"
+    examples:
+      - { "#": "TEMPORAL_DATE" }
+
 # //////////////////////////////////////////
 # // Examples                             //
 # //////////////////////////////////////////
 
 examples:
   - {
-      "csnInteropEffective": "1.0",
+      "csnInteropEffective": "1.2",
       "$version": "2.0",
       "definitions":
         {
@@ -343,10 +403,10 @@ examples:
               "@EntityRelationship.entityIds":
                 [
                   {
-                    "name": "Semantic ID (composite ID)",
+                    "name": "SemanticId",
                     "propertyTypes": ["sap.vdm.gfn:BusinessPartnerNumber", "sap.vdm.gfn:BusinessPartnerType"],
                   },
-                  { "name": "UUID (single property ID)", "propertyTypes": ["sap.vdm.gfn:BusinessPartnerUUID"] },
+                  { "name": "UUID", "propertyTypes": ["sap.vdm.gfn:BusinessPartnerUUID"] },
                 ],
               "elements":
                 {
@@ -368,7 +428,7 @@ examples:
         },
     }
   - {
-      "csnInteropEffective": "1.0",
+      "csnInteropEffective": "1.2",
       "$version": "2.0",
       "definitions":
         {
@@ -378,7 +438,7 @@ examples:
               "@EntityRelationship.compositeReferences":
                 [
                   {
-                    "name": "Main Supplier",
+                    "name": "MainSupplier",
                     "referencedEntityType": "sap.vdm.sont:BusinessPartner",
                     "referencedPropertyTypes":
                       [

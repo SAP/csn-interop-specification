@@ -38,7 +38,7 @@ This enables json property name validation and code intellisense while editing C
 {
    // highlight-next-line
   "$schema": "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json",
-  "csnInteropEffective": "1.0",
+  "csnInteropEffective": "1.2",
   "$version": "2.0",
   "definitions": {
     "Airline": {

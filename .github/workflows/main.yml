@@ -6,6 +6,8 @@ on:
   pull_request:
     branches: [main]
 
+permissions: {}
+
 jobs:
   build:
     name: Build
@@ -14,22 +16,19 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Installing Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: "22"
+          node-version: "24"
           cache: "npm"
 
       - name: install dependencies
         run: npm ci
 
-      - name: run prettier
-        run: npm run prettier:ci
-
-      - name: run linter
-        run: npm run eslint:ci
+      - name: run biome checks
+        run: npm run ci
 
       - name: build and test
         run: npm run test

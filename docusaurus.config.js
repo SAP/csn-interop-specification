@@ -1,26 +1,40 @@
 // @ts-check
 import { themes as prismThemes } from "prism-react-renderer";
 
+const baseUrl = (process.env.BASE_URL || "/csn-interop-specification/").replace(
+  /\/?$/,
+  "/",
+);
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "CSN Interop Specification",
   tagline: "Specification for interoperable CSN as import / export format.",
   url: "https://sap.github.io",
-  baseUrl: "/csn-interop-specification",
+  baseUrl,
   trailingSlash: false,
   onBrokenLinks: "throw",
   onBrokenAnchors: "throw",
   onDuplicateRoutes: "throw",
   staticDirectories: ["static"],
   favicon: "img/favicon.ico",
-  organizationName: "SAP", // Usually your GitHub org/user name.
-  projectName: "csn-interop-specification", // Usually your repo name.
+  organizationName: "SAP",
+  projectName: "csn-interop-specification",
+
+  future: {
+    v4: {
+      removeLegacyPostBuildHeadAttribute: true,
+      mdx1CompatDisabledByDefault: true,
+      siteStorageNamespacing: true,
+      fasterByDefault: true,
+    },
+  },
+
   i18n: {
     defaultLocale: "en",
     locales: ["en"],
   },
   markdown: {
-    mermaid: true,
     hooks: {
       onBrokenMarkdownLinks: "throw",
       onBrokenMarkdownImages: "throw",
@@ -44,7 +58,7 @@ const config = {
     ],
   ],
 
-  scripts: ["/csn-interop-specification/js/custom.js"],
+  scripts: [`${baseUrl}js/custom.js`],
 
   plugins: [
     [
@@ -105,7 +119,6 @@ const config = {
   ],
 
   themes: [
-    "@docusaurus/theme-mermaid",
     [
       require.resolve("@easyops-cn/docusaurus-search-local"),
       {
@@ -123,6 +136,16 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      ...(process.env.PR_PREVIEW_NUMBER
+        ? {
+            announcementBar: {
+              content: `<b>This is a preview version of the website for <a href="https://github.com/SAP/csn-interop-specification/pull/${process.env.PR_PREVIEW_NUMBER}" target="_blank">PR #${process.env.PR_PREVIEW_NUMBER}</a></b>`,
+              backgroundColor: "#e65050ff",
+              textColor: "#fff",
+              isCloseable: false,
+            },
+          }
+        : {}),
       colorMode: {
         defaultMode: "light",
         disableSwitch: true,
@@ -130,9 +153,6 @@ const config = {
       },
       prism: {
         theme: prismThemes.nightOwl,
-      },
-      mermaid: {
-        theme: { light: "neutral", dark: "forest" },
       },
       navbar: {
         title: "",

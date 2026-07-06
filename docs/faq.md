@@ -25,7 +25,6 @@ Two things are usually helpful for adopters:
 
 [JSON Schema](https://json-schema.org/) is widely known and established, so a comparison can help to understand the positioning of CSN Interop better:
 
-<!-- prettier-ignore-start -->
 |                    | CSN Interop | JSON Schema |
 | ------------------ | ----------- | ----------- |
 | **Serialization**: | JSON        | JSON        |
@@ -34,7 +33,6 @@ Two things are usually helpful for adopters:
 | **Extensibility**: | Annotations (`@`) and private properties (`_`) | Extension properties (usually x-`) |
 | **Strengths**:     | Describing models with rich entity-relationship and semantic metadata. Works well with relational models. | Describing actual data interfaces and validation. Works well with document structure / complex JSON structures. |
 | **Weaknesses**:    | Only limited validation constraints, physical model not directly defined. | No entity-relationship information (e.g. no concept for associations and IDs), no inheritance. |
-<!-- prettier-ignore-end -->
 
 In general, it could be stated that JSON Schema is not designed for describing models, although it's often used for that purpose.
 This leads to problems with more complex models, e.g. when `$ref` is used together with constructs like `oneOf`, `anyOf`, `allOf` etc. to describe inheritance or polymorphism although their purpose is only to list, combine and reuse data shape constraints.
