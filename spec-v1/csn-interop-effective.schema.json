@@ -423,11 +423,14 @@
           ],
           "description": "Contains the SQL on condition as string"
         },
-        "@API.element": {
-          "$ref": "#/definitions/@API.element"
+        "@API.entity.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.entity.decommissioningPlannedForYearMonth"
         },
-        "@API.element.releaseState": {
-          "$ref": "#/definitions/@API.element.releaseState"
+        "@API.entity.successor": {
+          "$ref": "#/definitions/@API.entity.successor"
+        },
+        "@API.entity.releaseState": {
+          "$ref": "#/definitions/@API.entity.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
@@ -942,11 +945,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -1159,11 +1171,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -1375,11 +1396,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -1596,11 +1626,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -1809,11 +1848,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -2022,11 +2070,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -2235,11 +2292,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -2466,11 +2532,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -2677,11 +2752,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -2890,11 +2974,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -3098,11 +3191,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -3306,11 +3408,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -3514,11 +3625,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -3719,11 +3839,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -3932,11 +4061,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -4139,11 +4277,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -4480,11 +4627,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -4835,11 +4991,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -5090,11 +5255,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -5648,11 +5822,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -6139,11 +6322,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -6359,11 +6551,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -6581,11 +6782,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -6794,11 +7004,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -7010,11 +7229,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -7217,11 +7445,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -7424,11 +7661,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -7649,11 +7895,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -7867,11 +8122,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -8074,11 +8338,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -8284,11 +8557,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -8488,11 +8770,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -8692,11 +8983,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -8893,11 +9193,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -9102,11 +9411,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -9309,11 +9627,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -9651,11 +9978,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -10011,11 +10347,20 @@
         "@API.element": {
           "$ref": "#/definitions/@API.element"
         },
+        "@API.element.decommissioningPlannedForYearMonth": {
+          "$ref": "#/definitions/@API.element.decommissioningPlannedForYearMonth"
+        },
+        "@API.element.successor": {
+          "$ref": "#/definitions/@API.element.successor"
+        },
         "@API.element.releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
         },
         "@Consumption.valueHelpDefinition": {
           "$ref": "#/definitions/@Consumption.valueHelpDefinition"
+        },
+        "@Consumption.hidden": {
+          "$ref": "#/definitions/@Consumption.hidden"
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
@@ -10432,7 +10777,7 @@
     },
     "@API.element": {
       "type": "object",
-      "description": "Specifies the release state of an element which is part of an API.",
+      "description": "Specifies the release state of an element which is part of an API.\n\n> ⚠️ **Deprecated since 1.2.5** — prefer `@API.element.releaseState`, `@API.element.successor`, `@API.element.decommissioningPlannedForYearMonth`.",
       "properties": {
         "releaseState": {
           "$ref": "#/definitions/@API.element.releaseState"
@@ -10446,9 +10791,21 @@
         }
       },
       "x-extension-targets": [
-        "Type",
-        "Entity"
+        "Type"
       ]
+    },
+    "@API.element.decommissioningPlannedForYearMonth": {
+      "description": "The annotation describes the planned decommissioning date of the annotated element. Use ISO format for YearMonth: YYYY-MM (e.g. 2024-08)",
+      "type": "string",
+      "x-extension-targets": [
+        "Type"
+      ]
+    },
+    "@API.element.successor": {
+      "x-extension-targets": [
+        "Type"
+      ],
+      "$ref": "#/definitions/ElementReference"
     },
     "@API.element.releaseState": {
       "type": "object",
@@ -10470,7 +10827,43 @@
         }
       },
       "x-extension-targets": [
-        "Type",
+        "Type"
+      ]
+    },
+    "@API.entity.decommissioningPlannedForYearMonth": {
+      "description": "The annotation describes the planned decommissioning date of the annotated entity. Use ISO format for YearMonth: YYYY-MM (e.g. 2024-08)",
+      "type": "string",
+      "x-extension-targets": [
+        "Entity"
+      ]
+    },
+    "@API.entity.successor": {
+      "description": "Defines the name of a released successor entity which replaces an entity with release state #DEPRECATED or #DECOMMISSIONED.",
+      "type": "string",
+      "x-extension-targets": [
+        "Entity"
+      ]
+    },
+    "@API.entity.releaseState": {
+      "type": "object",
+      "description": "The annotation describes the release state of the annotated entity.",
+      "properties": {
+        "#": {
+          "type": "string",
+          "description": "Provide the value in `{ \"#\": \"<value>\" }` enum notation.",
+          "oneOf": [
+            {
+              "const": "DEPRECATED",
+              "description": "Formerly released entity is not to be used anymore.\nAt runtime, the entity must work as before.\nTogether with this value a successors of the entity should be defined using annotation @API.entity.successor."
+            },
+            {
+              "const": "DECOMMISSIONED",
+              "description": "Formerly released entity not to be used anymore.\nAt runtime, the entity returns null values.\nTogether with this value a successors of the entity should be defined using annotation @API.entity.successor."
+            }
+          ]
+        }
+      },
+      "x-extension-targets": [
         "Entity"
       ]
     },
@@ -10482,6 +10875,14 @@
       },
       "x-extension-targets": [
         "Entity",
+        "Type"
+      ]
+    },
+    "@Consumption.hidden": {
+      "type": "boolean",
+      "default": true,
+      "description": "The annotated element shall be ignored by consumers.",
+      "x-extension-targets": [
         "Type"
       ]
     },

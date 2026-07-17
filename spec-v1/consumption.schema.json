@@ -17,6 +17,15 @@
       ],
       "title": "@Consumption.valueHelpDefinition"
     },
+    "@Consumption.hidden": {
+      "type": "boolean",
+      "default": true,
+      "description": "The annotated element shall be ignored by consumers.",
+      "x-extension-targets": [
+        "Type"
+      ],
+      "title": "@Consumption.hidden"
+    },
     "@Consumption.ConsumptionValueHelpDefinition": {
       "title": "Consumption Value Help Definition",
       "type": "object",
