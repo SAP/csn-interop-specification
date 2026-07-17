@@ -10,11 +10,15 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+## [1.2.5]
+
 ### Added
 
 - Added `@PersonalData.relatedDataCategoryID` annotation
 - Added `IS_BLOCKED_INDICATOR` as enum value to `@PersonalData.fieldSemantics`
 - Added `DATA_CATEGORY_ID` as enum value to `@PersonalData.fieldSemantics`
+- Added `@API.element.successor` and `@API.element.decommissioningPlannedForYearMonth` as individual full-path annotations. They mirror the corresponding sub-properties of the existing grouped `@API.element` annotation and are non-breaking additions to enable consumers to migrate to the flattened notation. The grouped `@API.element` form remains supported.
+- Added `@Consumption.hidden` annotation
 
 ### Changed
 
