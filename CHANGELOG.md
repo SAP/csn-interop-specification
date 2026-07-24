@@ -10,6 +10,12 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+### Added
+
+- Added `@Consumption.aiHint` annotation for AI consumption hints
+  - Provides a free-text hint for AI consumers (e.g., LLMs or AI agents) on how to use or interpret an Entity, Type, or Service — kept separate from human-readable `@EndUserText` descriptions
+  - For JSON-based metadata formats, the corresponding property is `x-sap-ai-hint`
+
 ### Fixed
 
 - Added JSON Schema `minItems: 1` constraint to the mandatory arrays in the `@EntityRelationship` vocabulary, so an empty array no longer passes validation for a required list. Affects `@EntityRelationship.EntityId.propertyTypes`, `@EntityRelationship.CompositeReference.referencedPropertyTypes`, `@EntityRelationship.TemporalId.propertyTypes`, `@EntityRelationship.TemporalReference.referencedPropertyTypes`, and `@EntityRelationship.ReferenceTargetWithConstantId.referencedPropertyTypes`
