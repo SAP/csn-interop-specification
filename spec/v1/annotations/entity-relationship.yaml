@@ -133,6 +133,7 @@ definitions:
         type: array
         description: |-
           List of [Property Type](#property-type) IDs.
+        minItems: 1
         items:
           $ref: "#/definitions/@EntityRelationship.PropertyTypeID"
     required:
@@ -160,6 +161,7 @@ definitions:
         type: array
         description: |-
           List of properties, the composite ID consists of.
+        minItems: 1
         items:
           $ref: "#/definitions/@EntityRelationship.ReferenceTargetPropertyType"
     required:
@@ -198,6 +200,7 @@ definitions:
         type: array
         description: |-
           List of [Property Type](#property-type) IDs that are non-temporal.
+        minItems: 1
         items:
           $ref: "#/definitions/@EntityRelationship.PropertyTypeID"
       temporalIntervalType:
@@ -240,6 +243,7 @@ definitions:
         type: array
         description: |-
           List of non-temporal properties the composite temporal ID consists of.
+        minItems: 1
         items:
           $ref: "#/definitions/@EntityRelationship.ReferenceTargetPropertyType"
       category:
@@ -281,6 +285,7 @@ definitions:
         type: array
         description: |-
           List of properties, the composite ID consists of.
+        minItems: 1
         items:
           $ref: "#/definitions/@EntityRelationship.ReferenceTargetPropertyTypeWithConstantId"
     required:
