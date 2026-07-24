@@ -10,6 +10,10 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+### Added
+
+- Added `@DataIntegration.dataProduct.customDataProvider.partialKeyDefinition` annotation: defines a subset of key fields of the CDS entity used for the DELETE operation during delta replication. Must be used together with `@DataIntegration.dataProduct.customDataProvider.implementedBy`.
+
 ### Fixed
 
 - Fixed JSON Schema `minItems: 1` constraint to the mandatory arrays in the `@EntityRelationship` vocabulary, so an empty array no longer passes validation for a required list. Affects `@EntityRelationship.EntityId.propertyTypes`, , `@EntityRelationship.TemporalId.propertyTypes`, `@EntityRelationship.TemporalReference.referencedPropertyTypes`, and `@EntityRelationship.ReferenceTargetWithConstantId.referencedPropertyTypes`. `minItems: 2` constraint to `@EntityRelationship.CompositeReference.referencedPropertyTypes`. This is a correction of the schema to follow the specification, having no items, semantically violates the specification.

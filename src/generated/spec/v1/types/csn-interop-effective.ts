@@ -315,6 +315,16 @@ export type APIEntityDecommissioningPlannedForYearMonth = string;
  */
 export type APIEntitySuccessor = string;
 /**
+ * Defines subset of key fields of the CDS entity used for DELETE operation during delta replication.
+ *
+ * **Consistency Constraints:**
+ * - Must be used together with `@DataIntegration.dataProduct.customDataProvider.implementedBy` annotation.
+ * - Fields defined in the annotation must be key fields of the CDS entity.
+ *
+ * @minItems 1
+ */
+export type DataIntegrationDataProductCustomDataProvider = [unknown, ...unknown[]];
+/**
  * Defines which [Entity Type](#entity-type) the current data object represents.
  *
  * There could be several data objects that are assigned to the same Entity Type.
@@ -738,6 +748,7 @@ export interface EntityDefinition {
   "@API.entity.releaseState"?: APIEntity;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.dataProduct.customDataProvider.partialKeyDefinition"?: DataIntegrationDataProductCustomDataProvider;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.entityType"?: EntityRelationshipEntityType;
