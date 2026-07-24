@@ -10,6 +10,10 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+### Fixed
+
+- Added JSON Schema `minItems: 1` constraint to the mandatory arrays in the `@EntityRelationship` vocabulary, so an empty array no longer passes validation for a required list. Affects `@EntityRelationship.EntityId.propertyTypes`, `@EntityRelationship.CompositeReference.referencedPropertyTypes`, `@EntityRelationship.TemporalId.propertyTypes`, `@EntityRelationship.TemporalReference.referencedPropertyTypes`, and `@EntityRelationship.ReferenceTargetWithConstantId.referencedPropertyTypes`
+
 ## [1.2.5]
 
 ### Added
