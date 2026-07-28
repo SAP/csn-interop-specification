@@ -4,12 +4,6 @@
 
 Via those Annotations the specific behavior is defined which is related to the consumption of CDS content via domain-specific frameworks. This metadata makes no assumptions on the concrete consumption technology/infrastructure but is applicable across multiple consumption technologies (Analytics, OData, …).
 
-## Annotations Overview
-
-| Annotation              | Targets               | Description                                                                      |
-| ----------------------- | --------------------- | -------------------------------------------------------------------------------- |
-| `@Consumption.aiHint`   | Entity, Type, Service | Free-text hint for AI consumers on how to use or interpret the annotated element |
-
 ## `@Consumption.aiHint`
 
 **Targets:** Entity, Type, Service (and their elements/properties)
