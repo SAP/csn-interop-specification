@@ -11184,7 +11184,7 @@
         "referencedPropertyTypes": {
           "type": "array",
           "description": "List of properties, the composite ID consists of.",
-          "minItems": 1,
+          "minItems": 2,
           "items": {
             "$ref": "#/definitions/@EntityRelationship.ReferenceTargetPropertyType"
           }
