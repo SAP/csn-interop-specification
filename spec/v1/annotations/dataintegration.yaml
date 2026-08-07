@@ -11,3 +11,9 @@ definitions:
     x-extension-targets:
       - Type
       - Entity
+  "@DataIntegration.technical":
+    type: boolean
+    description: |-
+      Express by this annotation that an element is of technical nature used for data integration purposes and does not belong to the business data of the data product.
+    x-extension-targets:
+      - Type
