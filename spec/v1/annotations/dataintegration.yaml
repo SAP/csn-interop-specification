@@ -18,7 +18,6 @@ definitions:
       Defines subset of key fields of the CDS entity used for DELETE operation during delta replication.
 
       **Consistency Constraints:**
-      - Must be used together with `@DataIntegration.dataProduct.customDataProvider.implementedBy` annotation.
       - Fields defined in the annotation must be key fields of the CDS entity.
     items:
       x-ref-to-doc:

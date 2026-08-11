@@ -12,7 +12,7 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ### Added
 
-- Added `@DataIntegration.dataProduct.customDataProvider.partialKeyDefinition` annotation: defines a subset of key fields of the CDS entity used for the DELETE operation during delta replication. Must be used together with `@DataIntegration.dataProduct.customDataProvider.implementedBy`.
+- Added `@DataIntegration.dataProduct.customDataProvider.partialKeyDefinition` annotation: defines a subset of key fields of the CDS entity used for the DELETE operation during delta replication.
 
 ### Fixed
 
