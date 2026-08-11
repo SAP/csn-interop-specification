@@ -3343,9 +3343,9 @@ export interface CompositeReference {
   /**
    * List of properties, the composite ID consists of.
    *
-   * @minItems 1
+   * @minItems 2
    */
-  referencedPropertyTypes: [ReferencedPropertyType, ...ReferencedPropertyType[]];
+  referencedPropertyTypes: [ReferencedPropertyType, ReferencedPropertyType, ...ReferencedPropertyType[]];
   [k: string]: unknown | undefined;
 }
 /**
