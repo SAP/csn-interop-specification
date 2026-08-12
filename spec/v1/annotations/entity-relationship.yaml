@@ -161,7 +161,7 @@ definitions:
         type: array
         description: |-
           List of properties, the composite ID consists of.
-        minItems: 1
+        minItems: 2
         items:
           $ref: "#/definitions/@EntityRelationship.ReferenceTargetPropertyType"
     required:
@@ -409,9 +409,16 @@ examples:
                 [
                   {
                     "name": "SemanticId",
-                    "propertyTypes": ["sap.vdm.gfn:BusinessPartnerNumber", "sap.vdm.gfn:BusinessPartnerType"],
+                    "propertyTypes":
+                      [
+                        "sap.vdm.gfn:BusinessPartnerNumber",
+                        "sap.vdm.gfn:BusinessPartnerType",
+                      ],
                   },
-                  { "name": "UUID", "propertyTypes": ["sap.vdm.gfn:BusinessPartnerUUID"] },
+                  {
+                    "name": "UUID",
+                    "propertyTypes": ["sap.vdm.gfn:BusinessPartnerUUID"],
+                  },
                 ],
               "elements":
                 {
@@ -427,7 +434,11 @@ examples:
                       "key": true,
                       "type": "cds.String",
                     },
-                  "uuid": { "@EntityRelationship.propertyType": "sap.vdm.gfn:BusinessPartnerUUID", "type": "cds.UUID" },
+                  "uuid":
+                    {
+                      "@EntityRelationship.propertyType": "sap.vdm.gfn:BusinessPartnerUUID",
+                      "type": "cds.UUID",
+                    },
                 },
             },
         },
@@ -462,7 +473,10 @@ examples:
                 {
                   "mainSupplierNumber": { "type": "cds.Integer" },
                   "mainSupplierType":
-                    { "@EntityRelationship.propertyType": "sap.vdm.gfn:BusinessPartnerType", "type": "cds.String" },
+                    {
+                      "@EntityRelationship.propertyType": "sap.vdm.gfn:BusinessPartnerType",
+                      "type": "cds.String",
+                    },
                   "alternativeSupplierUUID":
                     {
                       "@EntityRelationship.reference":
