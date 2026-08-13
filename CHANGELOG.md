@@ -13,6 +13,9 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 ### Added
 
 - Added `@DataIntegration.dataProduct.customDataProvider.partialKeyDefinition` annotation: defines a subset of key fields of the CDS entity used for the DELETE operation during delta replication.
+- Added `@Consumption.aiHint` annotation for AI consumption hints
+  - Provides a free-text hint for AI consumers (e.g., LLMs or AI agents) on how to use or interpret an Entity, Type, or Service — kept separate from human-readable `@EndUserText` descriptions
+  - For JSON-based metadata formats, the corresponding property is `x-sap-ai-hint`
 
 ### Fixed
 
