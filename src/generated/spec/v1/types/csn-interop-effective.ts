@@ -92,6 +92,10 @@ export type ConsumptionHidden = boolean;
  */
 export type DataIntegrationDataUnavailable = boolean;
 /**
+ * Express by this annotation that an element is of technical nature used for data integration purposes and does not belong to the business data of the data product.
+ */
+export type DataIntegrationTechnical = boolean;
+/**
  * Defines a human-readable text that is displayed as column headers.
  */
 export type EndUserTextHeading = string;
@@ -836,6 +840,7 @@ export interface BooleanType {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -1110,6 +1115,7 @@ export interface StringType {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -1261,6 +1267,7 @@ export interface LargeStringType {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -1369,6 +1376,7 @@ export interface IntegerType {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -1506,6 +1514,7 @@ export interface Int16Type {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -1612,6 +1621,7 @@ export interface Integer64Type {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -1718,6 +1728,7 @@ export interface UInt8Type {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -1839,6 +1850,7 @@ export interface DecimalType {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -1944,6 +1956,7 @@ export interface DoubleType {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -2050,6 +2063,7 @@ export interface DateType {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -2155,6 +2169,7 @@ export interface TimeType {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -2260,6 +2275,7 @@ export interface DateTimeType {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -2365,6 +2381,7 @@ export interface TimestampType {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -2469,6 +2486,7 @@ export interface UUIDType {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -2579,6 +2597,7 @@ export interface BinaryType {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -2681,6 +2700,7 @@ export interface LargeBinaryType {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -2846,6 +2866,7 @@ export interface AssociationType {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -3058,6 +3079,7 @@ export interface CompositionType {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -3204,6 +3226,7 @@ export interface CustomType {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -3644,6 +3667,7 @@ export interface BooleanTypeDefinition {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -3752,6 +3776,7 @@ export interface StringTypeDefinition {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -3860,6 +3885,7 @@ export interface LargeStringTypeDefinition {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -3965,6 +3991,7 @@ export interface IntegerTypeDefinition {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -4068,6 +4095,7 @@ export interface Int16TypeDefinition {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -4171,6 +4199,7 @@ export interface Integer64TypeDefinition {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -4274,6 +4303,7 @@ export interface UInt8TypeDefinition {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -4392,6 +4422,7 @@ export interface DecimalTypeDefinition {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -4495,6 +4526,7 @@ export interface DoubleTypeDefinition {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -4598,6 +4630,7 @@ export interface DateTypeDefinition {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -4700,6 +4733,7 @@ export interface TimeTypeDefinition {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -4802,6 +4836,7 @@ export interface DateTimeTypeDefinition {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -4904,6 +4939,7 @@ export interface TimestampTypeDefinition {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -5005,6 +5041,7 @@ export interface UUIDTypeDefinition {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -5112,6 +5149,7 @@ export interface BinaryTypeDefinition {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -5218,6 +5256,7 @@ export interface LargeBinaryTypeDefinition {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -5384,6 +5423,7 @@ export interface AssociationTypeDefinition {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -5547,6 +5587,7 @@ export interface CompositionTypeDefinition {
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
+  "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
