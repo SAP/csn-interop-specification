@@ -119,3 +119,21 @@ definitions:
       - "#"
     examples:
       - { "#": "FILTER_AND_RESULT" }
+
+  "@Consumption.aiHint":
+    type: string
+    description: |-
+      Provides a free-text hint for AI consumers (e.g., LLMs or AI agents) on how to use or interpret the annotated element.
+
+      This allows keeping human-readable descriptions (e.g., `@EndUserText`) separate from
+      guidance targeted specifically at AI consumers.
+
+      The annotation value MUST NOT be displayed to end users and MUST be filtered when
+      publishing metadata externally (e.g., to the SAP API Business Hub public catalog).
+    examples:
+      - "Use this entity to look up current inventory levels by product and warehouse."
+      - "This field contains the ISO 4217 currency code, not a currency symbol."
+    x-extension-targets:
+      - Entity
+      - Type
+      - Service
