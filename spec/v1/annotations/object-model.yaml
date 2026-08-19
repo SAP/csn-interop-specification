@@ -45,6 +45,7 @@ definitions:
       - "Type"
       - "Entity"
       - "Service"
+    x-introduced-in-version: "1.0.6"
 
   "@ObjectModel.modelingPattern":
     type: object
@@ -143,6 +144,7 @@ definitions:
     maxLength: 120
     x-extension-targets:
       - "Entity"
+    x-introduced-in-version: "1.0.3"
   "@ObjectModel.usageType.sizeCategory":
     type: object
     description: |-

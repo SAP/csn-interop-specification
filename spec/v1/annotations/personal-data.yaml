@@ -132,3 +132,4 @@ definitions:
     x-extension-targets:
       - Type
       - Entity
+    x-introduced-in-version: "1.2.5"

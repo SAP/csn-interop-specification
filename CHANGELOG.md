@@ -4,11 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) rules,
-but omits the **patch** level in the spec version number.
+including the **patch** level in the spec version number.
 
 For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMAP.md)
 
-## [unreleased]
+## [1.2.6]
 
 ### Added
 
@@ -20,6 +20,10 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 - Fixed JSON Schema `minItems: 1` constraint to the mandatory arrays in the `@EntityRelationship` vocabulary, so an empty array no longer passes validation for a required list. Affects `@EntityRelationship.EntityId.propertyTypes`, , `@EntityRelationship.TemporalId.propertyTypes`, `@EntityRelationship.TemporalReference.referencedPropertyTypes`, and `@EntityRelationship.ReferenceTargetWithConstantId.referencedPropertyTypes`. `minItems: 2` constraint to `@EntityRelationship.CompositeReference.referencedPropertyTypes`. This is a correction of the schema to follow the specification, having no items, semantically violates the specification.
 
+### Internal
+
+- Backfilled the `x-introduced-in-version` annotation on all annotation-vocabulary definitions introduced after `1.0.0`, matching the existing convention already used in the core schema (e.g. `BinaryType`). This is documentation metadata only — it does not appear in the generated TypeScript types and is not a contract change. Covers `@ObjectModel.tenantWideUniqueName` (1.0.3), `@ObjectModel.custom` (1.0.6), the `@Semantics.mimeType` / `@Semantics.largeObject.*` family (1.1.0), `@DataIntegration.dataUnavailable` (1.2.3), the `@API.element*` / `@API.entity*` annotations (1.2.4 / 1.2.5), `@PersonalData.relatedDataCategoryID` and `@Consumption.hidden` (1.2.5), and `@Consumption.aiHint` (1.2.6).
+
 ## [1.2.5]
 
 ### Added
@@ -28,6 +32,7 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 - Added `IS_BLOCKED_INDICATOR` as enum value to `@PersonalData.fieldSemantics`
 - Added `DATA_CATEGORY_ID` as enum value to `@PersonalData.fieldSemantics`
 - Added `@API.element.successor` and `@API.element.decommissioningPlannedForYearMonth` as individual full-path annotations. They mirror the corresponding sub-properties of the existing grouped `@API.element` annotation and are non-breaking additions to enable consumers to migrate to the flattened notation. The grouped `@API.element` form remains supported.
+- Added `@API.entity.releaseState`, `@API.entity.successor`, and `@API.entity.decommissioningPlannedForYearMonth` annotations for declaring the release state of an entity (mirroring the element-level `@API.element*` annotations).
 - Added `@Consumption.hidden` annotation
 
 ### Changed
