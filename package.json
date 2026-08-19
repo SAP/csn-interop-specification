@@ -35,6 +35,7 @@
     "lint": "biome lint .",
     "test": "npm run build && npm run test:unit",
     "test:unit": "node --test 'dist/__tests__/**/*.test.js'",
+    "validate:annotations": "node scripts/validate-annotations.mjs",
     "serve": "docusaurus serve",
     "prestart": "npm run clear",
     "start": "docusaurus start",
