@@ -131,6 +131,21 @@ each choice is self-documenting.
   `#/definitions/ElementReference` (see `@ODM.oid`) instead of an inline description of the
   ref shape — the generator collapses these to a `$ref`, and the test exempts them.
 - Add an `examples:` entry when it clarifies usage.
+- **Deprecating an annotation:** do not delete it. Keep the old form for backward
+  compatibility, add its flat replacement(s), and mark the old one with
+  `x-deprecated-in-version: "<version>"` and `x-deprecation-text: "<what to use instead>"`
+  (both already used in the annotations today). `@API.element` is the reference precedent:
+  the grouped object is kept and deprecated, with flat `@API.element.releaseState` /
+  `.successor` / `.decommissioningPlannedForYearMonth` replacements.
+- **Recommended:** tag new annotations with `x-introduced-in-version: "<version>"` (the same
+  attribute the core schema uses). Note: no annotation carries this yet — it is a
+  forward-looking convention, and a backport onto existing annotations is pending, so
+  its absence on older definitions is expected.
+
+> These conventions describe how to author annotations **today**. Some older vocabularies
+> predate them (e.g. `@API.element`'s structured shape, enum wrappers that originally
+> lacked `additionalProperties: false`). Follow this skill for new work rather than copying
+> older patterns.
 
 ## Steps — new vocabulary
 
@@ -170,6 +185,9 @@ Smallest complete reference: `spec/v1/annotations/dataintegration.yaml` + `.md`.
    }
    ```
    `sidebar_position` is the next integer after the current highest entry.
+   Optionally add `"sourceOutroFilePath": "./spec/v1/annotations/{name}.outro.md"` when the
+   vocabulary needs trailing documentation appended after the generated tables (see
+   `entity-relationship` in the config for an example).
 4. Continue with the existing-vocabulary steps below.
 
 ## Steps — existing vocabulary
