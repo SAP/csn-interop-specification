@@ -150,7 +150,7 @@ Smallest complete reference: `spec/v1/annotations/dataintegration.yaml` + `.md`.
 5. Full verification: `npm run test` (runs build + unit tests, incl. the annotation
    pattern tests) and `npm run ci` (Biome).
 6. If you edited the validator script or any JS/TS, run `npm run format`
-   (Biome formats `scripts/**`).
+   (Biome: formats, organizes imports, and applies safe lint fixes).
 
 ## Review checklist
 

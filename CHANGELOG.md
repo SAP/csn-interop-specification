@@ -31,6 +31,7 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 - Updated all npm dependencies to their latest versions, including TypeScript 7 (migrated `tsconfig.json` `moduleResolution` to `bundler`) and Biome 2.5.9
 - Switched the VS Code workspace formatter/linter recommendations from ESLint + Prettier to Biome and removed the obsolete `jest` type shim
 - Added an `add-annotation` skill (`.claude/skills/add-annotation/`) documenting the annotation authoring conventions, and a `scripts/validate-annotations.mjs` source/wiring check (`npm run validate:annotations`)
+- Changed the `format` script to `biome check --write` so `npm run format` (and the pre-commit hook) also organizes imports and applies safe lint fixes, matching what `npm run ci` checks
 
 ## [1.2.5]
 
