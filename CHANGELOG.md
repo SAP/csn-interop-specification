@@ -20,6 +20,12 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 - Fixed JSON Schema `minItems: 1` constraint to the mandatory arrays in the `@EntityRelationship` vocabulary, so an empty array no longer passes validation for a required list. Affects `@EntityRelationship.EntityId.propertyTypes`, , `@EntityRelationship.TemporalId.propertyTypes`, `@EntityRelationship.TemporalReference.referencedPropertyTypes`, and `@EntityRelationship.ReferenceTargetWithConstantId.referencedPropertyTypes`. `minItems: 2` constraint to `@EntityRelationship.CompositeReference.referencedPropertyTypes`. This is a correction of the schema to follow the specification, having no items, semantically violates the specification.
 
+### Internal
+
+- Added unit tests (`node:test`) that enforce annotation authoring conventions against the generated schema: enumerated values must use the `{ "#": "VALUE" }` wrapper notation (a `type: string` `#` property), and top-level annotations must be flat dot-qualified key-value pairs rather than structured nested objects (with a documented allowlist for the deprecated `@API.element` and the cohesive `@Semantics.valueRange`)
+- Updated all npm dependencies to their latest versions, including TypeScript 7 (migrated `tsconfig.json` `moduleResolution` to `bundler`) and Biome 2.5.9
+- Switched the VS Code workspace formatter/linter recommendations from ESLint + Prettier to Biome and removed the obsolete `jest` type shim
+
 ## [1.2.5]
 
 ### Added
