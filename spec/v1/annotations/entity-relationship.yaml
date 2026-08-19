@@ -343,11 +343,19 @@ definitions:
         type: string
         description: |-
           Provide the value in `{ "#": "<value>" }` enum notation.
-        enum:
-          - "CLOSED_CLOSED"
-          - "OPEN_OPEN"
-          - "OPEN_CLOSED"
-          - "CLOSED_OPEN"
+        oneOf:
+          - const: "CLOSED_CLOSED"
+            description: |-
+              The interval includes both its lower and upper boundary.
+          - const: "OPEN_OPEN"
+            description: |-
+              The interval excludes both its lower and upper boundary.
+          - const: "OPEN_CLOSED"
+            description: |-
+              The interval excludes its lower boundary and includes its upper boundary.
+          - const: "CLOSED_OPEN"
+            description: |-
+              The interval includes its lower boundary and excludes its upper boundary.
     additionalProperties: false
     required:
       - "#"
@@ -364,9 +372,9 @@ definitions:
         type: string
         description: |-
           Provide the value in `{ "#": "<value>" }` enum notation.
-        enum:
-          - "DATE"
-          - "DATETIME"
+        oneOf:
+          - const: "DATE"
+          - const: "DATETIME"
     additionalProperties: false
     required:
       - "#"
@@ -383,8 +391,8 @@ definitions:
         type: string
         description: |-
           Provide the value in `{ "#": "<value>" }` enum notation.
-        enum:
-          - "TEMPORAL_DATE"
+        oneOf:
+          - const: "TEMPORAL_DATE"
     additionalProperties: false
     required:
       - "#"

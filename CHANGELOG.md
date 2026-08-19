@@ -20,6 +20,10 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 - Fixed JSON Schema `minItems: 1` constraint to the mandatory arrays in the `@EntityRelationship` vocabulary, so an empty array no longer passes validation for a required list. Affects `@EntityRelationship.EntityId.propertyTypes`, , `@EntityRelationship.TemporalId.propertyTypes`, `@EntityRelationship.TemporalReference.referencedPropertyTypes`, and `@EntityRelationship.ReferenceTargetWithConstantId.referencedPropertyTypes`. `minItems: 2` constraint to `@EntityRelationship.CompositeReference.referencedPropertyTypes`. This is a correction of the schema to follow the specification, having no items, semantically violates the specification.
 
+### Internal
+
+- Migrated the remaining bare-`enum` `{ "#": "VALUE" }` wrappers to the `oneOf` + `const` notation, matching the reference `@Aggregation.default`. The set of accepted values is unchanged for every annotation (verified value-set-equal against the previous schema), so this is not a contract change. Where per-value meanings are documented, each `const` now carries a `description`: `@Consumption.ConsumptionValueHelpDefinition.AdditionalBinding.Usage`, `@EntityRelationship.TemporalIntervalType`, `@ObjectModel.usageType.sizeCategory`. The opaque value sets (`@ObjectModel.modelingPattern`, `@ObjectModel.SupportedCapabilities_EnumValue`, `@EntityRelationship.TemporalType`, `@EntityRelationship.Category`) were converted without inventing per-value descriptions; those await authoritative documentation.
+
 ## [1.2.5]
 
 ### Added
