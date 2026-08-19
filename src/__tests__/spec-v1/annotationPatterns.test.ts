@@ -143,6 +143,11 @@ describe("Annotation flatness", (): void => {
   /**
    * Structured object annotations that are knowingly tolerated.
    *
+   * A structured object is only acceptable when its nested properties form a
+   * DDD *value object*: the values are meaningless on their own and only make
+   * sense together as one object. Otherwise annotations must be flat,
+   * dot-qualified key-value pairs.
+   *
    * - `@API.element` is deprecated in favour of the flat
    *   `@API.element.releaseState` / `.successor` /
    *   `.decommissioningPlannedForYearMonth` annotations and is kept only for
@@ -150,8 +155,9 @@ describe("Annotation flatness", (): void => {
    * - `@Semantics.valueRange` bundles minimum/maximum boundary values that only
    *   have meaning together, mirroring JSON Schema's own vocabulary.
    *
-   * New structured annotations should be split into flat, dot-qualified
-   * annotations instead of being added here.
+   * Adding to this allowlist is a conscious design decision that MUST be called
+   * out and approved in PR review — it is not a rubber stamp. If the properties
+   * do not only-make-sense-together, split them into flat annotations instead.
    */
   const ALLOWED_STRUCTURED_ANNOTATIONS = new Set<string>([
     "@API.element",
@@ -187,7 +193,7 @@ describe("Annotation flatness", (): void => {
           ", ",
         )}]. ` +
           `Annotations must be flat lists of dot-qualified key-value pairs — split it into e.g. '${name}.${structuredProperties[0]}'. ` +
-          `If the properties only have meaning together as one object, add '${name}' to ALLOWED_STRUCTURED_ANNOTATIONS with a justification.`,
+          `Only if the properties form a DDD value object (meaningless apart, they only make sense together as one object), add '${name}' to ALLOWED_STRUCTURED_ANNOTATIONS with a justification and call it out in PR review as a conscious design decision to be approved.`,
       );
     });
   }

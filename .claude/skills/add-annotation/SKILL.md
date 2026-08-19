@@ -50,13 +50,38 @@ Keys are fully-qualified names like `@ObjectModel.custom`. Related values become
 (Rationale: `docs/primer.md` — annotations are "flat lists of key-value pairs with keys
 being fully qualified property names". The only tolerated structured annotations are the
 deprecated `@API.element` and the cohesive `@Semantics.valueRange`; both are on an explicit
-allowlist in the test — do not copy that shape for new work.)
+allowlist in the test — do not copy that shape by default.)
+
+**Exception — DDD value objects.** A structured object is only justified when the nested
+properties form what Domain-Driven Design calls a *value object*: the values are meaningless
+on their own and only make sense provided **together as one object** (e.g. a min/max range
+where a lone minimum is incomplete). Splitting such a set into separate flat annotations
+would let callers set one without the other and produce an invalid partial state.
+
+If — and only if — that genuinely applies:
+
+1. Add the annotation name to `ALLOWED_STRUCTURED_ANNOTATIONS` in
+   `src/__tests__/spec-v1/annotationPatterns.test.ts`, with a comment justifying why the
+   properties are cohesive (follow the `@Semantics.valueRange` example).
+2. **Call it out explicitly in the PR description / review** as a conscious design decision —
+   "this is a structured annotation because it is a DDD value object (X and Y only have
+   meaning together)" — so a reviewer can approve/verify it rather than have it slip in
+   silently. Do not treat the allowlist as a rubber stamp; it exists to force this
+   conversation.
 
 ### 2. Enumerations use the `{ "#": "VALUE" }` wrapper
 
 Never a bare string `enum` on the annotation. Wrap it in a `#` property, set
 `type: string`, and lock the object with `additionalProperties: false` + `required: ["#"]`.
-Prefer `oneOf` + `const` with a per-value `description` over a bare `enum: [...]`.
+This wrapper shape **is enforced by CI** (`annotationPatterns.test.ts`).
+
+**Recommended default: `oneOf` + `const` with a per-value `description`, over a bare
+`enum: [...]`.** This is best practice — not CI-enforced (the repo still has some bare-enum
+wrappers), but the pattern to reach for by default in new work and worth requesting in
+review. It lets every allowed value carry its own documentation, which flows into the
+generated schema and docs; a bare `enum: ["FOO", "BAR"]` is just a list of opaque tokens.
+The same applies to non-`#` value sets — prefer `oneOf`/`anyOf` of described `const`s so
+each choice is self-documenting.
 
 ```yaml
 # GOOD — reference implementation is @Aggregation.default
@@ -86,6 +111,15 @@ Prefer `oneOf` + `const` with a per-value `description` over a bare `enum: [...]
 "@MyVocab.kind":
   type: string
   enum: ["FOO", "BAR"]
+
+# TOLERATED but not preferred — correct wrapper, but opaque bare enum with no per-value docs.
+# Prefer the oneOf + const + description form above.
+"@MyVocab.kind":
+  type: object
+  properties:
+    "#": { type: string, enum: ["FOO", "BAR"] }
+  additionalProperties: false
+  required: ["#"]
 ```
 
 ### 3. Every annotation has a description and valid extension targets
@@ -154,9 +188,12 @@ Smallest complete reference: `spec/v1/annotations/dataintegration.yaml` + `.md`.
 
 ## Review checklist
 
-- [ ] Annotation keys are flat and `@`-dot-qualified (no new nested structured objects).
+- [ ] Annotation keys are flat and `@`-dot-qualified. Any new structured object is a
+      genuine DDD value object, is on the test allowlist, and is called out in the PR as a
+      conscious design decision to be approved.
 - [ ] Enums use `{ "#": "VALUE" }` with `type: string`, `additionalProperties: false`,
-      `required: ["#"]`, and per-value `oneOf`+`const` descriptions.
+      `required: ["#"]` (enforced). Prefer `oneOf`+`const` with a per-value `description`
+      over a bare `enum` (recommended default — flag bare enums in review).
 - [ ] Every annotation has a `description`; `x-extension-targets` are all valid.
 - [ ] New vocabulary: `{name}.yaml` + `{name}.md` + `spec-toolkit.config.json` entry.
 - [ ] `CHANGELOG.md` `## [unreleased]` updated.
