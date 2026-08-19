@@ -30,6 +30,9 @@ jobs:
       - name: run biome checks
         run: npm run ci
 
+      - name: check generated output is up to date
+        run: npm run generate:check
+
       - name: build and test
         run: npm run test
 

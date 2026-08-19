@@ -30,6 +30,7 @@
     "build:docusaurus": "docusaurus build",
     "generate": "npx @open-resource-discovery/spec-toolkit -c ./spec-toolkit.config.json",
     "postgenerate": "tsx ./scripts/copyGeneratedToDestination.js",
+    "generate:check": "node scripts/check-generated-up-to-date.mjs",
     "format": "biome check --write .",
     "ci": "biome ci .",
     "lint": "biome lint .",
