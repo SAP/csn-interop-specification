@@ -158,11 +158,6 @@ describe("Annotation flatness", (): void => {
     "@Semantics.valueRange",
   ]);
 
-  /** A top-level annotation is a definition that declares extension targets. */
-  function isTopLevelAnnotation(definition: JsonSchemaNode): boolean {
-    return Array.isArray(definition["x-extension-targets"]);
-  }
-
   /** Names of the nested object properties, excluding the `#` enum wrapper. */
   function getStructuredPropertyNames(definition: JsonSchemaNode): string[] {
     if (definition.type !== "object") {
@@ -193,6 +188,99 @@ describe("Annotation flatness", (): void => {
         )}]. ` +
           `Annotations must be flat lists of dot-qualified key-value pairs — split it into e.g. '${name}.${structuredProperties[0]}'. ` +
           `If the properties only have meaning together as one object, add '${name}' to ALLOWED_STRUCTURED_ANNOTATIONS with a justification.`,
+      );
+    });
+  }
+});
+
+/** A top-level annotation is a definition that declares extension targets. */
+function isTopLevelAnnotation(definition: JsonSchemaNode): boolean {
+  return Array.isArray(definition["x-extension-targets"]);
+}
+
+describe("Enum wrapper structural completeness", (): void => {
+  // Any annotation carrying a `#` property must lock the object down so that
+  // `{ "#": "X", "typo": 1 }` and `{}` are rejected, matching the reference
+  // implementation `@Aggregation.default`.
+  for (const [name, definition] of getAnnotationDefinitions()) {
+    const properties = definition.properties as
+      | Record<string, JsonSchemaNode>
+      | undefined;
+    if (!properties?.["#"]) {
+      continue;
+    }
+    test(`'${name}' enum wrapper sets additionalProperties:false and requires '#'`, (): void => {
+      assert.strictEqual(
+        definition.additionalProperties,
+        false,
+        `Enum wrapper '${name}' must set 'additionalProperties: false' so unknown keys are rejected`,
+      );
+      const required = definition.required;
+      assert.ok(
+        Array.isArray(required) && required.includes("#"),
+        `Enum wrapper '${name}' must list '#' in 'required' so an empty object is rejected`,
+      );
+    });
+  }
+});
+
+describe("Annotation descriptions", (): void => {
+  for (const [name, definition] of getAnnotationDefinitions()) {
+    if (!isTopLevelAnnotation(definition)) {
+      continue; // referenced helper sub-objects are documented via their parent.
+    }
+    // Pure `$ref` annotations (generated from `x-ref-to-doc`) intentionally
+    // carry no inline description — the documentation lives on the ref target.
+    if (typeof definition.$ref === "string") {
+      continue;
+    }
+    test(`'${name}' has a non-empty description`, (): void => {
+      const description = definition.description;
+      assert.ok(
+        typeof description === "string" && description.trim().length > 0,
+        `Top-level annotation '${name}' must have a non-empty 'description'`,
+      );
+    });
+  }
+});
+
+describe("Annotation extension targets", (): void => {
+  // The set of targets an annotation may extend. Extend this list deliberately
+  // when a new extension target is introduced — a typo (e.g. "Entiy") otherwise
+  // produces a silently ineffective annotation.
+  const ALLOWED_EXTENSION_TARGETS = new Set<string>([
+    "Type",
+    "Entity",
+    "Service",
+    "Context",
+    "EnumDictionaryEntry",
+    "IntegerType",
+    "Int16Type",
+    "Integer64Type",
+    "UInt8Type",
+    "DecimalType",
+    "DoubleType",
+    "StringType",
+    "LargeStringType",
+    "LargeBinaryType",
+  ]);
+
+  for (const [name, definition] of getAnnotationDefinitions()) {
+    const targets = definition["x-extension-targets"];
+    if (!Array.isArray(targets)) {
+      continue;
+    }
+    test(`'${name}' only extends known targets`, (): void => {
+      const unknown = targets.filter(
+        (target) =>
+          typeof target !== "string" || !ALLOWED_EXTENSION_TARGETS.has(target),
+      );
+      assert.deepStrictEqual(
+        unknown,
+        [],
+        `Annotation '${name}' declares unknown x-extension-targets: ${JSON.stringify(
+          unknown,
+        )}. Allowed: ${[...ALLOWED_EXTENSION_TARGETS].join(", ")}.`,
       );
     });
   }

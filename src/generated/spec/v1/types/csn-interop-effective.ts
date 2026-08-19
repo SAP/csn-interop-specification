@@ -964,8 +964,7 @@ export interface APIElement {
   /**
    * Provide the value in `{ "#": "<value>" }` enum notation.
    */
-  "#"?: "DEPRECATED" | "DECOMMISSIONED";
-  [k: string]: unknown | undefined;
+  "#": "DEPRECATED" | "DECOMMISSIONED";
 }
 /**
  * Element reference to an element within the current entity, using RECOMMENDED object notation.
@@ -3321,8 +3320,7 @@ export interface APIEntity {
   /**
    * Provide the value in `{ "#": "<value>" }` enum notation.
    */
-  "#"?: "DEPRECATED" | "DECOMMISSIONED";
-  [k: string]: unknown | undefined;
+  "#": "DEPRECATED" | "DECOMMISSIONED";
 }
 /**
  * Defines an ID that can be used to look up the Entity Type or create a reference to it.
