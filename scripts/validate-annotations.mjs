@@ -12,9 +12,9 @@
 //
 // Usage: node scripts/validate-annotations.mjs   (exits non-zero on failure)
 
-import { readFileSync, existsSync, readdirSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { basename, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { dirname, join, basename } from "node:path";
 import { parse as parseYaml } from "yaml";
 
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
