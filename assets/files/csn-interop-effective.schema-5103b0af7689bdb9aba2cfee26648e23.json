@@ -969,6 +969,9 @@
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -1198,6 +1201,9 @@
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -1425,6 +1431,9 @@
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -1659,6 +1668,9 @@
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -1883,6 +1895,9 @@
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -2109,6 +2124,9 @@
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -2333,6 +2351,9 @@
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -2577,6 +2598,9 @@
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -2799,6 +2823,9 @@
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -3025,6 +3052,9 @@
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -3244,6 +3274,9 @@
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -3465,6 +3498,9 @@
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -3685,6 +3721,9 @@
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -3901,6 +3940,9 @@
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -4127,6 +4169,9 @@
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -4345,6 +4390,9 @@
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -4698,6 +4746,9 @@
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -5066,6 +5117,9 @@
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -5332,6 +5386,9 @@
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -5903,6 +5960,9 @@
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -6406,6 +6466,9 @@
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -6637,6 +6700,9 @@
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -6872,6 +6938,9 @@
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -7096,6 +7165,9 @@
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -7325,6 +7397,9 @@
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -7544,6 +7619,9 @@
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -7762,6 +7840,9 @@
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -8000,6 +8081,9 @@
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -8230,6 +8314,9 @@
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -8448,6 +8535,9 @@
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -8671,6 +8761,9 @@
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -8886,6 +8979,9 @@
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -9103,6 +9199,9 @@
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -9315,6 +9414,9 @@
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -9537,6 +9639,9 @@
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -9755,6 +9860,9 @@
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -10109,6 +10217,9 @@
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -10481,6 +10592,9 @@
         },
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
+        },
+        "@DataIntegration.technical": {
+          "$ref": "#/definitions/@DataIntegration.technical"
         },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
@@ -11163,6 +11277,15 @@
         "Entity"
       ],
       "x-introduced-in-version": "1.2.3"
+    },
+    "@DataIntegration.technical": {
+      "type": "boolean",
+      "const": true,
+      "description": "Express by this annotation that an element is of technical nature used for data integration purposes and does not belong to the business data of the data product.",
+      "x-extension-targets": [
+        "Type"
+      ],
+      "x-introduced-in-version": "1.2.6"
     },
     "@EndUserText.label": {
       "type": "string",
