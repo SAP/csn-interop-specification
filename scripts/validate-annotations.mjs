@@ -2,7 +2,7 @@
 // Validates annotation vocabulary *source* files and repository wiring.
 //
 // This is complementary to the unit tests in
-// src/__tests__/spec-v1/annotationPatterns.test.ts: those check the *generated*
+// src/__tests__/spec-v1/schemaConventions.test.ts: those check the *generated*
 // schema shape (enum notation, flatness, descriptions, extension targets), which
 // is the single source of truth for schema correctness. This script instead
 // checks things that are only visible in the source tree — that every
@@ -177,7 +177,7 @@ if (problems.length === 0) {
     `✓ Annotation validation passed (${yamlFiles.length} vocabulary files checked).`,
   );
   console.log(
-    "  Note: schema-shape correctness is enforced by `npm run test` (annotationPatterns.test.ts).",
+    "  Note: schema-shape correctness is enforced by `npm run test` (schemaConventions.test.ts).",
   );
   process.exit(0);
 }
