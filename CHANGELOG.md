@@ -8,6 +8,8 @@ including the **patch** level in the spec version number.
 
 For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMAP.md)
 
+## [unreleased]
+
 ## [1.2.6]
 
 ### Added
