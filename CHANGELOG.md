@@ -28,6 +28,7 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 - Fixed JSON Schema `minItems: 1` constraint to the mandatory arrays in the `@EntityRelationship` vocabulary, so an empty array no longer passes validation for a required list. Affects `@EntityRelationship.EntityId.propertyTypes`, , `@EntityRelationship.TemporalId.propertyTypes`, `@EntityRelationship.TemporalReference.referencedPropertyTypes`, and `@EntityRelationship.ReferenceTargetWithConstantId.referencedPropertyTypes`. `minItems: 2` constraint to `@EntityRelationship.CompositeReference.referencedPropertyTypes`. This is a correction of the schema to follow the specification, having no items, semantically violates the specification.
 - Fixed `@API.element.releaseState` and `@API.entity.releaseState` to set `additionalProperties: false` and `required: ["#"]`, matching the other `{ "#": "VALUE" }` enum annotations. Previously an empty object `{}` or an object with unknown keys passed validation.
+- Regenerated the committed TypeScript types so they include `@Consumption.aiHint`; the generated output had drifted from the spec sources (see the new freshness check below).
 
 ### Internal
 
@@ -40,14 +41,9 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 - Switched the VS Code workspace formatter/linter recommendations from ESLint + Prettier to Biome and removed the obsolete `jest` type shim
 - Added an `add-annotation` skill (`.claude/skills/add-annotation/`) documenting the annotation authoring conventions, and a `scripts/validate-annotations.mjs` source/wiring check (`npm run validate:annotations`)
 - Changed the `format` script to `biome check --write` so `npm run format` (and the pre-commit hook) also organizes imports and applies safe lint fixes, matching what `npm run ci` checks
-
-### Internal
-
 - Backfilled the `x-introduced-in-version` annotation on all annotation-vocabulary definitions introduced after `1.0.0`, matching the existing convention already used in the core schema (e.g. `BinaryType`). This is documentation metadata only — it does not appear in the generated TypeScript types and is not a contract change. Covers `@ObjectModel.tenantWideUniqueName` (1.0.3), `@ObjectModel.custom` (1.0.6), the `@Semantics.mimeType` / `@Semantics.largeObject.*` family (1.1.0), `@DataIntegration.dataUnavailable` (1.2.3), the `@API.element*` / `@API.entity*` annotations (1.2.4 / 1.2.5), `@PersonalData.relatedDataCategoryID` and `@Consumption.hidden` (1.2.5), and `@Consumption.aiHint` (1.2.6).
-
-### Internal
-
 - Migrated the remaining bare-`enum` `{ "#": "VALUE" }` wrappers to the `oneOf` + `const` notation, matching the reference `@Aggregation.default`. The set of accepted values is unchanged for every annotation (verified value-set-equal against the previous schema), so this is not a contract change. Where per-value meanings are documented, each `const` now carries a `description`: `@Consumption.ConsumptionValueHelpDefinition.AdditionalBinding.Usage`, `@EntityRelationship.TemporalIntervalType`, `@ObjectModel.usageType.sizeCategory`. The opaque value sets (`@ObjectModel.modelingPattern`, `@ObjectModel.SupportedCapabilities_EnumValue`, `@EntityRelationship.TemporalType`, `@EntityRelationship.Category`) were converted without inventing per-value descriptions; those await authoritative documentation.
+- Added a `generate:check` script (`scripts/check-generated-up-to-date.mjs`) and wired it into CI so the build fails if the committed generated output under `src/generated/` is stale with respect to the spec YAML. This prevents spec changes from being merged without regenerating the derived TypeScript types (as happened with `@Consumption.aiHint`).
 
 ## [1.2.5]
 
