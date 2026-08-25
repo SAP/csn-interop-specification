@@ -45,6 +45,7 @@ definitions:
       - "Type"
       - "Entity"
       - "Service"
+    x-introduced-in-version: "1.0.6"
 
   "@ObjectModel.modelingPattern":
     type: object
@@ -58,32 +59,32 @@ definitions:
         type: string
         description: |-
           Provide the value in `{ "#": "<value>" }` enum notation.
-        enum:
-          - "DATA_STRUCTURE"
-          - "LANGUAGE_DEPENDENT_TEXT"
-          - "UNIT_CONVERSION_RATE"
-          - "VALUE_HELP_PROVIDER"
-          - "COLLECTIVE_VALUE_HELP"
-          - "DERIVATION_FUNCTION"
-          - "PARENT_CHILD_HIERARCHY_NODE_PROVIDER"
-          - "ENTERPRISE_SEARCH_PROVIDER"
-          - "TRANSACTIONAL_INTERFACE"
-          - "TRANSACTIONAL_QUERY"
-          - "ANALYTICAL_QUERY"
-          - "ANALYTICAL_DOCUMENT_STORE"
-          - "ANALYTICAL_CUBE"
-          - "ANALYTICAL_DIMENSION"
-          - "ANALYTICAL_FACT"
-          - "ANALYTICAL_PARENT_CHILD_HIERARCHY_NODE"
-          - "ANALYTICAL_KPI"
-          - "OUTPUT_FORM_DATA_PROVIDER"
-          - "OUTPUT_EMAIL_DATA_PROVIDER"
-          - "OUTPUT_PARAMETER_DETERMINATION_DATA_SOURCE"
-          - "SITUATION_ANCHOR"
-          - "SITUATION_TRIGGER"
-          - "SITUATION_DATACONTEXT"
-          - "EXTERNAL_DATA_PROVIDER"
-          - "NONE"
+        oneOf:
+          - const: "DATA_STRUCTURE"
+          - const: "LANGUAGE_DEPENDENT_TEXT"
+          - const: "UNIT_CONVERSION_RATE"
+          - const: "VALUE_HELP_PROVIDER"
+          - const: "COLLECTIVE_VALUE_HELP"
+          - const: "DERIVATION_FUNCTION"
+          - const: "PARENT_CHILD_HIERARCHY_NODE_PROVIDER"
+          - const: "ENTERPRISE_SEARCH_PROVIDER"
+          - const: "TRANSACTIONAL_INTERFACE"
+          - const: "TRANSACTIONAL_QUERY"
+          - const: "ANALYTICAL_QUERY"
+          - const: "ANALYTICAL_DOCUMENT_STORE"
+          - const: "ANALYTICAL_CUBE"
+          - const: "ANALYTICAL_DIMENSION"
+          - const: "ANALYTICAL_FACT"
+          - const: "ANALYTICAL_PARENT_CHILD_HIERARCHY_NODE"
+          - const: "ANALYTICAL_KPI"
+          - const: "OUTPUT_FORM_DATA_PROVIDER"
+          - const: "OUTPUT_EMAIL_DATA_PROVIDER"
+          - const: "OUTPUT_PARAMETER_DETERMINATION_DATA_SOURCE"
+          - const: "SITUATION_ANCHOR"
+          - const: "SITUATION_TRIGGER"
+          - const: "SITUATION_DATACONTEXT"
+          - const: "EXTERNAL_DATA_PROVIDER"
+          - const: "NONE"
     additionalProperties: false
     required:
       - "#"
@@ -143,6 +144,7 @@ definitions:
     maxLength: 120
     x-extension-targets:
       - "Entity"
+    x-introduced-in-version: "1.0.3"
   "@ObjectModel.usageType.sizeCategory":
     type: object
     description: |-
@@ -161,12 +163,22 @@ definitions:
         type: string
         description: |-
           Provide the value in `{ "#": "<value>" }` enum notation.
-        enum:
-          - "S"
-          - "M"
-          - "L"
-          - "XL"
-          - "XXL"
+        oneOf:
+          - const: "S"
+            description: |-
+              Small: less than 1000 rows expected at production customers.
+          - const: "M"
+            description: |-
+              Medium: less than 100.000 rows expected at production customers.
+          - const: "L"
+            description: |-
+              Large: less than 10.000.000 rows expected at production customers.
+          - const: "XL"
+            description: |-
+              Extra large: less than 100.000.000 rows expected at production customers.
+          - const: "XXL"
+            description: |-
+              Extra extra large: more than 100.000.000 rows expected at production customers.
     additionalProperties: false
     required:
       - "#"
@@ -187,37 +199,37 @@ definitions:
         type: string
         description: |-
           The entry declares one supported usage type.
-        enum:
-          - "SQL_DATA_SOURCE"
-          - "CDS_MODELING_DATA_SOURCE"
-          - "CDS_MODELING_ASSOCIATION_TARGET"
-          - "DATA_STRUCTURE"
-          - "LANGUAGE_DEPENDENT_TEXT"
-          - "UNIT_CONVERSION_RATE"
-          - "VALUE_HELP_PROVIDER"
-          - "COLLECTIVE_VALUE_HELP"
-          - "EXTRACTION_DATA_SOURCE"
-          - "DERIVATION_FUNCTION"
-          - "PARENT_CHILD_HIERARCHY_NODE_PROVIDER"
-          - "SEARCHABLE_ENTITY"
-          - "ENTERPRISE_SEARCH_PROVIDER"
-          - "TRANSACTIONAL_PROVIDER"
-          - "ANALYTICAL_QUERY"
-          - "ANALYTICAL_DOCUMENT_STORE"
-          - "ANALYTICAL_DIMENSION"
-          - "ANALYTICAL_PROVIDER"
-          - "ANALYTICAL_PARENT_CHILD_HIERARCHY_NODE"
-          - "ANALYTICAL_KPI"
-          - "OUTPUT_FORM_DATA_PROVIDER"
-          - "OUTPUT_EMAIL_DATA_PROVIDER"
-          - "OUTPUT_PARAMETER_DETERMINATION_DATA_SOURCE"
-          - "SITUATION_ANCHOR"
-          - "SITUATION_TRIGGER"
-          - "SITUATION_DATACONTEXT"
-          - "KEY_USER_COPYING_TEMPLATE"
-          - "EXTERNAL_DATA_PROVIDER"
-          - "ODM_COMPLIANT_PROVIDER"
-          - "UI_PROVIDER_PROJECTION_SOURCE"
+        oneOf:
+          - const: "SQL_DATA_SOURCE"
+          - const: "CDS_MODELING_DATA_SOURCE"
+          - const: "CDS_MODELING_ASSOCIATION_TARGET"
+          - const: "DATA_STRUCTURE"
+          - const: "LANGUAGE_DEPENDENT_TEXT"
+          - const: "UNIT_CONVERSION_RATE"
+          - const: "VALUE_HELP_PROVIDER"
+          - const: "COLLECTIVE_VALUE_HELP"
+          - const: "EXTRACTION_DATA_SOURCE"
+          - const: "DERIVATION_FUNCTION"
+          - const: "PARENT_CHILD_HIERARCHY_NODE_PROVIDER"
+          - const: "SEARCHABLE_ENTITY"
+          - const: "ENTERPRISE_SEARCH_PROVIDER"
+          - const: "TRANSACTIONAL_PROVIDER"
+          - const: "ANALYTICAL_QUERY"
+          - const: "ANALYTICAL_DOCUMENT_STORE"
+          - const: "ANALYTICAL_DIMENSION"
+          - const: "ANALYTICAL_PROVIDER"
+          - const: "ANALYTICAL_PARENT_CHILD_HIERARCHY_NODE"
+          - const: "ANALYTICAL_KPI"
+          - const: "OUTPUT_FORM_DATA_PROVIDER"
+          - const: "OUTPUT_EMAIL_DATA_PROVIDER"
+          - const: "OUTPUT_PARAMETER_DETERMINATION_DATA_SOURCE"
+          - const: "SITUATION_ANCHOR"
+          - const: "SITUATION_TRIGGER"
+          - const: "SITUATION_DATACONTEXT"
+          - const: "KEY_USER_COPYING_TEMPLATE"
+          - const: "EXTERNAL_DATA_PROVIDER"
+          - const: "ODM_COMPLIANT_PROVIDER"
+          - const: "UI_PROVIDER_PROJECTION_SOURCE"
     additionalProperties: false
     required:
       - "#"

@@ -88,13 +88,23 @@ export type Consumption = ConsumptionValueHelpDefinition[];
  */
 export type ConsumptionHidden = boolean;
 /**
+ * Provides a free-text hint for AI consumers (e.g., LLMs or AI agents) on how to use or interpret the annotated element.
+ *
+ * This allows keeping human-readable descriptions (e.g., `@EndUserText`) separate from
+ * guidance targeted specifically at AI consumers.
+ *
+ * The annotation value MUST NOT be displayed to end users and MUST be filtered when
+ * publishing metadata externally (e.g., to the SAP API Business Hub public catalog).
+ */
+export type ConsumptionAiHint = string;
+/**
  * Specifies that the data of the element or entity is unavailable although it is part of the output structure.
  */
 export type DataIntegrationDataUnavailable = boolean;
 /**
  * Express by this annotation that an element is of technical nature used for data integration purposes and does not belong to the business data of the data product.
  */
-export type DataIntegrationTechnical = boolean;
+export type DataIntegrationTechnical = true;
 /**
  * Defines a human-readable text that is displayed as column headers.
  */
@@ -741,6 +751,7 @@ export interface EntityDefinition {
   "@API.entity.successor"?: APIEntitySuccessor;
   "@API.entity.releaseState"?: APIEntity;
   "@Consumption.valueHelpDefinition"?: Consumption;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
@@ -839,6 +850,7 @@ export interface BooleanType {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -957,8 +969,7 @@ export interface APIElement {
   /**
    * Provide the value in `{ "#": "<value>" }` enum notation.
    */
-  "#"?: "DEPRECATED" | "DECOMMISSIONED";
-  [k: string]: unknown | undefined;
+  "#": "DEPRECATED" | "DECOMMISSIONED";
 }
 /**
  * Element reference to an element within the current entity, using RECOMMENDED object notation.
@@ -1114,6 +1125,7 @@ export interface StringType {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1266,6 +1278,7 @@ export interface LargeStringType {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1375,6 +1388,7 @@ export interface IntegerType {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1513,6 +1527,7 @@ export interface Int16Type {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1620,6 +1635,7 @@ export interface Integer64Type {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1727,6 +1743,7 @@ export interface UInt8Type {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1849,6 +1866,7 @@ export interface DecimalType {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -1955,6 +1973,7 @@ export interface DoubleType {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2062,6 +2081,7 @@ export interface DateType {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2168,6 +2188,7 @@ export interface TimeType {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2274,6 +2295,7 @@ export interface DateTimeType {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2380,6 +2402,7 @@ export interface TimestampType {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2485,6 +2508,7 @@ export interface UUIDType {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2596,6 +2620,7 @@ export interface BinaryType {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2699,6 +2724,7 @@ export interface LargeBinaryType {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -2865,6 +2891,7 @@ export interface AssociationType {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -3078,6 +3105,7 @@ export interface CompositionType {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -3225,6 +3253,7 @@ export interface CustomType {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -3314,8 +3343,7 @@ export interface APIEntity {
   /**
    * Provide the value in `{ "#": "<value>" }` enum notation.
    */
-  "#"?: "DEPRECATED" | "DECOMMISSIONED";
-  [k: string]: unknown | undefined;
+  "#": "DEPRECATED" | "DECOMMISSIONED";
 }
 /**
  * Defines an ID that can be used to look up the Entity Type or create a reference to it.
@@ -3604,6 +3632,7 @@ export interface ServiceDefinition {
    * If a human readable title is needed, use the [@EndUserText.label](./extensions/end-user-text#endusertextlabel) annotation.
    */
   doc?: string;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@ObjectModel.representativeKey"?: ElementReference;
@@ -3666,6 +3695,7 @@ export interface BooleanTypeDefinition {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -3775,6 +3805,7 @@ export interface StringTypeDefinition {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -3884,6 +3915,7 @@ export interface LargeStringTypeDefinition {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -3990,6 +4022,7 @@ export interface IntegerTypeDefinition {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4094,6 +4127,7 @@ export interface Int16TypeDefinition {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4198,6 +4232,7 @@ export interface Integer64TypeDefinition {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4302,6 +4337,7 @@ export interface UInt8TypeDefinition {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4421,6 +4457,7 @@ export interface DecimalTypeDefinition {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4525,6 +4562,7 @@ export interface DoubleTypeDefinition {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4629,6 +4667,7 @@ export interface DateTypeDefinition {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4732,6 +4771,7 @@ export interface TimeTypeDefinition {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4835,6 +4875,7 @@ export interface DateTimeTypeDefinition {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -4938,6 +4979,7 @@ export interface TimestampTypeDefinition {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -5040,6 +5082,7 @@ export interface UUIDTypeDefinition {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -5148,6 +5191,7 @@ export interface BinaryTypeDefinition {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -5255,6 +5299,7 @@ export interface LargeBinaryTypeDefinition {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -5422,6 +5467,7 @@ export interface AssociationTypeDefinition {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;
@@ -5586,6 +5632,7 @@ export interface CompositionTypeDefinition {
   "@API.element.releaseState"?: APIElement;
   "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
+  "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
   "@DataIntegration.technical"?: DataIntegrationTechnical;
   "@EndUserText.label"?: EndUserTextLabel;

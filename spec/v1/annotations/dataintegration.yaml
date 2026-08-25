@@ -11,6 +11,7 @@ definitions:
     x-extension-targets:
       - Type
       - Entity
+    x-introduced-in-version: "1.2.3"
   "@DataIntegration.technical":
     type: boolean
     const: true

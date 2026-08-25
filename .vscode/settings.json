@@ -34,16 +34,19 @@
   "javascript.preferences.importModuleSpecifierEnding": "index",
   "editor.formatOnSave": true,
   "editor.formatOnSaveMode": "file",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "biomejs.biome",
   "[javascript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.defaultFormatter": "biomejs.biome",
     "files.insertFinalNewline": true
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -52,14 +55,13 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
-    "source.fixAll.eslint": "explicit"
+    "source.fixAll.biome": "explicit",
+    "source.organizeImports.biome": "explicit"
   },
   "json.schemas": [
     {
       "fileMatch": ["/examples/**/*.json"],
       "url": "./src/spec-v1/csn-interop-effective.schema.json"
     }
-  ],
-  "jest.runMode": "on-demand"
+  ]
 }
