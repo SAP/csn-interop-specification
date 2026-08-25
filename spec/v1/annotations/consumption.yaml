@@ -24,6 +24,7 @@ definitions:
       The annotated element shall be ignored by consumers.
     x-extension-targets:
       - Type
+    x-introduced-in-version: "1.2.5"
 
   "@Consumption.ConsumptionValueHelpDefinition":
     title: Consumption Value Help Definition
@@ -109,10 +110,16 @@ definitions:
         type: string
         description: |-
           Provide the value in `{ "#": "<value>" }` enum notation.
-        enum:
-          - "FILTER"
-          - "RESULT"
-          - "FILTER_AND_RESULT"
+        oneOf:
+          - const: "FILTER"
+            description: |-
+              The binding specifies an additional filter-criterion on the value help list.
+          - const: "RESULT"
+            description: |-
+              The binding specifies an additional result mapping for the selected value help record.
+          - const: "FILTER_AND_RESULT"
+            description: |-
+              The binding specifies both an additional filter-criterion and an additional result mapping (the default).
         default: "FILTER_AND_RESULT"
     additionalProperties: false
     required:
@@ -137,3 +144,4 @@ definitions:
       - Entity
       - Type
       - Service
+    x-introduced-in-version: "1.2.6"

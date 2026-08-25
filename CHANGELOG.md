@@ -4,11 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) rules,
-but omits the **patch** level in the spec version number.
+including the **patch** level in the spec version number.
 
 For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMAP.md)
 
-## [unreleased]
+## [1.2.6]
 
 ### Added
 
@@ -20,6 +20,23 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 ### Fixed
 
 - Fixed JSON Schema `minItems: 1` constraint to the mandatory arrays in the `@EntityRelationship` vocabulary, so an empty array no longer passes validation for a required list. Affects `@EntityRelationship.EntityId.propertyTypes`, , `@EntityRelationship.TemporalId.propertyTypes`, `@EntityRelationship.TemporalReference.referencedPropertyTypes`, and `@EntityRelationship.ReferenceTargetWithConstantId.referencedPropertyTypes`. `minItems: 2` constraint to `@EntityRelationship.CompositeReference.referencedPropertyTypes`. This is a correction of the schema to follow the specification, having no items, semantically violates the specification.
+- Fixed `@API.element.releaseState` and `@API.entity.releaseState` to set `additionalProperties: false` and `required: ["#"]`, matching the other `{ "#": "VALUE" }` enum annotations. Previously an empty object `{}` or an object with unknown keys passed validation.
+- Regenerated the committed TypeScript types so they include `@Consumption.aiHint`; the generated output had drifted from the spec sources (see the new freshness check below).
+
+### Internal
+
+- Added unit tests (`node:test`) that enforce annotation authoring conventions against the generated schema:
+  - enumerated values must use the `{ "#": "VALUE" }` wrapper notation (a `type: string` `#` property)
+  - enum wrappers must set `additionalProperties: false` and `required: ["#"]`
+  - top-level annotations must be flat dot-qualified key-value pairs, not structured nested objects (allowlist: deprecated `@API.element`, cohesive `@Semantics.valueRange`)
+  - top-level annotations must have a description and only use known `x-extension-targets`
+- Updated all npm dependencies to their latest versions, including TypeScript 7 (migrated `tsconfig.json` `moduleResolution` to `bundler`) and Biome 2.5.9
+- Switched the VS Code workspace formatter/linter recommendations from ESLint + Prettier to Biome and removed the obsolete `jest` type shim
+- Added an `add-annotation` skill (`.claude/skills/add-annotation/`) documenting the annotation authoring conventions, and a `scripts/validate-annotations.mjs` source/wiring check (`npm run validate:annotations`)
+- Changed the `format` script to `biome check --write` so `npm run format` (and the pre-commit hook) also organizes imports and applies safe lint fixes, matching what `npm run ci` checks
+- Backfilled the `x-introduced-in-version` annotation on all annotation-vocabulary definitions introduced after `1.0.0`, matching the existing convention already used in the core schema (e.g. `BinaryType`). This is documentation metadata only — it does not appear in the generated TypeScript types and is not a contract change. Covers `@ObjectModel.tenantWideUniqueName` (1.0.3), `@ObjectModel.custom` (1.0.6), the `@Semantics.mimeType` / `@Semantics.largeObject.*` family (1.1.0), `@DataIntegration.dataUnavailable` (1.2.3), the `@API.element*` / `@API.entity*` annotations (1.2.4 / 1.2.5), `@PersonalData.relatedDataCategoryID` and `@Consumption.hidden` (1.2.5), and `@Consumption.aiHint` (1.2.6).
+- Migrated the remaining bare-`enum` `{ "#": "VALUE" }` wrappers to the `oneOf` + `const` notation, matching the reference `@Aggregation.default`. The set of accepted values is unchanged for every annotation (verified value-set-equal against the previous schema), so this is not a contract change. Where per-value meanings are documented, each `const` now carries a `description`: `@Consumption.ConsumptionValueHelpDefinition.AdditionalBinding.Usage`, `@EntityRelationship.TemporalIntervalType`, `@ObjectModel.usageType.sizeCategory`. The opaque value sets (`@ObjectModel.modelingPattern`, `@ObjectModel.SupportedCapabilities_EnumValue`, `@EntityRelationship.TemporalType`, `@EntityRelationship.Category`) were converted without inventing per-value descriptions; those await authoritative documentation.
+- Added a `generate:check` script (`scripts/check-generated-up-to-date.mjs`) and wired it into CI so the build fails if the committed generated output under `src/generated/` is stale with respect to the spec YAML. This prevents spec changes from being merged without regenerating the derived TypeScript types (as happened with `@Consumption.aiHint`).
 
 ## [1.2.5]
 
@@ -29,6 +46,7 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 - Added `IS_BLOCKED_INDICATOR` as enum value to `@PersonalData.fieldSemantics`
 - Added `DATA_CATEGORY_ID` as enum value to `@PersonalData.fieldSemantics`
 - Added `@API.element.successor` and `@API.element.decommissioningPlannedForYearMonth` as individual full-path annotations. They mirror the corresponding sub-properties of the existing grouped `@API.element` annotation and are non-breaking additions to enable consumers to migrate to the flattened notation. The grouped `@API.element` form remains supported.
+- Added `@API.entity.releaseState`, `@API.entity.successor`, and `@API.entity.decommissioningPlannedForYearMonth` annotations for declaring the release state of an entity (mirroring the element-level `@API.element*` annotations).
 - Added `@Consumption.hidden` annotation
 
 ### Changed

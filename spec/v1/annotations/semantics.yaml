@@ -261,6 +261,7 @@ definitions:
       The property value is a MIME Type / Media Type, following [RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838).
     x-extension-targets:
       - StringType
+    x-introduced-in-version: "1.1.0"
 
   "@Semantics.largeObject.acceptableMimeTypes":
     description: |-
@@ -273,6 +274,7 @@ definitions:
     x-extension-targets:
       - LargeStringType
       - LargeBinaryType
+    x-introduced-in-version: "1.1.0"
 
   "@Semantics.largeObject.mimeType":
     description: |-
@@ -285,6 +287,7 @@ definitions:
     x-extension-targets:
       - LargeStringType
       - LargeBinaryType
+    x-introduced-in-version: "1.1.0"
 
   "@Semantics.largeObject.fileName":
     description: |-
@@ -297,3 +300,4 @@ definitions:
     x-extension-targets:
       - LargeStringType
       - LargeBinaryType
+    x-introduced-in-version: "1.1.0"

@@ -25,6 +25,7 @@ definitions:
         type: string
     x-extension-targets:
       - Type
+    x-introduced-in-version: "1.2.4"
     x-deprecated-in-version: "1.2.5"
     x-deprecation-text: 'The grouped-object form is retained for backward compatibility. New adopters should prefer the individual full-path annotations `@API.element.releaseState`, `@API.element.successor`, and `@API.element.decommissioningPlannedForYearMonth`.'
   "@API.element.decommissioningPlannedForYearMonth":
@@ -33,6 +34,7 @@ definitions:
     type: string
     x-extension-targets:
       - Type
+    x-introduced-in-version: "1.2.5"
   "@API.element.successor":
     description: |-
       Defines the name of a released successor element/association which replaces an element/association with release state #DEPRECATED or #DECOMMISSIONED.
@@ -41,6 +43,7 @@ definitions:
       ref: "#/definitions/ElementReference"
     x-extension-targets:
       - Type
+    x-introduced-in-version: "1.2.5"
   # //////////////////////////////////////////
   # // Referenced JSON Schema Objects       //
   # //////////////////////////////////////////
@@ -64,8 +67,12 @@ definitions:
               Formerly released element/association not to be used anymore.
               At runtime, the element/association returns null values.
               Together with this value a successors of the element/association should be defined using annotation @API.element.successor.
+    additionalProperties: false
+    required:
+      - "#"
     x-extension-targets:
       - Type
+    x-introduced-in-version: "1.2.4"
   # //////////////////////////////////////////
   # // API.Entity                           //
   # //////////////////////////////////////////      
@@ -75,12 +82,14 @@ definitions:
     type: string
     x-extension-targets:
       - Entity
+    x-introduced-in-version: "1.2.5"
   "@API.entity.successor":
     description: |-
       Defines the name of a released successor entity which replaces an entity with release state #DEPRECATED or #DECOMMISSIONED.
     type: string
     x-extension-targets:
       - Entity
+    x-introduced-in-version: "1.2.5"
   "@API.entity.releaseState":
     type: object
     description: |-
@@ -101,5 +110,9 @@ definitions:
               Formerly released entity not to be used anymore.
               At runtime, the entity returns null values.
               Together with this value a successors of the entity should be defined using annotation @API.entity.successor.
+    additionalProperties: false
+    required:
+      - "#"
     x-extension-targets:
       - Entity
+    x-introduced-in-version: "1.2.5"

@@ -11,6 +11,7 @@ definitions:
     x-extension-targets:
       - Type
       - Entity
+    x-introduced-in-version: "1.2.3"
 
   "@DataIntegration.dataProduct.customDataProvider.partialKeyDefinition":
     type: array
@@ -26,5 +27,6 @@ definitions:
     minItems: 1
     x-extension-targets:
       - "Entity"
+    x-introduced-in-version: "1.2.6"
     examples:
       - ["AirlineCode", "FlightConnectionNumber", "FlightDate"]
