@@ -10,42 +10,20 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
-### Internal
-
-- Extended the schema-convention unit tests (`src/__tests__/spec-v1/schemaConventions.test.ts`) with two enforcement checks against the generated effective schema (core CSN types and annotation vocabularies alike):
-  - every entry definition a consumer references directly — core types and top-level annotations — introduced after the initial 1.0 scope must declare an `x-introduced-in-version` tag (`MAJOR.MINOR.PATCH`). The original 1.0 definitions are grandfathered in an explicit `LEGACY_WITHOUT_INTRODUCED_VERSION` set; new definitions must not be added to it.
-  - every `oneOf` + `const` enum value across the schema must carry a `description`. Value sets whose authoritative documentation is still outstanding are listed in `ENUM_CONST_DESCRIPTION_EXCEPTIONS` (`@ObjectModel.modelingPattern`, `@ObjectModel.SupportedCapabilities_EnumValue`, `@EntityRelationship.TemporalType`, `@EntityRelationship.Category`) and warned to the console on every run so the backfill stays visible.
-
 ## [1.2.6]
 
 ### Added
 
-- Added `@DataIntegration.dataProduct.customDataProvider.partialKeyDefinition` annotation: defines a subset of key fields of the CDS entity used for the DELETE operation during delta replication.
-- Added `@DataIntegration.technical` annotation
 - Added `@Consumption.aiHint` annotation for AI consumption hints
   - Provides a free-text hint for AI consumers (e.g., LLMs or AI agents) on how to use or interpret an Entity, Type, or Service — kept separate from human-readable `@EndUserText` descriptions
   - For JSON-based metadata formats, the corresponding property is `x-sap-ai-hint`
+- Added `@DataIntegration.technical` annotation to mark an element as technical (used for data integration purposes) rather than part of the business data of the data product
+- Added `@DataIntegration.dataProduct.customDataProvider.partialKeyDefinition` annotation: defines a subset of key fields of the CDS entity used for the DELETE operation during delta replication
 
 ### Fixed
 
-- Fixed JSON Schema `minItems: 1` constraint to the mandatory arrays in the `@EntityRelationship` vocabulary, so an empty array no longer passes validation for a required list. Affects `@EntityRelationship.EntityId.propertyTypes`, , `@EntityRelationship.TemporalId.propertyTypes`, `@EntityRelationship.TemporalReference.referencedPropertyTypes`, and `@EntityRelationship.ReferenceTargetWithConstantId.referencedPropertyTypes`. `minItems: 2` constraint to `@EntityRelationship.CompositeReference.referencedPropertyTypes`. This is a correction of the schema to follow the specification, having no items, semantically violates the specification.
+- Fixed JSON Schema `minItems: 1` constraint to the mandatory arrays in the `@EntityRelationship` vocabulary, so an empty array no longer passes validation for a required list. Affects `@EntityRelationship.EntityId.propertyTypes`, `@EntityRelationship.TemporalId.propertyTypes`, `@EntityRelationship.TemporalReference.referencedPropertyTypes`, and `@EntityRelationship.ReferenceTargetWithConstantId.referencedPropertyTypes`. `minItems: 2` constraint to `@EntityRelationship.CompositeReference.referencedPropertyTypes`. This is a correction of the schema to follow the specification, having no items, semantically violates the specification.
 - Fixed `@API.element.releaseState` and `@API.entity.releaseState` to set `additionalProperties: false` and `required: ["#"]`, matching the other `{ "#": "VALUE" }` enum annotations. Previously an empty object `{}` or an object with unknown keys passed validation.
-- Regenerated the committed TypeScript types so they include `@Consumption.aiHint`; the generated output had drifted from the spec sources (see the new freshness check below).
-
-### Internal
-
-- Added unit tests (`node:test`) that enforce annotation authoring conventions against the generated schema:
-  - enumerated values must use the `{ "#": "VALUE" }` wrapper notation (a `type: string` `#` property)
-  - enum wrappers must set `additionalProperties: false` and `required: ["#"]`
-  - top-level annotations must be flat dot-qualified key-value pairs, not structured nested objects (allowlist: deprecated `@API.element`, cohesive `@Semantics.valueRange`)
-  - top-level annotations must have a description and only use known `x-extension-targets`
-- Updated all npm dependencies to their latest versions, including TypeScript 7 (migrated `tsconfig.json` `moduleResolution` to `bundler`) and Biome 2.5.9
-- Switched the VS Code workspace formatter/linter recommendations from ESLint + Prettier to Biome and removed the obsolete `jest` type shim
-- Added an `add-annotation` skill (`.claude/skills/add-annotation/`) documenting the annotation authoring conventions, and a `scripts/validate-annotations.mjs` source/wiring check (`npm run validate:annotations`)
-- Changed the `format` script to `biome check --write` so `npm run format` (and the pre-commit hook) also organizes imports and applies safe lint fixes, matching what `npm run ci` checks
-- Backfilled the `x-introduced-in-version` annotation on all annotation-vocabulary definitions introduced after `1.0.0`, matching the existing convention already used in the core schema (e.g. `BinaryType`). This is documentation metadata only — it does not appear in the generated TypeScript types and is not a contract change. Covers `@ObjectModel.tenantWideUniqueName` (1.0.3), `@ObjectModel.custom` (1.0.6), the `@Semantics.mimeType` / `@Semantics.largeObject.*` family (1.1.0), `@DataIntegration.dataUnavailable` (1.2.3), the `@API.element*` / `@API.entity*` annotations (1.2.4 / 1.2.5), `@PersonalData.relatedDataCategoryID` and `@Consumption.hidden` (1.2.5), and `@Consumption.aiHint` (1.2.6).
-- Migrated the remaining bare-`enum` `{ "#": "VALUE" }` wrappers to the `oneOf` + `const` notation, matching the reference `@Aggregation.default`. The set of accepted values is unchanged for every annotation (verified value-set-equal against the previous schema), so this is not a contract change. Where per-value meanings are documented, each `const` now carries a `description`: `@Consumption.ConsumptionValueHelpDefinition.AdditionalBinding.Usage`, `@EntityRelationship.TemporalIntervalType`, `@ObjectModel.usageType.sizeCategory`. The opaque value sets (`@ObjectModel.modelingPattern`, `@ObjectModel.SupportedCapabilities_EnumValue`, `@EntityRelationship.TemporalType`, `@EntityRelationship.Category`) were converted without inventing per-value descriptions; those await authoritative documentation.
-- Added a `generate:check` script (`scripts/check-generated-up-to-date.mjs`) and wired it into CI so the build fails if the committed generated output under `src/generated/` is stale with respect to the spec YAML. This prevents spec changes from being merged without regenerating the derived TypeScript types (as happened with `@Consumption.aiHint`).
 
 ## [1.2.5]
 
