@@ -24,16 +24,21 @@ import * as fs from "fs-extra";
  *    `@ObjectModel.origin.codes` rather than `@ObjectModel.origin` = { layer,
  *    codes }).
  *
- * 3. Introduced-in-version: every top-level annotation added after the initial
- *    1.0 scope MUST carry an `x-introduced-in-version` tag so consumers can tell
- *    when a feature became available. The annotations that predate the
+ * 3. Introduced-in-version: every entry definition a consumer references
+ *    directly — core CSN types and top-level annotations — added after the
+ *    initial 1.0 scope MUST carry an `x-introduced-in-version` tag so consumers
+ *    can tell when a feature became available. The definitions that predate the
  *    convention (all part of the 1.0 scope) are grandfathered in an explicit
- *    set; new annotations must not be added to it.
+ *    set; new definitions must not be added to it.
  *
- * 4. Enum value descriptions: each `oneOf` + `const` enum value SHOULD document
- *    its meaning with a `description`. Value sets that still await authoritative
- *    documentation are listed in an explicit exception set and reported (warned)
- *    on every run so the outstanding backfill stays visible.
+ * 4. Enum value descriptions: across the whole schema, each `oneOf` + `const`
+ *    enum value SHOULD document its meaning with a `description`. Value sets
+ *    that still await authoritative documentation are listed in an explicit
+ *    exception set and reported (warned) on every run so the outstanding
+ *    backfill stays visible.
+ *
+ * Conventions 1 and 2 are specific to annotation vocabularies; conventions 3
+ * and 4 apply to the whole effective schema (core types included).
  */
 
 type JsonSchemaNode = Record<string, unknown>;
@@ -50,6 +55,16 @@ const definitions = (effectiveCsnSchema.definitions ?? {}) as Record<
 /** Definition names are prefixed with `@` for everything that belongs to an annotation vocabulary. */
 function getAnnotationDefinitions(): Array<[string, JsonSchemaNode]> {
   return Object.entries(definitions).filter(([name]) => name.startsWith("@"));
+}
+
+/** Every definition in the schema — the core CSN types and the annotation vocabularies. */
+function getAllDefinitions(): Array<[string, JsonSchemaNode]> {
+  return Object.entries(definitions);
+}
+
+/** A core (non-annotation) definition: a CSN type, not an `@`-prefixed annotation. */
+function isCoreDefinition(name: string): boolean {
+  return !name.startsWith("@");
 }
 
 function isEnumLike(node: JsonSchemaNode): boolean {
@@ -335,16 +350,16 @@ describe("Annotation extension targets", (): void => {
   }
 });
 
-describe("Annotation introduced-in-version", (): void => {
+describe("Introduced-in-version", (): void => {
   /**
-   * Top-level annotations that predate the `x-introduced-in-version`
-   * convention. These are all part of the initial 1.0 scope, so a "version in
-   * which this was introduced" is not meaningful for them — they are
-   * grandfathered here on purpose.
+   * Definitions that predate the `x-introduced-in-version` convention. These
+   * are all part of the initial 1.0 scope — both core CSN types and top-level
+   * annotations — so a "version in which this was introduced" is not meaningful
+   * for them; they are grandfathered here on purpose.
    *
-   * Do NOT add new annotations to this set. Any annotation introduced after 1.0
-   * must carry an accurate `x-introduced-in-version` tag in its vocabulary YAML
-   * instead (see the `add-annotation` skill).
+   * Do NOT add new entries to this set. Any core type or top-level annotation
+   * introduced after 1.0 must carry an accurate `x-introduced-in-version` tag in
+   * its schema/vocabulary YAML instead (see the `add-annotation` skill).
    */
   const LEGACY_WITHOUT_INTRODUCED_VERSION = new Set<string>([
     "@Aggregation.default",
@@ -404,18 +419,102 @@ describe("Annotation introduced-in-version", (): void => {
     "@Semantics.unitOfMeasure",
     "@Semantics.uuid",
     "@Semantics.valueRange",
+    "AndOperator",
+    "AssociationType",
+    "AssociationTypeDefinition",
+    "BooleanType",
+    "BooleanTypeDefinition",
+    "CardinalityObject",
+    "CdsType",
+    "CompositionType",
+    "CompositionTypeDefinition",
+    "ContextDefinition",
+    "CustomType",
+    "DateTimeType",
+    "DateTimeTypeDefinition",
+    "DateType",
+    "DateTypeDefinition",
+    "DecimalScaleNumber",
+    "DecimalScaleType",
+    "DecimalType",
+    "DecimalTypeDefinition",
+    "DefaultValueBoolean",
+    "DefaultValueCustomDerived",
+    "DefaultValueInteger",
+    "DefaultValueNumber",
+    "DefaultValueObject",
+    "DefaultValueString",
+    "DefinitionEntry",
+    "Definitions",
+    "DoubleType",
+    "DoubleTypeDefinition",
+    "ElementDefinitions",
+    "ElementEntry",
+    "ElementReference",
+    "ElementReferenceObject",
+    "ElementReferenceString",
+    "EntityDefinition",
+    "EnumDictionary",
+    "EnumDictionaryEntry",
+    "EqualsOperator",
+    "GreaterEqualsOperator",
+    "GreaterOperator",
+    "Int16Type",
+    "Int16TypeDefinition",
+    "Integer64Type",
+    "Integer64TypeDefinition",
+    "IntegerType",
+    "IntegerTypeDefinition",
+    "LanguageText",
+    "LargeStringType",
+    "LargeStringTypeDefinition",
+    "Meta",
+    "MetaDocument",
+    "MetaFeatures",
+    "OnValue",
+    "ServiceDefinition",
+    "SmallerEqualsOperator",
+    "SmallerOperator",
+    "StringType",
+    "StringTypeDefinition",
+    "StructuredElementReference",
+    "TimeType",
+    "TimeTypeDefinition",
+    "TimestampType",
+    "TimestampTypeDefinition",
+    "TypeDefinition",
+    "UInt8Type",
+    "UInt8TypeDefinition",
+    "UUIDType",
+    "UUIDTypeDefinition",
+    "i18n",
   ]);
 
   // Matches a full `MAJOR.MINOR.PATCH` version, the format used throughout the
   // spec (patch level is part of the spec version — see the CHANGELOG header).
   const INTRODUCED_VERSION_PATTERN = /^\d+\.\d+\.\d+$/;
 
-  for (const [name, definition] of getAnnotationDefinitions()) {
-    if (!isTopLevelAnnotation(definition)) {
-      continue; // referenced helper sub-objects inherit their parent's version.
-    }
-    // Pure `$ref` annotations carry their metadata on the ref target.
+  /**
+   * The version tag is required on every "entry" definition a consumer
+   * references directly: core CSN types and top-level annotations. Nested
+   * annotation-helper sub-objects (e.g. `@EntityRelationship.EntityId`) inherit
+   * their parent's version and are not required to carry their own tag.
+   */
+  function requiresIntroducedVersion(
+    name: string,
+    definition: JsonSchemaNode,
+  ): boolean {
     if (typeof definition.$ref === "string") {
+      return false; // pure `$ref` — metadata lives on the ref target.
+    }
+    if (isCoreDefinition(name)) {
+      return true;
+    }
+    return isTopLevelAnnotation(definition);
+  }
+
+  for (const [name, definition] of getAllDefinitions()) {
+    if (!requiresIntroducedVersion(name, definition)) {
       continue;
     }
     if (LEGACY_WITHOUT_INTRODUCED_VERSION.has(name)) {
@@ -425,22 +524,22 @@ describe("Annotation introduced-in-version", (): void => {
       const version = definition["x-introduced-in-version"];
       assert.ok(
         typeof version === "string" && INTRODUCED_VERSION_PATTERN.test(version),
-        `Top-level annotation '${name}' must declare 'x-introduced-in-version' as a MAJOR.MINOR.PATCH string ` +
-          `(got ${JSON.stringify(version)}). Add it to the annotation's vocabulary YAML — do not add the annotation ` +
+        `Definition '${name}' must declare 'x-introduced-in-version' as a MAJOR.MINOR.PATCH string ` +
+          `(got ${JSON.stringify(version)}). Add it to the schema/vocabulary YAML — do not add the definition ` +
           `to LEGACY_WITHOUT_INTRODUCED_VERSION (that set is only for the original 1.0 scope).`,
       );
     });
   }
 });
 
-describe("Annotation enum value descriptions", (): void => {
+describe("Enum value descriptions", (): void => {
   /**
-   * Annotations whose `oneOf` + `const` enum values do not (yet) carry a
+   * Definitions whose `oneOf` + `const` enum values do not (yet) carry a
    * per-value `description`, because authoritative documentation for the value
    * meanings is still outstanding. These are reported (warned) on every run so
    * the backfill stays visible; remove an entry once its values are documented.
    *
-   * Do NOT add new annotations here to silence the check — document the values
+   * Do NOT add new entries here to silence the check — document the values
    * instead. New enums are expected to describe every `const`.
    */
   const ENUM_CONST_DESCRIPTION_EXCEPTIONS = new Set<string>([
@@ -451,7 +550,7 @@ describe("Annotation enum value descriptions", (): void => {
   ]);
 
   const undocumented: string[] = [];
-  for (const [name, definition] of getAnnotationDefinitions()) {
+  for (const [name, definition] of getAllDefinitions()) {
     const constEntries: JsonSchemaNode[] = [];
     collectConstEntries(definition, constEntries);
     const missing = constEntries.filter(
@@ -469,14 +568,14 @@ describe("Annotation enum value descriptions", (): void => {
   );
   if (stillPending.length > 0) {
     console.warn(
-      `[annotationPatterns] ${stillPending.length} annotation(s) have enum 'const' values without a description ` +
+      `[annotationPatterns] ${stillPending.length} definition(s) have enum 'const' values without a description ` +
         `(grandfathered in ENUM_CONST_DESCRIPTION_EXCEPTIONS, pending documentation): ${stillPending
           .sort()
           .join(", ")}.`,
     );
   }
 
-  for (const [name, definition] of getAnnotationDefinitions()) {
+  for (const [name, definition] of getAllDefinitions()) {
     if (ENUM_CONST_DESCRIPTION_EXCEPTIONS.has(name)) {
       continue;
     }
@@ -493,7 +592,7 @@ describe("Annotation enum value descriptions", (): void => {
       assert.deepStrictEqual(
         missing,
         [],
-        `Annotation '${name}' has enum 'const' value(s) without a 'description': ${missing.join(", ")}. ` +
+        `Definition '${name}' has enum 'const' value(s) without a 'description': ${missing.join(", ")}. ` +
           `Document each value's meaning, or (only if authoritative documentation is genuinely outstanding) ` +
           `add '${name}' to ENUM_CONST_DESCRIPTION_EXCEPTIONS with a justification.`,
       );
