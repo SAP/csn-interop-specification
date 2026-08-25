@@ -71,6 +71,10 @@
           ]
         }
       },
+      "additionalProperties": false,
+      "required": [
+        "#"
+      ],
       "x-extension-targets": [
         "Type"
       ],
@@ -111,6 +115,10 @@
           ]
         }
       },
+      "additionalProperties": false,
+      "required": [
+        "#"
+      ],
       "x-extension-targets": [
         "Entity"
       ],
