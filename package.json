@@ -50,7 +50,7 @@
     "@docusaurus/plugin-client-redirects": "3.10.2",
     "@docusaurus/preset-classic": "3.10.2",
     "@easyops-cn/docusaurus-search-local": "0.55.3",
-    "@open-resource-discovery/spec-toolkit": "0.8.1",
+    "@open-resource-discovery/spec-toolkit": "0.8.2",
     "@tsconfig/node20": "20.1.10",
     "@types/fs-extra": "11.0.4",
     "@types/node": "26.3.0",
