@@ -24,6 +24,7 @@ definitions:
       The annotated element shall be ignored by consumers.
     x-extension-targets:
       - Type
+    x-introduced-in-version: "1.2.5"
 
   "@Consumption.ConsumptionValueHelpDefinition":
     title: Consumption Value Help Definition
@@ -137,3 +138,4 @@ definitions:
       - Entity
       - Type
       - Service
+    x-introduced-in-version: "1.2.6"
