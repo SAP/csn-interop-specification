@@ -13,7 +13,7 @@ commit `vX.Y.Z`, and then publishes to NPM + GitHub via a manual workflow.
 ## The golden rule
 
 **Never merge a contract-changing PR (new/changed annotations, schema changes)
-to `main` without cutting a release immediately after.** The documentation site
+to `main` without creating a new release immediately after.** The documentation site
 is built from `main`, so an unreleased contract change means the published docs
 advertise features that are not available in any release. Batch contract changes
 behind a milestone and release them together.
