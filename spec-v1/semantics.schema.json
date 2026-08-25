@@ -321,6 +321,7 @@
       "x-extension-targets": [
         "StringType"
       ],
+      "x-introduced-in-version": "1.1.0",
       "title": "@Semantics.mimeType"
     },
     "@Semantics.largeObject.acceptableMimeTypes": {
@@ -333,6 +334,7 @@
         "LargeStringType",
         "LargeBinaryType"
       ],
+      "x-introduced-in-version": "1.1.0",
       "title": "@Semantics.largeObject.acceptableMimeTypes"
     },
     "@Semantics.largeObject.mimeType": {
@@ -345,6 +347,7 @@
         "LargeStringType",
         "LargeBinaryType"
       ],
+      "x-introduced-in-version": "1.1.0",
       "title": "@Semantics.largeObject.mimeType",
       "$ref": "#/definitions/ElementReference"
     },
@@ -358,6 +361,7 @@
         "LargeStringType",
         "LargeBinaryType"
       ],
+      "x-introduced-in-version": "1.1.0",
       "title": "@Semantics.largeObject.fileName",
       "$ref": "#/definitions/ElementReference"
     }

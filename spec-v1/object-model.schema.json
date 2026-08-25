@@ -49,6 +49,7 @@
         "Entity",
         "Service"
       ],
+      "x-introduced-in-version": "1.0.6",
       "title": "@ObjectModel.custom"
     },
     "@ObjectModel.modelingPattern": {
@@ -164,6 +165,7 @@
       "x-extension-targets": [
         "Entity"
       ],
+      "x-introduced-in-version": "1.0.3",
       "title": "@ObjectModel.tenantWideUniqueName"
     },
     "@ObjectModel.usageType.sizeCategory": {

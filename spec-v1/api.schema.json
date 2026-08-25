@@ -28,6 +28,7 @@
       "x-extension-targets": [
         "Type"
       ],
+      "x-introduced-in-version": "1.2.4",
       "x-deprecated-in-version": "1.2.5",
       "x-deprecation-text": "The grouped-object form is retained for backward compatibility. New adopters should prefer the individual full-path annotations `@API.element.releaseState`, `@API.element.successor`, and `@API.element.decommissioningPlannedForYearMonth`.",
       "title": "@API.element"
@@ -38,6 +39,7 @@
       "x-extension-targets": [
         "Type"
       ],
+      "x-introduced-in-version": "1.2.5",
       "title": "@API.element.decommissioningPlannedForYearMonth"
     },
     "@API.element.successor": {
@@ -49,6 +51,7 @@
       "x-extension-targets": [
         "Type"
       ],
+      "x-introduced-in-version": "1.2.5",
       "title": "@API.element.successor",
       "$ref": "#/definitions/ElementReference"
     },
@@ -78,6 +81,7 @@
       "x-extension-targets": [
         "Type"
       ],
+      "x-introduced-in-version": "1.2.4",
       "title": "@API.element.releaseState"
     },
     "@API.entity.decommissioningPlannedForYearMonth": {
@@ -86,6 +90,7 @@
       "x-extension-targets": [
         "Entity"
       ],
+      "x-introduced-in-version": "1.2.5",
       "title": "@API.entity.decommissioningPlannedForYearMonth"
     },
     "@API.entity.successor": {
@@ -94,6 +99,7 @@
       "x-extension-targets": [
         "Entity"
       ],
+      "x-introduced-in-version": "1.2.5",
       "title": "@API.entity.successor"
     },
     "@API.entity.releaseState": {
@@ -122,6 +128,7 @@
       "x-extension-targets": [
         "Entity"
       ],
+      "x-introduced-in-version": "1.2.5",
       "title": "@API.entity.releaseState"
     }
   }

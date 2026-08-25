@@ -10912,19 +10912,22 @@
       },
       "x-extension-targets": [
         "Type"
-      ]
+      ],
+      "x-introduced-in-version": "1.2.4"
     },
     "@API.element.decommissioningPlannedForYearMonth": {
       "description": "The annotation describes the planned decommissioning date of the annotated element. Use ISO format for YearMonth: YYYY-MM (e.g. 2024-08)",
       "type": "string",
       "x-extension-targets": [
         "Type"
-      ]
+      ],
+      "x-introduced-in-version": "1.2.5"
     },
     "@API.element.successor": {
       "x-extension-targets": [
         "Type"
       ],
+      "x-introduced-in-version": "1.2.5",
       "$ref": "#/definitions/ElementReference"
     },
     "@API.element.releaseState": {
@@ -10952,21 +10955,24 @@
       ],
       "x-extension-targets": [
         "Type"
-      ]
+      ],
+      "x-introduced-in-version": "1.2.4"
     },
     "@API.entity.decommissioningPlannedForYearMonth": {
       "description": "The annotation describes the planned decommissioning date of the annotated entity. Use ISO format for YearMonth: YYYY-MM (e.g. 2024-08)",
       "type": "string",
       "x-extension-targets": [
         "Entity"
-      ]
+      ],
+      "x-introduced-in-version": "1.2.5"
     },
     "@API.entity.successor": {
       "description": "Defines the name of a released successor entity which replaces an entity with release state #DEPRECATED or #DECOMMISSIONED.",
       "type": "string",
       "x-extension-targets": [
         "Entity"
-      ]
+      ],
+      "x-introduced-in-version": "1.2.5"
     },
     "@API.entity.releaseState": {
       "type": "object",
@@ -10993,7 +10999,8 @@
       ],
       "x-extension-targets": [
         "Entity"
-      ]
+      ],
+      "x-introduced-in-version": "1.2.5"
     },
     "@Consumption.valueHelpDefinition": {
       "type": "array",
@@ -11012,7 +11019,8 @@
       "description": "The annotated element shall be ignored by consumers.",
       "x-extension-targets": [
         "Type"
-      ]
+      ],
+      "x-introduced-in-version": "1.2.5"
     },
     "@Consumption.ConsumptionValueHelpDefinition": {
       "title": "Consumption Value Help Definition",
@@ -11135,7 +11143,8 @@
         "Entity",
         "Type",
         "Service"
-      ]
+      ],
+      "x-introduced-in-version": "1.2.6"
     },
     "@DataIntegration.dataUnavailable": {
       "type": "boolean",
@@ -11143,7 +11152,8 @@
       "x-extension-targets": [
         "Type",
         "Entity"
-      ]
+      ],
+      "x-introduced-in-version": "1.2.3"
     },
     "@EndUserText.label": {
       "type": "string",
@@ -11604,7 +11614,8 @@
         "Type",
         "Entity",
         "Service"
-      ]
+      ],
+      "x-introduced-in-version": "1.0.6"
     },
     "@ObjectModel.modelingPattern": {
       "type": "object",
@@ -11698,7 +11709,8 @@
       "maxLength": 120,
       "x-extension-targets": [
         "Entity"
-      ]
+      ],
+      "x-introduced-in-version": "1.0.3"
     },
     "@ObjectModel.usageType.sizeCategory": {
       "type": "object",
@@ -11951,7 +11963,8 @@
       "x-extension-targets": [
         "Type",
         "Entity"
-      ]
+      ],
+      "x-introduced-in-version": "1.2.5"
     },
     "@Semantics.valueRange": {
       "type": "object",
@@ -12227,7 +12240,8 @@
       "description": "The property value is a MIME Type / Media Type, following [RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838).",
       "x-extension-targets": [
         "StringType"
-      ]
+      ],
+      "x-introduced-in-version": "1.1.0"
     },
     "@Semantics.largeObject.acceptableMimeTypes": {
       "description": "The property value contains a document / file that uses one of the stated MIME Types / Media Types ([RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838)).\nThis annotation can be used if the Media Type is already known at design time and can be described in the metadata model itself.\nIf the Media Type is only known at runtime, the \"@Semantics.largeObject.mimeType\" annotation has to be used instead.",
@@ -12238,13 +12252,15 @@
       "x-extension-targets": [
         "LargeStringType",
         "LargeBinaryType"
-      ]
+      ],
+      "x-introduced-in-version": "1.1.0"
     },
     "@Semantics.largeObject.mimeType": {
       "x-extension-targets": [
         "LargeStringType",
         "LargeBinaryType"
       ],
+      "x-introduced-in-version": "1.1.0",
       "$ref": "#/definitions/ElementReference"
     },
     "@Semantics.largeObject.fileName": {
@@ -12252,6 +12268,7 @@
         "LargeStringType",
         "LargeBinaryType"
       ],
+      "x-introduced-in-version": "1.1.0",
       "$ref": "#/definitions/ElementReference"
     }
   }

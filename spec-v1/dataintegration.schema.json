@@ -12,6 +12,7 @@
         "Type",
         "Entity"
       ],
+      "x-introduced-in-version": "1.2.3",
       "title": "@DataIntegration.dataUnavailable"
     }
   }
