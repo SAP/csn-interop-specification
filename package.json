@@ -43,7 +43,7 @@
     "prepare": "is-ci || lefthook install"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.9",
+    "@biomejs/biome": "2.5.10",
     "@docusaurus/core": "3.10.2",
     "@docusaurus/faster": "3.10.2",
     "@docusaurus/module-type-aliases": "3.10.2",
@@ -53,7 +53,7 @@
     "@open-resource-discovery/spec-toolkit": "0.8.1",
     "@tsconfig/node20": "20.1.10",
     "@types/fs-extra": "11.0.4",
-    "@types/node": "26.2.0",
+    "@types/node": "26.3.0",
     "fast-glob": "3.3.3",
     "fs-extra": "11.4.0",
     "is-ci": "4.1.0",
