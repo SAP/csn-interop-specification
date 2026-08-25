@@ -441,6 +441,9 @@
         "@DataIntegration.dataUnavailable": {
           "$ref": "#/definitions/@DataIntegration.dataUnavailable"
         },
+        "@DataIntegration.dataProduct.customDataProvider.partialKeyDefinition": {
+          "$ref": "#/definitions/@DataIntegration.dataProduct.customDataProvider.partialKeyDefinition"
+        },
         "@EndUserText.label": {
           "$ref": "#/definitions/@EndUserText.label"
         },
@@ -11277,6 +11280,23 @@
         "Entity"
       ],
       "x-introduced-in-version": "1.2.3"
+    },
+    "@DataIntegration.dataProduct.customDataProvider.partialKeyDefinition": {
+      "type": "array",
+      "description": "Defines subset of key fields of the CDS entity used for DELETE operation during delta replication.\n\n**Consistency Constraints:**\n- Fields defined in the annotation must be key fields of the CDS entity.",
+      "items": {},
+      "minItems": 1,
+      "x-extension-targets": [
+        "Entity"
+      ],
+      "x-introduced-in-version": "1.2.6",
+      "examples": [
+        [
+          "AirlineCode",
+          "FlightConnectionNumber",
+          "FlightDate"
+        ]
+      ]
     },
     "@DataIntegration.technical": {
       "type": "boolean",

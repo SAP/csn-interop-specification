@@ -15,6 +15,29 @@
       "x-introduced-in-version": "1.2.3",
       "title": "@DataIntegration.dataUnavailable"
     },
+    "@DataIntegration.dataProduct.customDataProvider.partialKeyDefinition": {
+      "type": "array",
+      "description": "Defines subset of key fields of the CDS entity used for DELETE operation during delta replication.\n\n**Consistency Constraints:**\n- Fields defined in the annotation must be key fields of the CDS entity.",
+      "items": {
+        "x-ref-to-doc": {
+          "title": "Element Reference",
+          "ref": "#/definitions/ElementReference"
+        }
+      },
+      "minItems": 1,
+      "x-extension-targets": [
+        "Entity"
+      ],
+      "x-introduced-in-version": "1.2.6",
+      "examples": [
+        [
+          "AirlineCode",
+          "FlightConnectionNumber",
+          "FlightDate"
+        ]
+      ],
+      "title": "@DataIntegration.dataProduct.customDataProvider.partialKeyDefinition"
+    },
     "@DataIntegration.technical": {
       "type": "boolean",
       "const": true,
