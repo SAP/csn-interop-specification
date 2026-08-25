@@ -68,6 +68,41 @@ git push -u origin release/vX.Y.Z
 The `release/vX.Y.Z → main` PR is the model used by the last clean releases
 (#151 for 1.2.3, #163 for 1.2.4). Tags end up on `main`.
 
+## Check dependencies
+
+A release is the moment to do a final dependency pass. Check what is outdated and
+whether anything shipped is vulnerable:
+
+```bash
+npm outdated                 # direct deps behind their allowed latest
+npm audit                    # all findings (includes the dev docs-site toolchain)
+npm audit --omit=dev         # findings that actually affect the published package
+```
+
+Interpret before acting:
+
+- **`npm audit --omit=dev` is the one that matters for consumers.** This repo has
+  no runtime `dependencies` — everything is `devDependencies`, and most audit
+  findings are transitive under `@docusaurus/core` (the docs site: `webpack-dev-server`,
+  `ws`, …) which never ships in the NPM artifact. A dev-only finding is not a
+  release blocker.
+- `npm audit fix` (non-breaking) is safe to apply; `--force` is a major-version
+  bump of a toolchain (e.g. Docusaurus) and is **not** an in-release change.
+
+**Then ask the user whether to bundle the updates into this release or do them
+separately** — this is a decision for them, not a default:
+
+- **Recommend a separate follow-up PR** when the update requires further changes:
+  a major-version bump, a breaking toolchain migration, anything needing its own
+  smoke-test, or a batch of dev-dep bumps. Coupling that into the release PR is
+  exactly the kind of risk the golden rule warns against, and per the changelog
+  curation policy dev-tooling bumps get no changelog entry anyway.
+- **Bundling into the release is fine** only for a trivial, non-breaking security
+  fix on a shipped (non-dev) dependency that you want out with this version.
+
+Either way, a pure dev-dependency/tooling bump is **not** a consumer-facing change:
+no `CHANGELOG.md` entry (see the curation rules below).
+
 ## Finalize the CHANGELOG
 
 On the release branch, turn the accumulated `## [unreleased]` notes into the
@@ -161,6 +196,7 @@ the GitHub Release). Get it reviewed and merge it.
 
 - [ ] Milestone created, PRs assigned + ordered, all merged to `main`.
 - [ ] `release/vX.Y.Z` branched from up-to-date `main`.
+- [ ] Dependencies checked (`npm outdated` / `npm audit --omit=dev`); user asked whether to bundle updates or do them separately (separate PR recommended if they require further changes).
 - [ ] `## [X.Y.Z]` header added; `## [unreleased]` kept as empty landing zone.
 - [ ] CHANGELOG curated to consumer-relevant changes only.
 - [ ] `package.json` version == `X.Y.Z`, lockfile refreshed.
