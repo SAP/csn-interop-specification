@@ -19,6 +19,19 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 ### Fixed
 
 - Fixed JSON Schema `minItems: 1` constraint to the mandatory arrays in the `@EntityRelationship` vocabulary, so an empty array no longer passes validation for a required list. Affects `@EntityRelationship.EntityId.propertyTypes`, , `@EntityRelationship.TemporalId.propertyTypes`, `@EntityRelationship.TemporalReference.referencedPropertyTypes`, and `@EntityRelationship.ReferenceTargetWithConstantId.referencedPropertyTypes`. `minItems: 2` constraint to `@EntityRelationship.CompositeReference.referencedPropertyTypes`. This is a correction of the schema to follow the specification, having no items, semantically violates the specification.
+- Fixed `@API.element.releaseState` and `@API.entity.releaseState` to set `additionalProperties: false` and `required: ["#"]`, matching the other `{ "#": "VALUE" }` enum annotations. Previously an empty object `{}` or an object with unknown keys passed validation.
+
+### Internal
+
+- Added unit tests (`node:test`) that enforce annotation authoring conventions against the generated schema:
+  - enumerated values must use the `{ "#": "VALUE" }` wrapper notation (a `type: string` `#` property)
+  - enum wrappers must set `additionalProperties: false` and `required: ["#"]`
+  - top-level annotations must be flat dot-qualified key-value pairs, not structured nested objects (allowlist: deprecated `@API.element`, cohesive `@Semantics.valueRange`)
+  - top-level annotations must have a description and only use known `x-extension-targets`
+- Updated all npm dependencies to their latest versions, including TypeScript 7 (migrated `tsconfig.json` `moduleResolution` to `bundler`) and Biome 2.5.9
+- Switched the VS Code workspace formatter/linter recommendations from ESLint + Prettier to Biome and removed the obsolete `jest` type shim
+- Added an `add-annotation` skill (`.claude/skills/add-annotation/`) documenting the annotation authoring conventions, and a `scripts/validate-annotations.mjs` source/wiring check (`npm run validate:annotations`)
+- Changed the `format` script to `biome check --write` so `npm run format` (and the pre-commit hook) also organizes imports and applies safe lint fixes, matching what `npm run ci` checks
 
 ### Internal
 
