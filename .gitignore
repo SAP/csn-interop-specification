@@ -34,5 +34,9 @@ static/spec-v1/*
 sap-csn-interop-specification-*
 
 # Claude Code
-.claude/
+.claude/*
+# ...but share the repo's skills (authoring workflows) and project settings
+# (settings.local.json stays personal/ignored via the .claude/* rule above).
+!.claude/skills/
+!.claude/settings.json
 .DS_Store

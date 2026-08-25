@@ -64,6 +64,9 @@ definitions:
               Formerly released element/association not to be used anymore.
               At runtime, the element/association returns null values.
               Together with this value a successors of the element/association should be defined using annotation @API.element.successor.
+    additionalProperties: false
+    required:
+      - "#"
     x-extension-targets:
       - Type
   # //////////////////////////////////////////
@@ -101,5 +104,8 @@ definitions:
               Formerly released entity not to be used anymore.
               At runtime, the entity returns null values.
               Together with this value a successors of the entity should be defined using annotation @API.entity.successor.
+    additionalProperties: false
+    required:
+      - "#"
     x-extension-targets:
       - Entity
