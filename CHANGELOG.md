@@ -8,6 +8,14 @@ including the **patch** level in the spec version number.
 
 For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMAP.md)
 
+## [unreleased]
+
+### Internal
+
+- Extended the annotation-convention unit tests (`src/__tests__/spec-v1/annotationPatterns.test.ts`) with two enforcement checks against the generated schema:
+  - every top-level annotation introduced after the initial 1.0 scope must declare an `x-introduced-in-version` tag (`MAJOR.MINOR.PATCH`). The original 1.0 annotations are grandfathered in an explicit `LEGACY_WITHOUT_INTRODUCED_VERSION` set; new annotations must not be added to it.
+  - every `oneOf` + `const` enum value must carry a `description`. Value sets whose authoritative documentation is still outstanding are listed in `ENUM_CONST_DESCRIPTION_EXCEPTIONS` (`@ObjectModel.modelingPattern`, `@ObjectModel.SupportedCapabilities_EnumValue`, `@EntityRelationship.TemporalType`, `@EntityRelationship.Category`) and warned to the console on every run so the backfill stays visible.
+
 ## [1.2.6]
 
 ### Added

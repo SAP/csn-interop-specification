@@ -9,7 +9,7 @@ import * as fs from "fs-extra";
  * source of truth the runtime validation tests use) so that they catch
  * violations regardless of which YAML file introduced them.
  *
- * Two conventions are enforced:
+ * The conventions enforced here:
  *
  * 1. Enum notation: enumerated annotation values MUST be expressed with the
  *    `{ "#": "VALUE" }` wrapper (an object with a single string `#` property
@@ -23,6 +23,17 @@ import * as fs from "fs-extra";
  *    split into multiple flat annotations (e.g. `@ObjectModel.origin.layer` +
  *    `@ObjectModel.origin.codes` rather than `@ObjectModel.origin` = { layer,
  *    codes }).
+ *
+ * 3. Introduced-in-version: every top-level annotation added after the initial
+ *    1.0 scope MUST carry an `x-introduced-in-version` tag so consumers can tell
+ *    when a feature became available. The annotations that predate the
+ *    convention (all part of the 1.0 scope) are grandfathered in an explicit
+ *    set; new annotations must not be added to it.
+ *
+ * 4. Enum value descriptions: each `oneOf` + `const` enum value SHOULD document
+ *    its meaning with a `description`. Value sets that still await authoritative
+ *    documentation are listed in an explicit exception set and reported (warned)
+ *    on every run so the outstanding backfill stays visible.
  */
 
 type JsonSchemaNode = Record<string, unknown>;
@@ -85,6 +96,38 @@ function collectEnumLikeNodes(
       continue;
     }
     collectEnumLikeNodes(value, key, hits, `${path}/${key}`);
+  }
+}
+
+/**
+ * Collect every `oneOf` `const` entry (the schema object carrying `const`)
+ * reachable from `node`. These are the individual enumerated values whose
+ * meaning should be documented with a `description`.
+ */
+function collectConstEntries(node: unknown, hits: JsonSchemaNode[]): void {
+  if (node === null || typeof node !== "object") {
+    return;
+  }
+  if (Array.isArray(node)) {
+    for (const entry of node) {
+      collectConstEntries(entry, hits);
+    }
+    return;
+  }
+  const record = node as JsonSchemaNode;
+  if (Array.isArray(record.oneOf)) {
+    for (const entry of record.oneOf) {
+      if (entry !== null && typeof entry === "object" && "const" in entry) {
+        hits.push(entry as JsonSchemaNode);
+      }
+    }
+  }
+  for (const [key, value] of Object.entries(record)) {
+    // `examples` may legitimately contain `{ "#": "VALUE" }` literals; skip it.
+    if (key === "examples") {
+      continue;
+    }
+    collectConstEntries(value, hits);
   }
 }
 
@@ -287,6 +330,172 @@ describe("Annotation extension targets", (): void => {
         `Annotation '${name}' declares unknown x-extension-targets: ${JSON.stringify(
           unknown,
         )}. Allowed: ${[...ALLOWED_EXTENSION_TARGETS].join(", ")}.`,
+      );
+    });
+  }
+});
+
+describe("Annotation introduced-in-version", (): void => {
+  /**
+   * Top-level annotations that predate the `x-introduced-in-version`
+   * convention. These are all part of the initial 1.0 scope, so a "version in
+   * which this was introduced" is not meaningful for them — they are
+   * grandfathered here on purpose.
+   *
+   * Do NOT add new annotations to this set. Any annotation introduced after 1.0
+   * must carry an accurate `x-introduced-in-version` tag in its vocabulary YAML
+   * instead (see the `add-annotation` skill).
+   */
+  const LEGACY_WITHOUT_INTRODUCED_VERSION = new Set<string>([
+    "@Aggregation.default",
+    "@AnalyticsDetails.measureType",
+    "@Consumption.valueHelpDefinition",
+    "@EndUserText.heading",
+    "@EndUserText.label",
+    "@EndUserText.quickInfo",
+    "@EntityRelationship.compositeReferences",
+    "@EntityRelationship.entityIds",
+    "@EntityRelationship.entityType",
+    "@EntityRelationship.propertyType",
+    "@EntityRelationship.reference",
+    "@EntityRelationship.referencesWithConstantIds",
+    "@EntityRelationship.temporalIds",
+    "@EntityRelationship.temporalReferences",
+    "@ODM.entityName",
+    "@ODM.oidReference.entityName",
+    "@ObjectModel.compositionRoot",
+    "@ObjectModel.modelingPattern",
+    "@ObjectModel.semanticKey",
+    "@ObjectModel.supportedCapabilities",
+    "@ObjectModel.text.element",
+    "@ObjectModel.usageType.sizeCategory",
+    "@PersonalData.dataSubjectRole",
+    "@PersonalData.dataSubjectRoleDescription",
+    "@PersonalData.entitySemantics",
+    "@PersonalData.fieldSemantics",
+    "@PersonalData.isPotentiallyPersonal",
+    "@PersonalData.isPotentiallySensitive",
+    "@Semantics.businessDate.from",
+    "@Semantics.businessDate.to",
+    "@Semantics.calendar.dayOfMonth",
+    "@Semantics.calendar.dayOfYear",
+    "@Semantics.calendar.halfyear",
+    "@Semantics.calendar.month",
+    "@Semantics.calendar.quarter",
+    "@Semantics.calendar.week",
+    "@Semantics.calendar.year",
+    "@Semantics.calendar.yearHalfyear",
+    "@Semantics.calendar.yearMonth",
+    "@Semantics.calendar.yearQuarter",
+    "@Semantics.calendar.yearWeek",
+    "@Semantics.currencyCode",
+    "@Semantics.fiscal.dayOfYear",
+    "@Semantics.fiscal.period",
+    "@Semantics.fiscal.quarter",
+    "@Semantics.fiscal.week",
+    "@Semantics.fiscal.year",
+    "@Semantics.fiscal.yearPeriod",
+    "@Semantics.fiscal.yearQuarter",
+    "@Semantics.fiscal.yearVariant",
+    "@Semantics.fiscal.yearWeek",
+    "@Semantics.language",
+    "@Semantics.text",
+    "@Semantics.time",
+    "@Semantics.unitOfMeasure",
+    "@Semantics.uuid",
+    "@Semantics.valueRange",
+  ]);
+
+  // Matches a full `MAJOR.MINOR.PATCH` version, the format used throughout the
+  // spec (patch level is part of the spec version — see the CHANGELOG header).
+  const INTRODUCED_VERSION_PATTERN = /^\d+\.\d+\.\d+$/;
+
+  for (const [name, definition] of getAnnotationDefinitions()) {
+    if (!isTopLevelAnnotation(definition)) {
+      continue; // referenced helper sub-objects inherit their parent's version.
+    }
+    // Pure `$ref` annotations carry their metadata on the ref target.
+    if (typeof definition.$ref === "string") {
+      continue;
+    }
+    if (LEGACY_WITHOUT_INTRODUCED_VERSION.has(name)) {
+      continue;
+    }
+    test(`'${name}' declares x-introduced-in-version`, (): void => {
+      const version = definition["x-introduced-in-version"];
+      assert.ok(
+        typeof version === "string" && INTRODUCED_VERSION_PATTERN.test(version),
+        `Top-level annotation '${name}' must declare 'x-introduced-in-version' as a MAJOR.MINOR.PATCH string ` +
+          `(got ${JSON.stringify(version)}). Add it to the annotation's vocabulary YAML — do not add the annotation ` +
+          `to LEGACY_WITHOUT_INTRODUCED_VERSION (that set is only for the original 1.0 scope).`,
+      );
+    });
+  }
+});
+
+describe("Annotation enum value descriptions", (): void => {
+  /**
+   * Annotations whose `oneOf` + `const` enum values do not (yet) carry a
+   * per-value `description`, because authoritative documentation for the value
+   * meanings is still outstanding. These are reported (warned) on every run so
+   * the backfill stays visible; remove an entry once its values are documented.
+   *
+   * Do NOT add new annotations here to silence the check — document the values
+   * instead. New enums are expected to describe every `const`.
+   */
+  const ENUM_CONST_DESCRIPTION_EXCEPTIONS = new Set<string>([
+    "@EntityRelationship.Category",
+    "@EntityRelationship.TemporalType",
+    "@ObjectModel.SupportedCapabilities_EnumValue",
+    "@ObjectModel.modelingPattern",
+  ]);
+
+  const undocumented: string[] = [];
+  for (const [name, definition] of getAnnotationDefinitions()) {
+    const constEntries: JsonSchemaNode[] = [];
+    collectConstEntries(definition, constEntries);
+    const missing = constEntries.filter(
+      (entry) =>
+        typeof entry.description !== "string" ||
+        entry.description.trim().length === 0,
+    );
+    if (missing.length > 0) {
+      undocumented.push(name);
+    }
+  }
+
+  const stillPending = undocumented.filter((name) =>
+    ENUM_CONST_DESCRIPTION_EXCEPTIONS.has(name),
+  );
+  if (stillPending.length > 0) {
+    console.warn(
+      `[annotationPatterns] ${stillPending.length} annotation(s) have enum 'const' values without a description ` +
+        `(grandfathered in ENUM_CONST_DESCRIPTION_EXCEPTIONS, pending documentation): ${stillPending
+          .sort()
+          .join(", ")}.`,
+    );
+  }
+
+  for (const [name, definition] of getAnnotationDefinitions()) {
+    if (ENUM_CONST_DESCRIPTION_EXCEPTIONS.has(name)) {
+      continue;
+    }
+    test(`'${name}' documents every enum 'const' value with a description`, (): void => {
+      const constEntries: JsonSchemaNode[] = [];
+      collectConstEntries(definition, constEntries);
+      const missing = constEntries
+        .filter(
+          (entry) =>
+            typeof entry.description !== "string" ||
+            entry.description.trim().length === 0,
+        )
+        .map((entry) => JSON.stringify(entry.const));
+      assert.deepStrictEqual(
+        missing,
+        [],
+        `Annotation '${name}' has enum 'const' value(s) without a 'description': ${missing.join(", ")}. ` +
+          `Document each value's meaning, or (only if authoritative documentation is genuinely outstanding) ` +
+          `add '${name}' to ENUM_CONST_DESCRIPTION_EXCEPTIONS with a justification.`,
       );
     });
   }
