@@ -3,11 +3,15 @@ import { describe, test } from "node:test";
 import * as fs from "fs-extra";
 
 /**
- * Structural conventions for annotation vocabularies.
+ * Structural conventions for the effective CSN JSON Schema.
  *
  * These tests operate on the *generated* effective CSN JSON Schema (the same
  * source of truth the runtime validation tests use) so that they catch
  * violations regardless of which YAML file introduced them.
+ *
+ * Some conventions apply only to annotation vocabularies and some apply to the
+ * whole schema (core CSN types included); each `describe()` block states its
+ * own scope in its title ("Annotation …" vs. "Schema-wide …").
  *
  * The conventions enforced here:
  *
@@ -350,7 +354,7 @@ describe("Annotation extension targets", (): void => {
   }
 });
 
-describe("Introduced-in-version", (): void => {
+describe("Schema-wide introduced-in-version", (): void => {
   /**
    * Definitions that predate the `x-introduced-in-version` convention. These
    * are all part of the initial 1.0 scope — both core CSN types and top-level
@@ -532,7 +536,7 @@ describe("Introduced-in-version", (): void => {
   }
 });
 
-describe("Enum value descriptions", (): void => {
+describe("Schema-wide enum value descriptions", (): void => {
   /**
    * Definitions whose `oneOf` + `const` enum values do not (yet) carry a
    * per-value `description`, because authoritative documentation for the value
@@ -568,7 +572,7 @@ describe("Enum value descriptions", (): void => {
   );
   if (stillPending.length > 0) {
     console.warn(
-      `[annotationPatterns] ${stillPending.length} definition(s) have enum 'const' values without a description ` +
+      `[schemaConventions] ${stillPending.length} definition(s) have enum 'const' values without a description ` +
         `(grandfathered in ENUM_CONST_DESCRIPTION_EXCEPTIONS, pending documentation): ${stillPending
           .sort()
           .join(", ")}.`,

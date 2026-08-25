@@ -12,7 +12,7 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ### Internal
 
-- Extended the schema-convention unit tests (`src/__tests__/spec-v1/annotationPatterns.test.ts`) with two enforcement checks against the generated effective schema (core CSN types and annotation vocabularies alike):
+- Extended the schema-convention unit tests (`src/__tests__/spec-v1/schemaConventions.test.ts`) with two enforcement checks against the generated effective schema (core CSN types and annotation vocabularies alike):
   - every entry definition a consumer references directly — core types and top-level annotations — introduced after the initial 1.0 scope must declare an `x-introduced-in-version` tag (`MAJOR.MINOR.PATCH`). The original 1.0 definitions are grandfathered in an explicit `LEGACY_WITHOUT_INTRODUCED_VERSION` set; new definitions must not be added to it.
   - every `oneOf` + `const` enum value across the schema must carry a `description`. Value sets whose authoritative documentation is still outstanding are listed in `ENUM_CONST_DESCRIPTION_EXCEPTIONS` (`@ObjectModel.modelingPattern`, `@ObjectModel.SupportedCapabilities_EnumValue`, `@EntityRelationship.TemporalType`, `@EntityRelationship.Category`) and warned to the console on every run so the backfill stays visible.
 
