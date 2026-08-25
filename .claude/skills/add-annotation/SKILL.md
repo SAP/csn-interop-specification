@@ -28,7 +28,7 @@ or consuming/validating CSN documents (that's the separate `csn-interop` referen
 
 ## Conventions (this is what CI enforces)
 
-The rules below are enforced by `src/__tests__/spec-v1/annotationPatterns.test.ts` and
+The rules below are enforced by `src/__tests__/spec-v1/schemaConventions.test.ts` and
 `scripts/validate-annotations.mjs`. Getting them right up front means green CI.
 
 ### 1. Annotations are flat, dot-qualified keys
@@ -61,7 +61,7 @@ would let callers set one without the other and produce an invalid partial state
 If — and only if — that genuinely applies:
 
 1. Add the annotation name to `ALLOWED_STRUCTURED_ANNOTATIONS` in
-   `src/__tests__/spec-v1/annotationPatterns.test.ts`, with a comment justifying why the
+   `src/__tests__/spec-v1/schemaConventions.test.ts`, with a comment justifying why the
    properties are cohesive (follow the `@Semantics.valueRange` example).
 2. **Call it out explicitly in the PR description / review** as a conscious design decision —
    "this is a structured annotation because it is a DDD value object (X and Y only have
@@ -73,7 +73,7 @@ If — and only if — that genuinely applies:
 
 Never a bare string `enum` on the annotation. Wrap it in a `#` property, set
 `type: string`, and lock the object with `additionalProperties: false` + `required: ["#"]`.
-This wrapper shape **is enforced by CI** (`annotationPatterns.test.ts`).
+This wrapper shape **is enforced by CI** (`schemaConventions.test.ts`).
 
 **Recommended default: `oneOf` + `const` with a per-value `description`, over a bare
 `enum: [...]`.** This is best practice — not CI-enforced (the repo still has some bare-enum

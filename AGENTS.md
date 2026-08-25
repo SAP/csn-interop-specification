@@ -47,7 +47,7 @@ npm run validate:annotations
 This checks that every vocabulary YAML is wired into `spec-toolkit.config.json` and has a
 sibling `.md`, that `CHANGELOG.md` has a pending `[unreleased]` entry, plus a cheap
 per-annotation lint. Schema-shape correctness is enforced by `npm run test`
-(`src/__tests__/spec-v1/annotationPatterns.test.ts`).
+(`src/__tests__/spec-v1/schemaConventions.test.ts`).
 
 New vocabulary (e.g., `@DataIntegration`) in short — see the skill for the full recipe:
 
