@@ -168,29 +168,68 @@ the GitHub Release). Get it reviewed and merge it.
 
 ## Tag and publish
 
-1. After the PR merges, tag the merge commit on `main` and push the tag:
+After the PR merges to `main`, publish via the **Release** GitHub Action
+(`.github/workflows/release.yml`) — `workflow_dispatch` (manual) with two toggles:
 
-   ```bash
-   git fetch origin
-   git tag vX.Y.Z origin/main
-   git push origin vX.Y.Z
-   ```
+```bash
+gh workflow run release.yml -f npm=true -f githubRelease=true
+```
 
-2. Publish via the **Release** GitHub Action (`.github/workflows/release.yml`),
-   which is `workflow_dispatch` (manual) with two toggles:
-   - **NPMJS Package** — publishes to NPM; runs in the
-     `npmjs:@sap/csn-interop-specification` environment and **needs manual
-     approval**.
-   - **GitHub Release** — creates the GitHub release via
-     `open-resource-discovery/github-release`. If it doesn't run, create the
-     GitHub release by hand from the tag and paste in the `## [X.Y.Z]` CHANGELOG
-     section as the release notes.
+- **NPMJS Package** (`npm` job) — `npm publish` in the
+  `npmjs:@sap/csn-interop-specification` environment, which **needs manual
+  approval** (approve the deployment in the run's page).
+- **GitHub Release** (`githubRelease` job, runs after `npm`) — uses
+  `open-resource-discovery/github-release`. This action **derives the version
+  from `package.json`, creates the `vX.Y.Z` tag itself** (template `v<version>`),
+  and **auto-generates the release notes** from commits since the last tag plus a
+  contributor list.
 
-   ```bash
-   gh workflow run release.yml -f npm=true -f githubRelease=true
-   ```
+So in the normal path you do **not** create or push the tag by hand — the action
+does it. The published GitHub release ends up as a hybrid: the auto-generated
+`## What's Changed` / `## New Contributors` / `**Full Changelog**` sections, with
+the curated `## [X.Y.Z]` CHANGELOG block pasted on top (edit the release after it
+is created if the toolchain didn't prepend it).
 
-3. Confirm the NPM package version and the GitHub release both show `X.Y.Z`.
+### Verify the automation actually ran
+
+The workflow is not reliably green — it has failed outright before (three failed
+dispatches on 2026-02-12) and around v1.2.6 was believed broken and done by hand.
+**Always confirm the run succeeded and both artifacts show `X.Y.Z`:**
+
+```bash
+gh run list --workflow=release.yml --limit 3   # latest dispatch: success?
+gh release view vX.Y.Z                          # tag + notes exist
+npm view @sap/csn-interop-specification version  # == X.Y.Z
+```
+
+### Manual fallback (only if the action didn't run / failed)
+
+If the workflow failed or didn't create the tag + release, create the release
+by hand from the new-release page:
+
+<https://github.com/SAP/csn-interop-specification/releases/new>
+
+In the tag dropdown, **type `vX.Y.Z`** — GitHub creates the tag (on `main`, the
+merge commit) when you publish, so there is no separate tagging step. Target
+`main`, click "Generate release notes" for the `## What's Changed` block, then
+paste the curated `## [X.Y.Z]` CHANGELOG section above it.
+
+(You only need `git tag vX.Y.Z origin/main && git push origin vX.Y.Z` beforehand
+if you want the tag to exist first, e.g. to select it rather than type it — the
+release itself does not require a pre-existing tag.)
+
+If NPM also didn't publish, re-dispatch with just `-f npm=true`, or `npm publish`
+locally from a clean checkout of the tag.
+
+## Notify the CSN Interop workstream
+
+After the release is live (NPM + GitHub both show `X.Y.Z`), notify the workstream.
+Prompt the user to send a mail to the CPA Distribution List (incl. Interested):
+
+- **To:** CSN Interop Interested Contacts (the CPA distribution list incl. Interested)
+- **Subject:** `CSN Interop Specification vX.Y.Z released`
+- **Body:** the `## [X.Y.Z]` CHANGELOG highlights + link to the GitHub release
+  (`https://github.com/SAP/csn-interop-specification/releases/tag/vX.Y.Z`).
 
 ## Checklist
 
@@ -202,5 +241,8 @@ the GitHub Release). Get it reviewed and merge it.
 - [ ] `package.json` version == `X.Y.Z`, lockfile refreshed.
 - [ ] `npm run ci && npm run test && npm run generate:check` green.
 - [ ] Release PR opened → `main`, on the milestone, body = changelog section.
-- [ ] PR merged; `vX.Y.Z` tag created on the merge commit and pushed.
-- [ ] Release workflow dispatched: NPM (approved) + GitHub Release published.
+- [ ] PR merged.
+- [ ] Release workflow dispatched: NPM (approved) + GitHub Release. The action
+      creates the `vX.Y.Z` tag itself — no manual tagging in the normal path.
+- [ ] Verified the run succeeded: `gh release view vX.Y.Z` + `npm view … version` both `X.Y.Z`. Manual fallback via releases/new if not.
+- [ ] Workstream notified: mail to the CSN Interop Interested Contacts list.
