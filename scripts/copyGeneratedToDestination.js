@@ -1,16 +1,20 @@
-const fs = require("fs-extra");
+const { cp, mkdir } = require("node:fs/promises");
 
 async function copyGeneratedToDestination() {
   try {
     console.log("Starting file copy operations...");
 
     // Create docs/spec-v1/ directory and copy files
-    await fs.ensureDir("docs/spec-v1/");
-    await fs.copy("./src/generated/spec/v1/docs", "docs/spec-v1/");
+    await mkdir("docs/spec-v1/", { recursive: true });
+    await cp("./src/generated/spec/v1/docs", "docs/spec-v1/", {
+      recursive: true,
+    });
 
     // Create static/spec-v1/ directory and copy files
-    await fs.ensureDir("static/spec-v1/");
-    await fs.copy("./src/generated/spec/v1/schemas", "static/spec-v1/");
+    await mkdir("static/spec-v1/", { recursive: true });
+    await cp("./src/generated/spec/v1/schemas", "static/spec-v1/", {
+      recursive: true,
+    });
 
     console.log("Files copied successfully.");
   } catch (error) {
