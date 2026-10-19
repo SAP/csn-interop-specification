@@ -274,6 +274,26 @@ export type SemanticsBusinessDateFrom = true;
  */
 export type SemanticsBusinessDateTo = true;
 /**
+ * The property contains a date which is the key date.
+ */
+export type SemanticsBusinessDateAt = true;
+/**
+ * The property contains a date which is the point in time when the record was created for the first time.
+ */
+export type SemanticsSystemDateCreatedAt = true;
+/**
+ * The property contains a date which is the point in time when the record was modified for the last time.
+ */
+export type SemanticsSystemDateLastChangedAt = true;
+/**
+ * The property contains a timestamp which is the point in time when the record was created for the first time.
+ */
+export type SemanticsSystemDateTimeCreatedAt = true;
+/**
+ * The property contains a timestamp which is the point in time when the record was modified for the last time.
+ */
+export type SemanticsSystemDateTimeLastChangedAt = true;
+/**
  * The property value is a MIME Type / Media Type, following [RFC 6838](https://datatracker.ietf.org/doc/html/rfc6838).
  */
 export type SemanticsMimeType = true;
@@ -907,6 +927,11 @@ export interface BooleanType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -1182,6 +1207,11 @@ export interface StringType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   "@Semantics.mimeType"?: SemanticsMimeType;
   /**
    * Annotations or private properties MAY be added.
@@ -1335,6 +1365,11 @@ export interface LargeStringType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObject;
   "@Semantics.largeObject.mimeType"?: ElementReference;
   "@Semantics.largeObject.fileName"?: ElementReference;
@@ -1446,6 +1481,11 @@ export interface IntegerType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -1585,6 +1625,11 @@ export interface Int16Type {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -1693,6 +1738,11 @@ export interface Integer64Type {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -1801,6 +1851,11 @@ export interface UInt8Type {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -1924,6 +1979,11 @@ export interface DecimalType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -2031,6 +2091,11 @@ export interface DoubleType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -2138,6 +2203,11 @@ export interface DateType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -2245,6 +2315,11 @@ export interface TimeType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -2352,6 +2427,11 @@ export interface DateTimeType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -2459,6 +2539,11 @@ export interface TimestampType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -2565,6 +2650,11 @@ export interface UUIDType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -2677,6 +2767,11 @@ export interface BinaryType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -2781,6 +2876,11 @@ export interface LargeBinaryType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObject;
   "@Semantics.largeObject.mimeType"?: ElementReference;
   "@Semantics.largeObject.fileName"?: ElementReference;
@@ -2948,6 +3048,11 @@ export interface AssociationType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3162,6 +3267,11 @@ export interface CompositionType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3310,6 +3420,11 @@ export interface CustomType {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3752,6 +3867,11 @@ export interface BooleanTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3862,6 +3982,11 @@ export interface StringTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   "@Semantics.mimeType"?: SemanticsMimeType;
   /**
    * Annotations or private properties MAY be added.
@@ -3972,6 +4097,11 @@ export interface LargeStringTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObject;
   "@Semantics.largeObject.mimeType"?: ElementReference;
   "@Semantics.largeObject.fileName"?: ElementReference;
@@ -4080,6 +4210,11 @@ export interface IntegerTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -4185,6 +4320,11 @@ export interface Int16TypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -4290,6 +4430,11 @@ export interface Integer64TypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -4395,6 +4540,11 @@ export interface UInt8TypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -4515,6 +4665,11 @@ export interface DecimalTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -4620,6 +4775,11 @@ export interface DoubleTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -4724,6 +4884,11 @@ export interface DateTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -4828,6 +4993,11 @@ export interface TimeTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -4932,6 +5102,11 @@ export interface DateTimeTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -5036,6 +5211,11 @@ export interface TimestampTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -5139,6 +5319,11 @@ export interface UUIDTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -5248,6 +5433,11 @@ export interface BinaryTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -5356,6 +5546,11 @@ export interface LargeBinaryTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObject;
   "@Semantics.largeObject.mimeType"?: ElementReference;
   "@Semantics.largeObject.fileName"?: ElementReference;
@@ -5524,6 +5719,11 @@ export interface AssociationTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -5689,6 +5889,11 @@ export interface CompositionTypeDefinition {
   "@Semantics.uuid"?: SemanticsUuid;
   "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
   "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
+  "@Semantics.businessDate.at"?: SemanticsBusinessDateAt;
+  "@Semantics.systemDate.createdAt"?: SemanticsSystemDateCreatedAt;
+  "@Semantics.systemDate.lastChangedAt"?: SemanticsSystemDateLastChangedAt;
+  "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
+  "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   /**
    * Annotations or private properties MAY be added.
    *
