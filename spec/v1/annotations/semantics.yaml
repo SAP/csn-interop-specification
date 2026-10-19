@@ -279,6 +279,22 @@ definitions:
       - Type
       # - DateType
 
+  "@Semantics.systemDateTime.createdAt":
+    <<: *semanticsFieldBoolean
+    description: |-
+      The property contains a timestamp which is the point in time when the record was created for the first time.
+    x-extension-targets:
+      - Type
+      # - DateType
+
+  "@Semantics.systemDateTime.lastChangedAt":
+    <<: *semanticsFieldBoolean
+    description: |-
+      The property contains a timestamp which is the point in time when the record was modified for the last time.
+    x-extension-targets:
+      - Type
+      # - DateType
+
   "@Semantics.mimeType":
     <<: *semanticsFieldBoolean
     description: |-
