@@ -187,6 +187,6 @@ for (const problem of problems) {
   console.error(`  - ${problem}`);
 }
 console.error(
-  "\nSee .claude/skills/add-annotation/SKILL.md for the annotation authoring conventions.",
+  "\nSee .agents/skills/add-annotation/SKILL.md for the annotation authoring conventions.",
 );
 process.exit(1);

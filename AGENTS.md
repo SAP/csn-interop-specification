@@ -34,7 +34,7 @@ Format: Keep a Changelog style with Added/Changed/Fixed sections.
 ### Adding or Changing Annotations
 
 For adding/editing an annotation or introducing a new vocabulary, use the
-**`add-annotation` skill** (`.claude/skills/add-annotation/SKILL.md`). It encodes the
+**`add-annotation` skill** (`.agents/skills/add-annotation/SKILL.md`). It encodes the
 repo's conventions (flat dot-qualified keys, the `{ "#": "VALUE" }` enum wrapper,
 mandatory changelog + regenerate) so the result passes CI on the first try.
 
@@ -60,6 +60,13 @@ New vocabulary (e.g., `@DataIntegration`) in short — see the skill for the ful
 3. Run `npm run generate` to regenerate types
 
 4. Add changelog entry describing the new vocabulary
+
+## Skills
+
+Read the linked `SKILL.md` when its task matches; load detailed instructions only when needed.
+
+- [add-annotation](.agents/skills/add-annotation/SKILL.md) - Add or change annotations and vocabularies.
+- [release](.agents/skills/release/SKILL.md) - Prepare and publish a CSN Interop release.
 
 ## Pre-commit Hooks
 
