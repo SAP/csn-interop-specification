@@ -40,13 +40,13 @@ describe("Tests for all elements", (): void => {
   describe("Test Element", (): void => {
     test("fails with missing 'type' property for Element", (): void => {
       const data = getCsnDocumentTestData({
+        // @ts-expect-error intentional invalid data for test
         ABTEI: {
           "@EndUserText.heading": "{i18n>ABTEI@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>ABTEI@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>ABTEI@ENDUSERTEXT.QUICKINFO}",
           kind: "entity",
           elements: {
-            // @ts-expect-error intentional invalid data for test
             MyElement: {},
           },
         },

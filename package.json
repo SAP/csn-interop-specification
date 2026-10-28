@@ -8,8 +8,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "engines": {
-    "node": ">=26.0.0",
-    "npm": ">=12.0.0"
+    "node": ">=24.0.0",
+    "npm": ">=11.0.0"
   },
   "repository": {
     "type": "git",
@@ -43,22 +43,27 @@
     "prepare": "is-ci || lefthook install"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.10",
+    "@biomejs/biome": "2.6.3",
     "@docusaurus/core": "3.10.2",
     "@docusaurus/faster": "3.10.2",
     "@docusaurus/module-type-aliases": "3.10.2",
     "@docusaurus/plugin-client-redirects": "3.10.2",
     "@docusaurus/preset-classic": "3.10.2",
     "@easyops-cn/docusaurus-search-local": "0.55.3",
-    "@open-resource-discovery/spec-toolkit": "0.8.2",
-    "@tsconfig/node26": "26.0.1",
-    "@types/node": "26.4.1",
+    "@open-resource-discovery/spec-toolkit": "0.9.1",
+    "@tsconfig/node24": "24.0.5",
+    "@types/node": "24.19.2",
     "is-ci": "4.1.0",
-    "json-schema-library": "11.6.2",
-    "lefthook": "2.1.10",
+    "json-schema-library": "11.6.16",
+    "lefthook": "2.2.2",
     "prism-react-renderer": "2.4.1",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
     "typescript": "7.0.2"
+  },
+  "overrides": {
+    "tinypool": "^2.2.0",
+    "serialize-javascript": "^7.1.4",
+    "uuid": "^11.1.1"
   }
 }

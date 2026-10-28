@@ -10,6 +10,13 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+### Changed
+
+- Modernized development tooling using Node.js 24 LTS built-in APIs and updated direct dependencies and the transitive lockfile.
+- Grouped npm security updates into a single Dependabot PR while retaining Renovate for scheduled routine updates. Kept Node type definitions aligned with Node.js 24 LTS.
+- Updated the spec toolkit to `0.9.1`, regenerating TypeScript definitions with stricter schema-derived types and descriptive annotation type names. BREAKING: generated helper type names have changed (for example, `Consumption` becomes `ConsumptionValueHelpDefinition`).
+- Applied patched transitive build dependencies for `tinypool`, `serialize-javascript`, and `uuid`.
+
 ## [1.2.6]
 
 ### Added
