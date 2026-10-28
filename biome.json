@@ -6,6 +6,12 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["*.{json,js,ts}", "src/**", "scripts/**", "!src/generated"]
+    "includes": [
+      "*.{json,js,ts}",
+      "tooling/**",
+      "src/**",
+      "scripts/**",
+      "!src/generated"
+    ]
   }
 }
