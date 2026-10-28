@@ -1,6 +1,6 @@
 ---
 name: add-annotation
-description: Add or change an annotation in the CSN Interop spec (files under spec/v1/annotations/), including creating a whole new annotation vocabulary. Use when the user wants to add/edit an `@Something` annotation, introduce a new `@Vocabulary`, or asks how annotations are authored in this repo. Encodes the repo's conventions (the `{ "#": "VALUE" }` enum wrapper, flat dot-qualified keys, mandatory changelog + regenerate) so the result passes CI on the first try.
+description: "Add or change an annotation in the CSN Interop spec (files under spec/v1/annotations/), including creating a whole new annotation vocabulary. Use when the user wants to add/edit an `@Something` annotation, introduce a new `@Vocabulary`, or asks how annotations are authored in this repo. Encodes the repo's conventions (the `{ \"#\": \"VALUE\" }` enum wrapper, flat dot-qualified keys, mandatory changelog + regenerate) so the result passes CI on the first try."
 ---
 
 # Add an annotation to the CSN Interop specification
