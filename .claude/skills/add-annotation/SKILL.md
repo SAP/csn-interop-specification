@@ -138,9 +138,10 @@ each choice is self-documenting.
   the grouped object is kept and deprecated, with flat `@API.element.releaseState` /
   `.successor` / `.decommissioningPlannedForYearMonth` replacements.
 - **Recommended:** tag new annotations with `x-introduced-in-version: "<version>"` (the same
-  attribute the core schema uses). Note: no annotation carries this yet — it is a
-  forward-looking convention, and a backport onto existing annotations is pending, so
-  its absence on older definitions is expected.
+  attribute the core schema uses), using a full `MAJOR.MINOR.PATCH` string for the planned
+  release. If the actual release differs, correct the tag before publishing. Missing or
+  malformed tags produce warnings rather than failing CI, so version metadata can also
+  be backfilled or corrected later.
 
 > These conventions describe how to author annotations **today**. Some older vocabularies
 > predate them (e.g. `@API.element`'s structured shape, enum wrappers that originally

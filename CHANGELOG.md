@@ -10,6 +10,14 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+### Added
+
+- Added `@Semantics.businessDate.at`, `@Semantics.systemDate.createdAt`, `@Semantics.systemDate.lastChangedAt`, `@Semantics.systemDateTime.createdAt`, and `@Semantics.systemDateTime.lastChangedAt` annotations, with introduction version `1.2.7`.
+
+### Changed
+
+- Missing or malformed `x-introduced-in-version` metadata now produces a warning instead of failing the schema convention tests, allowing version metadata to be backfilled or corrected without blocking CI.
+
 ## [1.2.6]
 
 ### Added

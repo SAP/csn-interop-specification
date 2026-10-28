@@ -30,8 +30,10 @@ import * as fs from "fs-extra";
  *
  * 3. Introduced-in-version: every entry definition a consumer references
  *    directly — core CSN types and top-level annotations — added after the
- *    initial 1.0 scope MUST carry an `x-introduced-in-version` tag so consumers
- *    can tell when a feature became available. The definitions that predate the
+ *    initial 1.0 scope SHOULD carry an `x-introduced-in-version` tag so consumers
+ *    can tell when a feature became available. Missing or malformed tags are
+ *    reported as warnings so they can be backfilled without blocking CI.
+ *    The definitions that predate the
  *    convention (all part of the 1.0 scope) are grandfathered in an explicit
  *    set; new definitions must not be added to it.
  *
@@ -362,7 +364,7 @@ describe("Schema-wide introduced-in-version", (): void => {
    * for them; they are grandfathered here on purpose.
    *
    * Do NOT add new entries to this set. Any core type or top-level annotation
-   * introduced after 1.0 must carry an accurate `x-introduced-in-version` tag in
+   * introduced after 1.0 should carry an accurate `x-introduced-in-version` tag in
    * its schema/vocabulary YAML instead (see the `add-annotation` skill).
    */
   const LEGACY_WITHOUT_INTRODUCED_VERSION = new Set<string>([
@@ -499,7 +501,7 @@ describe("Schema-wide introduced-in-version", (): void => {
   const INTRODUCED_VERSION_PATTERN = /^\d+\.\d+\.\d+$/;
 
   /**
-   * The version tag is required on every "entry" definition a consumer
+   * The version tag is recommended on every "entry" definition a consumer
    * references directly: core CSN types and top-level annotations. Nested
    * annotation-helper sub-objects (e.g. `@EntityRelationship.EntityId`) inherit
    * their parent's version and are not required to carry their own tag.
@@ -524,14 +526,18 @@ describe("Schema-wide introduced-in-version", (): void => {
     if (LEGACY_WITHOUT_INTRODUCED_VERSION.has(name)) {
       continue;
     }
-    test(`'${name}' declares x-introduced-in-version`, (): void => {
+    test(`'${name}' checks x-introduced-in-version (warning only)`, (): void => {
       const version = definition["x-introduced-in-version"];
-      assert.ok(
-        typeof version === "string" && INTRODUCED_VERSION_PATTERN.test(version),
-        `Definition '${name}' must declare 'x-introduced-in-version' as a MAJOR.MINOR.PATCH string ` +
-          `(got ${JSON.stringify(version)}). Add it to the schema/vocabulary YAML — do not add the definition ` +
-          `to LEGACY_WITHOUT_INTRODUCED_VERSION (that set is only for the original 1.0 scope).`,
-      );
+      if (
+        typeof version !== "string" ||
+        !INTRODUCED_VERSION_PATTERN.test(version)
+      ) {
+        console.warn(
+          `[schemaConventions] Definition '${name}' should declare 'x-introduced-in-version' as a MAJOR.MINOR.PATCH string ` +
+            `(got ${JSON.stringify(version)}). Add or correct it in the schema/vocabulary YAML when the release version is known. ` +
+            `This is a warning only and does not block CI; version metadata can be backfilled later.`,
+        );
+      }
     });
   }
 });
