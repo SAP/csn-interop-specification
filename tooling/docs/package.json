@@ -1,0 +1,27 @@
+{
+  "name": "@sap/csn-interop-docs",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Documentation site tooling for the CSN Interop specification.",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=24.0.0",
+    "npm": ">=11.0.0"
+  },
+  "scripts": {
+    "build": "docusaurus build ../..",
+    "start": "docusaurus start ../..",
+    "serve": "docusaurus serve ../..",
+    "clear": "docusaurus clear ../.."
+  },
+  "devDependencies": {
+    "@docusaurus/core": "3.10.2",
+    "@docusaurus/faster": "3.10.2",
+    "@docusaurus/plugin-client-redirects": "3.10.2",
+    "@docusaurus/preset-classic": "3.10.2",
+    "@easyops-cn/docusaurus-search-local": "0.55.3",
+    "prism-react-renderer": "2.4.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  }
+}

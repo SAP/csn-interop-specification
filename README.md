@@ -19,9 +19,9 @@ For more general requests (like missing content), please create a [GitHub Issue]
 ## Development Setup
 
 ```bash
-# Prerequisite: Node.js 18+ installed
-# Install dependencies
-npm i
+# Prerequisites: Node.js 24 LTS and npm 11+
+# Install spec tooling and the documentation workspace
+npm ci
 
 # Build docusaurus page locally
 npm run build
@@ -33,8 +33,20 @@ npm start
 npm run generate
 
 # Run unit tests
-npm run test-unit
+npm run test:unit
 ```
+
+For spec-only development, install without the documentation workspace:
+
+```bash
+npm ci --workspaces=false
+npm run test:spec
+```
+
+The published specification package stays at the repository root. The private
+`tooling/docs` workspace owns the Docusaurus, React, search, and highlighting
+dependencies; the documentation sources and generated site output keep their
+existing locations. Run `npm ci` to restore the full documentation toolchain.
 
 This repository uses simple trunk-based development flow.
 Always create a new branch with your changes and create a PR.

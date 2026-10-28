@@ -23,13 +23,13 @@
     "dist/generated/spec/v1"
   ],
   "scripts": {
-    "clean": "tsx src/clean.ts",
-    "clear": "docusaurus clear",
-    "build": "npm run generate && npm run build:ts && npm run build:docusaurus",
+    "clean": "node scripts/clean.mjs",
+    "clear": "npm run clear --workspace @sap/csn-interop-docs --",
+    "build": "npm run build:spec && npm run build:docusaurus",
     "build:ts": "tsc -p ./tsconfig.json",
-    "build:docusaurus": "docusaurus build",
-    "generate": "npx @open-resource-discovery/spec-toolkit -c ./spec-toolkit.config.json",
-    "postgenerate": "tsx ./scripts/copyGeneratedToDestination.js",
+    "build:docusaurus": "npm run build --workspace @sap/csn-interop-docs --",
+    "generate": "spec-toolkit -c ./spec-toolkit.config.json",
+    "postgenerate": "node ./scripts/copyGeneratedToDestination.js",
     "generate:check": "node scripts/check-generated-up-to-date.mjs",
     "format": "biome check --write .",
     "ci": "biome ci .",
@@ -37,32 +37,26 @@
     "test": "npm run build && npm run test:unit",
     "test:unit": "node --test 'dist/__tests__/**/*.test.js'",
     "validate:annotations": "node scripts/validate-annotations.mjs",
-    "serve": "docusaurus serve",
+    "serve": "npm run serve --workspace @sap/csn-interop-docs --",
     "prestart": "npm run clear",
-    "start": "docusaurus start",
-    "prepare": "is-ci || lefthook install"
+    "start": "npm run start --workspace @sap/csn-interop-docs --",
+    "build:spec": "npm run generate && npm run build:ts",
+    "test:spec": "npm run build:spec && npm run test:unit"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.10",
-    "@docusaurus/core": "3.10.2",
-    "@docusaurus/faster": "3.10.2",
-    "@docusaurus/module-type-aliases": "3.10.2",
-    "@docusaurus/plugin-client-redirects": "3.10.2",
-    "@docusaurus/preset-classic": "3.10.2",
-    "@easyops-cn/docusaurus-search-local": "0.55.3",
-    "@open-resource-discovery/spec-toolkit": "0.8.2",
-    "@tsconfig/node20": "20.1.10",
-    "@types/fs-extra": "11.0.4",
-    "@types/node": "26.3.0",
-    "fast-glob": "3.3.3",
-    "fs-extra": "11.4.0",
-    "is-ci": "4.1.0",
-    "json-schema-library": "11.6.2",
-    "lefthook": "2.1.10",
-    "prism-react-renderer": "2.4.1",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "tsx": "4.23.12",
+    "@biomejs/biome": "2.6.3",
+    "@open-resource-discovery/spec-toolkit": "0.9.1",
+    "@types/node": "24.19.2",
+    "json-schema-library": "11.6.16",
+    "lefthook": "2.2.2",
     "typescript": "7.0.2"
-  }
+  },
+  "overrides": {
+    "tinypool": "^2.2.0",
+    "serialize-javascript": "^7.1.4",
+    "uuid": "^11.1.1"
+  },
+  "workspaces": [
+    "tooling/docs"
+  ]
 }
