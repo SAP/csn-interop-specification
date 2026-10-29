@@ -10,6 +10,7 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+
 ### Added
 
 - Added `@Semantics.businessDate.at`, `@Semantics.systemDate.createdAt`, `@Semantics.systemDate.lastChangedAt`, `@Semantics.systemDateTime.createdAt`, and `@Semantics.systemDateTime.lastChangedAt` annotations, with introduction version `1.2.7`.
@@ -17,6 +18,12 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 ### Changed
 
 - Missing or malformed `x-introduced-in-version` metadata now produces a warning instead of failing the schema convention tests, allowing version metadata to be backfilled or corrected without blocking CI.
+- Modernized development tooling using Node.js 24 LTS built-in APIs and updated direct dependencies and the transitive lockfile.
+- Grouped npm security updates into a single Dependabot PR while retaining Renovate for scheduled routine updates. Kept Node type definitions aligned with Node.js 24 LTS.
+- Updated the spec toolkit to `0.9.1`, regenerating TypeScript definitions with stricter schema-derived types and descriptive annotation type names. BREAKING: generated helper type names have changed (for example, `Consumption` becomes `ConsumptionValueHelpDefinition`).
+- Applied patched transitive build dependencies for `tinypool`, `serialize-javascript`, and `uuid`.
+- Moved documentation-site dependencies into the private `tooling/docs` npm workspace. Root build and preview commands still work; `npm ci --workspaces=false` and `npm run test:spec` support spec-only development without installing the site toolchain.
+- Removed redundant direct dependencies on `is-ci`, `@tsconfig/node24`, and `@docusaurus/module-type-aliases`, along with the duplicate hook-installation `prepare` script. Invoked the installed spec toolkit directly during generation.
 
 ## [1.2.6]
 

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { describe, test } from "node:test";
-import * as fs from "fs-extra";
 import { compileSchema, type JsonSchema } from "json-schema-library";
 import {
   assertContainsValidationMessage,
@@ -9,8 +9,11 @@ import {
 } from "./testUtils";
 
 describe("Tests for all elements", (): void => {
-  const effectiveCsnSchema = fs.readJSONSync(
-    "./src/generated/spec/v1/schemas/csn-interop-effective.schema.json",
+  const effectiveCsnSchema = JSON.parse(
+    readFileSync(
+      "./src/generated/spec/v1/schemas/csn-interop-effective.schema.json",
+      "utf8",
+    ),
   ) as JsonSchema;
 
   const effectiveCsnSchemaValidator = compileSchema(effectiveCsnSchema);
@@ -37,13 +40,13 @@ describe("Tests for all elements", (): void => {
   describe("Test Element", (): void => {
     test("fails with missing 'type' property for Element", (): void => {
       const data = getCsnDocumentTestData({
+        // @ts-expect-error intentional invalid data for test
         ABTEI: {
           "@EndUserText.heading": "{i18n>ABTEI@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>ABTEI@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>ABTEI@ENDUSERTEXT.QUICKINFO}",
           kind: "entity",
           elements: {
-            // @ts-expect-error intentional invalid data for test
             MyElement: {},
           },
         },

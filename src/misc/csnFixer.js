@@ -2,17 +2,16 @@
 // We could extend this to convert standard ABAP / CAP Effective CSN to CSN Interop in the future,
 // if we cover all necessary conversion / fixing cases.
 
-const fg = require("fast-glob");
-const fs = require("fs-extra");
+const { readFileSync, readdirSync, writeFileSync } = require("node:fs");
 const path = require("node:path");
 
 const targetDir = process.argv[2] || "./tmp/s4-csn/";
 
-const files = fg.sync("*.json", { cwd: targetDir });
+const files = readdirSync(targetDir).filter((file) => file.endsWith(".json"));
 console.log(`Found ${files.length} .json files to fix.`);
 
 for (const file of files) {
-  const csnModel = fs.readJSONSync(path.join(targetDir, file));
+  const csnModel = JSON.parse(readFileSync(path.join(targetDir, file), "utf8"));
   const originalContent = JSON.stringify(csnModel);
 
   for (const definitionName in csnModel.definitions) {
@@ -31,7 +30,7 @@ for (const file of files) {
   const newContent = JSON.stringify(csnModel);
   if (originalContent !== newContent) {
     const outputFileName = `${targetDir}/${file.replace(".json", ".fixed.json")}`;
-    fs.outputFileSync(outputFileName, JSON.stringify(csnModel, null, 2));
+    writeFileSync(outputFileName, JSON.stringify(csnModel, null, 2));
     console.log(`Fixed CSN File: ${outputFileName}`);
   }
 }

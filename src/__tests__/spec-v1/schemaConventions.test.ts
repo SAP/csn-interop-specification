@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { describe, test } from "node:test";
-import * as fs from "fs-extra";
 
 /**
  * Structural conventions for the effective CSN JSON Schema.
@@ -49,8 +49,11 @@ import * as fs from "fs-extra";
 
 type JsonSchemaNode = Record<string, unknown>;
 
-const effectiveCsnSchema = fs.readJSONSync(
-  "./src/generated/spec/v1/schemas/csn-interop-effective.schema.json",
+const effectiveCsnSchema = JSON.parse(
+  readFileSync(
+    "./src/generated/spec/v1/schemas/csn-interop-effective.schema.json",
+    "utf8",
+  ),
 ) as JsonSchemaNode;
 
 const definitions = (effectiveCsnSchema.definitions ?? {}) as Record<

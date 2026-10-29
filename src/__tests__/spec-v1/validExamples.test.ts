@@ -1,16 +1,21 @@
 import assert from "node:assert/strict";
+import { globSync, readFileSync } from "node:fs";
 import { describe, test } from "node:test";
-import * as fg from "fast-glob";
-import * as fs from "fs-extra";
 import { compileSchema, type JsonError } from "json-schema-library";
 import type { CSNInteropEffectiveDocument } from "../../generated/spec/v1/types";
 
-const effectiveCsnSchema = fs.readJSONSync(
-  "./src/generated/spec/v1/schemas/csn-interop-effective.schema.json",
+const effectiveCsnSchema = JSON.parse(
+  readFileSync(
+    "./src/generated/spec/v1/schemas/csn-interop-effective.schema.json",
+    "utf8",
+  ),
 ) as CSNInteropEffectiveDocument;
 
-const effectiveCsnSchemaExtended = fs.readJSONSync(
-  "./src/generated/spec/v1/schemas/csn-interop-effective.schema.json",
+const effectiveCsnSchemaExtended = JSON.parse(
+  readFileSync(
+    "./src/generated/spec/v1/schemas/csn-interop-effective.schema.json",
+    "utf8",
+  ),
 ) as CSNInteropEffectiveDocument;
 
 const effectiveCsnSchemaValidator = compileSchema(effectiveCsnSchema);
@@ -18,7 +23,7 @@ const effectiveCsnSchemaExtendedValidator = compileSchema(
   effectiveCsnSchemaExtended,
 );
 
-const documentFilePaths = fg.sync("./spec/v1/examples/*.json", {});
+const documentFilePaths = globSync("./spec/v1/examples/*.json");
 
 type JsonSchemaValidationError = {
   code: string;
@@ -41,7 +46,7 @@ function simplifyValidationErrors(
 describe("Valid Example Files", (): void => {
   describe("CSN Interop Effective (core only)", (): void => {
     for (const filePath of documentFilePaths) {
-      const fileContent = fs.readFileSync(filePath).toString();
+      const fileContent = readFileSync(filePath, "utf8");
       describe(filePath, (): void => {
         test("passes simple JSON Schema based validation", (): void => {
           const data = JSON.parse(fileContent);
@@ -56,7 +61,7 @@ describe("Valid Example Files", (): void => {
 
   describe("CSN Interop Effective (incl. annotations)", (): void => {
     for (const filePath of documentFilePaths) {
-      const fileContent = fs.readFileSync(filePath).toString();
+      const fileContent = readFileSync(filePath, "utf8");
       describe(filePath, (): void => {
         test("passes simple JSON Schema based validation", (): void => {
           const data = JSON.parse(fileContent);
