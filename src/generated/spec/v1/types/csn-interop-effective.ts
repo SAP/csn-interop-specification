@@ -6,8 +6,7 @@
  * This interface was referenced by `Definitions`'s JSON-Schema definition
  * via the `patternProperty` "^(?![@]|__|\.|::).+$".
  */
-export type DefinitionEntry = DefinitionEntry1 & DefinitionEntry2;
-export type DefinitionEntry1 = ContextDefinition | EntityDefinition | ServiceDefinition | TypeDefinition;
+export type DefinitionEntry = ContextDefinition | EntityDefinition | ServiceDefinition | TypeDefinition;
 /**
  * The property contains a human-readable text to be displayed on UIs (besides or instead of the technical name).
  *
@@ -31,13 +30,11 @@ export type EndUserTextQuickInfo = string;
  * This interface was referenced by `ElementDefinitions`'s JSON-Schema definition
  * via the `patternProperty` "^(?![@]|__|\.|::).+$".
  */
-export type ElementEntry = ElementEntry1 & ElementEntry2;
-export type ElementEntry1 = CdsType | CustomType;
+export type ElementEntry = CdsType | CustomType;
 /**
  * The native CDS Type of an element, which will always start with `cds.`.
  */
-export type CdsType = CdsType1 & CdsType2;
-export type CdsType1 =
+export type CdsType =
   | BooleanType
   | StringType
   | LargeStringType
@@ -85,7 +82,7 @@ export type APIElementDecommissioningPlannedForYearMonth = string;
  * It allows to associate a (set of) View/Entity that provides the "Value Help" for the annotated field or parameter.
  * This is achieved by either referencing the target view/entity of a modelled association or by directly establishing a relationship to view/entity that shall act as a value help provider.
  */
-export type ConsumptionValueHelpDefinition = ConsumptionValueHelpDefinition1[];
+export type Consumption = ConsumptionValueHelpDefinition[];
 /**
  * The annotated element shall be ignored by consumers.
  */
@@ -128,7 +125,7 @@ export type PropertyTypeID = string;
 /**
  * Defines references to other Entity Types based on a single ID.
  */
-export type EntityRelationshipReference = ReferenceTarget[];
+export type EntityRelationship = ReferenceTarget[];
 /**
  * Indicates whether the annotated element or entity is a custom element.
  * If set to true, it is a custom element (field, entity, service, etc.).
@@ -140,7 +137,7 @@ export type ObjectModelCustom = boolean;
 /**
  * The property contains element(s) containing a text for the annotated (id)element
  */
-export type ObjectModelTextElement = unknown[];
+export type ObjectModelText = unknown[];
 /**
  * The property contains an OID for the ODM Entity with this official name
  */
@@ -161,7 +158,7 @@ export type PersonalDataIsPotentiallySensitive = boolean;
 /**
  * The annotation value is an array of strings, enabling the assignment of multiple data categories to one entity or field. Data categories are entities describing a particular set of personal data with a similar usage, meaning, quality, and risk. The strings must adhere to the format of an Correlation ID corresponding to the concept name "dataCategory" in conjunction with an localIdentifier introduced herein (refer to [ORD Specification | Open Resource Discovery](https://open-resource-discovery.org/spec-v1#correlation-id)).
  */
-export type PersonalDataRelatedDataCategoryID = string[];
+export type PersonalData1 = string[];
 /**
  * The property contains a currency code.
  */
@@ -305,7 +302,7 @@ export type SemanticsMimeType = true;
  * This annotation can be used if the Media Type is already known at design time and can be described in the metadata model itself.
  * If the Media Type is only known at runtime, the "@Semantics.largeObject.mimeType" annotation has to be used instead.
  */
-export type SemanticsLargeObjectAcceptableMimeTypes = string[];
+export type SemanticsLargeObject = string[];
 /**
  * Total number of digits that are present after the decimal point in a number.
  * The scale can hold from zero up to the total numeric precision
@@ -359,7 +356,7 @@ export type APIEntitySuccessor = string;
  *
  * @minItems 1
  */
-export type DataIntegrationDataProductCustomDataProviderPartialKeyDefinition = [unknown, ...unknown[]];
+export type DataIntegrationDataProductCustomDataProvider = [unknown, ...unknown[]];
 /**
  * Defines which [Entity Type](#entity-type) the current data object represents.
  *
@@ -374,7 +371,7 @@ export type EntityRelationshipEntityType = string;
  * * Some ID properties form a **composite ID** together and need to be combined to function as a unique ID for references
  * * This is indicated by a [`propertyTypes`](#property-type) array with more than one Property Type ID entry.
  */
-export type EntityRelationshipEntityIds = EntityID[];
+export type EntityRelationship1 = EntityID[];
 /**
  * Name of the property in the local Entity Type
  */
@@ -382,19 +379,19 @@ export type LocalPropertyName = string;
 /**
  * Defines one or many references to other Entity Types based on a composite IDs.
  */
-export type EntityRelationshipCompositeReferences = CompositeReference[];
+export type EntityRelationship2 = CompositeReference[];
 /**
  * Defines a list of temporal IDs
  */
-export type EntityRelationshipTemporalIds = TemporalID[];
+export type EntityRelationship3 = TemporalID[];
 /**
  * Defines a list of temporal references
  */
-export type EntityRelationshipTemporalReferences = TemporalReference[];
+export type EntityRelationship4 = TemporalReference[];
 /**
  * Defines one or many references to other Entity Types based on a composite IDs where some properties of the references are constant values.
  */
-export type EntityRelationshipReferencesWithConstantIds = ReferenceWithConstantID[];
+export type EntityRelationship5 = ReferenceWithConstantID[];
 /**
  * Entity is the root of a compositional hierarchy.
  */
@@ -402,11 +399,11 @@ export type ObjectModelCompositionRoot = boolean;
 /**
  * The entity contains element(s) which shall be used to display the key in UIs (instead of the technical key).
  */
-export type ObjectModelSemanticKey = unknown[];
+export type ObjectModel = unknown[];
 /**
  * The property declares the supported usage type for this entity in the context of consuming data models.
  */
-export type ObjectModelSupportedCapabilities = SupportedCapabilitiesEnumValue[];
+export type ObjectModel2 = SupportedCapabilitiesEnumValue[];
 /**
  * Unique technical name of the entity within the tenant / isolation context it is deployed to.
  * This may be used as a hint for database table names and help to keep them short enough.
@@ -438,8 +435,7 @@ export type PersonalDataDataSubjectRoleDescription = string;
  * - Attributes and annotations MUST be also copied and merged with those defined in the [element](#elemententry) using this derived type.
  *   This ensures that consumers only have to lookup the CDS type and don't have to merge attributes and annotations.
  */
-export type TypeDefinition = TypeDefinition1 & TypeDefinition2;
-export type TypeDefinition1 =
+export type TypeDefinition =
   | BooleanTypeDefinition
   | StringTypeDefinition
   | LargeStringTypeDefinition
@@ -668,7 +664,7 @@ export interface EntityDefinition {
     | boolean
     | unknown[]
     | {
-        [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * Proper syntax element in ABAP CDS producing Custom CDS Entities
@@ -679,7 +675,7 @@ export interface EntityDefinition {
     | boolean
     | unknown[]
     | {
-        [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * Proper syntax element in ABAP CDS producing CDS Table Functions.
@@ -690,7 +686,7 @@ export interface EntityDefinition {
     | boolean
     | unknown[]
     | {
-        [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * Proper syntax element in ABAP CDS producing CDS  External Entities
@@ -701,7 +697,7 @@ export interface EntityDefinition {
     | boolean
     | unknown[]
     | {
-        [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * ABAP CDS Projection have the additional information of a provider contract
@@ -712,7 +708,7 @@ export interface EntityDefinition {
     | boolean
     | unknown[]
     | {
-        [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * ABAP CDS Root View Entities define a RAP Business Object.
@@ -723,7 +719,7 @@ export interface EntityDefinition {
     | boolean
     | unknown[]
     | {
-        [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * Special kind of analytical ABAP CDS Projection view.
@@ -734,7 +730,7 @@ export interface EntityDefinition {
     | boolean
     | unknown[]
     | {
-        [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * In the selection element list of a CDS view.
@@ -745,7 +741,7 @@ export interface EntityDefinition {
     | boolean
     | unknown[]
     | {
-        [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * When redirecting associations in ABAP CDS Projections with the additional keywords "to composition child", this indicates a Parent-Child-Composition an requires the redirection target to have a matching "to parent" association redefinition.
@@ -756,7 +752,7 @@ export interface EntityDefinition {
     | boolean
     | unknown[]
     | {
-        [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * When redirecting associations in ABAP CDS Projections with the additional keywords "to composition child", this indicates a Parent-Child-Composition an requires the redirection target to have a matching "to parent" association redefinition.
@@ -767,7 +763,7 @@ export interface EntityDefinition {
     | boolean
     | unknown[]
     | {
-        [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+        [k: string]: unknown | undefined;
       };
   /**
    * Contains the SQL on condition as string
@@ -778,38 +774,38 @@ export interface EntityDefinition {
     | boolean
     | unknown[]
     | {
-        [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+        [k: string]: unknown | undefined;
       };
   "@API.entity.decommissioningPlannedForYearMonth"?: APIEntityDecommissioningPlannedForYearMonth;
   "@API.entity.successor"?: APIEntitySuccessor;
-  "@API.entity.releaseState"?: APIEntityReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.entity.releaseState"?: APIEntity;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
-  "@DataIntegration.dataProduct.customDataProvider.partialKeyDefinition"?: DataIntegrationDataProductCustomDataProviderPartialKeyDefinition;
+  "@DataIntegration.dataProduct.customDataProvider.partialKeyDefinition"?: DataIntegrationDataProductCustomDataProvider;
   "@EndUserText.label"?: EndUserTextLabel;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.entityType"?: EntityRelationshipEntityType;
-  "@EntityRelationship.entityIds"?: EntityRelationshipEntityIds;
-  "@EntityRelationship.compositeReferences"?: EntityRelationshipCompositeReferences;
-  "@EntityRelationship.temporalIds"?: EntityRelationshipTemporalIds;
-  "@EntityRelationship.temporalReferences"?: EntityRelationshipTemporalReferences;
-  "@EntityRelationship.referencesWithConstantIds"?: EntityRelationshipReferencesWithConstantIds;
+  "@EntityRelationship.entityIds"?: EntityRelationship1;
+  "@EntityRelationship.compositeReferences"?: EntityRelationship2;
+  "@EntityRelationship.temporalIds"?: EntityRelationship3;
+  "@EntityRelationship.temporalReferences"?: EntityRelationship4;
+  "@EntityRelationship.referencesWithConstantIds"?: EntityRelationship5;
   "@ObjectModel.compositionRoot"?: ObjectModelCompositionRoot;
   "@ObjectModel.representativeKey"?: ElementReference;
-  "@ObjectModel.semanticKey"?: ObjectModelSemanticKey;
+  "@ObjectModel.semanticKey"?: ObjectModel;
   "@ObjectModel.custom"?: ObjectModelCustom;
-  "@ObjectModel.modelingPattern"?: ObjectModelModelingPattern;
-  "@ObjectModel.supportedCapabilities"?: ObjectModelSupportedCapabilities;
+  "@ObjectModel.modelingPattern"?: ObjectModel1;
+  "@ObjectModel.supportedCapabilities"?: ObjectModel2;
   "@ObjectModel.tenantWideUniqueName"?: ObjectModelTenantWideUniqueName;
-  "@ObjectModel.usageType.sizeCategory"?: ObjectModelUsageTypeSizeCategory;
+  "@ObjectModel.usageType.sizeCategory"?: ObjectModelUsageType;
   "@ODM.entityName"?: ODMEntityName;
   "@ODM.oid"?: ElementReference;
-  "@PersonalData.entitySemantics"?: PersonalDataEntitySemantics;
+  "@PersonalData.entitySemantics"?: PersonalData2;
   "@PersonalData.dataSubjectRole"?: PersonalDataDataSubjectRole;
   "@PersonalData.dataSubjectRoleDescription"?: PersonalDataDataSubjectRoleDescription;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -876,13 +872,13 @@ export interface BooleanType {
    */
   doc?: string;
   default?: DefaultValueBoolean;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -891,16 +887,16 @@ export interface BooleanType {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -972,7 +968,7 @@ export interface DefaultValueBoolean {
  * > ℹ️ Note: There is an semantically equivalent annotation `@DefaultAggregation`, which is now obsolete.
  * > As consumers are not expected to interpret `@DefaultAggregation`, providers shall consistently adopt `@Aggregation.default` for interoperability.
  */
-export interface AggregationDefault {
+export interface Aggregation {
   /**
    * Provide the value in `{ "#": "<value>" }` enum notation.
    */
@@ -981,7 +977,7 @@ export interface AggregationDefault {
 /**
  * Specifies in which way a measure should treated.
  */
-export interface AnalyticsDetailsMeasureType {
+export interface AnalyticsDetails {
   /**
    * Provide the value in `{ "#": "<value>" }` enum notation.
    */
@@ -992,19 +988,19 @@ export interface AnalyticsDetailsMeasureType {
  *
  * > ⚠️ **Deprecated since 1.2.5** — prefer `@API.element.releaseState`, `@API.element.successor`, `@API.element.decommissioningPlannedForYearMonth`.
  */
-export interface APIElement {
-  releaseState?: APIElementReleaseState;
+export interface API {
+  releaseState?: APIElement;
   successor?: ElementReference;
   /**
    * The annotation describes the planned decommissioning date of the annotated element. Use ISO format for YearMonth: YYYY-MM (e.g. 2024-08)
    */
   decommissioningPlannedForYearMonth?: string;
-  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The annotation describes the release state of the annotated element.
  */
-export interface APIElementReleaseState {
+export interface APIElement {
   /**
    * Provide the value in `{ "#": "<value>" }` enum notation.
    */
@@ -1026,8 +1022,8 @@ export interface ElementReferenceObject {
    */
   "=": string;
 }
-export interface ConsumptionValueHelpDefinition1 {
-  entity?: ConsumptionValueHelpDefinition2;
+export interface ConsumptionValueHelpDefinition {
+  entity?: ConsumptionValueHelpDefinition1;
   /**
    * Additional bindings for filtering the value help result list.
    */
@@ -1042,7 +1038,7 @@ export interface ConsumptionValueHelpDefinition1 {
 /**
  * Value help defining view or entity.
  */
-export interface ConsumptionValueHelpDefinition2 {
+export interface ConsumptionValueHelpDefinition1 {
   /**
    * Name of the value help providing view or entity
    */
@@ -1066,14 +1062,14 @@ export interface AdditionalBinding {
    * Name of the field of the value help view or entity, which the annotated local field or parameter is bound to.
    */
   element?: string;
-  usage?: ConsumptionConsumptionValueHelpDefinitionAdditionalBindingUsage;
+  usage?: ConsumptionConsumptionValueHelpDefinitionAdditionalBinding;
 }
 /**
  * The binding may either specify an additional filter-criterion on the value help list (`#FILTER`), or an additional result mapping for the selected value help record (`#RESULT`) or a combination thereof (`#FILTER_AND_RESULT`).
  * If not specified explicitly the usage is `#FILTER_AND_RESULT`.
  * If distinctValues is set to true, additional bindings must specify the usage as `#FILTER`.
  */
-export interface ConsumptionConsumptionValueHelpDefinitionAdditionalBindingUsage {
+export interface ConsumptionConsumptionValueHelpDefinitionAdditionalBinding {
   /**
    * Provide the value in `{ "#": "<value>" }` enum notation.
    */
@@ -1095,12 +1091,12 @@ export interface ReferenceTarget {
   name?: string;
   referencedEntityType: EntityTypeID;
   referencedPropertyType: PropertyTypeID;
-  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Primary meaning of the personal data contained in the annotated property. Changes to values of annotated properties are tracked in the audit log. Use this annotation also on fields that are already marked as contact or address data. Properties annotated with fieldSemantics need not be additionally annotated with @PersonalData.isPotentiallyPersonal.
  */
-export interface PersonalDataFieldSemantics {
+export interface PersonalData {
   /**
    * Provide the value in `{ "#": "<value>" }` enum notation.
    */
@@ -1156,13 +1152,13 @@ export interface StringType {
    * For longer length strings, use `cds.LargeString` instead.
    */
   length?: number;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -1171,16 +1167,16 @@ export interface StringType {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -1314,13 +1310,13 @@ export interface LargeStringType {
    * If not provided, unlimited length is assumed.
    */
   length?: number;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -1329,16 +1325,16 @@ export interface LargeStringType {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -1375,7 +1371,6 @@ export interface LargeStringType {
   "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
   "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObject;
-  "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObjectAcceptableMimeTypes;
   "@Semantics.largeObject.mimeType"?: ElementReference;
   "@Semantics.largeObject.fileName"?: ElementReference;
   /**
@@ -1430,13 +1425,13 @@ export interface IntegerType {
   doc?: string;
   default?: DefaultValueInteger;
   enum?: EnumDictionary;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -1445,17 +1440,17 @@ export interface IntegerType {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
-  "@Semantics.valueRange"?: SemanticsValueRange;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
+  "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -1522,7 +1517,7 @@ export interface DefaultValueInteger {
  * Informs consumers about the value range of a CDS element, allowing to specify minimal and/or maximal values, and indicate whether these are exclusive or inclusive.
  * This value range can be used for client-side validation of user input.
  */
-export interface SemanticsValueRange {
+export interface Semantics {
   /**
    * Specifies the minimum value.
    */
@@ -1541,7 +1536,7 @@ export interface SemanticsValueRange {
    * Not specifying this annotation means that the upper boundary is included.
    */
   exclusiveMaximum?: boolean;
-  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Signed integer with 16 bit.
@@ -1574,13 +1569,13 @@ export interface Int16Type {
   doc?: string;
   default?: DefaultValueInteger;
   enum?: EnumDictionary;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -1589,17 +1584,17 @@ export interface Int16Type {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
-  "@Semantics.valueRange"?: SemanticsValueRange;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
+  "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -1687,13 +1682,13 @@ export interface Integer64Type {
   doc?: string;
   default?: DefaultValueInteger;
   enum?: EnumDictionary;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -1702,17 +1697,17 @@ export interface Integer64Type {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
-  "@Semantics.valueRange"?: SemanticsValueRange;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
+  "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -1800,13 +1795,13 @@ export interface UInt8Type {
   doc?: string;
   default?: DefaultValueInteger;
   enum?: EnumDictionary;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -1815,17 +1810,17 @@ export interface UInt8Type {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
-  "@Semantics.valueRange"?: SemanticsValueRange;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
+  "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -1928,13 +1923,13 @@ export interface DecimalType {
    * SHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `floating`.
    */
   scale?: DecimalScaleNumber | DecimalScaleType;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -1943,17 +1938,17 @@ export interface DecimalType {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
-  "@Semantics.valueRange"?: SemanticsValueRange;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
+  "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2040,13 +2035,13 @@ export interface DoubleType {
   doc?: string;
   default?: DefaultValueNumber;
   enum?: EnumDictionary;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -2055,17 +2050,17 @@ export interface DoubleType {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
-  "@Semantics.valueRange"?: SemanticsValueRange;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
+  "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2153,13 +2148,13 @@ export interface DateType {
   doc?: string;
   default?: DefaultValueString;
   enum?: EnumDictionary;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -2168,16 +2163,16 @@ export interface DateType {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2265,13 +2260,13 @@ export interface TimeType {
   doc?: string;
   default?: DefaultValueString;
   enum?: EnumDictionary;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -2280,16 +2275,16 @@ export interface TimeType {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2377,13 +2372,13 @@ export interface DateTimeType {
   doc?: string;
   default?: DefaultValueString;
   enum?: EnumDictionary;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -2392,16 +2387,16 @@ export interface DateTimeType {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2489,13 +2484,13 @@ export interface TimestampType {
   doc?: string;
   default?: DefaultValueString;
   enum?: EnumDictionary;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -2504,16 +2499,16 @@ export interface TimestampType {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2600,13 +2595,13 @@ export interface UUIDType {
    */
   doc?: string;
   default?: DefaultValueString;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -2615,16 +2610,16 @@ export interface UUIDType {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2717,13 +2712,13 @@ export interface BinaryType {
    */
   length?: number;
   default?: DefaultValueString;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -2732,16 +2727,16 @@ export interface BinaryType {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2826,13 +2821,13 @@ export interface LargeBinaryType {
    */
   length?: number;
   default?: DefaultValueString;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -2841,16 +2836,16 @@ export interface LargeBinaryType {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -2887,7 +2882,6 @@ export interface LargeBinaryType {
   "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
   "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObject;
-  "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObjectAcceptableMimeTypes;
   "@Semantics.largeObject.mimeType"?: ElementReference;
   "@Semantics.largeObject.fileName"?: ElementReference;
   /**
@@ -2999,13 +2993,13 @@ export interface AssociationType {
       | OnValue
     )[]
   ];
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -3014,16 +3008,16 @@ export interface AssociationType {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -3218,13 +3212,13 @@ export interface CompositionType {
       | OnValue
     )[]
   ];
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -3233,16 +3227,16 @@ export interface CompositionType {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -3297,31 +3291,6 @@ export interface CompositionType {
    * **Private properties**, starting with `__`.
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
-}
-export interface CdsType2 {
-  /**
-   * The CDS type (`cds.*`), as defined by the CSN specification.
-   */
-  type:
-    | "cds.Boolean"
-    | "cds.String"
-    | "cds.LargeString"
-    | "cds.Integer"
-    | "cds.Int16"
-    | "cds.Integer64"
-    | "cds.UInt8"
-    | "cds.Decimal"
-    | "cds.Double"
-    | "cds.Date"
-    | "cds.Time"
-    | "cds.DateTime"
-    | "cds.Timestamp"
-    | "cds.UUID"
-    | "cds.Binary"
-    | "cds.LargeBinary"
-    | "cds.Association"
-    | "cds.Composition";
   [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
@@ -3396,13 +3365,13 @@ export interface CustomType {
    * The semantics of the choices follows the [OData v4 Precision](https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/odata-csdl-xml-v4.01.html#sec_Precision) specification.
    */
   precision?: number;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -3411,16 +3380,16 @@ export interface CustomType {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -3488,18 +3457,14 @@ export interface DefaultValueCustomType {
     | number
     | boolean
     | {
-        [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+        [k: string]: unknown | undefined;
       }
     | null;
-}
-export interface ElementEntry2 {
-  type: string;
-  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
  * The annotation describes the release state of the annotated entity.
  */
-export interface APIEntityReleaseState {
+export interface APIEntity {
   /**
    * Provide the value in `{ "#": "<value>" }` enum notation.
    */
@@ -3523,7 +3488,7 @@ export interface EntityID {
    * @minItems 1
    */
   propertyTypes: [PropertyTypeID, ...PropertyTypeID[]];
-  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Defines single a reference to another Entity Type based on a composite ID.
@@ -3546,7 +3511,7 @@ export interface CompositeReference {
    * @minItems 2
    */
   referencedPropertyTypes: [ReferencedPropertyType, ReferencedPropertyType, ...ReferencedPropertyType[]];
-  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Grouping of the ID in the referenced entity, by its property type ID and the local name in this entity.
@@ -3554,7 +3519,7 @@ export interface CompositeReference {
 export interface ReferencedPropertyType {
   referencedPropertyType: PropertyTypeID;
   localPropertyName: LocalPropertyName;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Defines an ID that includes a temporal interval.
@@ -3578,7 +3543,7 @@ export interface TemporalID {
   temporalType: TemporalType;
   temporalIntervalStartProperty: LocalPropertyName;
   temporalIntervalEndProperty: LocalPropertyName;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Interval which includes the boundaries.
@@ -3620,7 +3585,7 @@ export interface TemporalReference {
   referencedPropertyTypes: [ReferencedPropertyType, ...ReferencedPropertyType[]];
   category: Category;
   selectionDateProperty?: LocalPropertyName;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Category of the temporal reference.
@@ -3655,7 +3620,7 @@ export interface ReferenceWithConstantID {
    * @minItems 1
    */
   referencedPropertyTypes: [ReferencedPropertyTypeWithConstantID, ...ReferencedPropertyTypeWithConstantID[]];
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * Grouping  of the ID in the referenced entity, by its property type ID and either the local name in this entity or a constant value.
@@ -3667,12 +3632,12 @@ export interface ReferencedPropertyTypeWithConstantID {
    * String serialization of the constant value of the property in the referenced entity.
    */
   constantValue?: string;
-  [k: string]: unknown;
+  [k: string]: unknown | undefined;
 }
 /**
  * The property declares the modeling pattern applied in this entity definition.
  */
-export interface ObjectModelModelingPattern {
+export interface ObjectModel1 {
   /**
    * Provide the value in `{ "#": "<value>" }` enum notation.
    */
@@ -3751,7 +3716,7 @@ export interface SupportedCapabilitiesEnumValue {
  * - XL: less than 100.000.000
  * - XXL: more than 100.000.000
  */
-export interface ObjectModelUsageTypeSizeCategory {
+export interface ObjectModelUsageType {
   /**
    * Provide the value in `{ "#": "<value>" }` enum notation.
    */
@@ -3760,7 +3725,7 @@ export interface ObjectModelUsageTypeSizeCategory {
 /**
  * Primary meaning of the entities in the annotated entity set. Entities annotated with @PersonalData.entitySemantics are synonymous to @PersonalData.isPotentiallyPersonal.
  */
-export interface PersonalDataEntitySemantics {
+export interface PersonalData2 {
   /**
    * Provide the value in `{ "#": "<value>" }` enum notation.
    */
@@ -3797,8 +3762,8 @@ export interface ServiceDefinition {
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@ObjectModel.representativeKey"?: ElementReference;
   "@ObjectModel.custom"?: ObjectModelCustom;
-  "@ObjectModel.modelingPattern"?: ObjectModelModelingPattern;
-  "@ObjectModel.supportedCapabilities"?: ObjectModelSupportedCapabilities;
+  "@ObjectModel.modelingPattern"?: ObjectModel1;
+  "@ObjectModel.supportedCapabilities"?: ObjectModel2;
   /**
    * Annotations or private properties MAY be added.
    *
@@ -3818,7 +3783,7 @@ export interface ServiceDefinition {
    * **Private properties**, starting with `__`.
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  [k: string]: unknown;
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
  * A type definition of type `cds.Boolean`.
@@ -3847,13 +3812,13 @@ export interface BooleanTypeDefinition {
    */
   doc?: string;
   default?: DefaultValueBoolean;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -3862,16 +3827,16 @@ export interface BooleanTypeDefinition {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -3926,7 +3891,7 @@ export interface BooleanTypeDefinition {
    * **Private properties**, starting with `__`.
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  [k: string]: unknown;
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
  * A type definition of type `cds.String`.
@@ -3962,13 +3927,13 @@ export interface StringTypeDefinition {
    * For longer length strings, use `cds.LargeString` instead.
    */
   length?: number;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -3977,16 +3942,16 @@ export interface StringTypeDefinition {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -4042,7 +4007,7 @@ export interface StringTypeDefinition {
    * **Private properties**, starting with `__`.
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  [k: string]: unknown;
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
  * A type definition of type `cds.LargeString`.
@@ -4077,13 +4042,13 @@ export interface LargeStringTypeDefinition {
    * If not provided, unlimited length is assumed.
    */
   length?: number;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -4092,16 +4057,16 @@ export interface LargeStringTypeDefinition {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -4138,7 +4103,6 @@ export interface LargeStringTypeDefinition {
   "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
   "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObject;
-  "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObjectAcceptableMimeTypes;
   "@Semantics.largeObject.mimeType"?: ElementReference;
   "@Semantics.largeObject.fileName"?: ElementReference;
   /**
@@ -4160,7 +4124,7 @@ export interface LargeStringTypeDefinition {
    * **Private properties**, starting with `__`.
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  [k: string]: unknown;
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
  * A type definition of type `cds.Integer`.
@@ -4190,13 +4154,13 @@ export interface IntegerTypeDefinition {
   doc?: string;
   default?: DefaultValueInteger;
   enum?: EnumDictionary;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -4205,17 +4169,17 @@ export interface IntegerTypeDefinition {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
-  "@Semantics.valueRange"?: SemanticsValueRange;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
+  "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -4270,7 +4234,7 @@ export interface IntegerTypeDefinition {
    * **Private properties**, starting with `__`.
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  [k: string]: unknown;
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
  * A type definition of type `cds.Int16`.
@@ -4300,13 +4264,13 @@ export interface Int16TypeDefinition {
   doc?: string;
   default?: DefaultValueInteger;
   enum?: EnumDictionary;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -4315,17 +4279,17 @@ export interface Int16TypeDefinition {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
-  "@Semantics.valueRange"?: SemanticsValueRange;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
+  "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -4380,7 +4344,7 @@ export interface Int16TypeDefinition {
    * **Private properties**, starting with `__`.
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  [k: string]: unknown;
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
  * A type definition of type `cds.Integer64`.
@@ -4410,13 +4374,13 @@ export interface Integer64TypeDefinition {
   doc?: string;
   default?: DefaultValueInteger;
   enum?: EnumDictionary;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -4425,17 +4389,17 @@ export interface Integer64TypeDefinition {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
-  "@Semantics.valueRange"?: SemanticsValueRange;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
+  "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -4490,7 +4454,7 @@ export interface Integer64TypeDefinition {
    * **Private properties**, starting with `__`.
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  [k: string]: unknown;
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
  * A type definition of type `cds.UInt8`.
@@ -4520,13 +4484,13 @@ export interface UInt8TypeDefinition {
   doc?: string;
   default?: DefaultValueInteger;
   enum?: EnumDictionary;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -4535,17 +4499,17 @@ export interface UInt8TypeDefinition {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
-  "@Semantics.valueRange"?: SemanticsValueRange;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
+  "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -4600,7 +4564,7 @@ export interface UInt8TypeDefinition {
    * **Private properties**, starting with `__`.
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  [k: string]: unknown;
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
  * A type definition of type `cds.Decimal`.
@@ -4645,13 +4609,13 @@ export interface DecimalTypeDefinition {
    * SHOULD be explicitly provided and MUST be provided if own default assumptions diverge from specified default of `floating`.
    */
   scale?: DecimalScaleNumber | DecimalScaleType;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -4660,17 +4624,17 @@ export interface DecimalTypeDefinition {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
-  "@Semantics.valueRange"?: SemanticsValueRange;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
+  "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -4725,7 +4689,7 @@ export interface DecimalTypeDefinition {
    * **Private properties**, starting with `__`.
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  [k: string]: unknown;
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
  * A type definition of type `cds.Double`.
@@ -4755,13 +4719,13 @@ export interface DoubleTypeDefinition {
   doc?: string;
   default?: DefaultValueNumber;
   enum?: EnumDictionary;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -4770,17 +4734,17 @@ export interface DoubleTypeDefinition {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
-  "@Semantics.valueRange"?: SemanticsValueRange;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
+  "@Semantics.valueRange"?: Semantics;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -4835,7 +4799,7 @@ export interface DoubleTypeDefinition {
    * **Private properties**, starting with `__`.
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  [k: string]: unknown;
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
  * A type definition of type `cds.Date`.
@@ -4865,13 +4829,13 @@ export interface DateTypeDefinition {
   doc?: string;
   default?: DefaultValueString;
   enum?: EnumDictionary;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -4880,16 +4844,16 @@ export interface DateTypeDefinition {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -4944,7 +4908,7 @@ export interface DateTypeDefinition {
    * **Private properties**, starting with `__`.
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  [k: string]: unknown;
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
  * A type definition of type `cds.Time`.
@@ -4974,13 +4938,13 @@ export interface TimeTypeDefinition {
   doc?: string;
   default?: DefaultValueString;
   enum?: EnumDictionary;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -4989,16 +4953,16 @@ export interface TimeTypeDefinition {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -5053,7 +5017,7 @@ export interface TimeTypeDefinition {
    * **Private properties**, starting with `__`.
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  [k: string]: unknown;
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
  * A type definition of type `cds.DateTime`.
@@ -5083,13 +5047,13 @@ export interface DateTimeTypeDefinition {
   doc?: string;
   default?: DefaultValueString;
   enum?: EnumDictionary;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -5098,16 +5062,16 @@ export interface DateTimeTypeDefinition {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -5162,7 +5126,7 @@ export interface DateTimeTypeDefinition {
    * **Private properties**, starting with `__`.
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  [k: string]: unknown;
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
  * A type definition of type `cds.Timestamp`.
@@ -5192,13 +5156,13 @@ export interface TimestampTypeDefinition {
   doc?: string;
   default?: DefaultValueString;
   enum?: EnumDictionary;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -5207,16 +5171,16 @@ export interface TimestampTypeDefinition {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -5271,7 +5235,7 @@ export interface TimestampTypeDefinition {
    * **Private properties**, starting with `__`.
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  [k: string]: unknown;
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
  * A type definition of type `cds.UUID`.
@@ -5300,13 +5264,13 @@ export interface UUIDTypeDefinition {
    */
   doc?: string;
   default?: DefaultValueString;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -5315,16 +5279,16 @@ export interface UUIDTypeDefinition {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -5379,7 +5343,7 @@ export interface UUIDTypeDefinition {
    * **Private properties**, starting with `__`.
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  [k: string]: unknown;
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
  * A type definition of type `cds.Binary`.
@@ -5414,13 +5378,13 @@ export interface BinaryTypeDefinition {
    */
   length?: number;
   default?: DefaultValueString;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -5429,16 +5393,16 @@ export interface BinaryTypeDefinition {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -5493,7 +5457,7 @@ export interface BinaryTypeDefinition {
    * **Private properties**, starting with `__`.
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  [k: string]: unknown;
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
  * A type definition of type `cds.LargeBinary`.
@@ -5527,13 +5491,13 @@ export interface LargeBinaryTypeDefinition {
    */
   length?: number;
   default?: DefaultValueString;
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -5542,16 +5506,16 @@ export interface LargeBinaryTypeDefinition {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -5588,7 +5552,6 @@ export interface LargeBinaryTypeDefinition {
   "@Semantics.systemDateTime.createdAt"?: SemanticsSystemDateTimeCreatedAt;
   "@Semantics.systemDateTime.lastChangedAt"?: SemanticsSystemDateTimeLastChangedAt;
   "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObject;
-  "@Semantics.largeObject.acceptableMimeTypes"?: SemanticsLargeObjectAcceptableMimeTypes;
   "@Semantics.largeObject.mimeType"?: ElementReference;
   "@Semantics.largeObject.fileName"?: ElementReference;
   /**
@@ -5610,7 +5573,7 @@ export interface LargeBinaryTypeDefinition {
    * **Private properties**, starting with `__`.
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  [k: string]: unknown;
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
  * A type definition of type `cds.Association`.
@@ -5701,13 +5664,13 @@ export interface AssociationTypeDefinition {
       | OnValue
     )[]
   ];
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -5716,16 +5679,16 @@ export interface AssociationTypeDefinition {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -5780,7 +5743,7 @@ export interface AssociationTypeDefinition {
    * **Private properties**, starting with `__`.
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  [k: string]: unknown;
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
  * A type definition of type `cds.Composition`.
@@ -5871,13 +5834,13 @@ export interface CompositionTypeDefinition {
       | OnValue
     )[]
   ];
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
+  "@Aggregation.default"?: Aggregation;
+  "@AnalyticsDetails.measureType"?: AnalyticsDetails;
+  "@API.element"?: API;
   "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
   "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
+  "@API.element.releaseState"?: APIElement;
+  "@Consumption.valueHelpDefinition"?: Consumption;
   "@Consumption.hidden"?: ConsumptionHidden;
   "@Consumption.aiHint"?: ConsumptionAiHint;
   "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
@@ -5886,16 +5849,16 @@ export interface CompositionTypeDefinition {
   "@EndUserText.heading"?: EndUserTextHeading;
   "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
   "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
+  "@EntityRelationship.reference"?: EntityRelationship;
   "@ObjectModel.custom"?: ObjectModelCustom;
   "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
+  "@ObjectModel.text.element"?: ObjectModelText;
   "@ObjectModel.text.association"?: ElementReference;
   "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
+  "@PersonalData.fieldSemantics"?: PersonalData;
   "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
   "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
+  "@PersonalData.relatedDataCategoryID"?: PersonalData1;
   "@Semantics.currencyCode"?: SemanticsCurrencyCode;
   "@Semantics.amount.currencyCode"?: ElementReference;
   "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
@@ -5950,102 +5913,7 @@ export interface CompositionTypeDefinition {
    * **Private properties**, starting with `__`.
    * MAY be ignored by the consumers, as they have no cross-aligned, standardized semantics.
    */
-  [k: string]: unknown;
-}
-export interface TypeDefinition2 {
-  /**
-   * The kind property is used when defining derived types.
-   * In this case `Kind = "type"` MUST be provided.
-   */
-  kind: TypeKind;
-  /**
-   * The CDS data type of the derived type.
-   *
-   * Custom types in CSN Interop Effective MUST always point to a `cds.*` type.
-   */
-  type:
-    | "cds.Boolean"
-    | "cds.String"
-    | "cds.LargeString"
-    | "cds.Integer"
-    | "cds.Int16"
-    | "cds.Integer64"
-    | "cds.UInt8"
-    | "cds.Decimal"
-    | "cds.Double"
-    | "cds.Date"
-    | "cds.Time"
-    | "cds.DateTime"
-    | "cds.Timestamp"
-    | "cds.UUID"
-    | "cds.Binary"
-    | "cds.LargeBinary"
-    | "cds.Association"
-    | "cds.Composition";
-  "@Aggregation.default"?: AggregationDefault;
-  "@AnalyticsDetails.measureType"?: AnalyticsDetailsMeasureType;
-  "@API.element"?: APIElement;
-  "@API.element.decommissioningPlannedForYearMonth"?: APIElementDecommissioningPlannedForYearMonth;
-  "@API.element.successor"?: ElementReference;
-  "@API.element.releaseState"?: APIElementReleaseState;
-  "@Consumption.valueHelpDefinition"?: ConsumptionValueHelpDefinition;
-  "@Consumption.hidden"?: ConsumptionHidden;
-  "@Consumption.aiHint"?: ConsumptionAiHint;
-  "@DataIntegration.dataUnavailable"?: DataIntegrationDataUnavailable;
-  "@DataIntegration.technical"?: DataIntegrationTechnical;
-  "@EndUserText.label"?: EndUserTextLabel;
-  "@EndUserText.heading"?: EndUserTextHeading;
-  "@EndUserText.quickInfo"?: EndUserTextQuickInfo;
-  "@EntityRelationship.propertyType"?: EntityRelationshipPropertyType;
-  "@EntityRelationship.reference"?: EntityRelationshipReference;
-  "@ObjectModel.custom"?: ObjectModelCustom;
-  "@ObjectModel.foreignKey.association"?: ElementReference;
-  "@ObjectModel.text.element"?: ObjectModelTextElement;
-  "@ObjectModel.text.association"?: ElementReference;
-  "@ODM.oidReference.entityName"?: ODMOidReferenceEntityName;
-  "@PersonalData.fieldSemantics"?: PersonalDataFieldSemantics;
-  "@PersonalData.isPotentiallyPersonal"?: PersonalDataIsPotentiallyPersonal;
-  "@PersonalData.isPotentiallySensitive"?: PersonalDataIsPotentiallySensitive;
-  "@PersonalData.relatedDataCategoryID"?: PersonalDataRelatedDataCategoryID;
-  "@Semantics.currencyCode"?: SemanticsCurrencyCode;
-  "@Semantics.amount.currencyCode"?: ElementReference;
-  "@Semantics.unitOfMeasure"?: SemanticsUnitOfMeasure;
-  "@Semantics.quantity.unitOfMeasure"?: ElementReference;
-  "@Semantics.calendar.dayOfMonth"?: SemanticsCalendarDayOfMonth;
-  "@Semantics.calendar.dayOfYear"?: SemanticsCalendarDayOfYear;
-  "@Semantics.calendar.week"?: SemanticsCalendarWeek;
-  "@Semantics.calendar.month"?: SemanticsCalendarMonth;
-  "@Semantics.calendar.quarter"?: SemanticsCalendarQuarter;
-  "@Semantics.calendar.halfyear"?: SemanticsCalendarHalfyear;
-  "@Semantics.calendar.year"?: SemanticsCalendarYear;
-  "@Semantics.calendar.yearWeek"?: SemanticsCalendarYearWeek;
-  "@Semantics.calendar.yearMonth"?: SemanticsCalendarYearMonth;
-  "@Semantics.calendar.yearQuarter"?: SemanticsCalendarYearQuarter;
-  "@Semantics.calendar.yearHalfyear"?: SemanticsCalendarYearHalfyear;
-  "@Semantics.fiscal.yearVariant"?: SemanticsFiscalYearVariant;
-  "@Semantics.fiscal.period"?: SemanticsFiscalPeriod;
-  "@Semantics.fiscal.year"?: SemanticsFiscalYear;
-  "@Semantics.fiscal.yearPeriod"?: SemanticsFiscalYearPeriod;
-  "@Semantics.fiscal.quarter"?: SemanticsFiscalQuarter;
-  "@Semantics.fiscal.yearQuarter"?: SemanticsFiscalYearQuarter;
-  "@Semantics.fiscal.week"?: SemanticsFiscalWeek;
-  "@Semantics.fiscal.yearWeek"?: SemanticsFiscalYearWeek;
-  "@Semantics.fiscal.dayOfYear"?: SemanticsFiscalDayOfYear;
-  "@Semantics.language"?: SemanticsLanguage;
-  "@Semantics.time"?: SemanticsTime;
-  "@Semantics.text"?: SemanticsText;
-  "@Semantics.uuid"?: SemanticsUuid;
-  "@Semantics.businessDate.from"?: SemanticsBusinessDateFrom;
-  "@Semantics.businessDate.to"?: SemanticsBusinessDateTo;
-  [k: string]: unknown;
-}
-export interface DefinitionEntry2 {
-  /**
-   * The modeling artefact kind.
-   * It's value is been used as a _discriminator_ to distinguish the matching schema that should be further validated.
-   */
-  kind: "context" | "entity" | "service" | "type";
-  [k: string]: unknown;
+  [k: PrivatePropertyKey|AnnotationPropertyKey]: unknown;
 }
 /**
  * Dictionary of translated texts.
