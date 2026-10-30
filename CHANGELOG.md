@@ -10,6 +10,10 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+### Fixed
+
+- Compare generated TypeScript and JSON after formatting with Biome so whitespace and formatting differences do not fail the generated-output check. Type, annotation, literal-value, and documentation changes still fail.
+
 ### Changed
 
 - Modernized development tooling using Node.js 24 LTS built-in APIs and updated direct dependencies and the transitive lockfile.
