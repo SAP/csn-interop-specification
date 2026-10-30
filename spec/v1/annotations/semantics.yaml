@@ -255,6 +255,49 @@ definitions:
       - Type
       # - DateType
 
+  "@Semantics.businessDate.at":
+    <<: *semanticsFieldBoolean
+    x-introduced-in-version: "1.2.7"
+    description: |-
+      The property contains a date which is the key date.
+    x-extension-targets:
+      - Type
+      # - DateType
+
+  "@Semantics.systemDate.createdAt":
+    <<: *semanticsFieldBoolean
+    x-introduced-in-version: "1.2.7"
+    description: |-
+      The property contains a date which is the point in time when the record was created for the first time.
+    x-extension-targets:
+      - Type
+      # - DateType
+
+  "@Semantics.systemDate.lastChangedAt":
+    <<: *semanticsFieldBoolean
+    x-introduced-in-version: "1.2.7"
+    description: |-
+      The property contains a date which is the point in time when the record was modified for the last time.
+    x-extension-targets:
+      - Type
+      # - DateType
+
+  "@Semantics.systemDateTime.createdAt":
+    <<: *semanticsFieldBoolean
+    x-introduced-in-version: "1.2.7"
+    description: |-
+      The property contains a timestamp which is the point in time when the record was created for the first time.
+    x-extension-targets:
+      - Type
+
+  "@Semantics.systemDateTime.lastChangedAt":
+    <<: *semanticsFieldBoolean
+    x-introduced-in-version: "1.2.7"
+    description: |-
+      The property contains a timestamp which is the point in time when the record was modified for the last time.
+    x-extension-targets:
+      - Type
+
   "@Semantics.mimeType":
     <<: *semanticsFieldBoolean
     description: |-
