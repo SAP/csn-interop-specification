@@ -35,7 +35,7 @@
     "ci": "biome ci .",
     "lint": "biome lint .",
     "test": "npm run build && npm run test:unit",
-    "test:unit": "node --test 'dist/__tests__/**/*.test.js'",
+    "test:unit": "node --test 'dist/__tests__/**/*.test.js' 'scripts/__tests__/*.test.mjs'",
     "validate:annotations": "node scripts/validate-annotations.mjs",
     "serve": "npm run serve --workspace @sap/csn-interop-docs --",
     "prestart": "npm run clear",

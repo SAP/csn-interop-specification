@@ -10,10 +10,13 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
-
 ### Added
 
 - Added `@Semantics.businessDate.at`, `@Semantics.systemDate.createdAt`, `@Semantics.systemDate.lastChangedAt`, `@Semantics.systemDateTime.createdAt`, and `@Semantics.systemDateTime.lastChangedAt` annotations, with introduction version `1.2.7`.
+
+### Fixed
+
+- Compare generated TypeScript and JSON after formatting with Biome so whitespace and formatting differences do not fail the generated-output check. Type, annotation, literal-value, and documentation changes still fail.
 
 ### Changed
 
