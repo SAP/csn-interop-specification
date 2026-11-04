@@ -36,6 +36,10 @@ npm run generate
 npm run test:unit
 ```
 
+Before committing, run `npm run format` and regenerate output with
+`npm run generate` if you changed files in `spec/`. Run `npm run ci && npm run test`
+to verify your changes. These checks also run in CI; no pre-commit hooks are installed.
+
 For spec-only development, install without the documentation workspace:
 
 ```bash
