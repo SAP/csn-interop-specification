@@ -19,7 +19,7 @@ For more general requests (like missing content), please create a [GitHub Issue]
 ## Development Setup
 
 ```bash
-# Prerequisites: Node.js 24 LTS and npm 11+
+# Prerequisites: Node.js 26 LTS and npm 11+
 # Install spec tooling and the documentation workspace
 npm ci
 
