@@ -8,7 +8,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "engines": {
-    "node": ">=24.0.0",
+    "node": ">=26.0.0",
     "npm": ">=11.0.0"
   },
   "repository": {
@@ -46,7 +46,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.6.3",
     "@open-resource-discovery/spec-toolkit": "0.9.1",
-    "@types/node": "24.19.2",
+    "@types/node": "26.6.6",
     "json-schema-library": "11.6.16",
     "lefthook": "2.2.2",
     "typescript": "7.0.2"

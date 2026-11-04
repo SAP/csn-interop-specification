@@ -14,6 +14,7 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ### Changed
 
+- BREAKING: The npm package now requires Node.js 26 or later (previously Node.js 24 or later).
 - BREAKING: Renamed exported TypeScript annotation helper types to match their full annotation paths (for example, `Consumption` becomes `ConsumptionValueHelpDefinition`, `EntityRelationship` becomes `EntityRelationshipReference`, and `ObjectModelText` becomes `ObjectModelTextElement`). Consumers importing these types must update their imports and usages. Some existing names now describe different shapes: `ConsumptionValueHelpDefinition` now represents the annotation array, and its item type is `ConsumptionValueHelpDefinition1`. The CSN JSON format and annotation values are unchanged.
 
 ### Fixed
