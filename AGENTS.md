@@ -68,11 +68,8 @@ Read the linked `SKILL.md` when its task matches; load detailed instructions onl
 - [add-annotation](.agents/skills/add-annotation/SKILL.md) - Add or change annotations and vocabularies.
 - [release](.agents/skills/release/SKILL.md) - Prepare and publish a CSN Interop release.
 
-## Pre-commit Hooks
+## Before Committing
 
-Lefthook automatically runs:
-
-- `npm run generate` on changes to `spec/*/*.yaml`
-- `npm run format` on JSON/JS/TS files
-
-Changes are auto-staged if hooks succeed.
+Run `npm run generate` after changes to `spec/` and `npm run format` for
+JSON/JS/TS changes. Stage the resulting source and generated files explicitly.
+CI runs the verification checks; this repository does not install pre-commit hooks.
