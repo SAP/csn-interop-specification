@@ -1,15 +1,15 @@
 {
   "$schema": "http://json.schemastore.org/package",
   "name": "@sap/csn-interop-specification",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "description": "CSN Interop Specification.",
   "author": "SAP SE",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "engines": {
-    "node": ">=26.0.0",
-    "npm": ">=11.0.0"
+    "node": ">=22.0.0",
+    "npm": ">=10.0.0"
   },
   "repository": {
     "type": "git",

@@ -10,6 +10,12 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ## [unreleased]
 
+## [1.2.9]
+
+### Fixed
+
+- Lowered the published package engine requirements to Node.js >=22 and npm >=10, restoring installation compatibility for consumers on Node.js 22 and 24.
+
 ## [1.2.8]
 
 ### Added
