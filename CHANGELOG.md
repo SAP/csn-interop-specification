@@ -28,6 +28,18 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 - Moved documentation-site dependencies into the private `tooling/docs` npm workspace. Root build and preview commands still work; `npm ci --workspaces=false` and `npm run test:spec` support spec-only development without installing the site toolchain.
 - Removed redundant direct dependencies on `is-ci`, `@tsconfig/node24`, and `@docusaurus/module-type-aliases`, along with the duplicate hook-installation `prepare` script. Invoked the installed spec toolkit directly during generation.
 
+## [1.2.7]
+
+### Changed
+
+- BREAKING: The npm package now requires Node.js 26 or later (previously Node.js 24 or later).
+- BREAKING: Renamed exported TypeScript annotation helper types to match their full annotation paths (for example, `Consumption` becomes `ConsumptionValueHelpDefinition`, `EntityRelationship` becomes `EntityRelationshipReference`, and `ObjectModelText` becomes `ObjectModelTextElement`). Consumers importing these types must update their imports and usages. Some existing names now describe different shapes: `ConsumptionValueHelpDefinition` now represents the annotation array, and its item type is `ConsumptionValueHelpDefinition1`. The CSN JSON format and annotation values are unchanged.
+
+### Fixed
+
+- Generated TypeScript definitions now enforce more of the existing JSON Schema constraints, including required `kind` and `type` properties and the allowed CDS types in type definitions. TypeScript consumers may need to correct values that previously compiled but did not satisfy the schema.
+- Updated the entity-relationship abstract concepts diagram in the documentation.
+
 ## [1.2.6]
 
 ### Added

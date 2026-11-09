@@ -9,9 +9,9 @@
   "lockFileMaintenance": { "enabled": true },
   "packageRules": [
     {
-      "description": "Keep Node type definitions aligned with the Node 24 LTS runtime",
+      "description": "Keep Node type definitions aligned with the Node 26 LTS runtime",
       "matchPackageNames": ["@types/node"],
-      "allowedVersions": "<25"
+      "allowedVersions": ">=26 <27"
     },
     {
       "description": "Prod dependencies: group non-major, hold new releases 3 days, automerge on green CI",
