@@ -26,7 +26,7 @@ const config = {
       removeLegacyPostBuildHeadAttribute: true,
       mdx1CompatDisabledByDefault: true,
       siteStorageNamespacing: true,
-      fasterByDefault: true,
+      fasterByDefault: false,
     },
   },
 
