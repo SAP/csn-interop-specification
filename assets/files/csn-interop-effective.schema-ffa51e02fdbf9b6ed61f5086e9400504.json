@@ -13106,7 +13106,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "x-introduced-in-version": "1.2.7"
+      "x-introduced-in-version": "1.2.8"
     },
     "@Semantics.systemDate.createdAt": {
       "type": "boolean",
@@ -13115,7 +13115,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "x-introduced-in-version": "1.2.7"
+      "x-introduced-in-version": "1.2.8"
     },
     "@Semantics.systemDate.lastChangedAt": {
       "type": "boolean",
@@ -13124,7 +13124,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "x-introduced-in-version": "1.2.7"
+      "x-introduced-in-version": "1.2.8"
     },
     "@Semantics.systemDateTime.createdAt": {
       "type": "boolean",
@@ -13133,7 +13133,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "x-introduced-in-version": "1.2.7"
+      "x-introduced-in-version": "1.2.8"
     },
     "@Semantics.systemDateTime.lastChangedAt": {
       "type": "boolean",
@@ -13142,7 +13142,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "x-introduced-in-version": "1.2.7"
+      "x-introduced-in-version": "1.2.8"
     },
     "@Semantics.mimeType": {
       "type": "boolean",

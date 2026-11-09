@@ -321,7 +321,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "x-introduced-in-version": "1.2.7",
+      "x-introduced-in-version": "1.2.8",
       "title": "@Semantics.businessDate.at"
     },
     "@Semantics.systemDate.createdAt": {
@@ -331,7 +331,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "x-introduced-in-version": "1.2.7",
+      "x-introduced-in-version": "1.2.8",
       "title": "@Semantics.systemDate.createdAt"
     },
     "@Semantics.systemDate.lastChangedAt": {
@@ -341,7 +341,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "x-introduced-in-version": "1.2.7",
+      "x-introduced-in-version": "1.2.8",
       "title": "@Semantics.systemDate.lastChangedAt"
     },
     "@Semantics.systemDateTime.createdAt": {
@@ -351,7 +351,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "x-introduced-in-version": "1.2.7",
+      "x-introduced-in-version": "1.2.8",
       "title": "@Semantics.systemDateTime.createdAt"
     },
     "@Semantics.systemDateTime.lastChangedAt": {
@@ -361,7 +361,7 @@
       "x-extension-targets": [
         "Type"
       ],
-      "x-introduced-in-version": "1.2.7",
+      "x-introduced-in-version": "1.2.8",
       "title": "@Semantics.systemDateTime.lastChangedAt"
     },
     "@Semantics.mimeType": {
