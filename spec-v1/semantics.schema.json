@@ -314,6 +314,56 @@
       ],
       "title": "@Semantics.businessDate.to"
     },
+    "@Semantics.businessDate.at": {
+      "type": "boolean",
+      "const": true,
+      "description": "The property contains a date which is the key date.",
+      "x-extension-targets": [
+        "Type"
+      ],
+      "x-introduced-in-version": "1.2.7",
+      "title": "@Semantics.businessDate.at"
+    },
+    "@Semantics.systemDate.createdAt": {
+      "type": "boolean",
+      "const": true,
+      "description": "The property contains a date which is the point in time when the record was created for the first time.",
+      "x-extension-targets": [
+        "Type"
+      ],
+      "x-introduced-in-version": "1.2.7",
+      "title": "@Semantics.systemDate.createdAt"
+    },
+    "@Semantics.systemDate.lastChangedAt": {
+      "type": "boolean",
+      "const": true,
+      "description": "The property contains a date which is the point in time when the record was modified for the last time.",
+      "x-extension-targets": [
+        "Type"
+      ],
+      "x-introduced-in-version": "1.2.7",
+      "title": "@Semantics.systemDate.lastChangedAt"
+    },
+    "@Semantics.systemDateTime.createdAt": {
+      "type": "boolean",
+      "const": true,
+      "description": "The property contains a timestamp which is the point in time when the record was created for the first time.",
+      "x-extension-targets": [
+        "Type"
+      ],
+      "x-introduced-in-version": "1.2.7",
+      "title": "@Semantics.systemDateTime.createdAt"
+    },
+    "@Semantics.systemDateTime.lastChangedAt": {
+      "type": "boolean",
+      "const": true,
+      "description": "The property contains a timestamp which is the point in time when the record was modified for the last time.",
+      "x-extension-targets": [
+        "Type"
+      ],
+      "x-introduced-in-version": "1.2.7",
+      "title": "@Semantics.systemDateTime.lastChangedAt"
+    },
     "@Semantics.mimeType": {
       "type": "boolean",
       "const": true,
