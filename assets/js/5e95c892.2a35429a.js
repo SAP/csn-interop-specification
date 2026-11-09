@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_sap_csn_interop_docs=self.webpackChunk_sap_csn_interop_docs||[]).push([[647],{3531(s,e,r){r.r(e),r.d(e,{default:()=>o});r(4041);var c=r(4357),n=r(7473),a=r(8582),p=r(8150),t=r(8586),u=r(1085);function o(s){return(0,u.jsx)(a.e3,{className:(0,c.A)(n.G.wrapper.docsPages),children:(0,u.jsx)(t.A,{children:(0,p.v)(s.route.routes)})})}}}]);
