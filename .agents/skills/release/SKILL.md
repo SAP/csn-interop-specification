@@ -61,12 +61,15 @@ From up-to-date `main`:
 
 ```bash
 git fetch origin
-git branch release/vX.Y.Z origin/main
-git push -u origin release/vX.Y.Z
+git switch -c release/vX.Y.Z origin/main
 ```
 
 The `release/vX.Y.Z → main` PR is the model used by the last clean releases
 (#151 for 1.2.3, #163 for 1.2.4). Tags end up on `main`.
+
+Immediately after creating the branch, insert `## [X.Y.Z]` directly below `## [unreleased]` in `CHANGELOG.md`, moving any pending entries under the version header.
+Keep `## [unreleased]` empty as the landing zone for the next cycle.
+Always do this before dependency checks or other release preparation; curate the versioned entries in the final editorial pass below.
 
 ## Check dependencies
 
@@ -109,7 +112,7 @@ On the release branch, turn the accumulated `## [unreleased]` notes into the
 version section. This is the moment for the **final editorial pass**: the
 CHANGELOG must be complete, **end-user focused**, and consistent.
 
-1. Insert a new `## [X.Y.Z]` header directly **below** `## [unreleased]`, leaving
+1. Confirm the previously inserted `## [X.Y.Z]` header is directly **below** `## [unreleased]`, leaving
    `## [unreleased]` in place as an empty landing zone for the next cycle:
 
    ```markdown
