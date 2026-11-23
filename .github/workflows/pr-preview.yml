@@ -9,8 +9,6 @@ permissions:
 
 jobs:
   pr-preview:
-    permissions:
-      contents: read
     runs-on: ubuntu-latest
 
     concurrency:
