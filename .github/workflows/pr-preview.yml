@@ -38,7 +38,7 @@ jobs:
           npm run build
 
       - name: PR preview
-        uses: open-resource-discovery/pr-preview-action@d4998f1ebe4699cedac6673d47c1edb0c6c73405 # main
+        uses: open-resource-discovery/pr-preview-action@9772862b578870a2db7953e35e3b5952f09e3f3f # main
         with:
           fork: false
           target-repo: SAP/csn-interop-pr-preview
