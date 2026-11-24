@@ -12,8 +12,7 @@ For a roadmap including expected timeline, please refer to [ROADMAP.md](./ROADMA
 
 ### Changed
 
-- BREAKING: The npm package now requires Node.js 26 or later, following the repository's updated runtime baseline.
-- GitHub Actions select Node.js 26, restrictive token permissions, and immutable action references.
+- GitHub Actions select Node.js 26, restrictive token permissions, and immutable action references, while the published package retains support for Node.js 22 and later.
 
 ## [1.2.9]
 
