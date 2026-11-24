@@ -9,6 +9,7 @@ permissions:
 
 jobs:
   pr-preview:
+    if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
 
     concurrency:
@@ -44,4 +45,3 @@ jobs:
           umbrella-dir: csn-interop-specification
           token: ${{ secrets.PR_PREVIEW_TOKEN }}
           wait-poll-attempts: 180
-    if: github.event.pull_request.head.repo.full_name == github.repository
