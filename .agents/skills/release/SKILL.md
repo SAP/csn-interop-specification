@@ -8,7 +8,7 @@ description: Cut a new release of the CSN Interop specification (bump version, f
 This is the recipe for cutting a versioned release of this repo. A release
 bumps `package.json` to `X.Y.Z`, finalizes the `CHANGELOG.md` section for that
 version, merges via a dedicated `release/vX.Y.Z` PR into `main`, tags the merge
-commit `vX.Y.Z`, and then publishes to NPM + GitHub via a manual workflow.
+commit `vX.Y.Z`, publishes to NPM via a manual workflow, and creates the GitHub release manually.
 
 ## The golden rule
 
@@ -121,23 +121,24 @@ CHANGELOG must be complete, **end-user focused**, and consistent.
    ## [X.Y.Z]
 
    ### Added
+
    ...
    ```
 
 2. Move the pending entries under `## [X.Y.Z]`, grouped Keep-a-Changelog style
    (`Added` / `Changed` / `Fixed`, `BREAKING:` prefix for breaking items).
 
-3. **Curate for the consumer.** The CHANGELOG records what a *spec consumer*
+3. **Curate for the consumer.** The CHANGELOG records what a _spec consumer_
    observes, not the build log. Remove:
    - dev-tooling / dependency bumps (Biome, `@types/node`, `spec-toolkit`, npm
      deps, VS Code recommendations, format/CI scripts, unit tests, skills);
-   - spec-*source* churn that is explicitly **not a contract change** (e.g. an
+   - spec-_source_ churn that is explicitly **not a contract change** (e.g. an
      `x-introduced-in-version` backfill, or an enum notation migration whose
      value-set is unchanged) — these don't change what a consumer can do;
    - internal plumbing ("regenerated the TypeScript types").
-   Keep new annotations (Added) and behavioral schema changes consumers can
-   observe (e.g. `minItems`, `additionalProperties: false`), and any true
-   BREAKING change (Changed).
+     Keep new annotations (Added) and behavioral schema changes consumers can
+     observe (e.g. `minItems`, `additionalProperties: false`), and any true
+     BREAKING change (Changed).
 
 4. Sanity-check every `@Annotation` / type name and that each entry reads clearly
    to someone who does not know the codebase.
@@ -172,32 +173,24 @@ the GitHub Release). Get it reviewed and merge it.
 ## Tag and publish
 
 After the PR merges to `main`, publish via the **Release** GitHub Action
-(`.github/workflows/release.yml`) — `workflow_dispatch` (manual) with two toggles:
+(`.github/workflows/release.yml`) using `workflow_dispatch` with one npm toggle:
 
 ```bash
-gh workflow run release.yml -f npm=true -f githubRelease=true
+gh workflow run release.yml -f npm=true
 ```
 
 - **NPMJS Package** (`npm` job) — `npm publish` in the
   `npmjs:@sap/csn-interop-specification` environment, which **needs manual
   approval** (approve the deployment in the run's page).
-- **GitHub Release** (`githubRelease` job, runs after `npm`) — uses
-  `open-resource-discovery/github-release`. This action **derives the version
-  from `package.json`, creates the `vX.Y.Z` tag itself** (template `v<version>`),
-  and **auto-generates the release notes** from commits since the last tag plus a
-  contributor list.
 
-So in the normal path you do **not** create or push the tag by hand — the action
-does it. The published GitHub release ends up as a hybrid: the auto-generated
-`## What's Changed` / `## New Contributors` / `**Full Changelog**` sections, with
-the curated `## [X.Y.Z]` CHANGELOG block pasted on top (edit the release after it
-is created if the toolchain didn't prepend it).
+The optional GitHub release helper was removed.
+The workflow publishes only the npm package; create the GitHub release and tag manually as described below.
 
 ### Verify the automation actually ran
 
 The workflow is not reliably green — it has failed outright before (three failed
 dispatches on 2026-02-12) and around v1.2.6 was believed broken and done by hand.
-**Always confirm the run succeeded and both artifacts show `X.Y.Z`:**
+**Always confirm the npm run succeeded and, after creating the GitHub release, both artifacts show `X.Y.Z`:**
 
 ```bash
 gh run list --workflow=release.yml --limit 3   # latest dispatch: success?
@@ -205,10 +198,9 @@ gh release view vX.Y.Z                          # tag + notes exist
 npm view @sap/csn-interop-specification version  # == X.Y.Z
 ```
 
-### Manual fallback (only if the action didn't run / failed)
+### Create the GitHub release manually
 
-If the workflow failed or didn't create the tag + release, create the release
-by hand from the new-release page:
+Create the release and its tag from the new-release page:
 
 <https://github.com/SAP/csn-interop-specification/releases/new>
 
@@ -245,7 +237,7 @@ Prompt the user to send a mail to the CPA Distribution List (incl. Interested):
 - [ ] `npm run ci && npm run test && npm run generate:check` green.
 - [ ] Release PR opened → `main`, on the milestone, body = changelog section.
 - [ ] PR merged.
-- [ ] Release workflow dispatched: NPM (approved) + GitHub Release. The action
-      creates the `vX.Y.Z` tag itself — no manual tagging in the normal path.
-- [ ] Verified the run succeeded: `gh release view vX.Y.Z` + `npm view … version` both `X.Y.Z`. Manual fallback via releases/new if not.
+- [ ] npm release workflow dispatched and any configured deployment approval completed.
+- [ ] GitHub release and `vX.Y.Z` tag created manually on the release merge commit.
+- [ ] Verified the npm workflow succeeded and both npm and GitHub show `X.Y.Z`.
 - [ ] Workstream notified: mail to the CSN Interop Interested Contacts list.

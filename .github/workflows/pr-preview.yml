@@ -4,15 +4,12 @@ on:
   pull_request:
     types: [opened, reopened, synchronize, closed]
 
-permissions: {}
+permissions:
+  contents: read
 
 jobs:
   pr-preview:
-    permissions:
-      contents: write
-      actions: write
-      pull-requests: read
-
+    if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
 
     concurrency:
@@ -20,16 +17,15 @@ jobs:
       cancel-in-progress: true
 
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Setup Node
         if: github.event.action != 'closed'
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: 26
-
+          node-version: "26"
       - name: Build preview
         if: github.event.action != 'closed'
         env:
@@ -41,10 +37,11 @@ jobs:
           npm run build
 
       - name: PR preview
-        uses: open-resource-discovery/pr-preview-action@main
+        uses: open-resource-discovery/pr-preview-action@9772862b578870a2db7953e35e3b5952f09e3f3f # main
         with:
-          fork: true
+          fork: false
           target-repo: SAP/csn-interop-pr-preview
           pages-base-url: https://sap.github.io/csn-interop-pr-preview
           umbrella-dir: csn-interop-specification
           token: ${{ secrets.PR_PREVIEW_TOKEN }}
+          wait-poll-attempts: 180

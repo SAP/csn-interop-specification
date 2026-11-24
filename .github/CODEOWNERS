@@ -1,0 +1,5 @@
+# Review owners for CI and build configuration.
+/.github/ @maiargu @swennemers
+/renovate.json @maiargu @swennemers
+/package.json @maiargu @swennemers
+/package-lock.json @maiargu @swennemers
